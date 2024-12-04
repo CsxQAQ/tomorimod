@@ -8,5 +8,13 @@
       "If you need to use it for stuff.",
       "Blizzard is a good example for this."
     ]
+  },
+  "${modID}:Strike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成!D!点伤害。"
+  },
+  "${modID}:Defend": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得!B!点 格挡 。"
   }
 }
