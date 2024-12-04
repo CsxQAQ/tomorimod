@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
+import tomorinmod.powers.Shine;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -68,6 +69,7 @@ public class BasicMod implements
 
         //在这里注册power
         BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
+        BaseMod.addPower(Shine.class, Shine.POWER_ID);
 
 
         //This loads the image used as an icon in the in-game mods menu.
