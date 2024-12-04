@@ -5,5 +5,13 @@
     "DESCRIPTIONS": [
       "Gain [E] at the start of your turn. [E] is an energy icon."
     ]
+  },
+  "${modID}:Pant": {
+    "NAME": "企鹅",
+    "FLAVOR": "I followed a tutorial!",
+    "DESCRIPTIONS": [
+      "当你使用一张卡牌后，获得 #b",
+      " 点 #y力量."
+    ]
   }
 }
