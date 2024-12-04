@@ -6,6 +6,7 @@ import basemod.interfaces.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.Gravity;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -64,6 +65,11 @@ public class BasicMod implements
 
     @Override
     public void receivePostInitialize() {
+
+        //在这里注册power
+        BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
+
+
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
         //Set up the mod information displayed in the in-game mods menu.

@@ -4,5 +4,11 @@
     "DESCRIPTIONS": [
       "You are Very Cool and Strong."
     ]
+  },
+  "${modID}:Gravity": {
+    "NAME": "重力",
+    "DESCRIPTIONS": [
+      "回合结束时对所有敌人造成等同于重力层数的伤害。"
+    ]
   }
 }
