@@ -3,8 +3,10 @@ package tomorinmod;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.relics.BaseRelic;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
 import tomorinmod.util.TextureLoader;
@@ -237,4 +239,5 @@ public class BasicMod implements
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
     }
+
 }

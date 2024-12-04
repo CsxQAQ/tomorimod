@@ -16,5 +16,24 @@
   "${modID}:Defend": {
     "NAME": "防御",
     "DESCRIPTION": "获得!B!点 格挡 。"
+  },
+  "${modID}:Shout": {
+    "NAME": "内心的呐喊",
+    "DESCRIPTION": "造成 !D! 点伤害，使用一张卡牌后 tomorinmod:翻面 。",
+    "EXTENDED_DESCRIPTION": [
+      "获得 !B! 点 格挡 ，使用一张卡牌后 tomorinmod:翻面 。"
+    ]
+  },
+  "${modID}:StarDust": {
+    "NAME": "微小的星屑",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次 。"
+  },
+  "${modID}:Band": {
+    "NAME": "创可贴",
+    "DESCRIPTION": "获得 !M! 点 多重护甲 ， tomorinmod:增强 :如果在本回合内使用过技能牌，额外获得4点 多重护甲 。"
+  },
+  "${modID}:Tomotomo": {
+    "NAME": "偷摸偷摸",
+    "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 。"
   }
 }
