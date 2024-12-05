@@ -11,6 +11,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Shine;
 import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.savedata.FormToSave;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
@@ -18,6 +19,9 @@ import tomorinmod.util.CardStats;
 import java.util.Iterator;
 
 public class WeAreMygo extends BaseCard {
+
+    private FormToSave formToSave;
+
     public static final String ID = makeID(WeAreMygo.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -37,7 +41,7 @@ public class WeAreMygo extends BaseCard {
 
         if (AbstractDungeon.player instanceof MyCharacter) {
             MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
-            myCharacter.forms.add("WeAreMygoPower");
+            FormToSave.getInstance().getForms().add("WeAreMygoPower");
             AddTagsUtils.addTags(this, CustomTags.MOMENT);
         }
     }

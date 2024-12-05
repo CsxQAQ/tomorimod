@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.savedata.FormToSave;
 import tomorinmod.tags.CustomTags;
 
 import java.util.Iterator;
 
 public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
+
+    private FormToSave formToSave;
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
@@ -21,7 +24,7 @@ public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
             MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
 
             // 现在可以访问 forms 属性
-            Iterator<String> iterator = myCharacter.forms.iterator();
+            Iterator<String> iterator = FormToSave.getInstance().getForms().iterator();
 
             while (iterator.hasNext()) {
                 String form= iterator.next();

@@ -36,13 +36,6 @@ import static tomorinmod.BasicMod.makeID;
 
 public class MyCharacter extends CustomPlayer {
 
-    public ArrayList<String> forms= new ArrayList<>();
-
-    public void addForms(String form){
-        forms.add(form);
-    }
-
-
     //Stats
     public static final int ENERGY_PER_TURN = 3;
     public static final int MAX_HP = 70;
