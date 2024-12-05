@@ -11,6 +11,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.DeleteOnBattleEndMonitor;
 import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
+import tomorinmod.monitor.GivePowersOnBattleStartMonitor;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 import tomorinmod.powers.WeAreMygoPower;
@@ -73,6 +74,7 @@ public class BasicMod implements
         //在这里注册监视器
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
         BaseMod.subscribe(new DeleteOnBattleEndMonitor());
+        BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
     }
 
     public BasicMod() {

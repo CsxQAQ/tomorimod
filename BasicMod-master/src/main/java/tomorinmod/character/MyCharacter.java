@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
+import tomorinmod.cards.rare.WeAreMygo;
 import tomorinmod.cards.uncommon.Tomotomo;
 
 import java.util.ArrayList;
@@ -34,6 +35,13 @@ import static tomorinmod.BasicMod.characterPath;
 import static tomorinmod.BasicMod.makeID;
 
 public class MyCharacter extends CustomPlayer {
+
+    public ArrayList<String> forms= new ArrayList<>();
+
+    public void addForms(String form){
+        forms.add(form);
+    }
+
     //Stats
     public static final int ENERGY_PER_TURN = 3;
     public static final int MAX_HP = 70;
@@ -154,14 +162,13 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
-        retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Shout.ID);
         retVal.add(Tomotomo.ID);
+        retVal.add(WeAreMygo.ID);
 
         return retVal;
     }

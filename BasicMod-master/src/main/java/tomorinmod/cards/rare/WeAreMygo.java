@@ -4,13 +4,18 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.characters.CharacterManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Shine;
 import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.tags.CustomTags;
+import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
+
+import java.util.Iterator;
 
 public class WeAreMygo extends BaseCard {
     public static final String ID = makeID(WeAreMygo.class.getSimpleName());
@@ -29,6 +34,12 @@ public class WeAreMygo extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
+
+        if (AbstractDungeon.player instanceof MyCharacter) {
+            MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
+            myCharacter.forms.add("WeAreMygoPower");
+            AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        }
     }
 
     @Override
