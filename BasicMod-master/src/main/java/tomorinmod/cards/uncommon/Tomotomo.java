@@ -9,7 +9,11 @@ import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.SpotlightPlayerEffect;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.tags.CustomTags;
+import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
+
+import java.util.Iterator;
 
 public class Tomotomo extends BaseCard {
     public static final String ID = makeID(Tomotomo.class.getSimpleName());
@@ -37,11 +41,12 @@ public class Tomotomo extends BaseCard {
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
         int totalGold = this.magicNumber * AbstractDungeon.getMonsters().monsters.size();
         this.addToBot(new GainGoldAction(totalGold));
+        AddTagsUtils.addTags(this,CustomTags.MOMENT);
     }
-
 
     @Override
     public AbstractCard makeCopy() { //Optional
         return new Tomotomo();
     }
+
 }

@@ -11,7 +11,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
+
+import java.util.Iterator;
 
 public class Shout extends BaseCard {
     public static final String ID = makeID(Shout.class.getSimpleName());
@@ -31,12 +34,12 @@ public class Shout extends BaseCard {
 
     private int isFlipped = 0;
 
+
     public Shout() {
         super(ID, info);
 
         setDamage(DAMAGE, UPG_DAMAGE);
         tags.add(CardTags.STRIKE);
-
         setBlock(BLOCK, UPG_BLOCK);
     }
 
@@ -80,4 +83,5 @@ public class Shout extends BaseCard {
     public AbstractCard makeCopy() { //Optional
         return new Shout();
     }
+
 }

@@ -3,13 +3,18 @@ package tomorinmod;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
+import com.badlogic.gdx.utils.compression.lzma.Base;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.monitor.DeleteOnBattleEndMonitor;
 import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 import tomorinmod.relics.BaseRelic;
+import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
 import tomorinmod.util.TextureLoader;
@@ -44,6 +49,7 @@ public class BasicMod implements
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
 
+
     static {
         loadModInfo();
     }
@@ -63,8 +69,9 @@ public class BasicMod implements
 
         MyCharacter.Meta.registerColor();
 
-
+        //在这里注册监视器
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
+        BaseMod.subscribe(new DeleteOnBattleEndMonitor());
     }
 
     public BasicMod() {

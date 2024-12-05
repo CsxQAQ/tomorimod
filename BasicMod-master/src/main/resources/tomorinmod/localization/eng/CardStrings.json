@@ -34,6 +34,6 @@
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
-    "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 。"
+    "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 ， tomorinmod:瞬间  。"
   }
 }

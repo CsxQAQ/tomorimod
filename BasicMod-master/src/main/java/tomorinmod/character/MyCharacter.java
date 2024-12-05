@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
+import tomorinmod.cards.uncommon.Tomotomo;
 
 import java.util.ArrayList;
 
@@ -160,6 +161,7 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Shout.ID);
+        retVal.add(Tomotomo.ID);
 
         return retVal;
     }
