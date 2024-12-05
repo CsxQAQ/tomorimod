@@ -1,5 +1,6 @@
 package tomorinmod.powers;
 
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -43,5 +44,16 @@ public class Shine extends BasePower {
                 if (gravity.amount <= 0) AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, Gravity.POWER_ID));
             }
         }
+    }
+
+    @Override
+    public void atStartOfTurn() {
+        // 每层Shine恢复1点生命
+        flash();
+        addToBot(new HealAction(this.owner, this.owner, this.amount));
+    }
+
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0];
     }
 }

@@ -30,10 +30,14 @@
   },
   "${modID}:Band": {
     "NAME": "创可贴",
-    "DESCRIPTION": "获得 !M! 点 多重护甲 ， tomorinmod:增强 :如果在本回合内使用过技能牌，额外获得4点 多重护甲 。"
+    "DESCRIPTION": "获得 !M! 点 多层护甲 ， tomorinmod:增强 :如果在本回合内使用过技能牌，额外获得4点。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
     "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 ， tomorinmod:瞬间  。"
+  },
+  "${modID}:WeAreMygo": {
+    "NAME": "我们是Mygo!!!!!",
+    "DESCRIPTION": "回合结束时，随机获得5点 多层护甲 ，1点 无实体 ，2点 tomorinmod:重力 或者1点 tomorinmod:闪耀 。"
   }
 }

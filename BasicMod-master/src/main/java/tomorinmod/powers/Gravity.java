@@ -56,4 +56,8 @@ public class Gravity extends BasePower {
         }
         addToBot(new DamageAllEnemiesAction(this.owner, damageArray, DamageInfo.DamageType.THORNS, DamageAllEnemiesAction.AttackEffect.SLASH_HORIZONTAL));
     }
+
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0];
+    }
 }

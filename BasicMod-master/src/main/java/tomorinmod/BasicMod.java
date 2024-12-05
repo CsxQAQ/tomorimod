@@ -13,6 +13,7 @@ import tomorinmod.monitor.DeleteOnBattleEndMonitor;
 import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
+import tomorinmod.powers.WeAreMygoPower;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
@@ -85,6 +86,7 @@ public class BasicMod implements
         //在这里注册power
         BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
         BaseMod.addPower(Shine.class, Shine.POWER_ID);
+        BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
 
 
         //This loads the image used as an icon in the in-game mods menu.
