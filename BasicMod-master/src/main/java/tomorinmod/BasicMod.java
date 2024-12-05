@@ -6,6 +6,7 @@ import basemod.interfaces.*;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 import tomorinmod.relics.BaseRelic;
@@ -42,7 +43,11 @@ public class BasicMod implements
         PostInitializeSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
-    static { loadModInfo(); }
+
+    static {
+        loadModInfo();
+    }
+
     private static final String resourcesFolder = checkResourcesPath();
     public static final Logger logger = LogManager.getLogger(modID); //Used to output to the console.
 
@@ -57,6 +62,9 @@ public class BasicMod implements
         new BasicMod();
 
         MyCharacter.Meta.registerColor();
+
+
+        BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
     }
 
     public BasicMod() {
@@ -85,10 +93,10 @@ public class BasicMod implements
     /*----------Localization----------*/
 
     //This is used to load the appropriate localization files based on language.
-    private static String getLangString()
-    {
+    private static String getLangString() {
         return Settings.language.name().toLowerCase();
     }
+
     private static final String defaultLanguage = "eng";
 
     public static final Map<String, KeywordInfo> keywords = new HashMap<>();
@@ -105,8 +113,7 @@ public class BasicMod implements
         if (!defaultLanguage.equals(getLangString())) {
             try {
                 loadLocalization(getLangString());
-            }
-            catch (GdxRuntimeException e) {
+            } catch (GdxRuntimeException e) {
                 e.printStackTrace();
             }
         }
@@ -134,8 +141,7 @@ public class BasicMod implements
     }
 
     @Override
-    public void receiveEditKeywords()
-    {
+    public void receiveEditKeywords() {
         Gson gson = new Gson();
         String json = Gdx.files.internal(localizationPath(defaultLanguage, "Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
         KeywordInfo[] keywords = gson.fromJson(json, KeywordInfo[].class);
@@ -145,17 +151,14 @@ public class BasicMod implements
         }
 
         if (!defaultLanguage.equals(getLangString())) {
-            try
-            {
+            try {
                 json = Gdx.files.internal(localizationPath(getLangString(), "Keywords.json")).readString(String.valueOf(StandardCharsets.UTF_8));
                 keywords = gson.fromJson(json, KeywordInfo[].class);
                 for (KeywordInfo keyword : keywords) {
                     keyword.prep();
                     registerKeyword(keyword);
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 logger.warn(modID + " does not support " + getLangString() + " keywords.");
             }
         }
@@ -163,8 +166,7 @@ public class BasicMod implements
 
     private void registerKeyword(KeywordInfo info) {
         BaseMod.addKeyword(modID.toLowerCase(), info.PROPER_NAME, info.NAMES, info.DESCRIPTION);
-        if (!info.ID.isEmpty())
-        {
+        if (!info.ID.isEmpty()) {
             keywords.put(info.ID, info);
         }
     }
@@ -177,12 +179,15 @@ public class BasicMod implements
     public static String imagePath(String file) {
         return resourcesFolder + "/images/" + file;
     }
+
     public static String characterPath(String file) {
         return resourcesFolder + "/images/character/" + file;
     }
+
     public static String powerPath(String file) {
         return resourcesFolder + "/images/powers/" + file;
     }
+
     public static String relicPath(String file) {
         return resourcesFolder + "/images/relics/" + file;
     }
@@ -220,7 +225,7 @@ public class BasicMod implements
      * This determines the mod's ID based on information stored by ModTheSpire.
      */
     private static void loadModInfo() {
-        Optional<ModInfo> infos = Arrays.stream(Loader.MODINFOS).filter((modInfo)->{
+        Optional<ModInfo> infos = Arrays.stream(Loader.MODINFOS).filter((modInfo) -> {
             AnnotationDB annotationDB = Patcher.annotationDBMap.get(modInfo.jarURL);
             if (annotationDB == null)
                 return false;
@@ -230,8 +235,7 @@ public class BasicMod implements
         if (infos.isPresent()) {
             info = infos.get();
             modID = info.ID;
-        }
-        else {
+        } else {
             throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
         }
     }
@@ -265,4 +269,5 @@ public class BasicMod implements
                         UnlockTracker.markRelicAsSeen(relic.relicId);
                 });
     }
+
 }
