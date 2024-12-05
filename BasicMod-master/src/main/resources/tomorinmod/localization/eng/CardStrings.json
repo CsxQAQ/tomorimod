@@ -59,5 +59,13 @@
   "${modID}:Reversal": {
     "NAME": "逆转",
     "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
+  },
+  "${modID}:GravityTomorin": {
+    "NAME": "重力型高松灯",
+    "DESCRIPTION": "获得4层 tomorinmod:重力 ， tomorinmod:形态 ，战斗开始时获得4层 tomorinmod:重力 。"
+  },
+  "${modID}:StrengthTomorin": {
+    "NAME": "力量型高松灯",
+    "DESCRIPTION": " 获得4层 力量 ， tomorinmod:形态 ，战斗开始时获得4层 力量 。"
   }
 }

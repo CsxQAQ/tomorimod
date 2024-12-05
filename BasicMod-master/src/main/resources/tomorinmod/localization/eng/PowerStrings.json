@@ -18,9 +18,21 @@
     ]
   },
   "${modID}:WeAreMygoPower": {
-  "NAME": "我们是Mygo!!!!!",
-  "DESCRIPTIONS": [
-    "回合结束时，随机获得2层 #y重力 ，1层 #y闪耀 ，1层 #y无实体 ，5层 #y多重护甲 。"
-  ]
-}
+    "NAME": "形态：我们是Mygo!!!!!",
+    "DESCRIPTIONS": [
+      "回合结束时，随机获得2层 #y重力 ，1层 #y闪耀 ，1层 #y无实体 ，5层 #y多重护甲 。"
+    ]
+  },
+  "${modID}:StrengthTomorinPower": {
+    "NAME": "形态：力量型高松灯",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得4点 #y力量 。"
+    ]
+  },
+  "${modID}:GravityTomorinPower": {
+    "NAME": "形态：重力型高松灯",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得4点 #y重力 。"
+    ]
+  }
 }

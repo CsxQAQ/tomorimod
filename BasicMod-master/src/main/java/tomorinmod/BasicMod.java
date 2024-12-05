@@ -12,9 +12,7 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.DeleteOnBattleEndMonitor;
 import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
 import tomorinmod.monitor.GivePowersOnBattleStartMonitor;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
-import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
@@ -61,6 +59,8 @@ public class BasicMod implements
         BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
         BaseMod.addPower(Shine.class, Shine.POWER_ID);
         BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
+        BaseMod.addPower(WeAreMygoPower.class, StrengthTomorinPower.POWER_ID);
+        BaseMod.addPower(WeAreMygoPower.class, GravityTomorinPower.POWER_ID);
     }
 
 

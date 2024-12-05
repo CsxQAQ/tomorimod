@@ -1,47 +1,57 @@
-package tomorinmod.cards.rare;
+package tomorinmod.cards.commom;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityTomorinPower;
+import tomorinmod.powers.StrengthTomorinPower;
+import tomorinmod.savedata.SaveForm;
 import tomorinmod.savedata.SavePermanentForm;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
 
-public class WeAreMygo extends BaseCard {
+public class GravityTomorin extends BaseCard {
 
-    public static final String ID = makeID(WeAreMygo.class.getSimpleName());
+
+    public static final String ID = makeID(GravityTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.RARE,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
 
-    public WeAreMygo() {
+    public GravityTomorin() {
         super(ID, info);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
+        if(!SaveForm.getInstance().getForm().equals("")){
+            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
+        }
+
+        addToBot(new ApplyPowerAction(p,p,new Gravity(p,4),4));
+        addToBot(new ApplyPowerAction(p, p, new GravityTomorinPower(p),1));
 
         if (AbstractDungeon.player instanceof MyCharacter) {
-            MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
-            SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
+            SaveForm.getInstance().changeForm("GravityTomorinPower");
             AddTagsUtils.addTags(this, CustomTags.MOMENT);
         }
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new WeAreMygo();
+        return new GravityTomorin();
     }
 
     @Override
