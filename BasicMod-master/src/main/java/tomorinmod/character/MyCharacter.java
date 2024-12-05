@@ -42,6 +42,7 @@ public class MyCharacter extends CustomPlayer {
         forms.add(form);
     }
 
+
     //Stats
     public static final int ENERGY_PER_TURN = 3;
     public static final int MAX_HP = 70;

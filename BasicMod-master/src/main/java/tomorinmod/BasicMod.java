@@ -51,6 +51,18 @@ public class BasicMod implements
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
 
+    public static void receiveMonitor(){
+        BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
+        BaseMod.subscribe(new DeleteOnBattleEndMonitor());
+        BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
+    }
+
+    public void receivePower(){
+        BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
+        BaseMod.addPower(Shine.class, Shine.POWER_ID);
+        BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
+    }
+
 
     static {
         loadModInfo();
@@ -72,9 +84,7 @@ public class BasicMod implements
         MyCharacter.Meta.registerColor();
 
         //在这里注册监视器
-        BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
-        BaseMod.subscribe(new DeleteOnBattleEndMonitor());
-        BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
+        receiveMonitor();
     }
 
     public BasicMod() {
@@ -86,9 +96,7 @@ public class BasicMod implements
     public void receivePostInitialize() {
 
         //在这里注册power
-        BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
-        BaseMod.addPower(Shine.class, Shine.POWER_ID);
-        BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
+        this.receivePower();
 
 
         //This loads the image used as an icon in the in-game mods menu.

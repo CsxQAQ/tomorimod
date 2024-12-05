@@ -38,6 +38,6 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "我们是Mygo!!!!!",
-    "DESCRIPTION": "回合结束时，随机获得5点 多层护甲 ，1点 无实体 ，2点 tomorinmod:重力 或者1点 tomorinmod:闪耀 。"
+    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:形态 ， tomorinmod:瞬间 。"
   }
 }
