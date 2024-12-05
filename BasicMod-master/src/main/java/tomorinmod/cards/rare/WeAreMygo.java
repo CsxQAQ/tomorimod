@@ -37,7 +37,7 @@ public class WeAreMygo extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
+        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
 
         if (AbstractDungeon.player instanceof MyCharacter) {
             MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
@@ -49,5 +49,13 @@ public class WeAreMygo extends BaseCard {
     @Override
     public AbstractCard makeCopy() { //Optional
         return new WeAreMygo();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName(); // 更新卡牌名称，显示为“升级版”
+            upgradeBaseCost(0); // 将费用从 1 降为 0
+        }
     }
 }

@@ -25,7 +25,7 @@ public class Tomotomo extends BaseCard {
             1
     );
 
-    private static final int MONEY = 15;
+    private static final int MONEY = 30;
     private static final int UPG_MONEY = 15;
 
     public Tomotomo() {

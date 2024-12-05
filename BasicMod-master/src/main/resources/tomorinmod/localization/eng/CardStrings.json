@@ -38,6 +38,26 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "我们是Mygo!!!!!",
-    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:形态 ， tomorinmod:瞬间 。"
+    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 ， tomorinmod:瞬间 。"
+  },
+  "${modID}:LifelongBand": {
+    "NAME": "一辈子乐队",
+    "DESCRIPTION": "造成 !D! 点伤害，抽1张牌，每有1点 tomorinmod:重力 ，额外重复上述效果一次 。",
+    "EXTENDED_DESCRIPTION": [
+      "（重复此效果 ",
+      "次）。"
+    ]
+  },
+  "${modID}:Poem": {
+    "NAME": "诗",
+    "DESCRIPTION": "每有1点 tomorinmod:闪耀 ，获得1点 [E] ",
+    "EXTENDED_DESCRIPTION": [
+      "（使用 ",
+      "次）。"
+    ]
+  },
+  "${modID}:Reversal": {
+    "NAME": "逆转",
+    "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
   }
 }
