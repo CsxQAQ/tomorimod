@@ -33,6 +33,7 @@ public class Tomotomo extends BaseCard {
 
         setMagic(MONEY,UPG_MONEY);
         this.exhaust = true;
+        tags.add(CardTags.HEALING);
     }
 
     @Override

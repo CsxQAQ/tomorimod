@@ -39,6 +39,7 @@ public class GiftBox extends BaseCard {
 
         this.selfRetain = true;
         this.exhaust = true;
+        tags.add(CardTags.HEALING);
     }
 
     @Override
