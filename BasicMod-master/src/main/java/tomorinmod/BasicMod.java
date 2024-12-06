@@ -6,6 +6,7 @@ import basemod.interfaces.*;
 import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
@@ -15,6 +16,8 @@ import tomorinmod.monitor.GivePowersOnBattleStartMonitor;
 import tomorinmod.monitor.InitializeMonitor;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
+import tomorinmod.rewards.AnonReward;
+import tomorinmod.rewards.RewardTypePatch;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -41,6 +44,7 @@ import java.util.*;
 
 @SpireInitializer
 public class BasicMod implements
+
         EditRelicsSubscriber,
         EditCardsSubscriber,
         EditCharactersSubscriber,
@@ -63,6 +67,18 @@ public class BasicMod implements
         BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
         BaseMod.addPower(WeAreMygoPower.class, StrengthTomorinPower.POWER_ID);
         BaseMod.addPower(WeAreMygoPower.class, GravityTomorinPower.POWER_ID);
+    }
+
+    public void receiveReward(){
+        BaseMod.registerCustomReward(
+                RewardTypePatch.ANON_REWARD,
+                (rewardSave) -> { // 加载奖励
+                    return new AnonReward(1); // 根据保存的数据返回自定义奖励对象
+                },
+                (customReward) -> { // 保存奖励
+                    return new RewardSave(RewardTypePatch.ANON_REWARD.toString(), null); // 保存奖励的基本信息
+                }
+        );
     }
 
 
@@ -99,7 +115,7 @@ public class BasicMod implements
 
         //在这里注册power
         this.receivePower();
-
+        this.receiveReward();
 
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
