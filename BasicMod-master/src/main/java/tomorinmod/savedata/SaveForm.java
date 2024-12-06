@@ -46,4 +46,8 @@ public class SaveForm implements CustomSavable<String>{
     public void changeForm(String form) {
         this.form = form;
     }
+
+    public void clearForm(){
+        form = "";
+    }
 }

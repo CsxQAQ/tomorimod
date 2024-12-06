@@ -12,6 +12,7 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.DeleteOnBattleEndMonitor;
 import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
 import tomorinmod.monitor.GivePowersOnBattleStartMonitor;
+import tomorinmod.monitor.InitializeMonitor;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.tags.CustomTags;
@@ -53,6 +54,7 @@ public class BasicMod implements
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
         BaseMod.subscribe(new DeleteOnBattleEndMonitor());
         BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
+        BaseMod.subscribe(new InitializeMonitor());
     }
 
     public void receivePower(){

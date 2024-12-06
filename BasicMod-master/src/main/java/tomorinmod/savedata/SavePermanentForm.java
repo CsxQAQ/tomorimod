@@ -47,4 +47,8 @@ public class SavePermanentForm implements CustomSavable<ArrayList<String>>{
     public void addForm(String form) {
         forms.add(form);
     }
+
+    public void clearForm() {
+        forms.clear();
+    }
 }
