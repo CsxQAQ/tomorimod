@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorinmod.actions.CheckShineGravityAction;
 
 import static tomorinmod.BasicMod.makeID;
 
@@ -30,20 +31,22 @@ public class WeAreMygoPower extends BasePower {
 
         switch (randomResult){
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
+                addToBot(new ApplyPowerAction(
                         owner, owner, new PlatedArmorPower(owner, 5), 5));
                 break;
             case 1:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
+                addToBot(new ApplyPowerAction(
                         owner, owner, new IntangiblePlayerPower(owner, 1), 1));
                 break;
             case 2:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
-                        owner, owner, new Gravity(owner, 2), 2));
+                addToBot(new ApplyPowerAction(
+                        owner, owner, new StrengthPower(owner, 1), 1));
                 break;
             case 3:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
+                addToBot(new ApplyPowerAction(
                         owner, owner, new Shine(owner, 1), 1));
+                addToBot(new CheckShineGravityAction(owner));
+
                 break;
         }
     }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
@@ -29,6 +30,7 @@ public class AnonsGift extends BaseRelic {
     public void atBattleStart(){
         super.atBattleStart();
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player, 1)));
+        addToBot(new CheckShineGravityAction(AbstractDungeon.player));
 
     }
 

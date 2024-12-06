@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.powers.Gravity;
 
 public class GetPowerAtFirstTurnMonitor implements OnStartBattleSubscriber {
@@ -16,6 +17,7 @@ public class GetPowerAtFirstTurnMonitor implements OnStartBattleSubscriber {
             AbstractDungeon.actionManager.addToBottom(
                     new ApplyPowerAction(player, player, new Gravity(player, 1), 1)
             );
+            AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(player));
         }
 
     }

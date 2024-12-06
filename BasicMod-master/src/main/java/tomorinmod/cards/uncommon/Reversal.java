@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
@@ -44,6 +45,7 @@ public class Reversal extends BaseCard {
                     super.update();
                     if (isDone) {  // 确保移除闪耀能力已经完成
                         addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
+                        addToBot(new CheckShineGravityAction(p));
                     }
                 }
             });
@@ -55,6 +57,7 @@ public class Reversal extends BaseCard {
                     super.update();
                     if (isDone) {
                         addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
+                        addToBot(new CheckShineGravityAction(p));
                     }
                 }
             });

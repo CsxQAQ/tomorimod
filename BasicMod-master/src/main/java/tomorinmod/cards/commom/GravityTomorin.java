@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
@@ -41,6 +42,8 @@ public class GravityTomorin extends BaseCard {
         }
 
         addToBot(new ApplyPowerAction(p,p,new Gravity(p,4),4));
+        addToBot(new CheckShineGravityAction(p));
+
         addToBot(new ApplyPowerAction(p, p, new GravityTomorinPower(p),1));
 
         if (AbstractDungeon.player instanceof MyCharacter) {
