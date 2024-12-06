@@ -62,8 +62,9 @@ public class BasicMod implements
         BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
         BaseMod.addPower(Shine.class, Shine.POWER_ID);
         BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
-        BaseMod.addPower(WeAreMygoPower.class, StrengthTomorinPower.POWER_ID);
-        BaseMod.addPower(WeAreMygoPower.class, GravityTomorinPower.POWER_ID);
+        BaseMod.addPower(StrengthTomorinPower.class, StrengthTomorinPower.POWER_ID);
+        BaseMod.addPower(GravityTomorinPower.class, GravityTomorinPower.POWER_ID);
+        BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
     }
 
     public void receiveReward(){

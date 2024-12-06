@@ -34,5 +34,11 @@
     "DESCRIPTIONS": [
       "战斗开始时，获得4点 #y重力 。"
     ]
+  },
+  "${modID}:DarkTomorinPower": {
+    "NAME": "形态：暗黑型高松灯",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得1点 #y仪式 。"
+    ]
   }
 }
