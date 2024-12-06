@@ -67,5 +67,15 @@
   "${modID}:StrengthTomorin": {
     "NAME": "力量型高松灯",
     "DESCRIPTION": " 获得4层 力量 ， tomorinmod:形态 ，战斗开始时获得4层 力量 。"
-  }
+  },
+  "${modID}:GiftBox": {
+  "NAME": "礼物盒",
+  "DESCRIPTION": " 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",
+    "EXTENDED_DESCRIPTION": [
+      "战斗结束时，获得爱音的礼物。",
+      "战斗结束时，获得素世的礼物。",
+      "战斗结束时，获得立希的礼物。",
+      "战斗结束时，获得乐奈的礼物。"
+    ]
+}
 }

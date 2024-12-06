@@ -39,7 +39,7 @@
     "NAME": "乐奈的礼物",
     "FLAVOR": "I followed a tutorial!",
     "DESCRIPTIONS": [
-      "战斗开始时获得 #b1 点 #无实体"
+      "战斗开始时获得 #b1 点 y#无实体"
     ]
   }
 }

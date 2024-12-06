@@ -10,14 +10,10 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitor.DeleteOnBattleEndMonitor;
-import tomorinmod.monitor.GetPowerAtFirstTurnMonitor;
-import tomorinmod.monitor.GivePowersOnBattleStartMonitor;
-import tomorinmod.monitor.InitializeMonitor;
+import tomorinmod.monitor.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
-import tomorinmod.rewards.AnonReward;
-import tomorinmod.rewards.RewardTypePatch;
+import tomorinmod.rewards.*;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -59,6 +55,7 @@ public class BasicMod implements
         BaseMod.subscribe(new DeleteOnBattleEndMonitor());
         BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
         BaseMod.subscribe(new InitializeMonitor());
+        BaseMod.subscribe(new GiftBoxFlipMonitor());
     }
 
     public void receivePower(){
@@ -73,10 +70,37 @@ public class BasicMod implements
         BaseMod.registerCustomReward(
                 RewardTypePatch.ANON_REWARD,
                 (rewardSave) -> { // 加载奖励
-                    return new AnonReward(1); // 根据保存的数据返回自定义奖励对象
+                    return new AnonReward(); // 根据保存的数据返回自定义奖励对象
                 },
                 (customReward) -> { // 保存奖励
                     return new RewardSave(RewardTypePatch.ANON_REWARD.toString(), null); // 保存奖励的基本信息
+                }
+        );
+        BaseMod.registerCustomReward(
+                RewardTypePatch.SOYO_REWARD,
+                (rewardSave) -> { // 加载奖励
+                    return new SoyoReward(); // 根据保存的数据返回自定义奖励对象
+                },
+                (customReward) -> { // 保存奖励
+                    return new RewardSave(RewardTypePatch.SOYO_REWARD.toString(), null); // 保存奖励的基本信息
+                }
+        );
+        BaseMod.registerCustomReward(
+                RewardTypePatch.TAKI_REWARD,
+                (rewardSave) -> { // 加载奖励
+                    return new TakiReward(); // 根据保存的数据返回自定义奖励对象
+                },
+                (customReward) -> { // 保存奖励
+                    return new RewardSave(RewardTypePatch.TAKI_REWARD.toString(), null); // 保存奖励的基本信息
+                }
+        );
+        BaseMod.registerCustomReward(
+                RewardTypePatch.RANA_REWARD,
+                (rewardSave) -> { // 加载奖励
+                    return new RanaReward(); // 根据保存的数据返回自定义奖励对象
+                },
+                (customReward) -> { // 保存奖励
+                    return new RewardSave(RewardTypePatch.RANA_REWARD.toString(), null); // 保存奖励的基本信息
                 }
         );
     }
