@@ -1,5 +1,6 @@
 package tomorinmod.cards.uncommon;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,9 +18,12 @@ import tomorinmod.rewards.AnonReward;
 import tomorinmod.rewards.RanaReward;
 import tomorinmod.rewards.SoyoReward;
 import tomorinmod.rewards.TakiReward;
+import tomorinmod.savedata.SaveGifts;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
+
+import java.util.ArrayList;
 
 public class GiftBox extends BaseCard {
     public static final String ID = makeID(GiftBox.class.getSimpleName());
@@ -28,11 +32,12 @@ public class GiftBox extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            1
+            0
     );
 
-    public boolean isFlipped=false;
-    private int giftFrom=-1;
+    public boolean isFlipped = false;
+    private int giftFrom = -1;
+    private boolean giftsFull = true;
 
     public GiftBox() {
         super(ID, info);
@@ -44,12 +49,38 @@ public class GiftBox extends BaseCard {
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return isFlipped;
+        return false;
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        switch (giftFrom){
+    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
+
+    }
+
+
+//    @Override
+//    public void use(AbstractPlayer p, AbstractMonster m) {
+//        switch (giftFrom) {
+//            case 0:
+//                AbstractDungeon.getCurrRoom().rewards.add(new AnonReward());
+//                break;
+//            case 1:
+//                AbstractDungeon.getCurrRoom().rewards.add(new SoyoReward());
+//                break;
+//            case 2:
+//                AbstractDungeon.getCurrRoom().rewards.add(new TakiReward());
+//                break;
+//            case 3:
+//                AbstractDungeon.getCurrRoom().rewards.add(new RanaReward());
+//                break;
+//            default:
+//                break;
+//        }
+//        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+//    }
+
+    public void autoUse() {
+        switch (giftFrom) {
             case 0:
                 AbstractDungeon.getCurrRoom().rewards.add(new AnonReward());
                 break;
@@ -62,8 +93,11 @@ public class GiftBox extends BaseCard {
             case 3:
                 AbstractDungeon.getCurrRoom().rewards.add(new RanaReward());
                 break;
+            default:
+                break;
         }
         AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        this.isEthereal = true;
     }
 
     @Override
@@ -72,7 +106,7 @@ public class GiftBox extends BaseCard {
     }
 
     private void updateDescription() {
-        switch (giftFrom){
+        switch (giftFrom) {
             case 0:
                 this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
                 break;
@@ -85,14 +119,36 @@ public class GiftBox extends BaseCard {
             case 3:
                 this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[3];
                 break;
+            default:
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[4];
+                break;
+
         }
         initializeDescription();
     }
 
-    public void flipCard(){
-        this.isFlipped=true;
-        int randomResult = AbstractDungeon.miscRng.random(3); // 随机生成 0, 1, 或 2
-        this.giftFrom=randomResult;
+    public void flipCard() {
+        this.isFlipped = true;
+        ArrayList<Integer> giftGeted = SaveGifts.getInstance().getGiftGeted();
+
+        for (int i = 0; i < 4; i++) {
+            if (giftGeted.get(i) == 0) {
+                this.giftsFull = false;
+                break;
+            }
+        }
+
+        if (!this.giftsFull) {
+            int randomResult = AbstractDungeon.miscRng.random(3); // 随机生成 0, 1, 或 2
+            while (giftGeted.get(randomResult) == 1) {
+                randomResult = AbstractDungeon.miscRng.random(3);
+            }
+            giftGeted.set(randomResult, 1);
+            this.giftFrom = randomResult;
+        }
+
+
         updateDescription();
+        autoUse();
     }
 }
