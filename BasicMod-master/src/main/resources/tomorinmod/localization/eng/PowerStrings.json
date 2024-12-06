@@ -40,5 +40,11 @@
     "DESCRIPTIONS": [
       "战斗开始时，获得1点 #y仪式 。"
     ]
+  },
+  "${modID}:ShineTomorinPower": {
+    "NAME": "形态：闪耀型高松灯",
+    "DESCRIPTIONS": [
+      "战斗开始时，获得4点 #y闪耀 。"
+    ]
   }
 }

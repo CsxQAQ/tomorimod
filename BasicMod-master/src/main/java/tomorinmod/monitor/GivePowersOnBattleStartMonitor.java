@@ -36,6 +36,10 @@ public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DarkTomorinPower(AbstractDungeon.player), 1));
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player,1,true), 1));
                     break;
+                case "ShineTomorinPower":
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ShineTomorinPower(AbstractDungeon.player), 1));
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,1), 1));
+                    break;
                 default:
                     break;
             }

@@ -65,6 +65,7 @@ public class BasicMod implements
         BaseMod.addPower(StrengthTomorinPower.class, StrengthTomorinPower.POWER_ID);
         BaseMod.addPower(GravityTomorinPower.class, GravityTomorinPower.POWER_ID);
         BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
+        BaseMod.addPower(ShineTomorinPower.class, ShineTomorinPower.POWER_ID);
     }
 
     public void receiveReward(){

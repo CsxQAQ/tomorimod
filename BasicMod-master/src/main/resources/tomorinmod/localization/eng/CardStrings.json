@@ -72,6 +72,10 @@
     "NAME": "暗黑型高松灯",
     "DESCRIPTION": " 获得1层 仪式 ， tomorinmod:形态 ，战斗开始时获得1层 仪式 。"
   },
+  "${modID}:ShineTomorin": {
+    "NAME": "闪耀型高松灯",
+    "DESCRIPTION": " 获得4层 闪耀 ， tomorinmod:形态 ，战斗开始时获得4层 闪耀 。"
+  },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
   "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",
