@@ -78,5 +78,12 @@
       "无法被打出， 虚无 ， tomorinmod:瞬间 ，战斗结束时，获得乐奈的礼物。",
       "无法被打出， 虚无 ， tomorinmod:瞬间 ，已经获得了所有成员的礼物。"
     ]
-}
+  },
+  "${modID}:TwoFish": {
+    "NAME": "两fish",
+    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，获得 tomorinmod:闪耀 时 tomorinmod:翻面 。",
+    "EXTENDED_DESCRIPTION": [
+      " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，获得 tomorinmod:重力 时 tomorinmod:翻面 。"
+    ]
+  }
 }

@@ -16,6 +16,8 @@ import tomorinmod.util.CardStats;
 
 import java.util.Iterator;
 
+import static tomorinmod.BasicMod.imagePath;
+
 public class Shout extends BaseCard {
     public static final String ID = makeID(Shout.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -68,6 +70,15 @@ public class Shout extends BaseCard {
         this.isFlipped = AbstractDungeon.actionManager.cardsPlayedThisTurn.size() % 2;
         this.updateDescription();
         this.updateCardTypeAndTarget();
+        this.updateCardImage(); 
+    }
+
+    private void updateCardImage() {
+        if (this.isFlipped == 0) {
+            this.loadCardImage(imagePath("cards/attack/default.png")); // 加载正面图片
+        } else {
+            this.loadCardImage(imagePath("cards/attack/Shout.png"));  // 加载反面图片
+        }
     }
 
     @Override
