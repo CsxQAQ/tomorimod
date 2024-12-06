@@ -30,6 +30,7 @@ public class StrengthTomorin extends BaseCard {
 
     public StrengthTomorin() {
         super(ID, info);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

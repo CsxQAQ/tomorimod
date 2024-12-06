@@ -33,6 +33,7 @@ public class GravityTomorin extends BaseCard {
 
     public GravityTomorin() {
         super(ID, info);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

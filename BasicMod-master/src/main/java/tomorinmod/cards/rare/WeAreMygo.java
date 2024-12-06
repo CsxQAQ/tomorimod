@@ -26,17 +26,16 @@ public class WeAreMygo extends BaseCard {
 
     public WeAreMygo() {
         super(ID, info);
+        tags.add(CardTags.HEALING);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
 
-        if (AbstractDungeon.player instanceof MyCharacter) {
-            MyCharacter myCharacter = (MyCharacter) AbstractDungeon.player;
-            SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
-            AddTagsUtils.addTags(this, CustomTags.MOMENT);
-        }
+        SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
+        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+
     }
 
     @Override
