@@ -29,6 +29,7 @@ import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.rare.WeAreMygo;
 import tomorinmod.cards.uncommon.Tomotomo;
+import tomorinmod.relics.Notebook;
 
 import java.util.ArrayList;
 
@@ -174,6 +175,7 @@ public class MyCharacter extends CustomPlayer {
         ArrayList<String> retVal = new ArrayList<>();
         //IDs of starting relics. You can have multiple, but one is recommended.
         retVal.add(BurningBlood.ID);
+        retVal.add(Notebook.ID);
 
         return retVal;
     }

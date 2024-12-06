@@ -14,6 +14,7 @@ import tomorinmod.monitor.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
+import tomorinmod.screens.NotebookScreen;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -49,6 +50,10 @@ public class BasicMod implements
         PostInitializeSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
+
+    public static void receiveScreen(){
+        BaseMod.addCustomScreen(new NotebookScreen());
+    }
 
     public static void receiveMonitor(){
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
@@ -143,6 +148,7 @@ public class BasicMod implements
         //在这里注册power
         this.receivePower();
         this.receiveReward();
+        this.receiveScreen();
 
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
