@@ -24,6 +24,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import tomorinmod.cards.basic.Defend;
+import tomorinmod.cards.basic.MusicComposition;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.rare.WeAreMygo;
@@ -163,6 +164,7 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Shout.ID);
         retVal.add(Tomotomo.ID);
         retVal.add(WeAreMygo.ID);
+        retVal.add(MusicComposition.ID);
 
         return retVal;
     }

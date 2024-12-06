@@ -9,7 +9,6 @@ import tomorinmod.tags.CustomTags;
 import java.util.Iterator;
 
 public class DeleteOnBattleEndMonitor implements PostBattleSubscriber {
-
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         Iterator<AbstractCard> iterator = AbstractDungeon.player.masterDeck.group.iterator();

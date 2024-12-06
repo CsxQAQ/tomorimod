@@ -93,5 +93,12 @@
     "EXTENDED_DESCRIPTION": [
       " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，获得 tomorinmod:重力 时 tomorinmod:翻面 。"
     ]
+  },
+  "${modID}:MusicComposition": {
+    "NAME": "音乐创作",
+    "DESCRIPTION": " 固有 ， 保留 ， 无法被打出。使用三张牌后 tomorinmod:翻面 。",
+    "EXTENDED_DESCRIPTION": [
+      " xxx，弹回 。"
+    ]
   }
 }
