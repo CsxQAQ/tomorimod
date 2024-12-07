@@ -25,6 +25,10 @@ import static tomorinmod.util.TextureLoader.getCardTextureString;
 public abstract class BaseCard extends CustomCard {
     final private static Map<String, DynamicVariable> customVars = new HashMap<>();
 
+    //判断是否来自玩家卡组
+    public boolean isFromMasterDeck=false;
+
+
     protected static String makeID(String name) { return BasicMod.makeID(name); }
     protected CardStrings cardStrings;
 
