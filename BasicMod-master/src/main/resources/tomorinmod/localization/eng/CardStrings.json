@@ -120,5 +120,9 @@
   "${modID}:LondonDeserter": {
     "NAME": "敦敦逃兵",
     "DESCRIPTION": "从本场战斗中逃离，在boss房间无效。 tomorinmod:瞬间 ， 消耗 。"
+  },
+  "${modID}:InterestingGirl": {
+    "NAME": "有趣的女人",
+    "DESCRIPTION": "获得X+1点 无实体 。 tomorinmod:瞬间 ， 消耗 。"
   }
 }

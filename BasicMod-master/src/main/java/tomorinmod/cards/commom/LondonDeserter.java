@@ -24,7 +24,6 @@ import tomorinmod.util.CardStats;
 
 public class LondonDeserter extends BaseCard {
 
-
     public static final String ID = makeID(LondonDeserter.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -52,6 +51,7 @@ public class LondonDeserter extends BaseCard {
             AbstractDungeon.overlayMenu.endTurnButton.disable();
             AbstractDungeon.player.escapeTimer = 2.5F;
         }
+        AddTagsUtils.addTags(this, CustomTags.MOMENT);
     }
 
     @Override
