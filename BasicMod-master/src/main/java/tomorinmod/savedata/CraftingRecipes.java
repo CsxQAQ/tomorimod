@@ -1,28 +1,17 @@
 package tomorinmod.savedata;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import tomorinmod.util.GetModCardsUtils;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
-
-import static tomorinmod.BasicMod.makeID;
 
 public class CraftingRecipes {
 
     public static HashSet<String> tomorinCards=new HashSet<>();
     public static HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
     public static HashMap<String,String> cardMaterialHashMap=new HashMap<>();
-    public static HashSet<Recipe> recipeHashSet =new HashSet<>();
+    public static ArrayList<Recipe> recipeArrayList =new ArrayList<>();
     public class Recipe{
         public ArrayList<String> needs=new ArrayList<>();
         public ArrayList<Integer> levels=new ArrayList<>();
@@ -41,6 +30,11 @@ public class CraftingRecipes {
             this.levels.add(a2);
             this.levels.add(a3);
             this.music = music;
+        }
+
+        // 计算 levels 的总和
+        public int getLevelsSum() {
+            return levels.stream().mapToInt(Integer::intValue).sum();
         }
 
         // Getter 和 Setter 方法
@@ -68,15 +62,16 @@ public class CraftingRecipes {
             this.music = music;
         }
 
-        // 重写 toString() 方法，便于调试
-        @Override
-        public String toString() {
-            return "Recipe{" +
-                    "needs=" + needs +
-                    ", levels=" + levels +
-                    ", music='" + music + '\'' +
-                    '}';
-        }
+    }
+
+    // 静态方法：对列表按 levels 总和排序
+    public static void sortByLevelsSum(List<Recipe> recipes) {
+        Collections.sort(recipes, new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe r1, Recipe r2) {
+                return Integer.compare(r2.getLevelsSum(), r1.getLevelsSum());
+            }
+        });
     }
 
     private ArrayList<String> materials=new ArrayList<>(Arrays.asList(
@@ -105,23 +100,10 @@ public class CraftingRecipes {
     }
 
     public void initializeTomorinCards() {
-        tomorinCards.add("Strike");
-        tomorinCards.add("Defend");
-        tomorinCards.add("Shout");
-        tomorinCards.add("StarDust");
-        tomorinCards.add("Band");
-        tomorinCards.add("Tomotomo");
-        tomorinCards.add("WeAreMygo");
-        tomorinCards.add("LifelongBand");
-        tomorinCards.add("Poem");
-        tomorinCards.add("Reversal");
-        tomorinCards.add("GravityTomorin");
-        tomorinCards.add("StrengthTomorin");
-        tomorinCards.add("DarkTomorin");
-        tomorinCards.add("ShineTomorin");
-        tomorinCards.add("GiftBox");
-        tomorinCards.add("TwoFish");
-        tomorinCards.add("MusicComposition");
+        ArrayList<AbstractCard> allModCards=GetModCardsUtils.getAllModCards();
+        for(AbstractCard abstractCard:allModCards){
+            tomorinCards.add(abstractCard.cardID);
+        }
     }
 
     public String getRandomMaterials(){
@@ -131,12 +113,12 @@ public class CraftingRecipes {
 
     public void initializeCardsMaterials(){
         for(String cardString : tomorinCards){
-            cardMaterialHashMap.put(makeID(cardString),getRandomMaterials());
+            cardMaterialHashMap.put(cardString,getRandomMaterials());
         }
     }
 
     public boolean recipeAlreadyHave(Recipe aRecipe){
-        for(Recipe recipe: recipeHashSet){
+        for(Recipe recipe: recipeArrayList){
             if(recipe.needs.equals(aRecipe.needs)){
                 return true;
             }
@@ -161,7 +143,7 @@ public class CraftingRecipes {
                 recipe=new Recipe(getRandomMaterials(),getRandomMaterials(),getRandomMaterials(),
                         randomNum1,randomNum2,randomNum3,music.getKey());
             }
-            recipeHashSet.add(recipe);
+            recipeArrayList.add(recipe);
         }
     }
 
@@ -174,11 +156,15 @@ public class CraftingRecipes {
         initializeMusics();
     }
 
-    public void generate(){
+    public void clear(){
         cardMaterialHashMap.clear();
-        recipeHashSet.clear();
+        recipeArrayList.clear();
+    }
+
+    public void generate(){
         initializeCardsMaterials();
         initializeRecipeArrayList();
+        sortByLevelsSum(recipeArrayList);
     }
 
     // 获取单例实例的静态方法

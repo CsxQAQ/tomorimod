@@ -1,13 +1,5 @@
 package tomorinmod.savedata;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
-import basemod.abstracts.CustomSavableRaw;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-
-import java.util.ArrayList;
-
 public class SaveForm{
 
     // 单例实例
@@ -39,7 +31,7 @@ public class SaveForm{
         this.form = form;
     }
 
-    public void clearForm(){
+    public void clear(){
         form = "";
     }
 }

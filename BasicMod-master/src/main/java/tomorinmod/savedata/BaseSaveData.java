@@ -5,7 +5,6 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.monitor.InitializeMonitor;
 
 import java.util.ArrayList;
@@ -88,13 +87,13 @@ public class BaseSaveData {
 
             @Override
             public JsonElement onSaveRaw() {
-                return gson.toJsonTree(CraftingRecipes.getInstance().recipeHashSet);
+                return gson.toJsonTree(CraftingRecipes.getInstance().recipeArrayList);
             }
 
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    CraftingRecipes.getInstance().recipeHashSet = gson.fromJson(jsonElement, new TypeToken<HashSet<CraftingRecipes.Recipe>>() {}.getType());
+                    CraftingRecipes.getInstance().recipeArrayList = gson.fromJson(jsonElement, new TypeToken<HashSet<CraftingRecipes.Recipe>>() {}.getType());
                 }
             }
         });
@@ -111,6 +110,22 @@ public class BaseSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     InitializeMonitor.isInitialized = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("HistoryCraftRecords", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(HistoryCraftRecords.getInstance().craftRecords);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    HistoryCraftRecords.getInstance().craftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
                 }
             }
         });

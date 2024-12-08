@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitor.CountUsedCardMonitor;
 import tomorinmod.savedata.CraftingRecipes;
+import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
@@ -40,13 +40,22 @@ public class MusicComposition extends BaseCard {
         return this.isFliped;
     }
 
+
+    private boolean added=false;
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if(cardsUsed.size()==3){
+        if(cardsUsed.size()==3&&!added){
+            added=true;
             this.isFliped=true;
             String music=matchRecipe();
-            if(music!=""){
+            ArrayList<String> records=new ArrayList<>();
+            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(0)));
+            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(1)));
+            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(2)));
+            records.add(music);
+            HistoryCraftRecords.getInstance().craftRecords.add(records);
+            if(music!="fail"){
                 this.name=music;
             }else{
                 this.name="失败的创作";
@@ -74,7 +83,7 @@ public class MusicComposition extends BaseCard {
 
     //recipeHashSet
     public String matchRecipe(){
-        for(CraftingRecipes.Recipe recipe:CraftingRecipes.recipeHashSet){
+        for(CraftingRecipes.Recipe recipe:CraftingRecipes.recipeArrayList){
             boolean matched=true;
             for(int i=0;i<3;i++){
                 if(!cardMatch(cardsUsed.get(i),recipe.needs.get(i),recipe.levels.get(i))){
@@ -86,7 +95,7 @@ public class MusicComposition extends BaseCard {
                 return recipe.music;
             }
         }
-        return "";
+        return "fail";
     }
 
     public boolean cardMatch(String card,String recipe,int rarity){
@@ -108,5 +117,10 @@ public class MusicComposition extends BaseCard {
     @Override
     public AbstractCard makeCopy() { //Optional
         return new MusicComposition();
+    }
+
+    @Override
+    public void setMaterialAndLevel(){
+
     }
 }

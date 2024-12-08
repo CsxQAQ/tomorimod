@@ -34,11 +34,7 @@ public class SavePermanentForm {
         return forms;
     }
 
-    public void addForm(String form) {
-        forms.add(form);
-    }
-
-    public void clearForm() {
+    public void clear() {
         forms.clear();
     }
 }

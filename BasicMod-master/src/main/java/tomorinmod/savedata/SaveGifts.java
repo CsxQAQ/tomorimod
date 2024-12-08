@@ -15,7 +15,7 @@ public class SaveGifts {
 
     // 私有化构造函数，防止外部实例化
     private SaveGifts() {
-        initialize();
+        clear();
     }
 
     // 获取单例实例的静态方法
@@ -31,7 +31,7 @@ public class SaveGifts {
         return giftGeted;
     }
 
-    public void initialize(){
+    public void clear(){
         giftGeted = new ArrayList<>(Arrays.asList(0, 0, 0, 0));
     }
 

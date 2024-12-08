@@ -16,8 +16,7 @@ public class CountUsedCardMonitor implements OnCardUseSubscriber,PostBattleSubsc
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
-        String cardName = abstractCard.cardID;
-        MusicComposition.cardsUsed.add(cardName);
+        MusicComposition.cardsUsed.add(abstractCard.cardID);
     }
 
     @Override

@@ -1,31 +1,31 @@
 package tomorinmod.monitor;
 
-import basemod.interfaces.PostDungeonInitializeSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
-import basemod.interfaces.PreStartGameSubscriber;
-import basemod.interfaces.StartGameSubscriber;
+import basemod.interfaces.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.savedata.CraftingRecipes;
-import tomorinmod.savedata.SaveForm;
-import tomorinmod.savedata.SaveGifts;
-import tomorinmod.savedata.SavePermanentForm;
+import tomorinmod.savedata.*;
 
 //初始化地牢的时候，即重开，需要清空所有的自定义数据
-public class InitializeMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber {
+public class InitializeMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber, PostDeathSubscriber {
 
     public static boolean isInitialized=false;
 
-    public void initializeForm(){
-        SaveForm.getInstance().clearForm();
-        SavePermanentForm.getInstance().clearForm();
-        SaveGifts.getInstance().initialize();
+    //大部分数据都应该在地牢初始化时清空并重新生成
+    //除了isInitialized，设定在死亡时赋值
+    //规范：每个要保存的数据实现clear和generate两个方法
+
+    public void clear(){
+        SaveForm.getInstance().clear();
+        SavePermanentForm.getInstance().clear();
+        SaveGifts.getInstance().clear();
+        HistoryCraftRecords.getInstance().clear();
+        CraftingRecipes.getInstance().clear();
     }
 
     public void initializeMaterials(){
-        isInitialized=true;
         CraftingRecipes.getInstance().generate();
+        isInitialized=true;
         for(BaseCard card:BaseCard.allInstances){
             card.initializeMaterial();
         }
@@ -34,18 +34,23 @@ public class InitializeMonitor implements PostDungeonInitializeSubscriber, Start
     @Override
     public void receivePostDungeonInitialize() {
         if(AbstractDungeon.floorNum==0){
-            initializeForm();
+            clear();
             initializeMaterials();
         }
     }
 
     @Override
     public void receiveStartGame() {
-        if(isInitialized==false){
+        if(!isInitialized){
             return;
         }
         for(BaseCard card:BaseCard.allInstances){
             card.initializeMaterial();
         }
+    }
+
+    @Override
+    public void receivePostDeath() {
+        isInitialized=false;
     }
 }
