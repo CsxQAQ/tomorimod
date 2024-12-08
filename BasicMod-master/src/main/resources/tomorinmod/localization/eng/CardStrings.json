@@ -34,7 +34,7 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "我们是Mygo!!!!!",
-    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 ， tomorinmod:瞬间 。"
+    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 。"
   },
   "${modID}:LifelongBand": {
     "NAME": "一辈子乐队",
@@ -53,7 +53,7 @@
     ]
   },
   "${modID}:Reversal": {
-    "NAME": "逆转",
+    "NAME": "逆向思维",
     "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
   },
   "${modID}:GravityTomorin": {
@@ -112,5 +112,13 @@
   "${modID}:FailAndRestart": {
     "NAME": "失败还能重新开始",
     "DESCRIPTION": "将手牌中失败的创作翻面。"
+  },
+  "${modID}:BlacklistYou": {
+    "NAME": "我要拉黑你",
+    "DESCRIPTION": "消灭一个敌人，对boss敌人无效。 tomorinmod:瞬间 ， 消耗。"
+  },
+  "${modID}:LondonDeserter": {
+    "NAME": "敦敦逃兵",
+    "DESCRIPTION": "从本场战斗中逃离，在boss房间无效。 tomorinmod:瞬间 ， 消耗 。"
   }
 }
