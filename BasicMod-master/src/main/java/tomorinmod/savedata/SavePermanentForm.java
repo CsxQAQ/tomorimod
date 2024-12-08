@@ -1,16 +1,20 @@
 package tomorinmod.savedata;
 
+import basemod.BaseMod;
 import basemod.abstracts.CustomSavable;
+import basemod.abstracts.CustomSavableRaw;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 
-public class SavePermanentForm implements CustomSavable<ArrayList<String>>{
+public class SavePermanentForm {
 
     // 单例实例
     private static SavePermanentForm instance;
 
     // 用于保存表单数据
-    private ArrayList<String> forms;
+    public ArrayList<String> forms;
 
     // 私有化构造函数，防止外部实例化
     private SavePermanentForm() {
@@ -23,20 +27,6 @@ public class SavePermanentForm implements CustomSavable<ArrayList<String>>{
             instance = new SavePermanentForm();
         }
         return instance;
-    }
-
-    // 保存数据
-    @Override
-    public ArrayList<String> onSave() {
-        return forms; // 返回需要保存的字符串列表
-    }
-
-    // 加载数据
-    @Override
-    public void onLoad(ArrayList<String> loadedStrings) {
-        if (loadedStrings != null) {
-            forms = new ArrayList<>(loadedStrings); // 加载并处理数据
-        }
     }
 
     // 提供对 forms 的公共访问方法

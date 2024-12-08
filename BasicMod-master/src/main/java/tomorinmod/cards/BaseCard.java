@@ -3,7 +3,11 @@ package tomorinmod.cards;
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import tomorinmod.BasicMod;
+import tomorinmod.monitor.InitializeMonitor;
+import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.TriFunction;
 import com.badlogic.gdx.graphics.Color;
@@ -14,10 +18,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import static tomorinmod.BasicMod.imagePath;
 import static tomorinmod.util.GeneralUtils.removePrefix;
 import static tomorinmod.util.TextureLoader.getCardTextureString;
 
@@ -25,8 +28,61 @@ import static tomorinmod.util.TextureLoader.getCardTextureString;
 public abstract class BaseCard extends CustomCard {
     final private static Map<String, DynamicVariable> customVars = new HashMap<>();
 
+    public static final Set<BaseCard> allInstances = new HashSet<>();
+
     //判断是否来自玩家卡组
     public boolean isFromMasterDeck=false;
+
+    public String material="";
+    public int level=-1;
+    private Texture ICON=null;
+
+    public void setMaterialAndLevel(){
+        this.material= CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
+        if(this.rarity==CardRarity.COMMON){
+            this.level=1;
+        }else if(this.rarity==CardRarity.UNCOMMON){
+            this.level=2;
+        }else if(this.rarity==CardRarity.RARE){
+            this.level=3;
+        }
+    }
+
+    public void initializeMaterial(){
+        setMaterialAndLevel();
+        System.out.println("materials/"+CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)+".png");
+        this.ICON=new Texture(imagePath("materials/"+CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)+".png"));
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb); // 调用原本的渲染逻辑
+        //renderCustomIcon(sb); // 添加你自己的渲染逻辑
+    }
+
+
+    private void renderCustomIcon(SpriteBatch sb) {
+        sb.setColor(Color.WHITE); // 设置颜色
+
+        // 获取与分辨率相关的缩放因子（Settings.scale）
+        float resolutionScale = Settings.scale;
+
+        // 计算图标的宽度和高度（根据卡牌的缩放比例和分辨率动态调整）
+        float iconSize = this.drawScale * 32.0f * 1.5f * resolutionScale; // 包括分辨率缩放和 4 倍放大
+
+        // 计算图标的位置（根据卡牌中心点和缩放比例动态调整）
+        float iconX = this.current_x + this.hb.width*0.38f ; // 卡牌右上角的 X 坐标，0.4f 是偏移系数
+        float iconY = this.current_y + this.hb.height*0.4f ; // 卡牌右上角的 Y 坐标
+
+        // 渲染图标
+        sb.draw(
+                ICON,
+                iconX,       // 动态 X 坐标
+                iconY,       // 动态 Y 坐标
+                iconSize,    // 动态宽度
+                iconSize     // 动态高度
+        );
+    }
 
 
     protected static String makeID(String name) { return BasicMod.makeID(name); }
@@ -60,6 +116,11 @@ public abstract class BaseCard extends CustomCard {
 
     public BaseCard(String ID, CardStats info) {
         this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
+//        if(!InitializeMonitor.isInitialized){
+//            allInstances.add(this);
+//        }else{
+//            initializeMaterial();
+//        }
     }
     public BaseCard(String ID, CardStats info, String cardImage) {
         this(ID, info.baseCost, info.cardType, info.cardTarget, info.cardRarity, info.cardColor, cardImage);

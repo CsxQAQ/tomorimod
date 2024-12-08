@@ -14,6 +14,8 @@ import tomorinmod.monitor.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
+import tomorinmod.savedata.BaseSaveData;
+import tomorinmod.savedata.SaveForm;
 import tomorinmod.screens.NotebookScreen;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
@@ -150,6 +152,8 @@ public class BasicMod implements
         this.receivePower();
         this.receiveReward();
         this.receiveScreen();
+
+        BaseSaveData.saveData();
 
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));

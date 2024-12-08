@@ -11,6 +11,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.GetModCardsUtils;
 
 import java.util.Iterator;
 
@@ -39,7 +40,6 @@ public class Strike extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-
     }
 
     @Override

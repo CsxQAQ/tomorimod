@@ -2,16 +2,15 @@ package tomorinmod.screens;
 
 import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
+import static tomorinmod.BasicMod.imagePath;
 import static tomorinmod.BasicMod.makeID;
 
 public class NotebookScreen extends CustomScreen
@@ -67,38 +66,34 @@ public class NotebookScreen extends CustomScreen
         }
     }
 
-    private AbstractCard strikeCard;
-
+    private Texture texture;
     public NotebookScreen() {
-        // 初始化卡牌
-        this.strikeCard = CardLibrary.getCard(makeID("Defend")).makeCopy(); // 创建卡牌的副本
-        this.strikeCard.current_x = Settings.WIDTH / 2.0f; // 屏幕中心 X 坐标
-        this.strikeCard.current_y = Settings.HEIGHT / 2.0f; // 屏幕中心 Y 坐标
-        this.strikeCard.drawScale = 1.0f; // 渲染比例
+        //texture = new Texture(imagePath("Notebook.png")); // 加载图片
     }
 
     @Override
     public void render(SpriteBatch spriteBatch) {
-        // 渲染背景（可选）
-        spriteBatch.setColor(Color.BLACK);
-        spriteBatch.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
-
-        // 开始卡牌渲染
-        strikeCard.render(spriteBatch);
+        //spriteBatch.draw(texture, 100, 100, 1200, 800); // 在指定位置绘制图片
     }
 
 
-}
-
-//        spriteBatch.setColor(Color.BLACK); // 设置背景颜色
-//                spriteBatch.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT); // 填充全屏
+//    public NotebookScreen() {
+//        // 初始化卡牌
+//        this.strikeCard = CardLibrary.getCard(makeID("Defend")).makeCopy(); // 创建卡牌的副本
+//        this.strikeCard.current_x = Settings.WIDTH / 2.0f; // 屏幕中心 X 坐标
+//        this.strikeCard.current_y = Settings.HEIGHT / 2.0f; // 屏幕中心 Y 坐标
+//        this.strikeCard.drawScale = 1.0f; // 渲染比例
+//    }
 //
-//                // 绘制文本
-//                FontHelper.renderFontCentered(
-//                spriteBatch,
-//                FontHelper.buttonLabelFont,
-//                "This is your custom screen!",
-//                Settings.WIDTH / 2.0f,
-//                Settings.HEIGHT / 2.0f,
-//                Color.WHITE
-//                );
+//    @Override
+//    public void render(SpriteBatch spriteBatch) {
+//        // 渲染背景（可选）
+//        spriteBatch.setColor(Color.BLACK);
+//        spriteBatch.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+//
+//        // 开始卡牌渲染
+//        strikeCard.render(spriteBatch);
+//    }
+
+
+}

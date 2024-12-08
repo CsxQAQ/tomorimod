@@ -27,7 +27,7 @@ public class WeAreMygoPower extends BasePower {
     public void atEndOfTurn(boolean isPlayer) {
         if (!isPlayer) return;
 
-        int randomResult = AbstractDungeon.miscRng.random(3); // 随机生成 0, 1, 或 2
+        int randomResult = AbstractDungeon.miscRng.random(3);
 
         switch (randomResult){
             case 0:
