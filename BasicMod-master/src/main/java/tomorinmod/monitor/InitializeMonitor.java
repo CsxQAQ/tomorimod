@@ -32,8 +32,10 @@ public class InitializeMonitor implements PostDungeonInitializeSubscriber {
 
     @Override
     public void receivePostDungeonInitialize() {
-        initializeForm();
-        initializeMaterials();
+        if(AbstractDungeon.floorNum==0){
+            initializeForm();
+            initializeMaterials();
+        }
     }
 
 
