@@ -3,10 +3,12 @@ package tomorinmod.cards.basic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.CountUsedCardMonitor;
+import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
@@ -22,9 +24,7 @@ public class MusicComposition extends BaseCard {
     );
 
     private boolean isFliped=false;
-    private ArrayList<String> cardsUsed=new ArrayList<>();
-    private int currentLength;
-    private int startLength;
+    public static ArrayList<String> cardsUsed=new ArrayList<>();
 
     public MusicComposition() {
         super(ID, info);
@@ -32,8 +32,6 @@ public class MusicComposition extends BaseCard {
         this.selfRetain = true;
         this.isInnate = true;
 
-        this.currentLength =CountUsedCardMonitor.cardsUsed.size();
-        this.startLength=CountUsedCardMonitor.cardsUsed.size();
     }
 
 
@@ -45,14 +43,14 @@ public class MusicComposition extends BaseCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if(!this.isFliped&&this.currentLength -this.startLength <3){
-            if(this.currentLength !=CountUsedCardMonitor.cardsUsed.size()){
-                this.cardsUsed.add(CountUsedCardMonitor.cardsUsed.get(CountUsedCardMonitor.cardsUsed.size()-1));
-                this.currentLength++;
-            }
-        }
-        if(this.currentLength -this.startLength==3){
+        if(cardsUsed.size()==3){
             this.isFliped=true;
+            String music=matchRecipe();
+            if(music!=""){
+                this.name=music;
+            }else{
+                this.name="失败的创作";
+            }
         }
         updateDescription();
     }
@@ -69,9 +67,42 @@ public class MusicComposition extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        AbstractCard copyCard = this.makeCopy();
+        cardsUsed.clear();
+        p.hand.addToHand(this.makeCopy());
 
-        p.hand.addToHand(copyCard);
+    }
+
+    //recipeHashSet
+    public String matchRecipe(){
+        for(CraftingRecipes.Recipe recipe:CraftingRecipes.recipeHashSet){
+            boolean matched=true;
+            for(int i=0;i<3;i++){
+                if(!cardMatch(cardsUsed.get(i),recipe.needs.get(i),recipe.levels.get(i))){
+                    matched=false;
+                    break;
+                }
+            }
+            if(matched){
+                return recipe.music;
+            }
+        }
+        return "";
+    }
+
+    public boolean cardMatch(String card,String recipe,int rarity){
+        CardRarity cardRarity= CardLibrary.getCard(card).rarity;
+        int r=-1;
+        if(cardRarity==CardRarity.BASIC||cardRarity==CardRarity.COMMON){
+            r=1;
+        }else if(cardRarity==CardRarity.UNCOMMON){
+            r=2;
+        }else if(cardRarity==CardRarity.RARE){
+            r=3;
+        }
+        if(card.equals(makeID(recipe))&&r>=rarity){
+            return true;
+        }
+        return false;
     }
 
     @Override

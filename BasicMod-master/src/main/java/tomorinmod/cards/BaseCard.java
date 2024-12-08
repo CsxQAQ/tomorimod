@@ -38,7 +38,7 @@ public abstract class BaseCard extends CustomCard {
     private Texture ICON=null;
 
     public void setMaterialAndLevel(){
-        this.material= CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
+        this.material= CraftingRecipes.cardMaterialHashMap.get(this.cardID);
         if(this.rarity==CardRarity.COMMON){
             this.level=1;
         }else if(this.rarity==CardRarity.UNCOMMON){
@@ -50,14 +50,22 @@ public abstract class BaseCard extends CustomCard {
 
     public void initializeMaterial(){
         setMaterialAndLevel();
-        System.out.println("materials/"+CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)+".png");
-        this.ICON=new Texture(imagePath("materials/"+CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)+".png"));
+        try {
+            if(this.material!=""){
+                this.ICON = new Texture(imagePath("materials/" + this.material + ".png"));
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to load icon texture: " + e.getMessage());
+            this.ICON = null; // 如果加载失败，确保 ICON 为空
+        }
     }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb); // 调用原本的渲染逻辑
-        renderCustomIcon(sb); // 添加你自己的渲染逻辑
+        if(this.ICON!=null){
+            renderCustomIcon(sb); // 添加你自己的渲染逻辑
+        }
     }
 
 

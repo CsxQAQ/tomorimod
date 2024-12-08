@@ -28,10 +28,6 @@
     "NAME": "微小的星屑",
     "DESCRIPTION": "造成 !D! 点伤害 !M! 次 。"
   },
-  "${modID}:Band": {
-    "NAME": "创可贴",
-    "DESCRIPTION": "获得 !M! 点 多层护甲 ， tomorinmod:增强 :如果在本回合内使用过技能牌，额外获得4点。"
-  },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
     "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 ， tomorinmod:瞬间  。"
@@ -100,5 +96,17 @@
     "EXTENDED_DESCRIPTION": [
       " xxx，弹回 。"
     ]
+  },
+  "${modID}:Stone": {
+    "NAME": "漂亮的石头",
+    "DESCRIPTION": "造成 !D! 点伤害，该牌的素材类型始终为石头且稀有度视作稀有。"
+  },
+  "${modID}:Watermelonworm": {
+    "NAME": "西瓜虫",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 tomorinmod:临时荆棘 ，该牌的素材类型始终为西瓜虫且稀有度视作稀有。"
+  },
+  "${modID}:Band": {
+    "NAME": "企鹅创可贴",
+    "DESCRIPTION": "获得 !M! 点 多层护甲 ， 该牌的素材类型始终为创可贴且稀有度视作稀有。"
   }
 }

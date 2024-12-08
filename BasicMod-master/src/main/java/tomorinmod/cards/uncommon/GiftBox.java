@@ -57,28 +57,6 @@ public class GiftBox extends BaseCard {
 
     }
 
-
-//    @Override
-//    public void use(AbstractPlayer p, AbstractMonster m) {
-//        switch (giftFrom) {
-//            case 0:
-//                AbstractDungeon.getCurrRoom().rewards.add(new AnonReward());
-//                break;
-//            case 1:
-//                AbstractDungeon.getCurrRoom().rewards.add(new SoyoReward());
-//                break;
-//            case 2:
-//                AbstractDungeon.getCurrRoom().rewards.add(new TakiReward());
-//                break;
-//            case 3:
-//                AbstractDungeon.getCurrRoom().rewards.add(new RanaReward());
-//                break;
-//            default:
-//                break;
-//        }
-//        AddTagsUtils.addTags(this, CustomTags.MOMENT);
-//    }
-
     public void autoUse() {
         switch (giftFrom) {
             case 0:
@@ -98,6 +76,7 @@ public class GiftBox extends BaseCard {
         }
         AddTagsUtils.addTags(this, CustomTags.MOMENT);
         this.isEthereal = true;
+        this.selfRetain = false;
     }
 
     @Override
@@ -151,4 +130,10 @@ public class GiftBox extends BaseCard {
         updateDescription();
         autoUse();
     }
+
+    @Override
+    public void setMaterialAndLevel(){
+
+    }
+
 }

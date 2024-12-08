@@ -19,11 +19,11 @@ import static tomorinmod.BasicMod.makeID;
 
 public class CraftingRecipes {
 
-    public HashSet<String> tomorinCards=new HashSet<>();
-    public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
-    public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
-    public HashSet<Recipe> recipeHashSet =new HashSet<>();
-    class Recipe{
+    public static HashSet<String> tomorinCards=new HashSet<>();
+    public static HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
+    public static HashMap<String,String> cardMaterialHashMap=new HashMap<>();
+    public static HashSet<Recipe> recipeHashSet =new HashSet<>();
+    public class Recipe{
         public ArrayList<String> needs=new ArrayList<>();
         public ArrayList<Integer> levels=new ArrayList<>();
         public String music;

@@ -46,5 +46,11 @@
     "DESCRIPTIONS": [
       "战斗开始时，获得4点 #y闪耀 。"
     ]
+  },
+  "${modID}:TemporaryThornsPower": {
+    "NAME": "临时荆棘",
+    "DESCRIPTIONS": [
+      "攻击你的敌人会受到等同于该效果层数的伤害，回合结束后效果消失。"
+    ]
   }
 }
