@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.monitor.InitializeMonitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class BaseSaveData {
             }
         });
 
-        BaseMod.addSaveField("CraftingRecipes", new CustomSavableRaw() {
+        BaseMod.addSaveField("cardMaterialHashMap", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 
             @Override
@@ -82,7 +83,7 @@ public class BaseSaveData {
             }
         });
 
-        BaseMod.addSaveField("CraftingRecipes", new CustomSavableRaw() {
+        BaseMod.addSaveField("recipeHashSet", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 
             @Override
@@ -94,6 +95,22 @@ public class BaseSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     CraftingRecipes.getInstance().recipeHashSet = gson.fromJson(jsonElement, new TypeToken<HashSet<CraftingRecipes.Recipe>>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("isInitialized", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(InitializeMonitor.isInitialized);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    InitializeMonitor.isInitialized = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
                 }
             }
         });

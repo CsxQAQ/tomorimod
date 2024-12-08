@@ -57,7 +57,7 @@ public abstract class BaseCard extends CustomCard {
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb); // 调用原本的渲染逻辑
-        //renderCustomIcon(sb); // 添加你自己的渲染逻辑
+        renderCustomIcon(sb); // 添加你自己的渲染逻辑
     }
 
 
@@ -116,11 +116,13 @@ public abstract class BaseCard extends CustomCard {
 
     public BaseCard(String ID, CardStats info) {
         this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
-//        if(!InitializeMonitor.isInitialized){
-//            allInstances.add(this);
-//        }else{
-//            initializeMaterial();
-//        }
+
+        if(!InitializeMonitor.isInitialized){
+            allInstances.add(this);
+        }else{
+            initializeMaterial();
+        }
+
     }
     public BaseCard(String ID, CardStats info, String cardImage) {
         this(ID, info.baseCost, info.cardType, info.cardTarget, info.cardRarity, info.cardColor, cardImage);

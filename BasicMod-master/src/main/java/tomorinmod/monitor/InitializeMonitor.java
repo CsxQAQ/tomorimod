@@ -1,6 +1,9 @@
 package tomorinmod.monitor;
 
 import basemod.interfaces.PostDungeonInitializeSubscriber;
+import basemod.interfaces.PostInitializeSubscriber;
+import basemod.interfaces.PreStartGameSubscriber;
+import basemod.interfaces.StartGameSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.BaseCard;
@@ -10,7 +13,7 @@ import tomorinmod.savedata.SaveGifts;
 import tomorinmod.savedata.SavePermanentForm;
 
 //初始化地牢的时候，即重开，需要清空所有的自定义数据
-public class InitializeMonitor implements PostDungeonInitializeSubscriber {
+public class InitializeMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber {
 
     public static boolean isInitialized=false;
 
@@ -21,13 +24,11 @@ public class InitializeMonitor implements PostDungeonInitializeSubscriber {
     }
 
     public void initializeMaterials(){
-//        if (AbstractDungeon.floorNum == 0) {
-//            isInitialized=true;
-//            CraftingRecipes.getInstance().generate();
-//            for(BaseCard card:BaseCard.allInstances){
-//                card.initializeMaterial();
-//            }
-//        }
+        isInitialized=true;
+        CraftingRecipes.getInstance().generate();
+        for(BaseCard card:BaseCard.allInstances){
+            card.initializeMaterial();
+        }
     }
 
     @Override
@@ -38,6 +39,13 @@ public class InitializeMonitor implements PostDungeonInitializeSubscriber {
         }
     }
 
-
-
+    @Override
+    public void receiveStartGame() {
+        if(isInitialized==false){
+            return;
+        }
+        for(BaseCard card:BaseCard.allInstances){
+            card.initializeMaterial();
+        }
+    }
 }
