@@ -82,7 +82,7 @@ public class BaseSaveData {
             }
         });
 
-        BaseMod.addSaveField("recipeHashSet", new CustomSavableRaw() {
+        BaseMod.addSaveField("recipeArrayList", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 
             @Override
@@ -93,7 +93,7 @@ public class BaseSaveData {
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    CraftingRecipes.getInstance().recipeArrayList = gson.fromJson(jsonElement, new TypeToken<HashSet<CraftingRecipes.Recipe>>() {}.getType());
+                    CraftingRecipes.getInstance().recipeArrayList = gson.fromJson(jsonElement, new TypeToken<ArrayList<CraftingRecipes.Recipe>>() {}.getType());
                 }
             }
         });

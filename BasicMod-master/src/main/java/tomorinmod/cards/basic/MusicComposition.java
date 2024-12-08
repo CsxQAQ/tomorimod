@@ -23,31 +23,42 @@ public class MusicComposition extends BaseCard {
             0
     );
 
-    private boolean isFliped=false;
+    public boolean isCardFliped;
     public static ArrayList<String> cardsUsed=new ArrayList<>();
+    private boolean added=false;
+
+    public void initializeMusicComposition(){
+        isCardFliped =false;
+        added=false;
+        cardsUsed.clear();
+        updateDescription();
+        this.name="音乐创作";
+    }
 
     public MusicComposition() {
         super(ID, info);
+        initializeMusicComposition();
         this.exhaust=true;
         this.selfRetain = true;
         this.isInnate = true;
 
     }
 
-
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return this.isFliped;
+        if(!isCardFliped ||this.name=="失败的创作"){
+            return false;
+        }
+        return true;
     }
 
 
-    private boolean added=false;
     @Override
     public void applyPowers() {
         super.applyPowers();
         if(cardsUsed.size()==3&&!added){
             added=true;
-            this.isFliped=true;
+            this.isCardFliped =true;
             String music=matchRecipe();
             ArrayList<String> records=new ArrayList<>();
             records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(0)));
@@ -65,7 +76,7 @@ public class MusicComposition extends BaseCard {
     }
 
     private void updateDescription() {
-        if (!this.isFliped) {
+        if (!this.isCardFliped) {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]+this.cardsUsed.toString();

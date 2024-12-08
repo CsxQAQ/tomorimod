@@ -108,5 +108,9 @@
   "${modID}:Band": {
     "NAME": "企鹅创可贴",
     "DESCRIPTION": "获得 !M! 点 多层护甲 ， 该牌的素材类型始终为创可贴且稀有度视作稀有。"
+  },
+  "${modID}:FailAndRestart": {
+    "NAME": "失败还能重新开始",
+    "DESCRIPTION": "将手牌中失败的创作翻面。"
   }
 }

@@ -5,6 +5,7 @@ import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicComposition;
 import tomorinmod.tags.CustomTags;
 
@@ -16,7 +17,12 @@ public class CountUsedCardMonitor implements OnCardUseSubscriber,PostBattleSubsc
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
-        MusicComposition.cardsUsed.add(abstractCard.cardID);
+        if(abstractCard instanceof BaseCard){
+            BaseCard baseCard=(BaseCard) abstractCard;
+            if(baseCard.material!=""){
+                MusicComposition.cardsUsed.add(abstractCard.cardID);
+            }
+        }
     }
 
     @Override
