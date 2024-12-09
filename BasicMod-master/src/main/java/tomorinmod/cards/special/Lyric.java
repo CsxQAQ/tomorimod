@@ -1,4 +1,4 @@
-package tomorinmod.cards.basic;
+package tomorinmod.cards.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,12 +13,12 @@ import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
 
-public class MusicComposition extends BaseCard {
-    public static final String ID = makeID(MusicComposition.class.getSimpleName());
+public class Lyric extends BaseCard {
+    public static final String ID = makeID(Lyric.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.BASIC,
+            CardRarity.SPECIAL,
             CardTarget.SELF,
             0
     );
@@ -32,15 +32,13 @@ public class MusicComposition extends BaseCard {
         added=false;
         cardsUsed.clear();
         updateDescription();
-        this.name="音乐创作";
+        this.name="歌词";
     }
 
-    public MusicComposition() {
+    public Lyric() {
         super(ID, info);
         initializeMusicComposition();
-        this.exhaust=true;
-        this.selfRetain = true;
-        this.isInnate = true;
+        this.selfRetain=true;
 
     }
 
@@ -56,7 +54,7 @@ public class MusicComposition extends BaseCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if(cardsUsed.size()==3&&!added){
+        if(!added&&cardsUsed.size()==3){
             added=true;
             this.isCardFliped =true;
             String music=matchRecipe();
@@ -71,8 +69,8 @@ public class MusicComposition extends BaseCard {
             }else{
                 this.name="失败的创作";
             }
+            updateDescription();
         }
-        updateDescription();
     }
 
     private void updateDescription() {
@@ -127,7 +125,7 @@ public class MusicComposition extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new MusicComposition();
+        return new Lyric();
     }
 
     @Override

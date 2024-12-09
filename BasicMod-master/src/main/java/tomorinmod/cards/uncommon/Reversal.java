@@ -39,33 +39,27 @@ public class Reversal extends BaseCard {
 
         // 将闪耀层数转换为重力层数
         if (shineAmount > 0) {
-            addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID) {
-                @Override
-                public void update() {
-                    super.update();
-                    if (isDone) {  // 确保移除闪耀能力已经完成
-                        addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
-                        addToBot(new CheckShineGravityAction(p));
-                    }
-                }
-            });
+
+            addToBot(new ApplyPowerAction(p, p, new Gravity(p, 2*shineAmount), 2*shineAmount));
+            addToBot(new CheckShineGravityAction(p));
+
         }
         else if (gravityAmount > 0) {
-            addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID) {
-                @Override
-                public void update() {
-                    super.update();
-                    if (isDone) {
-                        addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
-                        addToBot(new CheckShineGravityAction(p));
-                    }
-                }
-            });
+            addToBot(new ApplyPowerAction(p, p, new Shine(p, 2*gravityAmount), 2*gravityAmount));
+            addToBot(new CheckShineGravityAction(p));
         }
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
         return new Reversal();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName(); // 更新卡牌名称，显示为“升级版”
+            upgradeBaseCost(0); // 将费用从 1 降为 0
+        }
     }
 }

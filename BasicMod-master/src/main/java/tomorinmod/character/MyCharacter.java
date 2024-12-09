@@ -4,15 +4,12 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
-import basemod.animations.SpriterAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.blue.Defend_Blue;
-import com.megacrit.cardcrawl.cards.green.Neutralize;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,10 +21,11 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.relics.BurningBlood;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import tomorinmod.cards.basic.Defend;
-import tomorinmod.cards.basic.MusicComposition;
+import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.rare.WeAreMygo;
+import tomorinmod.cards.special.Lyric;
 import tomorinmod.cards.uncommon.Tomotomo;
 import tomorinmod.relics.Notebook;
 
@@ -165,7 +163,7 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Shout.ID);
         retVal.add(Tomotomo.ID);
         retVal.add(WeAreMygo.ID);
-        retVal.add(MusicComposition.ID);
+        retVal.add(MusicalComposition.ID);
 
         return retVal;
     }

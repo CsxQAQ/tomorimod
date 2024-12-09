@@ -90,13 +90,6 @@
       " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，获得 tomorinmod:重力 时 tomorinmod:翻面 。"
     ]
   },
-  "${modID}:MusicComposition": {
-    "NAME": "音乐创作",
-    "DESCRIPTION": " 固有 ， 保留 ， 无法被打出。使用三张牌后 tomorinmod:翻面 。",
-    "EXTENDED_DESCRIPTION": [
-      " xxx，弹回 。"
-    ]
-  },
   "${modID}:Stone": {
     "NAME": "漂亮的石头",
     "DESCRIPTION": "造成 !D! 点伤害，该牌的素材类型始终为石头且稀有度视作稀有。"
@@ -132,5 +125,16 @@
   "${modID}:TomorinApotheosis": {
     "NAME": "灯神长阶",
     "DESCRIPTION": "回合开始时升级你的所有牌。 tomorinmod:增强 :如果xxx，本场战斗中你的攻击牌没有升级上限。"
+  },
+  "${modID}:MusicalComposition": {
+    "NAME": "音乐创作",
+    "DESCRIPTION": "固有 ， 保留 ， 消耗 ， 增加一张 *歌词 到你的手牌。"
+  },
+  "${modID}:Lyric": {
+    "NAME": "歌词",
+    "DESCRIPTION": "  保留 ， 无法被打出 。拥有3点 tomorinmod:素材 后 tomorinmod:翻面 。",
+    "EXTENDED_DESCRIPTION": [
+      " 音乐效果 。"
+    ]
   }
 }
