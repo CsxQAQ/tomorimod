@@ -58,19 +58,19 @@
   },
   "${modID}:GravityTomorin": {
     "NAME": "重力型高松灯",
-    "DESCRIPTION": "获得4层 tomorinmod:重力 ， tomorinmod:形态 ，战斗开始时获得4层 tomorinmod:重力 。"
+    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 tomorinmod:重力 。"
   },
   "${modID}:StrengthTomorin": {
     "NAME": "力量型高松灯",
-    "DESCRIPTION": " 获得4层 力量 ， tomorinmod:形态 ，战斗开始时获得4层 力量 。"
+    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 力量 。"
   },
   "${modID}:DarkTomorin": {
     "NAME": "暗黑型高松灯",
-    "DESCRIPTION": " 获得1层 仪式 ， tomorinmod:形态 ，战斗开始时获得1层 仪式 。"
+    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得1层 仪式 。"
   },
   "${modID}:ShineTomorin": {
     "NAME": "闪耀型高松灯",
-    "DESCRIPTION": " 获得4层 闪耀 ， tomorinmod:形态 ，战斗开始时获得4层 闪耀 。"
+    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 闪耀 。"
   },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
@@ -135,6 +135,17 @@
     "DESCRIPTION": "  保留 ， 无法被打出 。拥有3点 tomorinmod:素材 后 tomorinmod:翻面 。",
     "EXTENDED_DESCRIPTION": [
       " 音乐效果 。"
+    ]
+  },
+  "${modID}:MemoryInCrychic": {
+    "NAME": "Crychic的回忆",
+    "DESCRIPTION": "获得 *春日影 的灵感。 tomorinmod:增强 ：如果已经拥有了 *春日影 的灵感，则获得 tomorinmod:永久形态 ： *春日影 额外使得所有敌人失去一半当前生命值。 "
+  },
+  "${modID}:Chunriying": {
+    "NAME": "春日影",
+    "DESCRIPTION": " 消耗 ， 击晕 所有的敌人。",
+    "EXTENDED_DESCRIPTION": [
+      "（额外使所有敌人失去当前生命值一半的生命值）"
     ]
   }
 }

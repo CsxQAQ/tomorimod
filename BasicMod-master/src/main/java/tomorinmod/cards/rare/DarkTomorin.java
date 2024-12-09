@@ -1,17 +1,13 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.rare;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DarkEmbracePower;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.DarkTomorinPower;
-import tomorinmod.powers.StrengthTomorinPower;
 import tomorinmod.savedata.SaveForm;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
@@ -23,7 +19,7 @@ public class DarkTomorin extends BaseCard {
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.UNCOMMON,
+            CardRarity.RARE,
             CardTarget.SELF,
             1
     );
@@ -40,7 +36,6 @@ public class DarkTomorin extends BaseCard {
             addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
         }
 
-        addToBot(new ApplyPowerAction(p,p,new RitualPower(p,1,true),1));
         addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
 
         SaveForm.getInstance().changeForm("DarkTomorinPower");

@@ -41,9 +41,6 @@ public class ShineTomorin extends BaseCard {
             addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
         }
 
-        addToBot(new ApplyPowerAction(p,p,new Shine(p,4),4));
-        addToBot(new CheckShineGravityAction(p));
-
         addToBot(new ApplyPowerAction(p, p, new ShineTomorinPower(p),1));
 
         if (AbstractDungeon.player instanceof MyCharacter) {

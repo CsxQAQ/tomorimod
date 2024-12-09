@@ -5,6 +5,7 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import tomorinmod.cards.special.Chunriying;
 import tomorinmod.monitor.InitializeMonitor;
 
 import java.util.ArrayList;
@@ -129,18 +130,34 @@ public class BaseSaveData {
             }
         });
 
-        BaseMod.addSaveField("HistoryCraftRecords", new CustomSavableRaw() {
+        BaseMod.addSaveField("MusicDiscovered", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 
             @Override
             public JsonElement onSaveRaw() {
-                return gson.toJsonTree(HistoryCraftRecords.getInstance().historyCraftRecords);
+                return gson.toJsonTree(SaveMusicDiscoverd.getInstance().musicDiscovered);
             }
 
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    HistoryCraftRecords.getInstance().historyCraftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
+                    SaveMusicDiscoverd.getInstance().musicDiscovered = gson.fromJson(jsonElement, new TypeToken<ArrayList<String>>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("chunriyingisIntensify", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(Chunriying.isIntensify);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    Chunriying.isIntensify = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
                 }
             }
         });

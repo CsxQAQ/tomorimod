@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.special.Chunriying;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.*;
 import tomorinmod.powers.*;
@@ -75,6 +76,7 @@ public class BasicMod implements
         BaseMod.addPower(GravityTomorinPower.class, GravityTomorinPower.POWER_ID);
         BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
         BaseMod.addPower(ShineTomorinPower.class, ShineTomorinPower.POWER_ID);
+        BaseMod.addPower(ShineTomorinPower.class, MemoryInCrychicPower.POWER_ID);
     }
 
     public void receiveReward(){

@@ -9,6 +9,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
+import tomorinmod.savedata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
@@ -59,7 +60,11 @@ public class Lyric extends BaseCard {
             // 记录配方
             ArrayList<String> records = new ArrayList<>(4);
             for (String card : cardsUsed) {
-                records.add(CraftingRecipes.cardMaterialHashMap.get(card));
+                AbstractCard cardObject = CardLibrary.getCard(card);
+                if(cardObject instanceof BaseCard){
+                    BaseCard baseCard=(BaseCard)cardObject;
+                    records.add(baseCard.material);
+                }
             }
             records.add(music);
             HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
@@ -67,6 +72,7 @@ public class Lyric extends BaseCard {
             // 设置卡牌名称
             if (!"fail".equals(music)) {
                 this.name = music;
+                SaveMusicDiscoverd.getInstance().musicDiscovered.add(music);
             } else {
                 this.name = "失败的创作";
             }
@@ -117,22 +123,11 @@ public class Lyric extends BaseCard {
         AbstractCard cardObject = CardLibrary.getCard(card);
         if (cardObject == null) return false;
 
-        int cardRarity = mapRarity(cardObject.rarity);
-        return card.equals(makeID(recipe)) && cardRarity >= rarity;
-    }
-
-    private int mapRarity(CardRarity rarity) {
-        switch (rarity) {
-            case BASIC:
-            case COMMON:
-                return 1;
-            case UNCOMMON:
-                return 2;
-            case RARE:
-                return 3;
-            default:
-                return -1;
+        if(cardObject instanceof BaseCard){
+            BaseCard baseCard=(BaseCard) cardObject;
+            return card.equals(makeID(recipe)) && baseCard.level >= rarity;
         }
+        return false;
     }
 
     @Override

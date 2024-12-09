@@ -39,7 +39,7 @@ public abstract class BaseCard extends CustomCard {
 
     public void setMaterialAndLevel(){
         this.material= CraftingRecipes.cardMaterialHashMap.get(this.cardID);
-        if(this.rarity==CardRarity.COMMON){
+        if(this.rarity==CardRarity.COMMON||this.rarity==CardRarity.BASIC){
             this.level=1;
         }else if(this.rarity==CardRarity.UNCOMMON){
             this.level=2;

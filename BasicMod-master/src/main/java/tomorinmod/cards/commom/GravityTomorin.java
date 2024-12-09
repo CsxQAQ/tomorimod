@@ -42,9 +42,6 @@ public class GravityTomorin extends BaseCard {
             addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
         }
 
-        addToBot(new ApplyPowerAction(p,p,new Gravity(p,4),4));
-        addToBot(new CheckShineGravityAction(p));
-
         addToBot(new ApplyPowerAction(p, p, new GravityTomorinPower(p),1));
 
         if (AbstractDungeon.player instanceof MyCharacter) {

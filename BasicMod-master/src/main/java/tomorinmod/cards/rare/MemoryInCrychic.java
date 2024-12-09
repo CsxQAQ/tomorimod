@@ -1,54 +1,47 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.rare;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.special.Chunriying;
+import tomorinmod.cards.special.Lyric;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Shine;
-import tomorinmod.powers.StrengthTomorinPower;
-import tomorinmod.savedata.SaveForm;
+import tomorinmod.powers.MemoryInCrychicPower;
+import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.savedata.SaveMusicDiscoverd;
 import tomorinmod.savedata.SavePermanentForm;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
 
-public class StrengthTomorin extends BaseCard {
+public class MemoryInCrychic extends BaseCard {
 
-    public static final String ID = makeID(StrengthTomorin.class.getSimpleName());
+    public static final String ID = makeID(MemoryInCrychic.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.UNCOMMON,
+            CardRarity.RARE,
             CardTarget.SELF,
             1
     );
 
-    public StrengthTomorin() {
+    public MemoryInCrychic() {
         super(ID, info);
-        tags.add(CardTags.HEALING);
+        this.cardsToPreview = new Chunriying();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        if(!SaveForm.getInstance().getForm().equals("")){
-            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
+        if(SaveMusicDiscoverd.getInstance().musicDiscovered.contains("chunriying")){
+            Chunriying.isIntensify=true;
         }
-
-        addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p),1));
-
-        SaveForm.getInstance().changeForm("StrengthTomorinPower");
-        AddTagsUtils.addTags(this, CustomTags.MOMENT);
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new StrengthTomorin();
+        return new MemoryInCrychic();
     }
 
     @Override

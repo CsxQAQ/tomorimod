@@ -87,10 +87,10 @@ public class CraftingRecipes {
     public void initializeMusics() {
         musicsCostHashMap.put("chunriying", rareCost);
         musicsCostHashMap.put("shichaoban", rareCost);
-        musicsCostHashMap.put("yinyihui", rareCost);
         musicsCostHashMap.put("mixingjiao", rareCost);
-        musicsCostHashMap.put("lunfuyu", uncommonCost);
-        musicsCostHashMap.put("yingsewu", uncommonCost);
+        musicsCostHashMap.put("lunfuyu", rareCost);
+        musicsCostHashMap.put("yingsewu", rareCost);
+        musicsCostHashMap.put("yinyihui", uncommonCost);
         musicsCostHashMap.put("miluri", uncommonCost);
         musicsCostHashMap.put("wulushi", uncommonCost);
         musicsCostHashMap.put("yinakong", uncommonCost);

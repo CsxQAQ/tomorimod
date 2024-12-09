@@ -21,6 +21,7 @@ public class InitializeMonitor implements PostDungeonInitializeSubscriber, Start
         SaveGifts.getInstance().clear();
         HistoryCraftRecords.getInstance().clear();
         CraftingRecipes.getInstance().clear();
+        SaveMusicDiscoverd.getInstance().clear();
     }
 
     public void initializeMaterials(){

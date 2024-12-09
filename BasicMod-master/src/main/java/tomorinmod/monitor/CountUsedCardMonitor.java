@@ -1,13 +1,14 @@
 package tomorinmod.monitor;
 
 import basemod.interfaces.OnCardUseSubscriber;
+import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.special.Lyric;
 
-public class CountUsedCardMonitor implements OnCardUseSubscriber,PostBattleSubscriber {
+public class CountUsedCardMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
 
 
     @Override
@@ -21,7 +22,7 @@ public class CountUsedCardMonitor implements OnCardUseSubscriber,PostBattleSubsc
     }
 
     @Override
-    public void receivePostBattle(AbstractRoom abstractRoom) {
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         Lyric.cardsUsed.clear();
     }
 }
