@@ -24,112 +24,124 @@ public class Lyric extends BaseCard {
     );
 
     public boolean isCardFliped;
-    public static ArrayList<String> cardsUsed=new ArrayList<>();
-    private boolean added=false;
-
-    public void initializeMusicComposition(){
-        isCardFliped =false;
-        added=false;
-        cardsUsed.clear();
-        updateDescription();
-        this.name="歌词";
-    }
+    public static final ArrayList<String> cardsUsed = new ArrayList<>(3);
+    private boolean added = false;
 
     public Lyric() {
         super(ID, info);
         initializeMusicComposition();
-        this.selfRetain=true;
+        this.selfRetain = true;
+    }
 
+    public void initializeMusicComposition() {
+        isCardFliped = false;
+        added = false;
+        cardsUsed.clear();
+        updateDescription();
+        this.name = "歌词";
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        if(!isCardFliped ||this.name=="失败的创作"){
-            return false;
-        }
-        return true;
+        return isCardFliped && !"失败的创作".equals(this.name);
     }
-
 
     @Override
     public void applyPowers() {
         super.applyPowers();
-        if(!added&&cardsUsed.size()==3){
-            added=true;
-            this.isCardFliped =true;
-            String music=matchRecipe();
-            ArrayList<String> records=new ArrayList<>();
-            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(0)));
-            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(1)));
-            records.add(CraftingRecipes.cardMaterialHashMap.get(cardsUsed.get(2)));
-            records.add(music);
-            HistoryCraftRecords.getInstance().craftRecords.add(records);
-            if(music!="fail"){
-                this.name=music;
-            }else{
-                this.name="失败的创作";
+        if (!added && cardsUsed.size() == 3) {
+            added = true;
+            isCardFliped = true;
+
+            // 配方匹配
+            String music = matchRecipe();
+
+            // 记录配方
+            ArrayList<String> records = new ArrayList<>(4);
+            for (String card : cardsUsed) {
+                records.add(CraftingRecipes.cardMaterialHashMap.get(card));
             }
+            records.add(music);
+            HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
+
+            // 设置卡牌名称
+            if (!"fail".equals(music)) {
+                this.name = music;
+            } else {
+                this.name = "失败的创作";
+            }
+
             updateDescription();
         }
     }
 
     private void updateDescription() {
+        String newDescription;
         if (!this.isCardFliped) {
-            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+            newDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {
-            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+            newDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
         }
-        initializeDescription();
+
+        if (!newDescription.equals(this.rawDescription)) { // 避免重复设置
+            this.rawDescription = newDescription;
+            initializeDescription();
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
         cardsUsed.clear();
         p.hand.addToHand(this.makeCopy());
-
     }
 
-    //recipeHashSet
-    public String matchRecipe(){
-        for(CraftingRecipes.Recipe recipe:CraftingRecipes.recipeArrayList){
-            boolean matched=true;
-            for(int i=0;i<3;i++){
-                if(!cardMatch(cardsUsed.get(i),recipe.needs.get(i),recipe.levels.get(i))){
-                    matched=false;
-                    break;
-                }
-            }
-            if(matched){
+    private String matchRecipe() {
+        for (CraftingRecipes.Recipe recipe : CraftingRecipes.recipeArrayList) {
+            if (isRecipeMatched(recipe)) {
                 return recipe.music;
             }
         }
         return "fail";
     }
 
-    public boolean cardMatch(String card,String recipe,int rarity){
-        CardRarity cardRarity= CardLibrary.getCard(card).rarity;
-        int r=-1;
-        if(cardRarity==CardRarity.BASIC||cardRarity==CardRarity.COMMON){
-            r=1;
-        }else if(cardRarity==CardRarity.UNCOMMON){
-            r=2;
-        }else if(cardRarity==CardRarity.RARE){
-            r=3;
+    private boolean isRecipeMatched(CraftingRecipes.Recipe recipe) {
+        for (int i = 0; i < 3; i++) {
+            if (!cardMatch(cardsUsed.get(i), recipe.needs.get(i), recipe.levels.get(i))) {
+                return false;
+            }
         }
-        if(card.equals(makeID(recipe))&&r>=rarity){
-            return true;
+        return true;
+    }
+
+    public boolean cardMatch(String card, String recipe, int rarity) {
+        AbstractCard cardObject = CardLibrary.getCard(card);
+        if (cardObject == null) return false;
+
+        int cardRarity = mapRarity(cardObject.rarity);
+        return card.equals(makeID(recipe)) && cardRarity >= rarity;
+    }
+
+    private int mapRarity(CardRarity rarity) {
+        switch (rarity) {
+            case BASIC:
+            case COMMON:
+                return 1;
+            case UNCOMMON:
+                return 2;
+            case RARE:
+                return 3;
+            default:
+                return -1;
         }
-        return false;
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new Lyric();
     }
 
     @Override
-    public void setMaterialAndLevel(){
-
+    public void setMaterialAndLevel() {
+        // Empty implementation, if unused consider removing.
     }
 }

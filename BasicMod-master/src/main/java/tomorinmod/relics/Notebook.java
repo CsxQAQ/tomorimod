@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.screens.NotebookScreen;
 
+import static basemod.BaseMod.getCustomScreen;
 import static tomorinmod.BasicMod.imagePath;
 import static tomorinmod.BasicMod.makeID;
 
@@ -42,19 +43,23 @@ public class Notebook extends BaseRelic {
     public void update() {
         super.update();
 
+        if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
+            isOpened=false;
+        }
+
         // 检测鼠标是否悬停在遗物上
         if (this.hb.hovered) {
             // 检测是否按下右键
             if (InputHelper.justClickedRight) {
-
                 if(!isOpened){
-                    openCustomScreen();
-                    isOpened=true;
+                    if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
+                        openCustomScreen();
+                        isOpened=true;
+                    }
                 }else{
-                    isOpened=false;
                     closeCustomScreen();
+                    isOpened=false;
                 }
-
             }
         }
     }

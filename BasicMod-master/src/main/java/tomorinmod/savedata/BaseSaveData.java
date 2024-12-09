@@ -9,7 +9,6 @@ import tomorinmod.monitor.InitializeMonitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class BaseSaveData {
 
@@ -119,13 +118,13 @@ public class BaseSaveData {
 
             @Override
             public JsonElement onSaveRaw() {
-                return gson.toJsonTree(HistoryCraftRecords.getInstance().craftRecords);
+                return gson.toJsonTree(HistoryCraftRecords.getInstance().historyCraftRecords);
             }
 
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    HistoryCraftRecords.getInstance().craftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
+                    HistoryCraftRecords.getInstance().historyCraftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
                 }
             }
         });
@@ -135,13 +134,13 @@ public class BaseSaveData {
 
             @Override
             public JsonElement onSaveRaw() {
-                return gson.toJsonTree(HistoryCraftRecords.getInstance().craftRecords);
+                return gson.toJsonTree(HistoryCraftRecords.getInstance().historyCraftRecords);
             }
 
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    HistoryCraftRecords.getInstance().craftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
+                    HistoryCraftRecords.getInstance().historyCraftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
                 }
             }
         });

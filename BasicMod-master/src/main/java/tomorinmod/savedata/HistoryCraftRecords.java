@@ -8,7 +8,7 @@ public class HistoryCraftRecords {
     private static HistoryCraftRecords instance;
 
     // 用于保存表单数据
-    public ArrayList<ArrayList<String>> craftRecords=new ArrayList<>();
+    public ArrayList<ArrayList<String>> historyCraftRecords =new ArrayList<>();
 
     // 私有化构造函数，防止外部实例化
     private HistoryCraftRecords() {
@@ -23,6 +23,6 @@ public class HistoryCraftRecords {
     }
 
     public void clear(){
-        craftRecords.clear();
+        historyCraftRecords.clear();
     }
 }
