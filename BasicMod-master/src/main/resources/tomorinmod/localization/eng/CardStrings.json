@@ -139,7 +139,7 @@
   },
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
-    "DESCRIPTION": "获得 *春日影 的灵感。 tomorinmod:增强 ：如果已经拥有了 *春日影 的灵感，则获得 tomorinmod:永久形态 ： *春日影 额外使得所有敌人失去一半当前生命值。 "
+    "DESCRIPTION": "获得 *春日影 的灵感。 tomorinmod:增强 ：如果已经拥有该的灵感，则获得 tomorinmod:永久形态 ： *春日影 额外使所有敌人失去一半当前生命值。 "
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
@@ -147,5 +147,9 @@
     "EXTENDED_DESCRIPTION": [
       "（额外使所有敌人失去当前生命值一半的生命值）"
     ]
+  },
+  "${modID}:SmoothCombo": {
+    "NAME": "丝滑小连招",
+    "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌。"
   }
 }

@@ -42,6 +42,8 @@ import org.scannotation.AnnotationDB;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+//TODO 考虑为每张卡牌设置一个clear方法，用于战斗开始时复原static变量，以防止保存退出后重进出现bug
+
 @SpireInitializer
 public class BasicMod implements
 
@@ -66,6 +68,7 @@ public class BasicMod implements
         BaseMod.subscribe(new GiftBoxFlipMonitor());
         BaseMod.subscribe(new CountUsedCardMonitor());
         BaseMod.subscribe(new TomorinApotheosisMonitor());
+        BaseMod.subscribe(new SmoothComboMonitor());
     }
 
     public void receivePower(){
