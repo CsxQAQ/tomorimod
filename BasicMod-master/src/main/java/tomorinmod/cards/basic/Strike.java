@@ -8,12 +8,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.rare.TomorinApotheosis;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.GetModCardsUtils;
 
 import java.util.Iterator;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Strike extends BaseCard {
     public static final String ID = makeID(Strike.class.getSimpleName());
@@ -46,5 +48,21 @@ public class Strike extends BaseCard {
     @Override
     public AbstractCard makeCopy() { //Optional
         return new Strike();
+    }
+
+    @Override
+    public void upgrade() {
+        if(TomorinApotheosis.isTomorinApotheosisUsed){
+            this.upgradeDamage(UPG_DAMAGE);
+            ++this.timesUpgraded;
+            this.upgraded = true;
+            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+            this.initializeTitle();
+        }else{
+            if(!this.upgraded){
+                this.upgradeDamage(UPG_DAMAGE);
+                upgradeName();
+            }
+        }
     }
 }

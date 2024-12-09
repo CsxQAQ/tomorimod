@@ -129,5 +129,21 @@ public class BaseSaveData {
                 }
             }
         });
+
+        BaseMod.addSaveField("HistoryCraftRecords", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(HistoryCraftRecords.getInstance().craftRecords);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    HistoryCraftRecords.getInstance().craftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
+                }
+            }
+        });
     }
 }

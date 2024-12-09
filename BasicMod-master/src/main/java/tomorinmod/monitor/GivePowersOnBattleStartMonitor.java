@@ -15,8 +15,6 @@ import tomorinmod.savedata.SavePermanentForm;
 import java.util.Iterator;
 
 public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
-
-
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if (AbstractDungeon.player instanceof MyCharacter) {

@@ -1,10 +1,12 @@
 package tomorinmod.cards.rare;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Apotheosis;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
@@ -14,9 +16,11 @@ import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
 
-public class WeAreMygo extends BaseCard {
+public class TomorinApotheosis extends BaseCard {
 
-    public static final String ID = makeID(WeAreMygo.class.getSimpleName());
+    public static boolean isTomorinApotheosisUsed=false;
+
+    public static final String ID = makeID(TomorinApotheosis.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
@@ -25,30 +29,37 @@ public class WeAreMygo extends BaseCard {
             1
     );
 
-    public WeAreMygo() {
+    public TomorinApotheosis() {
         super(ID, info);
-        tags.add(CardTags.HEALING);
+
+        //this.selfRetain=true;
+        this.exhaust=true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
-
-        SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
-        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        isTomorinApotheosisUsed=true;
 
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new WeAreMygo();
+        return new TomorinApotheosis();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeName();
+            upgradesDescription();
+            this.selfRetain=true;
         }
     }
+
+    private void upgradesDescription() {
+        if (upgraded) {
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"， 固有 。";
+        }
+    }
+
 }

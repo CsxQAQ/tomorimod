@@ -33,7 +33,7 @@
     "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 ， tomorinmod:瞬间  。"
   },
   "${modID}:WeAreMygo": {
-    "NAME": "我们是Mygo!!!!!",
+    "NAME": "迷途之子",
     "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 。"
   },
   "${modID}:LifelongBand": {
@@ -110,7 +110,7 @@
     "DESCRIPTION": "获得 !M! 点 多层护甲 ， 该牌的素材类型始终为创可贴且稀有度视作稀有。"
   },
   "${modID}:FailAndRestart": {
-    "NAME": "失败还能重新开始",
+    "NAME": "重新开始",
     "DESCRIPTION": "将手牌中失败的创作翻面。"
   },
   "${modID}:BlacklistYou": {
@@ -124,5 +124,13 @@
   "${modID}:InterestingGirl": {
     "NAME": "有趣的女人",
     "DESCRIPTION": "获得X+1点 无实体 。 tomorinmod:瞬间 ， 消耗 。"
+  },
+  "${modID}:NoMoreFear": {
+    "NAME": "不再胆怯",
+    "DESCRIPTION": "获得 !M! 点 力量 。 tomorinmod:瞬间 ， 消耗 。"
+  },
+  "${modID}:TomorinApotheosis": {
+    "NAME": "灯神长阶",
+    "DESCRIPTION": "回合开始时升级你的所有牌。 tomorinmod:增强 :如果xxx，本场战斗中你的攻击牌没有升级上限。"
   }
 }

@@ -79,7 +79,7 @@ public class MusicComposition extends BaseCard {
         if (!this.isCardFliped) {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {
-            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]+this.cardsUsed.toString();
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
         }
         initializeDescription();
     }

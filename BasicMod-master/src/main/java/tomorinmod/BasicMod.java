@@ -64,7 +64,7 @@ public class BasicMod implements
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());
         BaseMod.subscribe(new CountUsedCardMonitor());
-        BaseMod.subscribe(new MomentTagMonitor());
+        BaseMod.subscribe(new TomorinApotheosisMonitor());
     }
 
     public void receivePower(){
