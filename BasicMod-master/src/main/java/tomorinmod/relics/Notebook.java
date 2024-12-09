@@ -53,6 +53,7 @@ public class Notebook extends BaseRelic {
             if (InputHelper.justClickedRight) {
                 if(!isOpened){
                     if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
+
                         openCustomScreen();
                         isOpened=true;
                     }
