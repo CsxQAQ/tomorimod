@@ -2,9 +2,11 @@ package tomorinmod.powers;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.cards.rare.ConveyFeeling;
 import tomorinmod.cards.rare.MygoTogether;
 import tomorinmod.cards.uncommon.TwoFish;
 import tomorinmod.powers.BasePower;
@@ -26,7 +28,17 @@ public class Shine extends BasePower {
     public void atStartOfTurn() {
         // 每层Shine恢复1点生命
         flash();
+        AbstractPlayer abstractPlayer=AbstractDungeon.player;
         addToBot(new HealAction(this.owner, this.owner, this.amount));
+
+        if(ConveyFeeling.isConveyFeelingUsed){
+            int maxHPOverflow = Math.max(0, abstractPlayer.currentHealth + this.amount - abstractPlayer.maxHealth);
+            if(maxHPOverflow>0){
+                ConveyFeeling.maxHPOverflow=ConveyFeeling.maxHPOverflow+maxHPOverflow;
+                abstractPlayer.increaseMaxHp(maxHPOverflow,true);
+            }
+        }
+
     }
 
     @Override

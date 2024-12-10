@@ -3,7 +3,6 @@ package tomorinmod.cards.rare;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
@@ -11,9 +10,9 @@ import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 import tomorinmod.util.CardStats;
 
-public class MygoTogether extends BaseCard {
+public class ConveyFeeling extends BaseCard {
 
-    public static final String ID = makeID(MygoTogether.class.getSimpleName());
+    public static final String ID = makeID(ConveyFeeling.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
@@ -22,27 +21,27 @@ public class MygoTogether extends BaseCard {
             3
     );
 
-    public static boolean isMygoTogetherUsed=false;
+    public static boolean isConveyFeelingUsed=false;
+    public static int maxHPOverflow=0;
 
-    public final static int MAGIC=1;
-    public final static int UPG_MAGIC=1;
-
-    public MygoTogether() {
+    public ConveyFeeling() {
         super(ID, info);
-        this.setMagic(MAGIC,UPG_MAGIC);
-        this.isEthereal = true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        isMygoTogetherUsed=true;
-        addToBot(new ApplyPowerAction(p, p, new Gravity(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new Shine(p,this.magicNumber),this.magicNumber));
+        isConveyFeelingUsed=true;
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new MygoTogether();
+        return new ConveyFeeling();
     }
-
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName(); // 更新卡牌名称，显示为“升级版”
+            upgradeBaseCost(0); // 将费用从 1 降为 0
+        }
+    }
 }

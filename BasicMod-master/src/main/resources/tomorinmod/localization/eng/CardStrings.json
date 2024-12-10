@@ -164,11 +164,15 @@
     ]
   },
   "${modID}:MygoTogether": {
-    "NAME": "一起迷失吧",
-    "DESCRIPTION": " 你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
+    "NAME": "一起迷失",
+    "DESCRIPTION": " 虚无 ，你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
   },
   "${modID}:NeedAnon": {
     "NAME": "我需要爱音",
     "DESCRIPTION": "将当前 tomorinmod:重力 层数翻倍。"
+  },
+  "${modID}:ConveyFeeling": {
+    "NAME": "传达心意",
+    "DESCRIPTION": " tomorinmod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
   }
 }
