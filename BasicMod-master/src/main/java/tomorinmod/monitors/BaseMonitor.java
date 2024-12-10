@@ -1,4 +1,4 @@
-package tomorinmod.monitor;
+package tomorinmod.monitors;
 
 import basemod.interfaces.ISubscriber;
 

@@ -6,7 +6,7 @@ import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import tomorinmod.BasicMod;
-import tomorinmod.monitor.InitializeMonitor;
+import tomorinmod.monitors.InitializeMonitor;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.TriFunction;

@@ -7,7 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import tomorinmod.cards.rare.Revolution;
 import tomorinmod.cards.special.Chunriying;
-import tomorinmod.monitor.InitializeMonitor;
+import tomorinmod.monitors.InitializeMonitor;
 
 import java.util.ArrayList;
 import java.util.HashMap;

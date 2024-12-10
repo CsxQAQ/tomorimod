@@ -1,10 +1,9 @@
-package tomorinmod.monitor;
+package tomorinmod.monitors;
 
 import basemod.interfaces.OnStartBattleSubscriber;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.powers.Gravity;

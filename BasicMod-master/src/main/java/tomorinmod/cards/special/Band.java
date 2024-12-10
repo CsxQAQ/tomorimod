@@ -1,15 +1,12 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.special;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 
 public class Band extends BaseCard {
@@ -17,7 +14,7 @@ public class Band extends BaseCard {
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardRarity.SPECIAL,
             CardTarget.SELF,
             1
     );

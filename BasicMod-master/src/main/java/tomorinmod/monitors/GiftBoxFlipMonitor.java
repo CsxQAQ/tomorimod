@@ -1,12 +1,10 @@
-package tomorinmod.monitor;
+package tomorinmod.monitors;
 
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.uncommon.GiftBox;
-
-import javax.smartcardio.Card;
 
 import static tomorinmod.BasicMod.makeID;
 

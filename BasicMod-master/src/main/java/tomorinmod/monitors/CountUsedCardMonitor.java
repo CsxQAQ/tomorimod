@@ -1,8 +1,7 @@
-package tomorinmod.monitor;
+package tomorinmod.monitors;
 
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
-import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;

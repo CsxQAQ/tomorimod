@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitor.*;
+import tomorinmod.monitors.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
@@ -37,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 //TODO 考虑为每张卡牌设置一个clear方法，用于战斗开始时复原static变量，以防止保存退出后重进出现bug
+//TODO 删除翻面机制，简化描述
 
 @SpireInitializer
 public class BasicMod implements
@@ -143,12 +144,11 @@ public class BasicMod implements
         new AutoAdd(modID)
                 .packageFilter(BasePower.class);
 
-        //在这里注册power
-        //this.receivePower();
         this.receiveReward();
         this.receiveScreen();
 
         BaseSaveData.saveData();
+
 
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));

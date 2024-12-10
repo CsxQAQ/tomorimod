@@ -1,4 +1,4 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.special;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 
 public class Stone extends BaseCard {
@@ -16,7 +15,7 @@ public class Stone extends BaseCard {
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.ATTACK,
-            CardRarity.UNCOMMON,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
             1
     );

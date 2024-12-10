@@ -1,18 +1,14 @@
 package tomorinmod.cards.uncommon;
 
-import basemod.helpers.ModalChoice;
-import basemod.helpers.ModalChoiceBuilder;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.special.Band;
+import tomorinmod.cards.special.Stone;
+import tomorinmod.cards.special.Watermelonworm;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 

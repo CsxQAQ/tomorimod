@@ -1,6 +1,5 @@
-package tomorinmod.monitor;
+package tomorinmod.monitors;
 
-import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -10,9 +9,6 @@ import tomorinmod.cards.rare.Revolution;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
-import tomorinmod.tags.CustomTags;
-
-import java.util.Iterator;
 
 public class RevolutionMonitor extends BaseMonitor implements PostBattleSubscriber {
 
