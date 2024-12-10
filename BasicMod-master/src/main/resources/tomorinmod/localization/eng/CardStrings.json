@@ -128,11 +128,11 @@
   },
   "${modID}:MusicalComposition": {
     "NAME": "音乐创作",
-    "DESCRIPTION": "固有 ， 保留 ， 消耗 ， 增加一张 *歌词 到你的手牌。"
+    "DESCRIPTION": "固有 ， 保留 ， 消耗 ， 进入 tomorinmod:创作模式 。"
   },
   "${modID}:Lyric": {
-    "NAME": "歌词",
-    "DESCRIPTION": "  保留 ， 无法被打出 。拥有3点 tomorinmod:素材 后 tomorinmod:翻面 。",
+    "NAME": "歌词本",
+    "DESCRIPTION": "  保留 ， 无法被打出 。拥有3点 tomorinmod:素材 后变为对应的歌曲。",
     "EXTENDED_DESCRIPTION": [
       " 音乐效果 。"
     ]
@@ -151,5 +151,9 @@
   "${modID}:SmoothCombo": {
     "NAME": "丝滑小连招",
     "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌。"
+  },
+  "${modID}:Revolution": {
+    "NAME": "泪滴与变革",
+    "DESCRIPTION": " tomorinmod:永久形态 ：战斗开始时，获得等同于当前已创作音乐数 !M! 倍的 tomorinmod:闪耀 ， tomorinmod:初始化 。"
   }
 }

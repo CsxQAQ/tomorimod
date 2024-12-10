@@ -63,7 +63,7 @@ public class Lyric extends BaseCard {
                 AbstractCard cardObject = CardLibrary.getCard(card);
                 if(cardObject instanceof BaseCard){
                     BaseCard baseCard=(BaseCard)cardObject;
-                    records.add(baseCard.material);
+                    records.add(CraftingRecipes.cardMaterialHashMap.get(baseCard.cardID));
                 }
             }
             records.add(music);

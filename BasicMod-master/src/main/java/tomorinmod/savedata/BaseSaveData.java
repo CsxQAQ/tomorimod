@@ -5,6 +5,7 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import tomorinmod.cards.rare.Revolution;
 import tomorinmod.cards.special.Chunriying;
 import tomorinmod.monitor.InitializeMonitor;
 
@@ -158,6 +159,22 @@ public class BaseSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     Chunriying.isIntensify = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("Revolutionshines", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(Revolution.shines);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    Revolution.shines = gson.fromJson(jsonElement, new TypeToken<Integer>() {}.getType());
                 }
             }
         });

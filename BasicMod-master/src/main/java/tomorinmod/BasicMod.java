@@ -3,22 +3,16 @@ package tomorinmod;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.interfaces.*;
-import com.badlogic.gdx.utils.compression.lzma.Base;
-import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.special.Chunriying;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.monitor.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
 import tomorinmod.savedata.BaseSaveData;
-import tomorinmod.savedata.SaveForm;
 import tomorinmod.screens.NotebookScreen;
-import tomorinmod.tags.CustomTags;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
 import tomorinmod.util.TextureLoader;
@@ -63,12 +57,13 @@ public class BasicMod implements
     public static void receiveMonitor(){
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
         BaseMod.subscribe(new DeleteOnBattleEndMonitor());
-        BaseMod.subscribe(new GivePowersOnBattleStartMonitor());
+        BaseMod.subscribe(new HandleFormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());
         BaseMod.subscribe(new CountUsedCardMonitor());
         BaseMod.subscribe(new TomorinApotheosisMonitor());
         BaseMod.subscribe(new SmoothComboMonitor());
+        BaseMod.subscribe(new RevolutionMonitor());
     }
 
     public void receivePower(){
@@ -80,6 +75,7 @@ public class BasicMod implements
         BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
         BaseMod.addPower(ShineTomorinPower.class, ShineTomorinPower.POWER_ID);
         BaseMod.addPower(ShineTomorinPower.class, MemoryInCrychicPower.POWER_ID);
+        BaseMod.addPower(ShineTomorinPower.class, RevolutionPower.POWER_ID);
     }
 
     public void receiveReward(){

@@ -14,7 +14,7 @@ import tomorinmod.savedata.SavePermanentForm;
 
 import java.util.Iterator;
 
-public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
+public class HandleFormsMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if (AbstractDungeon.player instanceof MyCharacter) {
@@ -23,20 +23,15 @@ public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
             switch (SaveForm.getInstance().getForm()){
                 case "GravityTomorinPower":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GravityTomorinPower(AbstractDungeon.player), 1));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Gravity(AbstractDungeon.player,4), 4));
-                    AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(AbstractDungeon.player));
                     break;
                 case "StrengthTomorinPower":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthTomorinPower(AbstractDungeon.player), 1));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player,4), 4));
                     break;
                 case "DarkTomorinPower":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DarkTomorinPower(AbstractDungeon.player), 1));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player,1,true), 1));
                     break;
                 case "ShineTomorinPower":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ShineTomorinPower(AbstractDungeon.player), 1));
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,1), 1));
                     break;
                 default:
                     break;
@@ -50,6 +45,9 @@ public class GivePowersOnBattleStartMonitor implements OnStartBattleSubscriber {
                 String form= iterator.next();
                 if (form.equals("WeAreMygoPower")) {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WeAreMygoPower(AbstractDungeon.player), 1));
+                }
+                if(form.equals("RevolutionPower")){
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RevolutionPower(AbstractDungeon.player), 1));
                 }
             }
         }

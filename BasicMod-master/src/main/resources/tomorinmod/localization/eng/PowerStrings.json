@@ -58,5 +58,12 @@
     "DESCRIPTIONS": [
       "攻击你的敌人会受到等同于该效果层数的伤害，回合结束后效果消失。"
     ]
+  },
+  "${modID}:RevolutionPower": {
+    "NAME": "变革",
+    "DESCRIPTIONS": [
+      " #y永久形态 ，回合开始是额外获得",
+      " 点 #y闪耀。"
+    ]
   }
 }

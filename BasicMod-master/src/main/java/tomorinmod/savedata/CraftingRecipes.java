@@ -6,6 +6,8 @@ import tomorinmod.util.GetModCardsUtils;
 
 import java.util.*;
 
+import static tomorinmod.BasicMod.makeID;
+
 public class CraftingRecipes {
 
     public static HashSet<String> tomorinCards=new HashSet<>();
@@ -115,6 +117,10 @@ public class CraftingRecipes {
         for(String cardString : tomorinCards){
             cardMaterialHashMap.put(cardString,getRandomMaterials());
         }
+
+        cardMaterialHashMap.put(makeID("Stone"),"Stone");
+        cardMaterialHashMap.put(makeID("Band"),"Band");
+        cardMaterialHashMap.put(makeID("Watermelonworm"),"Watermelonworm");
     }
 
     public boolean recipeAlreadyHave(Recipe aRecipe){
