@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.special.Lyric;
 
-public class CountUsedCardMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
+public class CountUsedCardMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
 
 
     @Override

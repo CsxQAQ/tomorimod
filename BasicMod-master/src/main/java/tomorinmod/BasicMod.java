@@ -66,17 +66,17 @@ public class BasicMod implements
         BaseMod.subscribe(new RevolutionMonitor());
     }
 
-    public void receivePower(){
-        BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
-        BaseMod.addPower(Shine.class, Shine.POWER_ID);
-        BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
-        BaseMod.addPower(StrengthTomorinPower.class, StrengthTomorinPower.POWER_ID);
-        BaseMod.addPower(GravityTomorinPower.class, GravityTomorinPower.POWER_ID);
-        BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
-        BaseMod.addPower(ShineTomorinPower.class, ShineTomorinPower.POWER_ID);
-        BaseMod.addPower(ShineTomorinPower.class, MemoryInCrychicPower.POWER_ID);
-        BaseMod.addPower(ShineTomorinPower.class, RevolutionPower.POWER_ID);
-    }
+//    public void receivePower(){
+//        BaseMod.addPower(Gravity.class, Gravity.POWER_ID);
+//        BaseMod.addPower(Shine.class, Shine.POWER_ID);
+//        BaseMod.addPower(WeAreMygoPower.class, WeAreMygoPower.POWER_ID);
+//        BaseMod.addPower(StrengthTomorinPower.class, StrengthTomorinPower.POWER_ID);
+//        BaseMod.addPower(GravityTomorinPower.class, GravityTomorinPower.POWER_ID);
+//        BaseMod.addPower(DarkTomorinPower.class, DarkTomorinPower.POWER_ID);
+//        BaseMod.addPower(ShineTomorinPower.class, ShineTomorinPower.POWER_ID);
+//        BaseMod.addPower(ShineTomorinPower.class, MemoryInCrychicPower.POWER_ID);
+//        BaseMod.addPower(ShineTomorinPower.class, RevolutionPower.POWER_ID);
+//    }
 
     public void receiveReward(){
         BaseMod.registerCustomReward(
@@ -149,8 +149,11 @@ public class BasicMod implements
     @Override
     public void receivePostInitialize() {
 
+        new AutoAdd(modID)
+                .packageFilter(BasePower.class);
+
         //在这里注册power
-        this.receivePower();
+        //this.receivePower();
         this.receiveReward();
         this.receiveScreen();
 

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.powers.Gravity;
 
-public class GetPowerAtFirstTurnMonitor implements OnStartBattleSubscriber {
+public class GetPowerAtFirstTurnMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         AbstractPlayer player = AbstractDungeon.player;

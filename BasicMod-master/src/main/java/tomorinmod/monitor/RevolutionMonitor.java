@@ -14,7 +14,7 @@ import tomorinmod.tags.CustomTags;
 
 import java.util.Iterator;
 
-public class RevolutionMonitor implements PostBattleSubscriber {
+public class RevolutionMonitor extends BaseMonitor implements PostBattleSubscriber {
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {

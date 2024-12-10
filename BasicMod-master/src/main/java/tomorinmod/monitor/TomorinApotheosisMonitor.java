@@ -12,7 +12,7 @@ import tomorinmod.cards.uncommon.GiftBox;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class TomorinApotheosisMonitor implements OnPlayerTurnStartSubscriber, PostBattleSubscriber {
+public class TomorinApotheosisMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, PostBattleSubscriber {
     @Override
     public void receiveOnPlayerTurnStart() {
         if(TomorinApotheosis.isTomorinApotheosisUsed){

@@ -10,7 +10,7 @@ import javax.smartcardio.Card;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class GiftBoxFlipMonitor implements OnPlayerTurnStartSubscriber {
+public class GiftBoxFlipMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber {
     @Override
     public void receiveOnPlayerTurnStart() {
         AbstractPlayer player = AbstractDungeon.player;

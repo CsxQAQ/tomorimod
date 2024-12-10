@@ -7,7 +7,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.savedata.*;
 
 //初始化地牢的时候，即重开，需要清空所有的自定义数据
-public class InitializeMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber, PostDeathSubscriber {
+public class InitializeMonitor extends BaseMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber, PostDeathSubscriber {
 
     public static boolean isInitialized=false;
 

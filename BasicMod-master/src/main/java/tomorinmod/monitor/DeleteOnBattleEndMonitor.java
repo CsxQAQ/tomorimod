@@ -11,7 +11,7 @@ import tomorinmod.tags.CustomTags;
 
 import java.util.Iterator;
 
-public class DeleteOnBattleEndMonitor implements PostBattleSubscriber, OnStartBattleSubscriber {
+public class DeleteOnBattleEndMonitor extends BaseMonitor implements PostBattleSubscriber, OnStartBattleSubscriber {
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {

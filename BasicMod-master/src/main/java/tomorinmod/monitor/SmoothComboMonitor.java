@@ -11,7 +11,7 @@ import tomorinmod.actions.SmoothComboAction;
 import tomorinmod.cards.rare.TomorinApotheosis;
 import tomorinmod.cards.uncommon.SmoothCombo;
 
-public class SmoothComboMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
+public class SmoothComboMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {

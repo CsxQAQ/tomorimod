@@ -14,7 +14,7 @@ import tomorinmod.savedata.SavePermanentForm;
 
 import java.util.Iterator;
 
-public class HandleFormsMonitor implements OnStartBattleSubscriber {
+public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if (AbstractDungeon.player instanceof MyCharacter) {
