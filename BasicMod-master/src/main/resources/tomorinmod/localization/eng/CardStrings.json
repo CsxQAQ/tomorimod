@@ -155,5 +155,12 @@
   "${modID}:Revolution": {
     "NAME": "泪滴与变革",
     "DESCRIPTION": " tomorinmod:永久形态 ：战斗开始时，获得等同于当前已创作音乐数 !M! 倍的 tomorinmod:闪耀 ， tomorinmod:初始化 。"
+  },
+  "${modID}:WhiteMoonlight": {
+    "NAME": "白月光",
+    "DESCRIPTION": " 消耗 ， tomorinmod:瞬间 ，恢复当前损失生命值一半的生命值。",
+    "EXTENDED_DESCRIPTION": [
+      "消耗 ， tomorinmod:瞬间 ，恢复所有生命值。"
+    ]
   }
 }
