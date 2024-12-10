@@ -174,5 +174,9 @@
   "${modID}:ConveyFeeling": {
     "NAME": "传达心意",
     "DESCRIPTION": " tomorinmod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
+  },
+  "${modID}:EquelExchange": {
+    "NAME": "等价交换",
+    "DESCRIPTION": "将一张该牌的复制置入你的手牌，然后抽一张牌。"
   }
 }
