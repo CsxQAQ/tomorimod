@@ -182,5 +182,17 @@
   "${modID}:Collection": {
     "NAME": "收集",
     "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *西瓜虫 中选择一张加入手牌，这些卡牌的 tomorinmod:素材 等级视作稀有。"
+  },
+  "${modID}:Qianzaibiaoming": {
+    "NAME": "潜在表明",
+    "DESCRIPTION": "造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。"
+  },
+  "${modID}:Yinakong": {
+    "NAME": "壱雫空",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "${modID}:Mingwusheng": {
+    "NAME": "名無声",
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。"
   }
 }

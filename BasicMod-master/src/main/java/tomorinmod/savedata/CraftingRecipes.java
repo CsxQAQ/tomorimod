@@ -95,9 +95,9 @@ public class CraftingRecipes {
         musicsCostHashMap.put("yinyihui", uncommonCost);
         musicsCostHashMap.put("miluri", uncommonCost);
         musicsCostHashMap.put("wulushi", uncommonCost);
-        musicsCostHashMap.put("yinakong", uncommonCost);
+        musicsCostHashMap.put("bitianbanzou", uncommonCost);
+        musicsCostHashMap.put("yinakong", commonCost);
         musicsCostHashMap.put("mingwusheng", commonCost);
-        musicsCostHashMap.put("bitianbanzou", commonCost);
         musicsCostHashMap.put("qianzaibiaoming", commonCost);
     }
 

@@ -40,7 +40,6 @@ public class LondonDeserter extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPlayer abstractPlayer = AbstractDungeon.player;
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             if(!upgraded){
                 (AbstractDungeon.getCurrRoom()).smoked = true;

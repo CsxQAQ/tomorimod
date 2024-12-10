@@ -1,19 +1,12 @@
 package tomorinmod.cards.rare;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.special.Chunriying;
-import tomorinmod.cards.special.Lyric;
+import tomorinmod.cards.music.Chunriying;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.MemoryInCrychicPower;
-import tomorinmod.powers.WeAreMygoPower;
 import tomorinmod.savedata.SaveMusicDiscoverd;
-import tomorinmod.savedata.SavePermanentForm;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
 
 public class MemoryInCrychic extends BaseCard {
