@@ -158,9 +158,9 @@
   },
   "${modID}:WhiteMoonlight": {
     "NAME": "白月光",
-    "DESCRIPTION": " 消耗 ， tomorinmod:瞬间 ，恢复当前损失生命值一半的生命值。",
+    "DESCRIPTION": " 消耗 ， tomorinmod:瞬间 ，恢复当前损失生命值一半的生命值，移除所有的 tomorinmod:重力 。",
     "EXTENDED_DESCRIPTION": [
-      "消耗 ， tomorinmod:瞬间 ，恢复所有生命值。"
+      "消耗 ， tomorinmod:瞬间 ，恢复所有生命值，移除所有的 tomorinmod:重力 。"
     ]
   },
   "${modID}:MygoTogether": {
@@ -168,7 +168,7 @@
     "DESCRIPTION": " 虚无 ，你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
   },
   "${modID}:NeedAnon": {
-    "NAME": "我需要爱音",
+    "NAME": "不能没有你",
     "DESCRIPTION": "将当前 tomorinmod:重力 层数翻倍。"
   },
   "${modID}:ConveyFeeling": {
@@ -178,5 +178,9 @@
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
     "DESCRIPTION": "将一张该牌的复制置入你的手牌，然后抽一张牌。"
+  },
+  "${modID}:Collection": {
+    "NAME": "收集",
+    "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *西瓜虫 中选择一张加入手牌，这些卡牌的 tomorinmod:素材 等级视作稀有。"
   }
 }

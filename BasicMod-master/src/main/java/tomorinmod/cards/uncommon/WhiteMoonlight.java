@@ -1,6 +1,7 @@
 package tomorinmod.cards.uncommon;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,6 +9,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.Gravity;
+import tomorinmod.powers.Shine;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
@@ -35,6 +38,7 @@ public class WhiteMoonlight extends BaseCard {
         }else{
             addToBot(new HealAction(p,p, (p.maxHealth - p.currentHealth)));
         }
+        addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
         AddTagsUtils.addTags(this, CustomTags.MOMENT);
     }
 
