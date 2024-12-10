@@ -18,7 +18,7 @@ public class ShineTomorinPower extends BasePower {
 
     @Override
     public void onInitialApplication() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,3), 3));
 
         AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(AbstractDungeon.player));
     }

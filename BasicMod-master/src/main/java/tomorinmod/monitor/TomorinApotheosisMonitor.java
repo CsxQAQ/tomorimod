@@ -1,6 +1,7 @@
 package tomorinmod.monitor;
 
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
+import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,7 +13,7 @@ import tomorinmod.cards.uncommon.GiftBox;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class TomorinApotheosisMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, PostBattleSubscriber {
+public class TomorinApotheosisMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
     @Override
     public void receiveOnPlayerTurnStart() {
         if(TomorinApotheosis.isTomorinApotheosisUsed){
@@ -30,9 +31,8 @@ public class TomorinApotheosisMonitor extends BaseMonitor implements OnPlayerTur
         }
     }
 
-
     @Override
-    public void receivePostBattle(AbstractRoom abstractRoom) {
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         TomorinApotheosis.isTomorinApotheosisUsed=false;
     }
 }

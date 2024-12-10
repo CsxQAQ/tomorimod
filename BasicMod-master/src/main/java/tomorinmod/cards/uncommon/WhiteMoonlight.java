@@ -19,7 +19,7 @@ public class WhiteMoonlight extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            3
+            1
     );
 
     public WhiteMoonlight() {

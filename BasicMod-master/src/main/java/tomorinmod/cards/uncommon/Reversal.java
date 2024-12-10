@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.rare.MygoTogether;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
@@ -29,25 +30,60 @@ public class Reversal extends BaseCard {
         super(ID, info);
     }
 
+//    @Override
+//    public void use(AbstractPlayer p, AbstractMonster m) {
+//        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
+//        AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
+//
+//        int gravityAmount = gravity != null ? gravity.amount : 0;  // 如果有重力能力，获取其层数
+//        int shineAmount = shine != null ? shine.amount : 0;        // 如果有闪耀能力，获取其层数
+//
+//        // 将闪耀层数转换为重力层数
+//        if (shineAmount > 0) {
+//            addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
+//            addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
+//            addToBot(new CheckShineGravityAction(p));
+//
+//        }
+//        if (gravityAmount > 0) {
+//            addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
+//            addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
+//            addToBot(new CheckShineGravityAction(p));
+//        }
+//    }
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
         AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
 
-        int gravityAmount = gravity != null ? gravity.amount : 0;  // 如果有重力能力，获取其层数
-        int shineAmount = shine != null ? shine.amount : 0;        // 如果有闪耀能力，获取其层数
+        int gravityAmount = gravity != null ? gravity.amount : 0;
+        int shineAmount = shine != null ? shine.amount : 0;
 
-        // 将闪耀层数转换为重力层数
-        if (shineAmount > 0) {
+        if(MygoTogether.isMygoTogetherUsed){
+            // 直接修改层数
+            if (shine != null) {
+                shine.amount = gravityAmount;
+                shine.updateDescription(); // 更新描述
+            }
+            if (gravity != null) {
+                gravity.amount = shineAmount;
+                gravity.updateDescription(); // 更新描述
+            }
+        }else{
+            if (shineAmount > 0) {
+                addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
+                addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
+                addToBot(new CheckShineGravityAction(p));
 
-            addToBot(new ApplyPowerAction(p, p, new Gravity(p, 2*shineAmount), 2*shineAmount));
-            addToBot(new CheckShineGravityAction(p));
-
+            }
+            if (gravityAmount > 0) {
+                addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
+                addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
+                addToBot(new CheckShineGravityAction(p));
+            }
         }
-        else if (gravityAmount > 0) {
-            addToBot(new ApplyPowerAction(p, p, new Shine(p, 2*gravityAmount), 2*gravityAmount));
-            addToBot(new CheckShineGravityAction(p));
-        }
+
     }
 
     @Override

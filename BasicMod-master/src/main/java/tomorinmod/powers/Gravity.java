@@ -1,11 +1,16 @@
 package tomorinmod.powers;
 
+import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.PotionGetHooks;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.cards.rare.MygoTogether;
+import tomorinmod.cards.rare.Revolution;
+import tomorinmod.cards.uncommon.TwoFish;
 import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;
@@ -18,33 +23,7 @@ public class Gravity extends BasePower {
     public Gravity(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.amount = amount;
-        //updateShineInteraction(); // 初始化时检查并处理 Shine
     }
-
-//    @Override
-//    public void stackPower(int stackAmount) {
-//        super.stackPower(stackAmount);
-//        updateShineInteraction(); // 每次叠加时检查 Shine
-//    }
-//
-//    private void updateShineInteraction() {
-//        AbstractPower shine = this.owner.getPower(Shine.POWER_ID);
-//        if (shine != null) {
-//            int shineAmount = shine.amount;
-//            if (shineAmount > 0) {
-//                // 计算相互抵消的层数
-//                int reduceAmount = Math.min(this.amount, shineAmount);
-//
-//                // 更新层数
-//                this.amount -= reduceAmount;
-//                shine.amount -= reduceAmount;
-//
-//                // 移除层数为 0 的 Power
-//                if (this.amount <= 0) AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-//                if (shine.amount <= 0) AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, Shine.POWER_ID));
-//            }
-//        }
-//    }
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
@@ -55,6 +34,13 @@ public class Gravity extends BasePower {
             damageArray[i] = this.amount;
         }
         addToBot(new DamageAllEnemiesAction(this.owner, damageArray, DamageInfo.DamageType.THORNS, DamageAllEnemiesAction.AttackEffect.SLASH_HORIZONTAL));
+    }
+
+    @Override
+    public void onInitialApplication() {
+        if(MygoTogether.isMygoTogetherUsed){
+            TwoFish.curAttribute=0;
+        }
     }
 
     public void updateDescription() {

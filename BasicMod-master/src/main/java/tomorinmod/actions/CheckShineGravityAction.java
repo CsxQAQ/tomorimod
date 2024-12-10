@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.cards.rare.MygoTogether;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 
@@ -17,6 +18,12 @@ public class CheckShineGravityAction extends AbstractGameAction {
 
     @Override
     public void update() {
+
+        if(MygoTogether.isMygoTogetherUsed){
+            this.isDone=true;
+            return;
+        }
+
         AbstractPower shine = target.getPower(Shine.POWER_ID);
         AbstractPower gravity = target.getPower(Gravity.POWER_ID);
 

@@ -32,8 +32,6 @@ public class TomorinApotheosis extends BaseCard {
     public TomorinApotheosis() {
         super(ID, info);
 
-        //this.selfRetain=true;
-        this.exhaust=true;
     }
 
     @Override
@@ -61,5 +59,7 @@ public class TomorinApotheosis extends BaseCard {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"， 固有 。";
         }
     }
+
+
 
 }

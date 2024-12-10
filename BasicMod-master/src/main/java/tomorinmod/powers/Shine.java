@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.cards.rare.MygoTogether;
+import tomorinmod.cards.uncommon.TwoFish;
 import tomorinmod.powers.BasePower;
 import tomorinmod.powers.Gravity;
 
@@ -20,37 +22,18 @@ public class Shine extends BasePower {
         this.amount = amount;
         //updateGravityInteraction(); // 初始化时检查并处理 Gravity
     }
-
-//    @Override
-//    public void stackPower(int stackAmount) {
-//        super.stackPower(stackAmount);
-//        updateGravityInteraction(); // 每次叠加时检查 Gravity
-//    }
-
-//    private void updateGravityInteraction() {
-//        AbstractPower gravity = this.owner.getPower(Gravity.POWER_ID);
-//        if (gravity != null) {
-//            int gravityAmount = gravity.amount;
-//            if (gravityAmount > 0) {
-//                // 计算相互抵消的层数
-//                int reduceAmount = Math.min(this.amount, gravityAmount);
-//
-//                // 更新层数
-//                this.amount -= reduceAmount;
-//                gravity.amount -= reduceAmount;
-//
-//                // 移除层数为 0 的 Power
-//                if (this.amount <= 0) AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
-//                if (gravity.amount <= 0) AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, Gravity.POWER_ID));
-//            }
-//        }
-//    }
-
     @Override
     public void atStartOfTurn() {
         // 每层Shine恢复1点生命
         flash();
         addToBot(new HealAction(this.owner, this.owner, this.amount));
+    }
+
+    @Override
+    public void onInitialApplication() {
+        if(MygoTogether.isMygoTogetherUsed){
+            TwoFish.curAttribute=1;
+        }
     }
 
     public void updateDescription() {

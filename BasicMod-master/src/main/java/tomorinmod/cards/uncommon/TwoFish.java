@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.rare.MygoTogether;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
@@ -25,7 +26,7 @@ public class TwoFish extends BaseCard {
             1
     );
 
-    private int isFlipped = 0;
+    public static int curAttribute=0; //0 Gravity
 
     private int POWERS=3;
     private int UPG_POWERS=2;
@@ -39,7 +40,7 @@ public class TwoFish extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(isFlipped==0){
+        if(curAttribute==0){
             addToBot(new ApplyPowerAction(p, p, new Gravity(p, magicNumber), magicNumber));
             addToBot(new CheckShineGravityAction(p));
         }else{
@@ -48,22 +49,32 @@ public class TwoFish extends BaseCard {
         }
     }
 
+
+    //改成层数比较吧
     @Override
     public void applyPowers() {
         super.applyPowers();
         AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
         AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
 
-        if (shine != null) {
-            isFlipped=1;
-        }else if(gravity!=null){
-            isFlipped=0;
+        int shineAmount = (shine != null) ? shine.amount : 0;
+        int gravityAmount = (gravity != null) ? gravity.amount : 0;
+
+        if(curAttribute==0){
+            if(shineAmount>gravityAmount){
+                curAttribute=1;
+            }
+        }else{
+            if(gravityAmount>shineAmount){
+                curAttribute=0;
+            }
         }
+
         this.updateDescription();
     }
 
     private void updateDescription() {
-        if (this.isFlipped == 0) {
+        if (curAttribute==0) {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];

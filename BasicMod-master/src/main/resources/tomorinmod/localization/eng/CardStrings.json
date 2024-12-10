@@ -85,9 +85,9 @@
   },
   "${modID}:TwoFish": {
     "NAME": "两fish",
-    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，获得 tomorinmod:闪耀 时 tomorinmod:翻面 。",
+    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，当 tomorinmod:闪耀 层数多于 tomorinmod:重力 时 tomorinmod:翻面 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，获得 tomorinmod:重力 时 tomorinmod:翻面 。"
+      " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，当 tomorinmod:重力 多余 tomorinmod:闪耀 时 tomorinmod:翻面 。"
     ]
   },
   "${modID}:Stone": {
@@ -162,5 +162,9 @@
     "EXTENDED_DESCRIPTION": [
       "消耗 ， tomorinmod:瞬间 ，恢复所有生命值。"
     ]
+  },
+  "${modID}:MygoTogether": {
+    "NAME": "一起迷失吧",
+    "DESCRIPTION": " 你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
   }
 }

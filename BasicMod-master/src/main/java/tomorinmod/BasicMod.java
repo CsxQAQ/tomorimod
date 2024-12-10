@@ -64,6 +64,7 @@ public class BasicMod implements
         BaseMod.subscribe(new TomorinApotheosisMonitor());
         BaseMod.subscribe(new SmoothComboMonitor());
         BaseMod.subscribe(new RevolutionMonitor());
+        BaseMod.subscribe(new MygoTogetherMonitor());
     }
 
 //    public void receivePower(){
