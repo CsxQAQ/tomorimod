@@ -30,28 +30,6 @@ public class Reversal extends BaseCard {
         super(ID, info);
     }
 
-//    @Override
-//    public void use(AbstractPlayer p, AbstractMonster m) {
-//        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
-//        AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
-//
-//        int gravityAmount = gravity != null ? gravity.amount : 0;  // 如果有重力能力，获取其层数
-//        int shineAmount = shine != null ? shine.amount : 0;        // 如果有闪耀能力，获取其层数
-//
-//        // 将闪耀层数转换为重力层数
-//        if (shineAmount > 0) {
-//            addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
-//            addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
-//            addToBot(new CheckShineGravityAction(p));
-//
-//        }
-//        if (gravityAmount > 0) {
-//            addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
-//            addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
-//            addToBot(new CheckShineGravityAction(p));
-//        }
-//    }
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);

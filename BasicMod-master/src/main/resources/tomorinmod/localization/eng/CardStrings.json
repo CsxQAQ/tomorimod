@@ -166,5 +166,9 @@
   "${modID}:MygoTogether": {
     "NAME": "一起迷失吧",
     "DESCRIPTION": " 你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
+  },
+  "${modID}:NeedAnon": {
+    "NAME": "我需要爱音",
+    "DESCRIPTION": "将当前 tomorinmod:重力 层数翻倍。"
   }
 }
