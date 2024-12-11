@@ -13,7 +13,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class Yinakong extends BaseCard {
+public class Yinakong extends BaseMusic {
     public static final String ID = makeID(Yinakong.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -26,6 +26,8 @@ public class Yinakong extends BaseCard {
     public Yinakong() {
         super(ID, info);
 
+        this.musicUpgradeDamage=UPG_DAMAGE;
+        this.musicUpgradeMagicNumber=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
         this.setMagic(MAGIC,UPG_MAGIC);
     }
@@ -34,7 +36,7 @@ public class Yinakong extends BaseCard {
     private static final int UPG_DAMAGE = 1;
 
     private static final int MAGIC = 6;
-    private static final int UPG_MAGIC =3;
+    private static final int UPG_MAGIC =2;
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {

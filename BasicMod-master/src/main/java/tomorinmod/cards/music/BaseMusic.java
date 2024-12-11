@@ -1,6 +1,38 @@
 package tomorinmod.cards.music;
 
-public class BaseMusic {
+import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.rare.TomorinApotheosis;
+import tomorinmod.util.CardStats;
+
+public abstract class BaseMusic extends BaseCard {
+    public BaseMusic(String ID, CardStats info) {
+        super(ID, info);
+    }
+
+    protected int musicUpgradeDamage;
+    protected int musicUpgradeMagicNumber;
+
+    @Override
+    public void upgrade() {
+        if(TomorinApotheosis.isTomorinApotheosisUsed){
+            this.upgradeDamage(musicUpgradeDamage);
+            this.upgradeMagicNumber(musicUpgradeMagicNumber);
+            ++this.timesUpgraded;
+            this.upgraded = true;
+            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+            this.initializeTitle();
+        }else{
+            if(!this.upgraded){
+                this.upgradeDamage(musicUpgradeDamage);
+                this.upgradeMagicNumber(musicUpgradeMagicNumber);
+                upgradeName();
+            }
+        }
+    }
+    @Override
+    public void setMaterialAndLevel() {
+
+    }
 
 //        musicsCostHashMap.put("chunriying", rareCost);
 //        musicsCostHashMap.put("shichaoban", rareCost);

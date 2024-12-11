@@ -12,7 +12,7 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.util.CardStats;
 
-public class Qianzaibiaoming extends BaseCard {
+public class Qianzaibiaoming extends BaseMusic {
     public static final String ID = makeID(Qianzaibiaoming.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -24,6 +24,8 @@ public class Qianzaibiaoming extends BaseCard {
 
     public Qianzaibiaoming() {
         super(ID, info);
+        this.musicUpgradeDamage=UPG_DAMAGE;
+        this.musicUpgradeMagicNumber=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
         this.setMagic(MAGIC,UPG_MAGIC);
     }
