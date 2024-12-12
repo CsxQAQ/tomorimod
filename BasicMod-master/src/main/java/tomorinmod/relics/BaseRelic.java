@@ -2,6 +2,7 @@ package tomorinmod.relics;
 
 import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.TextureLoader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,6 +16,7 @@ public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
+
 
     //for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {

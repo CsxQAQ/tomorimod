@@ -40,7 +40,6 @@ public class Chunriying extends BaseCard {
                         AbstractGameAction.AttackEffect.NONE));
             }
         }
-
     }
 
     @Override
