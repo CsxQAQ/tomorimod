@@ -222,5 +222,9 @@
   "${modID}:Miluri": {
     "NAME": "迷路日",
     "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果1次。"
+  },
+  "${modID}:Yingsewu": {
+    "NAME": "影色舞",
+    "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态效果 !M! 次"
   }
 }
