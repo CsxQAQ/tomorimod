@@ -14,70 +14,128 @@ import static tomorinmod.BasicMod.imagePath;
 
 public class MaterialScreenProcessor implements ScreenPostProcessor {
 
-    private Texture leftTexture=new Texture(imagePath("materials/" +"Stone.png"));;  // 用于左上角的图片
-    private Texture topTexture=new Texture(imagePath("materials/" + "Band.png"));;   // 用于上方的图片
-    private Texture rightTexture=new Texture(imagePath("materials/" +"Watermelonworm.png"));; // 用于右上角的图片
+    private static final Texture TextureStone = new Texture(imagePath("materials/" + "Stone.png"));
+    private static final Texture TextureBand = new Texture(imagePath("materials/" + "Band.png"));
+    private static final Texture TextureWatermelonworm = new Texture(imagePath("materials/" + "Watermelonworm.png"));
+
+    // 缓存拉伸后的宽高和位置
+    private static float leftTextureWidth, leftTextureHeight, leftX, leftY;
+    private static float topTextureWidth, topTextureHeight, topX, topY;
+    private static float rightTextureWidth, rightTextureHeight, rightX, rightY;
+
+    private static int drawCount = 0;
+
+    private static Texture leftTexture = null;
+    private static Texture topTexture = null;
+    private static Texture rightTexture = null;
+
+    private static boolean initialized = false;
+
+    // 初始化预计算参数
+    public static void initialize(float screenWidth, float screenHeight, float characterX, float characterY) {
+        float scaleFactor = Math.min(screenWidth / 1920f, screenHeight / 1080f);
+
+        // 计算缩放后的宽高
+        leftTextureWidth = TextureStone.getWidth() * scaleFactor / 3;
+        leftTextureHeight = TextureStone.getHeight() * scaleFactor / 3;
+        topTextureWidth = TextureBand.getWidth() * scaleFactor / 3;
+        topTextureHeight = TextureBand.getHeight() * scaleFactor / 3;
+        rightTextureWidth = TextureWatermelonworm.getWidth() * scaleFactor / 3;
+        rightTextureHeight = TextureWatermelonworm.getHeight() * scaleFactor / 3;
+
+        // 计算位置
+        leftX = characterX - leftTextureWidth * 1.2f;
+        leftY = characterY + leftTextureHeight * 1.5f;
+        topX = characterX - topTextureWidth / 2;
+        topY = characterY + topTextureHeight * 2.0f;
+        rightX = characterX + rightTextureWidth * 0.2f;
+        rightY = characterY + rightTextureHeight * 1.5f;
+    }
+
+    public static void clear() {
+        drawCount = 0;
+        leftTexture = null;
+        topTexture = null;
+        rightTexture = null;
+    }
 
     @Override
     public void postProcess(SpriteBatch sb, TextureRegion textureRegion, OrthographicCamera camera) {
+
+        if (!initialized) {
+            // 获取角色位置和屏幕大小，进行初始化
+            float screenWidth = camera.viewportWidth;
+            float screenHeight = camera.viewportHeight;
+            float characterX = getCharacterX(); // 获取角色X坐标
+            float characterY = getCharacterY(); // 获取角色Y坐标
+            initialize(screenWidth, screenHeight, characterX, characterY);
+            initialized = true; // 确保只初始化一次
+        }
+
         // 绘制原始屏幕内容
         sb.draw(textureRegion, 0, 0);
 
-        if(AbstractDungeon.screen == AbstractDungeon.CurrentScreen.NONE&&!SingleRelicViewPopupPreOpenPatch.isRelicWindowOpened){
+        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.NONE && !SingleRelicViewPopupPreOpenPatch.isRelicWindowOpened) {
             sb.setColor(Color.WHITE);
             sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA); // 支持透明度
 
-            // 获取屏幕的宽度和高度
-            float screenWidth = camera.viewportWidth;
-            float screenHeight = camera.viewportHeight;
-
-            // 假设可以通过某种方式获取角色的中心位置（x, y）
-            float characterX = getCharacterX(); // 角色中心的 X 坐标
-            float characterY = getCharacterY(); // 角色中心的 Y 坐标
-
-            // 获取每张图片的宽高
-            float leftTextureWidth = leftTexture.getWidth();
-            float leftTextureHeight = leftTexture.getHeight();
-            float topTextureWidth = topTexture.getWidth();
-            float topTextureHeight = topTexture.getHeight();
-            float rightTextureWidth = rightTexture.getWidth();
-            float rightTextureHeight = rightTexture.getHeight();
-
-            // 调整缩放因子（根据需要）
-            float scaleFactor = Math.min(screenWidth / 1920f, screenHeight / 1080f);
-            leftTextureWidth *= scaleFactor/3;
-            leftTextureHeight *= scaleFactor/3;
-            topTextureWidth *= scaleFactor/3;
-            topTextureHeight *= scaleFactor/3;
-            rightTextureWidth *= scaleFactor/3;
-            rightTextureHeight *= scaleFactor/3;
-
-            // 计算三张图片的相对位置
-            float leftX = characterX - leftTextureWidth * 1.2f; // 左上：稍偏左
-            float leftY = characterY + leftTextureHeight * 1.5f; // 偏上
-
-            float topX = characterX - topTextureWidth / 2; // 上方：水平居中
-            float topY = characterY + topTextureHeight * 2.0f; // 偏上更多
-
-            float rightX = characterX + rightTextureWidth * 0.2f; // 右上：稍偏右
-            float rightY = characterY + rightTextureHeight * 1.5f; // 偏上
-
-            // 绘制三张图片
-            sb.draw(leftTexture, leftX, leftY, leftTextureWidth, leftTextureHeight);
-            sb.draw(topTexture, topX, topY, topTextureWidth, topTextureHeight);
-            sb.draw(rightTexture, rightX, rightY, rightTextureWidth, rightTextureHeight);
+            switch (drawCount) {
+                case 1:
+                    sb.draw(leftTexture, leftX, leftY, leftTextureWidth, leftTextureHeight);
+                    break;
+                case 2:
+                    sb.draw(leftTexture, leftX, leftY, leftTextureWidth, leftTextureHeight);
+                    sb.draw(topTexture, topX, topY, topTextureWidth, topTextureHeight);
+                    break;
+                case 3:
+                    sb.draw(leftTexture, leftX, leftY, leftTextureWidth, leftTextureHeight);
+                    sb.draw(topTexture, topX, topY, topTextureWidth, topTextureHeight);
+                    sb.draw(rightTexture, rightX, rightY, rightTextureWidth, rightTextureHeight);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
+    public static void drawImage(String imageName) {
+        drawCount++;
+        Texture textureToDraw = null;
 
+        switch (imageName) {
+            case "Stone":
+                textureToDraw = TextureStone;
+                break;
+            case "Band":
+                textureToDraw = TextureBand;
+                break;
+            case "Watermelonworm":
+                textureToDraw = TextureWatermelonworm;
+                break;
+            default:
+                break;
+        }
 
-    // 伪代码：获取角色中心 X 坐标
+        switch (drawCount){
+            case 1:
+                leftTexture=textureToDraw;
+                break;
+            case 2:
+                topTexture=textureToDraw;
+                break;
+            case 3:
+                rightTexture=textureToDraw;
+                break;
+            default:
+                break;
+        }
+    }
     private float getCharacterX() {
         return AbstractDungeon.player.drawX;
     }
 
-    // 伪代码：获取角色中心 Y 坐标
     private float getCharacterY() {
         return AbstractDungeon.player.drawY;
     }
+
 }

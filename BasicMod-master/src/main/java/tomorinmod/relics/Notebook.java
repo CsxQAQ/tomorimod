@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -51,16 +52,29 @@ public class Notebook extends BaseRelic {
         if (this.hb.hovered) {
             // 检测是否按下右键
             if (InputHelper.justClickedRight) {
-                if(!isOpened){
-                    if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
 
-                        openCustomScreen();
-                        isOpened=true;
+                if (!AbstractDungeon.actionManager.turnHasEnded) {
+                    if (!isOpened) {
+                        if (AbstractDungeon.CurrentScreen.NONE == AbstractDungeon.screen) {
+                            openCustomScreen();
+                            isOpened = true;
+                        }
+                    } else {
+                        closeCustomScreen();
+                        isOpened = false;
                     }
-                }else{
-                    closeCustomScreen();
-                    isOpened=false;
                 }
+
+//                if(!isOpened){
+//                    if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
+//
+//                        openCustomScreen();
+//                        isOpened=true;
+//                    }
+//                }else{
+//                    closeCustomScreen();
+//                    isOpened=false;
+//                }
             }
         }
     }

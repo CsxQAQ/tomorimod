@@ -1,7 +1,9 @@
 package tomorinmod.monitors;
 
+import basemod.helpers.ScreenPostProcessorManager;
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
+import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,12 +18,13 @@ import tomorinmod.powers.Shine;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
+import tomorinmod.screens.MaterialScreenProcessor;
 
 import java.util.ArrayList;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
+public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
     public static final ArrayList<String> cardsUsed = new ArrayList<>(3);
     //private boolean added = false;
@@ -32,12 +35,15 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             if(abstractCard instanceof BaseCard){
                 BaseCard baseCard=(BaseCard) abstractCard;
                 if(baseCard.material!=""){
+                    MaterialScreenProcessor.drawImage(baseCard.material);
                     cardsUsed.add(abstractCard.cardID);
                 }
+
                 if(cardsUsed.size()==3){
                     addHistoryRecipes();
                     MusicalComposition.isMusicCompositionUsed=false;
                     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
+                    MaterialScreenProcessor.clear();
                 }
             }
         }
@@ -107,11 +113,6 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         }
     }
 
-    @Override
-    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        MusicalComposition.isMusicCompositionUsed=false;
-    }
-
 
     private String matchRecipe() {
         for (CraftingRecipes.Recipe recipe : CraftingRecipes.recipeArrayList) {
@@ -140,5 +141,17 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             return baseCard.material.equals(recipe) && baseCard.level >= rarity;
         }
         return false;
+    }
+
+    @Override
+    public void receivePostBattle(AbstractRoom abstractRoom) {
+        ScreenPostProcessorManager.removePostProcessor(MusicalComposition.postProcessor);
+    }
+
+    @Override
+    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        cardsUsed.clear();
+        MaterialScreenProcessor.clear();
+        MusicalComposition.isMusicCompositionUsed=false;
     }
 }

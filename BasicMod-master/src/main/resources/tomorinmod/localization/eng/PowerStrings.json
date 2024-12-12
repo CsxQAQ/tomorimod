@@ -66,7 +66,7 @@
       " 点 #y闪耀。"
     ]
   },
-  "${modID}:InComposition": {
+  "${modID}:InCompositionPower": {
     "NAME": "创作中",
     "DESCRIPTIONS": [
       "无法使用 *作词，获得3点 #y素材 后移除此效果并获得对应歌曲。"

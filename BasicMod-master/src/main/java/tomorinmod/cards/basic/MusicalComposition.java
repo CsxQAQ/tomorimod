@@ -1,5 +1,7 @@
 package tomorinmod.cards.basic;
 
+import basemod.helpers.ScreenPostProcessorManager;
+import basemod.interfaces.ScreenPostProcessor;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.InCompositionPower;
+import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.util.CardStats;
 
 public class MusicalComposition extends BaseCard {
@@ -28,6 +31,7 @@ public class MusicalComposition extends BaseCard {
 
     public static boolean isMusicCompositionUsed=false;
 
+    public static ScreenPostProcessor postProcessor = new MaterialScreenProcessor();;
 
     //已经在创作中应该要不能用
     @Override
@@ -40,9 +44,7 @@ public class MusicalComposition extends BaseCard {
         isMusicCompositionUsed=true;
         addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
 
-        //addToBot(new MakeTempCardInHandAction(new Lyric(), 1));
-        //ScreenPostProcessor postProcessor = new MaterialScreenProcessor();
-        //ScreenPostProcessorManager.addPostProcessor(postProcessor);
+        ScreenPostProcessorManager.addPostProcessor(postProcessor);
     }
 
 

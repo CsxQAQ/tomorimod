@@ -36,7 +36,7 @@ public class NotebookScreen extends CustomScreen
 
     private void open(String foo, AbstractCard bar)
     {
-         historyRecords = HistoryCraftRecords.getInstance().historyCraftRecords;
+        historyRecords = HistoryCraftRecords.getInstance().historyCraftRecords;
 
         currentPage=-1;
 
