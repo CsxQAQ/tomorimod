@@ -49,8 +49,4 @@ public class Mingwusheng extends BaseMusic {
         return new Mingwusheng();
     }
 
-    @Override
-    public void setMaterialAndLevel() {
-
-    }
 }

@@ -52,20 +52,4 @@ public class Strike extends BaseCard {
     public AbstractCard makeCopy() { //Optional
         return new Strike();
     }
-
-    @Override
-    public void upgrade() {
-        if(TomorinApotheosis.isTomorinApotheosisUsed){
-            this.upgradeDamage(UPG_DAMAGE);
-            ++this.timesUpgraded;
-            this.upgraded = true;
-            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
-            this.initializeTitle();
-        }else{
-            if(!this.upgraded){
-                this.upgradeDamage(UPG_DAMAGE);
-                upgradeName();
-            }
-        }
-    }
 }

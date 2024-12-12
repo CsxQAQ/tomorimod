@@ -194,5 +194,9 @@
   "${modID}:Mingwusheng": {
     "NAME": "名無声",
     "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。"
+  },
+  "${modID}:Shichaoban": {
+    "NAME": "诗超绊",
+    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害翻倍。"
   }
 }

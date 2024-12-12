@@ -10,7 +10,7 @@ public abstract class BaseMusic extends BaseCard {
     }
 
     protected int musicUpgradeDamage;
-    protected int musicUpgradeMagicNumber;
+    protected int musicUpgradeMagicNumber=0;
 
     @Override
     public void upgrade() {

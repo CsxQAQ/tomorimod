@@ -50,8 +50,4 @@ public class Yinakong extends BaseMusic {
         return new Yinakong();
     }
 
-    @Override
-    public void setMaterialAndLevel() {
-
-    }
 }
