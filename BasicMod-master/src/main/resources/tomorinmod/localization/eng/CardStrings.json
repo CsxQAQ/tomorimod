@@ -11,11 +11,11 @@
   },
   "${modID}:Strike": {
     "NAME": "打击",
-    "DESCRIPTION": "造成!D!点伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "${modID}:Defend": {
     "NAME": "防御",
-    "DESCRIPTION": "获得!B!点 格挡 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
   "${modID}:Shout": {
     "NAME": "内心的呐喊",
@@ -202,5 +202,9 @@
   "${modID}:Lunfuyu": {
     "NAME": "轮符雨",
     "DESCRIPTION": "本回合内你的生命值每有一点变化，造成 !M! 点伤害。（共造成 !D! 点伤害）"
+  },
+  "${modID}:Bitianbanzou": {
+    "NAME": "碧天伴走",
+    "DESCRIPTION": "造成 !D! 点伤害。本场游戏中每使用该牌一次，额外造成5点伤害， 消耗 。"
   }
 }

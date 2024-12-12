@@ -2,6 +2,7 @@ package tomorinmod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,8 +18,8 @@ public class Lunfuyu extends BaseMusic {
             MyCharacter.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.SPECIAL,
-            CardTarget.ENEMY,
-            1
+            CardTarget.ALL_ENEMY,
+            2
     );
 
     public Lunfuyu() {
@@ -39,19 +40,16 @@ public class Lunfuyu extends BaseMusic {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, baseDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-    }
+        addToBot(new DamageAllEnemiesAction(p, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));}
 
     @Override
     public void applyPowers(){
-//        if(curHp==-1){
-//            curHp=AbstractDungeon.player.currentHealth;
-//        }
         if(AbstractDungeon.player.currentHealth!=curHp){
             hpChangeNum=hpChangeNum+Math.abs(curHp-AbstractDungeon.player.currentHealth);
             curHp=AbstractDungeon.player.currentHealth;
         }
         baseDamage=hpChangeNum*this.magicNumber;
+        super.applyPowers();
     }
 
 

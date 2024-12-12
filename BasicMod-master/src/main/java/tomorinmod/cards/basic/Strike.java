@@ -27,17 +27,14 @@ public class Strike extends BaseCard {
             1
     );
 
-    private static final int DAMAGE = 1;
-    private static final int UPG_DAMAGE = 2;
-
-    private final static int MAGIC=8;
-    private final static int UPG_MAGIC=12;
+    private static final int DAMAGE = 6;
+    private static final int UPG_DAMAGE = 3;
 
     public Strike() {
         super(ID, info);
 
         setDamage(DAMAGE, UPG_DAMAGE); //Sets the card's damage and how much it changes when upgraded.
-        setDamage(MAGIC, UPG_MAGIC);
+        //setDamage(MAGIC, UPG_MAGIC);
 
         tags.add(CardTags.STARTER_STRIKE);
         tags.add(CardTags.STRIKE);
