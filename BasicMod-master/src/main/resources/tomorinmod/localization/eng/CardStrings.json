@@ -218,5 +218,9 @@
   "${modID}:Yinyihui": {
     "NAME": "音一会",
     "DESCRIPTION": "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
+  },
+  "${modID}:Miluri": {
+    "NAME": "迷路日",
+    "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果1次。"
   }
 }

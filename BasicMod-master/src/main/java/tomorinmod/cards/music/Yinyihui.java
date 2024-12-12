@@ -32,7 +32,7 @@ public class Yinyihui extends BaseMusic {
     }
 
 
-    private final static int BLOCK=8;
+    private final static int BLOCK=10;
     private final static int UPG_BLOCK=4;
 
 
