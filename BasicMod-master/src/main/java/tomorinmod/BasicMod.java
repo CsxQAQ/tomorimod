@@ -62,7 +62,7 @@ public class BasicMod implements
         BaseMod.subscribe(new HandleFormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());
-        BaseMod.subscribe(new CountUsedCardMonitor());
+        BaseMod.subscribe(new MusicalCompositionMonitor());
         BaseMod.subscribe(new TomorinApotheosisMonitor());
         BaseMod.subscribe(new SmoothComboMonitor());
         BaseMod.subscribe(new RevolutionMonitor());

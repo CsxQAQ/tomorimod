@@ -131,8 +131,8 @@
     "DESCRIPTION": "回合开始时升级你的所有牌。 tomorinmod:增强 :如果xxx，本场战斗中你的攻击牌没有升级上限。"
   },
   "${modID}:MusicalComposition": {
-    "NAME": "音乐创作",
-    "DESCRIPTION": "固有 ， 保留 ， 消耗 ， 进入 tomorinmod:创作模式 。"
+    "NAME": "作词",
+    "DESCRIPTION": "固有 ， 保留 ， 消耗 ，进入 tomorinmod:创作模式 。"
   },
   "${modID}:Lyric": {
     "NAME": "歌词本",
@@ -230,5 +230,9 @@
   "${modID}:Mixingjiao": {
     "NAME": "迷星叫",
     "DESCRIPTION": "造成 !D! 点伤害，不在手牌中时造成 !M! 倍额外伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
+  },
+  "${modID}:FailComposition": {
+    "NAME": "失败的创作",
+    "DESCRIPTION": " 虚无 ，无法打出。"
   }
 }

@@ -1,15 +1,12 @@
 package tomorinmod.cards.basic;
 
-import basemod.helpers.ScreenPostProcessorManager;
-import basemod.interfaces.ScreenPostProcessor;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.special.Lyric;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.screens.MaterialScreenProcessor;
+import tomorinmod.powers.InCompositionPower;
 import tomorinmod.util.CardStats;
 
 public class MusicalComposition extends BaseCard {
@@ -24,19 +21,30 @@ public class MusicalComposition extends BaseCard {
 
     public MusicalComposition() {
         super(ID, info);
-        this.cardsToPreview = new Lyric();
         this.exhaust=true;
         this.selfRetain=true;
         this.isInnate=true;
     }
 
+    public static boolean isMusicCompositionUsed=false;
+
+
+    //已经在创作中应该要不能用
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        return p.getPower(InCompositionPower.POWER_ID)==null;
+    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new MakeTempCardInHandAction(new Lyric(), 1));
-        ScreenPostProcessor postProcessor = new MaterialScreenProcessor();
-        ScreenPostProcessorManager.addPostProcessor(postProcessor);
+        isMusicCompositionUsed=true;
+        addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
+
+        //addToBot(new MakeTempCardInHandAction(new Lyric(), 1));
+        //ScreenPostProcessor postProcessor = new MaterialScreenProcessor();
+        //ScreenPostProcessorManager.addPostProcessor(postProcessor);
     }
+
 
     @Override
     public AbstractCard makeCopy() {

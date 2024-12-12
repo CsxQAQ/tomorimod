@@ -36,10 +36,10 @@ public class CheckShineGravityAction extends AbstractGameAction {
 
             // 移除层数为 0 的 Power
             if (shine.amount <= 0) {
-                AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(target, target, Shine.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, Shine.POWER_ID));
             }
             if (gravity.amount <= 0) {
-                AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(target, target, Gravity.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, Gravity.POWER_ID));
             }
         }
 

@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.SingleRelicViewPopup;
 
 @SpirePatch(
-        clz = SingleRelicViewPopup.class,  // 替换为要修补的类名
+        clz = SingleRelicViewPopup.class,
         method = "close"
 
 )

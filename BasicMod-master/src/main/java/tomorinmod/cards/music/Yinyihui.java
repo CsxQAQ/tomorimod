@@ -44,7 +44,7 @@ public class Yinyihui extends BaseMusic {
             @Override
             public void update() {
                 int tempBlock = AbstractDungeon.player.currentBlock;
-                addToTop(new DamageAllEnemiesAction(p, tempBlock, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                addToBot(new DamageAllEnemiesAction(p, tempBlock, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                 this.isDone = true;
             }
         });
