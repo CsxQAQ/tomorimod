@@ -198,5 +198,9 @@
   "${modID}:Shichaoban": {
     "NAME": "诗超绊",
     "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害翻倍。"
+  },
+  "${modID}:Lunfuyu": {
+    "NAME": "轮符雨",
+    "DESCRIPTION": "本回合内你的生命值每有一点变化，造成 !M! 点伤害。（共造成 !D! 点伤害）"
   }
 }
