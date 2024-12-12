@@ -24,23 +24,22 @@ public class Shichaoban extends BaseMusic {
     public Shichaoban() {
         super(ID, info);
         this.musicUpgradeDamage=UPG_DAMAGE;
-        //this.baseDamage=DAMAGE;
-        //this.musicUpgradeMagicNumber=UPG_MAGIC;
+        this.musicUpgradeMagicNumber=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
-        //this.setMagic(MAGIC,UPG_MAGIC);
+        this.setMagic(MAGIC,UPG_MAGIC);
     }
 
 
     private final static int DAMAGE=2;
-    private final static int UPG_DAMAGE=1;
+    private final static int UPG_DAMAGE=0;
 
-    //private final static int MAGIC=3;
-    //private final static int UPG_MAGIC=2;
+    private final static int MAGIC=2;
+    private final static int UPG_MAGIC=1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        baseDamage=baseDamage*2;
+        baseDamage=baseDamage*magicNumber;
     }
 
     @Override

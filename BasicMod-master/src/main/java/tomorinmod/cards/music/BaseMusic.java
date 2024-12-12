@@ -2,11 +2,13 @@ package tomorinmod.cards.music;
 
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.rare.TomorinApotheosis;
+import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
 
 public abstract class BaseMusic extends BaseCard {
     public BaseMusic(String ID, CardStats info) {
         super(ID, info);
+        tags.add(CustomTags.MUSIC);
     }
 
     protected int musicUpgradeBlock;

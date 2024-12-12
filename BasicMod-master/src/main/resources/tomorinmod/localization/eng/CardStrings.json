@@ -201,7 +201,7 @@
   },
   "${modID}:Shichaoban": {
     "NAME": "诗超绊",
-    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害翻倍。"
+    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害变为 !M! 倍。"
   },
   "${modID}:Lunfuyu": {
     "NAME": "轮符雨",
@@ -226,5 +226,9 @@
   "${modID}:Yingsewu": {
     "NAME": "影色舞",
     "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态效果 !M! 次"
+  },
+  "${modID}:Mixingjiao": {
+    "NAME": "迷星叫",
+    "DESCRIPTION": "造成 !D! 点伤害，不在手牌中时造成 !M! 倍额外伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
   }
 }

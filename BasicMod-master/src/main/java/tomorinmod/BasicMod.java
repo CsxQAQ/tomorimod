@@ -69,6 +69,7 @@ public class BasicMod implements
         BaseMod.subscribe(new MygoTogetherMonitor());
         BaseMod.subscribe(new ConveyFeelingMonitor());
         BaseMod.subscribe(new LunfuyuMonitor());
+        BaseMod.subscribe(new MixingjiaoMonitor());
 
     }
 
