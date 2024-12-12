@@ -29,7 +29,6 @@ public class Wulushi extends BaseMusic {
         //this.musicUpgradeMagicNumber=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
         //this.setMagic(MAGIC,UPG_MAGIC);
-        this.exhaust=true;
     }
 
 

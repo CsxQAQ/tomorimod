@@ -32,8 +32,8 @@ public class Lunfuyu extends BaseMusic {
     }
 
 
-    private final static int MAGIC=5;
-    private final static int UPG_MAGIC=3;
+    private final static int MAGIC=4;
+    private final static int UPG_MAGIC=2;
 
     public static int hpChangeNum=0;
     public static int curHp=-1;

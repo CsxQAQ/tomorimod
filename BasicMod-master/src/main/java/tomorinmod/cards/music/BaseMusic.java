@@ -9,6 +9,7 @@ public abstract class BaseMusic extends BaseCard {
         super(ID, info);
     }
 
+    protected int musicUpgradeBlock;
     protected int musicUpgradeDamage;
     protected int musicUpgradeMagicNumber=0;
 
@@ -17,6 +18,7 @@ public abstract class BaseMusic extends BaseCard {
         if(TomorinApotheosis.isTomorinApotheosisUsed){
             this.upgradeDamage(musicUpgradeDamage);
             this.upgradeMagicNumber(musicUpgradeMagicNumber);
+            this.upgradeBlock(musicUpgradeBlock);
             ++this.timesUpgraded;
             this.upgraded = true;
             this.name = cardStrings.NAME + "+" + this.timesUpgraded;
