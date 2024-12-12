@@ -30,9 +30,6 @@ public abstract class BaseCard extends CustomCard {
 
     public static final Set<BaseCard> allInstances = new HashSet<>();
 
-    //判断是否来自玩家卡组
-    public boolean isFromMasterDeck=false;
-
     public String material="";
     public int level=-1;
     private Texture ICON=null;

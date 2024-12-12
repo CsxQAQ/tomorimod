@@ -10,7 +10,7 @@ import tomorinmod.tags.CustomTags;
 
 import java.util.Iterator;
 
-public class DeleteOnBattleEndMonitor extends BaseMonitor implements PostBattleSubscriber, OnStartBattleSubscriber {
+public class DeleteOnBattleEndMonitor extends BaseMonitor implements PostBattleSubscriber {
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
@@ -25,13 +25,4 @@ public class DeleteOnBattleEndMonitor extends BaseMonitor implements PostBattleS
         }
     }
 
-    @Override
-    public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        for (AbstractCard card : AbstractDungeon.player.drawPile.group) {
-            if(card instanceof BaseCard){
-                BaseCard baseCard =(BaseCard)card;
-                baseCard.isFromMasterDeck=true;
-            }
-        }
-    }
 }
