@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.actions.CheckShineGravityAction;
+import tomorinmod.actions.ReversalAction;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
@@ -29,36 +30,7 @@ public class Reversal extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
-        AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
-
-        int gravityAmount = gravity != null ? gravity.amount : 0;
-        int shineAmount = shine != null ? shine.amount : 0;
-
-        if(MygoTogether.isMygoTogetherUsed){
-            // 直接修改层数
-            if (shine != null) {
-                shine.amount = gravityAmount;
-                shine.updateDescription(); // 更新描述
-            }
-            if (gravity != null) {
-                gravity.amount = shineAmount;
-                gravity.updateDescription(); // 更新描述
-            }
-        }else{
-            if (shineAmount > 0) {
-                addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
-                addToBot(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
-                addToBot(new CheckShineGravityAction(p));
-
-            }
-            if (gravityAmount > 0) {
-                addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
-                addToBot(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
-                addToBot(new CheckShineGravityAction(p));
-            }
-        }
-
+        addToBot(new ReversalAction(p));
     }
 
     @Override
