@@ -10,20 +10,10 @@ import tomorinmod.util.CardStats;
 
 import java.util.Iterator;
 
-public class BaseMonmentCard extends BaseCard {
-
+public abstract class BaseMonmentCard extends BaseCard {
 
     public BaseMonmentCard(String ID, CardStats info) {
         super(ID, info);
-    }
-
-    //不加这个autoAdd会报错，不懂为什么，baseMusic不加都可以，可能是因为重写了use？
-    public BaseMonmentCard() {
-        super("DefaultID", new CardStats(MyCharacter.Meta.CARD_COLOR,
-                CardType.SKILL,
-                CardRarity.UNCOMMON,
-                CardTarget.SELF,
-                0));
     }
 
     @Override

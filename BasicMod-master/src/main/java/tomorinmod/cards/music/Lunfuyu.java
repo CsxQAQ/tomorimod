@@ -75,10 +75,12 @@ public class Lunfuyu extends BaseMusicCard {
     @Override
     public void update(){
         super.update();
-        if(musicRarity.equals(MusicRarity.RARE)){
-            baseDamage= LunfuyuMonitor.hpChangeNum*magicNumber;
-        }else{
-            baseDamage=LunfuyuMonitor.hpIncreaseNum*magicNumber;
+        if(musicRarity!=null){
+            if(musicRarity.equals(MusicRarity.RARE)){
+                baseDamage= LunfuyuMonitor.hpChangeNum*magicNumber;
+            }else{
+                baseDamage=LunfuyuMonitor.hpIncreaseNum*magicNumber;
+            }
         }
     }
 

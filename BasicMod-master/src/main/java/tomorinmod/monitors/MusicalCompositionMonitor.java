@@ -31,7 +31,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         if(MusicalComposition.isMusicCompositionUsed){
             if(abstractCard instanceof BaseCard){
                 BaseCard baseCard=(BaseCard) abstractCard;
-                if(baseCard.material!=""){
+                if(!baseCard.material.equals("")){
                     MaterialScreenProcessor.drawImage(baseCard.material);
                     cardsUsed.add(abstractCard.cardID);
                 }
