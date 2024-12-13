@@ -37,7 +37,7 @@ public abstract class BaseMusicCard extends BaseCard {
     protected int musicUpgradeBlock;
     protected int musicUpgradeMagic;
 
-    protected MusicRarity musicRarity;
+    public MusicRarity musicRarity;
 
     public void initializeBannerRarity(String ID) {
         int cost = -1;

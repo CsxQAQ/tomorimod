@@ -40,7 +40,8 @@ import java.util.*;
 
 //TODO 考虑为每张卡牌设置一个clear方法，用于战斗开始时复原static变量，以防止保存退出后重进出现bug
 //TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
-//所有对象都判断是否为null
+//TODO 所有对象都判断是否为null
+//TODO 碧天伴走没思路，先放着
 
 @SpireInitializer
 public class BasicMod implements
@@ -60,7 +61,6 @@ public class BasicMod implements
 
     public static void receiveMonitor(){
         BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
-        //BaseMod.subscribe(new DeleteOnBattleEndMonitor());
         BaseMod.subscribe(new HandleFormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());

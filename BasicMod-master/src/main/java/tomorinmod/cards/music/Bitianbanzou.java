@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.actions.BitianbanzouAction;
 import tomorinmod.character.MyCharacter;
@@ -26,6 +27,7 @@ public class Bitianbanzou extends BaseMusicCard {
         //this.musicUpgradeMagicNumber=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
         //this.setMagic(MAGIC,UPG_MAGIC);
+        //this.exhaust=true;
         this.exhaust=true;
     }
 

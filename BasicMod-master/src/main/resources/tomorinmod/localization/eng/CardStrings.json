@@ -187,45 +187,25 @@
     "NAME": "收集",
     "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *西瓜虫 中选择一张加入手牌，这些卡牌的 tomorinmod:素材 等级视作稀有。"
   },
-  "${modID}:Qianzaibiaoming": {
-    "NAME": "潜在表明",
-    "DESCRIPTION": "造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。"
-  },
-  "${modID}:Yinakong": {
-    "NAME": "壱雫空",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
-  },
-  "${modID}:Mingwusheng": {
-    "NAME": "名無声",
-    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。"
-  },
-  "${modID}:Shichaoban": {
-    "NAME": "诗超绊",
-    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害变为 !M! 倍。"
-  },
-  "${modID}:Lunfuyu": {
-    "NAME": "轮符雨",
-    "DESCRIPTION": "本回合内你的生命值每有一点变化，造成 !M! 点伤害。（共造成 !D! 点伤害）"
-  },
+
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
     "DESCRIPTION": "造成 !D! 点伤害。本场游戏中每使用该牌1次，额外造成5点伤害， 消耗 。"
   },
-  "${modID}:Wulushi": {
-    "NAME": "无路矢",
-    "DESCRIPTION": "造成 !D! 点伤害，然后使伤害减少1，随机攻击另一个敌人，重复此效果直到伤害减为0或没有攻击目标。"
-  },
-  "${modID}:Yinyihui": {
-    "NAME": "音一会",
-    "DESCRIPTION": "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
+  "${modID}:Lunfuyu": {
+    "NAME": "轮符雨",
+    "DESCRIPTION": "本回合你每恢复一点生命值，对所有敌人造成 !M! 点伤害。（共造成 !D! 点伤害）",
+    "EXTENDED_DESCRIPTION": [
+      "本回合你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。（共造成 !D! 点伤害）。"
+    ]
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
     "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果1次。"
   },
-  "${modID}:Yingsewu": {
-    "NAME": "影色舞",
-    "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态效果 !M! 次"
+  "${modID}:Mingwusheng": {
+    "NAME": "名無声",
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。"
   },
   "${modID}:Mixingjiao": {
     "NAME": "迷星叫",
@@ -233,6 +213,30 @@
     "EXTENDED_DESCRIPTION": [
       "造成 !D! 点伤害，不在手牌中时造成3倍额外伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
     ]
+  },
+  "${modID}:Qianzaibiaoming": {
+    "NAME": "潜在表明",
+    "DESCRIPTION": "造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。"
+  },
+  "${modID}:Shichaoban": {
+    "NAME": "诗超绊",
+    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害变为 !M! 倍。"
+  },
+  "${modID}:Wulushi": {
+    "NAME": "无路矢",
+    "DESCRIPTION": "造成 !D! 点伤害，然后使伤害减少1，随机攻击另一个敌人，重复此效果直到伤害减为0或没有攻击目标。"
+  },
+  "${modID}:Yinakong": {
+    "NAME": "壱雫空",
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+  },
+  "${modID}:Yingsewu": {
+    "NAME": "影色舞",
+    "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态效果 !M! 次"
+  },
+  "${modID}:Yinyihui": {
+    "NAME": "音一会",
+    "DESCRIPTION": "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
