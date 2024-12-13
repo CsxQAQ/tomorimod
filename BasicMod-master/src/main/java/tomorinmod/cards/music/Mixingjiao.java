@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
@@ -23,18 +24,45 @@ public class Mixingjiao extends BaseMusicCard {
 
     public Mixingjiao() {
         super(ID, info);
-        this.musicUpgradeDamage=UPG_DAMAGE;
-        this.musicUpgradeMagicNumber=UPG_MAGIC;
-        this.setDamage(DAMAGE,UPG_DAMAGE);
-        this.setMagic(MAGIC,UPG_MAGIC);
+        damageInitialize();
     }
 
+    private final static int DAMAG_COMMON=6;
+    private final static int UPG_DAMAGE_COMMON=3;
 
-    private final static int DAMAGE=10;
-    private final static int UPG_DAMAGE=4;
+    private final static int DAMAG_UNCOMMON=10;
+    private final static int UPG_DAMAGE_UNCOMMON=4;
 
-    private final static int MAGIC=2;
-    private final static int UPG_MAGIC=1;
+    private final static int DAMAG_RARE=10;
+    private final static int UPG_DAMAGE_RARE=4;
+
+    public void damageInitialize(){
+        if(musicRarity==null){
+            setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
+            musicUpgradeDamage=UPG_DAMAGE_COMMON;
+            return;
+        }
+        switch (musicRarity){
+            case COMMON:
+                setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
+                musicUpgradeDamage=UPG_DAMAGE_COMMON;
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+                break;
+            case UNCOMMON:
+                setDamage(DAMAG_UNCOMMON,UPG_DAMAGE_UNCOMMON);
+                musicUpgradeDamage=UPG_DAMAGE_UNCOMMON;
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+                break;
+            case RARE:
+                setDamage(DAMAG_RARE,UPG_DAMAGE_RARE);
+                musicUpgradeDamage=UPG_DAMAGE_RARE;
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid rarity: " + musicRarity);
+        }
+        initializeDescription();
+    }
 
     public void autoUse() {
         AbstractCard copy = makeSameInstanceOf();
@@ -51,7 +79,11 @@ public class Mixingjiao extends BaseMusicCard {
         if(p.hand.contains(this)){
             addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }else{
-            addToBot(new DamageAction(m, new DamageInfo(p, damage*(magicNumber+1), this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            if(this.musicRarity.equals(MusicRarity.RARE)){
+                addToBot(new DamageAction(m, new DamageInfo(p, damage*3, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            }else{
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            }
         }
     }
 

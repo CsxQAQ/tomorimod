@@ -14,12 +14,13 @@ public abstract class BaseMusicCard extends BaseCard {
         super(ID, info);
         tags.add(CustomTags.MUSIC);
         initializeBannerRarity(ID);
+
     }
 
     public enum MusicRarity {
-        COMMON(1),
+        COMMON(3),
         UNCOMMON(2),
-        RARE(3);
+        RARE(1);
 
         private final int value;
 
@@ -32,9 +33,9 @@ public abstract class BaseMusicCard extends BaseCard {
         }
     }
 
-    protected int musicUpgradeBlock;
     protected int musicUpgradeDamage;
-    protected int musicUpgradeMagicNumber=0;
+    protected int musicUpgradeBlock;
+    protected int musicUpgradeMagic;
 
     protected MusicRarity musicRarity;
 
@@ -63,8 +64,9 @@ public abstract class BaseMusicCard extends BaseCard {
     public void upgrade() {
         if(TomorinApotheosis.isTomorinApotheosisUsed){
             this.upgradeDamage(musicUpgradeDamage);
-            this.upgradeMagicNumber(musicUpgradeMagicNumber);
             this.upgradeBlock(musicUpgradeBlock);
+            this.upgradeMagicNumber(musicUpgradeMagic);
+
             ++this.timesUpgraded;
             this.upgraded = true;
             this.name = cardStrings.NAME + "+" + this.timesUpgraded;
@@ -72,11 +74,13 @@ public abstract class BaseMusicCard extends BaseCard {
         }else{
             if(!this.upgraded){
                 this.upgradeDamage(musicUpgradeDamage);
-                this.upgradeMagicNumber(musicUpgradeMagicNumber);
+                this.upgradeBlock(musicUpgradeBlock);
+                this.upgradeMagicNumber(musicUpgradeMagic);
                 upgradeName();
             }
         }
     }
+
     @Override
     public void setMaterialAndLevel() {
 

@@ -24,7 +24,7 @@ public class Yingsewu extends BaseMusicCard {
     public Yingsewu() {
         super(ID, info);
         this.musicUpgradeDamage=UPG_DAMAGE;
-        this.musicUpgradeMagicNumber=UPG_MAGIC;
+        this.musicUpgradeMagic=UPG_MAGIC;
         this.setDamage(DAMAGE,UPG_DAMAGE);
         this.setMagic(MAGIC,UPG_MAGIC);
     }
