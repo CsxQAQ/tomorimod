@@ -58,24 +58,10 @@ public class Collection extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
-        cardGroup.add(new Band(){
-            @Override
-            public void onChoseThisOption() {
-                p.hand.addToHand(this.makeStatEquivalentCopy());
-            }
-        });
-        cardGroup.add(new Stone(){
-            @Override
-            public void onChoseThisOption() {
-                p.hand.addToHand(this.makeStatEquivalentCopy());
-            }
-        });
-        cardGroup.add(new Watermelonworm(){
-            @Override
-            public void onChoseThisOption() {
-                p.hand.addToHand(this.makeStatEquivalentCopy());
-            }
-        });
+        cardGroup.add(new Band());
+        cardGroup.add(new Stone());
+        cardGroup.add(new Watermelonworm());
+
         if (this.upgraded){
             for (AbstractCard card : cardGroup){
                 card.upgrade();

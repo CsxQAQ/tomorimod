@@ -34,6 +34,11 @@ public abstract class BaseCard extends CustomCard {
     public int level=-1;
     private Texture ICON=null;
 
+    @Override
+    public void onChoseThisOption() {
+        AbstractDungeon.player.hand.addToHand(this.makeStatEquivalentCopy());
+    }
+
     public void setMaterialAndLevel(){
         this.material= CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
         if(this.rarity==CardRarity.COMMON||this.rarity==CardRarity.BASIC){

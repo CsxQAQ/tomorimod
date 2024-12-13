@@ -71,5 +71,11 @@
     "DESCRIPTIONS": [
       "无法使用 *作词，获得3点 #y素材 后移除此效果并获得对应歌曲。"
     ]
+  },
+  "${modID}:BigGirlsBandEraPower": {
+    "NAME": "大少女乐队时代",
+    "DESCRIPTIONS": [
+      "回合开始时，从随机3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+    ]
   }
 }

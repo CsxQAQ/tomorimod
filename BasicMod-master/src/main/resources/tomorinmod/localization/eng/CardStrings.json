@@ -24,6 +24,13 @@
       "获得 !B! 点 格挡 ，使用一张卡牌后 tomorinmod:翻面 。"
     ]
   },
+  "${modID}:BigGirlsBandEra": {
+    "NAME": "大少年乐队时代",
+    "DESCRIPTION": "在你的回合开始时，从3张随机音乐牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。 虚无 。",
+    "EXTENDED_DESCRIPTION": [
+      "在你的回合开始时，从3张随机升级过的音乐牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。 虚无 。"
+    ]
+  },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
     "DESCRIPTION": "造成 !D! 点伤害 !M! 次 。"
