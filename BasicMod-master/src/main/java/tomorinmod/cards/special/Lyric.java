@@ -63,7 +63,7 @@ public class Lyric extends BaseCard {
                 AbstractCard cardObject = CardLibrary.getCard(card);
                 if(cardObject instanceof BaseCard){
                     BaseCard baseCard=(BaseCard)cardObject;
-                    records.add(CraftingRecipes.cardMaterialHashMap.get(baseCard.cardID));
+                    records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(baseCard.cardID));
                 }
             }
             records.add(music);
@@ -102,7 +102,7 @@ public class Lyric extends BaseCard {
     }
 
     private String matchRecipe() {
-        for (CraftingRecipes.Recipe recipe : CraftingRecipes.recipeArrayList) {
+        for (CraftingRecipes.Recipe recipe : CraftingRecipes.getInstance().recipeArrayList) {
             if (isRecipeMatched(recipe)) {
                 return recipe.music;
             }

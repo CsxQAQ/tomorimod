@@ -10,10 +10,10 @@ import static tomorinmod.BasicMod.makeID;
 
 public class CraftingRecipes {
 
-    public static HashSet<String> tomorinCards=new HashSet<>();
-    public static HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
-    public static HashMap<String,String> cardMaterialHashMap=new HashMap<>();
-    public static ArrayList<Recipe> recipeArrayList =new ArrayList<>();
+    public HashSet<String> tomorinCards=new HashSet<>();
+    public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
+    public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
+    public ArrayList<Recipe> recipeArrayList =new ArrayList<>();
     public class Recipe{
         public ArrayList<String> needs=new ArrayList<>();
         public ArrayList<Integer> levels=new ArrayList<>();
