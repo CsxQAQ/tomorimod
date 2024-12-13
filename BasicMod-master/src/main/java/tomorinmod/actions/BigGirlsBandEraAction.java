@@ -38,6 +38,11 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
                 card.upgrade();
             }
         }
+        for (AbstractCard card : cardGroup){
+            card.setCostForTurn(0);
+            card.exhaust=true;
+            //card.isCostModified = true;
+        }
         addToBot(new ChooseOneAction(cardGroup));
         isDone = true;
     }

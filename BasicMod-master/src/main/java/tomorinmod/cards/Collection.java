@@ -67,6 +67,10 @@ public class Collection extends BaseCard {
                 card.upgrade();
             }
         }
+        for (AbstractCard card : cardGroup){
+            card.upgrade();
+            card.exhaust=true;
+        }
         addToBot(new ChooseOneAction(cardGroup));
     }
 
