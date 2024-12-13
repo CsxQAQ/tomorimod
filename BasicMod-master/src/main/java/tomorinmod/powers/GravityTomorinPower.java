@@ -3,9 +3,7 @@ package tomorinmod.powers;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.actions.CheckShineGravityAction;
-import tomorinmod.cards.rare.Revolution;
 
 import static tomorinmod.BasicMod.makeID;
 

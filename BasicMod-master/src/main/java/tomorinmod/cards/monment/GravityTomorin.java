@@ -1,45 +1,49 @@
-package tomorinmod.cards.rare;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.WeAreMygoPower;
-import tomorinmod.savedata.SavePermanentForm;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
+import tomorinmod.powers.GravityTomorinPower;
+import tomorinmod.savedata.SaveForm;
 import tomorinmod.util.CardStats;
 
-public class WeAreMygo extends BaseCard {
+public class GravityTomorin extends BaseMonmentCard {
 
-    public static final String ID = makeID(WeAreMygo.class.getSimpleName());
+
+    public static final String ID = makeID(GravityTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.RARE,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
 
-    public WeAreMygo() {
+    public GravityTomorin() {
         super(ID, info);
         tags.add(CardTags.HEALING);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
+        if(!SaveForm.getInstance().getForm().equals("")){
+            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
+        }
 
-        SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
-        CustomUtils.addTags(this, CustomTags.MOMENT);
+        addToBot(new ApplyPowerAction(p, p, new GravityTomorinPower(p),1));
+
+        SaveForm.getInstance().changeForm("GravityTomorinPower");
+        //CustomUtils.addTags(this, CustomTags.MOMENT);
+        super.use(p,m);
 
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new WeAreMygo();
+        return new GravityTomorin();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.actions.common.GainGoldAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,13 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.SpotlightPlayerEffect;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
-public class Tomotomo extends BaseCard {
+public class Tomotomo extends BaseMonmentCard {
     public static final String ID = makeID(Tomotomo.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -40,7 +37,8 @@ public class Tomotomo extends BaseCard {
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
         int totalGold = this.magicNumber * AbstractDungeon.getMonsters().monsters.size();
         this.addToBot(new GainGoldAction(totalGold));
-        CustomUtils.addTags(this,CustomTags.MOMENT);
+        //CustomUtils.addTags(this,CustomTags.MOMENT);
+        super.use(p,m);
     }
 
     @Override

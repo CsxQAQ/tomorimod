@@ -1,17 +1,12 @@
 package tomorinmod.powers;
 
-import basemod.patches.com.megacrit.cardcrawl.characters.AbstractPlayer.PotionGetHooks;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.rare.MygoTogether;
-import tomorinmod.cards.rare.Revolution;
 import tomorinmod.cards.uncommon.TwoFish;
-import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;
 

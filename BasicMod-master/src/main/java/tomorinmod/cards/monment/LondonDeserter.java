@@ -1,17 +1,14 @@
-package tomorinmod.cards.commom;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
-public class LondonDeserter extends BaseCard {
+public class LondonDeserter extends BaseMonmentCard {
 
     public static final String ID = makeID(LondonDeserter.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -39,7 +36,8 @@ public class LondonDeserter extends BaseCard {
             AbstractDungeon.overlayMenu.endTurnButton.disable();
             AbstractDungeon.player.escapeTimer = 2.5F;
         }
-        CustomUtils.addTags(this, CustomTags.MOMENT);
+        //CustomUtils.addTags(this, CustomTags.MOMENT);
+        super.use(p,m);
     }
 
     @Override

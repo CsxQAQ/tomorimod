@@ -5,7 +5,7 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import tomorinmod.cards.rare.Revolution;
+import tomorinmod.cards.monment.Revolution;
 import tomorinmod.cards.music.Chunriying;
 import tomorinmod.monitors.InitializeMonitor;
 

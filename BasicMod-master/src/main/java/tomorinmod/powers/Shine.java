@@ -1,7 +1,6 @@
 package tomorinmod.powers;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,8 +8,6 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.rare.ConveyFeeling;
 import tomorinmod.cards.rare.MygoTogether;
 import tomorinmod.cards.uncommon.TwoFish;
-import tomorinmod.powers.BasePower;
-import tomorinmod.powers.Gravity;
 
 import static tomorinmod.BasicMod.makeID;
 

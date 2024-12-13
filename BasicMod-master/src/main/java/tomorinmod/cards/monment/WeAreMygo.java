@@ -1,21 +1,17 @@
-package tomorinmod.cards.rare;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.DarkTomorinPower;
-import tomorinmod.savedata.SaveForm;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
+import tomorinmod.powers.WeAreMygoPower;
+import tomorinmod.savedata.SavePermanentForm;
 import tomorinmod.util.CardStats;
 
-public class DarkTomorin extends BaseCard {
+public class WeAreMygo extends BaseMonmentCard {
 
-    public static final String ID = makeID(DarkTomorin.class.getSimpleName());
+    public static final String ID = makeID(WeAreMygo.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
@@ -24,27 +20,23 @@ public class DarkTomorin extends BaseCard {
             1
     );
 
-    public DarkTomorin() {
+    public WeAreMygo() {
         super(ID, info);
         tags.add(CardTags.HEALING);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
 
-        if(!SaveForm.getInstance().getForm().equals("")){
-            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
-        }
-
-        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
-
-        SaveForm.getInstance().changeForm("DarkTomorinPower");
-        CustomUtils.addTags(this, CustomTags.MOMENT);
+        SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
+        //CustomUtils.addTags(this, CustomTags.MOMENT);
+        super.use(p,m);
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new DarkTomorin();
+        return new WeAreMygo();
     }
 
     @Override

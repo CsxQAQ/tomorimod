@@ -1,24 +1,22 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.rewards.AnonReward;
 import tomorinmod.rewards.RanaReward;
 import tomorinmod.rewards.SoyoReward;
 import tomorinmod.rewards.TakiReward;
 import tomorinmod.savedata.SaveGifts;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class GiftBox extends BaseCard {
+public class GiftBox extends BaseMonmentCard {
     public static final String ID = makeID(GiftBox.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -67,7 +65,17 @@ public class GiftBox extends BaseCard {
             default:
                 break;
         }
-        CustomUtils.addTags(this, CustomTags.MOMENT);
+
+        Iterator<AbstractCard> iterator = AbstractDungeon.player.masterDeck.group.iterator();
+
+        while (iterator.hasNext()) {
+            AbstractCard card = iterator.next();
+            if (this.uuid.equals(card.uuid)) {
+                iterator.remove();
+                break;
+            }
+        }
+        //CustomUtils.addTags(this, CustomTags.MOMENT);
         this.isEthereal = true;
         this.selfRetain = false;
     }

@@ -1,16 +1,13 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
-public class BlacklistYou extends BaseCard {
+public class BlacklistYou extends BaseMonmentCard {
     public static final String ID = makeID(BlacklistYou.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -30,9 +27,8 @@ public class BlacklistYou extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (m != null) {
             if (m.type != AbstractMonster.EnemyType.BOSS) {
-                // 设置生命值为 0，直接消灭
                 m.currentHealth = 0;
-                m.die(); // 调用死亡方法，处理后续逻辑
+                m.die();
             } else {
                 // 如果是 Boss，显示效果无效的提示
                 AbstractDungeon.actionManager.addToBottom(
@@ -41,8 +37,9 @@ public class BlacklistYou extends BaseCard {
                         )
                 );
             }
-            CustomUtils.addTags(this, CustomTags.MOMENT);
+            //CustomUtils.addTags(this, CustomTags.MOMENT);
         }
+        super.use(p,m);
     }
 
     @Override

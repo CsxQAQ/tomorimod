@@ -1,19 +1,16 @@
-package tomorinmod.cards.rare;
+package tomorinmod.cards.monment;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.RevolutionPower;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SavePermanentForm;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
-public class Revolution extends BaseCard {
+public class Revolution extends BaseMonmentCard {
 
 
     public static final String ID = makeID(Revolution.class.getSimpleName());
@@ -46,7 +43,8 @@ public class Revolution extends BaseCard {
         addToBot(new ApplyPowerAction(p, p, new RevolutionPower(p), 1));
 
         SavePermanentForm.getInstance().getForms().add("RevolutionPower");
-        CustomUtils.addTags(this, CustomTags.MOMENT);
+        //CustomUtils.addTags(this, CustomTags.MOMENT);
+        super.use(p,m);
     }
 
     @Override

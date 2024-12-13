@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.rare.Revolution;
+import tomorinmod.cards.monment.Revolution;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
