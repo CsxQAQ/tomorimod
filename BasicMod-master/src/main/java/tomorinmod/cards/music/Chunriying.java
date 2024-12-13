@@ -1,45 +1,41 @@
 package tomorinmod.cards.music;
 
-import com.evacipated.cardcrawl.mod.stslib.actions.common.StunMonsterAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class Chunriying extends BaseCard {
+public class Chunriying extends BaseMusicCard {
     public static final String ID = makeID(Chunriying.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.SKILL,
+            CardType.ATTACK,
             CardRarity.SPECIAL,
-            CardTarget.SELF,
+            CardTarget.ALL_ENEMY,
             1
     );
 
     public static boolean isIntensify=false;
 
+    private static final int DAMAGE = 20;
+    private static final int UPG_DAMAGE = 5;
+
     public Chunriying() {
         super(ID, info);
-        this.exhaust=true;
+        setDamage(DAMAGE,UPG_DAMAGE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            addToBot(new StunMonsterAction(monster, p, 1));
-            if(isIntensify){
-                int damage = monster.currentHealth / 2;
-                addToBot(new DamageAction(monster, new DamageInfo(p, damage, DamageInfo.DamageType.HP_LOSS),
-                        AbstractGameAction.AttackEffect.NONE));
-            }
-        }
+        addToBot(new HealAction(p,p, damage));
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+//            addToBot(new StunMonsterAction(monster, p, 1));
     }
 
     @Override
@@ -47,8 +43,4 @@ public class Chunriying extends BaseCard {
         return new Chunriying();
     }
 
-    @Override
-    public void setMaterialAndLevel() {
-
-    }
 }

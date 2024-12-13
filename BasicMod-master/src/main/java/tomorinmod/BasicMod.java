@@ -13,6 +13,7 @@ import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
 import tomorinmod.savedata.BaseSaveData;
+import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.screens.NotebookScreen;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -38,8 +39,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 //TODO 考虑为每张卡牌设置一个clear方法，用于战斗开始时复原static变量，以防止保存退出后重进出现bug
-//TODO 删除翻面机制，简化描述
 //TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
+//所有对象都判断是否为null
 
 @SpireInitializer
 public class BasicMod implements
@@ -320,6 +321,9 @@ public class BasicMod implements
 
     @Override
     public void receiveEditCards() {
+        //下策
+        //CraftingRecipes.getInstance();
+
         new AutoAdd(modID) //Loads files from this mod
                 .packageFilter(BaseCard.class) //In the same package as this class
                 .setDefaultSeen(true) //And marks them as seen in the compendium

@@ -4,16 +4,10 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import tomorinmod.cards.music.BaseMusic;
-import tomorinmod.cards.special.Band;
-import tomorinmod.cards.special.Stone;
-import tomorinmod.cards.special.Watermelonworm;
+import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.util.GetModCardsUtils;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.UUID;
 
 public class BigGirlsBandEraAction extends AbstractGameAction {
 
@@ -50,7 +44,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
     private ArrayList<AbstractCard> getMusicCards() {
         ArrayList<AbstractCard> musicCards = new ArrayList<>();
         for(AbstractCard card: GetModCardsUtils.getAllModCards()){
-            if(card instanceof BaseMusic){
+            if(card instanceof BaseMusicCard){
                 musicCards.add(card);
             }
         }

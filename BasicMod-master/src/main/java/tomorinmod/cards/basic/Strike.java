@@ -26,8 +26,7 @@ public class Strike extends BaseCard {
     public Strike() {
         super(ID, info);
 
-        setDamage(DAMAGE, UPG_DAMAGE); //Sets the card's damage and how much it changes when upgraded.
-        //setDamage(MAGIC, UPG_MAGIC);
+        setDamage(DAMAGE, UPG_DAMAGE);
 
         tags.add(CardTags.STARTER_STRIKE);
         tags.add(CardTags.STRIKE);

@@ -99,6 +99,22 @@ public class BaseSaveData {
             }
         });
 
+        BaseMod.addSaveField("musicCostHashMap", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(CraftingRecipes.getInstance().musicsCostHashMap);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    CraftingRecipes.getInstance().musicsCostHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<String,Integer>>() {}.getType());
+                }
+            }
+        });
+
         BaseMod.addSaveField("isInitialized", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 

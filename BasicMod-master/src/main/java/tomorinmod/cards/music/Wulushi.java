@@ -7,13 +7,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.actions.BitianbanzouAction;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
 
-public class Wulushi extends BaseMusic {
+public class Wulushi extends BaseMusicCard {
     public static final String ID = makeID(Wulushi.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

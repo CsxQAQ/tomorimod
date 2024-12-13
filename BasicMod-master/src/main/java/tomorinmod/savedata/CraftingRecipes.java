@@ -23,7 +23,6 @@ public class CraftingRecipes {
         public Recipe() {
         }
 
-        // 带参数的构造函数
         public Recipe(String s1, String s2, String s3, int a1, int a2, int a3, String music) {
             this.needs.add(s1);
             this.needs.add(s2);
@@ -34,12 +33,10 @@ public class CraftingRecipes {
             this.music = music;
         }
 
-        // 计算 levels 的总和
         public int getLevelsSum() {
             return levels.stream().mapToInt(Integer::intValue).sum();
         }
 
-        // Getter 和 Setter 方法
         public ArrayList<String> getNeeds() {
             return needs;
         }
@@ -82,24 +79,45 @@ public class CraftingRecipes {
             "Watermelonworm"
     ));
 
-    public static final int rareCost=5;
-    public static final int uncommonCost=4;
-    public static final int commonCost=3;
+    private List<String> songNames = Arrays.asList(
+            "shichaoban", "mixingjiao", "lunfuyu", "yingsewu",
+            "yinyihui", "miluri", "wulushi", "bitianbanzou",
+            "yinakong", "mingwusheng", "qianzaibiaoming"
+    );
 
-    public void initializeMusics() {
-        musicsCostHashMap.put("chunriying", rareCost);
-        musicsCostHashMap.put("shichaoban", rareCost);
-        musicsCostHashMap.put("mixingjiao", rareCost);
-        musicsCostHashMap.put("lunfuyu", rareCost);
-        musicsCostHashMap.put("yingsewu", rareCost);
-        musicsCostHashMap.put("yinyihui", uncommonCost);
-        musicsCostHashMap.put("miluri", uncommonCost);
-        musicsCostHashMap.put("wulushi", uncommonCost);
-        musicsCostHashMap.put("bitianbanzou", uncommonCost);
-        musicsCostHashMap.put("yinakong", commonCost);
-        musicsCostHashMap.put("mingwusheng", commonCost);
-        musicsCostHashMap.put("qianzaibiaoming", commonCost);
+    public static final int COMMONCOST_MIN=3;
+    public static final int COMMONCOST_MAX=3;
+    public static final int UNCOMMONCOST_MIN=4;
+    public static final int UNCOMMONCOST_MAX=5;
+    public static final int RARECOST_MIN=5;
+    public static final int RARECOST_MAX=6;
+
+    public void initializeMusicsCostHashMap() {
+        Collections.shuffle(songNames);
+
+        Random random = new Random(); // 创建随机数生成器
+
+        // 分配 commonCost
+        for (int i = 0; i < 4; i++) {
+            int commonCost = COMMONCOST_MIN + random.nextInt(COMMONCOST_MAX - COMMONCOST_MIN + 1); // 范围内随机数
+            musicsCostHashMap.put(songNames.get(i), commonCost);
+        }
+
+        // 分配 uncommonCost
+        for (int i = 4; i < 8; i++) {
+            int uncommonCost = UNCOMMONCOST_MIN + random.nextInt(UNCOMMONCOST_MAX - UNCOMMONCOST_MIN + 1);
+            musicsCostHashMap.put(songNames.get(i), uncommonCost);
+        }
+
+        // 分配 rareCost
+        for (int i = 8; i < 11; i++) {
+            int rareCost = RARECOST_MIN + random.nextInt(RARECOST_MAX - RARECOST_MIN + 1);
+            musicsCostHashMap.put(songNames.get(i), rareCost);
+        }
+
+        musicsCostHashMap.put("chunriying", RARECOST_MAX);
     }
+
 
     public void initializeTomorinCards() {
         ArrayList<AbstractCard> allModCards=GetModCardsUtils.getAllModCards();
@@ -159,15 +177,16 @@ public class CraftingRecipes {
     // 私有化构造函数，防止外部实例化
     private CraftingRecipes() {
         initializeTomorinCards();
-        initializeMusics();
     }
 
     public void clear(){
         cardMaterialHashMap.clear();
         recipeArrayList.clear();
+        musicsCostHashMap.clear();
     }
 
     public void generate(){
+        initializeMusicsCostHashMap();
         initializeCardsMaterials();
         initializeRecipeArrayList();
         sortByLevelsSum(recipeArrayList);
