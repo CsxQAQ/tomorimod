@@ -6,16 +6,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.GravityTomorinPower;
-import tomorinmod.powers.Shine;
 import tomorinmod.powers.ShineTomorinPower;
 import tomorinmod.savedata.SaveForm;
 import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
+import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 public class ShineTomorin extends BaseCard {
@@ -45,7 +41,7 @@ public class ShineTomorin extends BaseCard {
 
         if (AbstractDungeon.player instanceof MyCharacter) {
             SaveForm.getInstance().changeForm("ShineTomorinPower");
-            AddTagsUtils.addTags(this, CustomTags.MOMENT);
+            CustomUtils.addTags(this, CustomTags.MOMENT);
         }
     }
 

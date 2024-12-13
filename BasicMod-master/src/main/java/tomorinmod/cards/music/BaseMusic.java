@@ -1,9 +1,16 @@
 package tomorinmod.cards.music;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.rare.TomorinApotheosis;
+import tomorinmod.savedata.CraftingRecipes;
+import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.CustomUtils;
+
+import javax.smartcardio.Card;
 
 public abstract class BaseMusic extends BaseCard {
     public BaseMusic(String ID, CardStats info) {
@@ -14,6 +21,7 @@ public abstract class BaseMusic extends BaseCard {
     protected int musicUpgradeBlock;
     protected int musicUpgradeDamage;
     protected int musicUpgradeMagicNumber=0;
+
 
     @Override
     public void upgrade() {
@@ -38,16 +46,4 @@ public abstract class BaseMusic extends BaseCard {
 
     }
 
-//        musicsCostHashMap.put("chunriying", rareCost);
-//        musicsCostHashMap.put("shichaoban", rareCost);
-//        musicsCostHashMap.put("mixingjiao", rareCost);
-//        musicsCostHashMap.put("lunfuyu", rareCost);
-//        musicsCostHashMap.put("yingsewu", rareCost);
-//        musicsCostHashMap.put("yinyihui", uncommonCost);
-//        musicsCostHashMap.put("miluri", uncommonCost);
-//        musicsCostHashMap.put("wulushi", uncommonCost);
-//        musicsCostHashMap.put("bitianbanzou", uncommonCost);
-//        musicsCostHashMap.put("yinakong", commonCost);
-//        musicsCostHashMap.put("mingwusheng", commonCost);
-//        musicsCostHashMap.put("qianzaibiaoming", commonCost);
 }

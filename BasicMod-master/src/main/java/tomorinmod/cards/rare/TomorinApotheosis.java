@@ -1,19 +1,11 @@
 package tomorinmod.cards.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.unique.ApotheosisAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Apotheosis;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.WeAreMygoPower;
-import tomorinmod.savedata.SavePermanentForm;
-import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
 import tomorinmod.util.CardStats;
 
 public class TomorinApotheosis extends BaseCard {

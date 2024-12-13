@@ -82,9 +82,9 @@ public class CraftingRecipes {
             "Watermelonworm"
     ));
 
-    private final int rareCost=5;
-    private final int uncommonCost=4;
-    private final int commonCost=3;
+    public static final int rareCost=5;
+    public static final int uncommonCost=4;
+    public static final int commonCost=3;
 
     public void initializeMusics() {
         musicsCostHashMap.put("chunriying", rareCost);

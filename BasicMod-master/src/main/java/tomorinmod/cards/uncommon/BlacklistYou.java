@@ -1,15 +1,13 @@
 package tomorinmod.cards.uncommon;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
+import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 public class BlacklistYou extends BaseCard {
@@ -43,7 +41,7 @@ public class BlacklistYou extends BaseCard {
                         )
                 );
             }
-            AddTagsUtils.addTags(this, CustomTags.MOMENT);
+            CustomUtils.addTags(this, CustomTags.MOMENT);
         }
     }
 

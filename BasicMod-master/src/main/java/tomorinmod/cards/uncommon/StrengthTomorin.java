@@ -4,17 +4,13 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Shine;
 import tomorinmod.powers.StrengthTomorinPower;
 import tomorinmod.savedata.SaveForm;
-import tomorinmod.savedata.SavePermanentForm;
 import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
+import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 public class StrengthTomorin extends BaseCard {
@@ -43,7 +39,7 @@ public class StrengthTomorin extends BaseCard {
         addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p),1));
 
         SaveForm.getInstance().changeForm("StrengthTomorinPower");
-        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        CustomUtils.addTags(this, CustomTags.MOMENT);
     }
 
     @Override

@@ -10,7 +10,7 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.DarkTomorinPower;
 import tomorinmod.savedata.SaveForm;
 import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
+import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 public class DarkTomorin extends BaseCard {
@@ -39,7 +39,7 @@ public class DarkTomorin extends BaseCard {
         addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
 
         SaveForm.getInstance().changeForm("DarkTomorinPower");
-        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        CustomUtils.addTags(this, CustomTags.MOMENT);
     }
 
     @Override

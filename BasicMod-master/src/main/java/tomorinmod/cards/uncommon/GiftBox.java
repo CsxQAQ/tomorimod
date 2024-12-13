@@ -1,26 +1,19 @@
 package tomorinmod.cards.uncommon;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Shine;
 import tomorinmod.rewards.AnonReward;
 import tomorinmod.rewards.RanaReward;
 import tomorinmod.rewards.SoyoReward;
 import tomorinmod.rewards.TakiReward;
 import tomorinmod.savedata.SaveGifts;
 import tomorinmod.tags.CustomTags;
-import tomorinmod.util.AddTagsUtils;
+import tomorinmod.util.CustomUtils;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
@@ -74,7 +67,7 @@ public class GiftBox extends BaseCard {
             default:
                 break;
         }
-        AddTagsUtils.addTags(this, CustomTags.MOMENT);
+        CustomUtils.addTags(this, CustomTags.MOMENT);
         this.isEthereal = true;
         this.selfRetain = false;
     }
