@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.cards.rare.ConveyFeeling;
-import tomorinmod.cards.rare.MygoTogether;
-import tomorinmod.cards.uncommon.TwoFish;
+import tomorinmod.cards.ConveyFeeling;
+import tomorinmod.cards.MygoTogether;
+import tomorinmod.cards.TwoFish;
 
 import static tomorinmod.BasicMod.makeID;
 

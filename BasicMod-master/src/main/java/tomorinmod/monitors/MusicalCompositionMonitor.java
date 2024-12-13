@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
-import tomorinmod.cards.special.Lyric;
 import tomorinmod.powers.Shine;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
@@ -21,8 +20,6 @@ import tomorinmod.savedata.SaveMusicDiscoverd;
 import tomorinmod.screens.MaterialScreenProcessor;
 
 import java.util.ArrayList;
-
-import static tomorinmod.BasicMod.makeID;
 
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 

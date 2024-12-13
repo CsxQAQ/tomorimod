@@ -1,12 +1,8 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.special.Lyric;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
@@ -25,18 +21,19 @@ public class FailAndRestart extends BaseCard {
         this.exhaust=true;
     }
 
+    //改为判断手牌中和弃牌堆中有没有失败的创作
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractCard card : p.hand.group) {
-            if(card instanceof Lyric){
-                Lyric lyric =(Lyric) card;
-                if(lyric.isCardFliped && lyric.name.equals("失败的创作")){
-                    lyric.initializeMusicComposition();
-                }
-            }
-        }
-
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
+//        for (AbstractCard card : p.hand.group) {
+//            if(card instanceof Lyric){
+//                Lyric lyric =(Lyric) card;
+//                if(lyric.isCardFliped && lyric.name.equals("失败的创作")){
+//                    lyric.initializeMusicComposition();
+//                }
+//            }
+//        }
+//
+//        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
     }
 
     @Override

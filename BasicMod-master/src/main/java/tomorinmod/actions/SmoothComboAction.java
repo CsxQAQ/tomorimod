@@ -2,14 +2,9 @@ package tomorinmod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.cards.uncommon.SmoothCombo;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
+import tomorinmod.cards.SmoothCombo;
 
 public class SmoothComboAction extends AbstractGameAction {
     public SmoothComboAction() {

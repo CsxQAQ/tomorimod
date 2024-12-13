@@ -1,11 +1,10 @@
-package tomorinmod.cards.uncommon;
+package tomorinmod.cards;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.special.Band;
 import tomorinmod.cards.special.Stone;
 import tomorinmod.cards.special.Watermelonworm;

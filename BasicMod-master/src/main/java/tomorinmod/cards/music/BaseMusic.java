@@ -1,16 +1,11 @@
 package tomorinmod.cards.music;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.core.Settings;
 import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.rare.TomorinApotheosis;
+import tomorinmod.cards.TomorinApotheosis;
 import tomorinmod.savedata.CraftingRecipes;
-import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.CustomUtils;
-
-import javax.smartcardio.Card;
 
 import static tomorinmod.BasicMod.imagePath;
 

@@ -2,7 +2,7 @@ package tomorinmod.monitors;
 
 import basemod.interfaces.OnStartBattleSubscriber;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.rare.MygoTogether;
+import tomorinmod.cards.MygoTogether;
 
 public class MygoTogetherMonitor extends BaseMonitor implements OnStartBattleSubscriber {
 
