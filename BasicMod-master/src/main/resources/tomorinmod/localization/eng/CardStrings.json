@@ -208,7 +208,10 @@
   },
   "${modID}:Mingwusheng": {
     "NAME": "名無声",
-    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。"
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 层重力。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，获得 !M! 层重力，获得 [E] [E] 。"
+    ]
   },
   "${modID}:Mixingjiao": {
     "NAME": "迷星叫",
