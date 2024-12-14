@@ -24,7 +24,6 @@ import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
-import tomorinmod.cards.music.Bitianbanzou;
 import tomorinmod.cards.monment.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
 import tomorinmod.relics.Notebook;
@@ -164,7 +163,7 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Tomotomo.ID);
         retVal.add(WeAreMygo.ID);
         retVal.add(MusicalComposition.ID);
-        retVal.add(Bitianbanzou.ID);
+        //retVal.add(Bitianbanzou.ID);
 
         return retVal;
     }

@@ -22,19 +22,35 @@ public class Bitianbanzou extends BaseMusicCard {
     );
 
     public Bitianbanzou() {
-        super(ID, info);
-        this.musicUpgradeDamage=UPG_DAMAGE;
-        //this.musicUpgradeMagicNumber=UPG_MAGIC;
-        this.setDamage(DAMAGE,UPG_DAMAGE);
-        //this.setMagic(MAGIC,UPG_MAGIC);
-        //this.exhaust=true;
+        super(ID, info, new NumsInfo(
+                DAMAGE_COMMON, UPG_DAMAGE_COMMON, DAMAGE_UNCOMMON, UPG_DAMAGE_UNCOMMON, DAMAGE_RARE, UPG_DAMAGE_RARE,
+                BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
+                MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
+        ));
         this.exhaust=true;
     }
 
 
-    private final static int DAMAGE=10;
-    private final static int UPG_DAMAGE=5;
+    private final static int DAMAGE_COMMON = 6;
+    private final static int UPG_DAMAGE_COMMON = 3;
+    private final static int BLOCK_COMMON = 0;
+    private final static int UPG_BLOCK_COMMON = 0;
+    private final static int MAGIC_COMMON = 0;
+    private final static int UPG_MAGIC_COMMON = 0;
 
+    private final static int DAMAGE_UNCOMMON = 10;
+    private final static int UPG_DAMAGE_UNCOMMON = 4;
+    private final static int BLOCK_UNCOMMON = 0;
+    private final static int UPG_BLOCK_UNCOMMON = 0;
+    private final static int MAGIC_UNCOMMON = 0;
+    private final static int UPG_MAGIC_UNCOMMON = 0;
+
+    private final static int DAMAGE_RARE = 10;
+    private final static int UPG_DAMAGE_RARE = 4;
+    private final static int BLOCK_RARE = 0;
+    private final static int UPG_BLOCK_RARE = 0;
+    private final static int MAGIC_RARE = 0;
+    private final static int UPG_MAGIC_RARE = 0;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -45,8 +61,8 @@ public class Bitianbanzou extends BaseMusicCard {
 
     @Override
     public void applyPowers(){
-        baseDamage=misc+UPG_DAMAGE*timesUpgraded+DAMAGE;
         super.applyPowers();
+        //baseDamage=misc+UPG_DAMAGE*timesUpgraded+DAMAGE;
     }
 
     @Override

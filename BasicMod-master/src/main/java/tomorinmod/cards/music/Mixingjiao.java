@@ -28,7 +28,6 @@ public class Mixingjiao extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
-        //damageInitialize();
     }
 
 
@@ -52,35 +51,6 @@ public class Mixingjiao extends BaseMusicCard {
     private final static int UPG_BLOCK_RARE = 0;
     private final static int MAGIC_RARE = 0;
     private final static int UPG_MAGIC_RARE = 0;
-
-    //把这个移到父类里写一个info class
-//    public void damageInitialize(){
-//        if(musicRarity==null){
-//            setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
-//            musicUpgradeDamage=UPG_DAMAGE_COMMON;
-//            return;
-//        }
-//        switch (musicRarity){
-//            case COMMON:
-//                setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
-//                musicUpgradeDamage=UPG_DAMAGE_COMMON;
-//                //this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-//                break;
-//            case UNCOMMON:
-//                setDamage(DAMAG_UNCOMMON,UPG_DAMAGE_UNCOMMON);
-//                musicUpgradeDamage=UPG_DAMAGE_UNCOMMON;
-//                //this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-//                break;
-//            case RARE:
-//                setDamage(DAMAG_RARE,UPG_DAMAGE_RARE);
-//                musicUpgradeDamage=UPG_DAMAGE_RARE;
-//                //this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-//                break;
-//            default:
-//                throw new IllegalArgumentException("Invalid rarity: " + musicRarity);
-//        }
-//        initializeDescription();
-//    }
 
     public void autoUse() {
         AbstractCard copy = makeSameInstanceOf();
