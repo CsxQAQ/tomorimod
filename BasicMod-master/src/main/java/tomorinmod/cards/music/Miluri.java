@@ -22,46 +22,33 @@ public class Miluri extends BaseMusicCard {
     );
 
     public Miluri() {
-        super(ID, info);
-        damageInitialize();
+        super(ID, info, new NumsInfo(
+                DAMAGE_COMMON, UPG_DAMAGE_COMMON, DAMAGE_UNCOMMON, UPG_DAMAGE_UNCOMMON, DAMAGE_RARE, UPG_DAMAGE_RARE,
+                BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
+                MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
+        ));
     }
 
-    private final static int DAMAG_COMMON=5;
-    private final static int UPG_DAMAGE_COMMON=3;
+    private final static int DAMAGE_COMMON = 5;
+    private final static int UPG_DAMAGE_COMMON = 3;
+    private final static int BLOCK_COMMON = 0;
+    private final static int UPG_BLOCK_COMMON = 0;
+    private final static int MAGIC_COMMON = 0;
+    private final static int UPG_MAGIC_COMMON = 0;
 
-    private final static int DAMAG_UNCOMMON=7;
-    private final static int UPG_DAMAGE_UNCOMMON=4;
+    private final static int DAMAGE_UNCOMMON = 7;
+    private final static int UPG_DAMAGE_UNCOMMON = 4;
+    private final static int BLOCK_UNCOMMON = 0;
+    private final static int UPG_BLOCK_UNCOMMON = 0;
+    private final static int MAGIC_UNCOMMON = 0;
+    private final static int UPG_MAGIC_UNCOMMON = 0;
 
-    private final static int DAMAG_RARE=7;
-    private final static int UPG_DAMAGE_RARE=4;
-
-    public void damageInitialize(){
-        if(musicRarity==null){
-            setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
-            musicUpgradeDamage=UPG_DAMAGE_COMMON;
-            return;
-        }
-        switch (musicRarity){
-            case COMMON:
-                setDamage(DAMAG_COMMON,UPG_DAMAGE_COMMON);
-                musicUpgradeDamage=UPG_DAMAGE_COMMON;
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-                break;
-            case UNCOMMON:
-                setDamage(DAMAG_UNCOMMON,UPG_DAMAGE_UNCOMMON);
-                musicUpgradeDamage=UPG_DAMAGE_UNCOMMON;
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-                break;
-            case RARE:
-                setDamage(DAMAG_RARE,UPG_DAMAGE_RARE);
-                musicUpgradeDamage=UPG_DAMAGE_RARE;
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid rarity: " + musicRarity);
-        }
-        initializeDescription();
-    }
+    private final static int DAMAGE_RARE = 7;
+    private final static int UPG_DAMAGE_RARE = 4;
+    private final static int BLOCK_RARE = 0;
+    private final static int UPG_BLOCK_RARE = 0;
+    private final static int MAGIC_RARE = 0;
+    private final static int UPG_MAGIC_RARE = 0;
 
 
     @Override
@@ -72,7 +59,7 @@ public class Miluri extends BaseMusicCard {
         }
 
         if(this.musicRarity.equals(MusicRarity.RARE)){
-            for (int i = 0; i < shineAmount + 1; i++) {
+            for (int i = 0; i < shineAmount*2 + 1; i++) {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {
@@ -80,7 +67,7 @@ public class Miluri extends BaseMusicCard {
                 }
             }
         }else{
-            for (int i = 0; i < shineAmount*2 + 1; i++) {
+            for (int i = 0; i < shineAmount + 1; i++) {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {
