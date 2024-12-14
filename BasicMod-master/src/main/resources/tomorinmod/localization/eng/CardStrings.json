@@ -243,7 +243,10 @@
   },
   "${modID}:Yinakong": {
     "NAME": "壱雫空",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。"
+    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害 !M! 次，击杀目标后额外的攻击次数由随机敌人承担。"
+    ]
   },
   "${modID}:Yingsewu": {
     "NAME": "影色舞",
