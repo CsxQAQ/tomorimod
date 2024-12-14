@@ -222,7 +222,10 @@
   },
   "${modID}:Qianzaibiaoming": {
     "NAME": "潜在表明",
-    "DESCRIPTION": "造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。"
+    "DESCRIPTION": "造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。",
+    "EXTENDED_DESCRIPTION": [
+      "对所有敌人造成 !D! 点伤害，额外造成等同于当前重力层数 !M! 倍的伤害。"
+    ]
   },
   "${modID}:Shichaoban": {
     "NAME": "诗超绊",
