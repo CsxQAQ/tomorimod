@@ -2,12 +2,14 @@ package tomorinmod;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.devcommands.ConsoleCommand;
 import basemod.interfaces.*;
 import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.consoles.IncreaseRarityCommon;
 import tomorinmod.monitors.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
@@ -153,6 +155,8 @@ public class BasicMod implements
         this.receiveScreen();
 
         BaseSaveData.saveData();
+
+        ConsoleCommand.addCommand("music", IncreaseRarityCommon.class);
 
 
         //This loads the image used as an icon in the in-game mods menu.

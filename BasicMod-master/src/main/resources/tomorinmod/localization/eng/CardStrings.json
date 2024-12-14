@@ -201,7 +201,10 @@
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
-    "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果1次。"
+    "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果1次。",
+    "EXTENDED_DESCRIPTION": [
+      "对随机一个敌人造成 !D! 点伤害，每有1点 tomorinmod:闪耀 再重复此效果2次。"
+    ]
   },
   "${modID}:Mingwusheng": {
     "NAME": "名無声",
@@ -211,7 +214,7 @@
     "NAME": "迷星叫",
     "DESCRIPTION": "造成 !D! 点伤害。当你使用一张非同名音乐牌时，自动从手牌、抽牌堆或弃牌堆中使用此牌。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害，不在手牌中时造成3倍额外伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
+      "造成 !D! 点伤害，不在手牌中使用时造成3倍伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
     ]
   },
   "${modID}:Qianzaibiaoming": {
