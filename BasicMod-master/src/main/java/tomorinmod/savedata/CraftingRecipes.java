@@ -2,7 +2,7 @@ package tomorinmod.savedata;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.util.GetModCardsUtils;
+import tomorinmod.util.CustomUtils;
 
 import java.util.*;
 
@@ -118,22 +118,14 @@ public class CraftingRecipes {
         musicsCostHashMap.put("chunriying", RARECOST_MAX);
     }
 
-
-    public void initializeTomorinCards() {
-        ArrayList<AbstractCard> allModCards=GetModCardsUtils.getAllModCards();
-        for(AbstractCard abstractCard:allModCards){
-            tomorinCards.add(abstractCard.cardID);
-        }
-    }
-
     public String getRandomMaterials(){
         int randomResult = AbstractDungeon.miscRng.random(materials.size()-1);
         return materials.get(randomResult);
     }
 
     public void initializeCardsMaterials(){
-        for(String cardString : tomorinCards){
-            cardMaterialHashMap.put(cardString,getRandomMaterials());
+        for(AbstractCard card : CustomUtils.getAllModCards()){
+            cardMaterialHashMap.put(card.cardID,getRandomMaterials());
         }
 
         cardMaterialHashMap.put(makeID("Stone"),"Stone");
@@ -176,7 +168,7 @@ public class CraftingRecipes {
 
     // 私有化构造函数，防止外部实例化
     private CraftingRecipes() {
-        initializeTomorinCards();
+        //initializeTomorinCards();
     }
 
     public void clear(){

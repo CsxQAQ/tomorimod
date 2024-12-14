@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.music.BaseMusicCard;
-import tomorinmod.util.GetModCardsUtils;
+import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
 
     private ArrayList<AbstractCard> getMusicCards() {
         ArrayList<AbstractCard> musicCards = new ArrayList<>();
-        for(AbstractCard card: GetModCardsUtils.getAllModCards()){
+        for(AbstractCard card: CustomUtils.getAllModCards()){
             if(card instanceof BaseMusicCard){
                 musicCards.add(card);
             }

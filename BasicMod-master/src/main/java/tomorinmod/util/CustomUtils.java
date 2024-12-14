@@ -1,8 +1,11 @@
 package tomorinmod.util;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.BaseCard;
+
+import java.util.ArrayList;
 
 public class CustomUtils {
     public static void addTags(BaseCard aCard, AbstractCard.CardTags tag){
@@ -20,4 +23,10 @@ public class CustomUtils {
         }
         return id; // 如果没有 ":"，直接返回
     }
+
+    public static ArrayList<AbstractCard> getAllModCards() {
+        ArrayList<AbstractCard> modCards = BaseMod.getCustomCardsToAdd();
+        return modCards;
+    }
+
 }

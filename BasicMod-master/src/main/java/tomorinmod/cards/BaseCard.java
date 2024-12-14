@@ -39,6 +39,17 @@ public abstract class BaseCard extends CustomCard {
         AbstractDungeon.player.hand.addToHand(this.makeStatEquivalentCopy());
     }
 
+    public BaseCard(String ID, CardStats info) {
+        this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
+
+        if(!InitializeMonitor.isInitialized){
+            allInstances.add(this);
+        }else{
+            initializeMaterial();
+        }
+
+    }
+
     public void setMaterialAndLevel(){
         if(CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)!=null){
             this.material = CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
@@ -126,16 +137,7 @@ public abstract class BaseCard extends CustomCard {
 
     final protected Map<String, LocalVarInfo> cardVariables = new HashMap<>();
 
-    public BaseCard(String ID, CardStats info) {
-        this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
 
-        if(!InitializeMonitor.isInitialized){
-            allInstances.add(this);
-        }else{
-            initializeMaterial();
-        }
-
-    }
     public BaseCard(String ID, CardStats info, String cardImage) {
         this(ID, info.baseCost, info.cardType, info.cardTarget, info.cardRarity, info.cardColor, cardImage);
     }
