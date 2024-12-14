@@ -229,7 +229,10 @@
   },
   "${modID}:Shichaoban": {
     "NAME": "诗超绊",
-    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害变为 !M! 倍。"
+    "DESCRIPTION": "造成 !D! 点伤害，每次使用后该牌的基础伤害提高 !M! 点。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，每次使用后该牌的基础伤害翻倍。"
+    ]
   },
   "${modID}:Wulushi": {
     "NAME": "无路矢",
