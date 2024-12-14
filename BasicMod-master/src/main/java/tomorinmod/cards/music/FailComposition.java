@@ -13,7 +13,8 @@ import tomorinmod.cards.TomorinApotheosis;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class FailComposition extends BaseCard {
+//这个设置为BaseMusicCard可能会出问题
+public class FailComposition extends BaseMusicCard {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

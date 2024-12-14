@@ -44,7 +44,7 @@ public class IncreaseRarityCommon extends ConsoleCommand {
         }
 
         BaseMusicCard copy = (BaseMusicCard) c.makeCopy();
-        copy.setRarity(level);
+        copy.setRarityByCommond(level);
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copy, true));
     }
 }

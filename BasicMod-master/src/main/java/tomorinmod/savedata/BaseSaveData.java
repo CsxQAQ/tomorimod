@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import tomorinmod.cards.monment.Revolution;
+import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.cards.music.Chunriying;
 import tomorinmod.monitors.InitializeMonitor;
 
@@ -191,6 +192,22 @@ public class BaseSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     Revolution.shines = gson.fromJson(jsonElement, new TypeToken<Integer>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("MusicRarityData", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(MusicRarityData.getInstance().musicRarityHashMap);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    MusicRarityData.getInstance().musicRarityHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<Integer, BaseMusicCard.MusicRarity>>() {}.getType());
                 }
             }
         });

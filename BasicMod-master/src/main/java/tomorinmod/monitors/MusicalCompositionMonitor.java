@@ -18,6 +18,7 @@ import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
 import tomorinmod.screens.MaterialScreenProcessor;
+import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
 
@@ -31,13 +32,15 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         if(MusicalComposition.isMusicCompositionUsed){
             if(abstractCard instanceof BaseCard){
                 BaseCard baseCard=(BaseCard) abstractCard;
-                if(!baseCard.material.equals("")){
+                if(!baseCard.material.isEmpty()){ //string=""时isEmpty为true
                     MaterialScreenProcessor.drawImage(baseCard.material);
                     cardsUsed.add(abstractCard.cardID);
                 }
 
                 if(cardsUsed.size()==3){
-                    addHistoryRecipes();
+                    String music = matchRecipe();
+                    addHistoryRecipes(music);
+                    getMusic(music);
                     MusicalComposition.isMusicCompositionUsed=false;
                     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
                     MaterialScreenProcessor.clear();
@@ -46,9 +49,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         }
     }
 
-    public void addHistoryRecipes(){
-
-        String music = matchRecipe();
+    public void addHistoryRecipes(String music){
 
         ArrayList<String> records = new ArrayList<>(4);
         for (String card : cardsUsed) {
@@ -60,54 +61,85 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         }
         records.add(music);
         HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
-        getMusic(music);
+
         if (!"fail".equals(music)) {
             SaveMusicDiscoverd.getInstance().musicDiscovered.add(music);
         }
     }
 
     public void getMusic(String music){
-        switch(music){
+
+        BaseMusicCard.MusicRarity musicRarity=getMusicRarity(music);
+        BaseMusicCard card;
+
+        switch (music) {
             case "chunriying":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Chunriying(), 1));
+                card = new Chunriying();
                 break;
             case "shichaoban":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Shichaoban(), 1));
+                card = new Shichaoban();
                 break;
             case "mixingjiao":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Mixingjiao(), 1));
+                card = new Mixingjiao();
                 break;
             case "lunfuyu":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Lunfuyu(), 1));
+                card = new Lunfuyu();
                 break;
             case "yingsewu":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Yingsewu(), 1));
+                card = new Yingsewu();
                 break;
             case "yinyihui":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Yinyihui(), 1));
+                card = new Yinyihui();
                 break;
             case "miluri":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Miluri(), 1));
+                card = new Miluri();
                 break;
             case "wulushi":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Wulushi(), 1));
+                card = new Wulushi();
                 break;
             case "bitianbanzou":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Bitianbanzou(), 1));
+                card = new Bitianbanzou();
                 break;
             case "yinakong":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Yinakong(), 1));
+                card = new Yinakong();
                 break;
             case "mingwusheng":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Mingwusheng(), 1));
+                card = new Mingwusheng();
                 break;
             case "qianzaibiaoming":
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Qianzaibiaoming(), 1));
+                card = new Qianzaibiaoming();
                 break;
             default:
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new FailComposition(), 1));
+                card = new FailComposition();
                 break;
         }
+
+        card.setRarity(musicRarity);
+        card.setBanner();
+
+        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
+        //保存uuid和稀有度的逻辑应该放到reward的里
+    }
+
+
+    public BaseMusicCard.MusicRarity getMusicRarity(String ID) {
+        int cost = -1;
+        BaseMusicCard.MusicRarity musicRarity = null;
+        if(CraftingRecipes.getInstance().musicsCostHashMap.isEmpty()){
+            return null;
+        }
+        if (CraftingRecipes.getInstance().musicsCostHashMap.containsKey(CustomUtils.idToName(ID).toLowerCase())) {
+            cost = CraftingRecipes.getInstance().musicsCostHashMap.get(CustomUtils.idToName(ID).toLowerCase());
+        }
+
+        if (cost >= CraftingRecipes.COMMONCOST_MIN && cost <= CraftingRecipes.COMMONCOST_MAX) {
+            musicRarity = BaseMusicCard.MusicRarity.COMMON;
+        } else if (cost >= CraftingRecipes.UNCOMMONCOST_MIN && cost <= CraftingRecipes.UNCOMMONCOST_MAX) {
+            musicRarity = BaseMusicCard.MusicRarity.UNCOMMON;
+        } else if (cost >= CraftingRecipes.RARECOST_MIN && cost <= CraftingRecipes.RARECOST_MAX) {
+            musicRarity = BaseMusicCard.MusicRarity.RARE;
+        }
+        return musicRarity;
     }
 
 
@@ -152,3 +184,4 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         MusicalComposition.isMusicCompositionUsed=false;
     }
 }
+
