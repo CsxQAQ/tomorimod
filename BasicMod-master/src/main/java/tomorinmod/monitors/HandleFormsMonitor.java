@@ -36,14 +36,12 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
 
 
             // 永久forms
-            Iterator<String> iterator = SavePermanentForm.getInstance().getForms().iterator();
 
-            while (iterator.hasNext()) {
-                String form= iterator.next();
+            for (String form : SavePermanentForm.getInstance().getForms()) {
                 if (form.equals("WeAreMygoPower")) {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WeAreMygoPower(AbstractDungeon.player), 1));
                 }
-                if(form.equals("RevolutionPower")){
+                if (form.equals("RevolutionPower")) {
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RevolutionPower(AbstractDungeon.player), 1));
                 }
             }

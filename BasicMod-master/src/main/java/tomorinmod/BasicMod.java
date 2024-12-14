@@ -63,7 +63,6 @@ public class BasicMod implements
     }
 
     public static void receiveMonitor(){
-        BaseMod.subscribe(new GetPowerAtFirstTurnMonitor());
         BaseMod.subscribe(new HandleFormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());

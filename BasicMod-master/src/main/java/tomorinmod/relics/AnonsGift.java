@@ -29,8 +29,7 @@ public class AnonsGift extends BaseRelic {
     @Override
     public void atBattleStart(){
         super.atBattleStart();
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player, 1)));
-        addToBot(new CheckShineGravityAction(AbstractDungeon.player));
+        //改成活力
 
     }
 

@@ -18,30 +18,24 @@ public class YingsewuAction extends AbstractGameAction {
 
     }
 
-
-
-
     public void update() {
-        switch (SaveForm.getInstance().getForm()){
+        switch (SaveForm.getInstance().getForm()) {
             case "GravityTomorinPower":
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Gravity(AbstractDungeon.player,4), 4));
-                AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(AbstractDungeon.player));
+                addToBot(new ApplyGravityAction(4));
                 break;
             case "StrengthTomorinPower":
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player,4), 4));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 4), 4));
                 break;
             case "DarkTomorinPower":
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player,1,true), 1));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player, 1, true), 1));
                 break;
             case "ShineTomorinPower":
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,4), 4));
-                AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(AbstractDungeon.player));
+                addToBot(new ApplyShineAction(3));
                 break;
             default:
                 break;
         }
-
-        this.isDone=true;
-
+        this.isDone = true;
     }
+
 }

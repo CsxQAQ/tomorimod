@@ -3,6 +3,7 @@ package tomorinmod.powers;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import tomorinmod.actions.ApplyShineAction;
 import tomorinmod.actions.CheckShineGravityAction;
 
 import static tomorinmod.BasicMod.makeID;
@@ -18,9 +19,7 @@ public class ShineTomorinPower extends BasePower {
 
     @Override
     public void onInitialApplication() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Shine(AbstractDungeon.player,3), 3));
-
-        AbstractDungeon.actionManager.addToBottom(new CheckShineGravityAction(AbstractDungeon.player));
+        addToBot(new ApplyShineAction(3));
     }
     public void updateDescription() {
         this.description = DESCRIPTIONS[0];

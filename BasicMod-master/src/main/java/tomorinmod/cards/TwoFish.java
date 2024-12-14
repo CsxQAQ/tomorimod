@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.actions.ApplyGravityAction;
+import tomorinmod.actions.ApplyShineAction;
 import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.Gravity;
@@ -38,11 +40,9 @@ public class TwoFish extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(curAttribute==0){
-            addToBot(new ApplyPowerAction(p, p, new Gravity(p, magicNumber), magicNumber));
-            addToBot(new CheckShineGravityAction(p));
+            addToBot(new ApplyGravityAction(magicNumber));
         }else{
-            addToBot(new ApplyPowerAction(p, p, new Shine(p, magicNumber), magicNumber));
-            addToBot(new CheckShineGravityAction(p));
+            addToBot(new ApplyShineAction(magicNumber));
         }
     }
 

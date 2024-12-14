@@ -250,7 +250,10 @@
   },
   "${modID}:Yingsewu": {
     "NAME": "影色舞",
-    "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态效果 !M! 次"
+    "DESCRIPTION": "造成 !D! 点伤害，触发你当前形态的效果。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，触发你当前形态的效果3次。"
+    ]
   },
   "${modID}:Yinyihui": {
     "NAME": "音一会",

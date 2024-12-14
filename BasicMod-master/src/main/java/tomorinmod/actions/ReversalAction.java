@@ -38,14 +38,12 @@ public class ReversalAction extends AbstractGameAction {
             }
         } else {
             if (shineAmount > 0) {
-                addToTop(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
-                addToTop(new ApplyPowerAction(p, p, new Gravity(p, shineAmount), shineAmount));
-                addToTop(new CheckShineGravityAction(p));
+                addToBot(new RemoveSpecificPowerAction(p, p, Shine.POWER_ID));
+                addToBot(new ApplyGravityAction(shineAmount));
             }
             if (gravityAmount > 0) {
-                addToTop(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
-                addToTop(new ApplyPowerAction(p, p, new Shine(p, gravityAmount), gravityAmount));
-                addToTop(new CheckShineGravityAction(p));
+                addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
+                addToBot(new ApplyShineAction(gravityAmount));
             }
         }
 
