@@ -1,5 +1,6 @@
 package tomorinmod.cards.monment;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,6 +27,7 @@ public class NoMoreFear extends BaseMonmentCard {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         this.exhaust=true;
+        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     @Override

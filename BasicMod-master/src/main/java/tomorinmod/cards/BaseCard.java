@@ -5,9 +5,11 @@ import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import tomorinmod.BasicMod;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.RenderUtils;
 import tomorinmod.util.TriFunction;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -76,34 +78,9 @@ public abstract class BaseCard extends CustomCard {
     public void render(SpriteBatch sb) {
         super.render(sb);
         if(this.ICON!=null){
-            renderCustomIcon(sb);
+            RenderUtils.RenderBadge(sb,this,this.ICON,0,this.transparency);
         }
     }
-
-
-    private void renderCustomIcon(SpriteBatch sb) {
-        sb.setColor(Color.WHITE); // 设置颜色
-
-        // 获取与分辨率相关的缩放因子（Settings.scale）
-        float resolutionScale = Settings.scale;
-
-        // 计算图标的宽度和高度（根据卡牌的缩放比例和分辨率动态调整）
-        float iconSize = this.drawScale * 32.0f * 1.5f * resolutionScale; // 包括分辨率缩放和 4 倍放大
-
-        // 计算图标的位置（根据卡牌中心点和缩放比例动态调整）
-        float iconX = this.current_x + this.hb.width*0.38f ; // 卡牌右上角的 X 坐标，0.4f 是偏移系数
-        float iconY = this.current_y + this.hb.height*0.4f ; // 卡牌右上角的 Y 坐标
-
-        // 渲染图标
-        sb.draw(
-                ICON,
-                iconX,       // 动态 X 坐标
-                iconY,       // 动态 Y 坐标
-                iconSize,    // 动态宽度
-                iconSize     // 动态高度
-        );
-    }
-
 
     protected static String makeID(String name) { return BasicMod.makeID(name); }
     protected CardStrings cardStrings;
