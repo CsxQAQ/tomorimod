@@ -1,38 +1,42 @@
-package tomorinmod.cards;
+package tomorinmod.cards.customcards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.music.Chunriying;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
 
-public class ConveyFeeling extends BaseCard {
+public class MemoryInCrychic extends BaseCard {
 
-    public static final String ID = makeID(ConveyFeeling.class.getSimpleName());
+    public static final String ID = makeID(MemoryInCrychic.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            3
+            1
     );
 
-    public static boolean isConveyFeelingUsed=false;
-    public static int maxHPOverflow=0;
-
-    public ConveyFeeling() {
+    public MemoryInCrychic() {
         super(ID, info);
+        this.cardsToPreview = new Chunriying();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        isConveyFeelingUsed=true;
+        if(SaveMusicDiscoverd.getInstance().musicDiscovered.contains("chunriying")){
+            Chunriying.isIntensify=true;
+        }
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new ConveyFeeling();
+        return new MemoryInCrychic();
     }
+
     @Override
     public void upgrade() {
         if (!upgraded) {

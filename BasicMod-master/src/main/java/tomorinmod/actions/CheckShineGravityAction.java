@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.cards.MygoTogether;
+import tomorinmod.cards.customcards.MygoTogether;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 

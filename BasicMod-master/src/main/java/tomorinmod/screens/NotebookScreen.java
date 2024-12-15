@@ -4,20 +4,17 @@ import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector3;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import tomorinmod.relics.Notebook;
-import tomorinmod.savedata.HistoryCraftRecords;
+import tomorinmod.savedata.customdata.HistoryCraftRecords;
 
 import java.util.ArrayList;
 
 import static tomorinmod.BasicMod.imagePath;
-import static tomorinmod.BasicMod.makeID;
 
 public class NotebookScreen extends CustomScreen
 {

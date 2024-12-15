@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.RevolutionPower;
-import tomorinmod.savedata.HistoryCraftRecords;
-import tomorinmod.savedata.SavePermanentForm;
+import tomorinmod.savedata.customdata.HistoryCraftRecords;
+import tomorinmod.savedata.customdata.SavePermanentForm;
 import tomorinmod.util.CardStats;
 
 public class Revolution extends BaseMonmentCard {

@@ -8,14 +8,14 @@ import com.google.gson.reflect.TypeToken;
 import tomorinmod.cards.monment.Revolution;
 import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.cards.music.Chunriying;
-import tomorinmod.monitors.InitializeMonitor;
+import tomorinmod.savedata.customdata.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BaseSaveData {
+public class RegisterSaveData {
 
-    public BaseSaveData(){
+    public RegisterSaveData(){
 
     }
     public static void saveData() {
@@ -112,22 +112,6 @@ public class BaseSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     CraftingRecipes.getInstance().musicsCostHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<String,Integer>>() {}.getType());
-                }
-            }
-        });
-
-        BaseMod.addSaveField("isInitialized", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(InitializeMonitor.isInitialized);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    InitializeMonitor.isInitialized = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
                 }
             }
         });

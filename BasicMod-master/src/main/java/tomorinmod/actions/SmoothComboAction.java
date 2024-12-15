@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.cards.SmoothCombo;
+import tomorinmod.cards.customcards.SmoothCombo;
 
 public class SmoothComboAction extends AbstractGameAction {
     public SmoothComboAction() {

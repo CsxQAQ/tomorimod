@@ -67,8 +67,10 @@ public class Qianzaibiaoming extends BaseMusicCard {
     public void update(){
         super.update();
         int gravityAmount=0;
-        if(AbstractDungeon.player.getPower(Gravity.POWER_ID)!=null){
-            gravityAmount=AbstractDungeon.player.getPower(Gravity.POWER_ID).amount;
+        if(AbstractDungeon.player!=null){
+            if(AbstractDungeon.player.getPower(Gravity.POWER_ID)!=null){
+                gravityAmount=AbstractDungeon.player.getPower(Gravity.POWER_ID).amount;
+            }
         }
         if(musicRarity!=null){
             if(musicRarity.equals(MusicRarity.RARE)){

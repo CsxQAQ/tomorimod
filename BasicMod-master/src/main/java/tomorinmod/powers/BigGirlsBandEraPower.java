@@ -1,14 +1,7 @@
 package tomorinmod.powers;
 
-import basemod.interfaces.OnPlayerTurnStartSubscriber;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.DynamicTextBlocks;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.actions.BigGirlsBandEraAction;
-import tomorinmod.cards.MygoTogether;
-import tomorinmod.cards.TwoFish;
 
 import static tomorinmod.BasicMod.makeID;
 

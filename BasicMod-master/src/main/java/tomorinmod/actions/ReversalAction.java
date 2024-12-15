@@ -1,14 +1,11 @@
 package tomorinmod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.actions.CheckShineGravityAction;
-import tomorinmod.cards.MygoTogether;
+import tomorinmod.cards.customcards.MygoTogether;
 import tomorinmod.powers.Gravity;
 import tomorinmod.powers.Shine;
 

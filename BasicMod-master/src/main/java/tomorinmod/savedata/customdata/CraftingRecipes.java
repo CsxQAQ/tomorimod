@@ -1,14 +1,16 @@
-package tomorinmod.savedata;
+package tomorinmod.savedata.customdata;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import tomorinmod.savedata.Clearable;
+import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.util.CustomUtils;
 
 import java.util.*;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class CraftingRecipes {
+public class CraftingRecipes implements Clearable {
 
     public HashSet<String> tomorinCards=new HashSet<>();
     public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
@@ -168,7 +170,7 @@ public class CraftingRecipes {
 
     // 私有化构造函数，防止外部实例化
     private CraftingRecipes() {
-        //initializeTomorinCards();
+        SaveDataInstanceFactory.registerInstance(this);
     }
 
     public void clear(){

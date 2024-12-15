@@ -13,7 +13,7 @@ import tomorinmod.monitors.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
-import tomorinmod.savedata.BaseSaveData;
+import tomorinmod.savedata.RegisterSaveData;
 import tomorinmod.screens.NotebookScreen;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -160,7 +160,7 @@ public class BasicMod implements
         this.receiveReward();
         this.receiveScreen();
 
-        BaseSaveData.saveData();
+        RegisterSaveData.saveData();
 
         ConsoleCommand.addCommand("music", IncreaseRarityCommon.class);
 

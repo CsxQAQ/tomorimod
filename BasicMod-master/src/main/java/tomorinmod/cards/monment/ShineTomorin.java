@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.ShineTomorinPower;
-import tomorinmod.savedata.SaveForm;
+import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
 public class ShineTomorin extends BaseMonmentCard {

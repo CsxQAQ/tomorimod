@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.Revolution;
-import tomorinmod.savedata.CraftingRecipes;
-import tomorinmod.savedata.HistoryCraftRecords;
-import tomorinmod.savedata.SaveMusicDiscoverd;
+import tomorinmod.savedata.customdata.CraftingRecipes;
+import tomorinmod.savedata.customdata.HistoryCraftRecords;
+import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 
 public class RevolutionMonitor extends BaseMonitor implements PostBattleSubscriber {
 
@@ -23,7 +23,7 @@ public class RevolutionMonitor extends BaseMonitor implements PostBattleSubscrib
             for(AbstractCard abstractCard:AbstractDungeon.player.masterDeck.group){
                 if(abstractCard instanceof BaseCard){
                     BaseCard baseCard=(BaseCard) abstractCard;
-                    baseCard.initializeMaterial();
+                    baseCard.initializeMaterialIcon();
                 }
             }
         }

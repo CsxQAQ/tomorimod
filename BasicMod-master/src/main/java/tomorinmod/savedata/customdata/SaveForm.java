@@ -1,6 +1,9 @@
-package tomorinmod.savedata;
+package tomorinmod.savedata.customdata;
 
-public class SaveForm{
+import tomorinmod.savedata.Clearable;
+import tomorinmod.savedata.SaveDataInstanceFactory;
+
+public class SaveForm implements Clearable {
 
     // 单例实例
     private static SaveForm instance;
@@ -10,6 +13,7 @@ public class SaveForm{
 
     // 私有化构造函数，防止外部实例化
     private SaveForm() {
+        SaveDataInstanceFactory.registerInstance(this);
     }
 
     // 获取单例实例的静态方法

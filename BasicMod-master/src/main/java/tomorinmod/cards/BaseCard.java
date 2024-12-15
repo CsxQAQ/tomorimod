@@ -6,8 +6,7 @@ import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import tomorinmod.BasicMod;
-import tomorinmod.monitors.InitializeMonitor;
-import tomorinmod.savedata.CraftingRecipes;
+import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.TriFunction;
 import com.badlogic.gdx.graphics.Color;
@@ -28,7 +27,7 @@ import static tomorinmod.util.TextureLoader.getCardTextureString;
 public abstract class BaseCard extends CustomCard {
     final private static Map<String, DynamicVariable> customVars = new HashMap<>();
 
-    public static final Set<BaseCard> allInstances = new HashSet<>();
+    //public static final Set<BaseCard> allInstances = new HashSet<>();
 
     public String material="";
     public int level=-1;
@@ -41,16 +40,25 @@ public abstract class BaseCard extends CustomCard {
 
     public BaseCard(String ID, CardStats info) {
         this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
+        initializeMaterialIcon();
+    }
 
-        if(!InitializeMonitor.isInitialized){
-            allInstances.add(this);
-        }else{
-            initializeMaterial();
+    public void initializeMaterialIcon(){
+        setMaterialAndLevel();
+        try {
+            if(this.material!=""){
+                this.ICON = new Texture(imagePath("materials/" + this.material + ".png"));
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to load icon texture: " + e.getMessage());
+            this.ICON = null;
         }
-
     }
 
     public void setMaterialAndLevel(){
+        if(CraftingRecipes.getInstance().cardMaterialHashMap==null){
+            return;
+        }
         if(CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)!=null){
             this.material = CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
         }
@@ -63,23 +71,12 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    public void initializeMaterial(){
-        setMaterialAndLevel();
-        try {
-            if(this.material!=""){
-                this.ICON = new Texture(imagePath("materials/" + this.material + ".png"));
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to load icon texture: " + e.getMessage());
-            this.ICON = null; // 如果加载失败，确保 ICON 为空
-        }
-    }
-
+    //卡牌大全处不会触发render，而是触发renderInLibaray
     @Override
     public void render(SpriteBatch sb) {
-        super.render(sb); // 调用原本的渲染逻辑
+        super.render(sb);
         if(this.ICON!=null){
-            renderCustomIcon(sb); // 添加你自己的渲染逻辑
+            renderCustomIcon(sb);
         }
     }
 

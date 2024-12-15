@@ -2,15 +2,10 @@ package tomorinmod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import tomorinmod.powers.*;
-import tomorinmod.savedata.SaveForm;
-
-import java.util.Iterator;
-import java.util.UUID;
+import tomorinmod.savedata.customdata.SaveForm;
 
 public class YingsewuAction extends AbstractGameAction {
 

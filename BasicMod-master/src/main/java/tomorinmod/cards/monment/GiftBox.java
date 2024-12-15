@@ -10,7 +10,7 @@ import tomorinmod.rewards.AnonReward;
 import tomorinmod.rewards.RanaReward;
 import tomorinmod.rewards.SoyoReward;
 import tomorinmod.rewards.TakiReward;
-import tomorinmod.savedata.SaveGifts;
+import tomorinmod.savedata.customdata.SaveGifts;
 import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;

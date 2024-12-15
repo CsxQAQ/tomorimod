@@ -1,17 +1,11 @@
-package tomorinmod.cards;
+package tomorinmod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.actions.ReversalAction;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
 import tomorinmod.util.CardStats;
 
 public class Reversal extends BaseCard {

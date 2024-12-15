@@ -1,21 +1,22 @@
-package tomorinmod.savedata;
+package tomorinmod.savedata.customdata;
 
-import basemod.abstracts.CustomSavable;
+import tomorinmod.savedata.Clearable;
+import tomorinmod.savedata.SaveDataInstanceFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SaveGifts {
+public class SaveGifts implements Clearable {
 
     // 单例实例
     private static SaveGifts instance;
 
     // 用于保存表单数据
-    public ArrayList<Integer> giftGeted;
+    public ArrayList<Integer> giftGeted=new ArrayList<>(Arrays.asList(0, 0, 0, 0));
 
     // 私有化构造函数，防止外部实例化
     private SaveGifts() {
-        clear();
+        SaveDataInstanceFactory.registerInstance(this);
     }
 
     // 获取单例实例的静态方法

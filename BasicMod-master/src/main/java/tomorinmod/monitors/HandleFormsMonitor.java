@@ -6,10 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.*;
-import tomorinmod.savedata.SaveForm;
-import tomorinmod.savedata.SavePermanentForm;
-
-import java.util.Iterator;
+import tomorinmod.savedata.customdata.SaveForm;
+import tomorinmod.savedata.customdata.SavePermanentForm;
 
 public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override

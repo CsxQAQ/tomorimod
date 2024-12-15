@@ -1,24 +1,21 @@
-package tomorinmod.savedata;
+package tomorinmod.savedata.customdata;
 
-import basemod.BaseMod;
-import basemod.abstracts.CustomSavable;
-import basemod.abstracts.CustomSavableRaw;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import tomorinmod.savedata.Clearable;
+import tomorinmod.savedata.SaveDataInstanceFactory;
 
 import java.util.ArrayList;
 
-public class SavePermanentForm {
+public class SavePermanentForm implements Clearable {
 
     // 单例实例
     private static SavePermanentForm instance;
 
     // 用于保存表单数据
-    public ArrayList<String> forms;
+    public ArrayList<String> forms=new ArrayList<>();
 
     // 私有化构造函数，防止外部实例化
     private SavePermanentForm() {
-        forms = new ArrayList<>();
+        SaveDataInstanceFactory.registerInstance(this);
     }
 
     // 获取单例实例的静态方法

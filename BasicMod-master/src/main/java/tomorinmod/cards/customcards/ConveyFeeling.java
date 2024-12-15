@@ -1,48 +1,44 @@
-package tomorinmod.cards;
+package tomorinmod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class EquelExchange extends BaseCard {
-    public static final String ID = makeID(EquelExchange.class.getSimpleName());
+public class ConveyFeeling extends BaseCard {
+
+    public static final String ID = makeID(ConveyFeeling.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardType.POWER,
+            CardRarity.RARE,
             CardTarget.SELF,
-            2
+            3
     );
 
-    public EquelExchange() {
+    public static boolean isConveyFeelingUsed=false;
+    public static int maxHPOverflow=0;
+
+    public ConveyFeeling() {
         super(ID, info);
-        this.exhaust=true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        AbstractCard copy = this.makeStatEquivalentCopy();
-        addToBot(new MakeTempCardInHandAction(copy));
-
-        addToBot(new DrawCardAction(p, 1));
-
+        isConveyFeelingUsed=true;
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new EquelExchange();
+        return new ConveyFeeling();
     }
-
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(1); // 将费用从 1 降为 0
+            upgradeBaseCost(0); // 将费用从 1 降为 0
         }
     }
 }

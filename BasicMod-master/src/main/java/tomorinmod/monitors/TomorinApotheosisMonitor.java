@@ -5,7 +5,7 @@ import basemod.interfaces.OnStartBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.TomorinApotheosis;
+import tomorinmod.cards.customcards.TomorinApotheosis;
 
 public class TomorinApotheosisMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, OnStartBattleSubscriber {
     @Override

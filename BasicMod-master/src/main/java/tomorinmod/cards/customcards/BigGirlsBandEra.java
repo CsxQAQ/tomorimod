@@ -1,4 +1,4 @@
-package tomorinmod.cards;
+package tomorinmod.cards.customcards;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.BigGirlsBandEraPower;
-import tomorinmod.powers.Gravity;
 import tomorinmod.util.CardStats;
 
 public class BigGirlsBandEra extends BaseMonmentCard {

@@ -1,8 +1,11 @@
-package tomorinmod.savedata;
+package tomorinmod.savedata.customdata;
+
+import tomorinmod.savedata.Clearable;
+import tomorinmod.savedata.SaveDataInstanceFactory;
 
 import java.util.ArrayList;
 
-public class SaveMusicDiscoverd {
+public class SaveMusicDiscoverd implements Clearable {
 
     // 单例实例
     private static SaveMusicDiscoverd instance;
@@ -12,6 +15,7 @@ public class SaveMusicDiscoverd {
 
     // 私有化构造函数，防止外部实例化
     private SaveMusicDiscoverd() {
+        SaveDataInstanceFactory.registerInstance(this);
     }
 
     // 获取单例实例的静态方法

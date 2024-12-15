@@ -1,49 +1,49 @@
-package tomorinmod.cards;
+package tomorinmod.cards.customcards;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
 import tomorinmod.util.CardStats;
 
-public class NeedAnon extends BaseCard {
-
-    public static final String ID = makeID(NeedAnon.class.getSimpleName());
+public class SmoothCombo extends BaseCard {
+    public static final String ID = makeID(SmoothCombo.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.UNCOMMON,
             CardTarget.SELF,
-            2
+            3
     );
 
-    public NeedAnon() {
+    public static int smoothComboUseTime=0;
+    public static CardType recordedType = null; // 记录第一张打出卡的类型
+    public SmoothCombo() {
         super(ID, info);
-        this.exhaust=true;
+    }
+
+
+    public static void reset(){
+        smoothComboUseTime = 0;
+        recordedType=null;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
-
-        int gravityAmount = gravity != null ? gravity.amount : 0;
-        gravity.amount = gravityAmount*2;
+        smoothComboUseTime=1;
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new NeedAnon();
+        return new SmoothCombo();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
+            upgradeName(); // 更新卡牌名称，显示为“升级版”
+            upgradeBaseCost(2);
         }
     }
-
 }
