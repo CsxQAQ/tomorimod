@@ -22,7 +22,7 @@ public class Chunriying extends BaseMusicCard {
 
     public static boolean isIntensify=false;
 
-    private static final int DAMAGE = 20;
+    private static final int DAMAGE = 15 ;
     private static final int UPG_DAMAGE = 5;
 
     public Chunriying() {
@@ -35,7 +35,6 @@ public class Chunriying extends BaseMusicCard {
 
         addToBot(new HealAction(p,p, damage));
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-//            addToBot(new StunMonsterAction(monster, p, 1));
     }
 
     @Override

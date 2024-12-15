@@ -257,7 +257,10 @@
   },
   "${modID}:Yinyihui": {
     "NAME": "音一会",
-    "DESCRIPTION": "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害，获得等量 格挡 。",
+    "EXTENDED_DESCRIPTION": [
+      "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
+    ]
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
