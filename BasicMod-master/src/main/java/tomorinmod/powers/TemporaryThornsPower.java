@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import static tomorinmod.BasicMod.makeID;
 
 public class TemporaryThornsPower extends BasePower {
-    public static final String POWER_ID = makeID("TemporaryThornsPower");
+    public static final String POWER_ID = makeID(TemporaryThornsPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 

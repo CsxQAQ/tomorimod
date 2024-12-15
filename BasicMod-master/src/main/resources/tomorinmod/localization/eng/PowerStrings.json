@@ -47,6 +47,13 @@
       " #y形态 ，战斗开始时，获得4点 #y闪耀 。"
     ]
   },
+  "${modID}:SingerTomorinPower": {
+    "NAME": "主唱",
+    "DESCRIPTIONS": [
+      " #y形态 ，战斗开始时，抽一张牌，获得一点 [E] 。"
+    ]
+  },
+
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [

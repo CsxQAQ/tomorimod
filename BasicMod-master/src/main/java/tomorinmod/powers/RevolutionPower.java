@@ -7,7 +7,7 @@ import tomorinmod.cards.monment.Revolution;
 import static tomorinmod.BasicMod.makeID;
 
 public class RevolutionPower extends BasePower {
-    public static final String POWER_ID = makeID("RevolutionPower");
+    public static final String POWER_ID = makeID(RevolutionPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 

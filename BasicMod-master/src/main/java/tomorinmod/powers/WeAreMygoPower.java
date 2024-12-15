@@ -17,7 +17,7 @@ import tomorinmod.actions.CheckShineGravityAction;
 import static tomorinmod.BasicMod.makeID;
 
 public class WeAreMygoPower extends BasePower {
-    public static final String POWER_ID = makeID("WeAreMygoPower");
+    public static final String POWER_ID = makeID(WeAreMygoPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorinmod.monitors.HandleFormsMonitor;
 import tomorinmod.savedata.customdata.SaveForm;
 
 public class YingsewuAction extends AbstractGameAction {
@@ -14,22 +15,7 @@ public class YingsewuAction extends AbstractGameAction {
     }
 
     public void update() {
-        switch (SaveForm.getInstance().getForm()) {
-            case "GravityTomorinPower":
-                addToBot(new ApplyGravityAction(4));
-                break;
-            case "StrengthTomorinPower":
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 4), 4));
-                break;
-            case "DarkTomorinPower":
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player, 1, true), 1));
-                break;
-            case "ShineTomorinPower":
-                addToBot(new ApplyShineAction(3));
-                break;
-            default:
-                break;
-        }
+        HandleFormsMonitor.applyCurrentFormEffect(SaveForm.getInstance().getForm());
         this.isDone = true;
     }
 

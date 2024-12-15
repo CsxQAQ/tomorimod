@@ -1,12 +1,13 @@
-package tomorinmod.cards.monment;
+package tomorinmod.cards.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.DarkTomorinPower;
+import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
@@ -29,7 +30,7 @@ public class DarkTomorin extends BaseMonmentCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        if(!SaveForm.getInstance().getForm().equals("")){
+        if(!SaveForm.getInstance().getForm().isEmpty()){
             addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
         }
 

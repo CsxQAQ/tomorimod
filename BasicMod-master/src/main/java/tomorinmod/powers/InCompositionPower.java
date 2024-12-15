@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import static tomorinmod.BasicMod.makeID;
 
 public class InCompositionPower extends BasePower {
-    public static final String POWER_ID = makeID("InCompositionPower");
+    public static final String POWER_ID = makeID(InCompositionPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 

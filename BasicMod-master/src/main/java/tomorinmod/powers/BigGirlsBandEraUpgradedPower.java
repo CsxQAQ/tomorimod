@@ -6,7 +6,7 @@ import tomorinmod.actions.BigGirlsBandEraAction;
 import static tomorinmod.BasicMod.makeID;
 
 public class BigGirlsBandEraUpgradedPower extends BasePower{
-    public static final String POWER_ID = makeID("BigGirlsBandEraUpgradedPower");
+    public static final String POWER_ID = makeID(BigGirlsBandEraUpgradedPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
