@@ -51,7 +51,7 @@ public class Collection extends BaseCard {
     public Collection() {
         super(ID, info);
         this.cardsToPreview=new Band();
-        relatedCards.add(new Band(){});
+        relatedCards.add(new Band());
         relatedCards.add(new Stone());
         relatedCards.add(new Watermelonworm());
     }

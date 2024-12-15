@@ -179,6 +179,21 @@
     "NAME": "传达心意",
     "DESCRIPTION": " tomorinmod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
   },
+  "${modID}:Saiyaku": {
+    "NAME": "糟透了",
+    "DESCRIPTION": "将10张 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。",
+    "EXTENDED_DESCRIPTION": [
+      "将10张升级后的 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。"
+    ]
+  },
+  "${modID}:HaTaki": {
+    "NAME": "哈",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
+  "${modID}:HaAnon": {
+    "NAME": "哈",
+    "DESCRIPTION": "造成 !D! 点伤害。"
+  },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
     "DESCRIPTION": "将一张该牌的复制置入你的手牌，然后抽一张牌。"
