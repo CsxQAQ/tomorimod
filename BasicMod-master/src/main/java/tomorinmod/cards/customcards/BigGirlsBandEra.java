@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.BigGirlsBandEraPower;
+import tomorinmod.powers.BigGirlsBandEraUpgradedPower;
 import tomorinmod.util.CardStats;
 
 public class BigGirlsBandEra extends BaseMonmentCard {
@@ -28,7 +29,12 @@ public class BigGirlsBandEra extends BaseMonmentCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraPower(p,upgraded), 1));
+        if(upgraded){
+            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraUpgradedPower(p), 1));
+        }else{
+            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraPower(p), 1));
+        }
+
     }
 
     @Override
@@ -38,7 +44,11 @@ public class BigGirlsBandEra extends BaseMonmentCard {
 
     private void updateDescription() {
 
-        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        if(upgraded){
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        }
         initializeDescription();
     }
 

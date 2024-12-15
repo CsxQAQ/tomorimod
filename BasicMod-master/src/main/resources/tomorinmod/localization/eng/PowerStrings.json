@@ -75,7 +75,13 @@
   "${modID}:BigGirlsBandEraPower": {
     "NAME": "大少女乐队时代",
     "DESCRIPTIONS": [
-      "回合开始时，从随机3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+      "回合开始时，从3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+    ]
+  },
+  "${modID}:BigGirlsBandEraUpgradedPower": {
+    "NAME": "大少女乐队时代+",
+    "DESCRIPTIONS": [
+      "回合开始时，从随机稀有度的3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
     ]
   }
 }

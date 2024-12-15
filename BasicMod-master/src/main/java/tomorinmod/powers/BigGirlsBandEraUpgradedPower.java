@@ -5,13 +5,12 @@ import tomorinmod.actions.BigGirlsBandEraAction;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class BigGirlsBandEraPower extends BasePower{
-    public static final String POWER_ID = makeID("BigGirlsBandEraPower");
+public class BigGirlsBandEraUpgradedPower extends BasePower{
+    public static final String POWER_ID = makeID("BigGirlsBandEraUpgradedPower");
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-
-    public BigGirlsBandEraPower(AbstractCreature owner) {
+    public BigGirlsBandEraUpgradedPower(AbstractCreature owner) {
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
     }
 
@@ -21,6 +20,6 @@ public class BigGirlsBandEraPower extends BasePower{
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new BigGirlsBandEraAction(false));
+        addToBot(new BigGirlsBandEraAction(true));
     }
 }

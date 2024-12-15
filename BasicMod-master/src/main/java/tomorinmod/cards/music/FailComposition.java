@@ -4,11 +4,12 @@ package tomorinmod.cards.music;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
 //这个设置为BaseMusicCard可能会出问题
-public class FailComposition extends BaseMusicCard {
+public class FailComposition extends BaseCard {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

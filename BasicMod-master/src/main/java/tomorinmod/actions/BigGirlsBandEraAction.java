@@ -10,6 +10,8 @@ import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
 
+import static tomorinmod.BasicMod.makeID;
+
 public class BigGirlsBandEraAction extends AbstractGameAction {
 
     private boolean isUpgraded;
@@ -20,36 +22,50 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
 
     @Override
     public void update() {
+        ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
+        ArrayList<BaseMusicCard> musicCards = new ArrayList<>(getMusicCards());
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
-        ArrayList<AbstractCard> musicCards = getMusicCards();
         for(int i=0;i<3;i++){
             int randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);
-            AbstractCard selectedCard = musicCards.get(randomNumber);
-            cardGroup.add(selectedCard);
+            BaseMusicCard selectedCard = musicCards.get(randomNumber);
+            musicCardGroup.add(selectedCard);
             musicCards.remove(randomNumber);
         }
-        if (this.isUpgraded){
-            for (AbstractCard card : cardGroup){
-                card.upgrade();
+        for (BaseMusicCard card : musicCardGroup){
+            if(isUpgraded){
+                int randomRarity = AbstractDungeon.miscRng.random(2);
+                switch (randomRarity){
+                    case 0:
+                        card.setRarity(BaseMusicCard.MusicRarity.COMMON);
+                        break;
+                    case 1:
+                        card.setRarity(BaseMusicCard.MusicRarity.UNCOMMON);
+                        break;
+                    case 2:
+                        card.setRarity(BaseMusicCard.MusicRarity.RARE);
+                        break;
+                }
+                card.setBanner();
+            }else{
+                card.musicRarity= BaseMusicCard.MusicRarity.COMMON;
             }
-        }
-        for (AbstractCard card : cardGroup){
             card.setCostForTurn(0);
             card.exhaust=true;
-            if(card instanceof BaseMusicCard){
-                ((BaseMusicCard) card).musicRarity= BaseMusicCard.MusicRarity.COMMON;
-            }
+
+            AbstractCard cloneCard=card.makeStatEquivalentCopy();
+            cardGroup.add(cloneCard);
         }
 
         addToBot(new ChooseOneAction(cardGroup));
         isDone = true;
     }
 
-    private ArrayList<AbstractCard> getMusicCards() {
-        ArrayList<AbstractCard> musicCards = new ArrayList<>();
+    private ArrayList<BaseMusicCard> getMusicCards() {
+        ArrayList<BaseMusicCard> musicCards = new ArrayList<>();
         for(AbstractCard card: CustomUtils.getAllModCards()){
-            if(card instanceof BaseMusicCard){
-                musicCards.add(card);
+            if(card instanceof BaseMusicCard&&!card.cardID.equals(makeID("Chunriying"))){ //排除春日影
+                BaseMusicCard baseMusicCard=(BaseMusicCard) card;
+                musicCards.add(baseMusicCard);
             }
         }
         return musicCards;

@@ -71,7 +71,12 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     public void getMusic(String music){
 
         BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(music);
-        BaseMusicCard card;
+        BaseMusicCard card = null;
+
+        if(music.equals("fail")){
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new FailComposition(), 1));
+            return;
+        }
 
         switch (music) {
             case "chunriying":
@@ -111,19 +116,17 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 card = new Qianzaibiaoming();
                 break;
             default:
-                card = new FailComposition();
                 break;
         }
 
-        if(!(card instanceof FailComposition)){
+        if (card != null) {
             card.setRarity(musicRarity);
-            //card.setBanner();
             RewardItem musicReward = new MusicReward(card.cardID);
             AbstractDungeon.getCurrRoom().rewards.add(musicReward);
+
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
         }
 
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
-        //保存uuid和稀有度的逻辑应该放到reward的里
     }
 
 
