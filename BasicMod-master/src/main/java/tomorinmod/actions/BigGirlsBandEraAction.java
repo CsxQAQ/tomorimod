@@ -1,5 +1,6 @@
 package tomorinmod.actions;
 
+import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -35,8 +36,11 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
         for (AbstractCard card : cardGroup){
             card.setCostForTurn(0);
             card.exhaust=true;
-            //card.isCostModified = true;
+            if(card instanceof BaseMusicCard){
+                ((BaseMusicCard) card).musicRarity= BaseMusicCard.MusicRarity.COMMON;
+            }
         }
+
         addToBot(new ChooseOneAction(cardGroup));
         isDone = true;
     }

@@ -12,4 +12,7 @@ public class RewardTypePatch {
     public static RewardItem.RewardType TAKI_REWARD;
     @SpireEnum
     public static RewardItem.RewardType RANA_REWARD;
+
+    @SpireEnum
+    public static RewardItem.RewardType MUSIC_REWARD;
 }

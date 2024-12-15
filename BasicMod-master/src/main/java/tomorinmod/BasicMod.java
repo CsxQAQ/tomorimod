@@ -16,6 +16,7 @@ import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;
 import tomorinmod.savedata.BaseSaveData;
 import tomorinmod.savedata.CraftingRecipes;
+import tomorinmod.savedata.SaveMusicReward;
 import tomorinmod.screens.NotebookScreen;
 import tomorinmod.util.GeneralUtils;
 import tomorinmod.util.KeywordInfo;
@@ -84,8 +85,8 @@ public class BasicMod implements
                 },
                 (customReward) -> { // 保存奖励
                     return new RewardSave(RewardTypePatch.ANON_REWARD.toString(), null); // 保存奖励的基本信息
-                }
-        );
+                });
+
         BaseMod.registerCustomReward(
                 RewardTypePatch.SOYO_REWARD,
                 (rewardSave) -> { // 加载奖励
@@ -93,8 +94,8 @@ public class BasicMod implements
                 },
                 (customReward) -> { // 保存奖励
                     return new RewardSave(RewardTypePatch.SOYO_REWARD.toString(), null); // 保存奖励的基本信息
-                }
-        );
+                });
+
         BaseMod.registerCustomReward(
                 RewardTypePatch.TAKI_REWARD,
                 (rewardSave) -> { // 加载奖励
@@ -102,8 +103,8 @@ public class BasicMod implements
                 },
                 (customReward) -> { // 保存奖励
                     return new RewardSave(RewardTypePatch.TAKI_REWARD.toString(), null); // 保存奖励的基本信息
-                }
-        );
+                });
+
         BaseMod.registerCustomReward(
                 RewardTypePatch.RANA_REWARD,
                 (rewardSave) -> { // 加载奖励
@@ -111,8 +112,17 @@ public class BasicMod implements
                 },
                 (customReward) -> { // 保存奖励
                     return new RewardSave(RewardTypePatch.RANA_REWARD.toString(), null); // 保存奖励的基本信息
-                }
-        );
+                });
+
+        BaseMod.registerCustomReward(
+                RewardTypePatch.MUSIC_REWARD,
+                (rewardSave) -> { // this handles what to do when this quest type is loaded.
+                    return new MusicReward(rewardSave.id);
+                },
+                (customReward) -> { // this handles what to do when this quest type is saved.
+                    return new RewardSave(RewardTypePatch.MUSIC_REWARD.toString(), ((MusicReward)customReward).cardId);
+                });
+
     }
 
 

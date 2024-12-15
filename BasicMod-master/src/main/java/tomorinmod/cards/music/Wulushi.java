@@ -57,22 +57,22 @@ public class Wulushi extends BaseMusicCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         int tempDamage = damage;
         AbstractMonster target = m;
+        if(musicRarity!=null){
+            if(musicRarity.equals(MusicRarity.RARE)){
+                while (tempDamage > 0 && target != null) {
+                    addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-        if(musicRarity.equals(MusicRarity.RARE)){
-            while (tempDamage > 0 && target != null) {
-                addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
-                tempDamage -= 1;
+                    tempDamage -= 1;
+                    target = getRandomEnemy(target);
+                }
+            }else{
+                addToBot(new DamageAction(m, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 target = getRandomEnemy(target);
-            }
-        }else{
-            addToBot(new DamageAction(m, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-            target = getRandomEnemy(target);
-            if(target!=null){
-                addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if(target!=null){
+                    addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
             }
         }
-
     }
 
     private AbstractMonster getRandomEnemy(AbstractMonster exclude) {

@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.TomorinApotheosis;
+import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.CustomUtils;
 
 import static tomorinmod.BasicMod.imagePath;
 
@@ -15,6 +17,11 @@ public abstract class BaseMusicCard extends BaseCard {
         tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
         this.numsInfo = numsInfo;
+
+        //只是为了正确显示
+        setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
+        setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
+        setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
     }
 
     public BaseMusicCard(String ID, CardStats info) {
@@ -77,6 +84,26 @@ public abstract class BaseMusicCard extends BaseCard {
         dataInfoInitialize(); //暂时先放在这里
     }
 
+    public static MusicRarity getMusicRarityByCost(String ID) {
+        int cost = -1;
+        MusicRarity musicRarity = null;
+        if(CraftingRecipes.getInstance().musicsCostHashMap.isEmpty()){
+            return null;
+        }
+        if (CraftingRecipes.getInstance().musicsCostHashMap.containsKey(CustomUtils.idToName(ID).toLowerCase())) {
+            cost = CraftingRecipes.getInstance().musicsCostHashMap.get(CustomUtils.idToName(ID).toLowerCase());
+        }
+
+        if (cost >= CraftingRecipes.COMMONCOST_MIN && cost <= CraftingRecipes.COMMONCOST_MAX) {
+            musicRarity = MusicRarity.COMMON;
+        } else if (cost >= CraftingRecipes.UNCOMMONCOST_MIN && cost <= CraftingRecipes.UNCOMMONCOST_MAX) {
+            musicRarity = MusicRarity.UNCOMMON;
+        } else if (cost >= CraftingRecipes.RARECOST_MIN && cost <= CraftingRecipes.RARECOST_MAX) {
+            musicRarity = MusicRarity.RARE;
+        }
+        return musicRarity;
+    }
+
     @Override
     public void update() {
         super.update();
@@ -111,9 +138,8 @@ public abstract class BaseMusicCard extends BaseCard {
             musicCard.musicRarity=this.musicRarity;
             musicCard.setBanner();
         }
-        //musicCard.idForShow=this.idForShow;
+        musicCard.idForShow=this.idForShow;
         return musicCard;
-
     }
 
     @Override

@@ -4,23 +4,29 @@ import basemod.helpers.ScreenPostProcessorManager;
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
+import com.evacipated.cardcrawl.mod.stslib.patches.CustomCardReward;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
 import tomorinmod.powers.Shine;
+import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
+import tomorinmod.savedata.SaveMusicReward;
 import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
+
+import static tomorinmod.BasicMod.makeID;
 
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
@@ -69,7 +75,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     public void getMusic(String music){
 
-        BaseMusicCard.MusicRarity musicRarity=getMusicRarity(music);
+        BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(music);
         BaseMusicCard card;
 
         switch (music) {
@@ -114,32 +120,16 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 break;
         }
 
-        card.setRarity(musicRarity);
-        card.setBanner();
+        if(!(card instanceof FailComposition)){
+            card.setRarity(musicRarity);
+            //card.setBanner();
+            RewardItem musicReward = new MusicReward(card.cardID);
+            SaveMusicReward.getInstance().cardId=card.cardID;
+            AbstractDungeon.getCurrRoom().rewards.add(musicReward);
+        }
 
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
         //保存uuid和稀有度的逻辑应该放到reward的里
-    }
-
-
-    public BaseMusicCard.MusicRarity getMusicRarity(String ID) {
-        int cost = -1;
-        BaseMusicCard.MusicRarity musicRarity = null;
-        if(CraftingRecipes.getInstance().musicsCostHashMap.isEmpty()){
-            return null;
-        }
-        if (CraftingRecipes.getInstance().musicsCostHashMap.containsKey(CustomUtils.idToName(ID).toLowerCase())) {
-            cost = CraftingRecipes.getInstance().musicsCostHashMap.get(CustomUtils.idToName(ID).toLowerCase());
-        }
-
-        if (cost >= CraftingRecipes.COMMONCOST_MIN && cost <= CraftingRecipes.COMMONCOST_MAX) {
-            musicRarity = BaseMusicCard.MusicRarity.COMMON;
-        } else if (cost >= CraftingRecipes.UNCOMMONCOST_MIN && cost <= CraftingRecipes.UNCOMMONCOST_MAX) {
-            musicRarity = BaseMusicCard.MusicRarity.UNCOMMON;
-        } else if (cost >= CraftingRecipes.RARECOST_MIN && cost <= CraftingRecipes.RARECOST_MAX) {
-            musicRarity = BaseMusicCard.MusicRarity.RARE;
-        }
-        return musicRarity;
     }
 
 
