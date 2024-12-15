@@ -1,17 +1,20 @@
-package tomorinmod.cards.basic;
+package tomorinmod.cards.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.monitors.HandleFormsMonitor;
 import tomorinmod.powers.forms.SingerTomorinPower;
 import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
-public class SingerTomorin extends BaseMonmentCard {
+public class SingerTomorin extends BaseFormCard {
 
     public static final String ID = makeID(SingerTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -24,18 +27,20 @@ public class SingerTomorin extends BaseMonmentCard {
 
     public SingerTomorin() {
         super(ID, info);
+        setFormPower();
+    }
+
+    @Override
+    public void setFormPower(){
+        formPower="SingerTomorinPower";
+
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        if(!SaveForm.getInstance().getForm().isEmpty()){
-            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
-        }
 
         addToBot(new ApplyPowerAction(p, p, new SingerTomorinPower(p),1));
-
-        SaveForm.getInstance().changeForm("SingerTomorinPower");
 
         super.use(p,m);
     }

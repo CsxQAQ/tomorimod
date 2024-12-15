@@ -4,14 +4,19 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.monitors.HandleFormsMonitor;
 import tomorinmod.powers.forms.DarkTomorinPower;
+import tomorinmod.relics.MicrophoneRelic;
 import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
-public class DarkTomorin extends BaseMonmentCard {
+public class DarkTomorin extends BaseFormCard {
 
     public static final String ID = makeID(DarkTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -24,20 +29,19 @@ public class DarkTomorin extends BaseMonmentCard {
 
     public DarkTomorin() {
         super(ID, info);
-        tags.add(CardTags.HEALING);
+        setFormPower();
+    }
+
+    @Override
+    public void setFormPower(){
+        formPower="DarkTomorinPower";
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        if(!SaveForm.getInstance().getForm().isEmpty()){
-            addToBot(new RemoveSpecificPowerAction(p, p, makeID(SaveForm.getInstance().getForm())));
-        }
 
         addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
-
-        SaveForm.getInstance().changeForm("DarkTomorinPower");
-        //CustomUtils.addTags(this, CustomTags.MOMENT);
         super.use(p,m);
     }
 
