@@ -180,20 +180,5 @@ public class RegisterSaveData {
             }
         });
 
-        BaseMod.addSaveField("MusicRarityData", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(MusicRarityData.getInstance().musicRarityHashMap);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    MusicRarityData.getInstance().musicRarityHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<Integer, BaseMusicCard.MusicRarity>>() {}.getType());
-                }
-            }
-        });
     }
 }

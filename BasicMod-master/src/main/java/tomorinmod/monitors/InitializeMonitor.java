@@ -4,6 +4,7 @@ import basemod.interfaces.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.savedata.customdata.*;
 
@@ -16,6 +17,18 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
             for(AbstractCard card:AbstractDungeon.player.masterDeck.group){
                 if(card instanceof BaseCard){
                     ((BaseCard)card).initializeMaterialIcon();
+                }
+            }
+        }
+    }
+
+    //游戏重开时补上音乐牌的稀有度
+    public void allocateMusicRarity(){
+        if(AbstractDungeon.player!=null){
+            for(AbstractCard card:AbstractDungeon.player.masterDeck.group){
+                if(card instanceof BaseMusicCard){
+                    ((BaseMusicCard)card).setRarity(BaseMusicCard.getMusicRarityByCost(card.cardID));
+                    ((BaseMusicCard)card).setBanner();
                 }
             }
         }
@@ -35,5 +48,6 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
     @Override
     public void receiveStartGame() {
         allocateCardMaterial();
+        allocateMusicRarity();
     }
 }
