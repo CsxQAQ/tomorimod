@@ -211,20 +211,5 @@ public class BaseSaveData {
                 }
             }
         });
-        BaseMod.addSaveField("SaveMusicReward", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(SaveMusicReward.getInstance().cardId);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    SaveMusicReward.getInstance().cardId = gson.fromJson(jsonElement, new TypeToken<String>() {}.getType());
-                }
-            }
-        });
     }
 }

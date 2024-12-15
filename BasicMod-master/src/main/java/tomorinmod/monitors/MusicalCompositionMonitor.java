@@ -4,7 +4,6 @@ import basemod.helpers.ScreenPostProcessorManager;
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
-import com.evacipated.cardcrawl.mod.stslib.patches.CustomCardReward;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,13 +19,9 @@ import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.CraftingRecipes;
 import tomorinmod.savedata.HistoryCraftRecords;
 import tomorinmod.savedata.SaveMusicDiscoverd;
-import tomorinmod.savedata.SaveMusicReward;
 import tomorinmod.screens.MaterialScreenProcessor;
-import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
-
-import static tomorinmod.BasicMod.makeID;
 
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
@@ -124,7 +119,6 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             card.setRarity(musicRarity);
             //card.setBanner();
             RewardItem musicReward = new MusicReward(card.cardID);
-            SaveMusicReward.getInstance().cardId=card.cardID;
             AbstractDungeon.getCurrRoom().rewards.add(musicReward);
         }
 
