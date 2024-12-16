@@ -43,7 +43,7 @@ public class Stone extends BaseCard {
 
     @Override
     public void setMaterialAndLevel(){
-        this.material= "Stone";
+        this.material= "stone";
         this.level=3;
     }
 }

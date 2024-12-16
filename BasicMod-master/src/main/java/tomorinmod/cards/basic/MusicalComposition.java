@@ -31,7 +31,7 @@ public class MusicalComposition extends BaseCard {
 
     public static boolean isMusicCompositionUsed=false;
 
-    public static ScreenPostProcessor postProcessor = new MaterialScreenProcessor();;
+    //public static ScreenPostProcessor postProcessor = new MaterialScreenProcessor();
 
     //已经在创作中应该要不能用
     @Override
@@ -44,7 +44,7 @@ public class MusicalComposition extends BaseCard {
         isMusicCompositionUsed=true;
         addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
 
-        ScreenPostProcessorManager.addPostProcessor(postProcessor);
+        //ScreenPostProcessorManager.addPostProcessor(postProcessor);
     }
 
 

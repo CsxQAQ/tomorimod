@@ -76,9 +76,9 @@ public class CraftingRecipes implements Clearable {
     }
 
     private ArrayList<String> materials=new ArrayList<>(Arrays.asList(
-            "Stone",
-            "Band",
-            "Watermelonworm"
+            "stone",
+            "band",
+            "watermelonworm"
     ));
 
     private List<String> songNames = Arrays.asList(
@@ -130,9 +130,9 @@ public class CraftingRecipes implements Clearable {
             cardMaterialHashMap.put(card.cardID,getRandomMaterials());
         }
 
-        cardMaterialHashMap.put(makeID("Stone"),"Stone");
-        cardMaterialHashMap.put(makeID("Band"),"Band");
-        cardMaterialHashMap.put(makeID("Watermelonworm"),"Watermelonworm");
+        cardMaterialHashMap.put(makeID("Stone"),"stone");
+        cardMaterialHashMap.put(makeID("Band"),"band");
+        cardMaterialHashMap.put(makeID("Watermelonworm"),"watermelonworm");
     }
 
     public boolean recipeAlreadyHave(Recipe aRecipe){

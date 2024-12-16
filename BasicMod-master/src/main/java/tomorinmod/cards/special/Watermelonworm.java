@@ -48,7 +48,7 @@ public class Watermelonworm extends BaseCard {
 
     @Override
     public void setMaterialAndLevel(){
-        this.material= "Watermelonworm";
+        this.material= "watermelonworm";
         this.level=3;
     }
 }

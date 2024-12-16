@@ -85,7 +85,7 @@ public class NotebookScreen extends CustomScreen
     }
 
     private Texture[] displayedImages = new Texture[3];
-    private Texture notebookImage=new Texture(imagePath("Notebook.png"));
+    private Texture notebookImage=new Texture(imagePath("notebook.png"));
 
     private ArrayList<ArrayList<String>> historyRecords;
 

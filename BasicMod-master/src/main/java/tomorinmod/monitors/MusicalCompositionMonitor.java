@@ -20,6 +20,7 @@ import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.screens.MaterialScreenProcessor;
+import tomorinmod.screens.MaterialUi;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             if(abstractCard instanceof BaseCard){
                 BaseCard baseCard=(BaseCard) abstractCard;
                 if(!baseCard.material.isEmpty()){ //string=""时isEmpty为true
-                    MaterialScreenProcessor.drawImage(baseCard.material);
+                    MaterialUi.getInstance().setMaterial(baseCard.material);
+                    //MaterialScreenProcessor.drawImage(baseCard.material);
                     cardsUsed.add(abstractCard.cardID);
                 }
 
@@ -44,7 +46,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                     getMusic(music);
                     MusicalComposition.isMusicCompositionUsed=false;
                     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
-                    MaterialScreenProcessor.clear();
+                    //MaterialScreenProcessor.clear();
+                    MaterialUi.getInstance().clear();
                 }
             }
         }
@@ -161,13 +164,16 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        ScreenPostProcessorManager.removePostProcessor(MusicalComposition.postProcessor);
+        //ScreenPostProcessorManager.removePostProcessor(MusicalComposition.postProcessor);
+        ScreenPostProcessorManager.removePostProcessor(MaterialScreenProcessor.getInstance());
     }
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
+        ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
         cardsUsed.clear();
-        MaterialScreenProcessor.clear();
+        //MaterialScreenProcessor.clear();
+        MaterialUi.getInstance().clear();
         MusicalComposition.isMusicCompositionUsed=false;
     }
 }

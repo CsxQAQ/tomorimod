@@ -69,7 +69,7 @@ public class Band extends BaseCard {
 
     @Override
     public void setMaterialAndLevel(){
-        this.material= "Band";
+        this.material= "band";
         this.level=3;
     }
 }

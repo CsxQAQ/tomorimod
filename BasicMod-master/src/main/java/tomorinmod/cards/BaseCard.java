@@ -64,12 +64,19 @@ public abstract class BaseCard extends CustomCard {
         if(CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)!=null){
             this.material = CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
         }
-        if(this.rarity==CardRarity.COMMON||this.rarity==CardRarity.BASIC){
-            this.level=1;
-        }else if(this.rarity==CardRarity.UNCOMMON){
-            this.level=2;
-        }else if(this.rarity==CardRarity.RARE){
-            this.level=3;
+        switch (this.rarity) {
+            case COMMON:
+            case BASIC:
+                this.level = 1;
+                break;
+            case UNCOMMON:
+                this.level = 2;
+                break;
+            case RARE:
+                this.level = 3;
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected rarity: " + this.rarity);
         }
     }
 

@@ -17,7 +17,7 @@ public class SaveForm implements Clearable {
     }
 
     // 获取单例实例的静态方法
-    public static synchronized SaveForm getInstance() {
+    public static SaveForm getInstance() {
         if (instance == null) {
             instance = new SaveForm();
         }
