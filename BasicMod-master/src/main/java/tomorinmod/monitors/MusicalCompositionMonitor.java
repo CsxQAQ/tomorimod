@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
+import tomorinmod.effects.MaterialUiDelayClearAction;
 import tomorinmod.powers.Shine;
 import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.customdata.CraftingRecipes;
@@ -27,16 +28,14 @@ import java.util.ArrayList;
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
     public static final ArrayList<String> cardsUsed = new ArrayList<>(3);
-    //private boolean added = false;
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
         if(MusicalComposition.isMusicCompositionUsed){
             if(abstractCard instanceof BaseCard){
                 BaseCard baseCard=(BaseCard) abstractCard;
-                if(!baseCard.material.isEmpty()){ //string=""时isEmpty为true
+                if(!baseCard.material.isEmpty()){
                     MaterialUi.getInstance().setMaterial(baseCard.material);
-                    //MaterialScreenProcessor.drawImage(baseCard.material);
                     cardsUsed.add(abstractCard.cardID);
                 }
 
@@ -46,8 +45,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                     getMusic(music);
                     MusicalComposition.isMusicCompositionUsed=false;
                     AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
-                    //MaterialScreenProcessor.clear();
-                    MaterialUi.getInstance().clear();
+                    AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
+
                 }
             }
         }
@@ -164,15 +163,13 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        //ScreenPostProcessorManager.removePostProcessor(MusicalComposition.postProcessor);
         ScreenPostProcessorManager.removePostProcessor(MaterialScreenProcessor.getInstance());
     }
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
+        //ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
         cardsUsed.clear();
-        //MaterialScreenProcessor.clear();
         MaterialUi.getInstance().clear();
         MusicalComposition.isMusicCompositionUsed=false;
     }

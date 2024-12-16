@@ -43,8 +43,8 @@ public class MusicalComposition extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         isMusicCompositionUsed=true;
         addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
+        ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
 
-        //ScreenPostProcessorManager.addPostProcessor(postProcessor);
     }
 
 

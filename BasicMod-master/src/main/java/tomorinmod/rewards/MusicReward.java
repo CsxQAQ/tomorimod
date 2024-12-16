@@ -39,7 +39,8 @@ public class MusicReward extends CustomReward {
                 BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(baseMusicCard.cardID);
                 if(musicRarity!=null){
                     baseMusicCard.setRarity(musicRarity);
-                    baseMusicCard.setBanner();
+                    //baseMusicCard.setBanner();
+                    baseMusicCard.setDisplayRarity(baseMusicCard.rarity);
 
                     AbstractDungeon.cardRewardScreen.open(new ArrayList<>(Collections.singletonList(baseMusicCard)), this, "选择一张卡牌");
                     AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;

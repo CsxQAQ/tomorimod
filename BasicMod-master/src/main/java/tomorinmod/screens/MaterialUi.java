@@ -17,10 +17,10 @@ public class MaterialUi implements Renderable{
 
     ArrayList<String> materials=new ArrayList<>();
 
-    private static final float SIZE=64.0F;
-    private static final float X0FFSET=138.0F;
-    private static final float Y0FFSET=400.0F;
-    private static final float INTERVAL=200.0F;
+    private static final float SIZE = 100.0F;
+    private static final float X_OFFSET = 115.0F;
+    private static final float Y_OFFSET = 400.0F;
+    private static final float INTERVAL = 200.0F;
 
     private MaterialUi(){
     }
@@ -53,9 +53,10 @@ public class MaterialUi implements Renderable{
 
     @Override
     public void render(SpriteBatch sb) {
-        float yoffset=Y0FFSET;
+        float yoffset=Y_OFFSET;
         for(int i=0;i<materials.size();i++){
-            sb.draw(getMaterialTexture(materials.get(i)), X0FFSET*Settings.scale, yoffset*Settings.scale,SIZE,SIZE);
+            sb.draw(getMaterialTexture(materials.get(i)), X_OFFSET*Settings.scale,
+                    yoffset*Settings.scale,SIZE*Settings.scale,SIZE*Settings.scale);
             yoffset=yoffset+INTERVAL;
         }
     }

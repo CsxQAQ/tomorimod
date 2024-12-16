@@ -2,6 +2,7 @@ package tomorinmod.cards.music;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.customcards.TomorinApotheosis;
 import tomorinmod.savedata.customdata.CraftingRecipes;
@@ -12,6 +13,7 @@ import tomorinmod.util.CustomUtils;
 import static tomorinmod.BasicMod.imagePath;
 
 public abstract class BaseMusicCard extends BaseCard {
+
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
         tags.add(CustomTags.MUSIC);
@@ -60,28 +62,6 @@ public abstract class BaseMusicCard extends BaseCard {
             default:
                 this.musicRarity=MusicRarity.COMMON;
         }
-    }
-
-    public void setBanner(){
-        if(musicRarity==null){
-            return;
-        }
-        switch (musicRarity){
-            case COMMON:
-                setBannerTexture(imagePath("banners/banner_common_512.png"), imagePath("banners/banner_common_1024.png"));
-                break;
-            case UNCOMMON:
-                setBannerTexture(imagePath("banners/banner_uncommon_512.png"), imagePath("banners/banner_uncommon_1024.png"));
-                break;
-            case RARE:
-                setBannerTexture(imagePath("banners/banner_rare_512.png"), imagePath("banners/banner_rare_1024.png"));
-                break;
-            default:
-                setBannerTexture(imagePath("banners/banner_common_512.png"), imagePath("banners/banner_common_1024.png"));
-                break;
-        }
-
-        dataInfoInitialize(); //暂时先放在这里
     }
 
     public static MusicRarity getMusicRarityByCost(String ID) {
@@ -136,7 +116,8 @@ public abstract class BaseMusicCard extends BaseCard {
         //2. MakeTempCardInHandAction，控制台hand add用到这个方法
         if(this.musicRarity!=null){
             musicCard.musicRarity=this.musicRarity;
-            musicCard.setBanner();
+            //musicCard.setBanner();
+            musicCard.setDisplayRarity(rarity);
         }
         musicCard.idForShow=this.idForShow;
         return musicCard;
@@ -224,6 +205,91 @@ public abstract class BaseMusicCard extends BaseCard {
         }
         initializeDescription();
     }
+
+    @Override
+    public void setDisplayRarity(AbstractCard.CardRarity rarity){
+        super.setDisplayRarity(rarity);
+        if(rarity.equals(CardRarity.SPECIAL)){
+            if(musicRarity!=null){
+                switch (musicRarity){
+                    case COMMON:
+                        this.bannerSmallRegion = ImageMaster.CARD_BANNER_COMMON;
+                        this.bannerLargeRegion = ImageMaster.CARD_BANNER_COMMON_L;
+                        switch (this.type) {
+                            case ATTACK:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_COMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_COMMON_L;
+                                break;
+                            case POWER:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_COMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_COMMON_L;
+                                break;
+                            default:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_COMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_COMMON_L;
+                        }
+
+                        this.frameMiddleRegion = ImageMaster.CARD_COMMON_FRAME_MID;
+                        this.frameLeftRegion = ImageMaster.CARD_COMMON_FRAME_LEFT;
+                        this.frameRightRegion = ImageMaster.CARD_COMMON_FRAME_RIGHT;
+                        this.frameMiddleLargeRegion = ImageMaster.CARD_COMMON_FRAME_MID_L;
+                        this.frameLeftLargeRegion = ImageMaster.CARD_COMMON_FRAME_LEFT_L;
+                        this.frameRightLargeRegion = ImageMaster.CARD_COMMON_FRAME_RIGHT_L;
+                        break;
+                    case UNCOMMON:
+                        this.bannerSmallRegion = ImageMaster.CARD_BANNER_UNCOMMON;
+                        this.bannerLargeRegion = ImageMaster.CARD_BANNER_UNCOMMON_L;
+                        switch (this.type) {
+                            case ATTACK:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_UNCOMMON_L;
+                                break;
+                            case POWER:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_UNCOMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_UNCOMMON_L;
+                                break;
+                            default:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_UNCOMMON;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_UNCOMMON_L;
+                        }
+
+                        this.frameMiddleRegion = ImageMaster.CARD_UNCOMMON_FRAME_MID;
+                        this.frameLeftRegion = ImageMaster.CARD_UNCOMMON_FRAME_LEFT;
+                        this.frameRightRegion = ImageMaster.CARD_UNCOMMON_FRAME_RIGHT;
+                        this.frameMiddleLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_MID_L;
+                        this.frameLeftLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_LEFT_L;
+                        this.frameRightLargeRegion = ImageMaster.CARD_UNCOMMON_FRAME_RIGHT_L;
+                        break;
+                    case RARE:
+                        this.bannerSmallRegion = ImageMaster.CARD_BANNER_RARE;
+                        this.bannerLargeRegion = ImageMaster.CARD_BANNER_RARE_L;
+                        switch (this.type) {
+                            case ATTACK:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_RARE;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
+                                break;
+                            case POWER:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_RARE;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_RARE_L;
+                                break;
+                            default:
+                                this.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_RARE;
+                                this.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_RARE_L;
+                        }
+
+                        this.frameMiddleRegion = ImageMaster.CARD_RARE_FRAME_MID;
+                        this.frameLeftRegion = ImageMaster.CARD_RARE_FRAME_LEFT;
+                        this.frameRightRegion = ImageMaster.CARD_RARE_FRAME_RIGHT;
+                        this.frameMiddleLargeRegion = ImageMaster.CARD_RARE_FRAME_MID_L;
+                        this.frameLeftLargeRegion = ImageMaster.CARD_RARE_FRAME_LEFT_L;
+                        this.frameRightLargeRegion = ImageMaster.CARD_RARE_FRAME_RIGHT_L;
+                        break;
+                }
+            }
+        }
+        dataInfoInitialize();
+    }
+
 }
 
 class NumsInfo {
@@ -277,6 +343,8 @@ class NumsInfo {
         this.rareMagic = rareMagic;
         this.rareUpgMagic = rareUpgMagic;
     }
+
+
 }
 
 

@@ -45,7 +45,8 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
                         card.setRarity(BaseMusicCard.MusicRarity.RARE);
                         break;
                 }
-                card.setBanner();
+                //card.setBanner();
+                card.setDisplayRarity(card.rarity);
             }else{
                 card.musicRarity= BaseMusicCard.MusicRarity.COMMON;
             }
