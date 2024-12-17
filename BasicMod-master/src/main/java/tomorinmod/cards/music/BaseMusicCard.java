@@ -144,10 +144,10 @@ public abstract class BaseMusicCard extends BaseCard {
         }
     }
 
-    @Override
-    public void setMaterialAndLevel() {
-
-    }
+//    @Override
+//    public void setMaterialAndLevel() {
+//
+//    }
 
     public enum MusicRarity {
         COMMON(3),

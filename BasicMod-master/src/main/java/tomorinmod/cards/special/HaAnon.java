@@ -38,8 +38,8 @@ public class HaAnon extends BaseCard {
         return new HaAnon();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//
+//    }
 }

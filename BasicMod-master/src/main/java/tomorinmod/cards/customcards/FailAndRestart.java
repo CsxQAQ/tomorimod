@@ -42,9 +42,9 @@ public class FailAndRestart extends BaseCard {
         return new FailAndRestart();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//
+//    }
 
 }

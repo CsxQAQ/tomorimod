@@ -53,10 +53,10 @@ public class MusicalComposition extends BaseCard {
         return new MusicalComposition();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
 
-    }
+//    public void setMaterialAndLevel(){
+//
+//    }
 
 
 }

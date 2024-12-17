@@ -67,9 +67,9 @@ public class Band extends BaseCard {
         return new Band();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-        this.material= "band";
-        this.level=3;
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//        this.material= "band";
+//        this.level=3;
+//    }
 }

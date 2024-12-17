@@ -15,6 +15,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
 import tomorinmod.effects.MaterialUiDelayClearAction;
+import tomorinmod.patches.AbstractCardFieldPatch;
 import tomorinmod.powers.Shine;
 import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.customdata.CraftingRecipes;
@@ -32,23 +33,26 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
         if(MusicalComposition.isMusicCompositionUsed){
-            if(abstractCard instanceof BaseCard){
-                BaseCard baseCard=(BaseCard) abstractCard;
-                if(!baseCard.material.isEmpty()){
-                    MaterialUi.getInstance().setMaterial(baseCard.material);
-                    cardsUsed.add(abstractCard.cardID);
-                }
-
-                if(cardsUsed.size()==3){
-                    String music = matchRecipe();
-                    addHistoryRecipes(music);
-                    getMusic(music);
-                    MusicalComposition.isMusicCompositionUsed=false;
-                    AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
-                    AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
-
-                }
+//            if(abstractCard instanceof BaseCard){
+//                BaseCard baseCard=(BaseCard) abstractCard;
+//                if(!baseCard.material.isEmpty()){
+//                    MaterialUi.getInstance().setMaterial(baseCard.material);
+//                    cardsUsed.add(abstractCard.cardID);
+//                }
+            if(!AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
+                MaterialUi.getInstance().setMaterial(AbstractCardFieldPatch.material.get(abstractCard));
+                cardsUsed.add((abstractCard.cardID));
             }
+            if(cardsUsed.size()==3){
+                String music = matchRecipe();
+                addHistoryRecipes(music);
+                getMusic(music);
+                MusicalComposition.isMusicCompositionUsed=false;
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, Shine.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
+
+                }
+            //}
         }
     }
 
@@ -154,11 +158,12 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         AbstractCard cardObject = CardLibrary.getCard(card);
         if (cardObject == null) return false;
 
-        if(cardObject instanceof BaseCard){
-            BaseCard baseCard=(BaseCard) cardObject;
-            return baseCard.material.equals(recipe) && baseCard.level >= rarity;
-        }
-        return false;
+//        if(cardObject instanceof BaseCard){
+//            BaseCard baseCard=(BaseCard) cardObject;
+//            return baseCard.material.equals(recipe) && baseCard.level >= rarity;
+//        }
+        return AbstractCardFieldPatch.material.get(cardObject).equals(recipe)&&
+                AbstractCardFieldPatch.level.get(cardObject)>=rarity;
     }
 
     @Override

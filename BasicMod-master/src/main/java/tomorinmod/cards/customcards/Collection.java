@@ -92,8 +92,8 @@ public class Collection extends BaseCard {
         }
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//
+//    }
 }

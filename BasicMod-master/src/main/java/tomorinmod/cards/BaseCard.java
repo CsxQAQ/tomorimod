@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import tomorinmod.BasicMod;
+import tomorinmod.patches.AbstractCardFieldPatch;
+import tomorinmod.patches.AbstractCardInsert3Patch;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.RenderUtils;
@@ -31,9 +33,7 @@ public abstract class BaseCard extends CustomCard {
 
     //public static final Set<BaseCard> allInstances = new HashSet<>();
 
-    public String material="";
-    public int level=-1;
-    private Texture ICON=null;
+
 
     @Override
     public void onChoseThisOption() {
@@ -42,50 +42,57 @@ public abstract class BaseCard extends CustomCard {
 
     public BaseCard(String ID, CardStats info) {
         this(ID, info, getCardTextureString(removePrefix(ID), info.cardType));
-        initializeMaterialIcon();
+        //initializeMaterialIcon();
     }
 
-    public void initializeMaterialIcon(){
-        setMaterialAndLevel();
-        try {
-            if(this.material!=""){
-                this.ICON = new Texture(imagePath("materials/" + this.material + ".png"));
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to load icon texture: " + e.getMessage());
-            this.ICON = null;
-        }
-    }
+//    public String material="";
+//    public int level=-1;
+//    private Texture ICON=null;
 
-    public void setMaterialAndLevel(){
-        if(CraftingRecipes.getInstance().cardMaterialHashMap==null){
-            return;
-        }
-        if(CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)!=null){
-            this.material = CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
-        }
-        switch (this.rarity) {
-            case COMMON:
-            case BASIC:
-                this.level = 1;
-                break;
-            case UNCOMMON:
-                this.level = 2;
-                break;
-            case RARE:
-                this.level = 3;
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected rarity: " + this.rarity);
-        }
-    }
+//    public void initializeMaterialIcon(){
+//        setMaterialAndLevel();
+//        try {
+//            if(this.material!=""){
+//                this.ICON = new Texture(imagePath("materials/" + this.material + ".png"));
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Failed to load icon texture: " + e.getMessage());
+//            this.ICON = null;
+//        }
+//    }
+//
+//    public void setMaterialAndLevel(){
+//        if(CraftingRecipes.getInstance().cardMaterialHashMap==null){
+//            return;
+//        }
+//        if(CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID)!=null){
+//            this.material = CraftingRecipes.getInstance().cardMaterialHashMap.get(this.cardID);
+//        }
+//        switch (this.rarity) {
+//            case COMMON:
+//            case BASIC:
+//                this.level = 1;
+//                break;
+//            case UNCOMMON:
+//                this.level = 2;
+//                break;
+//            case RARE:
+//                this.level = 3;
+//                break;
+//            default:
+//                throw new IllegalArgumentException("Unexpected rarity: " + this.rarity);
+//        }
+//    }
 
     //卡牌大全处不会触发render，而是触发renderInLibaray
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        if(this.ICON!=null){
-            RenderUtils.RenderBadge(sb,this,this.ICON,0,this.transparency);
+        //if(this.ICON!=null){
+        if(AbstractCardFieldPatch.ICON.get(this)!=null){
+            //RenderUtils.RenderBadge(sb,this,this.ICON,0,this.transparency);
+            RenderUtils.RenderBadge(sb,this,AbstractCardFieldPatch.ICON.get(this),0,this.transparency);
+
         }
     }
 

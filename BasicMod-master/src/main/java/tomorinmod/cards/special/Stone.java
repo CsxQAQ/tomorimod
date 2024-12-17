@@ -41,9 +41,9 @@ public class Stone extends BaseCard {
         return new Stone();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-        this.material= "stone";
-        this.level=3;
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//        this.material= "stone";
+//        this.level=3;
+//    }
 }

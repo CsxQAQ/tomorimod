@@ -132,9 +132,9 @@ public class GiftBox extends BaseMonmentCard {
         autoUse();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//
+//    }
 
 }

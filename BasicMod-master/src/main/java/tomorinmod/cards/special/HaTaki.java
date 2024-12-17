@@ -38,8 +38,8 @@ public class HaTaki extends BaseCard {
         return new HaTaki();
     }
 
-    @Override
-    public void setMaterialAndLevel(){
-
-    }
+//    @Override
+//    public void setMaterialAndLevel(){
+//
+//    }
 }

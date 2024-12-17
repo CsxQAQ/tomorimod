@@ -39,10 +39,10 @@ public class FailComposition extends BaseCard {
         return new FailComposition();
     }
 
-    @Override
-    public void setMaterialAndLevel() {
-
-    }
+//    @Override
+//    public void setMaterialAndLevel() {
+//
+//    }
 
     @Override
     public void upgrade() {
