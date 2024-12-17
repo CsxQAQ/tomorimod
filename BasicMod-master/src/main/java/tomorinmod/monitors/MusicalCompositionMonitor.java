@@ -15,7 +15,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
 import tomorinmod.effects.MaterialUiDelayClearAction;
-import tomorinmod.patches.AbstractCardFieldPatch;
+import tomorinmod.patches.AbstractCardSetMaterialPatch;
 import tomorinmod.powers.Shine;
 import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.customdata.CraftingRecipes;
@@ -39,8 +39,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 //                    MaterialUi.getInstance().setMaterial(baseCard.material);
 //                    cardsUsed.add(abstractCard.cardID);
 //                }
-            if(!AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
-                MaterialUi.getInstance().setMaterial(AbstractCardFieldPatch.material.get(abstractCard));
+            if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
+                MaterialUi.getInstance().setMaterial(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard));
                 cardsUsed.add((abstractCard.cardID));
             }
             if(cardsUsed.size()==3){
@@ -162,8 +162,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 //            BaseCard baseCard=(BaseCard) cardObject;
 //            return baseCard.material.equals(recipe) && baseCard.level >= rarity;
 //        }
-        return AbstractCardFieldPatch.material.get(cardObject).equals(recipe)&&
-                AbstractCardFieldPatch.level.get(cardObject)>=rarity;
+        return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(cardObject).equals(recipe)&&
+                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(cardObject)>=rarity;
     }
 
     @Override

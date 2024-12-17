@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.patches.SingleRelicViewPopupPreOpenPatch;
+import tomorinmod.patches.SingleRelicViewPopupPatch;
 import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.RenderUtils;
 
@@ -40,7 +40,7 @@ public class MaterialScreenProcessor implements ScreenPostProcessor {
         sb.setColor(Color.WHITE);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA); // 支持透明度
 
-        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.NONE && !SingleRelicViewPopupPreOpenPatch.isRelicWindowOpened){
+        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.NONE && !SingleRelicViewPopupPatch.isRelicWindowOpened){
             for (Renderable item : renderables) {
                 item.render(sb);
             }

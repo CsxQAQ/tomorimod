@@ -5,7 +5,6 @@ import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import tomorinmod.BasicMod;
-import tomorinmod.patches.AbstractCardFieldPatch;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.RenderUtils;
 import tomorinmod.util.TriFunction;
