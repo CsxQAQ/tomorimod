@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.consoles.IncreaseRarityCommon;
+import tomorinmod.consoles.ShowRecipesCommon;
 import tomorinmod.monitors.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
@@ -38,11 +39,10 @@ import org.scannotation.AnnotationDB;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 考虑为每张卡牌设置一个clear方法，用于战斗开始时复原static变量，以防止保存退出后重进出现bug
 //TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
 //TODO 所有对象都判断是否为null
 //TODO 碧天伴走没思路，先放着
-//TODO 查看乐曲合成表的console
+//TODO 弄个patch把素材的逻辑当到AbstractCard里，给原版卡也加上素材
 
 @SpireInitializer
 public class BasicMod implements
@@ -163,6 +163,7 @@ public class BasicMod implements
         RegisterSaveData.saveData();
 
         ConsoleCommand.addCommand("music", IncreaseRarityCommon.class);
+        ConsoleCommand.addCommand("recipe", ShowRecipesCommon.class);
 
 
         //This loads the image used as an icon in the in-game mods menu.
@@ -332,8 +333,6 @@ public class BasicMod implements
 
     @Override
     public void receiveEditCards() {
-        //下策
-        //CraftingRecipes.getInstance();
 
         new AutoAdd(modID) //Loads files from this mod
                 .packageFilter(BaseCard.class) //In the same package as this class
