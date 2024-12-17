@@ -3,6 +3,7 @@ package tomorinmod.savedata.customdata;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.savedata.Clearable;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.util.CustomUtils;
@@ -24,6 +25,15 @@ public class CraftingRecipes implements Clearable {
 
         // 默认构造函数（必须有，Gson 需要用到）
         public Recipe() {
+        }
+
+        @Override
+        public String toString() {
+            return "Recipe{" +
+                    "needs=" + needs +
+                    ", levels=" + levels +
+                    ", music='" + music + '\'' +
+                    '}';
         }
 
         public Recipe(String s1, String s2, String s3, int a1, int a2, int a3, String music) {
@@ -129,13 +139,14 @@ public class CraftingRecipes implements Clearable {
     public void initializeCardsMaterials(){
         //for(AbstractCard card : CustomUtils.getAllModCards()){
         for(AbstractCard card : CardLibrary.getAllCards()){
-
-            cardMaterialHashMap.put(card.cardID,getRandomMaterials());
+            if(!(card instanceof WithoutMaterial)){
+                cardMaterialHashMap.put(card.cardID,getRandomMaterials());
+            }
         }
-
         cardMaterialHashMap.put(makeID("Stone"),"stone");
         cardMaterialHashMap.put(makeID("Band"),"band");
         cardMaterialHashMap.put(makeID("Watermelonworm"),"watermelonworm");
+
     }
 
     public boolean recipeAlreadyHave(Recipe aRecipe){

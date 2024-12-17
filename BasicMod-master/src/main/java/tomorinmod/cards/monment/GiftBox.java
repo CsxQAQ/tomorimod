@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.rewards.AnonReward;
 import tomorinmod.rewards.RanaReward;
@@ -16,7 +17,7 @@ import tomorinmod.util.CardStats;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GiftBox extends BaseMonmentCard {
+public class GiftBox extends BaseMonmentCard implements WithoutMaterial {
     public static final String ID = makeID(GiftBox.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -132,9 +133,5 @@ public class GiftBox extends BaseMonmentCard {
         autoUse();
     }
 
-//    @Override
-//    public void setMaterialAndLevel(){
-//
-//    }
 
 }

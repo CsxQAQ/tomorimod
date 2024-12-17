@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class FailAndRestart extends BaseCard {
+public class FailAndRestart extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(FailAndRestart.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -41,10 +42,5 @@ public class FailAndRestart extends BaseCard {
     public AbstractCard makeCopy() { //Optional
         return new FailAndRestart();
     }
-
-//    @Override
-//    public void setMaterialAndLevel(){
-//
-//    }
 
 }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.cards.special.Band;
 import tomorinmod.cards.special.Stone;
 import tomorinmod.cards.special.Watermelonworm;
@@ -14,7 +15,7 @@ import tomorinmod.util.CardStats;
 
 import java.util.ArrayList;
 
-public class Collection extends BaseCard {
+public class Collection extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(Collection.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -92,8 +93,5 @@ public class Collection extends BaseCard {
         }
     }
 
-//    @Override
-//    public void setMaterialAndLevel(){
-//
-//    }
+
 }

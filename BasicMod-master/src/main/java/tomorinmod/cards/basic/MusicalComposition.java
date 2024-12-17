@@ -7,12 +7,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.InCompositionPower;
 import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.util.CardStats;
 
-public class MusicalComposition extends BaseCard {
+public class MusicalComposition extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(MusicalComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -54,9 +55,6 @@ public class MusicalComposition extends BaseCard {
     }
 
 
-//    public void setMaterialAndLevel(){
-//
-//    }
 
 
 }

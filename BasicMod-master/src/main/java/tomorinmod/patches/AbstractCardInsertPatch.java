@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 
 import static tomorinmod.BasicMod.imagePath;
+import static tomorinmod.BasicMod.makeID;
 
 
 @SpirePatch(
@@ -27,13 +28,6 @@ import static tomorinmod.BasicMod.imagePath;
         }
 )
 public class AbstractCardInsertPatch {
-//    @SpireInsertPatch(
-//            rloc=1
-//
-//    )
-//    public static void insert(AbstractCard __instance){
-//        AbstractCardInsertPatch.initializeMaterialIcon(__instance);
-//    }
     @SpirePostfixPatch
     public static void postFix(AbstractCard __instance){
         initializeMaterialIcon(__instance);
@@ -75,6 +69,8 @@ public class AbstractCardInsertPatch {
                     break;
             }
         }
+        if(card.cardID.equals(makeID("stone"))||card.cardID.equals(makeID("band"))||card.cardID.equals(makeID("watermelonworm"))){
+            AbstractCardFieldPatch.level.set(card,3);
+        }
     }
-
 }

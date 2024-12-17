@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.cards.customcards.TomorinApotheosis;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.tags.CustomTags;
@@ -12,7 +13,7 @@ import tomorinmod.util.CustomUtils;
 
 import static tomorinmod.BasicMod.imagePath;
 
-public abstract class BaseMusicCard extends BaseCard {
+public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial {
 
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
@@ -144,10 +145,7 @@ public abstract class BaseMusicCard extends BaseCard {
         }
     }
 
-//    @Override
-//    public void setMaterialAndLevel() {
-//
-//    }
+
 
     public enum MusicRarity {
         COMMON(3),

@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
 //这个设置为BaseMusicCard可能会出问题
-public class FailComposition extends BaseCard {
+public class FailComposition extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -38,11 +39,6 @@ public class FailComposition extends BaseCard {
     public AbstractCard makeCopy() {
         return new FailComposition();
     }
-
-//    @Override
-//    public void setMaterialAndLevel() {
-//
-//    }
 
     @Override
     public void upgrade() {
