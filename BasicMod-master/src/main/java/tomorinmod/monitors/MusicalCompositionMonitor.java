@@ -61,10 +61,10 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         ArrayList<String> records = new ArrayList<>(4);
         for (String card : cardsUsed) {
             AbstractCard cardObject = CardLibrary.getCard(card);
-            if(cardObject instanceof BaseCard){
-                BaseCard baseCard=(BaseCard)cardObject;
-                records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(baseCard.cardID));
-            }
+            //if(cardObject instanceof BaseCard){
+            //    BaseCard baseCard=(BaseCard)cardObject;
+            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(cardObject.cardID));
+            //}
         }
         records.add(music);
         HistoryCraftRecords.getInstance().historyCraftRecords.add(records);

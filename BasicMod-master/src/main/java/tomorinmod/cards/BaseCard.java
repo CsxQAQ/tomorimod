@@ -3,13 +3,9 @@ package tomorinmod.cards;
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import tomorinmod.BasicMod;
 import tomorinmod.patches.AbstractCardFieldPatch;
-import tomorinmod.patches.AbstractCardInsert3Patch;
-import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.RenderUtils;
 import tomorinmod.util.TriFunction;
@@ -23,7 +19,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.*;
 
-import static tomorinmod.BasicMod.imagePath;
 import static tomorinmod.util.GeneralUtils.removePrefix;
 import static tomorinmod.util.TextureLoader.getCardTextureString;
 
@@ -85,16 +80,16 @@ public abstract class BaseCard extends CustomCard {
 //    }
 
     //卡牌大全处不会触发render，而是触发renderInLibaray
-    @Override
-    public void render(SpriteBatch sb) {
-        super.render(sb);
-        //if(this.ICON!=null){
-        if(AbstractCardFieldPatch.ICON.get(this)!=null){
-            //RenderUtils.RenderBadge(sb,this,this.ICON,0,this.transparency);
-            RenderUtils.RenderBadge(sb,this,AbstractCardFieldPatch.ICON.get(this),0,this.transparency);
-
-        }
-    }
+//    @Override
+//    public void render(SpriteBatch sb) {
+//        super.render(sb);
+//        //if(this.ICON!=null){
+//        if(AbstractCardFieldPatch.ICON.get(this)!=null){
+//            //RenderUtils.RenderBadge(sb,this,this.ICON,0,this.transparency);
+//            RenderUtils.RenderBadge(sb,this,AbstractCardFieldPatch.ICON.get(this),0,this.transparency);
+//
+//        }
+//    }
 
     protected static String makeID(String name) { return BasicMod.makeID(name); }
     protected CardStrings cardStrings;

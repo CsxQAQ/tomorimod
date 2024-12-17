@@ -3,9 +3,8 @@ package tomorinmod.monitors;
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.music.BaseMusicCard;
-import tomorinmod.patches.AbstractCardInsert3Patch;
+import tomorinmod.patches.AbstractCardInsertPatch;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.savedata.customdata.*;
 
@@ -19,7 +18,7 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
 //                if(card instanceof BaseCard){
 //                    ((BaseCard)card).initializeMaterialIcon();
 //                }
-                AbstractCardInsert3Patch.initializeMaterialIcon(card);
+                AbstractCardInsertPatch.initializeMaterialIcon(card);
             }
         }
     }

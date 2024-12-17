@@ -2,6 +2,7 @@ package tomorinmod.savedata.customdata;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorinmod.savedata.Clearable;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.util.CustomUtils;
@@ -126,7 +127,9 @@ public class CraftingRecipes implements Clearable {
     }
 
     public void initializeCardsMaterials(){
-        for(AbstractCard card : CustomUtils.getAllModCards()){
+        //for(AbstractCard card : CustomUtils.getAllModCards()){
+        for(AbstractCard card : CardLibrary.getAllCards()){
+
             cardMaterialHashMap.put(card.cardID,getRandomMaterials());
         }
 

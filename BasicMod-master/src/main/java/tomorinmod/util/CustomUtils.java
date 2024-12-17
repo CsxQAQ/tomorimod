@@ -3,6 +3,7 @@ package tomorinmod.util;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorinmod.cards.BaseCard;
 
 import java.util.ArrayList;
@@ -28,5 +29,11 @@ public class CustomUtils {
         ArrayList<AbstractCard> modCards = BaseMod.getCustomCardsToAdd();
         return modCards;
     }
+
+//    public static ArrayList<AbstractCard> getAllModCards() {
+//        ArrayList<AbstractCard> modCards = CardLibrary.getAllCards();
+//        return modCards;
+//    }
+
 
 }
