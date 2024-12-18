@@ -77,6 +77,12 @@
       " #y形态 ，每当失去生命值时，获得4点 #y格挡 。"
     ]
   },
+  "${modID}:DomainExpansionPower": {
+    "NAME": "领域展开",
+    "DESCRIPTIONS": [
+      " #y形态 ，回合结束时，获得3层 #y重力 。"
+    ]
+  },
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [
