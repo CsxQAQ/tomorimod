@@ -87,6 +87,10 @@
     "NAME": "力量型高松灯",
     "DESCRIPTION": " tomorinmod:形态 ：每当有卡牌被 消耗 时，获得1层 力量 。"
   },
+  "${modID}:Pant": {
+    "NAME": "企鹅",
+    "DESCRIPTION": " tomorinmod:形态 ：每当失去生命值时，获得 !M! 点 格挡 。"
+  },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
   "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",

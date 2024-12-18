@@ -20,7 +20,7 @@ public class ShineTomorin extends BaseFormCard {
     public static final String ID = makeID(ShineTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.POWER,
+            CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
             1

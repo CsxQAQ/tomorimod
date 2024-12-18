@@ -62,7 +62,19 @@
   "${modID}:StrengthTomorinPower": {
     "NAME": "力量型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，每当有卡牌被 #y消耗 时，获得1层 力量 。"
+      " #y形态 ，每当有卡牌被 #y消耗 时，获得1层 #y力量 。"
+    ]
+  },
+  "${modID}:PantPower": {
+    "NAME": "企鹅",
+    "DESCRIPTIONS": [
+      " #y形态 ，每当失去生命值时，获得3点 #y格挡 。"
+    ]
+  },
+  "${modID}:PantPowerUpgraded": {
+    "NAME": "企鹅+",
+    "DESCRIPTIONS": [
+      " #y形态 ，每当失去生命值时，获得4点 #y格挡 。"
     ]
   },
   "${modID}:MemoryInCrychic": {
