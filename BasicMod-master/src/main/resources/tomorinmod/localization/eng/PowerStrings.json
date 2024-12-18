@@ -60,6 +60,13 @@
     ]
   },
 
+  "${modID}:MascotPower": {
+    "NAME": "吉祥物",
+    "DESCRIPTIONS": [
+      " #y形态 ，下个回合开始时，获得 [E] [E] 。"
+    ]
+  },
+
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [

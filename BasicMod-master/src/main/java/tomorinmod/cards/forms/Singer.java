@@ -24,11 +24,7 @@ public class Singer extends BaseFormCard {
         super(ID, info);
         setFormPower();
         baseMagicNumber=1;
-        //setMagic(MAGIC,UPG_MAGIC);
     }
-
-    //private static final int MAGIC = 1;
-    //private static final int UPG_MAGIC = 1;
 
     @Override
     public void setFormPower(){

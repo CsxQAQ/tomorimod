@@ -83,6 +83,10 @@
     "NAME": "主唱",
     "DESCRIPTION": " tomorinmod:形态 ：使用音乐牌时，抽 !M! 张牌。"
   },
+  "${modID}:Mascot": {
+    "NAME": "吉祥物",
+    "DESCRIPTION": " tomorinmod:形态 ：下个回合开始时，获得 [E] [E] 。"
+  },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
   "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",

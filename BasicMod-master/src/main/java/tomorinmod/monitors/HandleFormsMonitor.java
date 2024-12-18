@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.actions.ApplyGravityAction;
 import tomorinmod.actions.ApplyShineAction;
+import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.*;
 import tomorinmod.powers.forms.*;
@@ -20,7 +21,7 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if (AbstractDungeon.player instanceof MyCharacter) {
-
+            BaseFormCard.clear();
             applyCurrentForm(SaveForm.getInstance().getForm());
             applyCurrentFormEffect(SaveForm.getInstance().getForm());
             applyPermanentForms(SavePermanentForm.getInstance().getForms());

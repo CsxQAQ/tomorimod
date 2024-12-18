@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.powers.BasePower;
 
@@ -16,9 +17,8 @@ public class MascotPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-
     public MascotPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0); // 不使用 amount 作为层数
+        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
     }
 
     private boolean isEffected=false;
@@ -28,6 +28,8 @@ public class MascotPower extends BaseFormPower implements FormEffect{
         if(!isEffected){
             applyEffectPower();
             isEffected=true;
+            this.description = CardCrawlGame.languagePack.getPowerStrings(ID).DESCRIPTIONS[0]+"（ #y已生效 ）";
+            //this.updateDescription();
         }
     }
 

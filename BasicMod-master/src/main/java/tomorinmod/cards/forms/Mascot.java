@@ -31,22 +31,20 @@ public class Mascot extends BaseFormCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        addToBot(new ApplyPowerAction(p, p, new MascotPower(p),1));
-
         super.use(p,m);
+        addToBot(new ApplyPowerAction(p, p, new MascotPower(p),1));
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new Mascot();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(0);
         }
     }
 }

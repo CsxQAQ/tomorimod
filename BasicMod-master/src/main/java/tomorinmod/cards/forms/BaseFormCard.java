@@ -34,4 +34,8 @@ public abstract class BaseFormCard extends BaseCard {
         }
             curForm=formPower;
     }
+
+    public static void clear(){
+        curForm="";
+    }
 }
