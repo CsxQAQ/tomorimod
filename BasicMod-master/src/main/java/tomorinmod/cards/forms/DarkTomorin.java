@@ -13,7 +13,6 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.monitors.HandleFormsMonitor;
 import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.relics.MicrophoneRelic;
-import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
 public class DarkTomorin extends BaseFormCard {

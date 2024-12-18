@@ -95,8 +95,6 @@
       " #y形态 ，回合开始时，#预见 3 。"
     ]
   },
-
-
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [
@@ -132,6 +130,12 @@
     "NAME": "大少女乐队时代+",
     "DESCRIPTIONS": [
       "回合开始时，从随机稀有度的3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+    ]
+  },
+  "${modID}:TomorinApotheosisPower": {
+    "NAME": "灯神长街",
+    "DESCRIPTIONS": [
+      "回合开始时，升级所有卡牌。 #y音乐 牌可以无限升级。"
     ]
   }
 }

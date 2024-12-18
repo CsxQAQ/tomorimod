@@ -54,10 +54,4 @@ public class WeAreMygoPower extends BasePower {
                 break;
         }
     }
-
-
-
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
 }

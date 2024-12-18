@@ -35,7 +35,6 @@ public class Shine extends BasePower {
                 abstractPlayer.increaseMaxHp(maxHPOverflow,true);
             }
         }
-
     }
 
     @Override
@@ -45,7 +44,4 @@ public class Shine extends BasePower {
         }
     }
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
 }

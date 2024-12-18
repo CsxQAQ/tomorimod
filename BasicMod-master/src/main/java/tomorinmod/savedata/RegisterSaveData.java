@@ -20,21 +20,21 @@ public class RegisterSaveData {
     }
     public static void saveData() {
         // 注册字段
-        BaseMod.addSaveField("SaveForm", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(SaveForm.getInstance().form);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    SaveForm.getInstance().form = jsonElement.getAsString();
-                }
-            }
-        });
+//        BaseMod.addSaveField("SaveForm", new CustomSavableRaw() {
+//            private final Gson gson = new Gson();
+//
+//            @Override
+//            public JsonElement onSaveRaw() {
+//                return gson.toJsonTree(SaveForm.getInstance().form);
+//            }
+//
+//            @Override
+//            public void onLoadRaw(JsonElement jsonElement) {
+//                if (jsonElement != null) {
+//                    SaveForm.getInstance().form = jsonElement.getAsString();
+//                }
+//            }
+//        });
 
         BaseMod.addSaveField("SavePermanentForm", new CustomSavableRaw() {
             private final Gson gson = new Gson();

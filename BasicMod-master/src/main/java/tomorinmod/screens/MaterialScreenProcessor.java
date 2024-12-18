@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.patches.SingleRelicViewPopupPatch;
-import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.RenderUtils;
 
 import java.util.ArrayList;

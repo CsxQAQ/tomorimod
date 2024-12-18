@@ -14,7 +14,4 @@ public class MemoryInCrychicPower extends BasePower {
     }
 
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
 }

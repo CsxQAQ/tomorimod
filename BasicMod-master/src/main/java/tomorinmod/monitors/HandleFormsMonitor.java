@@ -12,7 +12,6 @@ import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.*;
 import tomorinmod.powers.forms.*;
-import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.savedata.customdata.SavePermanentForm;
 
 import java.util.List;
@@ -22,8 +21,8 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if (AbstractDungeon.player instanceof MyCharacter) {
             BaseFormCard.clear();
-            applyCurrentForm(SaveForm.getInstance().getForm());
-            applyCurrentFormEffect(SaveForm.getInstance().getForm());
+            //applyCurrentForm(SaveForm.getInstance().getForm());
+            //applyCurrentFormEffect(SaveForm.getInstance().getForm());
             applyPermanentForms(SavePermanentForm.getInstance().getForms());
         }
     }

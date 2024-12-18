@@ -15,9 +15,6 @@ public class BigGirlsBandEraPower extends BasePower{
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
     }
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
 
     @Override
     public void atStartOfTurn() {

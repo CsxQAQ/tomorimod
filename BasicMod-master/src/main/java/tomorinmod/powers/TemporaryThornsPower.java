@@ -26,7 +26,4 @@ public class TemporaryThornsPower extends BasePower {
         this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
 }

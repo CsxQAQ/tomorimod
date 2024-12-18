@@ -1,11 +1,13 @@
 package tomorinmod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.TomorinApotheosisPower;
 import tomorinmod.util.CardStats;
 
 public class TomorinApotheosis extends BaseCard {
@@ -28,6 +30,7 @@ public class TomorinApotheosis extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new ApplyPowerAction(p,p,new TomorinApotheosisPower(p),0));
         isTomorinApotheosisUsed=true;
 
     }

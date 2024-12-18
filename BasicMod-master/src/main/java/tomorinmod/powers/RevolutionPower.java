@@ -15,6 +15,7 @@ public class RevolutionPower extends BasePower {
         super(POWER_ID, TYPE, TURN_BASED, owner,0);
     }
 
+    @Override
     public void updateDescription() {
         this.description = DESCRIPTIONS[0]+ Revolution.shines+DESCRIPTIONS[1];
     }

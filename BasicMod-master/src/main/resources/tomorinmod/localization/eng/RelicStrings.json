@@ -55,5 +55,12 @@
     "DESCRIPTIONS": [
       "每当切换到不同的 #y形态 时，触发失去 #y形态 的效果。"
     ]
+  },
+  "${modID}:SystemRelic": {
+    "NAME": "系统",
+    "FLAVOR": "I followed a tutorial!",
+    "DESCRIPTIONS": [
+      " #y形态 效果可以叠加，且 #y形态 效果被视为 #y永久形态 。"
+    ]
   }
 }

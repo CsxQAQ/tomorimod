@@ -3,7 +3,6 @@ package tomorinmod.screens;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import tomorinmod.savedata.customdata.SaveForm;
 
 import java.util.ArrayList;
 

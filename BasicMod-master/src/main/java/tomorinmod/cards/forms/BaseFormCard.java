@@ -10,7 +10,6 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.cards.music.FailComposition;
 import tomorinmod.monitors.HandleFormsMonitor;
-import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
 public abstract class BaseFormCard extends BaseCard {
@@ -27,12 +26,10 @@ public abstract class BaseFormCard extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //String curForm=SaveForm.getInstance().getForm();
         if(curForm!=null&&!curForm.isEmpty()) {
             addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
-            //SaveForm.getInstance().changeForm(formPower);
         }
-            curForm=formPower;
+        curForm=formPower;
     }
 
     public static void clear(){

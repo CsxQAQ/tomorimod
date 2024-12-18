@@ -14,10 +14,6 @@ public class BaseFormPower extends BasePower {
         super(powerID, type, turnBased, owner, amount);
     }
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
-    }
-
     @Override
     public void onRemove(){
         if(AbstractDungeon.player.hasRelic(makeID("MicrophoneRelic"))){
