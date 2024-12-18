@@ -28,8 +28,7 @@ public class MascotPower extends BaseFormPower implements FormEffect{
         if(!isEffected){
             applyEffectPower();
             isEffected=true;
-            this.description = CardCrawlGame.languagePack.getPowerStrings(ID).DESCRIPTIONS[0]+"（ #y已生效 ）";
-            //this.updateDescription();
+            this.description = DESCRIPTIONS[0]+"（ #y已生效 ）";
         }
     }
 

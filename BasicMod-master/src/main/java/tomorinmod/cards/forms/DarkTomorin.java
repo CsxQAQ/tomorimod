@@ -21,7 +21,7 @@ public class DarkTomorin extends BaseFormCard {
     public static final String ID = makeID(DarkTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.POWER,
+            CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,
             1
@@ -30,6 +30,7 @@ public class DarkTomorin extends BaseFormCard {
     public DarkTomorin() {
         super(ID, info);
         setFormPower();
+        exhaust=true;
     }
 
     @Override
@@ -39,22 +40,20 @@ public class DarkTomorin extends BaseFormCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
-        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
         super.use(p,m);
+        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new DarkTomorin();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(0);
         }
     }
 }

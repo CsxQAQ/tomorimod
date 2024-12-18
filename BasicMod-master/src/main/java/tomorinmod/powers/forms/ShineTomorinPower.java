@@ -9,7 +9,7 @@ import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class ShineTomorinPower extends BasePower implements FormEffect{
+public class ShineTomorinPower extends BaseFormPower implements FormEffect{
     public static final String POWER_ID = makeID(ShineTomorinPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
