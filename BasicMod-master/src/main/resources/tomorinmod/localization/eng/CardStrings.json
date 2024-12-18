@@ -95,6 +95,10 @@
     "NAME": "领域展开",
     "DESCRIPTION": " tomorinmod:形态 ：回合结束时，获得 !M! 点 tomorinmod:重力 。"
   },
+  "${modID}:AstronomyMinister": {
+    "NAME": "天文部长",
+    "DESCRIPTION": " tomorinmod:形态 ：回合开始时， 预见 !M! 。"
+  },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
   "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",

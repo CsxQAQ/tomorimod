@@ -83,6 +83,20 @@
       " #y形态 ，回合结束时，获得3层 #y重力 。"
     ]
   },
+  "${modID}:AstronomyMinisterPower": {
+    "NAME": "天文部长",
+    "DESCRIPTIONS": [
+      " #y形态 ，回合开始时，#预见 2 。"
+    ]
+  },
+  "${modID}:AstronomyMinisterPowerUpgraded": {
+    "NAME": "天文部长+",
+    "DESCRIPTIONS": [
+      " #y形态 ，回合开始时，#预见 3 。"
+    ]
+  },
+
+
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [
