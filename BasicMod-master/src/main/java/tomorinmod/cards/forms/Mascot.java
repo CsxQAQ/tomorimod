@@ -1,53 +1,45 @@
 package tomorinmod.cards.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitors.HandleFormsMonitor;
-import tomorinmod.powers.forms.SingerTomorinPower;
-import tomorinmod.savedata.customdata.SaveForm;
+import tomorinmod.powers.forms.MascotPower;
 import tomorinmod.util.CardStats;
 
-public class SingerTomorin extends BaseFormCard {
+public class Mascot extends BaseFormCard {
 
-    public static final String ID = makeID(SingerTomorin.class.getSimpleName());
+    public static final String ID = makeID(Mascot.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.BASIC,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
 
-    public SingerTomorin() {
+    public Mascot() {
         super(ID, info);
         setFormPower();
     }
 
     @Override
     public void setFormPower(){
-        formPower="SingerTomorinPower";
-
+        formPower="MascotPower";
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-
-        addToBot(new ApplyPowerAction(p, p, new SingerTomorinPower(p),1));
+        addToBot(new ApplyPowerAction(p, p, new MascotPower(p),1));
 
         super.use(p,m);
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new SingerTomorin();
+        return new Mascot();
     }
 
     @Override

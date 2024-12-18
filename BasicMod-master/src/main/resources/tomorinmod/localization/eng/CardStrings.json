@@ -79,9 +79,9 @@
     "NAME": "闪耀型高松灯",
     "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 闪耀 。"
   },
-  "${modID}:SingerTomorin": {
+  "${modID}:Singer": {
     "NAME": "主唱",
-    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时抽一张牌，获得一点 [E] 。"
+    "DESCRIPTION": " tomorinmod:形态 ：使用音乐牌时，抽 !M! 张牌。"
   },
   "${modID}:GiftBox": {
   "NAME": "礼物盒",

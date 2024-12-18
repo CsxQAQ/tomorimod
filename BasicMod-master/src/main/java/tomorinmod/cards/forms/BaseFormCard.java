@@ -13,33 +13,25 @@ import tomorinmod.monitors.HandleFormsMonitor;
 import tomorinmod.savedata.customdata.SaveForm;
 import tomorinmod.util.CardStats;
 
-public abstract class BaseFormCard extends BaseMonmentCard {
+public abstract class BaseFormCard extends BaseCard {
 
     public String formPower;
 
+    public static String curForm="";
+
     public BaseFormCard(String ID, CardStats info) {
         super(ID, info);
-        //tags.add(CardTags.HEALING);
     }
 
     abstract public void setFormPower();
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        String curForm=SaveForm.getInstance().getForm();
-
-        if(curForm!=null&&!curForm.isEmpty()){
-            if(!curForm.equals(formPower)) {
-                if(AbstractDungeon.player.hasRelic(makeID("MicrophoneRelic"))) {
-                    AbstractRelic relic = AbstractDungeon.player.getRelic(makeID("MicrophoneRelic"));
-                    relic.flash();
-                    HandleFormsMonitor.applyCurrentFormEffect(curForm);
-                }
-                addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
-                SaveForm.getInstance().changeForm(formPower);
-            }
+        //String curForm=SaveForm.getInstance().getForm();
+        if(curForm!=null&&!curForm.isEmpty()) {
+            addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
+            //SaveForm.getInstance().changeForm(formPower);
         }
-
-        super.use(p,m);
+            curForm=formPower;
     }
 }

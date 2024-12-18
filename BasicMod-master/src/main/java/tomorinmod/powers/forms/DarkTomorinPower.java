@@ -39,4 +39,6 @@ public class DarkTomorinPower extends BasePower implements FormEffect{
     public void applyEffectPower() {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new RitualPower(AbstractDungeon.player, 1, true), 1));
     }
+
+
 }

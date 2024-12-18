@@ -15,11 +15,22 @@ import static tomorinmod.BasicMod.imagePath;
 
 public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial {
 
+    protected int musicUpgradeDamage;
+    protected int musicUpgradeBlock;
+    protected int musicUpgradeMagic;
+
+    private String idForShow;
+
+    private NumsInfo numsInfo;
+
+    public MusicRarity musicRarity;
+
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
         tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
         this.numsInfo = numsInfo;
+        this.musicRarity=MusicRarity.COMMON;
 
         //只是为了正确显示
         setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
@@ -33,20 +44,8 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         this.idForShow=ID;
     }
 
-    protected int musicUpgradeDamage;
-    protected int musicUpgradeBlock;
-    protected int musicUpgradeMagic;
-
-    private String idForShow;
-
-    private NumsInfo numsInfo;
-
-    public MusicRarity musicRarity;
-
-
     public void setRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
-
     }
 
     public void setRarityByCommond(int level) {

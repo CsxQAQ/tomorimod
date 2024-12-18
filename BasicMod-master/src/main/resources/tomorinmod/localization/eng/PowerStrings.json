@@ -47,10 +47,16 @@
       " #y形态 ，战斗开始时，获得4点 #y闪耀 。"
     ]
   },
-  "${modID}:SingerTomorinPower": {
+  "${modID}:SingerPower": {
     "NAME": "主唱",
     "DESCRIPTIONS": [
-      " #y形态 ，战斗开始时，抽一张牌，获得一点 [E] 。"
+      " #y形态 ，使用音乐牌时，抽1张牌。"
+    ]
+  },
+  "${modID}:SingerPowerUpgraded": {
+    "NAME": "主唱+",
+    "DESCRIPTIONS": [
+      " #y形态 ，使用音乐牌时，抽2张牌。"
     ]
   },
 
