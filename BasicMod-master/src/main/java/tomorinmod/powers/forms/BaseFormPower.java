@@ -25,6 +25,6 @@ public class BaseFormPower extends BasePower {
                 ((FormEffect)this).applyEffectPower();
             }
         }
-        super.onRemove();
+        //super.onRemove();
     }
 }

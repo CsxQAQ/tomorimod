@@ -1,6 +1,7 @@
 package tomorinmod.powers.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -15,11 +16,12 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
     private static final boolean TURN_BASED = true;
 
     public StrengthTomorinPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0); // 不使用 amount 作为层数
+        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
     }
 
-    public void updateDescription() {
-        this.description = DESCRIPTIONS[0];
+    @Override
+    public void onExhaust(AbstractCard card) {
+        applyEffectPower();
     }
 
     @Override
@@ -31,6 +33,6 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 4), 4));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
     }
 }

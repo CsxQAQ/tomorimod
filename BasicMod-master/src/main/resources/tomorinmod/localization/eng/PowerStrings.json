@@ -23,12 +23,6 @@
       "回合结束时，随机获得2层 #y重力 ，1层 #y闪耀 ，1层 #y无实体 ，5层 #y多重护甲 。"
     ]
   },
-  "${modID}:StrengthTomorinPower": {
-    "NAME": "力量型高松灯",
-    "DESCRIPTIONS": [
-      " #y形态 ，战斗开始时，获得4点 #y力量 。"
-    ]
-  },
   "${modID}:GravityTomorinPower": {
     "NAME": "重力型高松灯",
     "DESCRIPTIONS": [
@@ -63,6 +57,12 @@
     "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
       " #y形态 ，被移除时，获得1点 #y仪式 。"
+    ]
+  },
+  "${modID}:StrengthTomorinPower": {
+    "NAME": "力量型高松灯",
+    "DESCRIPTIONS": [
+      " #y形态 ，每当有卡牌被 #y消耗 时，获得1层 力量 。"
     ]
   },
   "${modID}:MemoryInCrychic": {

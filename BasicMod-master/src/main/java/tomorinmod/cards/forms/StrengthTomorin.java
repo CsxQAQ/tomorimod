@@ -19,10 +19,10 @@ public class StrengthTomorin extends BaseFormCard {
     public static final String ID = makeID(StrengthTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.POWER,
+            CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
     public StrengthTomorin() {
@@ -38,22 +38,20 @@ public class StrengthTomorin extends BaseFormCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-
-        addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p),1));
-
         super.use(p,m);
+        addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p),1));
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new StrengthTomorin();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(1);
         }
     }
 }
