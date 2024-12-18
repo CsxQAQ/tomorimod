@@ -41,13 +41,13 @@ public class Singer extends BaseFormCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        super.use(p,m);  //super得放上面
         if(!upgraded){
             addToBot(new ApplyPowerAction(p, p, new SingerPower(p),1));
         }else{
             addToBot(new ApplyPowerAction(p, p, new SingerPowerUpgraded(p),1));
         }
 
-        super.use(p,m);
     }
 
     @Override
