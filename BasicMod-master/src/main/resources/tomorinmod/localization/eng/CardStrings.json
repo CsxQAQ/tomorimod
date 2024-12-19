@@ -75,6 +75,10 @@
     "NAME": "领域展开",
     "DESCRIPTION": " tomorinmod:形态 ：回合结束时，获得 !M! 点 tomorinmod:重力 。"
   },
+  "${modID}:Pant": {
+    "NAME": "企鹅",
+    "DESCRIPTION": " tomorinmod:形态 ：每当失去生命值时，获得 !M! 点 格挡 。"
+  },
   "${modID}:Singer": {
     "NAME": "主唱",
     "DESCRIPTION": " tomorinmod:形态 ：使用音乐牌时，抽 !M! 张牌。"
@@ -88,10 +92,7 @@
     "NAME": "力量型高松灯",
     "DESCRIPTION": " tomorinmod:形态 ：每当有卡牌被 消耗 时，获得1层 力量 。"
   },
-  "${modID}:Pant": {
-    "NAME": "企鹅",
-    "DESCRIPTION": " tomorinmod:形态 ：每当失去生命值时，获得 !M! 点 格挡 。"
-  },
+
 
 
   "${modID}:GiftBox": {

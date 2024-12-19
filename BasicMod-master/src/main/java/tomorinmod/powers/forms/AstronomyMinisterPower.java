@@ -33,7 +33,7 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
         if(!upgraded){
             description=DESCRIPTIONS[0]+magicNumber+"。";
         }else{
-            description=DESCRIPTIONS[0]+magicNumber+"。（已升级）";
+            description=DESCRIPTIONS[0]+magicNumber+"。（ #y已升级 ）";
         }
     }
 

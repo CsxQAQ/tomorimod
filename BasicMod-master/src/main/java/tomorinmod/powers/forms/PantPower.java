@@ -15,8 +15,23 @@ public class PantPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public PantPower(AbstractCreature owner,int amount) {
+    private int magicNumber;
+    private boolean upgraded;
+
+    public PantPower(AbstractCreature owner,int amount,int magicNumber,boolean upgraded) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        this.magicNumber=magicNumber;
+        this.upgraded=upgraded;
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        if(!upgraded){
+            description=DESCRIPTIONS[0]+magicNumber+"层 格挡 。";
+        }else{
+            description=DESCRIPTIONS[0]+magicNumber+"层 格挡 。（ #y已升级 ）";
+        }
     }
 
     @Override
@@ -32,7 +47,7 @@ public class PantPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
-        addToTop(new GainBlockAction(AbstractDungeon.player,3));
+        addToTop(new GainBlockAction(AbstractDungeon.player,magicNumber));
     }
 
 

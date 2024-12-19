@@ -19,29 +19,18 @@ public class Pant extends BaseFormCard {
             1
     );
 
+    public final static int MAGIC = 3;
+    public final static int UPG_MAGIC = 1;
+
     public Pant() {
         super(ID, info);
         setPowerName();
-        baseMagicNumber=3;
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void setPowerName(){
-        if(!upgraded){
-            formName ="PantPower";
-        }else{
-            formName ="PantPowerUpgraded";
-        }
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p,m);
-        if(!upgraded){
-            addToBot(new ApplyPowerAction(p, p, new PantPower(p,1),1));
-        }else{
-            addToBot(new ApplyPowerAction(p, p, new PantPowerUpgraded(p,1),1));
-        }
+        formName ="PantPower";
     }
 
     @Override
@@ -53,8 +42,7 @@ public class Pant extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            setPowerName();
-            baseMagicNumber++;
+            upgradeMagicNumber(magicUpgrade);
         }
     }
 }
