@@ -21,12 +21,12 @@ public class Pant extends BaseFormCard {
 
     public Pant() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
         baseMagicNumber=3;
     }
 
     @Override
-    public void setFormPower(){
+    public void setPowerName(){
         if(!upgraded){
             formName ="PantPower";
         }else{
@@ -53,7 +53,7 @@ public class Pant extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            setFormPower();
+            setPowerName();
             baseMagicNumber++;
         }
     }

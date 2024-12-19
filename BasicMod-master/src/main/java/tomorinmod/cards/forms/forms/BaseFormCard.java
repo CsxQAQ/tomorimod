@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.powers.forms.AstronomyMinisterPower;
+import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.savedata.customdata.SavePermanentForm;
 import tomorinmod.util.CardStats;
 
@@ -28,13 +29,18 @@ public abstract class BaseFormCard extends BaseCard {
                 (player) -> new AstronomyMinisterPower(player, 1, AstronomyMinister.MAGIC,false));
         powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC,true),
                 (player) -> new AstronomyMinisterPower(player, 1, AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC,true));
+        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC,false),
+                (player) -> new DarkTomorinPower(player, 1,DarkTomorin.MAGIC));
+        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC,true),
+                (player) -> new DarkTomorinPower(player, 1,DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC));
     }
 
     public BaseFormCard(String ID, CardStats info) {
         super(ID, info);
+
     }
 
-    abstract public void setFormPower();
+    abstract public void setPowerName();
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -46,8 +52,10 @@ public abstract class BaseFormCard extends BaseCard {
         }else{
             SavePermanentForm.getInstance().getForms().add(formName);
         }
-        addToBot(new ApplyPowerAction(p, p,
-                powerMap.get(new FormInfo(formName, magicNumber,upgraded)).apply(p), 1));
+        if(powerMap.get(new FormInfo(formName, magicNumber,upgraded))!=null){
+            addToBot(new ApplyPowerAction(p, p,
+                    powerMap.get(new FormInfo(formName, magicNumber,upgraded)).apply(p), 1));
+        }
     }
 
     public static void clear(){

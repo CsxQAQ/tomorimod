@@ -23,11 +23,11 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
         applyEffectPower();
     }
 
-    @Override
-    public void applyFormPower() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new DomainExpansionPower(AbstractDungeon.player,1), 1));
-    }
+//    @Override
+//    public void applyFormPower() {
+//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
+//                AbstractDungeon.player, new DomainExpansionPower(AbstractDungeon.player,1), 1));
+//    }
 
     @Override
     public void applyEffectPower() {

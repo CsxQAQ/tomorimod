@@ -2,6 +2,7 @@ package tomorinmod.powers.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import tomorinmod.actions.ApplyGravityAction;
@@ -14,8 +15,17 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public DarkTomorinPower(AbstractCreature owner,int amount) {
+    private int magicNumber;
+
+    public DarkTomorinPower(AbstractCreature owner,int amount,int magicNumber) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        this.magicNumber=magicNumber;
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        description=DESCRIPTIONS[0]+magicNumber+ "点 #y仪式 。"; //tmd power不带EXTEND_DESCRAPTIONS
     }
 
     @Override
@@ -24,16 +34,16 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
         super.onRemove();
     }
 
-    @Override
-    public void applyFormPower() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new DarkTomorinPower(AbstractDungeon.player,1), 1));
-    }
+//    @Override
+//    public void applyFormPower() {
+//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
+//                AbstractDungeon.player, new DarkTomorinPower(AbstractDungeon.player,1), 1));
+//    }
 
     @Override
     public void applyEffectPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new RitualPower(AbstractDungeon.player, 1, true), 1));
+                AbstractDungeon.player, new RitualPower(AbstractDungeon.player, magicNumber, true), magicNumber));
     }
 
 

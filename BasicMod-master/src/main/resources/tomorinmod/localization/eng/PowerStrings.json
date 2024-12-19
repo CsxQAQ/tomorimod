@@ -41,12 +41,6 @@
       " #y形态 ，使用音乐牌时，抽1张牌。"
     ]
   },
-  "${modID}:SingerPowerUpgraded": {
-    "NAME": "主唱+",
-    "DESCRIPTIONS": [
-      " #y形态 ，使用音乐牌时，抽2张牌。"
-    ]
-  },
   "${modID}:MascotPower": {
     "NAME": "吉祥物",
     "DESCRIPTIONS": [
@@ -56,7 +50,7 @@
   "${modID}:DarkTomorinPower": {
     "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，被移除时，获得1点 #y仪式 。"
+      " #y形态 ，被移除时，获得"
     ]
   },
   "${modID}:StrengthTomorinPower": {
@@ -71,12 +65,6 @@
       " #y形态 ，每当失去生命值时，获得3点 #y格挡 。"
     ]
   },
-  "${modID}:PantPowerUpgraded": {
-    "NAME": "企鹅+",
-    "DESCRIPTIONS": [
-      " #y形态 ，每当失去生命值时，获得4点 #y格挡 。"
-    ]
-  },
   "${modID}:DomainExpansionPower": {
     "NAME": "领域展开",
     "DESCRIPTIONS": [
@@ -87,12 +75,6 @@
     "NAME": "天文部长",
     "DESCRIPTIONS": [
       " #y形态 ，回合开始时， #y预见 "
-    ]
-  },
-  "${modID}:AstronomyMinisterPowerUpgraded": {
-    "NAME": "天文部长+",
-    "DESCRIPTIONS": [
-      " #y形态 ，回合开始时，#预见 3 。"
     ]
   },
   "${modID}:MemoryInCrychic": {

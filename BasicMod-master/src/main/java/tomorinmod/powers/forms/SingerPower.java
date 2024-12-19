@@ -27,11 +27,11 @@ public class SingerPower extends BaseFormPower implements FormEffect{
         }
     }
 
-    @Override
-    public void applyFormPower() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new SingerPower(AbstractDungeon.player,1), 1));
-    }
+//    @Override
+//    public void applyFormPower() {
+//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
+//                AbstractDungeon.player, new SingerPower(AbstractDungeon.player,1), 1));
+//    }
 
     @Override
     public void applyEffectPower() {

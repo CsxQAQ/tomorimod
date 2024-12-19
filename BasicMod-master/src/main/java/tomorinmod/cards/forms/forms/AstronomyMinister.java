@@ -19,31 +19,15 @@ public class AstronomyMinister extends BaseFormCard {
 
     public AstronomyMinister() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
     }
 
 
     @Override
-    public void setFormPower(){
-//        if(!upgraded){
-//            formPower="AstronomyMinisterPower";
-//        }else{
-//            formPower="AstronomyMinisterPowerUpgraded";
-//        }
+    public void setPowerName(){
         formName ="AstronomyMinisterPower";
     }
-
-//    @Override
-//    public void use(AbstractPlayer p, AbstractMonster m) {
-//        super.use(p,m);
-////        if(!upgraded){
-////            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPower(p,1,magicNumber),1));
-////        }else{
-////            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPowerUpgraded(p,1),1));
-////        }
-//        addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPower(p,1,magicNumber),1));
-//    }
 
     @Override
     public AbstractCard makeCopy() {
@@ -54,7 +38,6 @@ public class AstronomyMinister extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //setFormPower();
             upgradeMagicNumber(magicUpgrade);
         }
     }

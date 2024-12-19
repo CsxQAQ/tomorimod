@@ -1,11 +1,7 @@
 package tomorinmod.cards.forms.forms;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.util.CardStats;
 
 public class DarkTomorin extends BaseFormCard {
@@ -19,21 +15,19 @@ public class DarkTomorin extends BaseFormCard {
             1
     );
 
+    public final static int MAGIC = 1;
+    public final static int UPG_MAGIC = 0;
+
     public DarkTomorin() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
+        setMagic(MAGIC,UPG_MAGIC);
         exhaust=true;
     }
 
     @Override
-    public void setFormPower(){
+    public void setPowerName(){
         formName ="DarkTomorinPower";
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p,1),1));
     }
 
     @Override

@@ -12,7 +12,7 @@ import tomorinmod.cards.music.BaseMusicCard;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class AstronomyMinisterPower extends BaseFormPower{
+public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     public static final String POWER_ID = makeID(AstronomyMinisterPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
@@ -49,6 +49,7 @@ public class AstronomyMinisterPower extends BaseFormPower{
 //    }
 
 
+    @Override
     public void applyEffectPower() {
         addToBot(new ScryAction(magicNumber));
     }

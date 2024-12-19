@@ -21,11 +21,11 @@ public class Mascot extends BaseFormCard {
 
     public Mascot() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
     }
 
     @Override
-    public void setFormPower(){
+    public void setPowerName(){
         formName ="MascotPower";
     }
 

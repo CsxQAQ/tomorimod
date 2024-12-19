@@ -21,11 +21,11 @@ public class StrengthTomorin extends BaseFormCard {
 
     public StrengthTomorin() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
     }
 
     @Override
-    public void setFormPower(){
+    public void setPowerName(){
         formName ="StrengthTomorinPower";
     }
 

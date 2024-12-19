@@ -21,12 +21,12 @@ public class Singer extends BaseFormCard {
 
     public Singer() {
         super(ID, info);
-        setFormPower();
+        setPowerName();
         baseMagicNumber=1;
     }
 
     @Override
-    public void setFormPower(){
+    public void setPowerName(){
         if(!upgraded){
             formName ="SingerPower";
         }else{
@@ -54,7 +54,7 @@ public class Singer extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            setFormPower();
+            setPowerName();
             baseMagicNumber++;
         }
     }

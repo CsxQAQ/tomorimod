@@ -63,13 +63,13 @@
     "NAME": "逆向思维",
     "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
   },
-  "${modID}:GravityTomorin": {
-    "NAME": "重力型高松灯",
-    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 tomorinmod:重力 。"
+  "${modID}:AstronomyMinister": {
+    "NAME": "天文部长",
+    "DESCRIPTION": " tomorinmod:形态 ：回合开始时， 预见 !M! 。"
   },
-  "${modID}:ShineTomorin": {
-    "NAME": "闪耀型高松灯",
-    "DESCRIPTION": " tomorinmod:形态 ：战斗开始时获得4层 闪耀 。"
+  "${modID}:DarkTomorin": {
+    "NAME": "暗黑型高松灯",
+    "DESCRIPTION": " 消耗 ， tomorinmod:形态 ：被移除时，获得 !M! 层 仪式 。"
   },
   "${modID}:Singer": {
     "NAME": "主唱",
@@ -79,10 +79,7 @@
     "NAME": "吉祥物",
     "DESCRIPTION": " tomorinmod:形态 ：下个回合开始时，获得 [E] [E] 。"
   },
-  "${modID}:DarkTomorin": {
-    "NAME": "暗黑型高松灯",
-    "DESCRIPTION": " 消耗 ， tomorinmod:形态 ：被移除时，获得1层 仪式 。"
-  },
+
   "${modID}:StrengthTomorin": {
     "NAME": "力量型高松灯",
     "DESCRIPTION": " tomorinmod:形态 ：每当有卡牌被 消耗 时，获得1层 力量 。"
@@ -95,10 +92,7 @@
     "NAME": "领域展开",
     "DESCRIPTION": " tomorinmod:形态 ：回合结束时，获得 !M! 点 tomorinmod:重力 。"
   },
-  "${modID}:AstronomyMinister": {
-    "NAME": "天文部长",
-    "DESCRIPTION": " tomorinmod:形态 ：回合开始时， 预见 !M! 。"
-  },
+
   "${modID}:GiftBox": {
   "NAME": "礼物盒",
   "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorinmod:瞬间 ，回合开始时若此牌在手牌中 tomorinmod:翻面 。",

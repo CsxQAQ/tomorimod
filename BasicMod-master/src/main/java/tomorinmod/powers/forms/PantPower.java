@@ -24,11 +24,11 @@ public class PantPower extends BaseFormPower implements FormEffect{
         applyEffectPower();
     }
 
-    @Override
-    public void applyFormPower() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new PantPower(AbstractDungeon.player,1), 1));
-    }
+//    @Override
+//    public void applyFormPower() {
+//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
+//                AbstractDungeon.player, new PantPower(AbstractDungeon.player,1), 1));
+//    }
 
     @Override
     public void applyEffectPower() {

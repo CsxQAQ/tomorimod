@@ -24,12 +24,12 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
         applyEffectPower();
     }
 
-    @Override
-    public void applyFormPower() {
-        AbstractDungeon.actionManager.addToBottom(
-                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthTomorinPower(AbstractDungeon.player,1), 1)
-        );
-    }
+//    @Override
+//    public void applyFormPower() {
+//        AbstractDungeon.actionManager.addToBottom(
+//                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthTomorinPower(AbstractDungeon.player,1), 1)
+//        );
+//    }
 
     @Override
     public void applyEffectPower() {
