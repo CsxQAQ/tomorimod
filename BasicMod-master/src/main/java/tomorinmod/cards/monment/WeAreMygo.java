@@ -29,7 +29,7 @@ public class WeAreMygo extends BaseMonmentCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p),1));
 
-        SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
+        //SavePermanentForm.getInstance().getForms().add("WeAreMygoPower");
         //CustomUtils.addTags(this, CustomTags.MOMENT);
         super.use(p,m);
     }

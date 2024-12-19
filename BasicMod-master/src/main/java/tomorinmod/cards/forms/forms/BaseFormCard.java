@@ -24,6 +24,32 @@ public abstract class BaseFormCard extends BaseCard {
 
     public static Map<FormInfo, Function<AbstractPlayer, AbstractPower>> powerMap = new HashMap<>();
 
+    public BaseFormCard(String ID, CardStats info) {
+        super(ID, info);
+    }
+
+    abstract public void setPowerName();
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        if(!AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
+            if(curForm!=null&&!curForm.isEmpty()) {
+                addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
+            }
+            curForm= formName;
+        }else{
+            SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber,upgraded));
+        }
+        if(powerMap.get(new FormInfo(formName, magicNumber,upgraded))!=null){
+            addToBot(new ApplyPowerAction(p, p,
+                    powerMap.get(new FormInfo(formName, magicNumber,upgraded)).apply(p), 1));
+        }
+    }
+
+    public static void clear(){
+        curForm="";
+    }
+
     static {
         powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC,false),
                 (player) -> new AstronomyMinisterPower(player, 1, AstronomyMinister.MAGIC,false));
@@ -53,33 +79,6 @@ public abstract class BaseFormCard extends BaseCard {
                 (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC));
         powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC,true),
                 (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC));
-    }
-
-    public BaseFormCard(String ID, CardStats info) {
-        super(ID, info);
-
-    }
-
-    abstract public void setPowerName();
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if(!AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
-            if(curForm!=null&&!curForm.isEmpty()) {
-                addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
-            }
-            curForm= formName;
-        }else{
-            SavePermanentForm.getInstance().getForms().add(formName);
-        }
-        if(powerMap.get(new FormInfo(formName, magicNumber,upgraded))!=null){
-            addToBot(new ApplyPowerAction(p, p,
-                    powerMap.get(new FormInfo(formName, magicNumber,upgraded)).apply(p), 1));
-        }
-    }
-
-    public static void clear(){
-        curForm="";
     }
 
     public static class FormInfo {

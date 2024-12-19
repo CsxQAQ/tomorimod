@@ -42,7 +42,7 @@ public class Revolution extends BaseMonmentCard {
 
         addToBot(new ApplyPowerAction(p, p, new RevolutionPower(p), 1));
 
-        SavePermanentForm.getInstance().getForms().add("RevolutionPower");
+        //SavePermanentForm.getInstance().getForms().add("RevolutionPower");
         //CustomUtils.addTags(this, CustomTags.MOMENT);
         super.use(p,m);
     }

@@ -5,6 +5,7 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import tomorinmod.cards.forms.forms.BaseFormCard;
 import tomorinmod.cards.monment.Revolution;
 import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.cards.music.Chunriying;
@@ -47,7 +48,7 @@ public class RegisterSaveData {
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    SavePermanentForm.getInstance().forms = gson.fromJson(jsonElement, new TypeToken<ArrayList<String>>() {}.getType());
+                    SavePermanentForm.getInstance().forms = gson.fromJson(jsonElement, new TypeToken<ArrayList<BaseFormCard.FormInfo>>() {}.getType());
                 }
             }
         });
