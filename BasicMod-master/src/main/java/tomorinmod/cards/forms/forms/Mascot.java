@@ -19,20 +19,18 @@ public class Mascot extends BaseFormCard {
             1
     );
 
+    public final static int MAGIC = 0;
+    public final static int UPG_MAGIC = 0;
+
     public Mascot() {
         super(ID, info);
         setPowerName();
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void setPowerName(){
         formName ="MascotPower";
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new MascotPower(p,1),1));
     }
 
     @Override

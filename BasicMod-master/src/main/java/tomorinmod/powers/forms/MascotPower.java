@@ -17,11 +17,14 @@ public class MascotPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public MascotPower(AbstractCreature owner,int amount) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-    }
-
+    private int magicNumber;
     private boolean isEffected=false;
+
+    public MascotPower(AbstractCreature owner,int amount,int magicNumber) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        this.magicNumber=magicNumber;
+        updateDescription();
+    }
 
     @Override
     public void atStartOfTurn() {

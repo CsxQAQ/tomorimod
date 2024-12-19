@@ -10,6 +10,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.powers.forms.AstronomyMinisterPower;
 import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.powers.forms.DomainExpansionPower;
+import tomorinmod.powers.forms.MascotPower;
 import tomorinmod.savedata.customdata.SavePermanentForm;
 import tomorinmod.util.CardStats;
 
@@ -38,6 +39,10 @@ public abstract class BaseFormCard extends BaseCard {
                 (player) -> new DomainExpansionPower(player, 1,DomainExpansion.MAGIC));
         powerMap.put(new FormInfo("DomainExpansionPower", DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC,true),
                 (player) -> new DomainExpansionPower(player, 1,DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC));
+        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC,false),
+                (player) -> new MascotPower(player, 1,Mascot.MAGIC));
+        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC+Mascot.UPG_MAGIC,true),
+                (player) -> new MascotPower(player, 1,Mascot.MAGIC+Mascot.UPG_MAGIC));
     }
 
     public BaseFormCard(String ID, CardStats info) {
