@@ -19,21 +19,19 @@ public class DomainExpansion extends BaseFormCard {
             2
     );
 
+    public final static int MAGIC = 3;
+    public final static int UPG_MAGIC = 0;
+
     public DomainExpansion() {
         super(ID, info);
         setPowerName();
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void setPowerName(){
         formName ="DomainExpansionPower";
     }
-
-//    @Override
-//    public void use(AbstractPlayer p, AbstractMonster m) {
-//        super.use(p,m);
-//        addToBot(new ApplyPowerAction(p, p, new DomainExpansionPower(p,1),1));
-//    }
 
     @Override
     public AbstractCard makeCopy() {

@@ -71,6 +71,10 @@
     "NAME": "暗黑型高松灯",
     "DESCRIPTION": " 消耗 ， tomorinmod:形态 ：被移除时，获得 !M! 层 仪式 。"
   },
+  "${modID}:DomainExpansion": {
+    "NAME": "领域展开",
+    "DESCRIPTION": " tomorinmod:形态 ：回合结束时，获得 !M! 点 tomorinmod:重力 。"
+  },
   "${modID}:Singer": {
     "NAME": "主唱",
     "DESCRIPTION": " tomorinmod:形态 ：使用音乐牌时，抽 !M! 张牌。"
@@ -88,10 +92,7 @@
     "NAME": "企鹅",
     "DESCRIPTION": " tomorinmod:形态 ：每当失去生命值时，获得 !M! 点 格挡 。"
   },
-  "${modID}:DomainExpansion": {
-    "NAME": "领域展开",
-    "DESCRIPTION": " tomorinmod:形态 ：回合结束时，获得 !M! 点 tomorinmod:重力 。"
-  },
+
 
   "${modID}:GiftBox": {
   "NAME": "礼物盒",

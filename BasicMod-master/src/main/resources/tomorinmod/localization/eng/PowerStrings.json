@@ -23,16 +23,22 @@
       "回合结束时，随机获得2层 #y重力 ，1层 #y闪耀 ，1层 #y无实体 ，5层 #y多重护甲 。"
     ]
   },
-  "${modID}:GravityTomorinPower": {
-    "NAME": "重力型高松灯",
+  "${modID}:AstronomyMinisterPower": {
+    "NAME": "天文部长",
     "DESCRIPTIONS": [
-      " #y形态 ，战斗开始时，获得4点 #y重力 。"
+      " #y形态 ，回合开始时， #y预见 "
     ]
   },
-  "${modID}:ShineTomorinPower": {
-    "NAME": "闪耀型高松灯",
+  "${modID}:DarkTomorinPower": {
+    "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，战斗开始时，获得4点 #y闪耀 。"
+      " #y形态 ，被移除时，获得"
+    ]
+  },
+  "${modID}:DomainExpansionPower": {
+    "NAME": "领域展开",
+    "DESCRIPTIONS": [
+      " #y形态 ，回合结束时，获得"
     ]
   },
   "${modID}:SingerPower": {
@@ -47,12 +53,7 @@
       " #y形态 ，下个回合开始时，获得 [E] [E] 。"
     ]
   },
-  "${modID}:DarkTomorinPower": {
-    "NAME": "暗黑型高松灯",
-    "DESCRIPTIONS": [
-      " #y形态 ，被移除时，获得"
-    ]
-  },
+
   "${modID}:StrengthTomorinPower": {
     "NAME": "力量型高松灯",
     "DESCRIPTIONS": [
@@ -65,18 +66,8 @@
       " #y形态 ，每当失去生命值时，获得3点 #y格挡 。"
     ]
   },
-  "${modID}:DomainExpansionPower": {
-    "NAME": "领域展开",
-    "DESCRIPTIONS": [
-      " #y形态 ，回合结束时，获得3层 #y重力 。"
-    ]
-  },
-  "${modID}:AstronomyMinisterPower": {
-    "NAME": "天文部长",
-    "DESCRIPTIONS": [
-      " #y形态 ，回合开始时， #y预见 "
-    ]
-  },
+
+
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [
