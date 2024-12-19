@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Shine;
 
 import static tomorinmod.BasicMod.makeID;
 

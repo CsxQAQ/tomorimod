@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;
@@ -40,9 +41,10 @@ public class MascotPower extends BaseFormPower implements FormEffect{
     }
 
     @Override
-    public void onInitialApplication() {
-        isEffected=false;
-        updateDescription();
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+        if(power.name.equals(this.name)){
+            isEffected=false;
+        }
     }
 
 //    @Override

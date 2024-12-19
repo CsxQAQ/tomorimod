@@ -11,19 +11,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.music.*;
 import tomorinmod.effects.MaterialUiDelayClearAction;
 import tomorinmod.patches.AbstractCardSetMaterialPatch;
 import tomorinmod.powers.InCompositionPower;
-import tomorinmod.powers.Shine;
 import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.screens.MaterialScreenProcessor;
-import tomorinmod.screens.MaterialUi;
+import tomorinmod.ui.MaterialUi;
 
 import java.util.ArrayList;
 

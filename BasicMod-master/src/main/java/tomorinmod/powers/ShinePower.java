@@ -11,12 +11,12 @@ import tomorinmod.cards.customcards.TwoFish;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class Shine extends BasePower {
-    public static final String POWER_ID = makeID(Shine.class.getSimpleName());
+public class ShinePower extends BasePower {
+    public static final String POWER_ID = makeID(ShinePower.class.getSimpleName());
     private static final AbstractPower.PowerType TYPE = AbstractPower.PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    public Shine(AbstractCreature owner, int amount) {
+    public ShinePower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.amount = amount;
         //updateGravityInteraction(); // 初始化时检查并处理 Gravity

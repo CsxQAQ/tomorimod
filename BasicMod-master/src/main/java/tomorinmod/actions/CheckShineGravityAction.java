@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.customcards.MygoTogether;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
+import tomorinmod.powers.GravityPower;
+import tomorinmod.powers.ShinePower;
 
 public class CheckShineGravityAction extends AbstractGameAction {
     private final AbstractCreature target;
@@ -24,8 +24,8 @@ public class CheckShineGravityAction extends AbstractGameAction {
             return;
         }
 
-        AbstractPower shine = target.getPower(Shine.POWER_ID);
-        AbstractPower gravity = target.getPower(Gravity.POWER_ID);
+        AbstractPower shine = target.getPower(ShinePower.POWER_ID);
+        AbstractPower gravity = target.getPower(GravityPower.POWER_ID);
 
         if (shine != null && gravity != null) {
             int reduceAmount = Math.min(shine.amount, gravity.amount);
@@ -36,10 +36,10 @@ public class CheckShineGravityAction extends AbstractGameAction {
 
             // 移除层数为 0 的 Power
             if (shine.amount <= 0) {
-                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, Shine.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, ShinePower.POWER_ID));
             }
             if (gravity.amount <= 0) {
-                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, Gravity.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(target, target, GravityPower.POWER_ID));
             }
         }
 

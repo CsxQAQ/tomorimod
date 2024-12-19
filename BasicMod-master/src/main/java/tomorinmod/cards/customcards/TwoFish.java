@@ -10,8 +10,8 @@ import tomorinmod.actions.ApplyGravityAction;
 import tomorinmod.actions.ApplyShineAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
+import tomorinmod.powers.GravityPower;
+import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
 public class TwoFish extends BaseCard {
@@ -50,8 +50,8 @@ public class TwoFish extends BaseCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
-        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
+        AbstractPower shine = AbstractDungeon.player.getPower(ShinePower.POWER_ID);
+        AbstractPower gravity = AbstractDungeon.player.getPower(GravityPower.POWER_ID);
 
         int shineAmount = (shine != null) ? shine.amount : 0;
         int gravityAmount = (gravity != null) ? gravity.amount : 0;

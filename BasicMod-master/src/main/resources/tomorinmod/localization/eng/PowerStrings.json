@@ -5,13 +5,13 @@
       "You are Very Cool and Strong."
     ]
   },
-  "${modID}:Gravity": {
+  "${modID}:GravityPower": {
     "NAME": "重力",
     "DESCRIPTIONS": [
       "回合结束时对所有敌人造成等同于 #y重力 层数的伤害，与 #y闪耀 相互抵消"
     ]
   },
-  "${modID}:Shine": {
+  "${modID}:ShinePower": {
     "NAME": "闪耀",
     "DESCRIPTIONS": [
       "回合开始时恢复等同于 #y闪耀 层数的生命值，与 #y重力 相互抵消。"

@@ -1,15 +1,6 @@
 package tomorinmod.relics;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import tomorinmod.actions.CheckShineGravityAction;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
 
 import static tomorinmod.BasicMod.makeID;
 

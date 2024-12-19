@@ -4,16 +4,14 @@ import basemod.interfaces.ScreenPostProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.patches.SingleRelicViewPopupPatch;
-import tomorinmod.util.RenderUtils;
+import tomorinmod.ui.FrameUi;
+import tomorinmod.ui.MaterialUi;
 
 import java.util.ArrayList;
-
-import static tomorinmod.BasicMod.imagePath;
 
 public class MaterialScreenProcessor implements ScreenPostProcessor {
 

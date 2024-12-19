@@ -1,14 +1,15 @@
-package tomorinmod.screens;
+package tomorinmod.ui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import tomorinmod.screens.Renderable;
 
 import java.util.ArrayList;
 
 import static tomorinmod.BasicMod.imagePath;
 
-public class MaterialUi implements Renderable{
+public class MaterialUi implements Renderable {
 
     private static final Texture TextureStone = new Texture(imagePath("materials/" + "stone.png"));
     private static final Texture TextureBand = new Texture(imagePath("materials/" + "band.png"));

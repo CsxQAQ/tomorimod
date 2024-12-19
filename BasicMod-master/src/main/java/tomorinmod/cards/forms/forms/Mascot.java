@@ -19,7 +19,7 @@ public class Mascot extends BaseFormCard {
             1
     );
 
-    public final static int MAGIC = 0;
+    public final static int MAGIC = 2;
     public final static int UPG_MAGIC = 0;
 
     public Mascot() {

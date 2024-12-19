@@ -3,8 +3,7 @@ package tomorinmod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
+import tomorinmod.powers.GravityPower;
 
 public class ApplyGravityAction extends AbstractGameAction {
 
@@ -14,7 +13,7 @@ public class ApplyGravityAction extends AbstractGameAction {
     }
 
     public void update() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new Gravity(AbstractDungeon.player, amount), amount));
+        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new GravityPower(AbstractDungeon.player, amount), amount));
         addToBot(new CheckShineGravityAction(AbstractDungeon.player));
         isDone=true;
     }

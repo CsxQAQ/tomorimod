@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
 public class WhiteMoonlight extends BaseMonmentCard {
@@ -33,7 +33,7 @@ public class WhiteMoonlight extends BaseMonmentCard {
         }else{
             addToBot(new HealAction(p,p, (p.maxHealth - p.currentHealth)));
         }
-        addToBot(new RemoveSpecificPowerAction(p, p, Gravity.POWER_ID));
+        addToBot(new RemoveSpecificPowerAction(p, p, GravityPower.POWER_ID));
         //CustomUtils.addTags(this, CustomTags.MOMENT);
         super.use(p,m);
     }

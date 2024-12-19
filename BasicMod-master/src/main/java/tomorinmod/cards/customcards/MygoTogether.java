@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
-import tomorinmod.powers.Shine;
+import tomorinmod.powers.GravityPower;
+import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
 public class MygoTogether extends BaseCard {
@@ -35,8 +35,8 @@ public class MygoTogether extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         isMygoTogetherUsed=true;
-        addToBot(new ApplyPowerAction(p, p, new Gravity(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new Shine(p,this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GravityPower(p,this.magicNumber),this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new ShinePower(p,this.magicNumber),this.magicNumber));
     }
 
     @Override

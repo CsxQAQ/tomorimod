@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
 public class Mingwusheng extends BaseMusicCard {
@@ -58,7 +58,7 @@ public class Mingwusheng extends BaseMusicCard {
             addToBot(new GainEnergyAction(2));
         }
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new ApplyPowerAction(p, p, new Gravity(p, magicNumber), magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new GravityPower(p, magicNumber), magicNumber));
     }
 
     @Override

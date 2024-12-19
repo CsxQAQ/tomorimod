@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitors.LunfuyuMonitor;
-import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
 public class Qianzaibiaoming extends BaseMusicCard {
@@ -68,8 +67,8 @@ public class Qianzaibiaoming extends BaseMusicCard {
         super.update();
         int gravityAmount=0;
         if(AbstractDungeon.player!=null){
-            if(AbstractDungeon.player.getPower(Gravity.POWER_ID)!=null){
-                gravityAmount=AbstractDungeon.player.getPower(Gravity.POWER_ID).amount;
+            if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
+                gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
             }
         }
         if(musicRarity!=null){

@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
 public class LifelongBand extends BaseCard {
@@ -38,7 +38,7 @@ public class LifelongBand extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower gravity = p.getPower(Gravity.POWER_ID);
+        AbstractPower gravity = p.getPower(GravityPower.POWER_ID);
 
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         if (gravity != null) {
@@ -56,7 +56,7 @@ public class LifelongBand extends BaseCard {
     }
 
     private void updateDescription() {
-        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
+        AbstractPower gravity = AbstractDungeon.player.getPower(GravityPower.POWER_ID);
 
         if (gravity==null||gravity.amount<=0){
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+

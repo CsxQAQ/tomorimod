@@ -59,17 +59,35 @@ public abstract class BasePower extends AbstractPower {
             String unPrefixed = GeneralUtils.removePrefix(id);
             Texture normalTexture = TextureLoader.getPowerTexture(unPrefixed);
             Texture hiDefImage = TextureLoader.getHiDefPowerTexture(unPrefixed);
-            if (hiDefImage != null)
-            {
+
+
+            if (hiDefImage != null) {
+                // 高分辨率纹理存在时，优先使用
                 region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
-                if (normalTexture != null)
+                if (normalTexture != null) {
+                    // 同时加载低分辨率纹理（备用）
                     region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+                }
+            } else if (normalTexture != null) {
+                // 如果没有高分辨率纹理，用低分辨率纹理填充高分辨率区域
+                region128 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+                region48 = region128; // 低分辨率作为备用
+            } else {
+                // 无可用纹理时，抛出错误或提供默认纹理
+                System.err.println("Error: No texture found for power: " + id);
             }
-            else
-            {
-                this.img = normalTexture;
-                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
-            }
+
+//            if (hiDefImage != null)
+//            {
+//                region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
+//                if (normalTexture != null)
+//                    region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+//            }
+//            else
+//            {
+//                this.img = normalTexture;
+//                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
+//            }
         }
 
         if (initDescription)

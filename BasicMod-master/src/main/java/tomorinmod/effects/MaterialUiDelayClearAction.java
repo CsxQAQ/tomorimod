@@ -1,11 +1,7 @@
 package tomorinmod.effects;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import tomorinmod.screens.FrameUi;
-import tomorinmod.screens.MaterialScreenProcessor;
-import tomorinmod.screens.MaterialUi;
+import tomorinmod.ui.MaterialUi;
 
 public class MaterialUiDelayClearAction extends AbstractGameAction {
 

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Gravity;
+import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
 public class NeedAnon extends BaseCard {
@@ -28,7 +28,7 @@ public class NeedAnon extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower gravity = AbstractDungeon.player.getPower(Gravity.POWER_ID);
+        AbstractPower gravity = AbstractDungeon.player.getPower(GravityPower.POWER_ID);
 
         int gravityAmount = gravity != null ? gravity.amount : 0;
         gravity.amount = gravityAmount*2;

@@ -23,6 +23,6 @@ public class RevolutionPower extends BasePower {
     @Override
     public void onInitialApplication() {
         addToBot(new ApplyPowerAction(this.owner, this.owner,
-                new Shine(this.owner, Revolution.shines), Revolution.shines));
+                new ShinePower(this.owner, Revolution.shines), Revolution.shines));
     }
 }

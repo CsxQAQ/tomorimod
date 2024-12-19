@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.Shine;
+import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
 public class Poem extends BaseCard {
@@ -28,7 +28,7 @@ public class Poem extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower shine = p.getPower(Shine.POWER_ID);
+        AbstractPower shine = p.getPower(ShinePower.POWER_ID);
         if (shine != null) {
             for (int i = 0; i < shine.amount; i++) {
                 addToBot(new GainEnergyAction(1));
@@ -57,7 +57,7 @@ public class Poem extends BaseCard {
     }
 
     private void updateDescription() {
-        AbstractPower shine = AbstractDungeon.player.getPower(Shine.POWER_ID);
+        AbstractPower shine = AbstractDungeon.player.getPower(ShinePower.POWER_ID);
 
         if (shine==null||shine.amount<=0){
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+

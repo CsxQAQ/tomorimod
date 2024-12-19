@@ -20,8 +20,7 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     public AstronomyMinisterPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.amount=amount;
-        this.updateDescription(); //basePower类会在构造方法中调用该方法，
-        // 也就是magicNumbber还没初始化updateDescription就被调用了，所以要再调用一遍
+        this.updateDescription();
     }
 
     @Override
