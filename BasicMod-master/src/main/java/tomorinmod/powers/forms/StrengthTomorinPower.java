@@ -15,17 +15,16 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    private int magicNumber;
 
-    public StrengthTomorinPower(AbstractCreature owner,int amount,int magicNumber) {
+    public StrengthTomorinPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.magicNumber=magicNumber;
+        this.amount=amount;
         updateDescription();
     }
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+magicNumber+ "层 #y力量 。";
+        description=DESCRIPTIONS[0]+amount+ "层 #y力量 。";
     }
 
     @Override
@@ -42,6 +41,7 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
+                AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, amount), amount));
     }
 }

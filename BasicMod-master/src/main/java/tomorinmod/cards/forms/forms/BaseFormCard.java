@@ -38,11 +38,11 @@ public abstract class BaseFormCard extends BaseCard {
             }
             curForm= formName;
         }else{
-            SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber,upgraded));
+            SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber));
         }
-        if(powerMap.get(new FormInfo(formName, magicNumber,upgraded))!=null){
+        if(powerMap.get(new FormInfo(formName, magicNumber))!=null){
             addToBot(new ApplyPowerAction(p, p,
-                    powerMap.get(new FormInfo(formName, magicNumber,upgraded)).apply(p), 1));
+                    powerMap.get(new FormInfo(formName, magicNumber)).apply(p), magicNumber));
         }
     }
 
@@ -51,54 +51,46 @@ public abstract class BaseFormCard extends BaseCard {
     }
 
     static {
-        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC,false),
-                (player) -> new AstronomyMinisterPower(player, 1, AstronomyMinister.MAGIC,false));
-        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC,true),
-                (player) -> new AstronomyMinisterPower(player, 1, AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC,true));
-        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC,false),
-                (player) -> new DarkTomorinPower(player, 1,DarkTomorin.MAGIC));
-        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC,true),
-                (player) -> new DarkTomorinPower(player, 1,DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC));
-        powerMap.put(new FormInfo("DomainExpansionPower", DomainExpansion.MAGIC,false),
-                (player) -> new DomainExpansionPower(player, 1,DomainExpansion.MAGIC));
-        powerMap.put(new FormInfo("DomainExpansionPower", DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC,true),
-                (player) -> new DomainExpansionPower(player, 1,DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC));
-        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC,false),
-                (player) -> new MascotPower(player, 1,Mascot.MAGIC));
-        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC+Mascot.UPG_MAGIC,true),
-                (player) -> new MascotPower(player, 1,Mascot.MAGIC+Mascot.UPG_MAGIC));
-        powerMap.put(new FormInfo("PantPower", Pant.MAGIC,false),
-                (player) -> new PantPower(player, 1, Pant.MAGIC,false));
-        powerMap.put(new FormInfo("PantPower", Pant.MAGIC+Pant.UPG_MAGIC,true),
-                (player) -> new PantPower(player, 1, Pant.MAGIC+Pant.UPG_MAGIC,true));
-        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC,false),
-                (player) -> new SingerPower(player, 1, Singer.MAGIC,false));
-        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC+Singer.UPG_MAGIC,true),
-                (player) -> new SingerPower(player, 1, Singer.MAGIC+Singer.UPG_MAGIC,true));
-        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC,false),
-                (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC));
-        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC,true),
-                (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC));
+        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC),
+                (player) -> new AstronomyMinisterPower(player,  AstronomyMinister.MAGIC));
+        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC),
+                (player) -> new AstronomyMinisterPower(player,  AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC));
+        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC),
+                (player) -> new DarkTomorinPower(player, DarkTomorin.MAGIC));
+        powerMap.put(new FormInfo("DarkTomorinPower", DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC),
+                (player) -> new DarkTomorinPower(player, DarkTomorin.MAGIC+DarkTomorin.UPG_MAGIC));
+        powerMap.put(new FormInfo("DomainExpansionPower", DomainExpansion.MAGIC),
+                (player) -> new DomainExpansionPower(player, DomainExpansion.MAGIC));
+        powerMap.put(new FormInfo("DomainExpansionPower", DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC),
+                (player) -> new DomainExpansionPower(player, DomainExpansion.MAGIC+DomainExpansion.UPG_MAGIC));
+        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC),
+                (player) -> new MascotPower(player, Mascot.MAGIC));
+        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC+Mascot.UPG_MAGIC),
+                (player) -> new MascotPower(player, Mascot.MAGIC+Mascot.UPG_MAGIC));
+        powerMap.put(new FormInfo("PantPower", Pant.MAGIC),
+                (player) -> new PantPower(player,Pant.MAGIC));
+        powerMap.put(new FormInfo("PantPower", Pant.MAGIC+Pant.UPG_MAGIC),
+                (player) -> new PantPower(player,  Pant.MAGIC+Pant.UPG_MAGIC));
+        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC),
+                (player) -> new SingerPower(player,  Singer.MAGIC));
+        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC+Singer.UPG_MAGIC),
+                (player) -> new SingerPower(player,  Singer.MAGIC+Singer.UPG_MAGIC));
+        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC),
+                (player) -> new StrengthTomorinPower(player,  StrengthTomorin.MAGIC));
+        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC),
+                (player) -> new StrengthTomorinPower(player,  StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC));
     }
 
     public static class FormInfo {
 
-        private String powerName;
-        private int magicNumber;
-        private boolean upgraded;
-
-        public FormInfo(String powerName, int magicNumber, boolean upgraded) {
-            this.powerName = powerName;
-            this.magicNumber = magicNumber;
-            this.upgraded = upgraded;
-        }
+        public String powerName;
+        public int amount;
 
         @Override
         public String toString() {
             return "FormInfo{" +
                     "powerName='" + powerName + '\'' +
-                    ", magicNumber=" + magicNumber +
-                    ", upgraded=" + upgraded +
+                    ", amount=" + amount +
                     '}';
         }
 
@@ -107,12 +99,17 @@ public abstract class BaseFormCard extends BaseCard {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             FormInfo formInfo = (FormInfo) o;
-            return magicNumber == formInfo.magicNumber && upgraded == formInfo.upgraded && Objects.equals(powerName, formInfo.powerName);
+            return amount == formInfo.amount && Objects.equals(powerName, formInfo.powerName);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(powerName, magicNumber, upgraded);
+            return Objects.hash(powerName, amount);
+        }
+
+        public FormInfo(String powerName, int amount) {
+            this.powerName = powerName;
+            this.amount = amount;
         }
     }
 }

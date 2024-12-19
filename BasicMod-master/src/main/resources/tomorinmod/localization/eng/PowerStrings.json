@@ -44,7 +44,7 @@
   "${modID}:MascotPower": {
     "NAME": "吉祥物",
     "DESCRIPTIONS": [
-      " #y形态 ，下个回合开始时，获得 [E] [E] 。"
+      " #y形态 ，下个回合开始时，获得"
     ]
   },
   "${modID}:PantPower": {

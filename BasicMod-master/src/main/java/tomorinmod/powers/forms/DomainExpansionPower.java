@@ -14,11 +14,10 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    private int magicNumber;
 
-    public DomainExpansionPower(AbstractCreature owner,int amount,int magicNumber) {
+    public DomainExpansionPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.magicNumber=magicNumber;
+        this.amount=amount;
         updateDescription();
     }
 
@@ -29,7 +28,7 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+magicNumber+ "层 #y重力 。";
+        description=DESCRIPTIONS[0]+amount+ "层 #y重力 。";
     }
 //    @Override
 //    public void applyFormPower() {
@@ -39,6 +38,6 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
-        addToBot(new ApplyGravityAction(magicNumber));
+        addToBot(new ApplyGravityAction(amount));
     }
 }

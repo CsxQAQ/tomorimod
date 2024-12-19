@@ -29,10 +29,10 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
     }
 
     public static void applyPermanentForms(List<BaseFormCard.FormInfo> permanentForms) {
-        for (BaseFormCard.FormInfo form : permanentForms) {
-            if(BaseFormCard.powerMap.get(form)!=null){
+        for (BaseFormCard.FormInfo formInfo : permanentForms) {
+            if(BaseFormCard.powerMap.get(formInfo)!=null){
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                                BaseFormCard.powerMap.get(form).apply(AbstractDungeon.player), 1));
+                                BaseFormCard.powerMap.get(formInfo).apply(AbstractDungeon.player), formInfo.amount));
 
             }
         }

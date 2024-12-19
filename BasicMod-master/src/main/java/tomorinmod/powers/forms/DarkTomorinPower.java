@@ -15,17 +15,16 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    private int magicNumber;
 
-    public DarkTomorinPower(AbstractCreature owner,int amount,int magicNumber) {
+    public DarkTomorinPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.magicNumber=magicNumber;
+        this.amount=amount;
         updateDescription();
     }
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+magicNumber+ "点 #y仪式 。"; //tmd power不带EXTEND_DESCRAPTIONS
+        description=DESCRIPTIONS[0]+amount+ "点 #y仪式 。"; //tmd power不带EXTEND_DESCRAPTIONS
     }
 
     @Override
@@ -43,7 +42,7 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
     @Override
     public void applyEffectPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new RitualPower(AbstractDungeon.player, magicNumber, true), magicNumber));
+                AbstractDungeon.player, new RitualPower(AbstractDungeon.player, amount, true), amount));
     }
 
 

@@ -17,24 +17,16 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    private int magicNumber;
-    private boolean upgraded;
-
-    public AstronomyMinisterPower(AbstractCreature owner,int amount,int magicNumber, boolean upgraded) {
+    public AstronomyMinisterPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.magicNumber=magicNumber;
-        this.upgraded=upgraded;
+        this.amount=amount;
         this.updateDescription(); //basePower类会在构造方法中调用该方法，
         // 也就是magicNumbber还没初始化updateDescription就被调用了，所以要再调用一遍
     }
 
     @Override
     public void updateDescription(){
-        if(!upgraded){
-            description=DESCRIPTIONS[0]+magicNumber+"。";
-        }else{
-            description=DESCRIPTIONS[0]+magicNumber+"。（ #y已升级 ）";
-        }
+        description=DESCRIPTIONS[0]+amount+"。";
     }
 
     @Override
@@ -51,6 +43,6 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
-        addToBot(new ScryAction(magicNumber));
+        addToBot(new ScryAction(amount));
     }
 }
