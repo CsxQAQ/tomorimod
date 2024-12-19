@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorinmod.actions.FormPowerChangeBlueAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.powers.forms.*;
 import tomorinmod.savedata.customdata.SavePermanentForm;
@@ -36,14 +37,16 @@ public abstract class BaseFormCard extends BaseCard {
             if(curForm!=null&&!curForm.isEmpty()) {
                 addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
             }
-            curForm= formName;
         }else{
             SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber));
+
         }
+        curForm= formName;
         if(powerMap.get(new FormInfo(formName, magicNumber))!=null){
             addToBot(new ApplyPowerAction(p, p,
                     powerMap.get(new FormInfo(formName, magicNumber)).apply(p), magicNumber));
         }
+        addToBot(new FormPowerChangeBlueAction(formName));
     }
 
     public static void clear(){
