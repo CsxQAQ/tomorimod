@@ -28,9 +28,9 @@ public class Singer extends BaseFormCard {
     @Override
     public void setFormPower(){
         if(!upgraded){
-            formPower="SingerPower";
+            formName ="SingerPower";
         }else{
-            formPower="SingerPowerUpgraded";
+            formName ="SingerPowerUpgraded";
         }
     }
 

@@ -86,7 +86,7 @@
   "${modID}:AstronomyMinisterPower": {
     "NAME": "天文部长",
     "DESCRIPTIONS": [
-      " #y形态 ，回合开始时，#预见 2 。"
+      " #y形态 ，回合开始时， #y预见 "
     ]
   },
   "${modID}:AstronomyMinisterPowerUpgraded": {

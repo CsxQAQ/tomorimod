@@ -28,9 +28,9 @@ public class Pant extends BaseFormCard {
     @Override
     public void setFormPower(){
         if(!upgraded){
-            formPower="PantPower";
+            formName ="PantPower";
         }else{
-            formPower="PantPowerUpgraded";
+            formName ="PantPowerUpgraded";
         }
     }
 

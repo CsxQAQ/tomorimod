@@ -27,7 +27,7 @@ public class DomainExpansion extends BaseFormCard {
 
     @Override
     public void setFormPower(){
-        formPower="DomainExpansionPower";
+        formName ="DomainExpansionPower";
     }
 
     @Override

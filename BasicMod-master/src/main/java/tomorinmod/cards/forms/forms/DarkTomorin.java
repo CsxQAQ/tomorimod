@@ -27,7 +27,7 @@ public class DarkTomorin extends BaseFormCard {
 
     @Override
     public void setFormPower(){
-        formPower="DarkTomorinPower";
+        formName ="DarkTomorinPower";
     }
 
     @Override

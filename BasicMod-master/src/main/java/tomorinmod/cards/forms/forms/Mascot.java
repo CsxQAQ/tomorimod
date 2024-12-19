@@ -26,7 +26,7 @@ public class Mascot extends BaseFormCard {
 
     @Override
     public void setFormPower(){
-        formPower="MascotPower";
+        formName ="MascotPower";
     }
 
     @Override

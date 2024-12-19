@@ -26,7 +26,7 @@ public class StrengthTomorin extends BaseFormCard {
 
     @Override
     public void setFormPower(){
-        formPower="StrengthTomorinPower";
+        formName ="StrengthTomorinPower";
     }
 
     @Override
