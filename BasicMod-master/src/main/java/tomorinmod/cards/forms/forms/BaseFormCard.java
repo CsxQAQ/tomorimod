@@ -39,7 +39,14 @@ public abstract class BaseFormCard extends BaseCard {
             }
         }else{
             SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber));
-
+            if(!curForm.equals(formName)&&AbstractDungeon.player.hasPower(makeID("DarkTomorinPower"))){
+                for(AbstractPower power:p.powers){
+                    if(power instanceof DarkTomorinPower){
+                        ((DarkTomorinPower)power).applyEffectPower();
+                        break;
+                    }
+                }
+            }
         }
         curForm= formName;
         if(powerMap.get(new FormInfo(formName, magicNumber))!=null){

@@ -43,9 +43,10 @@ import java.util.*;
 //TODO 所有对象都判断是否为null
 //TODO 碧天伴走没思路，先放着，新歌
 
-//TODO 让所有形态效果有数量来适配系统，取消Upgraded的power，用一个来解决
-//TODO 直接用层数解决升级和不升级形态的适配问题
 //TODO 瞬间在玩家卡组那里加一个特效
+
+//TODO 形态牌差一个能量的
+//TODO 修改暗黑形高松灯的效果，改为切换形态时（否则系统后就没用了）
 
 @SpireInitializer
 public class BasicMod implements

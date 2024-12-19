@@ -32,7 +32,7 @@
   "${modID}:DarkTomorinPower": {
     "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
-      "被移除时，获得"
+      "切换形态时，获得"
     ]
   },
   "${modID}:DomainExpansionPower": {

@@ -25,8 +25,9 @@ import static tomorinmod.BasicMod.makeID;
 public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        if (AbstractDungeon.player instanceof MyCharacter) {
+        if(!AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
             BaseFormCard.clear();
+        }else{
             applyPermanentForms(SavePermanentForm.getInstance().getForms());
         }
     }
@@ -42,18 +43,15 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
             @Override
             public void update() {
-                BaseFormCard.FormInfo info = permanentForms.get(permanentForms.size() - 1);
                 for (AbstractPower power : AbstractDungeon.player.powers) {
-                    if (power instanceof BaseFormPower) {
-                        BaseFormPower baseFormPower = (BaseFormPower) power;
-                        if (baseFormPower.ID.equals(makeID(info.powerName))) {
-                            BaseFormPower.changeColor(baseFormPower, "red");
-                            BaseFormPower.addDescription(baseFormPower);
-                            break;
-                        }
+                    if (power instanceof BaseFormPower&&power.ID.equals(makeID(BaseFormCard.curForm))) {
+                        BaseFormPower baseFormPower=(BaseFormPower)power;
+                        BaseFormPower.changeColor(baseFormPower, "red");
+                        BaseFormPower.addDescription(baseFormPower);
+                        break;
                     }
                 }
-                isDone = true;
+                isDone=true;
             }
         });
     }

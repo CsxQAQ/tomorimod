@@ -181,5 +181,21 @@ public class RegisterSaveData {
             }
         });
 
+        BaseMod.addSaveField("BaseFormCardCurForm", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(BaseFormCard.curForm);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    BaseFormCard.curForm = gson.fromJson(jsonElement, new TypeToken<String>() {}.getType());
+                }
+            }
+        });
+
     }
 }
