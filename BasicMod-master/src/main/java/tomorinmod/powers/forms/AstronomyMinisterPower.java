@@ -26,19 +26,13 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+"。";
+        super.updateDescription();
     }
 
     @Override
     public void atStartOfTurn() {
         applyEffectPower();
     }
-
-//    @Override
-//    public void applyFormPower() {
-//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-//                AbstractDungeon.player, new AstronomyMinisterPower(AbstractDungeon.player,1,magicNumber), 1));
-//    }
-
 
     @Override
     public void applyEffectPower() {

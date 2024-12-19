@@ -25,6 +25,7 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+ "层 #y力量 。";
+        super.updateDescription();
     }
 
     @Override
@@ -32,12 +33,6 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
         applyEffectPower();
     }
 
-//    @Override
-//    public void applyFormPower() {
-//        AbstractDungeon.actionManager.addToBottom(
-//                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthTomorinPower(AbstractDungeon.player,1), 1)
-//        );
-//    }
 
     @Override
     public void applyEffectPower() {

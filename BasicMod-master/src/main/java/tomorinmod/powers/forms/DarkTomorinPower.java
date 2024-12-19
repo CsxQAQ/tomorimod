@@ -24,7 +24,8 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+ "点 #y仪式 。"; //tmd power不带EXTEND_DESCRAPTIONS
+        description=DESCRIPTIONS[0]+amount+ "点 #y仪式 。";
+        super.updateDescription();
     }
 
     @Override
@@ -32,12 +33,6 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
         applyEffectPower();
         super.onRemove();
     }
-
-//    @Override
-//    public void applyFormPower() {
-//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-//                AbstractDungeon.player, new DarkTomorinPower(AbstractDungeon.player,1), 1));
-//    }
 
     @Override
     public void applyEffectPower() {

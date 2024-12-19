@@ -38,6 +38,7 @@ public class MascotPower extends BaseFormPower implements FormEffect{
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+ "点 [E] 。";
+        super.updateDescription();
     }
 
     @Override
@@ -46,11 +47,6 @@ public class MascotPower extends BaseFormPower implements FormEffect{
             isEffected=false;
         }
     }
-
-//    @Override
-//    public void applyFormPower() {
-//        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new MascotPower(AbstractDungeon.player,1), 1));
-//    }
 
     @Override
     public void applyEffectPower() {

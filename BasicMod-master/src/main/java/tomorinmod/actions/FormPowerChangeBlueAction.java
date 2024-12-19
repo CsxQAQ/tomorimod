@@ -26,25 +26,17 @@ public class FormPowerChangeBlueAction extends AbstractGameAction {
         this.powerName=powerName;
     }
 
-    public void update() {
+    public void update() {  //最后一个加入为红，即当前形态
         for (AbstractPower power : AbstractDungeon.player.powers) {
             if (power instanceof BaseFormPower) {
-                Texture normalTexture;
-                Texture hiDefImage;
+                BaseFormPower baseFormPower=(BaseFormPower)power;
                 if(!power.ID.equals(makeID(powerName))){
-                    normalTexture = TextureLoader.getPowerTexture(idToName(power.ID));
-                    hiDefImage = TextureLoader.getHiDefPowerTexture(idToName(power.ID));
+                    BaseFormPower.changeColor(baseFormPower,"green");
+                    BaseFormPower.removeDescription(baseFormPower);
                 }else{
-                    normalTexture = getTexture(powerPath("red/output32/"+idToName(power.ID)+"_red.png"));
-                    hiDefImage = getTextureNull(powerPath("red/output84/"+idToName(power.ID)+"_red.png"));
+                    BaseFormPower.changeColor(baseFormPower,"red");
+                    BaseFormPower.addDescription(baseFormPower);
                 }
-                if(normalTexture!=null){
-                    power.region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
-                }
-                if(hiDefImage!=null){
-                    power.region128 = new TextureAtlas.AtlasRegion(hiDefImage, 0, 0, hiDefImage.getWidth(), hiDefImage.getHeight());
-                }
-                power.updateDescription();
             }
         }
         isDone=true;

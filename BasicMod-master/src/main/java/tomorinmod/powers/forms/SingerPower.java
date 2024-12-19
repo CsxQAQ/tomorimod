@@ -26,6 +26,7 @@ public class SingerPower extends BaseFormPower implements FormEffect{
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+"张牌。";
+        super.updateDescription();
     }
 
     @Override
@@ -34,12 +35,6 @@ public class SingerPower extends BaseFormPower implements FormEffect{
             applyEffectPower();
         }
     }
-
-//    @Override
-//    public void applyFormPower() {
-//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-//                AbstractDungeon.player, new SingerPower(AbstractDungeon.player,1), 1));
-//    }
 
     @Override
     public void applyEffectPower() {

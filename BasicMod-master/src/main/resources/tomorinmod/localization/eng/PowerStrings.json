@@ -26,43 +26,43 @@
   "${modID}:AstronomyMinisterPower": {
     "NAME": "天文部长",
     "DESCRIPTIONS": [
-      " #y形态 ，回合开始时， #y预见 "
+      "回合开始时， #y预见 "
     ]
   },
   "${modID}:DarkTomorinPower": {
     "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，被移除时，获得"
+      "被移除时，获得"
     ]
   },
   "${modID}:DomainExpansionPower": {
     "NAME": "领域展开",
     "DESCRIPTIONS": [
-      " #y形态 ，回合结束时，获得"
+      "回合结束时，获得"
     ]
   },
   "${modID}:MascotPower": {
     "NAME": "吉祥物",
     "DESCRIPTIONS": [
-      " #y形态 ，下个回合开始时，获得"
+      "下个回合开始时，获得"
     ]
   },
   "${modID}:PantPower": {
     "NAME": "企鹅",
     "DESCRIPTIONS": [
-      " #y形态 ，每当失去生命值时，获得"
+      "每当失去生命值时，获得"
     ]
   },
   "${modID}:SingerPower": {
     "NAME": "主唱",
     "DESCRIPTIONS": [
-      " #y形态 ，使用音乐牌时，抽"
+      "使用音乐牌时，抽"
     ]
   },
   "${modID}:StrengthTomorinPower": {
     "NAME": "力量型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，每当有卡牌被 #y消耗 时，获得"
+      "每当有卡牌被 #y消耗 时，获得"
     ]
   },
 

@@ -24,19 +24,14 @@ public class PantPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+"层 格挡 。";
+        description=DESCRIPTIONS[0]+amount+"层 #y格挡 。";
+        super.updateDescription();
     }
 
     @Override
     public void wasHPLost(DamageInfo info, int damageAmount) {
         applyEffectPower();
     }
-
-//    @Override
-//    public void applyFormPower() {
-//        addToBot(new ApplyPowerAction(AbstractDungeon.player,
-//                AbstractDungeon.player, new PantPower(AbstractDungeon.player,1), 1));
-//    }
 
     @Override
     public void applyEffectPower() {

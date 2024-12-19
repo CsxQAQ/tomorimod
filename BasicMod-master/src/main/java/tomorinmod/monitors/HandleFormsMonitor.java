@@ -1,6 +1,7 @@
 package tomorinmod.monitors;
 
 import basemod.interfaces.OnStartBattleSubscriber;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -19,6 +20,8 @@ import java.util.function.Supplier;
 import java.util.HashMap;
 import java.util.List;
 
+import static tomorinmod.BasicMod.makeID;
+
 public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
@@ -36,6 +39,22 @@ public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubs
 
             }
         }
+        AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
+            @Override
+            public void update() {
+                BaseFormCard.FormInfo info = permanentForms.get(permanentForms.size() - 1);
+                for (AbstractPower power : AbstractDungeon.player.powers) {
+                    if (power instanceof BaseFormPower) {
+                        BaseFormPower baseFormPower = (BaseFormPower) power;
+                        if (baseFormPower.ID.equals(makeID(info.powerName))) {
+                            BaseFormPower.changeColor(baseFormPower, "red");
+                            BaseFormPower.addDescription(baseFormPower);
+                            break;
+                        }
+                    }
+                }
+                isDone = true;
+            }
+        });
     }
-
 }
