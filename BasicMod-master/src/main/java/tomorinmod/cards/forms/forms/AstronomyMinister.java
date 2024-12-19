@@ -1,16 +1,16 @@
-package tomorinmod.cards.forms;
+package tomorinmod.cards.forms.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.forms.MascotPower;
+import tomorinmod.powers.forms.AstronomyMinisterPower;
+import tomorinmod.powers.forms.AstronomyMinisterPowerUpgraded;
 import tomorinmod.util.CardStats;
 
-public class Mascot extends BaseFormCard {
-
-    public static final String ID = makeID(Mascot.class.getSimpleName());
+public class AstronomyMinister extends BaseFormCard {
+    public static final String ID = makeID(AstronomyMinister.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -19,32 +19,42 @@ public class Mascot extends BaseFormCard {
             1
     );
 
-    public Mascot() {
+    public AstronomyMinister() {
         super(ID, info);
         setFormPower();
+        baseMagicNumber=2;
     }
 
     @Override
     public void setFormPower(){
-        formPower="MascotPower";
+        if(!upgraded){
+            formPower="AstronomyMinisterPower";
+        }else{
+            formPower="AstronomyMinisterPowerUpgraded";
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new MascotPower(p),1));
+        if(!upgraded){
+            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPower(p,1),1));
+        }else{
+            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPowerUpgraded(p,1),1));
+        }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new Mascot();
+        return new AstronomyMinister();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            setFormPower();
+            baseMagicNumber++;
         }
     }
 }

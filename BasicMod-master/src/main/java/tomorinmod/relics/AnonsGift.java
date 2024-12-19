@@ -33,9 +33,5 @@ public class AnonsGift extends BaseRelic {
 
     }
 
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
 
 }

@@ -25,8 +25,5 @@ public class SoyosGift extends BaseRelic {
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new PlatedArmorPower(AbstractDungeon.player, 5)));
 
     }
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
+
 }

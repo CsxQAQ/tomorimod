@@ -15,10 +15,9 @@ public class SingerPowerUpgraded extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public SingerPowerUpgraded(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public SingerPowerUpgraded(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
-
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(card instanceof BaseMusicCard){
@@ -29,7 +28,7 @@ public class SingerPowerUpgraded extends BaseFormPower implements FormEffect{
     @Override
     public void applyFormPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new SingerPowerUpgraded(AbstractDungeon.player), 1));
+                AbstractDungeon.player, new SingerPowerUpgraded(AbstractDungeon.player,1), 1));
     }
 
     @Override

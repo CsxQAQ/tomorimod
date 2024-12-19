@@ -1,58 +1,60 @@
-package tomorinmod.cards.forms;
+package tomorinmod.cards.forms.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import tomorinmod.cards.BaseCard;
-import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitors.HandleFormsMonitor;
-import tomorinmod.powers.forms.DarkTomorinPower;
-import tomorinmod.relics.MicrophoneRelic;
+import tomorinmod.powers.forms.*;
 import tomorinmod.util.CardStats;
 
-public class DarkTomorin extends BaseFormCard {
+public class Pant extends BaseFormCard {
 
-    public static final String ID = makeID(DarkTomorin.class.getSimpleName());
+    public static final String ID = makeID(Pant.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
 
-    public DarkTomorin() {
+    public Pant() {
         super(ID, info);
         setFormPower();
-        exhaust=true;
+        baseMagicNumber=3;
     }
 
     @Override
     public void setFormPower(){
-        formPower="DarkTomorinPower";
+        if(!upgraded){
+            formPower="PantPower";
+        }else{
+            formPower="PantPowerUpgraded";
+        }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p),1));
+        if(!upgraded){
+            addToBot(new ApplyPowerAction(p, p, new PantPower(p,1),1));
+        }else{
+            addToBot(new ApplyPowerAction(p, p, new PantPowerUpgraded(p,1),1));
+        }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new DarkTomorin();
+        return new Pant();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            setFormPower();
+            baseMagicNumber++;
         }
     }
 }

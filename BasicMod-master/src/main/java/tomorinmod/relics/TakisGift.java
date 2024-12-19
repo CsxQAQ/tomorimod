@@ -25,8 +25,4 @@ public class TakisGift extends BaseRelic {
         addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1)));
 
     }
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
 }

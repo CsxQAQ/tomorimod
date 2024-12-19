@@ -17,6 +17,10 @@ public abstract class BaseRelic extends CustomRelic {
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
 
+    @Override
+    public String getUpdatedDescription() {
+        return DESCRIPTIONS[0];
+    }
 
     //for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {

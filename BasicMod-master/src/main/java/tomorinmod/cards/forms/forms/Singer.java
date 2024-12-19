@@ -1,18 +1,16 @@
-package tomorinmod.cards.forms;
+package tomorinmod.cards.forms.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.forms.AstronomyMinisterPower;
-import tomorinmod.powers.forms.AstronomyMinisterPowerUpgraded;
 import tomorinmod.powers.forms.SingerPower;
 import tomorinmod.powers.forms.SingerPowerUpgraded;
 import tomorinmod.util.CardStats;
 
-public class AstronomyMinister extends BaseFormCard {
-    public static final String ID = makeID(AstronomyMinister.class.getSimpleName());
+public class Singer extends BaseFormCard {
+    public static final String ID = makeID(Singer.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -21,34 +19,35 @@ public class AstronomyMinister extends BaseFormCard {
             1
     );
 
-    public AstronomyMinister() {
+    public Singer() {
         super(ID, info);
         setFormPower();
-        baseMagicNumber=2;
+        baseMagicNumber=1;
     }
 
     @Override
     public void setFormPower(){
         if(!upgraded){
-            formPower="AstronomyMinisterPower";
+            formPower="SingerPower";
         }else{
-            formPower="AstronomyMinisterPowerUpgraded";
+            formPower="SingerPowerUpgraded";
         }
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p,m);
+        super.use(p,m);  //super得放上面
         if(!upgraded){
-            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPower(p),1));
+            addToBot(new ApplyPowerAction(p, p, new SingerPower(p,1),1));
         }else{
-            addToBot(new ApplyPowerAction(p, p, new AstronomyMinisterPowerUpgraded(p),1));
+            addToBot(new ApplyPowerAction(p, p, new SingerPowerUpgraded(p,1),1));
         }
+
     }
 
     @Override
-    public AbstractCard makeCopy() {
-        return new AstronomyMinister();
+    public AbstractCard makeCopy() { //Optional
+        return new Singer();
     }
 
     @Override

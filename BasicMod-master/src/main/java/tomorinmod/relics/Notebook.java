@@ -36,11 +36,6 @@ public class Notebook extends BaseRelic {
     }
 
     @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
-
-    @Override
     public void update() {
         super.update();
 

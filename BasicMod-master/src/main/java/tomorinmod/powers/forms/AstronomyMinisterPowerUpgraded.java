@@ -12,8 +12,8 @@ public class AstronomyMinisterPowerUpgraded extends BaseFormPower implements For
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public AstronomyMinisterPowerUpgraded(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public AstronomyMinisterPowerUpgraded(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AstronomyMinisterPowerUpgraded extends BaseFormPower implements For
     @Override
     public void applyFormPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new AstronomyMinisterPowerUpgraded(AbstractDungeon.player), 1));
+                AbstractDungeon.player, new AstronomyMinisterPowerUpgraded(AbstractDungeon.player,1), 1));
     }
 
     @Override

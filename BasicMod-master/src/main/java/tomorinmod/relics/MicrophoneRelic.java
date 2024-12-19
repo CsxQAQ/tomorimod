@@ -14,9 +14,5 @@ public class MicrophoneRelic extends BaseRelic {
         super(ID, NAME, MyCharacter.Meta.CARD_COLOR, RARITY, SOUND);
     }
 
-    @Override
-    public String getUpdatedDescription() {
-        return DESCRIPTIONS[0];
-    }
 
 }

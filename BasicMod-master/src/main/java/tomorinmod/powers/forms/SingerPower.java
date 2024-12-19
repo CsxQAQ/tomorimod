@@ -16,8 +16,8 @@ public class SingerPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public SingerPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public SingerPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class SingerPower extends BaseFormPower implements FormEffect{
     @Override
     public void applyFormPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new SingerPower(AbstractDungeon.player), 1));
+                AbstractDungeon.player, new SingerPower(AbstractDungeon.player,1), 1));
     }
 
     @Override

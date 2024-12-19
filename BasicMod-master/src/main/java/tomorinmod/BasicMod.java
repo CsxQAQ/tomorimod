@@ -41,8 +41,9 @@ import java.util.*;
 
 //TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
 //TODO 所有对象都判断是否为null
-//TODO 碧天伴走没思路，先放着
-//TODO 弄个patch把素材的逻辑当到AbstractCard里，给原版卡也加上素材
+//TODO 碧天伴走没思路，先放着，新歌
+
+//TODO 让所有形态效果有数量来适配系统，取消Upgraded的power，用一个来解决
 
 @SpireInitializer
 public class BasicMod implements

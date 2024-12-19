@@ -15,8 +15,8 @@ public class PantPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public PantPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public PantPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class PantPower extends BaseFormPower implements FormEffect{
     @Override
     public void applyFormPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new PantPower(AbstractDungeon.player), 1));
+                AbstractDungeon.player, new PantPower(AbstractDungeon.player,1), 1));
     }
 
     @Override

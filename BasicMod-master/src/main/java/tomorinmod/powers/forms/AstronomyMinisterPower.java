@@ -17,8 +17,8 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public AstronomyMinisterPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public AstronomyMinisterPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
     @Override
     public void applyFormPower() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
-                AbstractDungeon.player, new AstronomyMinisterPower(AbstractDungeon.player), 1));
+                AbstractDungeon.player, new AstronomyMinisterPower(AbstractDungeon.player,1), 1));
     }
 
     @Override

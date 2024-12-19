@@ -1,4 +1,4 @@
-package tomorinmod.cards.forms;
+package tomorinmod.cards.forms.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -6,8 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.forms.DomainExpansionPower;
-import tomorinmod.powers.forms.PantPower;
-import tomorinmod.powers.forms.PantPowerUpgraded;
 import tomorinmod.util.CardStats;
 
 public class DomainExpansion extends BaseFormCard {
@@ -35,7 +33,7 @@ public class DomainExpansion extends BaseFormCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new DomainExpansionPower(p),1));
+        addToBot(new ApplyPowerAction(p, p, new DomainExpansionPower(p,1),1));
     }
 
     @Override

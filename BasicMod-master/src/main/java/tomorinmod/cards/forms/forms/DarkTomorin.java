@@ -1,56 +1,51 @@
-package tomorinmod.cards.forms;
+package tomorinmod.cards.forms.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitors.HandleFormsMonitor;
-import tomorinmod.powers.forms.StrengthTomorinPower;
+import tomorinmod.powers.forms.DarkTomorinPower;
 import tomorinmod.util.CardStats;
 
-public class StrengthTomorin extends BaseFormCard {
+public class DarkTomorin extends BaseFormCard {
 
-    public static final String ID = makeID(StrengthTomorin.class.getSimpleName());
+    public static final String ID = makeID(DarkTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
-    public StrengthTomorin() {
+    public DarkTomorin() {
         super(ID, info);
         setFormPower();
+        exhaust=true;
     }
 
     @Override
     public void setFormPower(){
-        formPower="StrengthTomorinPower";
+        formPower="DarkTomorinPower";
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
         super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p),1));
+        addToBot(new ApplyPowerAction(p, p, new DarkTomorinPower(p,1),1));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new StrengthTomorin();
+        return new DarkTomorin();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }
