@@ -90,7 +90,7 @@
 
   "${modID}:StrengthTomorin": {
     "NAME": "力量型高松灯",
-    "DESCRIPTION": " tomorinmod:形态 ：每当有卡牌被 消耗 时，获得1层 力量 。"
+    "DESCRIPTION": " tomorinmod:形态 ：每当有卡牌被 消耗 时，获得 !M! 层 力量 。"
   },
 
 

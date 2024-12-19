@@ -44,6 +44,10 @@ public abstract class BaseFormCard extends BaseCard {
                 (player) -> new PantPower(player, 1, Pant.MAGIC,false));
         powerMap.put(new FormInfo("PantPower", Pant.MAGIC+Pant.UPG_MAGIC,true),
                 (player) -> new PantPower(player, 1, Pant.MAGIC+Pant.UPG_MAGIC,true));
+        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC,false),
+                (player) -> new SingerPower(player, 1, Singer.MAGIC,false));
+        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC+Singer.UPG_MAGIC,true),
+                (player) -> new SingerPower(player, 1, Singer.MAGIC+Singer.UPG_MAGIC,true));
     }
 
     public BaseFormCard(String ID, CardStats info) {

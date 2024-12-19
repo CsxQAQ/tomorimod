@@ -16,8 +16,23 @@ public class SingerPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public SingerPower(AbstractCreature owner,int amount) {
+    private int magicNumber;
+    private boolean upgraded;
+
+    public SingerPower(AbstractCreature owner,int amount,int magicNumber,boolean upgraded) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        this.magicNumber=magicNumber;
+        this.upgraded=upgraded;
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        if(!upgraded){
+            description=DESCRIPTIONS[0]+magicNumber+"张牌。";
+        }else{
+            description=DESCRIPTIONS[0]+magicNumber+"张牌。（ #y已升级 ）";
+        }
     }
 
     @Override

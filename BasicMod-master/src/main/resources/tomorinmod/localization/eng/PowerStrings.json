@@ -50,7 +50,7 @@
   "${modID}:SingerPower": {
     "NAME": "主唱",
     "DESCRIPTIONS": [
-      " #y形态 ，使用音乐牌时，抽1张牌。"
+      " #y形态 ，使用音乐牌时，抽"
     ]
   },
   "${modID}:MascotPower": {

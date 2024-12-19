@@ -1,12 +1,7 @@
 package tomorinmod.cards.forms.forms;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.forms.SingerPower;
-import tomorinmod.powers.forms.SingerPowerUpgraded;
 import tomorinmod.util.CardStats;
 
 public class Singer extends BaseFormCard {
@@ -19,34 +14,23 @@ public class Singer extends BaseFormCard {
             1
     );
 
+    public final static int MAGIC = 1;
+    public final static int UPG_MAGIC = 1;
+
+
     public Singer() {
         super(ID, info);
         setPowerName();
-        baseMagicNumber=1;
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
-    public void setPowerName(){
-        if(!upgraded){
-            formName ="SingerPower";
-        }else{
-            formName ="SingerPowerUpgraded";
-        }
+    public void setPowerName() {
+        formName = "SingerPower";
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p,m);  //super得放上面
-        if(!upgraded){
-            addToBot(new ApplyPowerAction(p, p, new SingerPower(p,1),1));
-        }else{
-            addToBot(new ApplyPowerAction(p, p, new SingerPowerUpgraded(p,1),1));
-        }
-
-    }
-
-    @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new Singer();
     }
 
@@ -54,8 +38,7 @@ public class Singer extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            setPowerName();
-            baseMagicNumber++;
+            upgradeMagicNumber(magicUpgrade);
         }
     }
 }
