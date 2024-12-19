@@ -19,21 +19,20 @@ public class StrengthTomorin extends BaseFormCard {
             2
     );
 
+    public final static int MAGIC = 1;
+    public final static int UPG_MAGIC = 0;
+
+
     public StrengthTomorin() {
         super(ID, info);
         setPowerName();
+        setMagic(MAGIC,UPG_MAGIC);
     }
+
 
     @Override
     public void setPowerName(){
         formName ="StrengthTomorinPower";
-    }
-
-    @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-
-        super.use(p,m);
-        addToBot(new ApplyPowerAction(p, p, new StrengthTomorinPower(p,1),1));
     }
 
     @Override

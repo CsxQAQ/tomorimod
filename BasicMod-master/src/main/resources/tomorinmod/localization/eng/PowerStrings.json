@@ -41,6 +41,12 @@
       " #y形态 ，回合结束时，获得"
     ]
   },
+  "${modID}:MascotPower": {
+    "NAME": "吉祥物",
+    "DESCRIPTIONS": [
+      " #y形态 ，下个回合开始时，获得 [E] [E] 。"
+    ]
+  },
   "${modID}:PantPower": {
     "NAME": "企鹅",
     "DESCRIPTIONS": [
@@ -53,17 +59,10 @@
       " #y形态 ，使用音乐牌时，抽"
     ]
   },
-  "${modID}:MascotPower": {
-    "NAME": "吉祥物",
-    "DESCRIPTIONS": [
-      " #y形态 ，下个回合开始时，获得 [E] [E] 。"
-    ]
-  },
-
   "${modID}:StrengthTomorinPower": {
     "NAME": "力量型高松灯",
     "DESCRIPTIONS": [
-      " #y形态 ，每当有卡牌被 #y消耗 时，获得1层 #y力量 。"
+      " #y形态 ，每当有卡牌被 #y消耗 时，获得"
     ]
   },
 

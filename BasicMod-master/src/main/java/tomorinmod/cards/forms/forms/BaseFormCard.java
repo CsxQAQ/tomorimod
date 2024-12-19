@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.powers.forms.*;
 import tomorinmod.savedata.customdata.SavePermanentForm;
@@ -48,6 +49,10 @@ public abstract class BaseFormCard extends BaseCard {
                 (player) -> new SingerPower(player, 1, Singer.MAGIC,false));
         powerMap.put(new FormInfo("SingerPower", Singer.MAGIC+Singer.UPG_MAGIC,true),
                 (player) -> new SingerPower(player, 1, Singer.MAGIC+Singer.UPG_MAGIC,true));
+        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC,false),
+                (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC));
+        powerMap.put(new FormInfo("StrengthTomorinPower", StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC,true),
+                (player) -> new StrengthTomorinPower(player, 1, StrengthTomorin.MAGIC+StrengthTomorin.UPG_MAGIC));
     }
 
     public BaseFormCard(String ID, CardStats info) {

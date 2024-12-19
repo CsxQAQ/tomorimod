@@ -15,8 +15,17 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
-    public StrengthTomorinPower(AbstractCreature owner,int amount) {
+    private int magicNumber;
+
+    public StrengthTomorinPower(AbstractCreature owner,int amount,int magicNumber) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        this.magicNumber=magicNumber;
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        description=DESCRIPTIONS[0]+magicNumber+ "层 #y力量 。";
     }
 
     @Override
