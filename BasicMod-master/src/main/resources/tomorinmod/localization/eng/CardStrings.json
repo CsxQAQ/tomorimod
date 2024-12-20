@@ -94,7 +94,7 @@
     ]
   },
   "${modID}:Reversal": {
-    "NAME": "逆向思维",
+    "NAME": "光与影",
     "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
   },
   "${modID}:AstronomyMinister": {
