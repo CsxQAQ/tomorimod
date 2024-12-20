@@ -38,6 +38,7 @@ public class SingerPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToBot(new DrawCardAction(AbstractDungeon.player, amount));
     }
 }

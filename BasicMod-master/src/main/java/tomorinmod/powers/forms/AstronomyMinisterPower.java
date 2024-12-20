@@ -36,6 +36,7 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToBot(new ScryAction(amount));
     }
 }

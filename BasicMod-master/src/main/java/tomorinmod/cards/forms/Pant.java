@@ -1,11 +1,12 @@
-package tomorinmod.cards.forms.forms;
+package tomorinmod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class AstronomyMinister extends BaseFormCard {
-    public static final String ID = makeID(AstronomyMinister.class.getSimpleName());
+public class Pant extends BaseFormCard {
+
+    public static final String ID = makeID(Pant.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -14,24 +15,23 @@ public class AstronomyMinister extends BaseFormCard {
             1
     );
 
-    public final static int MAGIC = 2;
+    public final static int MAGIC = 3;
     public final static int UPG_MAGIC = 1;
 
-    public AstronomyMinister() {
+    public Pant() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
     }
 
-
     @Override
     public void setPowerName(){
-        formName ="AstronomyMinisterPower";
+        formName ="PantPower";
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new AstronomyMinister();
+        return new Pant();
     }
 
     @Override

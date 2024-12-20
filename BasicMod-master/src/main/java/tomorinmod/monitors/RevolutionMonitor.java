@@ -4,7 +4,7 @@ import basemod.interfaces.PostBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.monment.Revolution;
+import tomorinmod.cards.permanentforms.Revolution;
 import tomorinmod.patches.AbstractCardSetMaterialPatch;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;

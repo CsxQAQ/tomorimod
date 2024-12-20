@@ -1,6 +1,6 @@
 package tomorinmod.savedata.customdata;
 
-import tomorinmod.cards.forms.forms.BaseFormCard;
+import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.savedata.Clearable;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 

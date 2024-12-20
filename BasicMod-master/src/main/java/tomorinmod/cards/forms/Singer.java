@@ -1,45 +1,44 @@
-package tomorinmod.cards.forms.forms;
+package tomorinmod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class DarkTomorin extends BaseFormCard {
-
-    public static final String ID = makeID(DarkTomorin.class.getSimpleName());
+public class Singer extends BaseFormCard {
+    public static final String ID = makeID(Singer.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
 
     public final static int MAGIC = 1;
-    public final static int UPG_MAGIC = 0;
+    public final static int UPG_MAGIC = 1;
 
-    public DarkTomorin() {
+
+    public Singer() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
-        exhaust=true;
     }
 
     @Override
-    public void setPowerName(){
-        formName ="DarkTomorinPower";
+    public void setPowerName() {
+        formName = "SingerPower";
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new DarkTomorin();
+        return new Singer();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            upgradeMagicNumber(magicUpgrade);
         }
     }
 }

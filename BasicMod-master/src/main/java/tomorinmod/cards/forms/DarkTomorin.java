@@ -1,48 +1,45 @@
-package tomorinmod.cards.forms.forms;
+package tomorinmod.cards.forms;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.forms.DomainExpansionPower;
 import tomorinmod.util.CardStats;
 
-public class DomainExpansion extends BaseFormCard {
+public class DarkTomorin extends BaseFormCard {
 
-    public static final String ID = makeID(DomainExpansion.class.getSimpleName());
+    public static final String ID = makeID(DarkTomorin.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
-    public final static int MAGIC = 3;
+    public final static int MAGIC = 1;
     public final static int UPG_MAGIC = 0;
 
-    public DomainExpansion() {
+    public DarkTomorin() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
+        exhaust=true;
     }
 
     @Override
     public void setPowerName(){
-        formName ="DomainExpansionPower";
+        formName ="DarkTomorinPower";
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new DomainExpansion();
+        return new DarkTomorin();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }

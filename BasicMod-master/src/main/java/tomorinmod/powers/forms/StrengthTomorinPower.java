@@ -36,6 +36,7 @@ public class StrengthTomorinPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(
                 AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, amount), amount));
     }

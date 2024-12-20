@@ -24,7 +24,7 @@ import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.MusicalComposition;
 import tomorinmod.cards.basic.Shout;
 import tomorinmod.cards.basic.Strike;
-import tomorinmod.cards.monment.WeAreMygo;
+import tomorinmod.cards.permanentforms.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
 import tomorinmod.relics.Notebook;
 

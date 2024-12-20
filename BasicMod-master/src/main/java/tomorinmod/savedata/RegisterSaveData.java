@@ -5,9 +5,8 @@ import basemod.abstracts.CustomSavableRaw;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-import tomorinmod.cards.forms.forms.BaseFormCard;
-import tomorinmod.cards.monment.Revolution;
-import tomorinmod.cards.music.BaseMusicCard;
+import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.cards.permanentforms.Revolution;
 import tomorinmod.cards.music.Chunriying;
 import tomorinmod.savedata.customdata.*;
 

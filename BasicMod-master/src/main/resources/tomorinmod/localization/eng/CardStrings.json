@@ -17,6 +17,14 @@
     "NAME": "防御",
     "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
+  "${modID}:WishYouHappiness": {
+    "NAME": "祝你幸福",
+    "DESCRIPTION": "获得 !B! 点 格挡，获得 !M! 点 tomorinmod:临时荆棘 。",
+    "EXTENDED_DESCRIPTION": [
+      "获得 !B! 点 格挡，获得 !M! 点 荆棘 。"
+    ]
+  },
+
   "${modID}:Shout": {
     "NAME": "内心的呐喊",
     "DESCRIPTION": "造成 !D! 点伤害，使用一张卡牌后 tomorinmod:翻面 。",

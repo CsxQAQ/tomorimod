@@ -35,6 +35,7 @@ public class PantPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToTop(new GainBlockAction(AbstractDungeon.player,amount));
     }
 

@@ -19,15 +19,6 @@ public abstract class BaseMonmentCard extends BaseCard {
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
         removeFromMasterDeck(this);
-//        Iterator<AbstractCard> iterator = AbstractDungeon.player.masterDeck.group.iterator();
-//
-//        while (iterator.hasNext()) {
-//            AbstractCard card = iterator.next();
-//            if (this.uuid.equals(card.uuid)) {
-//                iterator.remove();
-//                break;
-//            }
-//        }
     }
 
     public static void removeFromMasterDeck(AbstractCard aCard){

@@ -2,7 +2,7 @@ package tomorinmod.powers;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import tomorinmod.cards.monment.Revolution;
+import tomorinmod.cards.permanentforms.Revolution;
 
 import static tomorinmod.BasicMod.makeID;
 

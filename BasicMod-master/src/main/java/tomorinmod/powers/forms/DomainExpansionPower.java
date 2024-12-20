@@ -34,6 +34,7 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToBot(new ApplyGravityAction(amount));
     }
 }

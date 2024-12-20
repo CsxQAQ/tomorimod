@@ -3,14 +3,9 @@ package tomorinmod.powers.forms;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import tomorinmod.cards.forms.forms.BaseFormCard;
 import tomorinmod.powers.BasePower;
-import tomorinmod.util.TextureLoader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -50,11 +45,7 @@ public class BaseFormPower extends BasePower {
 
 
     private static final AssetManager assetManager = new AssetManager();
-    /**
-     * 根据路径获取缓存的Texture，如果不存在则加载并缓存
-     * @param path 纹理的路径
-     * @return 缓存的Texture对象
-     */
+
     public static Texture getCachedTexture(String path) {
         if (!assetManager.isLoaded(path)) {
             assetManager.load(path, Texture.class);
@@ -67,11 +58,6 @@ public class BaseFormPower extends BasePower {
         assetManager.dispose();
     }
 
-    /**
-     * 获取缓存的 AtlasRegion，如果不存在则创建并缓存
-     * @param texture 纹理对象
-     * @return 缓存的AtlasRegion对象
-     */
     private static TextureAtlas.AtlasRegion getCachedAtlasRegion(Texture texture) {
         String key = texture.toString();
         return atlasRegionCache.computeIfAbsent(key, k -> {
@@ -80,11 +66,6 @@ public class BaseFormPower extends BasePower {
         });
     }
 
-    /**
-     * 根据指定的颜色更改BaseFormPower的纹理和区域
-     * @param power 目标对象
-     * @param color 颜色（green, red, 其他）
-     */
     public static void changeColor(BaseFormPower power, String color) {
         String powerName = idToName(power.ID);
         Texture normalTexture;

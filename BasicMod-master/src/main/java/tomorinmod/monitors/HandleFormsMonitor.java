@@ -6,18 +6,10 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.forms.forms.AstronomyMinister;
-import tomorinmod.cards.forms.forms.BaseFormCard;
-import tomorinmod.cards.forms.forms.DarkTomorin;
-import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.*;
+import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.powers.forms.*;
 import tomorinmod.savedata.customdata.SavePermanentForm;
 
-import java.util.Map;
-import java.util.function.Supplier;
-
-import java.util.HashMap;
 import java.util.List;
 
 import static tomorinmod.BasicMod.makeID;

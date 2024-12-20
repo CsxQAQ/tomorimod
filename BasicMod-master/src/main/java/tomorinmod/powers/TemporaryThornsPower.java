@@ -1,5 +1,7 @@
 package tomorinmod.powers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -16,14 +18,20 @@ public class TemporaryThornsPower extends BasePower {
     public TemporaryThornsPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.amount = amount;
-        this.loadRegion("thorns"); // 使用游戏中现有的荆棘图标
+        this.loadRegion("thorns");
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        // 回合结束移除该Power
-        this.flash();
-        this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
+    public void atEndOfRound() {
+        flash();
+        addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 
+    public int onAttacked(DamageInfo info, int damageAmount) {
+        if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
+            flash();
+            addToTop(new DamageAction(info.owner, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+        }
+        return damageAmount;
+    }
 }

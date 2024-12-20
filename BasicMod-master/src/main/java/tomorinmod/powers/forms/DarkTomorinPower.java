@@ -36,6 +36,7 @@ public class DarkTomorinPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToBot(new ApplyPowerAction(AbstractDungeon.player,
                 AbstractDungeon.player, new RitualPower(AbstractDungeon.player, amount, true), amount));
     }

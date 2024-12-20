@@ -50,6 +50,7 @@ public class MascotPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void applyEffectPower() {
+        flash();
         addToBot(new GainEnergyAction(amount));
     }
 }
