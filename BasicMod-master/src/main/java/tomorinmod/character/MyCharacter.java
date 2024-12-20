@@ -18,10 +18,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.relics.BurningBlood;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
+import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.MusicalComposition;
@@ -30,14 +35,37 @@ import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.permanentforms.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
 import tomorinmod.relics.Notebook;
+import tomorinmod.relics.Pant;
+import tomorinmod.vfx.IntangibleEffect;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static tomorinmod.BasicMod.characterPath;
 import static tomorinmod.BasicMod.makeID;
 
 public class MyCharacter extends CustomPlayer {
 
+    private IntangibleEffect intangibleEffect;
+
+    @Override
+    public void update() {
+        super.update();
+        if(hasPower("IntangiblePlayer")){
+            intangibleEffect.update();
+        }else{
+            tint.changeColor(Color.WHITE.cpy());
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        if(hasPower("IntangiblePlayer")) {
+            intangibleEffect.render(sb);
+        }else{
+            super.render(sb);
+        }
+    }
 
     //Stats
     public static final int ENERGY_PER_TURN = 3;
@@ -128,6 +156,7 @@ public class MyCharacter extends CustomPlayer {
 
     public MyCharacter() {
 
+
         super(getNames()[0], Meta.TOMORIN,
                 new CustomEnergyOrb(orbTextures, characterPath("energyorb/vfx.png"), layerSpeeds), //Energy Orb
                 new AbstractAnimation() { //Change the Animation line to this
@@ -148,6 +177,8 @@ public class MyCharacter extends CustomPlayer {
         //Location for text bubbles. You can adjust it as necessary later. For most characters, these values are fine.
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 220.0F * Settings.scale);
+
+        intangibleEffect=new IntangibleEffect(this);
     }
 
     @Override
