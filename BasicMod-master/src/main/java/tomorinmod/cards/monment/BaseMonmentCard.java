@@ -31,6 +31,5 @@ public abstract class BaseMonmentCard extends BaseCard {
                 break;
             }
         }
-
     }
 }

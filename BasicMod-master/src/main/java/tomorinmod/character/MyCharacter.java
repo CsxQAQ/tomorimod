@@ -4,8 +4,11 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomEnergyOrb;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -34,6 +37,7 @@ import static tomorinmod.BasicMod.characterPath;
 import static tomorinmod.BasicMod.makeID;
 
 public class MyCharacter extends CustomPlayer {
+
 
     //Stats
     public static final int ENERGY_PER_TURN = 3;
@@ -205,6 +209,9 @@ public class MyCharacter extends CustomPlayer {
     private final Color cardRenderColor = Color.LIGHT_GRAY.cpy(); //Used for some vfx on moving cards (sometimes) (maybe)
     private final Color cardTrailColor = Color.LIGHT_GRAY.cpy(); //Used for card trail vfx during gameplay.
     private final Color slashAttackColor = Color.LIGHT_GRAY.cpy(); //Used for a screen tint effect when you attack the heart.
+
+
+
     @Override
     public Color getCardRenderColor() {
         return cardRenderColor;
