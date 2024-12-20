@@ -21,7 +21,7 @@ public class Saiyaku extends BaseMonmentCard {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public Saiyaku() {
@@ -56,10 +56,14 @@ public class Saiyaku extends BaseMonmentCard {
         return new Saiyaku();
     }
 
-    private void updateDescription() {
-        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-        initializeDescription();
+    public void updateDescription(){
+        if(upgraded){
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        }
     }
+
 
     @Override
     public void upgrade(){

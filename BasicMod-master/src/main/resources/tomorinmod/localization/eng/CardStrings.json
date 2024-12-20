@@ -31,6 +31,13 @@
       "获得X两倍的 无实体 。 tomorinmod:瞬间 ， 消耗 。"
     ]
   },
+  "${modID}:FallingOnFlatGround": {
+    "NAME": "平地摔",
+    "DESCRIPTION": "选择一张手牌，将其从手牌和牌组中移除， tomorinmod:瞬间 ， 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "选择一张手牌，将其打出后从手牌和牌组中移除， tomorinmod:瞬间 ， 消耗 。"
+    ]
+  },
   "${modID}:WishYouHappiness": {
     "NAME": "祝你幸福",
     "DESCRIPTION": "获得 !B! 点 格挡，获得 !M! 点 tomorinmod:临时荆棘 。",
