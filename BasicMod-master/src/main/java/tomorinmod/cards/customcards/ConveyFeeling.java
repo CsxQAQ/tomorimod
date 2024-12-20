@@ -38,7 +38,7 @@ public class ConveyFeeling extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeBaseCost(2); // 将费用从 1 降为 0
         }
     }
 }

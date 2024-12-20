@@ -45,6 +45,11 @@
       "获得 !B! 点 格挡，获得 !M! 点 荆棘 。"
     ]
   },
+  "${modID}:WhyPerformChunriying": {
+    "NAME": "为什么要演奏春日影",
+    "DESCRIPTION": "眩晕所有敌人 !M! 回合， tomorinmod:瞬间 ， 消耗 。"
+  },
+
 
   "${modID}:Shout": {
     "NAME": "内心的呐喊",
