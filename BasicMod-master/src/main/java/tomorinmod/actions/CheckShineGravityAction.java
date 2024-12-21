@@ -8,6 +8,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.customcards.MygoTogether;
 import tomorinmod.powers.GravityPower;
 import tomorinmod.powers.ShinePower;
+import tomorinmod.powers.custompowers.MygoTogetherPower;
+
+import static tomorinmod.BasicMod.makeID;
 
 public class CheckShineGravityAction extends AbstractGameAction {
     private final AbstractCreature target;
@@ -19,7 +22,7 @@ public class CheckShineGravityAction extends AbstractGameAction {
     @Override
     public void update() {
 
-        if(MygoTogether.isMygoTogetherUsed){
+        if(AbstractDungeon.player.hasPower(makeID("MygoTogetherPower"))){
             this.isDone=true;
             return;
         }

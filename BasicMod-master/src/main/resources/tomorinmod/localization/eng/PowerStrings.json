@@ -122,5 +122,11 @@
     "DESCRIPTIONS": [
       " #y闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
     ]
+  },
+  "${modID}:MygoTogetherPower": {
+    "NAME": "一起迷失吧",
+    "DESCRIPTIONS": [
+      " #y闪耀 和 #y重力 可以同时存在，获得一点 #y闪耀 和 #y力量 。"
+    ]
   }
 }

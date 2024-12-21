@@ -33,9 +33,8 @@ public class GravityPower extends BasePower {
 
     @Override
     public void onInitialApplication() {
-        if(MygoTogether.isMygoTogetherUsed){
+        if(AbstractDungeon.player.hasPower(makeID("MygoTogetherPower"))){
             TwoFish.curAttribute=0;
         }
     }
-
 }

@@ -71,7 +71,6 @@ public class BasicMod implements
         BaseMod.subscribe(new TomorinApotheosisMonitor());
         BaseMod.subscribe(new SmoothComboMonitor());
         BaseMod.subscribe(new RevolutionMonitor());
-        BaseMod.subscribe(new MygoTogetherMonitor());
         BaseMod.subscribe(new ConveyFeelingMonitor());
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());

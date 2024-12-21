@@ -8,6 +8,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.GravityPower;
 import tomorinmod.powers.ShinePower;
+import tomorinmod.powers.custompowers.MygoTogetherPower;
 import tomorinmod.util.CardStats;
 
 public class MygoTogether extends BaseCard {
@@ -18,10 +19,9 @@ public class MygoTogether extends BaseCard {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            3
+            2
     );
 
-    public static boolean isMygoTogetherUsed=false;
 
     public final static int MAGIC=1;
     public final static int UPG_MAGIC=1;
@@ -34,14 +34,22 @@ public class MygoTogether extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        isMygoTogetherUsed=true;
+        addToBot(new ApplyPowerAction(p,p,new MygoTogetherPower(p),0));
         addToBot(new ApplyPowerAction(p, p, new GravityPower(p,this.magicNumber),this.magicNumber));
         addToBot(new ApplyPowerAction(p, p, new ShinePower(p,this.magicNumber),this.magicNumber));
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new MygoTogether();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(1);
+        }
     }
 
 }

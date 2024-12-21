@@ -9,6 +9,8 @@ import tomorinmod.cards.customcards.MygoTogether;
 import tomorinmod.powers.GravityPower;
 import tomorinmod.powers.ShinePower;
 
+import static tomorinmod.BasicMod.makeID;
+
 public class ReversalAction extends AbstractGameAction {
     private final AbstractPlayer p;
 
@@ -24,7 +26,7 @@ public class ReversalAction extends AbstractGameAction {
         int gravityAmount = gravity != null ? gravity.amount : 0;
         int shineAmount = shine != null ? shine.amount : 0;
 
-        if (MygoTogether.isMygoTogetherUsed) {
+        if (AbstractDungeon.player.hasPower(makeID("MygoTogetherPower"))) {
             if (shine != null) {
                 shine.amount = gravityAmount;
                 shine.updateDescription();
