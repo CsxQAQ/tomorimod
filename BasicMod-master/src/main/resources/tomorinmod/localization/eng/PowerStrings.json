@@ -128,5 +128,17 @@
     "DESCRIPTIONS": [
       " #y闪耀 和 #y重力 可以同时存在，获得一点 #y闪耀 和 #y力量 。"
     ]
+  },
+  "${modID}:ImmunityPower": {
+    "NAME": "星盾",
+    "DESCRIPTIONS": [
+      "使受到的伤害变为0，回合结束时消耗5点 #y闪耀 ，若 #y闪耀 不足5点则失去此效果。"
+    ]
+  },
+  "${modID}:StarDustPower": {
+    "NAME": "微小的星屑",
+    "DESCRIPTIONS": [
+      " #y永久形态 ，受到致命伤害失去该能力，同时获得 #y免疫 直到回合结束。"
+    ]
   }
 }

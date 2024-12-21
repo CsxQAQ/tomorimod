@@ -8,8 +8,8 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class RhinocerosBeetle extends BaseCard {
-    public static final String ID = makeID(RhinocerosBeetle.class.getSimpleName());
+public class AquariumPass extends BaseCard {
+    public static final String ID = makeID(AquariumPass.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -18,7 +18,7 @@ public class RhinocerosBeetle extends BaseCard {
             0
     );
 
-    public RhinocerosBeetle() {
+    public AquariumPass() {
         super(ID, info);
         this.selfRetain=true;
 
@@ -40,7 +40,7 @@ public class RhinocerosBeetle extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new RhinocerosBeetle();
+        return new AquariumPass();
     }
 
 }

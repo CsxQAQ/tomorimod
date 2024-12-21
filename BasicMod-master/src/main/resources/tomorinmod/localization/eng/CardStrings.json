@@ -81,7 +81,7 @@
   },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次 。"
+    "DESCRIPTION": "获得 !M! 点 tomorinmod:闪耀 。如果你拥有10点 tomorinmod:闪耀 ，获得 tomorinmod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorinmod:星盾 。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
@@ -95,16 +95,12 @@
     "NAME": "重力喷涌",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:重力 ，抽等同于 tomorinmod:重力 的卡牌 。"
   },
-  "${modID}:Poem": {
-    "NAME": "诗",
-    "DESCRIPTION": "每有1点 tomorinmod:闪耀 ，获得1点 [E] ",
-    "EXTENDED_DESCRIPTION": [
-      "（使用 ",
-      "次）。"
-    ]
+  "${modID}:ShineWithMe": {
+    "NAME": "光芒携我同行",
+    "DESCRIPTION": "每有1点 tomorinmod:闪耀 ，获得1点 [E] "
   },
-  "${modID}:Reversal": {
-    "NAME": "光与影",
+  "${modID}:LastGentle": {
+    "NAME": "最后的温柔",
     "DESCRIPTION": "将 tomorinmod:重力 和 tomorinmod:闪耀 层数互相转换。"
   },
   "${modID}:AstronomyMinister": {
@@ -168,8 +164,8 @@
     "NAME": "企鹅创可贴",
     "DESCRIPTION": "获得 !M! 点 多层护甲 ， 该牌的素材类型始终为创可贴且稀有度视作稀有。"
   },
-  "${modID}:RhinocerosBeetle": {
-    "NAME": "独角仙",
+  "${modID}:AquariumPass": {
+    "NAME": "水族馆年票",
     "DESCRIPTION": " 保留 ，抽一张牌，可以替代任意 tomorinmod:素材 。"
   },
   "${modID}:FailAndRestart": {
@@ -200,6 +196,7 @@
     "NAME": "丝滑小连招",
     "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌。"
   },
+
   "${modID}:Revolution": {
     "NAME": "泪滴与变革",
     "DESCRIPTION": " tomorinmod:永久形态 ：战斗开始时，获得等同于当前已创作音乐数 !M! 倍的 tomorinmod:闪耀 ， tomorinmod:初始化 。"

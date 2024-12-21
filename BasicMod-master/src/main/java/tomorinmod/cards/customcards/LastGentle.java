@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import static com.badlogic.gdx.Gdx.graphics;
 import static tomorinmod.BasicMod.imagePath;
 
-public class Reversal extends BaseCard {
-    public static final String ID = makeID(Reversal.class.getSimpleName());
+public class LastGentle extends BaseCard {
+    public static final String ID = makeID(LastGentle.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -32,7 +32,6 @@ public class Reversal extends BaseCard {
 
     static {
         for (int i = 0; i <= totalImages; i++) {
-
             imagePaths.add(imagePath("cards/Reversal/" + i + ".png"));
         }
     }
@@ -53,7 +52,7 @@ public class Reversal extends BaseCard {
             loadCardImage(imagePaths.get(currentImageIndex));
         }
     }
-    public Reversal() {
+    public LastGentle() {
         super(ID, info);
     }
 
@@ -63,15 +62,15 @@ public class Reversal extends BaseCard {
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
-        return new Reversal();
+    public AbstractCard makeCopy() {
+        return new LastGentle();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(0);
         }
     }
 }

@@ -1,49 +1,51 @@
 package tomorinmod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
-public class SmoothCombo extends BaseCard {
-    public static final String ID = makeID(SmoothCombo.class.getSimpleName());
+public class ShineWithMe extends BaseCard {
+    public static final String ID = makeID(ShineWithMe.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
-    public static int smoothComboUseTime=0;
-    public static CardType recordedType = null;
-    public SmoothCombo() {
+    public ShineWithMe() {
         super(ID, info);
-    }
-
-
-    public static void reset(){
-        smoothComboUseTime = 0;
-        recordedType=null;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        smoothComboUseTime=1;
+        AbstractPower shine = p.getPower(ShinePower.POWER_ID);
+        if (shine != null) {
+            for (int i = 0; i < shine.amount; i++) {
+                addToBot(new GainEnergyAction(1));
+            }
+        }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new SmoothCombo();
+        return new ShineWithMe();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }
