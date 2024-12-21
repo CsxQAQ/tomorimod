@@ -17,8 +17,10 @@ public abstract class BaseMonmentCard extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-        removeFromMasterDeck(this);
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        if(!p.hasPower(makeID("SmallMonmentPower"))){
+            removeFromMasterDeck(this);
+        }
     }
 
     public static void removeFromMasterDeck(AbstractCard aCard){

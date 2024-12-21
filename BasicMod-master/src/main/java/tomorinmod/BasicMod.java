@@ -46,8 +46,9 @@ import java.util.*;
 //TODO 瞬间在玩家卡组那里加一个特效
 
 //TODO 形态牌差一个能量的
-//TODO 修改暗黑形高松灯的效果，改为切换形态时（否则系统后就没用了）
 
+//TODO 永久形态
+//TODO 控制台mod
 @SpireInitializer
 public class BasicMod implements
 

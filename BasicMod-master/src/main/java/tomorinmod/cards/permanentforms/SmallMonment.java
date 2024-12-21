@@ -1,5 +1,7 @@
 package tomorinmod.cards.permanentforms;
 
+import basemod.helpers.CardBorderGlowManager;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -31,13 +33,33 @@ public class SmallMonment extends BaseCard {
     private boolean isNameChanged=false;
     private int curMusicDiscoveredNum=-1;
 
-    private static final int MAGIC = 2;
+    private static final int MAGIC = 0;
     private static final int UPG_MAGIC = 0;
 
     public SmallMonment() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         cardsToPreview=new WholeLife();
+
+        CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
+            @Override
+            public boolean test(AbstractCard card) {
+                return card instanceof SmallMonment &&
+                        SaveMusicDiscoverd.getInstance().musicDiscoveredNum > card.magicNumber &&
+                        ((SmallMonment) card).isNameChanged;
+            }
+
+            @Override
+            public Color getColor(AbstractCard card) {
+                return Color.YELLOW.cpy();
+            }
+
+            @Override
+            public String glowID() {
+                return "tomorinmod:SmallMonmentGlow";
+            }
+        });
+
     }
 
     public void changeToWholeLife(){
@@ -50,7 +72,7 @@ public class SmallMonment extends BaseCard {
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m){
-        return SaveMusicDiscoverd.getInstance().musicDiscoveredNum>magicNumber;
+        return isNameChanged;
     }
 
     @Override
@@ -61,7 +83,7 @@ public class SmallMonment extends BaseCard {
     @Override
     public void update(){
         super.update();
-        if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>magicNumber&&!isNameChanged){
+        if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>magicNumber){
             if(!isNameChanged){
                 changeToWholeLife();
                 isNameChanged=true;

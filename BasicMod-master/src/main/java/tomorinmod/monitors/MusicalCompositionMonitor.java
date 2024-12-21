@@ -39,8 +39,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             }
             if(cardsUsed.size()==3){
                 String music = matchRecipe();
+                getMusic(music); //先getMusic是因为要先判断是否已创作过music来决定reward
                 addHistoryRecipes(music);
-                getMusic(music);
                 MusicalComposition.isMusicCompositionUsed=false;
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, InCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
@@ -50,22 +50,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         }
     }
 
-    public void addHistoryRecipes(String music){
-
-        ArrayList<String> records = new ArrayList<>(4);
-        for (AbstractCard card : cardsUsed) {
-            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
-        }
-        records.add(music);
-        HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
-
-        if (!"fail".equals(music)) {
-            SaveMusicDiscoverd.getInstance().musicAdd(music);
-        }
-    }
-
     public void getMusic(String music){
-
         BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(music);
         BaseMusicCard card = null;
 
@@ -117,12 +102,25 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
         if (card != null) {
             card.setRarity(musicRarity);
-            RewardItem musicReward = new MusicReward(card.cardID);
-            AbstractDungeon.getCurrRoom().rewards.add(musicReward);
-
+            if(!SaveMusicDiscoverd.getInstance().musicDiscovered.contains(music)){
+                RewardItem musicReward = new MusicReward(card.cardID);
+                AbstractDungeon.getCurrRoom().rewards.add(musicReward);
+            }
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
         }
+    }
 
+    public void addHistoryRecipes(String music){
+        ArrayList<String> records = new ArrayList<>(4);
+        for (AbstractCard card : cardsUsed) {
+            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
+        }
+        records.add(music);
+        HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
+
+        if (!"fail".equals(music)) {
+            SaveMusicDiscoverd.getInstance().musicAdd(music);
+        }
     }
 
 

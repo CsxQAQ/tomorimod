@@ -110,5 +110,11 @@
     "DESCRIPTIONS": [
       "回合开始时，升级所有卡牌。 #y音乐 牌可以无限升级。"
     ]
+  },
+  "${modID}:SmallMonmentPower": {
+    "NAME": "一辈子",
+    "DESCRIPTIONS": [
+      " #y永久形态 ， 具有 #y瞬间 的卡牌使用后不会从牌组中移除。"
+    ]
   }
 }
