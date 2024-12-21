@@ -42,8 +42,8 @@ public class EquelExchange extends BaseCard {
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(1); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(1);
         }
     }
 }

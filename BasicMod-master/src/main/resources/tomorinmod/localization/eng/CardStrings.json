@@ -335,5 +335,17 @@
   "${modID}:FailComposition": {
     "NAME": "失败的创作",
     "DESCRIPTION": " 虚无 ，无法打出。"
+  },
+
+  "${modID}:SmallMonment": {
+    "NAME": "小小的瞬间",
+    "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的音乐牌，则变化为 *一辈子 。",
+    "EXTENDED_DESCRIPTION": [
+      " tomorinmod:永久形态 ，具有 tomorinmod:瞬间 的卡牌使用后不会从牌组中移除。"
+    ]
+  },
+  "${modID}:WholeLife": {
+    "NAME": "一辈子",
+    "DESCRIPTION": " tomorinmod:永久形态 ，具有 tomorinmod:瞬间 的卡牌使用后不会从牌组中移除。"
   }
 }

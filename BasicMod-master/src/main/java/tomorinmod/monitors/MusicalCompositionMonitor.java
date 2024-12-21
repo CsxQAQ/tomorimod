@@ -27,20 +27,15 @@ import java.util.ArrayList;
 
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
-    public static final ArrayList<String> cardsUsed = new ArrayList<>(3);
+    public static final ArrayList<AbstractCard> cardsUsed = new ArrayList<>(3);
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
         if(MusicalComposition.isMusicCompositionUsed){
-//            if(abstractCard instanceof BaseCard){
-//                BaseCard baseCard=(BaseCard) abstractCard;
-//                if(!baseCard.material.isEmpty()){
-//                    MaterialUi.getInstance().setMaterial(baseCard.material);
-//                    cardsUsed.add(abstractCard.cardID);
-//                }
+
             if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
                 MaterialUi.getInstance().setMaterial(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard));
-                cardsUsed.add((abstractCard.cardID));
+                cardsUsed.add((abstractCard));
             }
             if(cardsUsed.size()==3){
                 String music = matchRecipe();
@@ -49,6 +44,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 MusicalComposition.isMusicCompositionUsed=false;
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, InCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
+                cardsUsed.clear();
             }
             //}
         }
@@ -57,18 +53,14 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     public void addHistoryRecipes(String music){
 
         ArrayList<String> records = new ArrayList<>(4);
-        for (String card : cardsUsed) {
-            AbstractCard cardObject = CardLibrary.getCard(card);
-            //if(cardObject instanceof BaseCard){
-            //    BaseCard baseCard=(BaseCard)cardObject;
-            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(cardObject.cardID));
-            //}
+        for (AbstractCard card : cardsUsed) {
+            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
         }
         records.add(music);
         HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
 
         if (!"fail".equals(music)) {
-            SaveMusicDiscoverd.getInstance().musicDiscovered.add(music);
+            SaveMusicDiscoverd.getInstance().musicAdd(music);
         }
     }
 
@@ -152,16 +144,9 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         return true;
     }
 
-    public boolean cardMatch(String card, String recipe, int rarity) {
-        AbstractCard cardObject = CardLibrary.getCard(card);
-        if (cardObject == null) return false;
-
-//        if(cardObject instanceof BaseCard){
-//            BaseCard baseCard=(BaseCard) cardObject;
-//            return baseCard.material.equals(recipe) && baseCard.level >= rarity;
-//        }
-        return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(cardObject).equals(recipe)&&
-                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(cardObject)>=rarity;
+    public boolean cardMatch(AbstractCard card, String recipe, int rarity) {
+        return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(recipe)&&
+                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card)>=rarity;
     }
 
     @Override

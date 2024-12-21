@@ -164,9 +164,9 @@ public class CraftingRecipes implements Clearable {
             int randomNum2=0;
             int randomNum3=0;
             while((randomNum1+randomNum2+randomNum3)!=music.getValue()){
-                randomNum1 = AbstractDungeon.miscRng.random(1,4);
-                randomNum2 = AbstractDungeon.miscRng.random(1,4);
-                randomNum3 = AbstractDungeon.miscRng.random(1,4);
+                randomNum1 = AbstractDungeon.miscRng.random(1,3);
+                randomNum2 = AbstractDungeon.miscRng.random(1,3);
+                randomNum3 = AbstractDungeon.miscRng.random(1,3);
             }
 
             Recipe recipe=new Recipe(getRandomMaterials(),getRandomMaterials(),getRandomMaterials(),

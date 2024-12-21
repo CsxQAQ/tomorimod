@@ -20,8 +20,8 @@ public class Stone extends BaseCard {
             1
     );
 
-    private static final int DAMAGE = 24;
-    private static final int UPG_DAMAGE = 6;
+    private static final int DAMAGE = 0;
+    private static final int UPG_DAMAGE = 0;
 
     public Stone() {
         super(ID, info);

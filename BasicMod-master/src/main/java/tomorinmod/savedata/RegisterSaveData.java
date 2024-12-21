@@ -132,7 +132,7 @@ public class RegisterSaveData {
             }
         });
 
-        BaseMod.addSaveField("MusicDiscovered", new CustomSavableRaw() {
+        BaseMod.addSaveField("MusicDiscoveredArrayList", new CustomSavableRaw() {
             private final Gson gson = new Gson();
 
             @Override
@@ -144,6 +144,22 @@ public class RegisterSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     SaveMusicDiscoverd.getInstance().musicDiscovered = gson.fromJson(jsonElement, new TypeToken<ArrayList<String>>() {}.getType());
+                }
+            }
+        });
+
+        BaseMod.addSaveField("MusicDiscoveredNum", new CustomSavableRaw() {
+            private final Gson gson = new Gson();
+
+            @Override
+            public JsonElement onSaveRaw() {
+                return gson.toJsonTree(SaveMusicDiscoverd.getInstance().musicDiscoveredNum);
+            }
+
+            @Override
+            public void onLoadRaw(JsonElement jsonElement) {
+                if (jsonElement != null) {
+                    SaveMusicDiscoverd.getInstance().musicDiscoveredNum = gson.fromJson(jsonElement, new TypeToken<Integer>() {}.getType());
                 }
             }
         });

@@ -85,7 +85,7 @@ public class AbstractCardSetMaterialPatch {
         }
         if(card.rarity!=null){
             switch (card.rarity) {
-                case COMMON://
+                case COMMON:
                 case BASIC:
                 case SPECIAL:
                     AbstractCardFieldPatch.level.set(card,1);
@@ -100,7 +100,7 @@ public class AbstractCardSetMaterialPatch {
                     break;
             }
         }
-        if(card.cardID.equals(makeID("stone"))||card.cardID.equals(makeID("band"))||card.cardID.equals(makeID("watermelonworm"))){
+        if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Watermelonworm"))){
             AbstractCardFieldPatch.level.set(card,3);
         }
     }
