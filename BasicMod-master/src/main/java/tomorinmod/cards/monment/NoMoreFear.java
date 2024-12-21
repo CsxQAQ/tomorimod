@@ -20,20 +20,17 @@ public class NoMoreFear extends BaseMonmentCard {
             1
     );
 
-    private static final int MAGIC = 6;
-    private static final int UPG_MAGIC = 4;
+    private static final int MAGIC = 4;
+    private static final int UPG_MAGIC = 2;
 
     public NoMoreFear() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
-        this.exhaust=true;
-        CommonKeywordIconsField.useIcons.set(this, true);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p, p, new StrengthPower(p,this.magicNumber),this.magicNumber));
-        //CustomUtils.addTags(this, CustomTags.MOMENT);
         super.use(p,m);
     }
 

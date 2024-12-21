@@ -49,7 +49,17 @@
     "NAME": "为什么要演奏春日影",
     "DESCRIPTION": "眩晕所有敌人 !M! 回合， tomorinmod:瞬间 ， 消耗 。"
   },
-
+  "${modID}:NoMoreFear": {
+    "NAME": "激励",
+    "DESCRIPTION": "获得 !M! 点 力量 。 tomorinmod:瞬间 。"
+  },
+  "${modID}:NeverHappy": {
+    "NAME": "从没觉得开心过",
+    "DESCRIPTION": "给予所有敌人 !M! 易伤， tomorinmod:瞬间 ， 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "给予所有敌人 !M! 易伤 和 脆弱 ， tomorinmod:瞬间 ， 消耗 。"
+    ]
+  },
 
   "${modID}:Shout": {
     "NAME": "内心的呐喊",
@@ -167,15 +177,6 @@
     "DESCRIPTION": "将手牌中失败的创作翻面。"
   },
 
-  "${modID}:LondonDeserter": {
-    "NAME": "敦敦逃兵",
-    "DESCRIPTION": "从本场战斗中逃离，在boss房间无效。 tomorinmod:瞬间 ， 消耗 。"
-  },
-
-  "${modID}:NoMoreFear": {
-    "NAME": "不再胆怯",
-    "DESCRIPTION": "获得 !M! 点 力量 。 tomorinmod:瞬间 ， 消耗 。"
-  },
   "${modID}:TomorinApotheosis": {
     "NAME": "灯神长阶",
     "DESCRIPTION": "回合开始时升级你的所有牌。 tomorinmod:增强 :如果xxx，本场战斗中你的攻击牌没有升级上限。"
