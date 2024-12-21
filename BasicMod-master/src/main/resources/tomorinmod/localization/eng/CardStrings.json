@@ -91,13 +91,9 @@
     "NAME": "迷途之子",
     "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 。"
   },
-  "${modID}:LifelongBand": {
-    "NAME": "一辈子乐队",
-    "DESCRIPTION": "造成 !D! 点伤害，抽1张牌，每有1点 tomorinmod:重力 ，额外重复上述效果一次 。",
-    "EXTENDED_DESCRIPTION": [
-      "（重复此效果 ",
-      "次）。"
-    ]
+  "${modID}:GravitySurge": {
+    "NAME": "重力喷涌",
+    "DESCRIPTION": "获得 !M! 点 tomorinmod:重力 ，抽等同于 tomorinmod:重力 的卡牌 。"
   },
   "${modID}:Poem": {
     "NAME": "诗",

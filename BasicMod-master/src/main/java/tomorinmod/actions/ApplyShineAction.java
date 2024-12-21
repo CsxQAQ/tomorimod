@@ -13,8 +13,8 @@ public class ApplyShineAction extends AbstractGameAction {
     }
 
     public void update() {
-        addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ShinePower(AbstractDungeon.player, amount), amount));
-        addToBot(new CheckShineGravityAction(AbstractDungeon.player));
+        addToTop(new CheckShineGravityAction(AbstractDungeon.player));
+        addToTop(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ShinePower(AbstractDungeon.player, amount), amount));
         isDone=true;
     }
 
