@@ -37,12 +37,11 @@ public class Tomotomo extends BaseMonmentCard {
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
         int totalGold = this.magicNumber * AbstractDungeon.getMonsters().monsters.size();
         this.addToBot(new GainGoldAction(totalGold));
-        //CustomUtils.addTags(this,CustomTags.MOMENT);
         super.use(p,m);
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new Tomotomo();
     }
 
