@@ -1,6 +1,5 @@
 package tomorinmod.cards.monment;
 
-import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.CommonKeywordIconsField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,9 +8,9 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
-public class NoMoreFear extends BaseMonmentCard {
+public class Motivate extends BaseMonmentCard {
 
-    public static final String ID = makeID(NoMoreFear.class.getSimpleName());
+    public static final String ID = makeID(Motivate.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -23,7 +22,7 @@ public class NoMoreFear extends BaseMonmentCard {
     private static final int MAGIC = 4;
     private static final int UPG_MAGIC = 2;
 
-    public NoMoreFear() {
+    public Motivate() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
     }
@@ -36,6 +35,6 @@ public class NoMoreFear extends BaseMonmentCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new NoMoreFear();
+        return new Motivate();
     }
 }
