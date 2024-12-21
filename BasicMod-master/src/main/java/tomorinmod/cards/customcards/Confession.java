@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorinmod.actions.ApplyGravityAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
-public class NeedAnon extends BaseCard {
+public class Confession extends BaseCard {
 
-    public static final String ID = makeID(NeedAnon.class.getSimpleName());
+    public static final String ID = makeID(Confession.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -21,7 +22,7 @@ public class NeedAnon extends BaseCard {
             2
     );
 
-    public NeedAnon() {
+    public Confession() {
         super(ID, info);
         this.exhaust=true;
     }
@@ -29,21 +30,22 @@ public class NeedAnon extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractPower gravity = AbstractDungeon.player.getPower(GravityPower.POWER_ID);
-
         int gravityAmount = gravity != null ? gravity.amount : 0;
-        gravity.amount = gravityAmount*2;
+        if(gravityAmount!=0){
+            addToBot(new ApplyGravityAction(gravityAmount));
+        }
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
-        return new NeedAnon();
+    public AbstractCard makeCopy() {
+        return new Confession();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            upgradeBaseCost(1);
         }
     }
 
