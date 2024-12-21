@@ -1,10 +1,12 @@
 package tomorinmod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.custompowers.ConveyFeelingPower;
 import tomorinmod.util.CardStats;
 
 public class ConveyFeeling extends BaseCard {
@@ -15,10 +17,9 @@ public class ConveyFeeling extends BaseCard {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            3
+            2
     );
 
-    public static boolean isConveyFeelingUsed=false;
     public static int maxHPOverflow=0;
 
     public ConveyFeeling() {
@@ -27,7 +28,7 @@ public class ConveyFeeling extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        isConveyFeelingUsed=true;
+        addToBot(new ApplyPowerAction(p,p,new ConveyFeelingPower(p),0));
     }
 
     @Override
@@ -37,8 +38,8 @@ public class ConveyFeeling extends BaseCard {
     @Override
     public void upgrade() {
         if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(2); // 将费用从 1 降为 0
+            upgradeName();
+            upgradeBaseCost(1);
         }
     }
 }

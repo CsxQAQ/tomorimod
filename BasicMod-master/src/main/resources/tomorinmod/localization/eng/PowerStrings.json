@@ -116,5 +116,11 @@
     "DESCRIPTIONS": [
       " #y永久形态 ， 具有 #y瞬间 的卡牌使用后不会从牌组中移除。"
     ]
+  },
+  "${modID}:ConveyFeelingPower": {
+    "NAME": "传达心意",
+    "DESCRIPTIONS": [
+      " #y闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
+    ]
   }
 }

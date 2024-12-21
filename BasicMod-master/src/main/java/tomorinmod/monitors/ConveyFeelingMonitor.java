@@ -9,7 +9,6 @@ import tomorinmod.cards.customcards.ConveyFeeling;
 public class ConveyFeelingMonitor extends BaseMonitor implements OnStartBattleSubscriber, PostBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        ConveyFeeling.isConveyFeelingUsed=false;
         ConveyFeeling.maxHPOverflow=0;
     }
 

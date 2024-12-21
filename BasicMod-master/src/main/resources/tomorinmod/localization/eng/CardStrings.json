@@ -62,7 +62,7 @@
   },
   "${modID}:FateCommunity": {
     "NAME": "命运共同体",
-    "DESCRIPTION": "平均所有单位的当前生命值百分比。 tomorinmod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "平均所有单位的当前生命值百分比。 tomorinmod:瞬间 ， 消耗 。"
   },
 
   "${modID}:Shout": {

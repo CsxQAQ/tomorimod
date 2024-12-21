@@ -28,7 +28,7 @@ public class ShinePower extends BasePower {
         AbstractPlayer abstractPlayer=AbstractDungeon.player;
         addToBot(new HealAction(this.owner, this.owner, this.amount));
 
-        if(ConveyFeeling.isConveyFeelingUsed){
+        if(AbstractDungeon.player.hasPower(makeID("ConveyFeelingPower"))){
             int maxHPOverflow = Math.max(0, abstractPlayer.currentHealth + this.amount - abstractPlayer.maxHealth);
             if(maxHPOverflow>0){
                 ConveyFeeling.maxHPOverflow=ConveyFeeling.maxHPOverflow+maxHPOverflow;
