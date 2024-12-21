@@ -15,8 +15,11 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.RevolutionPower;
 import tomorinmod.powers.permanentforms.SmallMonmentPower;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
+import tomorinmod.savedata.customdata.PermanentFormsSaveData;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
+
+import static tomorinmod.util.CustomUtils.idToName;
 
 public class SmallMonment extends BaseCard {
 
@@ -44,9 +47,7 @@ public class SmallMonment extends BaseCard {
         CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
             @Override
             public boolean test(AbstractCard card) {
-                return card instanceof SmallMonment &&
-                        SaveMusicDiscoverd.getInstance().musicDiscoveredNum > card.magicNumber &&
-                        ((SmallMonment) card).isNameChanged;
+                return card instanceof SmallMonment && ((SmallMonment) card).isNameChanged;
             }
 
             @Override
@@ -78,12 +79,13 @@ public class SmallMonment extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new SmallMonmentPower(p),0));
+        PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
     }
 
     @Override
     public void update(){
         super.update();
-        if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>magicNumber){
+        if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>=magicNumber){
             if(!isNameChanged){
                 changeToWholeLife();
                 isNameChanged=true;

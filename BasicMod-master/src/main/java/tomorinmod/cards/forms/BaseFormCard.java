@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.actions.FormPowerChangeBlueAction;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.powers.forms.*;
-import tomorinmod.savedata.customdata.SavePermanentForm;
+import tomorinmod.savedata.customdata.FormsSaveData;
 import tomorinmod.util.CardStats;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public abstract class BaseFormCard extends BaseCard {
                 addToBot(new RemoveSpecificPowerAction(p, p, makeID(curForm)));
             }
         }else{
-            SavePermanentForm.getInstance().getForms().add(new FormInfo(formName,magicNumber));
+            FormsSaveData.getInstance().getForms().add(new FormInfo(formName,magicNumber));
             if(!curForm.equals(formName)&&AbstractDungeon.player.hasPower(makeID("DarkTomorinPower"))){
                 for(AbstractPower power:p.powers){
                     if(power instanceof DarkTomorinPower){

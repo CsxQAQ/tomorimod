@@ -6,19 +6,19 @@ import tomorinmod.savedata.SaveDataInstanceFactory;
 
 import java.util.ArrayList;
 
-public class SavePermanentForm implements Clearable {
+public class FormsSaveData implements Clearable {
 
-    private static SavePermanentForm instance;
+    private static FormsSaveData instance;
 
     public ArrayList<BaseFormCard.FormInfo> forms=new ArrayList<>();
 
-    private SavePermanentForm() {
+    private FormsSaveData() {
         SaveDataInstanceFactory.registerInstance(this);
     }
 
-    public static synchronized SavePermanentForm getInstance() {
+    public static synchronized FormsSaveData getInstance() {
         if (instance == null) {
-            instance = new SavePermanentForm();
+            instance = new FormsSaveData();
         }
         return instance;
     }

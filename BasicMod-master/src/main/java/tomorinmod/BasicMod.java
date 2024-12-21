@@ -47,8 +47,6 @@ import java.util.*;
 
 //TODO 形态牌差一个能量的
 
-//TODO 永久形态
-//TODO 控制台mod
 @SpireInitializer
 public class BasicMod implements
 
@@ -66,7 +64,7 @@ public class BasicMod implements
     }
 
     public static void receiveMonitor(){
-        BaseMod.subscribe(new HandleFormsMonitor());
+        BaseMod.subscribe(new FormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new GiftBoxFlipMonitor());
         BaseMod.subscribe(new MusicalCompositionMonitor());
@@ -77,6 +75,7 @@ public class BasicMod implements
         BaseMod.subscribe(new ConveyFeelingMonitor());
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());
+        BaseMod.subscribe(new PermanentFormsMonitor());
     }
 
     public void receiveReward(){

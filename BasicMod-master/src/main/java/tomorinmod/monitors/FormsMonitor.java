@@ -8,19 +8,19 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.powers.forms.*;
-import tomorinmod.savedata.customdata.SavePermanentForm;
+import tomorinmod.savedata.customdata.FormsSaveData;
 
 import java.util.List;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class HandleFormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
+public class FormsMonitor extends BaseMonitor implements OnStartBattleSubscriber {
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         if(!AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
             BaseFormCard.clear();
         }else{
-            applyPermanentForms(SavePermanentForm.getInstance().getForms());
+            applyPermanentForms(FormsSaveData.getInstance().getForms());
         }
     }
 
