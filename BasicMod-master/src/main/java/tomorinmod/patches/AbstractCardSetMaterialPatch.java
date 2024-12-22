@@ -68,7 +68,22 @@ public class AbstractCardSetMaterialPatch {
         setMaterialAndLevel(card);
         try {
             if(AbstractCardFieldPatch.material.get(card)!=""){
-                AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/" + AbstractCardFieldPatch.material.get(card) + ".png")));
+                switch(card.rarity){
+                    case COMMON:
+                    case BASIC:
+                    case SPECIAL:
+                        AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
+                                AbstractCardFieldPatch.material.get(card) + "_common.png")));
+                        break;
+                    case UNCOMMON:
+                        AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
+                                AbstractCardFieldPatch.material.get(card) + "_uncommon.png")));
+                        break;
+                    case RARE:
+                        AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
+                                AbstractCardFieldPatch.material.get(card) + "_rare.png")));
+                        break;
+                }
             }
         } catch (Exception e) {
             System.err.println("Failed to load icon texture: " + e.getMessage());

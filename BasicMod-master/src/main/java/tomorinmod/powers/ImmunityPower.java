@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import static tomorinmod.BasicMod.makeID;
 
@@ -34,7 +35,13 @@ public class ImmunityPower extends BasePower {
         if (this.amount == 0) {
             addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, makeID("ImmunityPower")));
         } else {
-            addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ImmunityPower"), 1));
+            if(!AbstractDungeon.player.hasPower(makeID("ShinePower"))){
+                addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ImmunityPower"), 1));
+            }else if(AbstractDungeon.player.getPower(makeID("ShinePower")).amount<5){
+                addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ImmunityPower"), 1));
+            }else{
+                addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ShinePower"), 5));
+            }
         }
     }
 }

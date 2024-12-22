@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.powers.custompowers.StarDustPower;
 import tomorinmod.powers.forms.BaseFormPower;
 import tomorinmod.powers.permanentforms.SmallMonmentPower;
 import tomorinmod.savedata.customdata.FormsSaveData;
@@ -29,6 +30,9 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
             switch (permantForms){
                 case "SmallMonment":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new SmallMonmentPower(p),0));
+                    break;
+                case "StarDust":
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new StarDustPower(p),0));
                     break;
             }
         }

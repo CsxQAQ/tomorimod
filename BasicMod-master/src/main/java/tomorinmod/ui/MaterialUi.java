@@ -11,11 +11,17 @@ import static tomorinmod.BasicMod.imagePath;
 
 public class MaterialUi implements Renderable {
 
-    private static final Texture TextureStone = new Texture(imagePath("materials/" + "stone.png"));
-    private static final Texture TextureBand = new Texture(imagePath("materials/" + "band.png"));
-    private static final Texture TextureWatermelonworm = new Texture(imagePath("materials/" + "watermelonworm.png"));
+    private static final Texture TextureStoneCommon = new Texture(imagePath("materials/card/stone_common.png"));
+    private static final Texture TextureBandCommon = new Texture(imagePath("materials/card/band_common.png"));
+    private static final Texture TextureWatermelonwormCommon = new Texture(imagePath("materials/card/watermelonworm_common.png"));
+    private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/card/stone_uncommon.png"));
+    private static final Texture TextureBandUncommon = new Texture(imagePath("materials/card/band_uncommon.png"));
+    private static final Texture TextureWatermelonwormUncommon = new Texture(imagePath("materials/card/watermelonworm_uncommon.png"));
+    private static final Texture TextureStoneRare = new Texture(imagePath("materials/card/stone_rare.png"));
+    private static final Texture TextureBandRare = new Texture(imagePath("materials/card/band_rare.png"));
+    private static final Texture TextureWatermelonwormRare = new Texture(imagePath("materials/card/watermelonworm_rare.png"));
 
-    ArrayList<String> materials=new ArrayList<>();
+    ArrayList<MaterialInfo> materials=new ArrayList<>();
 
     private static final float SIZE = 100.0F;
     private static final float X_OFFSET = 115.0F;
@@ -35,18 +41,41 @@ public class MaterialUi implements Renderable {
 
     }
 
-    public void setMaterial(String material){
-        materials.add(material);
+    public void setMaterial(String material,int level){
+        materials.add(new MaterialInfo(material,level));
     }
 
-    public Texture getMaterialTexture(String s){
-        switch (s){
+    public Texture getMaterialTexture(MaterialInfo info){
+        switch (info.getName()) {
             case "stone":
-                return TextureStone;
+                if (info.getLevel() == 1) {
+                    return TextureStoneCommon;
+                } else if (info.getLevel() == 2) {
+                    return TextureStoneUncommon;
+                } else if (info.getLevel() == 3) {
+                    return TextureStoneRare;
+                }
+                break;
+
             case "band":
-                return TextureBand;
+                if (info.getLevel() == 1) {
+                    return TextureBandCommon;
+                } else if (info.getLevel() == 2) {
+                    return TextureBandUncommon;
+                } else if (info.getLevel() == 3) {
+                    return TextureBandRare;
+                }
+                break;
+
             case "watermelonworm":
-                return TextureWatermelonworm;
+                if (info.getLevel() == 1) {
+                    return TextureWatermelonwormCommon;
+                } else if (info.getLevel() == 2) {
+                    return TextureWatermelonwormUncommon;
+                } else if (info.getLevel() == 3) {
+                    return TextureWatermelonwormRare;
+                }
+                break;
         }
         return null;
     }
@@ -63,5 +92,23 @@ public class MaterialUi implements Renderable {
 
     public void clear(){
         materials.clear();
+    }
+
+    public class MaterialInfo {
+        private final String name;
+        private final int level;
+
+        public MaterialInfo(String name, int level) {
+            this.name = name;
+            this.level = level;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getLevel() {
+            return level;
+        }
     }
 }

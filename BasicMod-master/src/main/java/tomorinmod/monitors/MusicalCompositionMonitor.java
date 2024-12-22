@@ -34,7 +34,9 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         if(MusicalComposition.isMusicCompositionUsed){
 
             if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
-                MaterialUi.getInstance().setMaterial(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard));
+                MaterialUi.getInstance().setMaterial(
+                    AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard),
+                        AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(abstractCard));
                 cardsUsed.add((abstractCard));
             }
             if(cardsUsed.size()==3){
@@ -113,7 +115,10 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     public void addHistoryRecipes(String music){
         ArrayList<String> records = new ArrayList<>(4);
         for (AbstractCard card : cardsUsed) {
-            records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
+            String material=CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID);
+            int level= AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card);
+            records.add(material+level);
+            //records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
         }
         records.add(music);
         HistoryCraftRecords.getInstance().historyCraftRecords.add(records);

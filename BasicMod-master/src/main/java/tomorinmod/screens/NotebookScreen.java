@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
+import tomorinmod.ui.MaterialUi;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,16 @@ import static tomorinmod.BasicMod.imagePath;
 
 public class NotebookScreen extends CustomScreen
 {
+    private static final Texture TextureStoneCommon = new Texture(imagePath("materials/notebook/stone_common.png"));
+    private static final Texture TextureBandCommon = new Texture(imagePath("materials/notebook/band_common.png"));
+    private static final Texture TextureWatermelonwormCommon = new Texture(imagePath("materials/notebook/watermelonworm_common.png"));
+    private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/notebook/stone_uncommon.png"));
+    private static final Texture TextureBandUncommon = new Texture(imagePath("materials/notebook/band_uncommon.png"));
+    private static final Texture TextureWatermelonwormUncommon = new Texture(imagePath("materials/notebook/watermelonworm_uncommon.png"));
+    private static final Texture TextureStoneRare = new Texture(imagePath("materials/notebook/stone_rare.png"));
+    private static final Texture TextureBandRare = new Texture(imagePath("materials/notebook/band_rare.png"));
+    private static final Texture TextureWatermelonwormRare = new Texture(imagePath("materials/notebook/watermelonworm_rare.png"));
+
     public static class Enum
     {
         @SpireEnum
@@ -85,7 +96,7 @@ public class NotebookScreen extends CustomScreen
     }
 
     private Texture[] displayedImages = new Texture[3];
-    private Texture notebookImage=new Texture(imagePath("notebook.png"));
+    private Texture notebookImage=new Texture(imagePath("materials/notebook.png"));
 
     private ArrayList<ArrayList<String>> historyRecords;
 
@@ -97,15 +108,15 @@ public class NotebookScreen extends CustomScreen
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.draw(notebookImage, 100, 100, 800, 800);
+        sb.draw(notebookImage, 100.0f*Settings.scale, 100.0f*Settings.scale,
+                1700.0f*Settings.scale, 1150.0f*Settings.scale);
 
         if (HistoryCraftRecords.getInstance().historyCraftRecords.isEmpty()) return;
 
         int totalPages = calculateTotalPages(historyRecords.size(), recordsPerPage);
 
-        // 如果 currentPage 还未初始化，设置为最后一页
         if (currentPage == -1) {
-            currentPage = totalPages - 1; // 最新数据所在页
+            currentPage = totalPages - 1;
         }
 
         int[] pageIndices = getPageIndices(currentPage, recordsPerPage, historyRecords.size());
@@ -143,7 +154,8 @@ public class NotebookScreen extends CustomScreen
 
             for (int i = 0; i < 3; i++) {
                 if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
-                    displayedImages[i] = new Texture(imagePath("materials/" + record.get(i) + ".png"));
+                    //displayedImages[i] = new Texture(imagePath("materials/" + record.get(i) + ".png"));
+                    displayedImages[i] = getMaterialTexture(record.get(i));
                 }
 
                 float xSpacing = screenWidth / 8;
@@ -152,6 +164,44 @@ public class NotebookScreen extends CustomScreen
                 sb.draw(displayedImages[i], xPosition - imageWidth / 2, yPosition - imageHeight / 2, imageWidth, imageHeight);
             }
         }
+    }
+
+    public Texture getMaterialTexture(String s){
+        int level = Character.getNumericValue(s.charAt(s.length() - 1)); // 获取最后一位并转为数字
+        String material = s.substring(0, s.length() - 1); // 去掉最后一位
+
+        switch (material) {
+            case "stone":
+                if (level == 1) {
+                    return TextureStoneCommon;
+                } else if (level == 2) {
+                    return TextureStoneUncommon;
+                } else if (level == 3) {
+                    return TextureStoneRare;
+                }
+                break;
+
+            case "band":
+                if (level == 1) {
+                    return TextureBandCommon;
+                } else if (level == 2) {
+                    return TextureBandUncommon;
+                } else if (level == 3) {
+                    return TextureBandRare;
+                }
+                break;
+
+            case "watermelonworm":
+                if (level == 1) {
+                    return TextureWatermelonwormCommon;
+                } else if (level == 2) {
+                    return TextureWatermelonwormUncommon;
+                } else if (level == 3) {
+                    return TextureWatermelonwormRare;
+                }
+                break;
+        }
+        return null;
     }
 
     private void renderPageButtons(SpriteBatch sb, int totalPages) {
