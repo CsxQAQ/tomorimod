@@ -1,14 +1,19 @@
 package tomorinmod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import tomorinmod.actions.BitianbanzouAction;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.monitors.LunfuyuMonitor;
 import tomorinmod.util.CardStats;
 
 public class Bitianbanzou extends BaseMusicCard {
@@ -35,34 +40,60 @@ public class Bitianbanzou extends BaseMusicCard {
     private final static int UPG_DAMAGE_COMMON = 3;
     private final static int BLOCK_COMMON = 0;
     private final static int UPG_BLOCK_COMMON = 0;
-    private final static int MAGIC_COMMON = 0;
-    private final static int UPG_MAGIC_COMMON = 0;
+    private final static int MAGIC_COMMON = 3;
+    private final static int UPG_MAGIC_COMMON = 2;
 
-    private final static int DAMAGE_UNCOMMON = 10;
+    private final static int DAMAGE_UNCOMMON = 9;
     private final static int UPG_DAMAGE_UNCOMMON = 4;
     private final static int BLOCK_UNCOMMON = 0;
     private final static int UPG_BLOCK_UNCOMMON = 0;
-    private final static int MAGIC_UNCOMMON = 0;
-    private final static int UPG_MAGIC_UNCOMMON = 0;
+    private final static int MAGIC_UNCOMMON = 5;
+    private final static int UPG_MAGIC_UNCOMMON = 3;
 
-    private final static int DAMAGE_RARE = 10;
+    private final static int DAMAGE_RARE = 9;
     private final static int UPG_DAMAGE_RARE = 4;
     private final static int BLOCK_RARE = 0;
     private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 0;
-    private final static int UPG_MAGIC_RARE = 0;
+    private final static int MAGIC_RARE = 5;
+    private final static int UPG_MAGIC_RARE = 3;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new BitianbanzouAction(uuid));
-    }
 
+        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
+        }
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int negativeEffectsCount = 0;
+                for (AbstractPower power : m.powers) {
+                    if (power.type == AbstractPower.PowerType.DEBUFF) {
+                        negativeEffectsCount += power.amount;
+                    }
+                }
 
-    @Override
-    public void applyPowers(){
-        super.applyPowers();
-        //baseDamage=misc+UPG_DAMAGE*timesUpgraded+DAMAGE;
+                int extraDamage = negativeEffectsCount;
+                switch (musicRarity){
+                    case RARE:
+                        baseDamage=DAMAGE_RARE+timesUpgraded*UPG_DAMAGE_RARE+extraDamage;
+                        break;
+                    case UNCOMMON:
+                        baseDamage=DAMAGE_UNCOMMON+timesUpgraded*UPG_DAMAGE_UNCOMMON+extraDamage;
+                        break;
+                    case COMMON:
+                        baseDamage=DAMAGE_COMMON+timesUpgraded*UPG_DAMAGE_COMMON+extraDamage;
+                        break;
+                }
+
+                applyPowers();
+
+                addToBot(new DamageAction(m,  new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL)
+                        , AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                isDone=true;
+            }
+        });
     }
 
     @Override
