@@ -22,7 +22,12 @@ public class FailComposition extends BaseCard implements WithoutMaterial {
 
     public FailComposition() {
         super(ID, info);
-        this.isEthereal = true;
+        isEthereal = true;
+    }
+
+    @Override
+    public boolean canUpgrade(){
+        return false;
     }
 
     @Override
@@ -38,11 +43,6 @@ public class FailComposition extends BaseCard implements WithoutMaterial {
     @Override
     public AbstractCard makeCopy() {
         return new FailComposition();
-    }
-
-    @Override
-    public void upgrade() {
-
     }
 
 }

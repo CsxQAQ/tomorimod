@@ -24,7 +24,7 @@ public class TwoFish extends BaseCard {
             1
     );
 
-    public static int curAttribute=0; //0 Gravity
+    public static int curAttribute=0;
 
     private int POWERS=3;
     private int UPG_POWERS=2;
@@ -45,8 +45,6 @@ public class TwoFish extends BaseCard {
         }
     }
 
-
-    //改成层数比较吧
     @Override
     public void applyPowers() {
         super.applyPowers();

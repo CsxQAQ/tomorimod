@@ -175,11 +175,11 @@
 
   "${modID}:TomorinApotheosis": {
     "NAME": "灯神长阶",
-    "DESCRIPTION": "回合开始时升级你的所有牌。 tomorinmod:增强 :如果xxx，本场战斗中你的攻击牌没有升级上限。"
+    "DESCRIPTION": "回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。"
   },
   "${modID}:MusicalComposition": {
     "NAME": "作词",
-    "DESCRIPTION": "固有 ， 保留 ， 消耗 ，进入 tomorinmod:创作模式 。"
+    "DESCRIPTION": "固有 ， 保留 ， 消耗 ，使用卡牌时获得其对应的 tomorinmod:素材 。"
   },
   "${modID}:Lyric": {
     "NAME": "歌词本",

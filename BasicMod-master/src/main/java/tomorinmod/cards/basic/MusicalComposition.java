@@ -48,6 +48,10 @@ public class MusicalComposition extends BaseCard implements WithoutMaterial {
 
     }
 
+    @Override
+    public boolean canUpgrade(){
+        return false;
+    }
 
     @Override
     public AbstractCard makeCopy() {
