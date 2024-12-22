@@ -153,11 +153,11 @@
     ]
   },
   "${modID}:Stone": {
-    "NAME": "漂亮的石头",
+    "NAME": "石头",
     "DESCRIPTION": "造成 !D! 点伤害，该牌的素材类型始终为石头且稀有度视作稀有。"
   },
-  "${modID}:Watermelonworm": {
-    "NAME": "西瓜虫",
+  "${modID}:Flower": {
+    "NAME": "花瓣",
     "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 tomorinmod:临时荆棘 ，该牌的素材类型始终为西瓜虫且稀有度视作稀有。"
   },
   "${modID}:Band": {

@@ -30,8 +30,6 @@ public class Stone extends BaseCard {
 
         setDamage(DAMAGE, UPG_DAMAGE); //Sets the card's damage and how much it changes when upgraded.
 
-        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
-                imagePath("character/specialcardback/music_cardback_p.png"));
     }
 
     @Override
@@ -44,9 +42,5 @@ public class Stone extends BaseCard {
         return new Stone();
     }
 
-//    @Override
-//    public void setMaterialAndLevel(){
-//        this.material= "stone";
-//        this.level=3;
-//    }
+
 }

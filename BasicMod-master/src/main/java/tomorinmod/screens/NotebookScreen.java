@@ -21,13 +21,13 @@ public class NotebookScreen extends CustomScreen
 {
     private static final Texture TextureStoneCommon = new Texture(imagePath("materials/notebook/stone_common.png"));
     private static final Texture TextureBandCommon = new Texture(imagePath("materials/notebook/band_common.png"));
-    private static final Texture TextureWatermelonwormCommon = new Texture(imagePath("materials/notebook/watermelonworm_common.png"));
+    private static final Texture TextureFlowerCommon = new Texture(imagePath("materials/notebook/flower_common.png"));
     private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/notebook/stone_uncommon.png"));
     private static final Texture TextureBandUncommon = new Texture(imagePath("materials/notebook/band_uncommon.png"));
-    private static final Texture TextureWatermelonwormUncommon = new Texture(imagePath("materials/notebook/watermelonworm_uncommon.png"));
+    private static final Texture TextureFlowerUncommon = new Texture(imagePath("materials/notebook/flower_uncommon.png"));
     private static final Texture TextureStoneRare = new Texture(imagePath("materials/notebook/stone_rare.png"));
     private static final Texture TextureBandRare = new Texture(imagePath("materials/notebook/band_rare.png"));
-    private static final Texture TextureWatermelonwormRare = new Texture(imagePath("materials/notebook/watermelonworm_rare.png"));
+    private static final Texture TextureFlowerRare = new Texture(imagePath("materials/notebook/flower_rare.png"));
 
     public static class Enum
     {
@@ -191,13 +191,13 @@ public class NotebookScreen extends CustomScreen
                 }
                 break;
 
-            case "watermelonworm":
+            case "flower":
                 if (level == 1) {
-                    return TextureWatermelonwormCommon;
+                    return TextureFlowerCommon;
                 } else if (level == 2) {
-                    return TextureWatermelonwormUncommon;
+                    return TextureFlowerUncommon;
                 } else if (level == 3) {
-                    return TextureWatermelonwormRare;
+                    return TextureFlowerRare;
                 }
                 break;
         }

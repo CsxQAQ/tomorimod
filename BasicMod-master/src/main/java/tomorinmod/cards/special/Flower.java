@@ -10,11 +10,9 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.TemporaryThornsPower;
 import tomorinmod.util.CardStats;
 
-import static tomorinmod.BasicMod.imagePath;
+public class Flower extends BaseCard {
 
-public class Watermelonworm extends BaseCard {
-
-    public static final String ID = makeID(Watermelonworm.class.getSimpleName());
+    public static final String ID = makeID(Flower.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
@@ -28,12 +26,11 @@ public class Watermelonworm extends BaseCard {
     private static final int MAGIC = 6;
     private static final int UPG_MAGIC = 4;
 
-    public Watermelonworm() {
+    public Flower() {
         super(ID, info);
         setBlock(BLOCK,UPG_BLOCK);
         setMagic(MAGIC,UPG_MAGIC);
-        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
-                imagePath("character/specialcardback/music_cardback_p.png"));
+
     }
 
     @Override
@@ -47,12 +44,8 @@ public class Watermelonworm extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new Watermelonworm();
+        return new Flower();
     }
 
-//    @Override
-//    public void setMaterialAndLevel(){
-//        this.material= "watermelonworm";
-//        this.level=3;
-//    }
+
 }

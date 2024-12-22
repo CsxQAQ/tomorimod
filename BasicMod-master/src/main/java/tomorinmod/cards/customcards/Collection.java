@@ -9,7 +9,7 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.cards.special.Band;
 import tomorinmod.cards.special.Stone;
-import tomorinmod.cards.special.Watermelonworm;
+import tomorinmod.cards.special.Flower;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
@@ -54,7 +54,7 @@ public class Collection extends BaseCard implements WithoutMaterial {
         this.cardsToPreview=new Band();
         relatedCards.add(new Band());
         relatedCards.add(new Stone());
-        relatedCards.add(new Watermelonworm());
+        relatedCards.add(new Flower());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Collection extends BaseCard implements WithoutMaterial {
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
         cardGroup.add(new Band());
         cardGroup.add(new Stone());
-        cardGroup.add(new Watermelonworm());
+        cardGroup.add(new Flower());
 
         if (this.upgraded){
             for (AbstractCard card : cardGroup){

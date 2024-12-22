@@ -13,13 +13,13 @@ public class MaterialUi implements Renderable {
 
     private static final Texture TextureStoneCommon = new Texture(imagePath("materials/card/stone_common.png"));
     private static final Texture TextureBandCommon = new Texture(imagePath("materials/card/band_common.png"));
-    private static final Texture TextureWatermelonwormCommon = new Texture(imagePath("materials/card/watermelonworm_common.png"));
+    private static final Texture TextureFlowerCommon = new Texture(imagePath("materials/card/flower_common.png"));
     private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/card/stone_uncommon.png"));
     private static final Texture TextureBandUncommon = new Texture(imagePath("materials/card/band_uncommon.png"));
-    private static final Texture TextureWatermelonwormUncommon = new Texture(imagePath("materials/card/watermelonworm_uncommon.png"));
+    private static final Texture TextureFlowerUncommon = new Texture(imagePath("materials/card/flower_uncommon.png"));
     private static final Texture TextureStoneRare = new Texture(imagePath("materials/card/stone_rare.png"));
     private static final Texture TextureBandRare = new Texture(imagePath("materials/card/band_rare.png"));
-    private static final Texture TextureWatermelonwormRare = new Texture(imagePath("materials/card/watermelonworm_rare.png"));
+    private static final Texture TextureFlowerRare = new Texture(imagePath("materials/card/flower_rare.png"));
 
     ArrayList<MaterialInfo> materials=new ArrayList<>();
 
@@ -67,13 +67,13 @@ public class MaterialUi implements Renderable {
                 }
                 break;
 
-            case "watermelonworm":
+            case "flower":
                 if (info.getLevel() == 1) {
-                    return TextureWatermelonwormCommon;
+                    return TextureFlowerCommon;
                 } else if (info.getLevel() == 2) {
-                    return TextureWatermelonwormUncommon;
+                    return TextureFlowerUncommon;
                 } else if (info.getLevel() == 3) {
-                    return TextureWatermelonwormRare;
+                    return TextureFlowerRare;
                 }
                 break;
         }

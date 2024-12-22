@@ -29,8 +29,6 @@ public class Band extends BaseCard {
     public Band() {
         super(ID, info);
         setMagic(MULTIBLOCK, UPG_MULTIBLOCK);
-        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
-                imagePath("character/specialcardback/music_cardback_p.png"));
     }
 
 //    @Override

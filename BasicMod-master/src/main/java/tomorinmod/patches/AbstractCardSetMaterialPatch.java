@@ -84,7 +84,7 @@ public class AbstractCardSetMaterialPatch {
                                 AbstractCardFieldPatch.material.get(card) + "_rare.png")));
                         break;
                 }
-                if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Watermelonworm"))){
+                if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Flower"))){
                     AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
                             AbstractCardFieldPatch.material.get(card) + "_rare.png")));
                 }
@@ -119,7 +119,7 @@ public class AbstractCardSetMaterialPatch {
                     break;
             }
         }
-        if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Watermelonworm"))){
+        if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Flower"))){
             AbstractCardFieldPatch.level.set(card,3);
         }
     }
