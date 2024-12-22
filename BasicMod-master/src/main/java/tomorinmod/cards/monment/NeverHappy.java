@@ -3,6 +3,7 @@ package tomorinmod.cards.monment;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -41,12 +42,14 @@ public class NeverHappy extends BaseMonmentCard {
         if (!upgraded) {
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
                 if (!monster.isDeadOrEscaped()) {
+                    addToBot(new RemoveSpecificPowerAction(monster,p,"Artifact"));
                     addToBot(new ApplyPowerAction(monster, p, new VulnerablePower(monster, magicNumber, false), magicNumber));
                 }
             }
         } else {
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
                 if (!monster.isDeadOrEscaped()) {
+                    addToBot(new RemoveSpecificPowerAction(monster,p,"Artifact"));
                     addToBot(new ApplyPowerAction(monster, p, new VulnerablePower(monster, magicNumber, false), magicNumber));
                     addToBot(new ApplyPowerAction(monster, p, new WeakPower(monster, magicNumber, false), magicNumber));
                 }
