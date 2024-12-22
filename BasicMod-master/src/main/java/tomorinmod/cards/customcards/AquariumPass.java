@@ -21,7 +21,6 @@ public class AquariumPass extends BaseCard {
     public AquariumPass() {
         super(ID, info);
         this.selfRetain=true;
-
     }
 
     @Override

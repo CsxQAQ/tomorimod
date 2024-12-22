@@ -45,7 +45,6 @@ public class MusicalComposition extends BaseCard implements WithoutMaterial {
         isMusicCompositionUsed=true;
         addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
         ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
-
     }
 
     @Override
