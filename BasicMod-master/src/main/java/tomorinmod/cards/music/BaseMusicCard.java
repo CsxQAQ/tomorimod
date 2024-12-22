@@ -25,12 +25,17 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     public MusicRarity musicRarity;
 
+
+
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
         tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
         this.numsInfo = numsInfo;
         this.musicRarity=MusicRarity.COMMON;
+
+        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
+                imagePath("character/specialcardback/music_cardback_p.png"));
 
         //只是为了正确显示
         setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);

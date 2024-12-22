@@ -42,7 +42,7 @@
       "战斗开始时获得 #b1 点 y#无实体 。"
     ]
   },
-  "${modID}:Notebook": {
+  "${modID}:NotebookRelic": {
     "NAME": "笔记本",
     "FLAVOR": "I followed a tutorial!",
     "DESCRIPTIONS": [

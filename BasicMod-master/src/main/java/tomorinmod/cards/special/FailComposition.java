@@ -1,5 +1,5 @@
 
-package tomorinmod.cards.music;
+package tomorinmod.cards.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
