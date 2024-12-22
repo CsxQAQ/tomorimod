@@ -1,7 +1,6 @@
 package tomorinmod.cards.basic;
 
 import basemod.helpers.ScreenPostProcessorManager;
-import basemod.interfaces.ScreenPostProcessor;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,8 +12,8 @@ import tomorinmod.powers.InCompositionPower;
 import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.util.CardStats;
 
-public class MusicalComposition extends BaseCard implements WithoutMaterial {
-    public static final String ID = makeID(MusicalComposition.class.getSimpleName());
+public class MusicComposition extends BaseCard implements WithoutMaterial {
+    public static final String ID = makeID(MusicComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -23,7 +22,7 @@ public class MusicalComposition extends BaseCard implements WithoutMaterial {
             0
     );
 
-    public MusicalComposition() {
+    public MusicComposition() {
         super(ID, info);
         this.exhaust=true;
         this.selfRetain=true;
@@ -54,7 +53,7 @@ public class MusicalComposition extends BaseCard implements WithoutMaterial {
 
     @Override
     public AbstractCard makeCopy() {
-        return new MusicalComposition();
+        return new MusicComposition();
     }
 
 

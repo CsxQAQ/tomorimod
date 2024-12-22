@@ -154,15 +154,15 @@
   },
   "${modID}:Stone": {
     "NAME": "石头",
-    "DESCRIPTION": "造成 !D! 点伤害，该牌的素材类型始终为石头且稀有度视作稀有。"
+    "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "${modID}:Flower": {
     "NAME": "花瓣",
-    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 点 tomorinmod:临时荆棘 ，该牌的素材类型始终为西瓜虫且稀有度视作稀有。"
+    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] 。"
   },
   "${modID}:Band": {
     "NAME": "企鹅创可贴",
-    "DESCRIPTION": "获得 !M! 点 多层护甲 ， 该牌的素材类型始终为创可贴且稀有度视作稀有。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
   "${modID}:AquariumPass": {
     "NAME": "水族馆年票",
@@ -177,7 +177,7 @@
     "NAME": "灯神长阶",
     "DESCRIPTION": "回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。"
   },
-  "${modID}:MusicalComposition": {
+  "${modID}:MusicComposition": {
     "NAME": "作词",
     "DESCRIPTION": "固有 ， 保留 ， 消耗 ，使用卡牌时获得其对应的 tomorinmod:素材 。"
   },
@@ -212,8 +212,8 @@
     "NAME": "一起迷失",
     "DESCRIPTION": " 虚无 ，你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
   },
-  "${modID}:Confession": {
-    "NAME": "告白",
+  "${modID}:NeedAnon": {
+    "NAME": "需要爱音",
     "DESCRIPTION": "将 tomorinmod:重力 层数翻倍。"
   },
   "${modID}:ConveyFeeling": {

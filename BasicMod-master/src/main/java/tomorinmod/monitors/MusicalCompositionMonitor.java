@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.cards.basic.MusicalComposition;
+import tomorinmod.cards.basic.MusicComposition;
 import tomorinmod.cards.music.*;
 import tomorinmod.cards.special.FailComposition;
 import tomorinmod.effects.MaterialUiDelayClearAction;
@@ -31,7 +31,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
-        if(MusicalComposition.isMusicCompositionUsed){
+        if(MusicComposition.isMusicCompositionUsed){
 
             if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
                 MaterialUi.getInstance().setMaterial(
@@ -43,7 +43,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 String music = matchRecipe();
                 getMusic(music); //先getMusic是因为要先判断是否已创作过music来决定reward
                 addHistoryRecipes(music);
-                MusicalComposition.isMusicCompositionUsed=false;
+                MusicComposition.isMusicCompositionUsed=false;
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, InCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
                 cardsUsed.clear();
@@ -162,7 +162,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         //ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
         cardsUsed.clear();
         MaterialUi.getInstance().clear();
-        MusicalComposition.isMusicCompositionUsed=false;
+        MusicComposition.isMusicCompositionUsed=false;
     }
 }
 

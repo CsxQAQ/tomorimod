@@ -1,9 +1,11 @@
 package tomorinmod.util;
 
 import basemod.BaseMod;
+import basemod.abstracts.CustomCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
 
 import java.util.ArrayList;
@@ -34,6 +36,29 @@ public class CustomUtils {
 //        ArrayList<AbstractCard> modCards = CardLibrary.getAllCards();
 //        return modCards;
 //    }
+    public static void setRareBanner(CustomCard card){
+        card.bannerSmallRegion = ImageMaster.CARD_BANNER_RARE;
+        card.bannerLargeRegion = ImageMaster.CARD_BANNER_RARE_L;
+        switch (card.type) {
+            case ATTACK:
+                card.frameSmallRegion = ImageMaster.CARD_FRAME_ATTACK_RARE;
+                card.frameLargeRegion = ImageMaster.CARD_FRAME_ATTACK_RARE_L;
+                break;
+            case POWER:
+                card.frameSmallRegion = ImageMaster.CARD_FRAME_POWER_RARE;
+                card.frameLargeRegion = ImageMaster.CARD_FRAME_POWER_RARE_L;
+                break;
+            default:
+                card.frameSmallRegion = ImageMaster.CARD_FRAME_SKILL_RARE;
+                card.frameLargeRegion = ImageMaster.CARD_FRAME_SKILL_RARE_L;
+        }
 
+        card.frameMiddleRegion = ImageMaster.CARD_RARE_FRAME_MID;
+        card.frameLeftRegion = ImageMaster.CARD_RARE_FRAME_LEFT;
+        card.frameRightRegion = ImageMaster.CARD_RARE_FRAME_RIGHT;
+        card.frameMiddleLargeRegion = ImageMaster.CARD_RARE_FRAME_MID_L;
+        card.frameLeftLargeRegion = ImageMaster.CARD_RARE_FRAME_LEFT_L;
+        card.frameRightLargeRegion = ImageMaster.CARD_RARE_FRAME_RIGHT_L;
+    }
 
 }

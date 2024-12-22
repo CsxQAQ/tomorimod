@@ -11,9 +11,9 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.GravityPower;
 import tomorinmod.util.CardStats;
 
-public class Confession extends BaseCard {
+public class NeedAnon extends BaseCard {
 
-    public static final String ID = makeID(Confession.class.getSimpleName());
+    public static final String ID = makeID(NeedAnon.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -22,7 +22,7 @@ public class Confession extends BaseCard {
             2
     );
 
-    public Confession() {
+    public NeedAnon() {
         super(ID, info);
         this.exhaust=true;
     }
@@ -38,7 +38,7 @@ public class Confession extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Confession();
+        return new NeedAnon();
     }
 
     @Override

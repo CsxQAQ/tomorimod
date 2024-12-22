@@ -14,9 +14,9 @@ public class FailComposition extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.ATTACK,
+            CardType.SKILL,
             CardRarity.SPECIAL,
-            CardTarget.ALL_ENEMY,
+            CardTarget.SELF,
             0
     );
 

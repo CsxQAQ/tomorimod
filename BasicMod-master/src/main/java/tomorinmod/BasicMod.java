@@ -46,7 +46,7 @@ import java.util.*;
 //TODO 瞬间在玩家卡组那里加一个特效
 
 //TODO 形态牌差一个能量的
-
+//TODO 小睦，碧天伴奏，以诗代歌
 @SpireInitializer
 public class BasicMod implements
 

@@ -37,8 +37,7 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorinmod.cards.basic.Defend;
-import tomorinmod.cards.basic.MusicalComposition;
-import tomorinmod.cards.basic.Shout;
+import tomorinmod.cards.basic.MusicComposition;
 import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.permanentforms.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
@@ -202,10 +201,9 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
-        retVal.add(Shout.ID);
         retVal.add(Tomotomo.ID);
         retVal.add(WeAreMygo.ID);
-        retVal.add(MusicalComposition.ID);
+        retVal.add(MusicComposition.ID);
         //retVal.add(Bitianbanzou.ID);
 
         return retVal;

@@ -5,10 +5,12 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.CustomUtils;
 
 import static tomorinmod.BasicMod.imagePath;
 
@@ -22,13 +24,13 @@ public class Stone extends BaseCard {
             1
     );
 
-    private static final int DAMAGE = 0;
-    private static final int UPG_DAMAGE = 0;
+    private static final int DAMAGE = 6;
+    private static final int UPG_DAMAGE = 3;
 
     public Stone() {
         super(ID, info);
-
-        setDamage(DAMAGE, UPG_DAMAGE); //Sets the card's damage and how much it changes when upgraded.
+        CustomUtils.setRareBanner(this);
+        setDamage(DAMAGE, UPG_DAMAGE);
 
     }
 
@@ -41,6 +43,5 @@ public class Stone extends BaseCard {
     public AbstractCard makeCopy() { //Optional
         return new Stone();
     }
-
 
 }
