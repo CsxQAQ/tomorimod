@@ -17,10 +17,10 @@ public class FrameUi implements Renderable {
 
     public static final Texture TextureFrame = new Texture(imagePath("materials/" + "frame.png"));
 
-    private static final float SIZE = 120.0F;
-    private static final float X_OFFSET = 115.0F;
-    private static final float Y_OFFSET = 400.0F;
-    private static final float INTERVAL = 200.0F;
+    public static final float SIZE = 120.0F;
+    public static final float X_OFFSET = 160.0F;
+    public static final float Y_OFFSET = 400.0F;
+    public static final float INTERVAL = 200.0F;
     private static final int NUM_UI_ELEMENTS = 3;
 
     private float rotationAngle = 0.0F;
@@ -50,8 +50,8 @@ public class FrameUi implements Renderable {
     @Override
     public void render(SpriteBatch sb) {
         for (int i = 0; i < NUM_UI_ELEMENTS; i++) {
-            float x = X_OFFSET * Settings.scale;
-            float y = (Y_OFFSET + i * INTERVAL) * Settings.scale;
+            float x = X_OFFSET ;
+            float y = Y_OFFSET + i * INTERVAL;
             drawFrame(sb, x, y); // 绘制 UI 元素
             hitboxes.get(i).render(sb); // 渲染 hitbox 边框（可选，调试用）
         }
@@ -60,14 +60,15 @@ public class FrameUi implements Renderable {
     }
 
     private void drawFrame(SpriteBatch sb, float x, float y) {
-        float originX = SIZE / 2.0F;
-        float originY = SIZE / 2.0F;
+        float originX = Settings.scale*SIZE / 2.0F;
+        float originY = Settings.scale*SIZE / 2.0F;
         sb.draw(
                 TextureFrame,
-                x, y, // 左下角坐标
+                x* Settings.scale, y* Settings.scale, // 左下角坐标
                 originX, originY, // 旋转的原点（相对坐标）
-                SIZE, SIZE, // 纹理的宽高
-                Settings.scale, Settings.scale, // 缩放比例
+                SIZE* Settings.scale, SIZE* Settings.scale, // 纹理的宽高
+                //Settings.scale, Settings.scale, // 缩放比例
+                1.0F, 1.0F,
                 rotationAngle, // 旋转角度
                 0, 0, // 纹理坐标（起点）
                 TextureFrame.getWidth(), TextureFrame.getHeight(), // 纹理的实际宽高

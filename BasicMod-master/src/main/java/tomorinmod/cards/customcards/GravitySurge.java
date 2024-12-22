@@ -29,7 +29,6 @@ public class GravitySurge extends BaseCard {
     public GravitySurge() {
         super(ID, info);
         setMagic(MAGIC, UPG_MAGIC);
-        tags.add(CardTags.STRIKE);
     }
 
     @Override

@@ -41,7 +41,6 @@ public class Shout extends BaseCard {
         super(ID, info);
 
         setDamage(DAMAGE, UPG_DAMAGE);
-        tags.add(CardTags.STRIKE);
         setBlock(BLOCK, UPG_BLOCK);
     }
 

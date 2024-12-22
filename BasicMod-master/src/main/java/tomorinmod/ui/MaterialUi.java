@@ -24,9 +24,9 @@ public class MaterialUi implements Renderable {
     ArrayList<MaterialInfo> materials=new ArrayList<>();
 
     private static final float SIZE = 100.0F;
-    private static final float X_OFFSET = 115.0F;
-    private static final float Y_OFFSET = 400.0F;
-    private static final float INTERVAL = 200.0F;
+    private static final float X_OFFSET = FrameUi.X_OFFSET+(FrameUi.SIZE-SIZE)/2;
+    private static final float Y_OFFSET = FrameUi.Y_OFFSET+(FrameUi.SIZE-SIZE)/2;
+    private static final float INTERVAL = FrameUi.INTERVAL;
 
     private MaterialUi(){
     }

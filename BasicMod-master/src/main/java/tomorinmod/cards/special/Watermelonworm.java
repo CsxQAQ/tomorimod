@@ -10,6 +10,8 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.TemporaryThornsPower;
 import tomorinmod.util.CardStats;
 
+import static tomorinmod.BasicMod.imagePath;
+
 public class Watermelonworm extends BaseCard {
 
     public static final String ID = makeID(Watermelonworm.class.getSimpleName());
@@ -30,6 +32,8 @@ public class Watermelonworm extends BaseCard {
         super(ID, info);
         setBlock(BLOCK,UPG_BLOCK);
         setMagic(MAGIC,UPG_MAGIC);
+        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
+                imagePath("character/specialcardback/music_cardback_p.png"));
     }
 
     @Override

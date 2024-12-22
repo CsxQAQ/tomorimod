@@ -84,6 +84,10 @@ public class AbstractCardSetMaterialPatch {
                                 AbstractCardFieldPatch.material.get(card) + "_rare.png")));
                         break;
                 }
+                if(card.cardID.equals(makeID("Stone"))||card.cardID.equals(makeID("Band"))||card.cardID.equals(makeID("Watermelonworm"))){
+                    AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
+                            AbstractCardFieldPatch.material.get(card) + "_rare.png")));
+                }
             }
         } catch (Exception e) {
             System.err.println("Failed to load icon texture: " + e.getMessage());

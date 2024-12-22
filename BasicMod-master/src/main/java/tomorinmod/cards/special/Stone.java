@@ -10,6 +10,8 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
+import static tomorinmod.BasicMod.imagePath;
+
 public class Stone extends BaseCard {
     public static final String ID = makeID(Stone.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -28,7 +30,8 @@ public class Stone extends BaseCard {
 
         setDamage(DAMAGE, UPG_DAMAGE); //Sets the card's damage and how much it changes when upgraded.
 
-        tags.add(CardTags.STRIKE);
+        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
+                imagePath("character/specialcardback/music_cardback_p.png"));
     }
 
     @Override

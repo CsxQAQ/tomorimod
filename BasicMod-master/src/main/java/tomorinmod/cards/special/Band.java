@@ -9,6 +9,8 @@ import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
+import static tomorinmod.BasicMod.imagePath;
+
 public class Band extends BaseCard {
     public static final String ID = makeID(Band.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -27,6 +29,8 @@ public class Band extends BaseCard {
     public Band() {
         super(ID, info);
         setMagic(MULTIBLOCK, UPG_MULTIBLOCK);
+        setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
+                imagePath("character/specialcardback/music_cardback_p.png"));
     }
 
 //    @Override
