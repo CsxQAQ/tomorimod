@@ -1,0 +1,46 @@
+package tomorinmod.cards.customcards;
+
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorinmod.cards.BaseCard;
+import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.custompowers.DivergeWorldPower;
+import tomorinmod.util.CardStats;
+
+public class DivergeWorld extends BaseCard {
+    public static final String ID = makeID(DivergeWorld.class.getSimpleName());
+    private static final CardStats info = new CardStats(
+            MyCharacter.Meta.CARD_COLOR,
+            CardType.POWER,
+            CardRarity.RARE,
+            CardTarget.SELF,
+            3
+    );
+
+    public DivergeWorld() {
+        super(ID, info);
+    }
+
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p)));
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new DivergeWorld();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(2);
+        }
+    }
+}

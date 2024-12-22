@@ -140,5 +140,9 @@
     "DESCRIPTIONS": [
       " #y永久形态 ，受到致命伤害失去该能力，同时获得 #y免疫 直到回合结束。"
     ]
-  }
+  },
+  "${modID}:DivergeWorldPower": {
+  "NAME": "偏离世界",
+  "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
+}
 }

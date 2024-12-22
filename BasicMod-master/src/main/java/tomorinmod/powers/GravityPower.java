@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.customcards.MygoTogether;
 import tomorinmod.cards.customcards.TwoFish;
+import tomorinmod.tags.CustomTags;
 
 import static tomorinmod.BasicMod.makeID;
 
@@ -14,6 +15,7 @@ public class GravityPower extends BasePower {
     public static final String POWER_ID = makeID(GravityPower.class.getSimpleName());
     private static final AbstractPower.PowerType TYPE = AbstractPower.PowerType.BUFF;
     private static final boolean TURN_BASED = false;
+
 
     public GravityPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
@@ -23,12 +25,7 @@ public class GravityPower extends BasePower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (!isPlayer) return;
-
-        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
-        for (int i = 0; i < damageArray.length; i++) {
-            damageArray[i] = this.amount;
-        }
-        addToBot(new DamageAllEnemiesAction(this.owner, damageArray, DamageInfo.DamageType.THORNS, DamageAllEnemiesAction.AttackEffect.SLASH_HORIZONTAL));
+        applyEffect();
     }
 
     @Override
@@ -36,5 +33,19 @@ public class GravityPower extends BasePower {
         if(AbstractDungeon.player.hasPower(makeID("MygoTogetherPower"))){
             TwoFish.curAttribute=0;
         }
+    }
+
+
+
+    public void applyEffect() {
+
+        int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
+        for (int i = 0; i < damageArray.length; i++) {
+            damageArray[i] = this.amount;
+        }
+
+        addToBot(new DamageAllEnemiesAction(this.owner, damageArray,
+                DamageInfo.DamageType.THORNS, DamageAllEnemiesAction.AttackEffect.SLASH_HORIZONTAL));
+
     }
 }

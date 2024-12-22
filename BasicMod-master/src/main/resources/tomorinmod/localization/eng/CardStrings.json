@@ -79,6 +79,10 @@
       "在你的回合开始时，从3张随机稀有度的音乐牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。 虚无 。"
     ]
   },
+  "${modID}:DivergeWorld": {
+    "NAME": "偏离世界",
+    "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
+  },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:闪耀 。如果你拥有10点 tomorinmod:闪耀 ，获得 tomorinmod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorinmod:星盾 。"
@@ -219,6 +223,10 @@
   "${modID}:ConveyFeeling": {
     "NAME": "传达心意",
     "DESCRIPTION": " tomorinmod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
+  },
+  "${modID}:SingerTooEffort": {
+    "NAME": "主唱太拼命了",
+    "DESCRIPTION": "失去5点生命值，抽 !M! 张牌，获得 !M! 点 [E] 。"
   },
   "${modID}:Saiyaku": {
     "NAME": "糟透了",
