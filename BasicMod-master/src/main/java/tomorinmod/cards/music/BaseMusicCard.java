@@ -2,6 +2,7 @@ package tomorinmod.cards.music;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
@@ -130,7 +131,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     @Override
     public void upgrade() {
-        if(TomorinApotheosis.isTomorinApotheosisUsed){
+        if(AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))){
             this.upgradeDamage(musicUpgradeDamage);
             this.upgradeBlock(musicUpgradeBlock);
             this.upgradeMagicNumber(musicUpgradeMagic);

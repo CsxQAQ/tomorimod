@@ -7,12 +7,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.TomorinApotheosisPower;
+import tomorinmod.powers.custompowers.TomorinApotheosisPower;
 import tomorinmod.util.CardStats;
 
 public class TomorinApotheosis extends BaseCard {
 
-    public static boolean isTomorinApotheosisUsed=false;
 
     public static final String ID = makeID(TomorinApotheosis.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -31,8 +30,6 @@ public class TomorinApotheosis extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new TomorinApotheosisPower(p),0));
-        isTomorinApotheosisUsed=true;
-
     }
 
     @Override
@@ -54,7 +51,4 @@ public class TomorinApotheosis extends BaseCard {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"， 固有 。";
         }
     }
-
-
-
 }
