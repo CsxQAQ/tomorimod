@@ -24,11 +24,12 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
 
     public MusicComposition() {
         super(ID, info);
-        this.exhaust=true;
-        this.selfRetain=true;
-        this.isInnate=true;
+        //this.exhaust=true;
+        selfRetain=true;
+        isInnate=true;
+        purgeOnUse=true;
     }
-
+    //可以不要，直接判断power
     public static boolean isMusicCompositionUsed=false;
 
     //public static ScreenPostProcessor postProcessor = new MaterialScreenProcessor();

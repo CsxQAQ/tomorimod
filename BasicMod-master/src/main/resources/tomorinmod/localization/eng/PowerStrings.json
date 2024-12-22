@@ -142,7 +142,7 @@
     ]
   },
   "${modID}:DivergeWorldPower": {
-  "NAME": "偏离世界",
-  "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
-}
+    "NAME": "偏离世界",
+    "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
+  }
 }

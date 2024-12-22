@@ -83,6 +83,10 @@
     "NAME": "偏离世界",
     "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
   },
+  "${modID}:Recycle": {
+    "NAME": "回收",
+    "DESCRIPTION": "使用后移除，将消耗牌洗牌后加入抽牌堆（状态牌和诅咒牌除外）。"
+  },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:闪耀 。如果你拥有10点 tomorinmod:闪耀 ，获得 tomorinmod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorinmod:星盾 。"
@@ -183,14 +187,7 @@
   },
   "${modID}:MusicComposition": {
     "NAME": "作词",
-    "DESCRIPTION": "固有 ， 保留 ， 消耗 ，使用卡牌时获得其对应的 tomorinmod:素材 。"
-  },
-  "${modID}:Lyric": {
-    "NAME": "歌词本",
-    "DESCRIPTION": "  保留 ， 无法被打出 。拥有3点 tomorinmod:素材 后变为对应的歌曲。",
-    "EXTENDED_DESCRIPTION": [
-      " 音乐效果 。"
-    ]
+    "DESCRIPTION": "固有 ， 保留 ， 使用后移除 ，使用卡牌时获得其对应的 tomorinmod:素材 。"
   },
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
@@ -339,7 +336,7 @@
   },
   "${modID}:FailComposition": {
     "NAME": "失败的创作",
-    "DESCRIPTION": " 虚无 ，无法打出。"
+    "DESCRIPTION": " 回合结束时移除 ，无法打出。"
   },
 
   "${modID}:SmallMonment": {
