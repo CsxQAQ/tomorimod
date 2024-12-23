@@ -34,6 +34,11 @@ public class BlankPaperAttack extends BaseCard {
     }
 
     @Override
+    public void upgrade() {
+
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for(int i=0;i<magicNumber;i++){
             addToBot(new DamageAction(m, new DamageInfo(p, damage,

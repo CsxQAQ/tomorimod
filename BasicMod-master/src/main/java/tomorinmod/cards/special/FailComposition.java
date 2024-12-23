@@ -35,6 +35,11 @@ public class FailComposition extends BaseCard implements WithoutMaterial {
     }
 
     @Override
+    public void upgrade(){
+
+    }
+
+    @Override
     public void triggerOnEndOfTurnForPlayingCard() {
         addToBot(new AbstractGameAction() {
             @Override

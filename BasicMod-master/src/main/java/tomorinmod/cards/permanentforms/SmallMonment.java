@@ -36,7 +36,7 @@ public class SmallMonment extends BaseCard {
     private boolean isNameChanged=false;
     private int curMusicDiscoveredNum=-1;
 
-    private static final int MAGIC = 0;
+    private static final int MAGIC = 1;
     private static final int UPG_MAGIC = 0;
 
     public SmallMonment() {

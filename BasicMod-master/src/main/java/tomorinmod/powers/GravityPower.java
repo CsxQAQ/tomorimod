@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorinmod.cards.customcards.MygoTogether;
-import tomorinmod.cards.customcards.TwoFish;
-import tomorinmod.tags.CustomTags;
+import tomorinmod.cards.customcards.LightAndShadow;
 
 import static tomorinmod.BasicMod.makeID;
 
@@ -31,7 +29,7 @@ public class GravityPower extends BasePower {
     @Override
     public void onInitialApplication() {
         if(AbstractDungeon.player.hasPower(makeID("MygoTogetherPower"))){
-            TwoFish.curAttribute=0;
+            LightAndShadow.curAttribute=0;
         }
     }
 

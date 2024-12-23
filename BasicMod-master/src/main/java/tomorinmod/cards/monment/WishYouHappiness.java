@@ -51,6 +51,7 @@ public class WishYouHappiness extends BaseMonmentCard {
         }else{
             rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         }
+        initializeDescription();
     }
 
     @Override

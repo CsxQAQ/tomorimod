@@ -24,7 +24,6 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
 
     public MusicComposition() {
         super(ID, info);
-        //this.exhaust=true;
         selfRetain=true;
         isInnate=true;
         purgeOnUse=true;
@@ -32,9 +31,7 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
     //可以不要，直接判断power
     public static boolean isMusicCompositionUsed=false;
 
-    //public static ScreenPostProcessor postProcessor = new MaterialScreenProcessor();
 
-    //已经在创作中应该要不能用
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         return p.getPower(InCompositionPower.POWER_ID)==null;
@@ -48,8 +45,8 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
     }
 
     @Override
-    public boolean canUpgrade(){
-        return false;
+    public void upgrade(){
+
     }
 
     @Override

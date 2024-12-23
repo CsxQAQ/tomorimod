@@ -33,7 +33,7 @@ public class TomorinApotheosis extends BaseCard {
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new TomorinApotheosis();
     }
 
@@ -41,14 +41,18 @@ public class TomorinApotheosis extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradesDescription();
+            updateDescription();
             this.selfRetain=true;
         }
     }
 
-    private void upgradesDescription() {
-        if (upgraded) {
-            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"， 固有 。";
+    public void updateDescription(){
+        if(upgraded){
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         }
+        initializeDescription();
     }
+
 }

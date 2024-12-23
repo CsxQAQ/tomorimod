@@ -53,6 +53,7 @@ public class BlacklistYou extends BaseMonmentCard {
         }else{
             rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         }
+        initializeDescription();
     }
 
     @Override

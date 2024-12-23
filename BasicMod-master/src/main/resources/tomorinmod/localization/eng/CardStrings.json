@@ -55,7 +55,7 @@
   },
   "${modID}:NeverHappy": {
     "NAME": "从没觉得开心过",
-    "DESCRIPTION": "给予所有敌人 !M! 易伤， tomorinmod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "给予所有敌人 !M! 易伤 ， tomorinmod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "给予所有敌人 !M! 易伤 和 脆弱 ， tomorinmod:瞬间 ， 消耗 。"
     ]
@@ -99,11 +99,11 @@
     "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorinmod:闪耀 。"
   },
   "${modID}:BlankPaper": {
-    "NAME": "空白的乐章",
+    "NAME": "空白的书页",
     "DESCRIPTION": " 消耗 ， 选择一名意图为攻击的敌人，将一张等同于其伤害和攻击次数的攻击牌置入手牌。"
   },
   "${modID}:BlankPaperAttack": {
-    "NAME": "乐章",
+    "NAME": "书页",
     "DESCRIPTION": " 造成 !D! 点伤害 !M! 次。"
   },
   "${modID}:StarDust": {
@@ -112,7 +112,7 @@
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
-    "DESCRIPTION": "获得敌人数量 !M! 倍的金币， 消耗 ， tomorinmod:瞬间  。"
+    "DESCRIPTION": " 消耗 ， tomorinmod:瞬间 ，获得敌人数量 !M! 倍的金币。"
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
@@ -172,11 +172,11 @@
       "无法被打出， 虚无 ， tomorinmod:瞬间 ，已经获得了所有成员的礼物。"
     ]
   },
-  "${modID}:TwoFish": {
-    "NAME": "两fish",
-    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，当 tomorinmod:闪耀 层数多于 tomorinmod:重力 时 tomorinmod:翻面 。",
+  "${modID}:LightAndShadow": {
+    "NAME": "光与影",
+    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，当 tomorinmod:闪耀 层数多于 tomorinmod:重力 改为获得 tomorinmod: 闪耀 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，当 tomorinmod:重力 多余 tomorinmod:闪耀 时 tomorinmod:翻面 。"
+      " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，当 tomorinmod:重力 多余 tomorinmod:闪耀 时 改为获得 tomorinmod:重力 。"
     ]
   },
   "${modID}:Stone": {
@@ -202,7 +202,10 @@
 
   "${modID}:TomorinApotheosis": {
     "NAME": "灯神长阶",
-    "DESCRIPTION": "回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。"
+    "DESCRIPTION": "回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。",
+    "EXTENDED_DESCRIPTION": [
+      " 固有 ，回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。"
+    ]
   },
   "${modID}:MusicComposition": {
     "NAME": "作词",
@@ -230,7 +233,7 @@
   },
   "${modID}:MygoTogether": {
     "NAME": "一起迷失",
-    "DESCRIPTION": " 虚无 ，你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀。"
+    "DESCRIPTION": " 虚无 ，你的 tomorinmod:重力 和 tomorinmod:闪耀 可以同时存在，获得 !M! 层 tomorinmod:重力 和 !M! 层 tomorinmod:闪耀 。"
   },
   "${modID}:NeedAnon": {
     "NAME": "需要爱音",
@@ -265,7 +268,7 @@
   },
   "${modID}:Collection": {
     "NAME": "收集",
-    "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *西瓜虫 中选择一张加入手牌，这些卡牌的 tomorinmod:素材 等级视作稀有。"
+    "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *花瓣 中选择一张加入手牌，并使其获得 消耗 。"
   },
 
   "${modID}:Bitianbanzou": {

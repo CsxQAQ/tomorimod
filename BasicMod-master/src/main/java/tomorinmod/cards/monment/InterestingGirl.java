@@ -43,6 +43,7 @@ public class InterestingGirl extends BaseMonmentCard {
         }else{
             rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         }
+        initializeDescription();
     }
 
     @Override

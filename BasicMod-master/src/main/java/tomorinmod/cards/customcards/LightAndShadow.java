@@ -14,8 +14,8 @@ import tomorinmod.powers.GravityPower;
 import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
-public class TwoFish extends BaseCard {
-    public static final String ID = makeID(TwoFish.class.getSimpleName());
+public class LightAndShadow extends BaseCard {
+    public static final String ID = makeID(LightAndShadow.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -30,7 +30,7 @@ public class TwoFish extends BaseCard {
     private int UPG_POWERS=2;
 
 
-    public TwoFish() {
+    public LightAndShadow() {
         super(ID, info);
         this.exhaust=true;
         setMagic(POWERS,UPG_POWERS);
@@ -78,6 +78,6 @@ public class TwoFish extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new TwoFish();
+        return new LightAndShadow();
     }
 }

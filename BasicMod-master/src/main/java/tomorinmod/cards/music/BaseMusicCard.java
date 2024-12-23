@@ -131,23 +131,26 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     @Override
     public void upgrade() {
-        if(AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))){
-            this.upgradeDamage(musicUpgradeDamage);
-            this.upgradeBlock(musicUpgradeBlock);
-            this.upgradeMagicNumber(musicUpgradeMagic);
-
-            ++this.timesUpgraded;
-            this.upgraded = true;
-            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
-            this.initializeTitle();
-        }else{
-            if(!this.upgraded){
+        if(AbstractDungeon.player!=null){
+            if(AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))){
                 this.upgradeDamage(musicUpgradeDamage);
                 this.upgradeBlock(musicUpgradeBlock);
                 this.upgradeMagicNumber(musicUpgradeMagic);
-                upgradeName();
+
+                ++this.timesUpgraded;
+                this.upgraded = true;
+                this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+                this.initializeTitle();
+            }else{
+                if(!this.upgraded){
+                    this.upgradeDamage(musicUpgradeDamage);
+                    this.upgradeBlock(musicUpgradeBlock);
+                    this.upgradeMagicNumber(musicUpgradeMagic);
+                    upgradeName();
+                }
             }
         }
+        initializeDescription();
     }
 
 

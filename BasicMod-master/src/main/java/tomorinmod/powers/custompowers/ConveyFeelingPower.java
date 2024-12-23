@@ -1,11 +1,6 @@
 package tomorinmod.powers.custompowers;
 
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorinmod.cards.customcards.MygoTogether;
-import tomorinmod.cards.customcards.TwoFish;
 import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;

@@ -62,6 +62,7 @@ public class Saiyaku extends BaseMonmentCard {
         }else{
             rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         }
+        initializeDescription();
     }
 
 

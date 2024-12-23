@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
@@ -46,6 +47,24 @@ public class YourTenDraws extends BaseCard {
                 card.upgrade();
             }
             addToTop(new MakeTempCardInHandAction(card, 1));
+        }
+    }
+
+    private void updateDescription() {
+
+        if(upgraded){
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        }
+        initializeDescription();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            this.updateDescription();
         }
     }
 

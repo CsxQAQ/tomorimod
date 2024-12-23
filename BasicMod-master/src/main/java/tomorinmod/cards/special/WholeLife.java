@@ -6,10 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.CustomUtils;
 
-public class WholeLife extends BaseCard {
+import java.lang.reflect.WildcardType;
+
+public class WholeLife extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(WholeLife.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
@@ -21,6 +25,7 @@ public class WholeLife extends BaseCard {
 
     public WholeLife() {
         super(ID, info);
+        CustomUtils.setRareBanner(this);
     }
 
     @Override
