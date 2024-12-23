@@ -99,7 +99,7 @@
     "DESCRIPTION": "使用后移除，将消耗牌洗牌后加入抽牌堆（状态牌和诅咒牌除外）。"
   },
   "${modID}:YourTenDraws": {
-    "NAME": "你的十连",
+    "NAME": "十连抽",
     "DESCRIPTION": " 消耗 ，将十张随机高松灯的卡牌置入手牌。",
     "EXTENDED_DESCRIPTION": [
       " 消耗 ，将十张升级过的随机高松灯的卡牌置入手牌。"

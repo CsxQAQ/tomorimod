@@ -11,6 +11,7 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.consoles.IncreaseRarityCommon;
 import tomorinmod.consoles.ShowRecipesCommon;
 import tomorinmod.monitors.*;
+import tomorinmod.monitors.card.*;
 import tomorinmod.powers.*;
 import tomorinmod.relics.BaseRelic;
 import tomorinmod.rewards.*;

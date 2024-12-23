@@ -1,4 +1,4 @@
-package tomorinmod.monitors;
+package tomorinmod.monitors.card;
 
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.actions.SmoothComboAction;
 import tomorinmod.cards.customcards.SmoothCombo;
+import tomorinmod.monitors.BaseMonitor;
 
 public class SmoothComboMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber {
 

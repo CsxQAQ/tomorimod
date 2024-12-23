@@ -1,9 +1,10 @@
-package tomorinmod.monitors;
+package tomorinmod.monitors.card;
 
 import basemod.interfaces.OnCardUseSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.music.Mixingjiao;
+import tomorinmod.monitors.BaseMonitor;
 import tomorinmod.tags.CustomTags;
 
 import static tomorinmod.BasicMod.makeID;

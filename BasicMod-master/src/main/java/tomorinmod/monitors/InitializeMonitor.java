@@ -7,6 +7,7 @@ import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.patches.AbstractCardSetMaterialPatch;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 import tomorinmod.savedata.customdata.*;
+import tomorinmod.util.CustomUtils;
 
 //初始化地牢的时候，即重开，需要清空所有的自定义数据
 public class InitializeMonitor extends BaseMonitor implements PostDungeonInitializeSubscriber, StartGameSubscriber {
@@ -51,5 +52,6 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
     public void receiveStartGame() {
         allocateCardMaterial();
         allocateMusicRarity();
+        CustomUtils.initializeCards();
     }
 }

@@ -411,7 +411,7 @@ public abstract class BaseCard extends CustomCard {
 
 
     @Override
-    public AbstractCard makeStatEquivalentCopy() {
+    public BaseCard makeStatEquivalentCopy() {
         AbstractCard card = super.makeStatEquivalentCopy();
 
         if (card instanceof BaseCard)
@@ -458,7 +458,8 @@ public abstract class BaseCard extends CustomCard {
             }
         }
 
-        return card;
+        BaseCard baseCard=(BaseCard)card;
+        return baseCard;
     }
 
     @Override

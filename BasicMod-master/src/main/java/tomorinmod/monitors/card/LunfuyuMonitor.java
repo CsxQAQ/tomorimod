@@ -1,10 +1,11 @@
-package tomorinmod.monitors;
+package tomorinmod.monitors.card;
 
 import basemod.interfaces.OnPlayerTurnStartSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorinmod.cards.music.Lunfuyu;
+import tomorinmod.monitors.BaseMonitor;
 
 public class LunfuyuMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, PostUpdateSubscriber {
 

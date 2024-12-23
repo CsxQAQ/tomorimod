@@ -26,8 +26,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     public MusicRarity musicRarity;
 
-
-
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
         tags.add(CustomTags.MUSIC);
@@ -112,8 +110,8 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     }
 
     @Override
-    public AbstractCard makeStatEquivalentCopy(){
-        AbstractCard card= super.makeStatEquivalentCopy();
+    public BaseMusicCard makeStatEquivalentCopy(){
+        BaseCard card= super.makeStatEquivalentCopy();
         BaseMusicCard musicCard=(BaseMusicCard)card;
 
         //初始化在cardLibrary中的卡牌不会有musicRarity，而有些方法会在cardLibrary中复制，所以要重置一遍musicCard

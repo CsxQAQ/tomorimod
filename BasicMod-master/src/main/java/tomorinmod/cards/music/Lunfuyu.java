@@ -1,17 +1,12 @@
 package tomorinmod.cards.music;
 
-import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.monitors.LunfuyuMonitor;
+import tomorinmod.monitors.card.LunfuyuMonitor;
 import tomorinmod.util.CardStats;
 
 public class Lunfuyu extends BaseMusicCard {

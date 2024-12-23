@@ -63,7 +63,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
 
     private ArrayList<BaseMusicCard> getMusicCards() {
         ArrayList<BaseMusicCard> musicCards = new ArrayList<>();
-        for(AbstractCard card: CustomUtils.getAllModCards()){
+        for(AbstractCard card: CustomUtils.modCardGroup){
             if(card instanceof BaseMusicCard&&!card.cardID.equals(makeID("Chunriying"))){ //排除春日影
                 BaseMusicCard baseMusicCard=(BaseMusicCard) card;
                 musicCards.add(baseMusicCard);

@@ -9,10 +9,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.cards.music.BaseMusicCard;
 
 import java.util.ArrayList;
 
 public class CustomUtils {
+    public static ArrayList<BaseCard> modCardGroup=new ArrayList<>();
+    public static ArrayList<BaseFormCard> formCardGroup=new ArrayList<>();
+    public static ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
+
     public static void addTags(BaseCard aCard, AbstractCard.CardTags tag){
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
             if (aCard.uuid.equals(card.uuid)) {
@@ -29,10 +35,40 @@ public class CustomUtils {
         return id; // 如果没有 ":"，直接返回
     }
 
-    public static ArrayList<AbstractCard> getAllModCards() {
-        ArrayList<AbstractCard> modCards = BaseMod.getCustomCardsToAdd();
-        return modCards;
+    public static void initializeCards(){
+        initializeModCards();
+        initializeFormCards();
+        initializeMusicCards();
     }
+
+    public static void initializeModCards() {
+        ArrayList<AbstractCard> modCards = BaseMod.getCustomCardsToAdd();
+        for(AbstractCard card:modCards){
+            if(card instanceof BaseCard){
+                BaseCard baseCard=(BaseCard)card;
+                modCardGroup.add(baseCard);
+            }
+        }
+    }
+
+    public static void initializeFormCards() {
+        for(BaseCard baseCard:modCardGroup){
+            if(baseCard instanceof BaseFormCard){
+                BaseFormCard baseFormCard=(BaseFormCard) baseCard;
+                formCardGroup.add(baseFormCard);
+            }
+        }
+    }
+
+    public static void initializeMusicCards(){
+        for(BaseCard baseCard:modCardGroup){
+            if(baseCard instanceof BaseMusicCard){
+                BaseMusicCard baseMusicCard=(BaseMusicCard) baseCard;
+                musicCardGroup.add(baseMusicCard);
+            }
+        }
+    }
+
 
     public static void setRareBanner(CustomCard card){
         card.bannerSmallRegion = ImageMaster.CARD_BANNER_RARE;

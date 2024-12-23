@@ -35,14 +35,14 @@ public class YourTenDraws extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        ArrayList<AbstractCard> modCards= CustomUtils.getAllModCards();
+        ArrayList<BaseCard> modCards= CustomUtils.modCardGroup;
         for(int i=0;i<10;i++){
             int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
             while(modCards.get(randomResult).rarity==CardRarity.SPECIAL
             ||modCards.get(randomResult).rarity==CardRarity.BASIC){
                 randomResult= AbstractDungeon.miscRng.random(modCards.size()-1);
             }
-            AbstractCard card=modCards.get(randomResult).makeStatEquivalentCopy();
+            BaseCard card=modCards.get(randomResult).makeStatEquivalentCopy();
             if(YourTenDraws.this.upgraded){
                 card.upgrade();
             }
