@@ -120,7 +120,7 @@ public class GiftBox extends BaseMonmentCard implements WithoutMaterial {
         }
 
         if (!this.giftsFull) {
-            int randomResult = AbstractDungeon.miscRng.random(3); // 随机生成 0, 1, 或 2
+            int randomResult = AbstractDungeon.miscRng.random(3);
             while (giftGeted.get(randomResult) == 1) {
                 randomResult = AbstractDungeon.miscRng.random(3);
             }

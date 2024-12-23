@@ -34,10 +34,6 @@ public class CustomUtils {
         return modCards;
     }
 
-//    public static ArrayList<AbstractCard> getAllModCards() {
-//        ArrayList<AbstractCard> modCards = CardLibrary.getAllCards();
-//        return modCards;
-//    }
     public static void setRareBanner(CustomCard card){
         card.bannerSmallRegion = ImageMaster.CARD_BANNER_RARE;
         card.bannerLargeRegion = ImageMaster.CARD_BANNER_RARE_L;

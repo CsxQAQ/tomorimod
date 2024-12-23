@@ -38,7 +38,9 @@ public class Recycle extends BaseCard {
             public void update() {
                 ArrayList<AbstractCard> tempList = new ArrayList<>(p.exhaustPile.group);
                 for (AbstractCard c : tempList) {
-                    p.drawPile.addToTop(c.makeStatEquivalentCopy());
+                    if(!c.type.equals(CardRarity.CURSE)&&!c.type.equals(CardType.STATUS)){
+                        p.drawPile.addToTop(c.makeStatEquivalentCopy());
+                    }
                 }
                 isDone=true;
             }
