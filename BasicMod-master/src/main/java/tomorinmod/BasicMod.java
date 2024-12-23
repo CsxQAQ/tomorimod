@@ -44,9 +44,7 @@ import java.util.*;
 
 //TODO 形态牌差一个能量的
 
-//TODO 看看遗物和卡牌有没有获得时的钩子
-//TODO 保存从cardpool里删除的卡牌，monitor在地牢初始化时从对应的cardpool中移除
-//TODO 弄3张攻击牌满足羽化
+//TODO 优化music卡的swicth，先弄一个util放所有音乐卡Gruop，然后之后直接在里面makeEquipcopy
 @SpireInitializer
 public class BasicMod implements
 
