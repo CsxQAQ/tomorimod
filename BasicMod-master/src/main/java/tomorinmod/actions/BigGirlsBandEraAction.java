@@ -23,7 +23,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
     @Override
     public void update() {
         ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
-        ArrayList<BaseMusicCard> musicCards = new ArrayList<>(getMusicCards());
+        ArrayList<BaseMusicCard> musicCards = new ArrayList<>(CustomUtils.musicCardGroup);
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
         for(int i=0;i<3;i++){
             int randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);
@@ -61,14 +61,4 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
         isDone = true;
     }
 
-    private ArrayList<BaseMusicCard> getMusicCards() {
-        ArrayList<BaseMusicCard> musicCards = new ArrayList<>();
-        for(AbstractCard card: CustomUtils.modCardGroup){
-            if(card instanceof BaseMusicCard&&!card.cardID.equals(makeID("Chunriying"))){ //排除春日影
-                BaseMusicCard baseMusicCard=(BaseMusicCard) card;
-                musicCards.add(baseMusicCard);
-            }
-        }
-        return musicCards;
-    }
 }

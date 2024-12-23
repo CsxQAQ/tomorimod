@@ -22,8 +22,11 @@ import tomorinmod.savedata.customdata.HistoryCraftRecords;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.ui.MaterialUi;
+import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
+
+import static tomorinmod.BasicMod.makeID;
 
 public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
 
@@ -61,45 +64,11 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             return;
         }
 
-        switch (music) {
-            case "chunriying":
-                card = new Chunriying();
-                break;
-            case "shichaoban":
-                card = new Shichaoban();
-                break;
-            case "mixingjiao":
-                card = new Mixingjiao();
-                break;
-            case "lunfuyu":
-                card = new Lunfuyu();
-                break;
-            case "yingsewu":
-                card = new Yingsewu();
-                break;
-            case "yinyihui":
-                card = new Yinyihui();
-                break;
-            case "miluri":
-                card = new Miluri();
-                break;
-            case "wulushi":
-                card = new Wulushi();
-                break;
-            case "bitianbanzou":
-                card = new Bitianbanzou();
-                break;
-            case "yinakong":
-                card = new Yinakong();
-                break;
-            case "mingwusheng":
-                card = new Mingwusheng();
-                break;
-            case "qianzaibiaoming":
-                card = new Qianzaibiaoming();
-                break;
-            default:
-                break;
+        ArrayList<BaseMusicCard> musicCardsGroup=CustomUtils.musicCardGroup;
+        for(BaseMusicCard musicCard:musicCardsGroup){
+            if(musicCard.cardID.equals(makeID(music))){
+                card=musicCard.makeStatEquivalentCopy();
+            }
         }
 
         if (card != null) {

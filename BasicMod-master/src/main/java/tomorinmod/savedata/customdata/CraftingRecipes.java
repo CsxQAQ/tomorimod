@@ -50,22 +50,6 @@ public class CraftingRecipes implements Clearable {
             return levels.stream().mapToInt(Integer::intValue).sum();
         }
 
-        public ArrayList<String> getNeeds() {
-            return needs;
-        }
-
-        public void setNeeds(ArrayList<String> needs) {
-            this.needs = needs;
-        }
-
-        public ArrayList<Integer> getLevels() {
-            return levels;
-        }
-
-        public void setLevels(ArrayList<Integer> levels) {
-            this.levels = levels;
-        }
-
         public String getMusic() {
             return music;
         }
@@ -93,9 +77,9 @@ public class CraftingRecipes implements Clearable {
     ));
 
     private List<String> songNames = Arrays.asList(
-            "shichaoban", "mixingjiao", "lunfuyu", "yingsewu",
-            "yinyihui", "miluri", "wulushi", "bitianbanzou",
-            "yinakong", "mingwusheng", "qianzaibiaoming"
+            "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
+            "Yinyihui", "Miluri", "Wulushi", "Bitianbanzou",
+            "Yinakong", "Mingwusheng", "Qianzaibiaoming"
     );
 
     public static final int COMMONCOST_MIN=3;
