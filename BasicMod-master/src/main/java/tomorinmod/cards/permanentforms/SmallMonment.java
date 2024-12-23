@@ -1,18 +1,15 @@
 package tomorinmod.cards.permanentforms;
 
-import basemod.helpers.CardBorderGlowManager;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.cards.special.WholeLife;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.permanentforms.SmallMonmentPower;
+import tomorinmod.powers.custompowers.SmallMonmentPower;
 import tomorinmod.savedata.customdata.PermanentFormsSaveData;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
@@ -41,8 +38,6 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         cardsToPreview=new WholeLife();
-
-
     }
 
     @Override
@@ -92,7 +87,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
     }
 
     @Override
-    public AbstractCard makeCopy() {
+    public AbstractCard makeCopy(){
         return new SmallMonment();
     }
 

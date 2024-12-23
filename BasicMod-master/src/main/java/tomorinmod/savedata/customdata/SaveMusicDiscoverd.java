@@ -1,9 +1,13 @@
 package tomorinmod.savedata.customdata;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import tomorinmod.powers.custompowers.ShineWithMePower;
 import tomorinmod.savedata.Clearable;
 import tomorinmod.savedata.SaveDataInstanceFactory;
 
 import java.util.ArrayList;
+
+import static tomorinmod.BasicMod.makeID;
 
 public class SaveMusicDiscoverd implements Clearable {
 
@@ -22,8 +26,12 @@ public class SaveMusicDiscoverd implements Clearable {
     public void musicAdd(String music){
         if(!musicDiscovered.contains(music)){
             musicDiscoveredNum++;
+            if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("ShineWithMePower"))){
+                AbstractDungeon.player.getPower(makeID("ShineWithMePower")).updateDescription(); //更新
+            }
+
         }
-        musicDiscovered.add(music);
+        musicDiscovered.add(music); //难道还要记录数量？感觉应该放if里
     }
 
     // 获取单例实例的静态方法

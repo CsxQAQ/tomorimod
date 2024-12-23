@@ -1,7 +1,6 @@
-package tomorinmod.powers.permanentforms;
+package tomorinmod.powers.custompowers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import tomorinmod.actions.BigGirlsBandEraAction;
 import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;

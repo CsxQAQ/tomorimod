@@ -23,6 +23,12 @@
       " #y永久形态 ，战斗胜利时，获得3点最大生命。"
     ]
   },
+  "${modID}:ShineWithMePower": {
+    "NAME": "光芒与我同行",
+    "DESCRIPTIONS": [
+      " #y永久形态 ，战斗开始时，本局游戏中每创作1种音乐牌，获得1点 #y闪耀 。"
+    ]
+  },
   "${modID}:AstronomyMinisterPower": {
     "NAME": "天文部长",
     "DESCRIPTIONS": [

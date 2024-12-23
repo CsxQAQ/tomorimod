@@ -118,12 +118,16 @@
     "NAME": "迷途之子",
     "DESCRIPTION": " tomorinmod:永久形态 ：战斗胜利时，获得 !M! 点最大生命值。"
   },
+  "${modID}:ShineWithMe": {
+    "NAME": "光芒与我同行",
+    "DESCRIPTION": " tomorinmod:永久形态 ：战斗开始时，本局游戏中每创作1种音乐牌，获得1点 tomorinmod:闪耀 。"
+  },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:重力 ，抽等同于 tomorinmod:重力 的卡牌 。"
   },
-  "${modID}:ShineWithMe": {
-    "NAME": "光芒携我同行",
+  "${modID}:ShineHugMe": {
+    "NAME": "光芒拥我入怀",
     "DESCRIPTION": "每有1点 tomorinmod:闪耀 ，获得1点 [E] "
   },
   "${modID}:LastGentle": {

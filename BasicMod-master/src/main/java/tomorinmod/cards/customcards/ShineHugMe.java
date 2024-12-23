@@ -3,8 +3,6 @@ package tomorinmod.cards.customcards;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.cards.BaseCard;
@@ -12,8 +10,8 @@ import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.ShinePower;
 import tomorinmod.util.CardStats;
 
-public class ShineWithMe extends BaseCard {
-    public static final String ID = makeID(ShineWithMe.class.getSimpleName());
+public class ShineHugMe extends BaseCard {
+    public static final String ID = makeID(ShineHugMe.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -22,7 +20,7 @@ public class ShineWithMe extends BaseCard {
             1
     );
 
-    public ShineWithMe() {
+    public ShineHugMe() {
         super(ID, info);
     }
 
@@ -38,7 +36,7 @@ public class ShineWithMe extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new ShineWithMe();
+        return new ShineHugMe();
     }
 
     @Override
