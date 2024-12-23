@@ -109,6 +109,10 @@
     "NAME": "换装",
     "DESCRIPTION": " 消耗 ，以随机的顺序使用所有具有 tomorinmod:形态 的牌。"
   },
+  "${modID}:Grit": {
+    "NAME": "坚毅",
+    "DESCRIPTION": "你的牌组中每有一张卡牌，获得2点 格挡 。"
+  },
   "${modID}:PoemInsteadOfSong": {
     "NAME": "以诗代歌",
     "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorinmod:闪耀 。"
