@@ -1,6 +1,9 @@
 package tomorinmod.cards.forms;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 
@@ -23,6 +26,10 @@ public class AstronomyMinister extends BaseFormCard {
         setMagic(MAGIC,UPG_MAGIC);
     }
 
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m){
+        super.use(p,m);
+    }
 
     @Override
     public void setPowerName(){

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
@@ -41,23 +42,16 @@ public class SmallMonment extends BaseCard {
         setMagic(MAGIC,UPG_MAGIC);
         cardsToPreview=new WholeLife();
 
-        CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
-            @Override
-            public boolean test(AbstractCard card) {
-                return card instanceof SmallMonment && ((SmallMonment) card).isNameChanged;
-            }
 
-            @Override
-            public Color getColor(AbstractCard card) {
-                return Color.YELLOW.cpy();
-            }
+    }
 
-            @Override
-            public String glowID() {
-                return "tomorinmod:SmallMonmentGlow";
-            }
-        });
-
+    @Override
+    public void triggerOnGlowCheck() {
+        if(isNameChanged){
+            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }else{
+            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        }
     }
 
     public void changeToWholeLife(){

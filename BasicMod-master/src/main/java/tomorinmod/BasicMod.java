@@ -41,12 +41,12 @@ import java.util.*;
 
 //TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
 //TODO 所有对象都判断是否为null
-//TODO 碧天伴走没思路，先放着，新歌
-
-//TODO 瞬间在玩家卡组那里加一个特效
 
 //TODO 形态牌差一个能量的
-//TODO 小睦，碧天伴奏，以诗代歌
+
+//TODO 看看遗物和卡牌有没有获得时的钩子
+//TODO 保存从cardpool里删除的卡牌，monitor在地牢初始化时从对应的cardpool中移除
+
 @SpireInitializer
 public class BasicMod implements
 

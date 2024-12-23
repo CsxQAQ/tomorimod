@@ -34,23 +34,16 @@ public class StarDust extends BaseCard {
     public StarDust() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
-        CardBorderGlowManager.addGlowInfo(new CardBorderGlowManager.GlowInfo() {
-            @Override
-            public boolean test(AbstractCard card) {
-                return card instanceof StarDust && AbstractDungeon.player.hasPower((makeID("ShinePower")))
-                        &&AbstractDungeon.player.getPower(makeID("ShinePower")).amount>=10;
-            }
+    }
 
-            @Override
-            public Color getColor(AbstractCard card) {
-                return Color.YELLOW.cpy();
-            }
-
-            @Override
-            public String glowID() {
-                return "tomorinmod:StarDustGlow";
-            }
-        });
+    @Override
+    public void triggerOnGlowCheck() {
+        if(AbstractDungeon.player.hasPower((makeID("ShinePower")))
+                        &&AbstractDungeon.player.getPower(makeID("ShinePower")).amount>=10){
+            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+        }else{
+            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+        }
     }
 
     @Override
