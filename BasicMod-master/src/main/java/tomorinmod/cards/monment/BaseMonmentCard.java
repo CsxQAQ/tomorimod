@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.ExhaustEmberEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.forms.BaseFormCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 import tomorinmod.vfx.ExhaustMasterDeckEffect;
@@ -45,5 +46,11 @@ public abstract class BaseMonmentCard extends BaseCard {
     public static void addExhaustEffectOnMasterDeck(){
         AbstractDungeon.effectsQueue.add(new ExhaustMasterDeckEffect(
                 Settings.WIDTH -100.0f*Settings.scale, Settings.HEIGHT -100.0f*Settings.scale));
+    }
+
+    @Override
+    public BaseMonmentCard makeStatEquivalentCopy() {
+        AbstractCard BaseCard = super.makeStatEquivalentCopy();
+        return (BaseMonmentCard)BaseCard;
     }
 }

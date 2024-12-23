@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.cards.music.BaseMusicCard;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class CustomUtils {
     public static ArrayList<BaseCard> modCardGroup=new ArrayList<>();
     public static ArrayList<BaseFormCard> formCardGroup=new ArrayList<>();
     public static ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
+    public static ArrayList<BaseMonmentCard> monmentCardGroup=new ArrayList<>();
 
     public static void addTags(BaseCard aCard, AbstractCard.CardTags tag){
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
@@ -39,6 +41,7 @@ public class CustomUtils {
         initializeModCards();
         initializeFormCards();
         initializeMusicCards();
+        initializeMonmentCards();
     }
 
     public static void initializeModCards() {
@@ -65,6 +68,15 @@ public class CustomUtils {
             if(baseCard instanceof BaseMusicCard){
                 BaseMusicCard baseMusicCard=(BaseMusicCard) baseCard;
                 musicCardGroup.add(baseMusicCard);
+            }
+        }
+    }
+
+    public static void initializeMonmentCards(){
+        for(BaseCard baseCard:modCardGroup){
+            if(baseCard instanceof BaseMonmentCard){
+                BaseMonmentCard baseMonmentCard=(BaseMonmentCard) baseCard;
+                monmentCardGroup.add(baseMonmentCard);
             }
         }
     }

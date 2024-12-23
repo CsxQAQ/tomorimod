@@ -1,47 +1,50 @@
 package tomorinmod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.cards.music.Chunriying;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
+import tomorinmod.util.CustomUtils;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRandomRng;
 
 public class MemoryInCrychic extends BaseCard {
 
     public static final String ID = makeID(MemoryInCrychic.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.POWER,
+            CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,
-            1
+            2
     );
 
     public MemoryInCrychic() {
         super(ID, info);
-        this.cardsToPreview = new Chunriying();
+        exhaust=true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(SaveMusicDiscoverd.getInstance().musicDiscovered.contains("chunriying")){
-            Chunriying.isIntensify=true;
+        BaseMonmentCard card = CustomUtils.monmentCardGroup.get(
+                cardRandomRng.random(CustomUtils.monmentCardGroup.size() - 1));
+        if(upgraded){
+            card.upgrade();
         }
+        addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new MemoryInCrychic();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName(); // 更新卡牌名称，显示为“升级版”
-            upgradeBaseCost(0); // 将费用从 1 降为 0
-        }
-    }
 }
