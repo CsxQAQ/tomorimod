@@ -105,6 +105,10 @@
       " 消耗 ，将十张升级过的随机高松灯的卡牌置入手牌。"
     ]
   },
+  "${modID}:ChangeClothes": {
+    "NAME": "换装",
+    "DESCRIPTION": " 消耗 ，以随机的顺序使用所有具有 tomorinmod:形态 的牌。"
+  },
   "${modID}:PoemInsteadOfSong": {
     "NAME": "以诗代歌",
     "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorinmod:闪耀 。"
