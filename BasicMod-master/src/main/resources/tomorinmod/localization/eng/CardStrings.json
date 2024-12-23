@@ -67,6 +67,10 @@
       "造成 !D! 点伤害，2个回合后再对所有敌人造成 !D! 点伤害， tomorinmod:瞬间 ， 消耗 。"
     ]
   },
+  "${modID}:HolyAnon": {
+    "NAME": "圣爱音的行动力",
+    "DESCRIPTION": "获得 !M! 点 [E] ，抽牌直到手牌上限。 tomorinmod:瞬间 ， 消耗 。"
+  },
   "${modID}:FateCommunity": {
     "NAME": "命运共同体",
     "DESCRIPTION": "平均所有单位的当前生命值百分比。 tomorinmod:瞬间 ， 消耗 。"
