@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import tomorinmod.cards.forms.BaseFormCard;
-import tomorinmod.cards.permanentforms.Revolution;
+import tomorinmod.cards.customcards.Revolution;
 import tomorinmod.cards.music.Chunriying;
 import tomorinmod.savedata.customdata.*;
 
@@ -53,21 +53,21 @@ public class RegisterSaveData {
             }
         });
 
-        BaseMod.addSaveField("SaveGifts", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(SaveGifts.getInstance().giftGeted);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    SaveGifts.getInstance().giftGeted = gson.fromJson(jsonElement, new TypeToken<ArrayList<Integer>>() {}.getType());
-                }
-            }
-        });
+//        BaseMod.addSaveField("SaveGifts", new CustomSavableRaw() {
+//            private final Gson gson = new Gson();
+//
+//            @Override
+//            public JsonElement onSaveRaw() {
+//                return gson.toJsonTree(SaveGifts.getInstance().giftGeted);
+//            }
+//
+//            @Override
+//            public void onLoadRaw(JsonElement jsonElement) {
+//                if (jsonElement != null) {
+//                    SaveGifts.getInstance().giftGeted = gson.fromJson(jsonElement, new TypeToken<ArrayList<Integer>>() {}.getType());
+//                }
+//            }
+//        });
 
         BaseMod.addSaveField("cardMaterialHashMap", new CustomSavableRaw() {
             private final Gson gson = new Gson();
@@ -177,22 +177,6 @@ public class RegisterSaveData {
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
                     Chunriying.isIntensify = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
-                }
-            }
-        });
-
-        BaseMod.addSaveField("Revolutionshines", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(Revolution.shines);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    Revolution.shines = gson.fromJson(jsonElement, new TypeToken<Integer>() {}.getType());
                 }
             }
         });

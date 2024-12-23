@@ -116,7 +116,7 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
-    "DESCRIPTION": "回合结束时，获得随机成员的祝福， tomorinmod:永久形态 。"
+    "DESCRIPTION": " tomorinmod:永久形态 ：战斗胜利时，获得 !M! 点最大生命值。"
   },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
@@ -180,7 +180,7 @@
     ]
   },
   "${modID}:Stone": {
-    "NAME": "石头",
+    "NAME": "漂亮的石头",
     "DESCRIPTION": "造成 !D! 点伤害。"
   },
   "${modID}:Flower": {
@@ -222,7 +222,7 @@
 
   "${modID}:Revolution": {
     "NAME": "泪滴与变革",
-    "DESCRIPTION": " tomorinmod:永久形态 ：战斗开始时，获得等同于当前已创作音乐数 !M! 倍的 tomorinmod:闪耀 ， tomorinmod:初始化 。"
+    "DESCRIPTION": "使用后从牌组中移除。本场战斗结束时，重置所有卡牌携带的 tomorinmod:素材 。"
   },
   "${modID}:WhiteMoonlight": {
     "NAME": "白月光",

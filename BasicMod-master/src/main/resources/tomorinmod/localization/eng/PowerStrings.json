@@ -18,9 +18,9 @@
     ]
   },
   "${modID}:WeAreMygoPower": {
-    "NAME": "形态：我们是Mygo!!!!!",
+    "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      "回合结束时，随机获得2层 #y重力 ，1层 #y闪耀 ，1层 #y无实体 ，5层 #y多重护甲 。"
+      " #y永久形态 ，战斗胜利时，获得3点最大生命。"
     ]
   },
   "${modID}:AstronomyMinisterPower": {

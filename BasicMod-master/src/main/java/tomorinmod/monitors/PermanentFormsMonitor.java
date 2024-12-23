@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorinmod.cards.forms.BaseFormCard;
+import tomorinmod.powers.WeAreMygoPower;
 import tomorinmod.powers.custompowers.StarDustPower;
 import tomorinmod.powers.forms.BaseFormPower;
 import tomorinmod.powers.permanentforms.SmallMonmentPower;
@@ -33,6 +34,9 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
                     break;
                 case "StarDust":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new StarDustPower(p),0));
+                    break;
+                case "WeAreMygo":
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WeAreMygoPower(p),0));
                     break;
             }
         }

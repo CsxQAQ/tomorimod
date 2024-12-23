@@ -9,12 +9,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
-import tomorinmod.cards.special.HaTaki;
 import tomorinmod.cards.special.WholeLife;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.RevolutionPower;
 import tomorinmod.powers.permanentforms.SmallMonmentPower;
-import tomorinmod.savedata.customdata.HistoryCraftRecords;
 import tomorinmod.savedata.customdata.PermanentFormsSaveData;
 import tomorinmod.savedata.customdata.SaveMusicDiscoverd;
 import tomorinmod.util.CardStats;
@@ -80,6 +77,7 @@ public class SmallMonment extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new SmallMonmentPower(p),0));
         PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
+        BaseMonmentCard.removeFromMasterDeck(this);
     }
 
     @Override

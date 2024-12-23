@@ -1,43 +1,42 @@
-package tomorinmod.cards.permanentforms;
+package tomorinmod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.WeAreMygoPower;
-import tomorinmod.savedata.customdata.PermanentFormsSaveData;
 import tomorinmod.util.CardStats;
 
-import static tomorinmod.util.CustomUtils.idToName;
+public class Revolution extends BaseCard {
 
-public class WeAreMygo extends BaseCard {
 
-    public static final String ID = makeID(WeAreMygo.class.getSimpleName());
+    public static final String ID = makeID(Revolution.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.POWER,
+            CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,
             1
     );
 
-    private final int MAGIC=3;
-    private final int UPG_MAGIC=0;
 
-    public WeAreMygo() {
+    public static boolean isRevolutionUsed=false;
+
+    public Revolution() {
         super(ID, info);
-        setMagic(MAGIC,UPG_MAGIC);
-        tags.add(CardTags.HEALING);
+
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p)));
-        PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
+        isRevolutionUsed=true;
         BaseMonmentCard.removeFromMasterDeck(this);
+    }
+
+    @Override
+    public AbstractCard makeCopy() {
+        return new Revolution();
     }
 
     @Override
@@ -48,8 +47,4 @@ public class WeAreMygo extends BaseCard {
         }
     }
 
-    @Override
-    public AbstractCard makeCopy() {
-        return new WeAreMygo();
-    }
 }
