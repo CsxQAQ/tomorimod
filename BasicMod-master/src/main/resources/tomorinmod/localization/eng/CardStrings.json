@@ -98,6 +98,14 @@
     "NAME": "以诗代歌",
     "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorinmod:闪耀 。"
   },
+  "${modID}:BlankPaper": {
+    "NAME": "空白的乐章",
+    "DESCRIPTION": " 消耗 ， 选择一名意图为攻击的敌人，将一张等同于其伤害和攻击次数的攻击牌置入手牌。"
+  },
+  "${modID}:BlankPaperAttack": {
+    "NAME": "乐章",
+    "DESCRIPTION": " 造成 !D! 点伤害 !M! 次。"
+  },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:闪耀 。如果你拥有10点 tomorinmod:闪耀 ，获得 tomorinmod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorinmod:星盾 。"

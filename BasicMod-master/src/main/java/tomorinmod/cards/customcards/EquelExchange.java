@@ -21,7 +21,7 @@ public class EquelExchange extends BaseCard {
 
     public EquelExchange() {
         super(ID, info);
-        this.exhaust=true;
+        this.purgeOnUse=true;
     }
 
     @Override
