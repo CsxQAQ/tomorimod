@@ -22,7 +22,7 @@ public class NeverHappy extends BaseMonmentCard {
     public static final String ID = makeID(NeverHappy.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.SKILL,
+            CardType.ATTACK,
             CardRarity.COMMON,
             CardTarget.ALL_ENEMY,
             1

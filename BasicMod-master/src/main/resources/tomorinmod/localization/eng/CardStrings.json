@@ -60,6 +60,13 @@
       "给予所有敌人 !M! 易伤 和 脆弱 ， tomorinmod:瞬间 ， 消耗 。"
     ]
   },
+  "${modID}:Pressure": {
+    "NAME": "压力",
+    "DESCRIPTION": "造成 !D! 点伤害， tomorinmod:瞬间 ， 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，2个回合后再对所有敌人造成 !D! 点伤害， tomorinmod:瞬间 ， 消耗 。"
+    ]
+  },
   "${modID}:FateCommunity": {
     "NAME": "命运共同体",
     "DESCRIPTION": "平均所有单位的当前生命值百分比。 tomorinmod:瞬间 ， 消耗 。"
