@@ -36,22 +36,16 @@ public class YourTenDraws extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> modCards= CustomUtils.getAllModCards();
         for(int i=0;i<10;i++){
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
-                    while(modCards.get(randomResult).rarity==CardRarity.SPECIAL
-                    ||modCards.get(randomResult).rarity==CardRarity.BASIC){
-                        randomResult= AbstractDungeon.miscRng.random(modCards.size()-1);
-                    }
-                    AbstractCard card=modCards.get(randomResult).makeStatEquivalentCopy();
-                    if(YourTenDraws.this.upgraded){
-                        card.upgrade();
-                    }
-                    addToTop(new MakeTempCardInHandAction(card, 1));
-                    isDone=true;
-                }
-            });
+            int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
+            while(modCards.get(randomResult).rarity==CardRarity.SPECIAL
+            ||modCards.get(randomResult).rarity==CardRarity.BASIC){
+                randomResult= AbstractDungeon.miscRng.random(modCards.size()-1);
+            }
+            AbstractCard card=modCards.get(randomResult).makeStatEquivalentCopy();
+            if(YourTenDraws.this.upgraded){
+                card.upgrade();
+            }
+            addToTop(new MakeTempCardInHandAction(card, 1));
         }
     }
 

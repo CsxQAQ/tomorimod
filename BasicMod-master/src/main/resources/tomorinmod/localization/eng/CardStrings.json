@@ -94,6 +94,10 @@
       " 消耗 ，将十张升级过的随机高松灯的卡牌置入手牌。"
     ]
   },
+  "${modID}:PoemInsteadOfSong": {
+    "NAME": "以诗代歌",
+    "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorinmod:闪耀 。"
+  },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
     "DESCRIPTION": "获得 !M! 点 tomorinmod:闪耀 。如果你拥有10点 tomorinmod:闪耀 ，获得 tomorinmod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorinmod:星盾 。"
