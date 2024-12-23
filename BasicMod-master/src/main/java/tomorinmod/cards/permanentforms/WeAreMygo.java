@@ -15,7 +15,7 @@ import tomorinmod.util.CardStats;
 
 import static tomorinmod.util.CustomUtils.idToName;
 
-public class WeAreMygo extends BaseCard {
+public class WeAreMygo extends BaseCard implements PermanentFrom{
 
     public static final String ID = makeID(WeAreMygo.class.getSimpleName());
     private static final CardStats info = new CardStats(

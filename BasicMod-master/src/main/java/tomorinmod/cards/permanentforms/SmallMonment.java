@@ -19,7 +19,7 @@ import tomorinmod.util.CardStats;
 
 import static tomorinmod.util.CustomUtils.idToName;
 
-public class SmallMonment extends BaseCard {
+public class SmallMonment extends BaseCard implements PermanentFrom {
 
 
     public static final String ID = makeID(SmallMonment.class.getSimpleName());

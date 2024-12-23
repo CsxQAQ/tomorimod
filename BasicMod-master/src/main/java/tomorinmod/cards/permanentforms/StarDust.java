@@ -17,7 +17,7 @@ import tomorinmod.util.CardStats;
 
 import static tomorinmod.util.CustomUtils.idToName;
 
-public class StarDust extends BaseCard {
+public class StarDust extends BaseCard implements PermanentFrom{
     public static final String ID = makeID(StarDust.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

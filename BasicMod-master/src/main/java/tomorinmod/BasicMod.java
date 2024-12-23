@@ -74,6 +74,8 @@ public class BasicMod implements
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
+        BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
+
     }
 
     public void receiveReward(){
