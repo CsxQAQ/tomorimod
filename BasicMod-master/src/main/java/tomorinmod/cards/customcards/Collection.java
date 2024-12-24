@@ -7,9 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
-import tomorinmod.cards.special.Band;
-import tomorinmod.cards.special.Stone;
-import tomorinmod.cards.special.Flower;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 

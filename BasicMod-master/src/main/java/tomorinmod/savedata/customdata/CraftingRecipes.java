@@ -79,7 +79,8 @@ public class CraftingRecipes implements Clearable {
     private List<String> songNames = Arrays.asList(
             "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
             "Yinyihui", "Miluri", "Wulushi", "Bitianbanzou",
-            "Yinakong", "Mingwusheng", "Qianzaibiaoming","Yeyingran"
+            "Yinakong", "Mingwusheng", "Qianzaibiaoming",
+            "Yeyingran","Ruichengshan"
 
     );
 
@@ -108,7 +109,7 @@ public class CraftingRecipes implements Clearable {
         }
 
         // 分配 rareCost
-        for (int i = 8; i < 11; i++) {
+        for (int i = 8; i < songNames.size(); i++) {
             int rareCost = RARECOST_MIN + random.nextInt(RARECOST_MAX - RARECOST_MIN + 1);
             musicsCostHashMap.put(songNames.get(i), rareCost);
         }

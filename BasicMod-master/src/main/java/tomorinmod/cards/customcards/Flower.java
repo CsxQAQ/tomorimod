@@ -1,16 +1,12 @@
-package tomorinmod.cards.special;
+package tomorinmod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.TemporaryThornsPower;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.CustomUtils;
 
@@ -20,7 +16,7 @@ public class Flower extends BaseCard {
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.SPECIAL,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );
@@ -31,7 +27,7 @@ public class Flower extends BaseCard {
     public Flower() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
-        CustomUtils.setRareBanner(this);
+        //CustomUtils.setRareBanner(this);
     }
 
     @Override

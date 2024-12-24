@@ -1,25 +1,22 @@
-package tomorinmod.cards.special;
+package tomorinmod.cards.customcards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 import tomorinmod.util.CustomUtils;
 
-import static tomorinmod.BasicMod.imagePath;
-
 public class Stone extends BaseCard {
     public static final String ID = makeID(Stone.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.ATTACK,
-            CardRarity.SPECIAL,
+            CardRarity.COMMON,
             CardTarget.ENEMY,
             1
     );
@@ -29,8 +26,8 @@ public class Stone extends BaseCard {
 
     public Stone() {
         super(ID, info);
-        CustomUtils.setRareBanner(this);
         setDamage(DAMAGE, UPG_DAMAGE);
+        //CustomUtils.setRareBanner(this);
 
     }
 

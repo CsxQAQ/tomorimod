@@ -14,7 +14,7 @@ public class BlacklistYou extends BaseMonmentCard {
     public static final String ID = makeID(BlacklistYou.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
-            CardType.ATTACK, //不知道会不会出问题
+            CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.ENEMY,
             1
