@@ -155,6 +155,20 @@
   },
   "${modID}:DivergeWorldPower": {
     "NAME": "偏离世界",
-    "DESCRIPTION": "攻击时触发 tomorinmod:重力 的效果。"
+    "DESCRIPTIONS": [
+      "攻击时触发 tomorinmod:重力 的效果。"
+    ]
+  },
+  "${modID}:CompetePower": {
+    "NAME": "对邦",
+    "DESCRIPTIONS":[
+      "对具有 #y对邦 的目标造成双倍伤害，受到来自 #y对邦 目标的伤害翻倍，回合结束时失去一层。"
+    ]
+  },
+  "${modID}:CompetePowerMonster": {
+    "NAME": "对邦",
+    "DESCRIPTIONS":[
+      "对具有 #y对邦 的目标造成双倍伤害，受到来自 #y对邦 目标的伤害翻倍，回合结束时失去一层。"
+    ]
   }
 }

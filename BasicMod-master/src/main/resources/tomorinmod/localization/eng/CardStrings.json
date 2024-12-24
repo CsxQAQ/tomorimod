@@ -298,6 +298,10 @@
     "NAME": "收集",
     "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *花瓣 中选择一张加入手牌，并使其获得 消耗 。"
   },
+  "${modID}:Compete": {
+    "NAME": "对邦",
+    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成伤害和受到来自其的伤害翻倍。"
+  },
 
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
