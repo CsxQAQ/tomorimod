@@ -242,6 +242,10 @@
       "将你手牌中的一张 tomorinmod:音乐 牌复制一张，并提升其稀有度。"
     ]
   },
+  "${modID}:Upset": {
+    "NAME": "失落",
+    "DESCRIPTION": "获得 !B! 点 格挡 和 tomorinmod:重力 。"
+  },
   "${modID}:MusicComposition": {
     "NAME": "作词",
     "DESCRIPTION": "固有 ， 保留 ， 使用后移除 ，使用卡牌时获得其对应的 tomorinmod:素材 。"
