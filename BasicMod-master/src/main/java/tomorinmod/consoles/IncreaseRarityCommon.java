@@ -1,9 +1,7 @@
 package tomorinmod.consoles;
 
-import basemod.BaseMod;
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
-import basemod.devcommands.hand.Hand;
 import basemod.helpers.ConvertHelper;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -44,7 +42,7 @@ public class IncreaseRarityCommon extends ConsoleCommand {
         }
 
         BaseMusicCard copy = (BaseMusicCard) c.makeCopy();
-        copy.setRarityByCommond(level);
+        copy.setMusicRarityByCommond(level);
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copy, true));
     }
 }

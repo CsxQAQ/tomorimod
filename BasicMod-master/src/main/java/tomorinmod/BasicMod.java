@@ -47,7 +47,8 @@ import java.util.*;
 
 //TODO 形态牌差一个能量的
 
-//TODO 优化music卡的swicth，先弄一个util放所有音乐卡Gruop，然后之后直接在里面makeEquipcopy
+//TODO 参考Libraryscreen的写法，让卡牌悬浮时有效果
+//TODO 在getMusicRarityByCost里加一个hashmap，先去hashmap里找，找不到再用cost查
 @SpireInitializer
 public class BasicMod implements
 

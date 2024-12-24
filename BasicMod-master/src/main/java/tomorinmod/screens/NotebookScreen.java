@@ -10,15 +10,18 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
-import tomorinmod.ui.MaterialUi;
+import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
 
 import static tomorinmod.BasicMod.imagePath;
+import static tomorinmod.BasicMod.makeID;
 
 public class NotebookScreen extends CustomScreen
 {
+
     private static final Texture TextureStoneCommon = new Texture(imagePath("materials/notebook/stone_common.png"));
     private static final Texture TextureBandCommon = new Texture(imagePath("materials/notebook/band_common.png"));
     private static final Texture TextureFlowerCommon = new Texture(imagePath("materials/notebook/flower_common.png"));
@@ -139,29 +142,69 @@ public class NotebookScreen extends CustomScreen
     }
 
     private void renderPageContent(SpriteBatch sb, ArrayList<ArrayList<String>> historyRecords, int startIndex, int endIndex) {
-        float screenWidth = Settings.WIDTH;
+        // 1. 获取屏幕信息
+        float screenWidth  = Settings.WIDTH;
         float screenHeight = Settings.HEIGHT;
+        float scale        = Settings.scale;
 
-        // 计算图片大小与位置
-        float imageWidth = screenWidth / 6;
-        float imageHeight = imageWidth * 0.75f;
-        float ySpacing = screenHeight / 20;
-        float startY = screenHeight / 2 + (recordsPerPage - 1) * (imageHeight + ySpacing) / 2;
+        // 2. 可调节的布局参数
+        float x_offset    = 200.0f * scale;                   // 第一张材料图片在屏幕左上角的X偏移
+        float y_offset    = screenHeight - 300.0f * scale;    // 第一张材料图片在屏幕左上角的Y偏移
+        float x_INTERVAL  = 300.0f * scale;                   // 材料图片之间的X间隔
+        float y_INTERVAL  = 100.0f * scale;                   // 每行记录之间的Y间隔
+        float INTERVAL    = 300.0f * scale;                   // 第三张材料和卡牌之间的额外间隔
+
+        // 3. 材料图片和卡牌的渲染大小
+        float materialWidth   = 300.0f * scale;
+        float materialHeight  = 300.0f * scale;
 
         for (int recordIndex = startIndex; recordIndex < endIndex; recordIndex++) {
             ArrayList<String> record = historyRecords.get(recordIndex);
-            float yPosition = startY - (recordIndex - startIndex) * (imageHeight + ySpacing);
 
+            // 根据 recordIndex 调整当前行的 Y 坐标，让不同记录在不同行显示
+            float currentY = y_offset - (recordIndex - startIndex) * (materialHeight + y_INTERVAL);
+            float currentX = x_offset;
+
+            // ======= 4. 渲染三张材料图片 =======
             for (int i = 0; i < 3; i++) {
+                // record.get(i) 是材料的名字，需要根据名字取到 Texture
                 if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
-                    //displayedImages[i] = new Texture(imagePath("materials/" + record.get(i) + ".png"));
                     displayedImages[i] = getMaterialTexture(record.get(i));
                 }
+                // 在 (currentX, currentY) 位置画出材料图片
+                sb.draw(displayedImages[i],
+                        currentX - materialWidth / 2f,
+                        currentY - materialHeight / 2f,
+                        materialWidth,
+                        materialHeight);
 
-                float xSpacing = screenWidth / 8;
-                float xPosition = (i + 1) * xSpacing;
+                // 为下一张材料图片移动 X 坐标
+                currentX += x_INTERVAL;
+            }
 
-                sb.draw(displayedImages[i], xPosition - imageWidth / 2, yPosition - imageHeight / 2, imageWidth, imageHeight);
+            // ======= 5. 渲染卡牌 =======
+            // 取卡牌ID，并根据ID拿到卡牌对象
+            String cardID = record.get(3);
+
+            BaseMusicCard card = null;
+            for(BaseMusicCard musicCard: CustomUtils.musicCardGroup){
+                if(musicCard.cardID.equals(makeID(cardID))){
+                    card=musicCard.makeStatEquivalentCopy();
+                    break;
+                }
+            }
+            if (card != null) {
+                card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
+                // 材料与卡牌之间空出一个额外的 INTERVAL
+                currentX += INTERVAL;
+
+                // 设置卡牌渲染坐标
+                card.current_x  = currentX;
+                card.current_y  = currentY;
+                //card.drawScale  = cardDrawScale;  // 控制卡牌大小
+
+                // 重点：调用官方方法
+                //card.renderInLibrary(sb);
             }
         }
     }

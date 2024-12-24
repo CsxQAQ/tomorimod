@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
-import tomorinmod.cards.customcards.TomorinApotheosis;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.tags.CustomTags;
 import tomorinmod.util.CardStats;
@@ -48,11 +47,11 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         this.idForShow=ID;
     }
 
-    public void setRarity(MusicRarity musicRarity) {
+    public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
     }
 
-    public void setRarityByCommond(int level) {
+    public void setMusicRarityByCommond(int level) {
         switch (level){
             case 1:
                 this.musicRarity=MusicRarity.COMMON;
@@ -74,8 +73,8 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         if(CraftingRecipes.getInstance().musicsCostHashMap.isEmpty()){
             return null;
         }
-        if (CraftingRecipes.getInstance().musicsCostHashMap.containsKey(CustomUtils.idToName(ID).toLowerCase())) {
-            cost = CraftingRecipes.getInstance().musicsCostHashMap.get(CustomUtils.idToName(ID).toLowerCase());
+        if (CraftingRecipes.getInstance().musicsCostHashMap.containsKey(CustomUtils.idToName(ID))) {
+            cost = CraftingRecipes.getInstance().musicsCostHashMap.get(CustomUtils.idToName(ID));
         }
 
         if (cost >= CraftingRecipes.COMMONCOST_MIN && cost <= CraftingRecipes.COMMONCOST_MAX) {
@@ -85,6 +84,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         } else if (cost >= CraftingRecipes.RARECOST_MIN && cost <= CraftingRecipes.RARECOST_MAX) {
             musicRarity = MusicRarity.RARE;
         }
+
         return musicRarity;
     }
 

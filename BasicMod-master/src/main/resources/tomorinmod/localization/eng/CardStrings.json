@@ -198,7 +198,7 @@
   },
   "${modID}:LightAndShadow": {
     "NAME": "光与影",
-    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，当 tomorinmod:闪耀 层数多于 tomorinmod:重力 改为获得 tomorinmod: 闪耀 。",
+    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorinmod:重力 ，当 tomorinmod:闪耀 层数多于 tomorinmod:重力 改为获得 tomorinmod:闪耀 。",
     "EXTENDED_DESCRIPTION": [
       " 消耗 ，获得 !M! 点 tomorinmod:闪耀 ，当 tomorinmod:重力 多余 tomorinmod:闪耀 时 改为获得 tomorinmod:重力 。"
     ]
@@ -213,7 +213,7 @@
   },
   "${modID}:Flower": {
     "NAME": "花瓣",
-    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E]，拥有最高等级的花瓣 tomorinmod:素材 。"
+    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] ，拥有最高等级的花瓣 tomorinmod:素材 。"
   },
   "${modID}:Band": {
     "NAME": "企鹅创可贴",
@@ -311,16 +311,14 @@
   },
   "${modID}:Compete": {
     "NAME": "对邦",
-    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成伤害和受到来自其的伤害翻倍。"
+    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成伤害和受到来自该目标的伤害翻倍。"
   },
-
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
     "DESCRIPTION": "对目标施加 !M! 层 易伤 ，造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。",
     "EXTENDED_DESCRIPTION": [
       "对目标施加 !M! 层 易伤 和 脆弱 ，造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。"
     ]
-
   },
   "${modID}:Lunfuyu": {
     "NAME": "轮符雨",

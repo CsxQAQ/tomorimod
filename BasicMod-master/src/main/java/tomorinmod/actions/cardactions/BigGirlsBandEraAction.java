@@ -1,6 +1,5 @@
 package tomorinmod.actions.cardactions;
 
-import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,8 +8,6 @@ import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.util.CustomUtils;
 
 import java.util.ArrayList;
-
-import static tomorinmod.BasicMod.makeID;
 
 public class BigGirlsBandEraAction extends AbstractGameAction {
 
@@ -36,13 +33,13 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
                 int randomRarity = AbstractDungeon.miscRng.random(2);
                 switch (randomRarity){
                     case 0:
-                        card.setRarity(BaseMusicCard.MusicRarity.COMMON);
+                        card.setMusicRarity(BaseMusicCard.MusicRarity.COMMON);
                         break;
                     case 1:
-                        card.setRarity(BaseMusicCard.MusicRarity.UNCOMMON);
+                        card.setMusicRarity(BaseMusicCard.MusicRarity.UNCOMMON);
                         break;
                     case 2:
-                        card.setRarity(BaseMusicCard.MusicRarity.RARE);
+                        card.setMusicRarity(BaseMusicCard.MusicRarity.RARE);
                         break;
                 }
                 //card.setBanner();

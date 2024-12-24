@@ -68,11 +68,12 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         for(BaseMusicCard musicCard:musicCardsGroup){
             if(musicCard.cardID.equals(makeID(music))){
                 card=musicCard.makeStatEquivalentCopy();
+                break;
             }
         }
 
         if (card != null) {
-            card.setRarity(musicRarity);
+            card.setMusicRarity(musicRarity);
             if(!SaveMusicDiscoverd.getInstance().musicDiscovered.contains(music)){
                 RewardItem musicReward = new MusicReward(card.cardID);
                 AbstractDungeon.getCurrRoom().rewards.add(musicReward);

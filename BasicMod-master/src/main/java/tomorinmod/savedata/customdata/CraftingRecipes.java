@@ -14,7 +14,6 @@ import static tomorinmod.BasicMod.makeID;
 
 public class CraftingRecipes implements Clearable {
 
-    public HashSet<String> tomorinCards=new HashSet<>();
     public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
     public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
     public ArrayList<Recipe> recipeArrayList =new ArrayList<>();
@@ -88,8 +87,8 @@ public class CraftingRecipes implements Clearable {
     public static final int COMMONCOST_MAX=3;
     public static final int UNCOMMONCOST_MIN=4;
     public static final int UNCOMMONCOST_MAX=5;
-    public static final int RARECOST_MIN=5;
-    public static final int RARECOST_MAX=6;
+    public static final int RARECOST_MIN=6;
+    public static final int RARECOST_MAX=7;
 
     public void initializeMusicsCostHashMap() {
         Collections.shuffle(songNames);

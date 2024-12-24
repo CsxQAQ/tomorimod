@@ -32,7 +32,7 @@ public class MusicReward extends CustomReward {
                 BaseMusicCard baseMusicCard=(BaseMusicCard)card;
                 BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(baseMusicCard.cardID);
                 if(musicRarity!=null){
-                    baseMusicCard.setRarity(musicRarity);
+                    baseMusicCard.setMusicRarity(musicRarity);
                     //baseMusicCard.setBanner();
                     baseMusicCard.setDisplayRarity(baseMusicCard.rarity);
 

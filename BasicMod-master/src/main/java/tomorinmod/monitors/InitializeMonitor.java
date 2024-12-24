@@ -29,7 +29,7 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
         if(AbstractDungeon.player!=null){
             for(AbstractCard card:AbstractDungeon.player.masterDeck.group){
                 if(card instanceof BaseMusicCard){
-                    ((BaseMusicCard)card).setRarity(BaseMusicCard.getMusicRarityByCost(card.cardID));
+                    ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.getMusicRarityByCost(card.cardID));
                     //((BaseMusicCard)card).setBanner();
                     ((BaseMusicCard)card).setDisplayRarity(card.rarity);
                 }
