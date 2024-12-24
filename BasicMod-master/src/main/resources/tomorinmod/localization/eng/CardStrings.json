@@ -377,6 +377,13 @@
       "获得 !B! 点 格挡 ，对所有敌人造成当前 格挡 数的伤害。"
     ]
   },
+  "${modID}:Yeyingran": {
+    "NAME": "夜影染",
+    "DESCRIPTION": "造成 !D! 点伤害，获得 !M! 点 活力 。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，获得 !M! 点 tomorinmod:临时力量 。"
+    ]
+  },
   "${modID}:Chunriying": {
     "NAME": "春日影",
     "DESCRIPTION": "对所有敌人造成 !D! 点伤害，恢复等量的生命值。",

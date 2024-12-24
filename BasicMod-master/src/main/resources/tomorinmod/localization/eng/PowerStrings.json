@@ -86,6 +86,12 @@
       "攻击你的敌人会受到等同于该效果层数的伤害，回合结束后效果消失。"
     ]
   },
+  "${modID}:TemporaryStrengthPower": {
+    "NAME": "临时力量",
+    "DESCRIPTIONS": [
+      "攻击伤害提升 #b"
+    ]
+  },
   "${modID}:RevolutionPower": {
     "NAME": "变革",
     "DESCRIPTIONS": [
