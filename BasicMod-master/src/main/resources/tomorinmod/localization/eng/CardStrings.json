@@ -384,6 +384,13 @@
       "造成 !D! 点伤害，获得 !M! 点 tomorinmod:临时力量 。"
     ]
   },
+  "${modID}:Ruichengshan": {
+    "NAME": "瑞程山",
+    "DESCRIPTION": "造成 !D! 点伤害，消灭敌人时，获得 [E] [E] 。",
+    "EXTENDED_DESCRIPTION": [
+      "造成 !D! 点伤害，消灭敌人时，获得 [E] [E] ，将两张该牌的复制置入手牌。"
+    ]
+  },
   "${modID}:Chunriying": {
     "NAME": "春日影",
     "DESCRIPTION": "对所有敌人造成 !D! 点伤害，恢复等量的生命值。",
