@@ -6,42 +6,6 @@
       "Gain [E] at the start of your turn. [E] is an energy icon."
     ]
   },
-  "${modID}:Pant": {
-    "NAME": "企鹅",
-    "FLAVOR": "I followed a tutorial!",
-    "DESCRIPTIONS": [
-      "当你使用一张卡牌后，获得 #b",
-      " 点 #y力量 。"
-    ]
-  },
-  "${modID}:AnonsGift": {
-    "NAME": "爱音的礼物",
-    "FLAVOR": "I followed a tutorial!",
-    "DESCRIPTIONS": [
-      "战斗开始时获得 #b1 点 #y闪耀 。"
-    ]
-  },
-  "${modID}:SoyosGift": {
-    "NAME": "素世的礼物",
-    "FLAVOR": "I followed a tutorial!",
-    "DESCRIPTIONS": [
-      "战斗开始时获得 #b5 点 #y多层护甲 。"
-    ]
-  },
-  "${modID}:TakisGift": {
-    "NAME": "立希的礼物",
-    "FLAVOR": "I followed a tutorial!",
-    "DESCRIPTIONS": [
-      "战斗开始时获得 #b1 点 #y力量 。"
-    ]
-  },
-  "${modID}:RanasGift": {
-    "NAME": "乐奈的礼物",
-    "FLAVOR": "I followed a tutorial!",
-    "DESCRIPTIONS": [
-      "战斗开始时获得 #b1 点 y#无实体 。"
-    ]
-  },
   "${modID}:NotebookRelic": {
     "NAME": "笔记本",
     "FLAVOR": "I followed a tutorial!",
@@ -60,7 +24,7 @@
     "NAME": "系统",
     "FLAVOR": "I followed a tutorial!",
     "DESCRIPTIONS": [
-      " #y形态 效果可以叠加，且 #y形态 效果被视为 #y永久形态 。"
+      "替换 #y话筒 。 #y形态 效果被视为 #y永久形态 且 #y形态 效果可以叠加。"
     ]
   }
 }

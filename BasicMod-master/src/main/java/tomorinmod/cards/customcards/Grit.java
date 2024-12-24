@@ -20,7 +20,7 @@ public class Grit extends BaseCard {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
     private final int BLOCK=1;
@@ -40,10 +40,12 @@ public class Grit extends BaseCard {
     @Override
     public void update(){
         super.update();
-        if(!upgraded){
-            baseBlock= AbstractDungeon.player.masterDeck.size()*BLOCK;
-        }else{
-            baseBlock= AbstractDungeon.player.masterDeck.size()*(BLOCK+UPG_BLOCK);
+        if(AbstractDungeon.player!=null){
+            if(!upgraded){
+                baseBlock= AbstractDungeon.player.masterDeck.size()*BLOCK;
+            }else{
+                baseBlock= AbstractDungeon.player.masterDeck.size()*(BLOCK+UPG_BLOCK);
+            }
         }
     }
 

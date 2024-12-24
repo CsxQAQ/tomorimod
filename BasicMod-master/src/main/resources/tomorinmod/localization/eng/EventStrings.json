@@ -17,5 +17,18 @@
       "[Leave]",
       "Select card to remove. (You can also stick extra text like this in here.)"
     ]
+  },
+  "${modID}:SystemEvent": {
+    "NAME": "系统觉醒",
+    "DESCRIPTIONS": [
+      "系统绑定中......1%......20%......50%...... NL NL 75%......99%......100% NL NL 已检测到宿主心愿，系统定性中...... NL NL #r是否连接系统 ",
+      "恭喜宿主系统连接成功。"
+
+    ],
+    "OPTIONS": [
+      "[连接系统] #g获得一样特殊的遗物。",
+      "[离开] 还是算了吧。",
+      "[离开]"
+    ]
   }
 }

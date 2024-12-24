@@ -32,6 +32,7 @@ import com.megacrit.cardcrawl.relics.LizardTail;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
@@ -42,6 +43,7 @@ import tomorinmod.cards.basic.Strike;
 import tomorinmod.cards.permanentforms.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
 import tomorinmod.powers.ImmunityPower;
+import tomorinmod.relics.MicrophoneRelic;
 import tomorinmod.relics.NotebookRelic;
 import tomorinmod.vfx.IntangibleEffect;
 
@@ -213,8 +215,10 @@ public class MyCharacter extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         //IDs of starting relics. You can have multiple, but one is recommended.
-        retVal.add(BurningBlood.ID);
+        retVal.add(MicrophoneRelic.ID);
         retVal.add(NotebookRelic.ID);
+        UnlockTracker.markRelicAsSeen(MicrophoneRelic.ID);
+
 
         return retVal;
     }

@@ -4,12 +4,14 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
 import basemod.interfaces.*;
+import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.consoles.IncreaseRarityCommon;
 import tomorinmod.consoles.ShowRecipesCommon;
+import tomorinmod.events.SystemEvent;
 import tomorinmod.monitors.*;
 import tomorinmod.monitors.card.*;
 import tomorinmod.powers.*;
@@ -77,42 +79,11 @@ public class BasicMod implements
 
     }
 
-    public void receiveReward(){
-        BaseMod.registerCustomReward(
-                RewardTypePatch.ANON_REWARD,
-                (rewardSave) -> { // 加载奖励
-                    return new AnonReward(); // 根据保存的数据返回自定义奖励对象
-                },
-                (customReward) -> { // 保存奖励
-                    return new RewardSave(RewardTypePatch.ANON_REWARD.toString(), null); // 保存奖励的基本信息
-                });
+    public static void receiveEvent() {
+        BaseMod.addEvent(SystemEvent.ID,SystemEvent.class, Exordium.ID);
+    }
 
-        BaseMod.registerCustomReward(
-                RewardTypePatch.SOYO_REWARD,
-                (rewardSave) -> { // 加载奖励
-                    return new SoyoReward(); // 根据保存的数据返回自定义奖励对象
-                },
-                (customReward) -> { // 保存奖励
-                    return new RewardSave(RewardTypePatch.SOYO_REWARD.toString(), null); // 保存奖励的基本信息
-                });
-
-        BaseMod.registerCustomReward(
-                RewardTypePatch.TAKI_REWARD,
-                (rewardSave) -> { // 加载奖励
-                    return new TakiReward(); // 根据保存的数据返回自定义奖励对象
-                },
-                (customReward) -> { // 保存奖励
-                    return new RewardSave(RewardTypePatch.TAKI_REWARD.toString(), null); // 保存奖励的基本信息
-                });
-
-        BaseMod.registerCustomReward(
-                RewardTypePatch.RANA_REWARD,
-                (rewardSave) -> { // 加载奖励
-                    return new RanaReward(); // 根据保存的数据返回自定义奖励对象
-                },
-                (customReward) -> { // 保存奖励
-                    return new RewardSave(RewardTypePatch.RANA_REWARD.toString(), null); // 保存奖励的基本信息
-                });
+    public static void receiveReward(){
 
         BaseMod.registerCustomReward(
                 RewardTypePatch.MUSIC_REWARD,
@@ -160,8 +131,9 @@ public class BasicMod implements
         new AutoAdd(modID)
                 .packageFilter(BasePower.class);
 
-        this.receiveReward();
-        this.receiveScreen();
+        receiveReward();
+        receiveScreen();
+        receiveEvent();
 
         RegisterSaveData.saveData();
 
@@ -178,6 +150,8 @@ public class BasicMod implements
         //The Mod Badges page has a basic example of this, but setting up config is overall a bit complex.
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
     }
+
+
 
     /*----------Localization----------*/
 
