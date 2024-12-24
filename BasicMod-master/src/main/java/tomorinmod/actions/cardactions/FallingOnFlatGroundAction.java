@@ -1,4 +1,4 @@
-package tomorinmod.actions;
+package tomorinmod.actions.cardactions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,7 +26,7 @@ public class FallingOnFlatGroundAction extends AbstractGameAction {
     public void update() {
         AbstractPlayer p = AbstractDungeon.player;
 //如果不加!hasOpenedSelectScreen判断就会导致剩两张牌时，使用该牌后选择另一张导致h.hand.size()=0，导致后面的逻辑执行不到
-        if (p.hand.size() == 0&&!hasOpenedSelectScreen) {
+        if (p.hand.isEmpty() &&!hasOpenedSelectScreen) {
             isDone = true;
             return;
         }

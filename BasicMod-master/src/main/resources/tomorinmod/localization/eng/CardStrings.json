@@ -235,6 +235,13 @@
       " 固有 ，回合开始时升级你的所有牌，你的 tomorinmod:音乐 牌没有升级上限。"
     ]
   },
+  "${modID}:BandPractise": {
+    "NAME": "乐队练习",
+    "DESCRIPTION": "将你手牌中的一张 tomorinmod:音乐 牌复制一张。",
+    "EXTENDED_DESCRIPTION": [
+      "将你手牌中的一张 tomorinmod:音乐 牌复制一张，并提升其稀有度。"
+    ]
+  },
   "${modID}:MusicComposition": {
     "NAME": "作词",
     "DESCRIPTION": "固有 ， 保留 ， 使用后移除 ，使用卡牌时获得其对应的 tomorinmod:素材 。"

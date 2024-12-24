@@ -1,4 +1,4 @@
-package tomorinmod.actions;
+package tomorinmod.actions.cardactions;
 
 import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

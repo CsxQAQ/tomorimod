@@ -5,7 +5,7 @@ import basemod.interfaces.OnStartBattleSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import tomorinmod.actions.SmoothComboAction;
+import tomorinmod.actions.cardactions.SmoothComboAction;
 import tomorinmod.cards.customcards.SmoothCombo;
 import tomorinmod.monitors.BaseMonitor;
 

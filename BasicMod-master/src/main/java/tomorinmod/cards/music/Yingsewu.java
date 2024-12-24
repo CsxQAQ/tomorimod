@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.actions.YingsewuAction;
+import tomorinmod.actions.cardactions.YingsewuAction;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
 

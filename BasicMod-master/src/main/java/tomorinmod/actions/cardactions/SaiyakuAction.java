@@ -1,4 +1,4 @@
-package tomorinmod.actions;
+package tomorinmod.actions.cardactions;
 
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

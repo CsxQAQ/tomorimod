@@ -1,16 +1,19 @@
-package tomorinmod.cards.monment;
+package tomorinmod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorinmod.actions.cardactions.FallingOnFlatGroundAction;
+import tomorinmod.actions.cardactions.BandPractiseAction;
+import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
+import tomorinmod.powers.custompowers.ConveyFeelingPower;
 import tomorinmod.util.CardStats;
 
-public class FallingOnFlatGround extends BaseMonmentCard {
+public class BandPractise extends BaseCard {
 
-    public static final String ID = makeID(FallingOnFlatGround.class.getSimpleName());
+    public static final String ID = makeID(BandPractise.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -19,15 +22,13 @@ public class FallingOnFlatGround extends BaseMonmentCard {
             1
     );
 
-    public FallingOnFlatGround() {
+    public BandPractise() {
         super(ID, info);
-        this.exhaust=true;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new FallingOnFlatGroundAction(upgraded));
-        super.use(p,m);
+        addToBot(new BandPractiseAction(upgraded));
     }
 
     public void updateDescription(){
@@ -40,15 +41,8 @@ public class FallingOnFlatGround extends BaseMonmentCard {
     }
 
     @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            updateDescription();
-        }
+    public AbstractCard makeCopy() {
+        return new BandPractise();
     }
 
-    @Override
-    public AbstractCard makeCopy() {
-        return new FallingOnFlatGround();
-    }
 }
