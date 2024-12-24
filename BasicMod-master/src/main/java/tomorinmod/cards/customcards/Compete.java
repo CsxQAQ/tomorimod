@@ -37,7 +37,7 @@ public class Compete extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if(monster.hasPower(makeID("CompetePower"))){
+            if(monster.hasPower(makeID("CompetePowerMonster"))){
                 addToBot(new RemoveSpecificPowerAction(monster,p,makeID("CompetePowerMonster")));
             }
         }
