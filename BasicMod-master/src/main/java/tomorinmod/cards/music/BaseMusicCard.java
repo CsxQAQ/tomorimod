@@ -40,6 +40,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
         setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
         setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
+        dataInfoInitialize();
         updateDescription();
     }
 
@@ -52,6 +53,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
         setDisplayRarity(rarity); //调用setMusicRarity似乎一定会调用setDisPlayRarity，所以就放过来了
+        dataInfoInitialize();
     }
 
     public void setMusicRarityByCommond(int level) {
@@ -156,16 +158,12 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             musicCard.setDisplayRarity(rarity);
         }
         musicCard.idForShow=this.idForShow;
-        musicCard.timesUpgraded=this.timesUpgraded;
-        //musicCard.baseDamage=this.baseDamage;
-        //musicCard.baseMagicNumber=this.baseMagicNumber;
-        updateDescription();
+        musicCard.updateDescription();
         return musicCard;
     }
 
     @Override
     public void upgrade() {
-        super.upgrade();
         if(AbstractDungeon.player!=null) {
             if (AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))) {
                 baseDamage += musicUpgradeDamage;
@@ -194,7 +192,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             }
         }
 
-
         updateDescription();
     }
 
@@ -216,7 +213,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         }
     }
 
-    public void dataInfoInitialize() {
+    public void dataInfoInitialize() { //这东西只能在构造方法里调用，因为会重置baseDamage
         if(musicRarity==null||numsInfo==null){
             return;
         }
@@ -338,7 +335,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 }
             }
         }
-        dataInfoInitialize();
     }
 
 }
