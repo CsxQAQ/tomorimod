@@ -207,7 +207,7 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(MusicComposition.ID);
-        retVal.add(Mascot.ID);
+        retVal.add(WeAreMygo.ID);
 
         return retVal;
     }

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.powers.custompowers.CompetePower;
-import tomorinmod.powers.custompowers.CompetePowerMonster;
+import tomorinmod.powers.custompowers.CompeteMonsterPower;
 import tomorinmod.util.CardStats;
 
 public class Compete extends BaseCard {
@@ -40,7 +40,7 @@ public class Compete extends BaseCard {
         }
         addToBot(new RemoveSpecificPowerAction(p,p,makeID("CompetePower")));
         addToBot(new ApplyPowerAction(p,p,new CompetePower(p,magicNumber),magicNumber));
-        addToBot(new ApplyPowerAction(m,p,new CompetePowerMonster(m,magicNumber),magicNumber));
+        addToBot(new ApplyPowerAction(m,p,new CompeteMonsterPower(m,magicNumber),magicNumber));
     }
 
     @Override

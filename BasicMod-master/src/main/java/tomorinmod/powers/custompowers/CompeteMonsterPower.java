@@ -9,14 +9,14 @@ import tomorinmod.powers.BasePower;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class CompetePowerMonster extends BasePower {
-    public static final String POWER_ID = makeID(CompetePowerMonster.class.getSimpleName());
+public class CompeteMonsterPower extends BasePower {
+    public static final String POWER_ID = makeID(CompeteMonsterPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
     private int amount;
 
-    public CompetePowerMonster(AbstractCreature owner, int amount) {
+    public CompeteMonsterPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.amount=amount;
     }

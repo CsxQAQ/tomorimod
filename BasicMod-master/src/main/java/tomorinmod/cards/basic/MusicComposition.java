@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.character.MyCharacter;
-import tomorinmod.powers.InCompositionPower;
+import tomorinmod.powers.MusicCompositionPower;
 import tomorinmod.screens.MaterialScreenProcessor;
 import tomorinmod.util.CardStats;
 
@@ -34,13 +34,13 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return p.getPower(InCompositionPower.POWER_ID)==null;
+        return p.getPower(MusicCompositionPower.POWER_ID)==null;
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         isMusicCompositionUsed=true;
-        addToBot(new ApplyPowerAction(p, p, new InCompositionPower(p),1));
+        addToBot(new ApplyPowerAction(p, p, new MusicCompositionPower(p),1));
         ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
     }
 

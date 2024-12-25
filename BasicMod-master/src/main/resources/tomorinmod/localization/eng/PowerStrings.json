@@ -99,7 +99,7 @@
       " 点 #y闪耀。"
     ]
   },
-  "${modID}:InCompositionPower": {
+  "${modID}:MusicCompositionPower": {
     "NAME": "创作中",
     "DESCRIPTIONS": [
       "无法使用 *作词，获得3点 #y素材 后移除此效果并获得对应歌曲。"
@@ -165,7 +165,7 @@
       "对具有 #y对邦 的目标造成双倍伤害，受到来自 #y对邦 目标的伤害翻倍，回合结束时失去一层。"
     ]
   },
-  "${modID}:CompetePowerMonster": {
+  "${modID}:CompeteMonsterPower": {
     "NAME": "对邦",
     "DESCRIPTIONS":[
       "对具有 #y对邦 的目标造成双倍伤害，受到来自 #y对邦 目标的伤害翻倍，回合结束时失去一层。"

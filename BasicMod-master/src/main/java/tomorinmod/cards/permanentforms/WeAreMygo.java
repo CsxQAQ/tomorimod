@@ -20,18 +20,14 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.RARE,
+            CardRarity.BASIC,
             CardTarget.SELF,
             1
     );
 
-    private final int MAGIC=3;
-    private final int UPG_MAGIC=0;
 
     public WeAreMygo() {
         super(ID, info);
-        setMagic(MAGIC,UPG_MAGIC);
-        tags.add(CardTags.HEALING);
     }
 
     @Override
@@ -39,15 +35,11 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
         addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p)));
         PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
         BaseMonmentCard.removeFromMasterDeck(this);
-        AbstractDungeon.rareCardPool.removeCard(ID);
     }
 
     @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    public boolean canUpgrade(){
+        return false;
     }
 
     @Override

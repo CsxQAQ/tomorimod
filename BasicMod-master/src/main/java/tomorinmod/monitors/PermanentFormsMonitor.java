@@ -2,6 +2,7 @@ package tomorinmod.monitors;
 
 import basemod.interfaces.OnStartBattleSubscriber;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -31,6 +32,7 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
                     break;
                 case "WeAreMygo":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WeAreMygoPower(p)));
+                    AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
                     break;
                 case "ShineWithMe":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new ShineWithMePower(p)));

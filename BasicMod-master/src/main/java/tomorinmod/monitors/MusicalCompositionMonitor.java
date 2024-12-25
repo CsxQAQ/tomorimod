@@ -15,7 +15,7 @@ import tomorinmod.cards.music.*;
 import tomorinmod.cards.special.FailComposition;
 import tomorinmod.effects.MaterialUiDelayClearAction;
 import tomorinmod.patches.AbstractCardSetMaterialPatch;
-import tomorinmod.powers.InCompositionPower;
+import tomorinmod.powers.MusicCompositionPower;
 import tomorinmod.rewards.MusicReward;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
@@ -47,7 +47,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 getMusic(music); //先getMusic是因为要先判断是否已创作过music来决定reward
                 addHistoryRecipes(music);
                 MusicComposition.isMusicCompositionUsed=false;
-                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, InCompositionPower.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, MusicCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
                 cardsUsed.clear();
             }
