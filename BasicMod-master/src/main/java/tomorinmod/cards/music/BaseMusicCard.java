@@ -49,6 +49,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
+        setDisplayRarity(rarity); //调用setMusicRarity似乎一定会调用setDisPlayRarity，所以就放过来了
     }
 
     public void setMusicRarityByCommond(int level) {
@@ -211,7 +212,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     }
 
     @Override
-    public void setDisplayRarity(AbstractCard.CardRarity rarity){
+    public void setDisplayRarity(AbstractCard.CardRarity rarity){ //没用的参数，但得继承
         super.setDisplayRarity(rarity);
         if(rarity.equals(CardRarity.SPECIAL)){
             if(musicRarity!=null){

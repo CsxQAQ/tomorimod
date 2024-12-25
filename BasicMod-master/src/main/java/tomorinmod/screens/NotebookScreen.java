@@ -195,12 +195,14 @@ public class NotebookScreen extends CustomScreen
             }
             if (card != null) {
                 card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
+                //card.setDisplayRarity(card.rarity);
                 // 材料与卡牌之间空出一个额外的 INTERVAL
                 currentX += INTERVAL;
 
                 // 设置卡牌渲染坐标
                 card.current_x  = currentX;
                 card.current_y  = currentY;
+                card.render(sb);
                 //card.drawScale  = cardDrawScale;  // 控制卡牌大小
 
                 // 重点：调用官方方法

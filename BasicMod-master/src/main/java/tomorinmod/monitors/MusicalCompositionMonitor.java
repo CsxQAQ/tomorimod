@@ -78,7 +78,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 RewardItem musicReward = new MusicReward(card.cardID);
                 AbstractDungeon.getCurrRoom().rewards.add(musicReward);
             }
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1));
+            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(card, 1)); //这方法调用makeequalcopy所以会new新卡
         }
     }
 
