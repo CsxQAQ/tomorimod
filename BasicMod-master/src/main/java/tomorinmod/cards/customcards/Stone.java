@@ -28,7 +28,6 @@ public class Stone extends BaseCard {
         super(ID, info);
         setDamage(DAMAGE, UPG_DAMAGE);
         //CustomUtils.setRareBanner(this);
-
     }
 
     @Override
@@ -37,7 +36,7 @@ public class Stone extends BaseCard {
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new Stone();
     }
 

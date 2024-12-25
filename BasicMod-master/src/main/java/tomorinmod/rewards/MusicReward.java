@@ -14,7 +14,7 @@ import java.util.Collections;
 import static tomorinmod.BasicMod.imagePath;
 
 public class MusicReward extends CustomReward {
-    private static final Texture ICON = new Texture(Gdx.files.internal(imagePath("badge.png")));
+    private static final Texture ICON = new Texture(imagePath("music_reward.png"));
 
     public String cardId;
 
