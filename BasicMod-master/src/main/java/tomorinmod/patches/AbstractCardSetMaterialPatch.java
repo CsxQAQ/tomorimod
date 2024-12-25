@@ -7,6 +7,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import tomorinmod.savedata.customdata.CraftingRecipes;
 import tomorinmod.util.RenderUtils;
 
@@ -44,7 +47,9 @@ public class AbstractCardSetMaterialPatch {
     public static class AbstractCardInsertPatch {
         @SpirePostfixPatch
         public static void postFix(AbstractCard __instance) {
-            initializeMaterialIcon(__instance);
+            if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE) {
+                initializeMaterialIcon(__instance);
+            }
         }
     }
 

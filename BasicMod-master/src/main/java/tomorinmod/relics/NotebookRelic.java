@@ -31,9 +31,7 @@ public class NotebookRelic extends BaseRelic {
             isOpened=false;
         }
 
-        // 检测鼠标是否悬停在遗物上
         if (this.hb.hovered) {
-            // 检测是否按下右键
             if (InputHelper.justClickedRight) {
 
                 if (!AbstractDungeon.actionManager.turnHasEnded) {
@@ -47,17 +45,6 @@ public class NotebookRelic extends BaseRelic {
                         isOpened = false;
                     }
                 }
-
-//                if(!isOpened){
-//                    if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
-//
-//                        openCustomScreen();
-//                        isOpened=true;
-//                    }
-//                }else{
-//                    closeCustomScreen();
-//                    isOpened=false;
-//                }
             }
         }
     }
