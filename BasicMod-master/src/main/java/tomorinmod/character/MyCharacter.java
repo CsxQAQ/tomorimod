@@ -40,6 +40,7 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorinmod.cards.basic.Defend;
 import tomorinmod.cards.basic.MusicComposition;
 import tomorinmod.cards.basic.Strike;
+import tomorinmod.cards.forms.Mascot;
 import tomorinmod.cards.permanentforms.WeAreMygo;
 import tomorinmod.cards.monment.Tomotomo;
 import tomorinmod.powers.ImmunityPower;
@@ -199,14 +200,14 @@ public class MyCharacter extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
+        retVal.add(Strike.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
-        retVal.add(Tomotomo.ID);
-        retVal.add(WeAreMygo.ID);
+        retVal.add(Defend.ID);
         retVal.add(MusicComposition.ID);
-        //retVal.add(Bitianbanzou.ID);
+        retVal.add(Mascot.ID);
 
         return retVal;
     }

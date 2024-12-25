@@ -40,11 +40,10 @@ public class BlankPaperAttack extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for(int i=0;i<magicNumber;i++){
+        for(int i=0;i<baseMagicNumber;i++){
             addToBot(new DamageAction(m, new DamageInfo(p, damage,
                     DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-
     }
 
     @Override

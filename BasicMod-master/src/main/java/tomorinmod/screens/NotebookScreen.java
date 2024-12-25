@@ -191,29 +191,31 @@ public class NotebookScreen extends CustomScreen
             // ======= 渲染卡牌 =======
             String cardID = record.get(3);
 
-            // 从缓存中获取卡牌副本
-            BaseMusicCard card = cardCache.get(new CacheKey(recordIndex, cardID));
-            if (card == null) {
-                for (BaseMusicCard musicCard : CustomUtils.musicCardGroup) {
-                    if (musicCard.cardID.equals(makeID(cardID))) {
-                        card = musicCard.makeStatEquivalentCopy();
-                        break;
+            if(!cardID.equals("fail")){
+                // 从缓存中获取卡牌副本
+                BaseMusicCard card = cardCache.get(new CacheKey(recordIndex, cardID));
+                if (card == null) {
+                    for (BaseMusicCard musicCard : CustomUtils.musicCardGroup) {
+                        if (musicCard.cardID.equals(makeID(cardID))) {
+                            card = musicCard.makeStatEquivalentCopy();
+                            break;
+                        }
                     }
+                    card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
+                    if(recordIndex%2==0){
+                        currentX += CARD_INTERVAL_ODD;
+                    }else{
+                        currentX += CARD_INTERVAL_EVEN;
+                    }
+                    card.current_x = currentX;
+                    card.target_x = currentX;
+                    card.current_y = currentY;
+                    card.target_y = currentY;
+                    cardsAdded.add(card);
+                    cardCache.put(new CacheKey(recordIndex, cardID), card);
                 }
-                card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
-                if(recordIndex%2==0){
-                    currentX += CARD_INTERVAL_ODD;
-                }else{
-                    currentX += CARD_INTERVAL_EVEN;
-                }
-                card.current_x = currentX;
-                card.target_x = currentX;
-                card.current_y = currentY;
-                card.target_y = currentY;
-                cardsAdded.add(card);
-                cardCache.put(new CacheKey(recordIndex, cardID), card);
+                card.render(sb);
             }
-            card.render(sb);
         }
     }
 

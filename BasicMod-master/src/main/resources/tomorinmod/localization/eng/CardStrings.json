@@ -267,7 +267,7 @@
     "NAME": "白月光",
     "DESCRIPTION": " 消耗 ， tomorinmod:瞬间 ，恢复当前损失生命值一半的生命值，移除所有的 tomorinmod:重力 。",
     "EXTENDED_DESCRIPTION": [
-      "消耗 ， tomorinmod:瞬间 ，恢复所有生命值，移除所有的 tomorinmod:重力 。"
+      " 消耗 ， tomorinmod:瞬间 ，恢复所有生命值，移除所有的 tomorinmod:重力 。"
     ]
   },
   "${modID}:MygoTogether": {
@@ -276,7 +276,10 @@
   },
   "${modID}:NeedAnon": {
     "NAME": "需要爱音",
-    "DESCRIPTION": "将 tomorinmod:重力 层数翻倍。"
+    "DESCRIPTION": " 消耗 使 tomorinmod:重力 层数翻倍。",
+    "EXTENDED_DESCRIPTION": [
+      " 消耗 ， 使 tomorinmod:重力 层数变为3倍。"
+    ]
   },
   "${modID}:ConveyFeeling": {
     "NAME": "传达心意",
@@ -303,7 +306,7 @@
   },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
-    "DESCRIPTION": "将一张该牌的复制置入你的手牌，然后抽一张牌。"
+    "DESCRIPTION": "将该牌的复制置入你的手牌，然后抽一张牌。"
   },
   "${modID}:Collection": {
     "NAME": "收集",

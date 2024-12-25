@@ -40,12 +40,13 @@ public class BlankPaper extends BaseCard {
                 m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
                 m.intent == AbstractMonster.Intent.ATTACK_DEBUFF ||
                 m.intent == AbstractMonster.Intent.ATTACK_DEFEND)) {
-            int baseDamage = getPrivateField(m, "intentDmg", Integer.class);
+            int monsterDamage = getPrivateField(m, "intentDmg", Integer.class);
             int attackCount = getPrivateField(m, "intentMultiAmt", Integer.class);
 
             AbstractCard attackCard = new BlankPaperAttack();
-            attackCard.baseDamage = baseDamage;
+            attackCard.baseDamage = monsterDamage;
             attackCard.baseMagicNumber = attackCount>0?attackCount:1;
+            //attackCard.magicNumber=attackCount>0?attackCount:1;
 
             addToBot(new MakeTempCardInHandAction(attackCard));
         }else{

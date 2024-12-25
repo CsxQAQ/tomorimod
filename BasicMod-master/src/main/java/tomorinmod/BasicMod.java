@@ -42,12 +42,13 @@ import org.scannotation.AnnotationDB;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 春日影只有在获得灵感后才能创作，平常不能，分开创作记录表和灵感表，灵感表中存储成功的创作记录并且要去重
 //TODO 所有对象都判断是否为null
 
 //TODO 形态牌差一个能量的
 
-//TODO 参考Libraryscreen的写法，让卡牌悬浮时有效果
+//TODO 修改结束时素材框不消失的bug
+//TODO 特效变革和星盾
+
 @SpireInitializer
 public class BasicMod implements
 

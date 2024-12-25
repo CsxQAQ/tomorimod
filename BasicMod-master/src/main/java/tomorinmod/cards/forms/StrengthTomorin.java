@@ -12,7 +12,7 @@ public class StrengthTomorin extends BaseFormCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public final static int MAGIC = 1;
@@ -40,7 +40,7 @@ public class StrengthTomorin extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }
