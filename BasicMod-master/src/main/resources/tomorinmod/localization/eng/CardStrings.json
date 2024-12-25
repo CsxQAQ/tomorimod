@@ -111,7 +111,7 @@
   },
   "${modID}:Grit": {
     "NAME": "坚毅",
-    "DESCRIPTION": "你的牌组中每有一张卡牌，获得2点 格挡 。"
+    "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !B! 点 格挡 。"
   },
   "${modID}:PoemInsteadOfSong": {
     "NAME": "以诗代歌",
@@ -144,7 +144,7 @@
   },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
-    "DESCRIPTION": "获得 !M! 点 tomorinmod:重力 ，抽等同于 tomorinmod:重力 的卡牌 。"
+    "DESCRIPTION": "获得 !M! 点 tomorinmod:重力 ，抽等同于 tomorinmod:重力 数量的卡牌。"
   },
   "${modID}:ShineHugMe": {
     "NAME": "光芒拥我入怀",
@@ -222,10 +222,6 @@
   "${modID}:AquariumPass": {
     "NAME": "水族馆年票",
     "DESCRIPTION": " 保留 ，抽一张牌，可以替代任意 tomorinmod:素材 。"
-  },
-  "${modID}:FailAndRestart": {
-    "NAME": "重新开始",
-    "DESCRIPTION": "将手牌中失败的创作翻面。"
   },
 
   "${modID}:TomorinApotheosis": {
@@ -416,7 +412,7 @@
   },
   "${modID}:FailComposition": {
     "NAME": "失败的创作",
-    "DESCRIPTION": " 回合结束时移除 ，无法打出。"
+    "DESCRIPTION": " 恢复 !M! 点生命值，使用后移除。"
   },
 
   "${modID}:SmallMonment": {

@@ -86,9 +86,9 @@ public class CraftingRecipes implements Clearable {
     public static final int COMMONCOST_MIN=3;
     public static final int COMMONCOST_MAX=3;
     public static final int UNCOMMONCOST_MIN=4;
-    public static final int UNCOMMONCOST_MAX=5;
-    public static final int RARECOST_MIN=6;
-    public static final int RARECOST_MAX=7;
+    public static final int UNCOMMONCOST_MAX=4;
+    public static final int RARECOST_MIN=5;
+    public static final int RARECOST_MAX=6;
 
     public void initializeMusicsCostHashMap() {
         Collections.shuffle(songNames);
