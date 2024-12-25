@@ -136,7 +136,7 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
-    "DESCRIPTION": " tomorinmod:永久形态 ：战斗胜利时，获得 !M! 点最大生命值。"
+    "DESCRIPTION": " tomorinmod:永久形态 ：回合开始时，获得 [E] 。"
   },
   "${modID}:ShineWithMe": {
     "NAME": "光芒与我同行",

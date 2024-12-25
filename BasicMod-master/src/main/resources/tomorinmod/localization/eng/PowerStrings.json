@@ -20,7 +20,7 @@
   "${modID}:WeAreMygoPower": {
     "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      " #y永久形态 ，战斗胜利时，获得3点最大生命。"
+      " #y永久形态 ，回合开始时，获得 [E] 。"
     ]
   },
   "${modID}:ShineWithMePower": {

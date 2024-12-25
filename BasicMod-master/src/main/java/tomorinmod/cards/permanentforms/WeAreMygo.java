@@ -43,6 +43,11 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
     }
 
     @Override
+    public void upgrade(){
+
+    }
+
+    @Override
     public AbstractCard makeCopy() {
         return new WeAreMygo();
     }
