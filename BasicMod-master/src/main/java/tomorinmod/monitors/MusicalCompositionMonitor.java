@@ -4,9 +4,11 @@ import basemod.helpers.ScreenPostProcessorManager;
 import basemod.interfaces.OnCardUseSubscriber;
 import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostBattleSubscriber;
+import basemod.interfaces.PostUpdateSubscriber;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 
 import static tomorinmod.BasicMod.makeID;
 
-public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber {
+public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseSubscriber, OnStartBattleSubscriber, PostBattleSubscriber, PostUpdateSubscriber {
 
     public static final ArrayList<AbstractCard> cardsUsed = new ArrayList<>(3);
 
@@ -125,6 +127,13 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
         ScreenPostProcessorManager.removePostProcessor(MaterialScreenProcessor.getInstance());
+    }
+
+    @Override
+    public void receivePostUpdate() {
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.GAMEPLAY){
+            ScreenPostProcessorManager.removePostProcessor(MaterialScreenProcessor.getInstance());
+        }
     }
 
     @Override

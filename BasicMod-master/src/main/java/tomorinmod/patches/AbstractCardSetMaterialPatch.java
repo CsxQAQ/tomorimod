@@ -47,7 +47,7 @@ public class AbstractCardSetMaterialPatch {
     public static class AbstractCardInsertPatch {
         @SpirePostfixPatch
         public static void postFix(AbstractCard __instance) {
-            if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE) {
+            if (CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT) {
                 initializeMaterialIcon(__instance);
             }
         }

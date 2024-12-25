@@ -2,7 +2,9 @@ package tomorinmod.ui;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -28,6 +30,7 @@ public class FrameUi implements Renderable {
     private List<Hitbox> hitboxes;
 
     private FrameUi(){
+
         hitboxes = new ArrayList<>();
         for (int i = 0; i < NUM_UI_ELEMENTS; i++) {
             float x = X_OFFSET * Settings.scale;
@@ -50,7 +53,7 @@ public class FrameUi implements Renderable {
     @Override
     public void render(SpriteBatch sb) {
         for (int i = 0; i < NUM_UI_ELEMENTS; i++) {
-            float x = X_OFFSET ;
+            float x = X_OFFSET;
             float y = Y_OFFSET + i * INTERVAL;
             drawFrame(sb, x, y); // 绘制 UI 元素
             hitboxes.get(i).render(sb); // 渲染 hitbox 边框（可选，调试用）
