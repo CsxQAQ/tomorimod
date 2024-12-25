@@ -6,15 +6,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import tomorinmod.cards.music.BaseMusicCard;
 import tomorinmod.savedata.customdata.HistoryCraftRecords;
 import tomorinmod.util.CustomUtils;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import static tomorinmod.BasicMod.imagePath;
 import static tomorinmod.BasicMod.makeID;
@@ -31,6 +35,16 @@ public class NotebookScreen extends CustomScreen
     private static final Texture TextureStoneRare = new Texture(imagePath("materials/notebook/stone_rare.png"));
     private static final Texture TextureBandRare = new Texture(imagePath("materials/notebook/band_rare.png"));
     private static final Texture TextureFlowerRare = new Texture(imagePath("materials/notebook/flower_rare.png"));
+
+    private AbstractCard hoveredCard;
+    Map<CacheKey, BaseMusicCard> cardCache = new HashMap<>();
+    private AbstractCard clickStartedCard;
+    private ArrayList<AbstractCard> cardsAdded=new ArrayList<>();
+
+    public NotebookScreen() {
+
+    }
+
 
     public static class Enum
     {
@@ -86,17 +100,138 @@ public class NotebookScreen extends CustomScreen
             float mouseY = InputHelper.mY; // 鼠标Y坐标
             handleButtonClick(mouseX, mouseY); // 调用你的按钮点击逻辑
         }
+        updateCard();
+        updateInputLogic();
+
+        //updateCards();
 
 //        if (InputHelper.justClickedLeft) {
 //            AbstractDungeon.closeCurrentScreen();
 //        }
     }
 
-    private Texture texture;
-
-    public NotebookScreen() {
-
+    private void updateCard(){
+        this.hoveredCard = null;
+        for(AbstractCard card:cardsAdded){
+            card.update();
+            card.updateHoverLogic();
+            if (card.hb.hovered) {
+                this.hoveredCard = card;
+            }
+        }
     }
+
+
+    public void updateInputLogic(){
+
+        if (this.hoveredCard != null) {
+            CardCrawlGame.cursor.changeType(GameCursor.CursorType.INSPECT);
+            if (InputHelper.justClickedLeft) {
+                this.clickStartedCard = this.hoveredCard;
+            }
+
+            if (InputHelper.justReleasedClickLeft && this.clickStartedCard != null && this.hoveredCard != null || this.hoveredCard != null && CInputActionSet.select.isJustPressed()) {
+                if (Settings.isControllerMode) {
+                    this.clickStartedCard = this.hoveredCard;
+                }
+
+                InputHelper.justReleasedClickLeft = false;
+                CardCrawlGame.cardPopup.open(this.clickStartedCard);
+                this.clickStartedCard = null;
+            }
+        } else {
+            this.clickStartedCard = null;
+        }
+    }
+    
+
+    // 屏幕信息
+    private static final float SCREEN_WIDTH = Settings.WIDTH;
+    private static final float SCREEN_HEIGHT = Settings.HEIGHT;
+    private static final float SCALE = Settings.scale;
+
+    // 可调节的布局参数
+    private static final float X_OFFSET = 200.0f * SCALE; // 第一张材料图片在屏幕左上角的X偏移
+    private static final float Y_OFFSET = SCREEN_HEIGHT - 250.0f * SCALE; // 第一张材料图片在屏幕左上角的Y偏移
+    private static final float X_INTERVAL = 300.0f * SCALE; // 材料图片之间的X间隔
+    private static final float Y_INTERVAL = 10.0f * SCALE; // 每行记录之间的Y间隔
+    private static final float CARD_INTERVAL_ODD = 100.0f * SCALE; // 第三张材料和卡牌之间的额外间隔（奇数）
+    private static final float CARD_INTERVAL_EVEN = 500.0f * SCALE; // 第三张材料和卡牌之间的额外间隔（偶数）
+
+    // 材料图片和卡牌的渲染大小
+    private static final float MATERIAL_WIDTH = 300.0f * SCALE;
+    private static final float MATERIAL_HEIGHT = 300.0f * SCALE;
+
+    public void renderPageContent(SpriteBatch sb, ArrayList<ArrayList<String>> historyRecords, int startIndex, int endIndex) {
+
+        for (int recordIndex = startIndex; recordIndex < endIndex; recordIndex++) {
+            ArrayList<String> record = historyRecords.get(recordIndex);
+
+            // 根据 recordIndex 调整当前行的 Y 坐标，让不同记录在不同行显示
+            float currentY = Y_OFFSET - (recordIndex - startIndex) * (MATERIAL_HEIGHT + Y_INTERVAL);
+            float currentX = X_OFFSET;
+
+            // ======= 渲染三张材料图片 =======
+            for (int i = 0; i < 3; i++) {
+                // record.get(i) 是材料的名字，需要根据名字取到 Texture
+                if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
+                    displayedImages[i] = getMaterialTexture(record.get(i));
+                }
+                // 在 (currentX, currentY) 位置画出材料图片
+                sb.draw(displayedImages[i],
+                        currentX - MATERIAL_WIDTH / 2f,
+                        currentY - MATERIAL_HEIGHT / 2f,
+                        MATERIAL_WIDTH,
+                        MATERIAL_HEIGHT);
+
+                // 为下一张材料图片移动 X 坐标
+                currentX += X_INTERVAL;
+            }
+
+            // ======= 渲染卡牌 =======
+            String cardID = record.get(3);
+
+            // 从缓存中获取卡牌副本
+            BaseMusicCard card = cardCache.get(new CacheKey(recordIndex, cardID));
+            if (card == null) {
+                for (BaseMusicCard musicCard : CustomUtils.musicCardGroup) {
+                    if (musicCard.cardID.equals(makeID(cardID))) {
+                        card = musicCard.makeStatEquivalentCopy();
+                        break;
+                    }
+                }
+                card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
+                if(recordIndex%2==0){
+                    currentX += CARD_INTERVAL_ODD;
+                }else{
+                    currentX += CARD_INTERVAL_EVEN;
+                }
+                card.current_x = currentX;
+                card.target_x = currentX;
+                card.current_y = currentY;
+                card.target_y = currentY;
+                cardsAdded.add(card);
+                cardCache.put(new CacheKey(recordIndex, cardID), card);
+            }
+            card.render(sb);
+        }
+    }
+
+
+
+
+//    private void updateCards() {
+//        this.hoveredCard = null;
+//        ArrayList<AbstractCard> cards = this.visibleCards.group;
+//
+//        for(int i = 0; i < cards.size(); ++i) {
+//            cards.get(i).update();
+//            cards.get(i).updateHoverLogic();
+//            if (cards.get(i).hb.hovered) {
+//                this.hoveredCard = cards.get(i);
+//            }
+//        }
+//    }
 
     private Texture[] displayedImages = new Texture[3];
     private Texture notebookImage=new Texture(imagePath("materials/notebook.png"));
@@ -139,76 +274,6 @@ public class NotebookScreen extends CustomScreen
         int startIndex = currentPage * recordsPerPage;
         int endIndex = Math.min(startIndex + recordsPerPage, totalRecords);
         return new int[]{startIndex, endIndex};
-    }
-
-    private void renderPageContent(SpriteBatch sb, ArrayList<ArrayList<String>> historyRecords, int startIndex, int endIndex) {
-        // 1. 获取屏幕信息
-        float screenWidth  = Settings.WIDTH;
-        float screenHeight = Settings.HEIGHT;
-        float scale        = Settings.scale;
-
-        // 2. 可调节的布局参数
-        float x_offset    = 200.0f * scale;                   // 第一张材料图片在屏幕左上角的X偏移
-        float y_offset    = screenHeight - 300.0f * scale;    // 第一张材料图片在屏幕左上角的Y偏移
-        float x_INTERVAL  = 300.0f * scale;                   // 材料图片之间的X间隔
-        float y_INTERVAL  = 100.0f * scale;                   // 每行记录之间的Y间隔
-        float INTERVAL    = 300.0f * scale;                   // 第三张材料和卡牌之间的额外间隔
-
-        // 3. 材料图片和卡牌的渲染大小
-        float materialWidth   = 300.0f * scale;
-        float materialHeight  = 300.0f * scale;
-
-        for (int recordIndex = startIndex; recordIndex < endIndex; recordIndex++) {
-            ArrayList<String> record = historyRecords.get(recordIndex);
-
-            // 根据 recordIndex 调整当前行的 Y 坐标，让不同记录在不同行显示
-            float currentY = y_offset - (recordIndex - startIndex) * (materialHeight + y_INTERVAL);
-            float currentX = x_offset;
-
-            // ======= 4. 渲染三张材料图片 =======
-            for (int i = 0; i < 3; i++) {
-                // record.get(i) 是材料的名字，需要根据名字取到 Texture
-                if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
-                    displayedImages[i] = getMaterialTexture(record.get(i));
-                }
-                // 在 (currentX, currentY) 位置画出材料图片
-                sb.draw(displayedImages[i],
-                        currentX - materialWidth / 2f,
-                        currentY - materialHeight / 2f,
-                        materialWidth,
-                        materialHeight);
-
-                // 为下一张材料图片移动 X 坐标
-                currentX += x_INTERVAL;
-            }
-
-            // ======= 5. 渲染卡牌 =======
-            // 取卡牌ID，并根据ID拿到卡牌对象
-            String cardID = record.get(3);
-
-            BaseMusicCard card = null;
-            for(BaseMusicCard musicCard: CustomUtils.musicCardGroup){
-                if(musicCard.cardID.equals(makeID(cardID))){
-                    card=musicCard.makeStatEquivalentCopy();
-                    break;
-                }
-            }
-            if (card != null) {
-                card.setMusicRarity(BaseMusicCard.getMusicRarityByCost(cardID));
-                //card.setDisplayRarity(card.rarity);
-                // 材料与卡牌之间空出一个额外的 INTERVAL
-                currentX += INTERVAL;
-
-                // 设置卡牌渲染坐标
-                card.current_x  = currentX;
-                card.current_y  = currentY;
-                card.render(sb);
-                //card.drawScale  = cardDrawScale;  // 控制卡牌大小
-
-                // 重点：调用官方方法
-                //card.renderInLibrary(sb);
-            }
-        }
     }
 
     public Texture getMaterialTexture(String s){
@@ -287,5 +352,32 @@ public class NotebookScreen extends CustomScreen
             // 右按钮点击
             currentPage = Math.min(currentPage + 1, calculateTotalPages(HistoryCraftRecords.getInstance().historyCraftRecords.size(), recordsPerPage) - 1);
         }
+    }
+
+
+
+
+}
+
+class CacheKey{
+    public int position;
+    public String cardID;
+
+    public CacheKey(int position, String cardID) {
+        this.position = position;
+        this.cardID = cardID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CacheKey cacheKey = (CacheKey) o;
+        return position == cacheKey.position && Objects.equals(cardID, cacheKey.cardID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, cardID);
     }
 }
