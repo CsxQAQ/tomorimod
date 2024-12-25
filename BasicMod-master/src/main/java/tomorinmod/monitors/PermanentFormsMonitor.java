@@ -32,7 +32,6 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
                     break;
                 case "WeAreMygo":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WeAreMygoPower(p)));
-                    AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
                     break;
                 case "ShineWithMe":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new ShineWithMePower(p)));

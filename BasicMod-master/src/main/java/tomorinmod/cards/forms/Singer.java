@@ -9,13 +9,13 @@ public class Singer extends BaseFormCard {
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.BASIC,
             CardTarget.SELF,
             1
     );
 
-    public final static int MAGIC = 1;
-    public final static int UPG_MAGIC = 1;
+    public final static int MAGIC = 2;
+    public final static int UPG_MAGIC = 0;
 
 
     public Singer() {
@@ -38,7 +38,7 @@ public class Singer extends BaseFormCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(magicUpgrade);
+            upgradeBaseCost(0);
         }
     }
 }

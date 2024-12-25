@@ -20,7 +20,7 @@
   "${modID}:WeAreMygoPower": {
     "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      " #y永久形态 ，回合开始时，获得 [E] 。"
+      " #y永久形态 ，战斗胜利时，获得5点最大生命上限。"
     ]
   },
   "${modID}:ShineWithMePower": {
@@ -71,9 +71,6 @@
       "每当有卡牌被 #y消耗 时，获得"
     ]
   },
-
-
-
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTIONS": [

@@ -132,6 +132,7 @@ public class BasicMod implements
         new AutoAdd(modID)
                 .packageFilter(BasePower.class);
 
+
         receiveReward();
         receiveScreen();
         receiveEvent();

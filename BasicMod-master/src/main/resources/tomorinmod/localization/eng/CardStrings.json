@@ -136,7 +136,7 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
-    "DESCRIPTION": " tomorinmod:永久形态 ：回合开始时，获得 [E] 。"
+    "DESCRIPTION": " tomorinmod:永久形态 ：战斗胜利时，获得5点最大生命上限。"
   },
   "${modID}:ShineWithMe": {
     "NAME": "光芒与我同行",
@@ -168,7 +168,7 @@
   },
   "${modID}:Mascot": {
     "NAME": "吉祥物",
-    "DESCRIPTION": " tomorinmod:形态 ：下个回合开始时，获得 [E] [E] 。"
+    "DESCRIPTION": " tomorinmod:形态 ：下个回合开始时，获得 !M! 点 [E] 。"
   },
   "${modID}:Pant": {
     "NAME": "企鹅",

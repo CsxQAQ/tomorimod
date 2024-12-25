@@ -20,7 +20,7 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.BASIC,
+            CardRarity.RARE,
             CardTarget.SELF,
             1
     );
@@ -35,16 +35,15 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
         addToBot(new ApplyPowerAction(p, p, new WeAreMygoPower(p)));
         PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
         BaseMonmentCard.removeFromMasterDeck(this);
+
     }
 
     @Override
-    public boolean canUpgrade(){
-        return false;
-    }
-
-    @Override
-    public void upgrade(){
-
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package tomorinmod.powers.custompowers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,7 +18,7 @@ public class WeAreMygoPower extends BasePower {
     }
 
     @Override
-    public void atStartOfTurn() {
-        addToBot(new GainEnergyAction(1));
+    public void onVictory() {
+        AbstractDungeon.player.increaseMaxHp(5,true);
     }
 }

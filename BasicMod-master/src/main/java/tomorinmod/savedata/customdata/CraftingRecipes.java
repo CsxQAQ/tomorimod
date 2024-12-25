@@ -132,6 +132,17 @@ public class CraftingRecipes implements Clearable {
         cardMaterialHashMap.put(makeID("Band"),"band");
         cardMaterialHashMap.put(makeID("Flower"),"flower");
 
+        while(cardMaterialHashMap.get(makeID("Strike")).equals(cardMaterialHashMap.get(makeID("Defend")))){
+            cardMaterialHashMap.put(makeID("Strike"),getRandomMaterials());
+        }
+
+        while(cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Strike")))
+        ||cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Defend")))){
+            cardMaterialHashMap.put(makeID("Mascot"),getRandomMaterials());
+        }
+
+        cardMaterialHashMap.put(makeID("Singer"),cardMaterialHashMap.get(makeID("Mascot")));
+
     }
 
     public boolean recipeAlreadyHave(Recipe aRecipe){
