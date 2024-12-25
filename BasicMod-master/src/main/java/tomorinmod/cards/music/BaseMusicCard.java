@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import tomorinmod.BasicMod;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.WithoutMaterial;
 import tomorinmod.savedata.customdata.CraftingRecipes;
@@ -39,6 +40,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
         setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
         setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
+        updateDescription();
     }
 
     public BaseMusicCard(String ID, CardStats info) {
@@ -92,6 +94,25 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     @Override
     public void update() {
         super.update();
+//        if (idForShow != null && musicRarity != null) {
+//            String newDescription = null;
+//            switch (musicRarity) {
+//                case COMMON:
+//                case UNCOMMON:
+//                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
+//                    break;
+//                case RARE:
+//                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
+//                    break;
+//            }
+//            if (newDescription != null && !newDescription.equals(this.rawDescription)) {
+//                this.rawDescription = newDescription;
+//                initializeDescription();
+//            }
+//        }
+    }
+
+    public void updateDescription(){
         if (idForShow != null && musicRarity != null) {
             String newDescription = null;
             switch (musicRarity) {
@@ -103,12 +124,22 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                     newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
                     break;
             }
-            if (newDescription != null && !newDescription.equals(this.rawDescription)) {
-                this.rawDescription = newDescription;
-                initializeDescription();
+            this.rawDescription = newDescription;
+        }
+        if (this.upgradesDescription)
+        {
+            if (cardStrings.UPGRADE_DESCRIPTION == null)
+            {
+                BasicMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
+            }
+            else
+            {
+                this.rawDescription = cardStrings.UPGRADE_DESCRIPTION; //应该是这个方法导致更新变绿
             }
         }
+        initializeDescription();
     }
+
 
     @Override
     public BaseMusicCard makeStatEquivalentCopy(){
@@ -125,31 +156,46 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             musicCard.setDisplayRarity(rarity);
         }
         musicCard.idForShow=this.idForShow;
+        musicCard.timesUpgraded=this.timesUpgraded;
+        //musicCard.baseDamage=this.baseDamage;
+        //musicCard.baseMagicNumber=this.baseMagicNumber;
+        updateDescription();
         return musicCard;
     }
 
     @Override
     public void upgrade() {
-        if(AbstractDungeon.player!=null){
-            if(AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))){
-                this.upgradeDamage(musicUpgradeDamage);
-                this.upgradeBlock(musicUpgradeBlock);
-                this.upgradeMagicNumber(musicUpgradeMagic);
+        super.upgrade();
+        if(AbstractDungeon.player!=null) {
+            if (AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))) {
+                baseDamage += musicUpgradeDamage;
+                baseBlock += musicUpgradeBlock;
+                baseMagicNumber += musicUpgradeMagic;
 
                 ++this.timesUpgraded;
                 this.upgraded = true;
                 this.name = cardStrings.NAME + "+" + this.timesUpgraded;
                 this.initializeTitle();
             }else{
-                if(!this.upgraded){
-                    this.upgradeDamage(musicUpgradeDamage);
-                    this.upgradeBlock(musicUpgradeBlock);
-                    this.upgradeMagicNumber(musicUpgradeMagic);
+                if (!this.upgraded) {
+                    baseDamage += musicUpgradeDamage;
+                    baseBlock += musicUpgradeBlock;
+                    baseMagicNumber += musicUpgradeMagic;
                     upgradeName();
                 }
             }
         }
-        initializeDescription();
+        else {
+            if (!this.upgraded) {
+                baseDamage += musicUpgradeDamage;
+                baseBlock += musicUpgradeBlock;
+                baseMagicNumber += musicUpgradeMagic;
+                upgradeName();
+            }
+        }
+
+
+        updateDescription();
     }
 
 

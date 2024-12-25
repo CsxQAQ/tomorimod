@@ -459,6 +459,8 @@ public abstract class BaseCard extends CustomCard {
         }
 
         BaseCard baseCard=(BaseCard)card;
+        baseCard.magicNumber=this.magicNumber;
+        baseCard.damage=this.damage;
         return baseCard;
     }
 

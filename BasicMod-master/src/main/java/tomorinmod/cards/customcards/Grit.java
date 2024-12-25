@@ -26,9 +26,13 @@ public class Grit extends BaseCard {
     private final int BLOCK=1;
     private final int UPG_BLOCK=1;
 
+    private final int MAGIC=1;
+    private final int UPG_MAGIC=1;
+
     public Grit() {
         super(ID, info);
         setBlock(BLOCK,UPG_BLOCK);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override

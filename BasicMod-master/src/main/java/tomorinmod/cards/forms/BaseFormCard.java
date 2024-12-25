@@ -1,5 +1,6 @@
 package tomorinmod.cards.forms;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorinmod.actions.FormPowerChangeBlueAction;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.powers.forms.*;
 import tomorinmod.savedata.customdata.FormsSaveData;
 import tomorinmod.util.CardStats;
@@ -46,6 +48,7 @@ public abstract class BaseFormCard extends BaseCard {
                     }
                 }
             }
+            BaseMonmentCard.removeFromMasterDeck(this);
         }
         curForm= formName;
         if(powerMap.get(new FormInfo(formName, magicNumber))!=null){

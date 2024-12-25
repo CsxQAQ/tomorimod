@@ -64,10 +64,10 @@ public class FailComposition extends BaseCard implements WithoutMaterial {
 //        });
 //    }
 
-    @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return false;
-    }
+//    @Override
+//    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+//        return false;
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
