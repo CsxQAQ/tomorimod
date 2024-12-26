@@ -40,7 +40,7 @@ public class NotebookScreen extends CustomScreen
     private AbstractCard hoveredCard;
     Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
     private AbstractCard clickStartedCard;
-    private ArrayList<AbstractCard> cardsAdded=new ArrayList<>();
+    private ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
 
     public NotebookScreen() {
 
@@ -113,7 +113,7 @@ public class NotebookScreen extends CustomScreen
 
     private void updateCard(){
         this.hoveredCard = null;
-        for(AbstractCard card:cardsAdded){
+        for(AbstractCard card:currentPageCards){
             card.update();
             card.updateHoverLogic();
             if (card.hb.hovered) {
@@ -165,6 +165,7 @@ public class NotebookScreen extends CustomScreen
                                   ArrayList<ArrayList<String>> historyRecords,
                                   int startIndex,
                                   int endIndex) {
+        currentPageCards.clear();
 
         for (int recordIndex = startIndex; recordIndex < endIndex; recordIndex++) {
             // 获取当前记录
@@ -190,6 +191,8 @@ public class NotebookScreen extends CustomScreen
                 card.target_y = currentY;
                 // 绘制卡牌
                 card.render(sb);
+
+                currentPageCards.add(card);
             }
         }
     }
@@ -231,11 +234,11 @@ public class NotebookScreen extends CustomScreen
         // 缓存没有，就去对应卡组里找
         if ("fail".equals(cardID)) {
             // “失败”卡牌来自 CustomUtils.modCardGroup
-            card = CustomUtils.modCardGroup.get(makeID("FailComposition"));
+            card = CustomUtils.modCardGroup.get(makeID("FailComposition")).makeStatEquivalentCopy();
                     //findAndCopyCard(cardID, CustomUtils.modCardGroup);
         } else {
             // 否则来自 CustomUtils.musicCardGroup
-            card = CustomUtils.musicCardGroup.get(makeID(cardID));
+            card = CustomUtils.musicCardGroup.get(makeID(cardID)).makeStatEquivalentCopy();
                     //findAndCopyCard(cardID, CustomUtils.musicCardGroup);
             // 如果是 BaseMusicCard，还需设置特殊属性
             if (card instanceof BaseMusicCard) {
@@ -247,23 +250,10 @@ public class NotebookScreen extends CustomScreen
         // 若成功拿到，放入缓存并添加到 cardsAdded
         if (card != null) {
             cardCache.put(cacheKey, card);
-            cardsAdded.add(card);
+            //cardsAdded.add(card);
         }
         return card;
     }
-
-    /**
-     * 在指定卡组中查找与 cardID 匹配的卡牌并返回其复制
-     */
-//    private AbstractCard findAndCopyCard(String cardID, List<? extends AbstractCard> cardGroup) {
-//        for (AbstractCard c : cardGroup) {
-//            if (c.cardID.equals(makeID(cardID))) {
-//                return c.makeStatEquivalentCopy();
-//            }
-//        }
-//        return null;
-//    }
-
 
     private Texture[] displayedImages = new Texture[3];
     private Texture notebookImage=new Texture(imagePath("materials/notebook.png"));
@@ -360,45 +350,74 @@ public class NotebookScreen extends CustomScreen
         return null;
     }
 
+
+    // 提取参数为静态常量
+    private static final float BUTTON_WIDTH_BASE = 400.0f;      // 按钮基础宽度
+    private static final float BUTTON_HEIGHT_BASE = 200.0f;     // 按钮基础高度
+    private static final float BUTTON_X_LEFT_BASE = 200.0f;     // 左按钮的X基准
+    private static final float BUTTON_X_RIGHT_BASE = 1330.0f;    // 右按钮的X基准
+    private static final float BUTTON_Y_BASE = 200.0f;          // 按钮的Y基准
+    private static final float BUTTON_FONT_OFFSET_BASE = -150.0f; // 按钮上方字体的偏移基准
+
     private void renderPageButtons(SpriteBatch sb, int totalPages) {
-        float screenWidth = Settings.WIDTH;
+        // 先将基准值乘以缩放系数，得到最终像素尺寸
+        float buttonWidth  = BUTTON_WIDTH_BASE  * Settings.scale;
+        float buttonHeight = BUTTON_HEIGHT_BASE * Settings.scale;
+        float leftButtonX  = BUTTON_X_LEFT_BASE * Settings.scale;
+        float rightButtonX = BUTTON_X_RIGHT_BASE * Settings.scale;
+        float buttonY      = BUTTON_Y_BASE      * Settings.scale;
+        float fontOffset   = BUTTON_FONT_OFFSET_BASE * Settings.scale;
 
-        // 按钮尺寸与位置
-        float buttonWidth = screenWidth / 12;
-        float buttonHeight = buttonWidth * 0.5f;
+        // 绘制左按钮
+        sb.draw(
+                leftButtonTexture,
+                leftButtonX,
+                buttonY,
+                buttonWidth,
+                buttonHeight
+        );
 
-        float leftButtonX = screenWidth / 4 - buttonWidth / 2;
-        float rightButtonX = 3 * screenWidth / 4 - buttonWidth / 2;
-        float buttonY = 100;
+        // 绘制右按钮
+        sb.draw(
+                rightButtonTexture,
+                rightButtonX,
+                buttonY,
+                buttonWidth,
+                buttonHeight
+        );
 
-        sb.draw(leftButtonTexture, leftButtonX, buttonY, buttonWidth, buttonHeight);
-        sb.draw(rightButtonTexture, rightButtonX, buttonY, buttonWidth, buttonHeight);
-
-        // 页码显示
-        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, "Page " + (currentPage + 1) + "/" + totalPages, screenWidth / 2, buttonY + buttonHeight + 20, Color.WHITE);
+        // 绘制页码
+        FontHelper.renderFontCentered(
+                sb,
+                FontHelper.buttonLabelFont,
+                "Page " + (currentPage + 1) + "/" + totalPages,
+                Settings.WIDTH / 2.0f,
+                buttonY + buttonHeight + fontOffset,
+                Color.WHITE
+        );
     }
 
     public void handleButtonClick(float mouseX, float mouseY) {
-        float screenWidth = Settings.WIDTH;
+        float buttonWidth  = BUTTON_WIDTH_BASE  * Settings.scale;
+        float buttonHeight = BUTTON_HEIGHT_BASE * Settings.scale;
+        float leftButtonX  = BUTTON_X_LEFT_BASE * Settings.scale;
+        float rightButtonX = BUTTON_X_RIGHT_BASE * Settings.scale;
+        float buttonY      = BUTTON_Y_BASE      * Settings.scale;
 
-        // 按钮尺寸与位置
-        float buttonWidth = screenWidth / 12;
-        float buttonHeight = buttonWidth * 0.5f;
-        float buttonY = 100;
-
-        float leftButtonX = screenWidth / 4 - buttonWidth / 2;
-        float rightButtonX = 3 * screenWidth / 4 - buttonWidth / 2;
-
+        // 检测左按钮点击
         if (mouseX >= leftButtonX && mouseX <= leftButtonX + buttonWidth &&
-                mouseY >= buttonY && mouseY <= buttonY + buttonHeight) {
-            // 左按钮点击
+                mouseY >= buttonY    && mouseY <= buttonY + buttonHeight) {
             currentPage = Math.max(currentPage - 1, 0);
-        } else if (mouseX >= rightButtonX && mouseX <= rightButtonX + buttonWidth &&
-                mouseY >= buttonY && mouseY <= buttonY + buttonHeight) {
-            // 右按钮点击
-            currentPage = Math.min(currentPage + 1, calculateTotalPages(HistoryCraftRecords.getInstance().historyCraftRecords.size(), recordsPerPage) - 1);
+        }
+        // 检测右按钮点击
+        else if (mouseX >= rightButtonX && mouseX <= rightButtonX + buttonWidth &&
+                mouseY >= buttonY      && mouseY <= buttonY + buttonHeight) {
+            int totalRecords = HistoryCraftRecords.getInstance().historyCraftRecords.size();
+            int maxPage = calculateTotalPages(totalRecords, recordsPerPage) - 1;
+            currentPage = Math.min(currentPage + 1, maxPage);
         }
     }
+
 
 
 
