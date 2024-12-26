@@ -37,13 +37,18 @@ public class NotebookScreen extends CustomScreen
     private static final Texture TextureBandRare = new Texture(imagePath("materials/notebook/band_rare.png"));
     private static final Texture TextureFlowerRare = new Texture(imagePath("materials/notebook/flower_rare.png"));
 
-    private AbstractCard hoveredCard;
-    Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
-    private AbstractCard clickStartedCard;
-    private ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
+    public AbstractCard hoveredCard;
+    public static Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
+    public AbstractCard clickStartedCard;
+    public static ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
 
     public NotebookScreen() {
 
+    }
+
+    public static void clearNotebookScreenCache(){
+        cardCache.clear();
+        currentPageCards.clear();
     }
 
 

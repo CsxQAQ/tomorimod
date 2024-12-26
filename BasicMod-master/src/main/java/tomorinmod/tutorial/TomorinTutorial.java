@@ -19,9 +19,10 @@ import tomorinmod.util.TextureLoader;
 import java.net.URL;
 
 import static tomorinmod.BasicMod.imagePath;
+import static tomorinmod.BasicMod.makeID;
 
 public class TomorinTutorial extends FtueTip {
-    private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString("SakiTheSpire:SakikoTutorial");
+    private static final TutorialStrings tutorialStrings = CardCrawlGame.languagePack.getTutorialString(makeID("Tomorin"));
     public static final String[] txt = tutorialStrings.TEXT;
     public static final String[] LABEL = tutorialStrings.LABEL;
 
@@ -39,7 +40,7 @@ public class TomorinTutorial extends FtueTip {
     private float[] pageX;
 
     public TomorinTutorial() {
-        for(int i=0;i<3;i++){
+        for(int i=1;i<6;i++){
             String path=imagePath("toturial/"+i+".png");
             this.img[++this.pageNum] = TextureLoader.getTexture(path);
         }

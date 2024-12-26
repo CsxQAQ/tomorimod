@@ -131,15 +131,15 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public BaseMusicCard makeStatEquivalentCopy(){
         BaseCard card= super.makeStatEquivalentCopy();
         BaseMusicCard musicCard=(BaseMusicCard)card;
-
+        musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
         //初始化在cardLibrary中的卡牌不会有musicRarity，而有些方法会在cardLibrary中复制，所以要重置一遍musicCard
         //会在cardLibrary中复制的行为：
         //1. 游戏开始时masterDeck加载
         //2. MakeTempCardInHandAction，控制台hand add用到这个方法
-        if(this.musicRarity!=null){
-            musicCard.musicRarity=this.musicRarity;
+//        if(this.musicRarity!=null){
+//            musicCard.musicRarity=this.musicRarity;
             musicCard.setDisplayRarity(rarity);
-        }
+//        }
         musicCard.idForShow=this.idForShow;
         musicCard.updateDescription();
         return musicCard;

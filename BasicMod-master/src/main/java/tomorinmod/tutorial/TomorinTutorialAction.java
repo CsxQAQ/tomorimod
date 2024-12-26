@@ -11,7 +11,7 @@ public class TomorinTutorialAction extends AbstractGameAction {
     public void update() {
         if (TomorinConfig.config.getBool("tutorial-enabled")) {
             AbstractDungeon.ftue = new TomorinTutorial();
-            TomorinConfig.config.setBool("tutorial-enabled", false);
+            //TomorinConfig.config.setBool("tutorial-enabled", false);
             try {
                 TomorinConfig.config.save();
                 ((ModLabeledToggleButton)TomorinConfig.settingsPanel.getUIElements().get(0)).toggle.toggle();

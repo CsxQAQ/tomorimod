@@ -58,6 +58,7 @@ public class NotebookRelic extends BaseRelic {
 
     private void openCustomScreen() {
         BaseMod.openCustomScreen(NotebookScreen.Enum.NOTEBOOK_SCREEN, "foobar", new Shiv());
+        NotebookScreen.clearNotebookScreenCache();
         AbstractDungeon.isScreenUp = true;
 
 

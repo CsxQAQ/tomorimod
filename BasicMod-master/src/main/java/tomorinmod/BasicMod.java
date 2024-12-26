@@ -7,6 +7,7 @@ import basemod.interfaces.*;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import org.apache.logging.log4j.util.Strings;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.cards.customcards.BlankPaper;
 import tomorinmod.cards.special.*;
@@ -208,6 +209,8 @@ public class BasicMod implements
                 localizationPath(lang, "RelicStrings.json"));
         BaseMod.loadCustomStringsFile(UIStrings.class,
                 localizationPath(lang, "UIStrings.json"));
+        BaseMod.loadCustomStringsFile(TutorialStrings.class,
+                localizationPath(lang, "TutorialStrings.json"));
     }
 
     @Override
