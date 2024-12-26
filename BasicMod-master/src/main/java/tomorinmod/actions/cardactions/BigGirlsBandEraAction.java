@@ -20,7 +20,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
     @Override
     public void update() {
         ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
-        ArrayList<BaseMusicCard> musicCards = new ArrayList<>(CustomUtils.musicCardGroup);
+        ArrayList<BaseMusicCard> musicCards = new ArrayList<>(CustomUtils.musicCardGroup.values());
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
         for(int i=0;i<3;i++){
             int randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);

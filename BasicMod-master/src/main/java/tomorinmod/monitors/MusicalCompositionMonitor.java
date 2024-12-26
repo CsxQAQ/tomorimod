@@ -66,13 +66,14 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             return;
         }
 
-        ArrayList<BaseMusicCard> musicCardsGroup=CustomUtils.musicCardGroup;
-        for(BaseMusicCard musicCard:musicCardsGroup){
-            if(musicCard.cardID.equals(makeID(music))){
-                card=musicCard.makeStatEquivalentCopy();
-                break;
-            }
-        }
+//        ArrayList<BaseMusicCard> musicCardsGroup=CustomUtils.musicCardGroup;
+//        for(BaseMusicCard musicCard:musicCardsGroup){
+//            if(musicCard.cardID.equals(makeID(music))){
+//                card=musicCard.makeStatEquivalentCopy();
+//                break;
+//            }
+//        }
+        card=CustomUtils.musicCardGroup.get(makeID(music));
 
         if (card != null) {
             card.setMusicRarity(musicRarity);

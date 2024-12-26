@@ -36,7 +36,7 @@ public class ChangeClothes extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        ArrayList<BaseFormCard> arr=new ArrayList<>(CustomUtils.formCardGroup);
+        ArrayList<BaseFormCard> arr=new ArrayList<>(CustomUtils.formCardGroup.values());
         Collections.shuffle(arr);
         for(BaseFormCard baseFormCard:arr){
             addToBot(new NewQueueCardAction(baseFormCard.makeStatEquivalentCopy(), true, true, true));

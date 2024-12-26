@@ -14,12 +14,10 @@ import tomorinmod.cards.monment.BaseMonmentCard;
 import tomorinmod.cards.music.BaseMusicCard;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CustomUtils {
-    public static ArrayList<BaseCard> modCardGroup=new ArrayList<>();
-    public static ArrayList<BaseFormCard> formCardGroup=new ArrayList<>();
-    public static ArrayList<BaseMusicCard> musicCardGroup=new ArrayList<>();
-    public static ArrayList<BaseMonmentCard> monmentCardGroup=new ArrayList<>();
+
 
     public static void addTags(BaseCard aCard, AbstractCard.CardTags tag){
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
@@ -44,39 +42,60 @@ public class CustomUtils {
         initializeMonmentCards();
     }
 
+    public static HashMap<String, BaseCard> modCardGroup = new HashMap<>();
+    public static HashMap<String, BaseFormCard> formCardGroup = new HashMap<>();
+    public static HashMap<String, BaseMusicCard> musicCardGroup = new HashMap<>();
+    public static HashMap<String, BaseMonmentCard> monmentCardGroup = new HashMap<>();
+
+    /**
+     * 初始化所有卡牌
+     */
     public static void initializeModCards() {
+        // 注意：BaseMod.getCustomCardsToAdd() 返回的是 ArrayList<AbstractCard>
         ArrayList<AbstractCard> modCards = BaseMod.getCustomCardsToAdd();
-        for(AbstractCard card:modCards){
-            if(card instanceof BaseCard){
-                BaseCard baseCard=(BaseCard)card;
-                modCardGroup.add(baseCard);
+        for (AbstractCard card : modCards) {
+            if (card instanceof BaseCard) {
+                BaseCard baseCard = (BaseCard) card;
+                // 以 baseCard.cardID 为 Key，baseCard 为 Value
+                modCardGroup.put(baseCard.cardID, baseCard);
             }
         }
     }
 
+    /**
+     * 将所有 BaseFormCard 类型的卡牌放入 formCardGroup
+     */
     public static void initializeFormCards() {
-        for(BaseCard baseCard:modCardGroup){
-            if(baseCard instanceof BaseFormCard){
-                BaseFormCard baseFormCard=(BaseFormCard) baseCard;
-                formCardGroup.add(baseFormCard);
+        // 现在 modCardGroup 是 HashMap，需要遍历它的 value
+        for (BaseCard baseCard : modCardGroup.values()) {
+            if (baseCard instanceof BaseFormCard) {
+                BaseFormCard baseFormCard = (BaseFormCard) baseCard;
+                // 以 cardID 作为 key
+                formCardGroup.put(baseFormCard.cardID, baseFormCard);
             }
         }
     }
 
-    public static void initializeMusicCards(){
-        for(BaseCard baseCard:modCardGroup){
-            if(baseCard instanceof BaseMusicCard){
-                BaseMusicCard baseMusicCard=(BaseMusicCard) baseCard;
-                musicCardGroup.add(baseMusicCard);
+    /**
+     * 将所有 BaseMusicCard 类型的卡牌放入 musicCardGroup
+     */
+    public static void initializeMusicCards() {
+        for (BaseCard baseCard : modCardGroup.values()) {
+            if (baseCard instanceof BaseMusicCard) {
+                BaseMusicCard baseMusicCard = (BaseMusicCard) baseCard;
+                musicCardGroup.put(baseMusicCard.cardID, baseMusicCard);
             }
         }
     }
 
-    public static void initializeMonmentCards(){
-        for(BaseCard baseCard:modCardGroup){
-            if(baseCard instanceof BaseMonmentCard){
-                BaseMonmentCard baseMonmentCard=(BaseMonmentCard) baseCard;
-                monmentCardGroup.add(baseMonmentCard);
+    /**
+     * 将所有 BaseMonmentCard 类型的卡牌放入 monmentCardGroup
+     */
+    public static void initializeMonmentCards() {
+        for (BaseCard baseCard : modCardGroup.values()) {
+            if (baseCard instanceof BaseMonmentCard) {
+                BaseMonmentCard baseMonmentCard = (BaseMonmentCard) baseCard;
+                monmentCardGroup.put(baseMonmentCard.cardID, baseMonmentCard);
             }
         }
     }

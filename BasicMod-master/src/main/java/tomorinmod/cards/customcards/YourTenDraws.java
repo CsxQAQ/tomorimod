@@ -35,7 +35,7 @@ public class YourTenDraws extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        ArrayList<BaseCard> modCards= CustomUtils.modCardGroup;
+        ArrayList<BaseCard> modCards= new ArrayList<>(CustomUtils.modCardGroup.values());
         for(int i=0;i<10;i++){
             int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
             while(modCards.get(randomResult).rarity==CardRarity.SPECIAL

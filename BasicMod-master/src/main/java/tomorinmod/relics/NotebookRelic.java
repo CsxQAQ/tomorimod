@@ -13,7 +13,7 @@ import static tomorinmod.BasicMod.makeID;
 public class NotebookRelic extends BaseRelic {
     private static final String NAME = NotebookRelic.class.getSimpleName(); //The name will be used for determining the image file as well as the ID.
     public static final String ID = makeID(NAME); //This adds the mod's prefix to the relic ID, resulting in modID:MyRelic
-    private static final RelicTier RARITY = RelicTier.COMMON; //The relic's rarity.
+    private static final RelicTier RARITY = RelicTier.SPECIAL; //The relic's rarity.
     private static final LandingSound SOUND = LandingSound.CLINK; //The sound played when the relic is clicked.
 
 
@@ -51,9 +51,17 @@ public class NotebookRelic extends BaseRelic {
 
     private void openCustomScreen() {
         BaseMod.openCustomScreen(NotebookScreen.Enum.NOTEBOOK_SCREEN, "foobar", new Shiv());
+        AbstractDungeon.isScreenUp = true;
+
+
+        AbstractDungeon.topPanel.unhoverHitboxes();
+        AbstractDungeon.dynamicBanner.hide();
     }
 
     private void closeCustomScreen() {
         AbstractDungeon.closeCurrentScreen();
+
     }
+
+
 }
