@@ -1,11 +1,13 @@
 package tomorinmod.relics;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.screens.NotebookScreen;
+import tomorinmod.tutorial.TomorinTutorialAction;
 
 import static tomorinmod.BasicMod.makeID;
 
@@ -21,6 +23,11 @@ public class NotebookRelic extends BaseRelic {
 
     public NotebookRelic() {
         super(ID, NAME, MyCharacter.Meta.CARD_COLOR, RARITY, SOUND);
+    }
+
+    @Override
+    public void atBattleStart(){
+        addToBot(new TomorinTutorialAction());
     }
 
     @Override

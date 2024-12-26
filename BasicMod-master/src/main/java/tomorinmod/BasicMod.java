@@ -147,15 +147,15 @@ public class BasicMod implements
         ConsoleCommand.addCommand("music", IncreaseRarityCommon.class);
         ConsoleCommand.addCommand("recipe", ShowRecipesCommon.class);
 
-
+        TomorinConfig.settingInitialize();
         //This loads the image used as an icon in the in-game mods menu.
-        Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
+        //Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
         //Set up the mod information displayed in the in-game mods menu.
         //The information used is taken from your pom.xml file.
 
         //If you want to set up a config panel, that will be done here.
         //The Mod Badges page has a basic example of this, but setting up config is overall a bit complex.
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+        //BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
     }
 
 
