@@ -38,7 +38,7 @@ public class WhiteMoonlight extends BaseMonmentCard {
         super.use(p,m);
     }
 
-    private void updateDescription() {
+    public void updateDescription() {
         if (!upgraded) {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {

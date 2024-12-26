@@ -43,7 +43,7 @@ public class BigGirlsBandEra extends BaseCard {
         return new BigGirlsBandEra();
     }
 
-    private void updateDescription() {
+    public void updateDescription() {
 
         if(upgraded){
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];

@@ -464,6 +464,10 @@ public abstract class BaseCard extends CustomCard {
         return baseCard;
     }
 
+    public void updateDescription(){
+
+    }
+
     @Override
     public void upgrade()
     {
@@ -525,7 +529,7 @@ public abstract class BaseCard extends CustomCard {
             if (baseRetain ^ upgRetain)
                 this.selfRetain = upgRetain;
 
-
+            updateDescription();
             this.initializeDescription();
         }
     }
@@ -669,9 +673,11 @@ public abstract class BaseCard extends CustomCard {
     }
 
     protected static class LocalVarInfo {
-        int base, value, upgrade;
+        public int base;
+        public int value;
+        public int upgrade;
         int[] aoeValue = null;
-        boolean upgraded = false;
+        public boolean upgraded = false;
         boolean forceModified = false;
         Color normalColor = Settings.CREAM_COLOR;
         Color upgradedColor = Settings.GREEN_TEXT_COLOR;

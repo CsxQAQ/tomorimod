@@ -67,7 +67,7 @@ public class LightAndShadow extends BaseCard {
         this.updateDescription();
     }
 
-    private void updateDescription() {
+    public void updateDescription() {
         if (curAttribute==0) {
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
         } else {

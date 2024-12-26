@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorinmod.cards.BaseCard;
+import tomorinmod.cards.customcards.BlankPaper;
+import tomorinmod.cards.special.*;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.consoles.IncreaseRarityCommon;
 import tomorinmod.consoles.ShowRecipesCommon;
@@ -41,6 +43,8 @@ import org.scannotation.AnnotationDB;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
+import static tomorinmod.character.MyCharacter.Meta.CARD_COLOR;
 
 //TODO 所有对象都判断是否为null
 
@@ -317,6 +321,12 @@ public class BasicMod implements
                 .packageFilter(BaseCard.class) //In the same package as this class
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
+
+        BaseMod.removeCard(BlankPaperAttack.ID,CARD_COLOR);
+        BaseMod.removeCard(HaTaki.ID,CARD_COLOR);
+        BaseMod.removeCard(HaAnon.ID,CARD_COLOR);
+        BaseMod.removeCard(WholeLife.ID,CARD_COLOR);
+        BaseMod.removeCard(FailComposition.ID,CARD_COLOR);
     }
 
     @Override

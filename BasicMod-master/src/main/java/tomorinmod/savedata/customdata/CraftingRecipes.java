@@ -142,6 +142,7 @@ public class CraftingRecipes implements Clearable {
         }
 
         cardMaterialHashMap.put(makeID("Singer"),cardMaterialHashMap.get(makeID("Mascot")));
+        cardMaterialHashMap.put(makeID("HaAnon"),cardMaterialHashMap.get(makeID("HaTaki")));
 
     }
 

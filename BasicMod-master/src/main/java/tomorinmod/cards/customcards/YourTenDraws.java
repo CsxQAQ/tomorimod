@@ -50,7 +50,7 @@ public class YourTenDraws extends BaseCard {
         }
     }
 
-    private void updateDescription() {
+    public void updateDescription() {
 
         if(upgraded){
             this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];

@@ -272,7 +272,7 @@
   },
   "${modID}:NeedAnon": {
     "NAME": "需要爱音",
-    "DESCRIPTION": " 消耗 使 tomorinmod:重力 层数翻倍。",
+    "DESCRIPTION": " 消耗 ，使 tomorinmod:重力 层数翻倍。",
     "EXTENDED_DESCRIPTION": [
       " 消耗 ， 使 tomorinmod:重力 层数变为3倍。"
     ]

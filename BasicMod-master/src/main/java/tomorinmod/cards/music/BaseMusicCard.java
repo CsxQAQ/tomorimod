@@ -93,26 +93,10 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         return musicRarity;
     }
 
-    @Override
-    public void update() {
-        super.update();
-//        if (idForShow != null && musicRarity != null) {
-//            String newDescription = null;
-//            switch (musicRarity) {
-//                case COMMON:
-//                case UNCOMMON:
-//                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
-//                    break;
-//                case RARE:
-//                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
-//                    break;
-//            }
-//            if (newDescription != null && !newDescription.equals(this.rawDescription)) {
-//                this.rawDescription = newDescription;
-//                initializeDescription();
-//            }
-//        }
-    }
+//    @Override
+//    public void update() {
+//        super.update();
+//    }
 
     public void updateDescription(){
         if (idForShow != null && musicRarity != null) {
@@ -154,7 +138,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         //2. MakeTempCardInHandAction，控制台hand add用到这个方法
         if(this.musicRarity!=null){
             musicCard.musicRarity=this.musicRarity;
-            //musicCard.setBanner();
             musicCard.setDisplayRarity(rarity);
         }
         musicCard.idForShow=this.idForShow;
@@ -164,30 +147,18 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     @Override
     public void upgrade() {
-        if(AbstractDungeon.player!=null) {
-            if (AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))) {
-                baseDamage += musicUpgradeDamage;
-                baseBlock += musicUpgradeBlock;
-                baseMagicNumber += musicUpgradeMagic;
-
-                ++this.timesUpgraded;
-                this.upgraded = true;
-                this.name = cardStrings.NAME + "+" + this.timesUpgraded;
-                this.initializeTitle();
-            }else{
-                if (!this.upgraded) {
-                    baseDamage += musicUpgradeDamage;
-                    baseBlock += musicUpgradeBlock;
-                    baseMagicNumber += musicUpgradeMagic;
-                    upgradeName();
-                }
-            }
-        }
-        else {
+        if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomorinApotheosisPower"))) {            this.upgradeDamage(musicUpgradeDamage);
+            this.upgradeBlock(musicUpgradeBlock);
+            this.upgradeMagicNumber(musicUpgradeMagic);
+            ++this.timesUpgraded;
+            this.upgraded = true;
+            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+            this.initializeTitle();
+        }else{
             if (!this.upgraded) {
-                baseDamage += musicUpgradeDamage;
-                baseBlock += musicUpgradeBlock;
-                baseMagicNumber += musicUpgradeMagic;
+                this.upgradeDamage(musicUpgradeDamage);
+                this.upgradeBlock(musicUpgradeBlock);
+                this.upgradeMagicNumber(musicUpgradeMagic);
                 upgradeName();
             }
         }

@@ -26,6 +26,7 @@ public class BlankPaperAttack extends BaseCard {
 
     public BlankPaperAttack() {
         super(ID, info);
+        //this.isLocked=true;
     }
 
     @Override

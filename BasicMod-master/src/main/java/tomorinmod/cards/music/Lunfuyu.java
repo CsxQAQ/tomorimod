@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.monitors.card.LunfuyuMonitor;
@@ -58,11 +59,17 @@ public class Lunfuyu extends BaseMusicCard {
     public void update(){
         super.update();
         if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                baseDamage = LunfuyuMonitor.hpChangeNum*magicNumber;
+            if(AbstractDungeon.player!=null){
+                if(musicRarity.equals(MusicRarity.RARE)){
+                    baseDamage = LunfuyuMonitor.hpChangeNum*magicNumber;
+                }else{
+                    baseDamage = LunfuyuMonitor.hpIncreaseNum*magicNumber;
+                }
             }else{
-                baseDamage = LunfuyuMonitor.hpIncreaseNum*magicNumber;
+                baseDamage=0;
             }
+        }else{
+            baseDamage=0;
         }
     }
 
