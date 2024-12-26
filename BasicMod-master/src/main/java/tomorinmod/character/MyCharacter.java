@@ -11,7 +11,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -48,6 +50,7 @@ import tomorinmod.powers.ImmunityPower;
 import tomorinmod.relics.MicrophoneRelic;
 import tomorinmod.relics.NotebookRelic;
 import tomorinmod.vfx.IntangibleEffect;
+import tomorinmod.vfx.StarDustEffect;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -529,10 +532,15 @@ public class MyCharacter extends CustomPlayer {
                             return;
                         }
                     } else if(hasPower(makeID("StarDustPower"))){
-                        currentHealth=1;
-                        AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this,this,makeID("StarDustPower")));
-                        AbstractDungeon.actionManager.addToTop
-                                (new ApplyPowerAction(this,this,new ImmunityPower(this,1),1));
+                        AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
+                        //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
+
+                        // 2. 触发加血
+                        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
+                        //currentHealth=1;
+                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this,this,makeID("StarDustPower")));
+                        AbstractDungeon.actionManager.addToBottom
+                                (new ApplyPowerAction(this,this,new ImmunityPower(this,2),2));
                         return;
                     }
 
