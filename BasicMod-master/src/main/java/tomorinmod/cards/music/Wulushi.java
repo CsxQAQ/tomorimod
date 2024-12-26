@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Wulushi extends BaseMusicCard {
     public static final String ID = makeID(Wulushi.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,

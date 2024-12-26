@@ -132,6 +132,45 @@ public class MyCharacter extends CustomPlayer {
         }
     }
 
+    public static class MetaMusic {
+        //These are used to identify your character, as well as your character's card color.
+        //Library color is basically the same as card color, but you need both because that's how the game was made.
+        @SpireEnum
+        public static PlayerClass TOMORINMUSIC;
+
+        @SpireEnum(name = "音乐牌") // These two MUST match. Change it to something unique for your character.
+        public static AbstractCard.CardColor CARD_COLOR;
+
+        @SpireEnum(name = "音乐牌")
+        public static CardLibrary.LibraryType LIBRARY_COLOR;
+
+        //Character select images
+        private static final String CHAR_SELECT_BUTTON = characterPath("select/button.png");
+        private static final String CHAR_SELECT_PORTRAIT = characterPath("select/tomorin_1920.png");
+
+        //Character card images
+        private static final String BG_ATTACK = characterPath("cardback/bg_attack.png");
+        private static final String BG_ATTACK_P = characterPath("cardback/bg_attack_p.png");
+        private static final String BG_SKILL = characterPath("cardback/bg_skill.png");
+        private static final String BG_SKILL_P = characterPath("cardback/bg_skill_p.png");
+        private static final String BG_POWER = characterPath("cardback/bg_power.png");
+        private static final String BG_POWER_P = characterPath("cardback/bg_power_p.png");
+        private static final String ENERGY_ORB = characterPath("cardback/energy_orb.png");
+        private static final String ENERGY_ORB_P = characterPath("cardback/energy_orb_p.png");
+        private static final String SMALL_ORB = characterPath("cardback/small_orb.png");
+
+        //This is used to color *some* images, but NOT the actual cards. For that, edit the images in the cardback folder!
+        private static final Color cardColor = new Color(128f/255f, 128f/255f, 128f/255f, 1f);
+
+        //Methods that will be used in the main mod file
+        public static void registerColor() {
+            BaseMod.addColor(CARD_COLOR, cardColor,
+                    BG_ATTACK, BG_SKILL, BG_POWER, ENERGY_ORB,
+                    BG_ATTACK_P, BG_SKILL_P, BG_POWER_P, ENERGY_ORB_P,
+                    SMALL_ORB);
+        }
+    }
+
 
     //In-game images
     private static final String SHOULDER_1 = characterPath("shoulder.png"); //Shoulder 1 and 2 are used at rest sites.

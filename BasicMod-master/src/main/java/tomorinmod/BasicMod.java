@@ -120,6 +120,7 @@ public class BasicMod implements
         new BasicMod();
 
         MyCharacter.Meta.registerColor();
+        MyCharacter.MetaMusic.registerColor();
 
         //在这里注册监视器
         receiveMonitor();

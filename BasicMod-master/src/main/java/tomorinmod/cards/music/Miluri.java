@@ -14,7 +14,7 @@ import tomorinmod.util.CardStats;
 public class Miluri extends BaseMusicCard {
     public static final String ID = makeID(Miluri.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ALL_ENEMY,

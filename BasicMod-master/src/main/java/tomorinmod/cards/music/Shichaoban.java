@@ -12,7 +12,7 @@ import tomorinmod.util.CardStats;
 public class Shichaoban extends BaseMusicCard {
     public static final String ID = makeID(Shichaoban.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,
