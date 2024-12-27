@@ -130,6 +130,7 @@ public class CraftingRecipes implements Clearable {
         cardMaterialHashMap.put(makeID("Yellow"),"yellow");
         cardMaterialHashMap.put(makeID("Green"),"green");
         cardMaterialHashMap.put(makeID("Red"),"red");
+        cardMaterialHashMap.put(makeID("AquariumPass"),"aquariumpass");
 
         while(cardMaterialHashMap.get(makeID("Strike")).equals(cardMaterialHashMap.get(makeID("Defend")))){
             cardMaterialHashMap.put(makeID("Strike"),getRandomMaterials());

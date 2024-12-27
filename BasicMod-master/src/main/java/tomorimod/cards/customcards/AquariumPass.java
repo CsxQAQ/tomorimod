@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.MyCharacter;
+import tomorimod.patches.AbstractCardSetMaterialPatch;
+import tomorimod.screens.NotebookScreen;
 import tomorimod.util.CardStats;
 
 public class AquariumPass extends BaseCard {
@@ -33,6 +35,7 @@ public class AquariumPass extends BaseCard {
         if(!upgraded){
             this.rarity = CardRarity.RARE;
             upgradeName();
+            AbstractCardSetMaterialPatch.initializeMaterialIcon(this);
             initializeDescription();
         }
     }

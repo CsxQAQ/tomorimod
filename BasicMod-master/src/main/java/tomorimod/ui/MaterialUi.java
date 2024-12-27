@@ -20,6 +20,8 @@ public class MaterialUi implements Renderable {
     private static final Texture TextureYellowRare = new Texture(imagePath("materials/card/yellow_rare.png"));
     private static final Texture TextureBandRare = new Texture(imagePath("materials/card/green_rare.png"));
     private static final Texture TextureRedRare = new Texture(imagePath("materials/card/red_rare.png"));
+    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/card/aquariumpass_uncommon.png"));
+    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/card/aquariumpass_rare.png"));
 
     ArrayList<MaterialInfo> materials=new ArrayList<>();
 
@@ -27,6 +29,7 @@ public class MaterialUi implements Renderable {
     private static final float X_OFFSET = FrameUi.X_OFFSET+(FrameUi.SIZE-SIZE)/2;
     private static final float Y_OFFSET = FrameUi.Y_OFFSET+(FrameUi.SIZE-SIZE)/2;
     private static final float INTERVAL = FrameUi.INTERVAL;
+
 
     private MaterialUi(){
     }
@@ -76,6 +79,15 @@ public class MaterialUi implements Renderable {
                     return TextureRedRare;
                 }
                 break;
+
+            case "aquariumpass":
+                if (info.getLevel() == 2) {
+                    return TextureAquariumPassUncommon;
+                } else if (info.getLevel() == 3) {
+                    return TextureAquariumPassRare;
+                }
+                break;
+
         }
         return null;
     }

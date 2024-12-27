@@ -91,6 +91,7 @@ public class AbstractCardSetMaterialPatch {
                     AbstractCardFieldPatch.ICON.set(card, new Texture(imagePath("materials/card/" +
                             AbstractCardFieldPatch.material.get(card) + "_rare.png")));
                 }
+
             }
         } catch (Exception e) {
             System.err.println("Failed to load icon texture: " + e.getMessage());

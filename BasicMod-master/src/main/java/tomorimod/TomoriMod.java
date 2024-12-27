@@ -44,12 +44,9 @@ import static tomorimod.character.MyCharacter.Meta.CARD_COLOR;
 
 //TODO 所有对象都判断是否为null
 
-//TODO 形态牌差一个能量的
-
 //TODO 特效变革
 
 //TODO 任意素材
-//TODO 将Stone、flower什么的换成颜色
 //TODO 平衡性调整
 //TODO 上传工坊
 @SpireInitializer

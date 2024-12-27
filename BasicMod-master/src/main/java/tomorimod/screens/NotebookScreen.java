@@ -35,6 +35,8 @@ public class NotebookScreen extends CustomScreen
     private static final Texture TextureYellowRare = new Texture(imagePath("materials/notebook/yellow_rare.png"));
     private static final Texture TextureGreenRare = new Texture(imagePath("materials/notebook/green_rare.png"));
     private static final Texture TextureRedRare = new Texture(imagePath("materials/notebook/red_rare.png"));
+    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/notebook/aquariumpass_uncommon.png"));
+    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/notebook/aquariumpass_rare.png"));
 
     public AbstractCard hoveredCard;
     public static Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
@@ -348,6 +350,13 @@ public class NotebookScreen extends CustomScreen
                     return TextureRedUncommon;
                 } else if (level == 3) {
                     return TextureRedRare;
+                }
+                break;
+            case "aquariumpass":
+                if (level == 2) {
+                    return TextureAquariumPassUncommon;
+                } else if (level == 3) {
+                    return TextureAquariumPassRare;
                 }
                 break;
         }
