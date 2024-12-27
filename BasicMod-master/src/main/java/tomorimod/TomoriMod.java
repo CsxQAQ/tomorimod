@@ -68,9 +68,7 @@ public class TomoriMod implements
     public static void receiveMonitor(){
         BaseMod.subscribe(new FormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
-        //BaseMod.subscribe(new GiftBoxFlipMonitor());
         BaseMod.subscribe(new MusicalCompositionMonitor());
-        BaseMod.subscribe(new SmoothComboMonitor());
         BaseMod.subscribe(new RevolutionMonitor());
         BaseMod.subscribe(new ConveyFeelingMonitor());
         BaseMod.subscribe(new LunfuyuMonitor());

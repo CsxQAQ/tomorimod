@@ -7,7 +7,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.cards.customcards.SmoothCombo;
 
 public class SmoothComboAction extends AbstractGameAction {
-    public SmoothComboAction() {
+    private AbstractCard.CardType cardType;
+    public SmoothComboAction(AbstractCard.CardType cardType) {
+        this.cardType=cardType;
     }
 
     private boolean isContinue=true;
@@ -30,7 +32,8 @@ public class SmoothComboAction extends AbstractGameAction {
         System.out.println("抽牌堆顶的卡牌: " + topCard.cardID);
 
         // 如果类型不同，或者抽牌堆为空，停止
-        if (topCard.type != SmoothCombo.recordedType) {
+        //if (topCard.type != SmoothCombo.recordedType) {
+        if(topCard.type!=cardType){
             isContinue=false;
         }
 
@@ -43,7 +46,7 @@ public class SmoothComboAction extends AbstractGameAction {
                             false
                     ));
 
-                    addToBot(new SmoothComboAction());
+                    addToBot(new SmoothComboAction(cardType));
                     isDone = true; // 标记当前动作完成
                 }
             });
