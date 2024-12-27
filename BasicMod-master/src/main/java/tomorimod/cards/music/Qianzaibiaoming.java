@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.monitors.card.LunfuyuMonitor;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 
@@ -52,18 +54,6 @@ public class Qianzaibiaoming extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)) {
-                addToBot(new DamageAllEnemiesAction(p, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-            }else{
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-            }
-        }
-    }
-
-    @Override
-    public void update(){
-        super.update();
         int gravityAmount=0;
         if(AbstractDungeon.player!=null){
             if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
@@ -71,17 +61,55 @@ public class Qianzaibiaoming extends BaseMusicCard {
             }
         }
         if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                this.target=CardTarget.ALL_ENEMY;
-                baseDamage=timesUpgraded*UPG_DAMAGE_RARE+DAMAGE_RARE+ gravityAmount*magicNumber;
-            }else if(musicRarity.equals(MusicRarity.UNCOMMON)){
-                baseDamage=timesUpgraded*UPG_DAMAGE_UNCOMMON+DAMAGE_UNCOMMON+ gravityAmount*magicNumber;
+            if(musicRarity.equals(MusicRarity.RARE)) {
+
+                addToBot(new DamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                addToBot(new DamageAllEnemiesAction(p, gravityAmount*magicNumber, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+
             }else{
-                baseDamage=timesUpgraded*UPG_DAMAGE_COMMON+DAMAGE_COMMON+ gravityAmount*magicNumber;
+                int tempBaseDamage=baseDamage;
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                baseDamage=gravityAmount*magicNumber;
+                calculateCardDamage(m);
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                baseDamage=tempBaseDamage;
             }
         }
     }
 
+    @Override
+    public void update(){
+        super.update();
+        if(musicRarity!=null){
+            this.target=CardTarget.ALL_ENEMY;
+        }
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        if (musicRarity != null) {
+            int gravityAmount=0;
+            if(AbstractDungeon.player!=null){
+                if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
+                    gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
+                }
+            }
+            switch (musicRarity) {
+                case COMMON:
+                case DEFAULT:
+                case UNCOMMON:
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                            +"（拥有"+ gravityAmount+"点重力）";
+                    break;
+                case RARE:
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                            +"（拥有"+gravityAmount+"点重力）";
+                    break;
+            }
+        }
+        initializeDescription();
+    }
     @Override
     public AbstractCard makeCopy() {
         return new Qianzaibiaoming();
