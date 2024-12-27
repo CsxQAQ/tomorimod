@@ -52,8 +52,8 @@ public class Miluri extends BaseMusicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int shineAmount=0;
-        if(p.getPower(makeID("Shine"))!=null){
-            shineAmount = p.getPower(makeID("Shine")).amount;
+        if(p.getPower(makeID("ShinePower"))!=null){
+            shineAmount = p.getPower(makeID("ShinePower")).amount;
         }
 
         if(this.musicRarity.equals(MusicRarity.RARE)){
