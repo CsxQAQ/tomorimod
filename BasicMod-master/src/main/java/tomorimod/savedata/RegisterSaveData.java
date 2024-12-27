@@ -164,21 +164,7 @@ public class RegisterSaveData {
             }
         });
 
-        BaseMod.addSaveField("chunriyingisIntensify", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
 
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(Chunriying.isIntensify);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    Chunriying.isIntensify = gson.fromJson(jsonElement, new TypeToken<Boolean>() {}.getType());
-                }
-            }
-        });
 
         BaseMod.addSaveField("BaseFormCardCurForm", new CustomSavableRaw() {
             private final Gson gson = new Gson();

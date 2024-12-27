@@ -49,7 +49,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     public BaseMusicCard(String ID, CardStats info) {
         super(ID, info);
-        tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
     }
 
@@ -132,12 +131,16 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         BaseCard card= super.makeStatEquivalentCopy();
         BaseMusicCard musicCard=(BaseMusicCard)card;
         //musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
-        if(this.musicRarity==MusicRarity.DEFAULT){
-            if(getMusicRarityByCost(musicCard.cardID)!=null){
-                musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
-            }
+        if(CardCrawlGame.mode== CardCrawlGame.GameMode.CHAR_SELECT){
+            musicCard.musicRarity=MusicRarity.DEFAULT;
         }else{
-            musicCard.musicRarity=this.musicRarity;
+            if(this.musicRarity==MusicRarity.DEFAULT){
+                if(getMusicRarityByCost(musicCard.cardID)!=null){
+                    musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
+                }
+            }else{
+                musicCard.musicRarity=this.musicRarity;
+            }
         }
         musicCard.dataInfoInitialize();
         for(int i = 0; i < this.timesUpgraded; ++i) {

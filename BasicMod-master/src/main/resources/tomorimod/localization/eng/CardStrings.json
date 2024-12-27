@@ -397,9 +397,9 @@
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害，恢复等量的生命值。",
+    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。",
     "EXTENDED_DESCRIPTION": [
-      "对所有敌人造成 !D! 点伤害，恢复等量的生命值。"
+      "对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
     ]
   },
   "${modID}:FailComposition": {

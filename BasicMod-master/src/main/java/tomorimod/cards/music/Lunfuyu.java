@@ -26,6 +26,7 @@ public class Lunfuyu extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
+        isMultiDamage=true;
     }
 
 
@@ -52,25 +53,25 @@ public class Lunfuyu extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAllEnemiesAction(p, damage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public void updateDescription(){
-        super.updateDescription();
+        //super.updateDescription();
         if (musicRarity != null) {
-            String newDescription = null;
             switch (musicRarity) {
                 case COMMON:
                 case DEFAULT:
                 case UNCOMMON:
-                    newDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                            +"（本回合生命恢复"+LunfuyuMonitor.hpIncreaseNum+"点）";
                     break;
                 case RARE:
-                    newDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                            +"（本回合生命变化"+LunfuyuMonitor.hpChangeNum+"点）";
                     break;
             }
-            this.rawDescription = newDescription+"（共造成 !D! 点伤害）";
         }
         initializeDescription();
     }
@@ -87,6 +88,7 @@ public class Lunfuyu extends BaseMusicCard {
         }else{
             baseDamage=0;
         }
+        updateDescription();
     }
 
     @Override

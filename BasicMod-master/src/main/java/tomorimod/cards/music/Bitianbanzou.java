@@ -54,11 +54,6 @@ public class Bitianbanzou extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
-        if(musicRarity.equals(MusicRarity.RARE)){
-            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
-        }
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
@@ -89,6 +84,39 @@ public class Bitianbanzou extends BaseMusicCard {
                 isDone=true;
             }
         });
+        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
+        }
+
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster m) {
+        super.calculateCardDamage(m);
+
+        int negativeEffectsCount = 0;
+        if (m != null && m.powers != null) {
+            for (AbstractPower power : m.powers) {
+                if (power.type == AbstractPower.PowerType.DEBUFF) {
+                    negativeEffectsCount += power.amount;
+                }
+            }
+        }
+
+        int extraDamage = negativeEffectsCount;
+        switch (musicRarity) {
+            case RARE:
+                this.damage = this.damage + extraDamage;
+                break;
+            case UNCOMMON:
+                this.damage = this.damage + extraDamage;
+                break;
+            case COMMON:
+                this.damage = this.damage + extraDamage;
+                break;
+        }
+
     }
 
     @Override
