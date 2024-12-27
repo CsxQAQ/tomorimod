@@ -46,7 +46,7 @@ import static tomorimod.character.MyCharacter.Meta.CARD_COLOR;
 
 //TODO 特效变革
 
-//TODO 任意素材
+//TODO 碧天伴走
 //TODO 平衡性调整
 //TODO 上传工坊
 @SpireInitializer

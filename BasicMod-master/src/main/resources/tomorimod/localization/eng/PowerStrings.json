@@ -83,6 +83,12 @@
       "攻击伤害提升 #b"
     ]
   },
+  "${modID}:YeyingranPower": {
+    "NAME": "夜影染",
+    "DESCRIPTIONS": [
+      "使用攻击牌后 #y活力 效果不再消失，而是改为减少一层。"
+    ]
+  },
   "${modID}:MusicCompositionPower": {
     "NAME": "创作中",
     "DESCRIPTIONS": [

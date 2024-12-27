@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import tomorimod.powers.TemporaryStrengthPower;
+import tomorimod.powers.custompowers.YeyingranPower;
 import tomorimod.util.CardStats;
 
 public class Yeyingran extends BaseMusicCard {
@@ -54,11 +55,15 @@ public class Yeyingran extends BaseMusicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+//        if(musicRarity.equals(MusicRarity.RARE)){
+//            addToBot(new ApplyPowerAction(p,p,new TemporaryStrengthPower(p,magicNumber),magicNumber));
+//        }else{
+//            addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
+//        }
         if(musicRarity.equals(MusicRarity.RARE)){
-            addToBot(new ApplyPowerAction(p,p,new TemporaryStrengthPower(p,magicNumber),magicNumber));
-        }else{
-            addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
+            addToBot(new ApplyPowerAction(p,p,new YeyingranPower(p)));
         }
+        addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
     }
 
     @Override
