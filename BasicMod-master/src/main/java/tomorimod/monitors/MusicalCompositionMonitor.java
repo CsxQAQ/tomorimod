@@ -27,6 +27,7 @@ import tomorimod.ui.MaterialUi;
 import tomorimod.util.CustomUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -53,7 +54,6 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
                 cardsUsed.clear();
             }
-            //}
         }
     }
 
@@ -66,13 +66,6 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
             return;
         }
 
-//        ArrayList<BaseMusicCard> musicCardsGroup=CustomUtils.musicCardGroup;
-//        for(BaseMusicCard musicCard:musicCardsGroup){
-//            if(musicCard.cardID.equals(makeID(music))){
-//                card=musicCard.makeStatEquivalentCopy();
-//                break;
-//            }
-//        }
         card=CustomUtils.musicCardGroup.get(makeID(music)).makeStatEquivalentCopy();
 
         if (card != null) {
@@ -103,12 +96,19 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
 
     private String matchRecipe() {
+        List<String> matchedMusics = new ArrayList<>();
+
         for (CraftingRecipes.Recipe recipe : CraftingRecipes.getInstance().recipeArrayList) {
             if (isRecipeMatched(recipe)) {
-                return recipe.music;
+                matchedMusics.add(recipe.music);
             }
         }
-        return "fail";
+
+        if (matchedMusics.isEmpty()) {
+            return "fail";
+        }
+        int randomResult = AbstractDungeon.miscRng.random(matchedMusics.size()-1);
+        return matchedMusics.get(randomResult);
     }
 
     private boolean isRecipeMatched(CraftingRecipes.Recipe recipe) {
@@ -121,8 +121,11 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     }
 
     public boolean cardMatch(AbstractCard card, String recipe, int rarity) {
-        return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(recipe)&&
-                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card)>=rarity;
+        if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals("aquariumpass")){
+            return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card) >= rarity;
+        }
+        return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(recipe) &&
+                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card) >= rarity;
     }
 
     @Override

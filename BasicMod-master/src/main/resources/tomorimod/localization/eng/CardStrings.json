@@ -221,7 +221,7 @@
   },
   "${modID}:AquariumPass": {
     "NAME": "水族馆年票",
-    "DESCRIPTION": " 保留 ，抽一张牌，可以替代任意 tomorimod:素材 。"
+    "DESCRIPTION": " 保留 ，抽一张牌，可以替代任意颜色的 tomorimod:素材 。"
   },
 
   "${modID}:TomoriApotheosis": {
