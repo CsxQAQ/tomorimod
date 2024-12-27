@@ -30,9 +30,9 @@ public class BigGirlsBandEra extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(upgraded){
-            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraUpgradedPower(p), 1));
+            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraUpgradedPower(p,1), 1));
         }else{
-            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraPower(p), 1));
+            addToBot(new ApplyPowerAction(p, p, new BigGirlsBandEraPower(p,1), 1));
         }
 
     }

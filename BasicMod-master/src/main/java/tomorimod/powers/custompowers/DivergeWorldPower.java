@@ -14,8 +14,8 @@ public class DivergeWorldPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    public DivergeWorldPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public DivergeWorldPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
 
@@ -25,7 +25,9 @@ public class DivergeWorldPower extends BasePower {
             if (AbstractDungeon.player.hasPower(makeID("GravityPower"))) {
                 for (AbstractPower power : AbstractDungeon.player.powers) {
                     if (power.ID.equals(makeID("GravityPower"))) {
-                        ((GravityPower) power).applyEffect();
+                        for(int i=0;i<amount;i++){
+                            ((GravityPower) power).applyEffect();
+                        }
                         break;
                     }
                 }

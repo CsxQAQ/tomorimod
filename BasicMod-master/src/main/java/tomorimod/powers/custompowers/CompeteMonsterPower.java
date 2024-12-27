@@ -14,11 +14,11 @@ public class CompeteMonsterPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    private int amount;
+    //private int amount;
 
     public CompeteMonsterPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.amount=amount;
+      //  this.amount=amount;
     }
 
     @Override

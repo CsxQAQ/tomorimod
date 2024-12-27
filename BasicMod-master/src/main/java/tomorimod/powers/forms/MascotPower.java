@@ -15,7 +15,7 @@ public class MascotPower extends BaseFormPower implements FormEffect{
 
     public MascotPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.amount=amount;
+       // this.amount=amount;
         updateDescription();
     }
 

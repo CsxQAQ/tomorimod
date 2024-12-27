@@ -17,12 +17,9 @@ public class ShinePower extends BasePower {
 
     public ShinePower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.amount = amount;
-        //updateGravityInteraction(); // 初始化时检查并处理 Gravity
     }
     @Override
     public void atStartOfTurn() {
-        // 每层Shine恢复1点生命
         flash();
         AbstractPlayer abstractPlayer=AbstractDungeon.player;
         addToBot(new HealAction(this.owner, this.owner, this.amount));

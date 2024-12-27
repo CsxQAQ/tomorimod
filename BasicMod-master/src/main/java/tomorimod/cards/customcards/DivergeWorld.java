@@ -25,7 +25,7 @@ public class DivergeWorld extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p)));
+        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p,1),1));
     }
 
     @Override

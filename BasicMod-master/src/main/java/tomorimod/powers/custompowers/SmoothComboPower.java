@@ -17,12 +17,12 @@ public class SmoothComboPower extends BasePower {
     public static final String POWER_ID = makeID(SmoothComboPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
-    private int amount;
+    //private int amount;
 
     public SmoothComboPower(AbstractCreature owner,int amount) {
 
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        this.amount=amount;
+      //  this.amount=amount;
     }
 
     @Override

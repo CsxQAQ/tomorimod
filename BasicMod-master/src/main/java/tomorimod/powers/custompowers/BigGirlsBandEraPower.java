@@ -11,14 +11,18 @@ public class BigGirlsBandEraPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
+    //private int amount;
 
-    public BigGirlsBandEraPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public BigGirlsBandEraPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
+        //this.amount=amount;
     }
 
 
     @Override
     public void atStartOfTurn() {
-        addToBot(new BigGirlsBandEraAction(false));
+        for(int i=0;i<amount;i++){
+            addToBot(new BigGirlsBandEraAction(false));
+        }
     }
 }

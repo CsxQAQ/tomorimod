@@ -1,5 +1,6 @@
 package tomorimod.powers.custompowers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,41 +17,36 @@ public class TomoriApotheosisPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    public TomoriApotheosisPower(AbstractCreature owner) {
-        super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+    public TomoriApotheosisPower(AbstractCreature owner,int amount) {
+        super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
-    private boolean isAnyCardUpgrade=false;
+    //private boolean isAnyCardUpgrade=false;
 
     @Override
     public void atStartOfTurn() {
-        isAnyCardUpgrade=false;
+        //isAnyCardUpgrade=false;
         AbstractPlayer p= AbstractDungeon.player;
-        upgradeAllCardsInGroup(p.hand);
-        upgradeAllCardsInGroup(p.drawPile);
-        upgradeAllCardsInGroup(p.discardPile);
-        upgradeAllCardsInGroup(p.exhaustPile);
-        if(isAnyCardUpgrade){
-            this.flash();
-            CardCrawlGame.sound.play("CARD_UPGRADE");
+        for(int i=0;i<amount;i++){
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    upgradeAllCardsInGroup(p.hand);
+                    upgradeAllCardsInGroup(p.drawPile);
+                    upgradeAllCardsInGroup(p.discardPile);
+                    upgradeAllCardsInGroup(p.exhaustPile);
+                    isDone=true;
+                }
+            });
+
         }
+        this.flash();
+        CardCrawlGame.sound.play("CARD_UPGRADE");
     }
 
     private void upgradeAllCardsInGroup(CardGroup cardGroup) {
         for (AbstractCard c : cardGroup.group) {
-            if(c instanceof BaseMusicCard){
-                c.upgrade();
-                isAnyCardUpgrade=true;
-            }else{
-                if (c.canUpgrade()) {
-                    if (cardGroup.type == CardGroup.CardGroupType.HAND) {
-                        c.superFlash();
-                    }
-                    c.upgrade();
-                    c.applyPowers();
-                    isAnyCardUpgrade=true;
-                }
-            }
+            c.upgrade();
         }
     }
 }

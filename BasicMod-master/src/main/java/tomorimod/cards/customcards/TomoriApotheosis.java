@@ -29,7 +29,7 @@ public class TomoriApotheosis extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new TomoriApotheosisPower(p),0));
+        addToBot(new ApplyPowerAction(p,p,new TomoriApotheosisPower(p,1),1));
     }
 
     @Override
