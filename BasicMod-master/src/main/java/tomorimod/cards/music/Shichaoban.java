@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.monitors.card.LunfuyuMonitor;
 import tomorimod.util.CardStats;
 
 public class Shichaoban extends BaseMusicCard {
@@ -45,19 +47,37 @@ public class Shichaoban extends BaseMusicCard {
     private final static int UPG_DAMAGE_RARE = 3;
     private final static int BLOCK_RARE = 0;
     private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 9;
-    private final static int UPG_MAGIC_RARE = 5;
+    private final static int MAGIC_RARE = 0;
+    private final static int UPG_MAGIC_RARE = 0;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                baseDamage=baseDamage*2;
-            }else{
-                baseDamage=baseDamage+magicNumber;
+        if(musicRarity.equals(MusicRarity.RARE)){
+            baseDamage=baseDamage*2;
+        }else{
+            baseDamage=baseDamage+magicNumber;
+        }
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        if (musicRarity != null) {
+            switch (musicRarity) {
+                case COMMON:
+                case DEFAULT:
+                case UNCOMMON:
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                            +"（当前基础伤害："+baseDamage+ "）";
+                    break;
+                case RARE:
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                            +"（当前基础伤害："+baseDamage+ "）";
+                    break;
             }
         }
+        initializeDescription();
     }
 
     @Override
