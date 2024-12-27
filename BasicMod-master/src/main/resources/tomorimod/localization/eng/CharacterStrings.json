@@ -1,0 +1,11 @@
+{
+  "${modID}:Tomori": {
+    "NAMES": [
+      "Tomori",
+      "tomori"
+    ],
+    "TEXT": [
+      "石头，西瓜虫，创可贴。"
+    ]
+  }
+}
