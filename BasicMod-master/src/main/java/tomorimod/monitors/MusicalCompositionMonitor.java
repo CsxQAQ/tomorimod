@@ -37,7 +37,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     @Override
     public void receiveCardUsed(AbstractCard abstractCard) {
-        if(MusicComposition.isMusicCompositionUsed){
+        if(AbstractDungeon.player.hasPower(makeID("MusicCompositionPower"))){
+        //if(MusicComposition.isMusicCompositionUsed){
 
             if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
                 MaterialUi.getInstance().setMaterial(
@@ -49,7 +50,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 String music = matchRecipe();
                 getMusic(music); //先getMusic是因为要先判断是否已创作过music来决定reward
                 addHistoryRecipes(music);
-                MusicComposition.isMusicCompositionUsed=false;
+                //MusicComposition.isMusicCompositionUsed=false;
+
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, MusicCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
                 cardsUsed.clear();
@@ -145,7 +147,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         //ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
         cardsUsed.clear();
         MaterialUi.getInstance().clear();
-        MusicComposition.isMusicCompositionUsed=false;
+        //MusicComposition.isMusicCompositionUsed=false;
     }
 }
 

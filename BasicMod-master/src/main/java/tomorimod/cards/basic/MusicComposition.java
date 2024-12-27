@@ -29,7 +29,7 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
         purgeOnUse=true;
     }
     //可以不要，直接判断power
-    public static boolean isMusicCompositionUsed=false;
+    //public static boolean isMusicCompositionUsed=false;
 
 
     @Override
@@ -39,7 +39,7 @@ public class MusicComposition extends BaseCard implements WithoutMaterial {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        isMusicCompositionUsed=true;
+        //isMusicCompositionUsed=true;
         addToBot(new ApplyPowerAction(p, p, new MusicCompositionPower(p),1));
         ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
     }
