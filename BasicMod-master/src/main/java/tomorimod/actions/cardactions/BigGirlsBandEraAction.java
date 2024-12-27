@@ -26,7 +26,8 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
         for(int i=0;i<3;i++){
             int randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);
             BaseMusicCard selectedCard = musicCards.get(randomNumber);
-            while(!(selectedCard instanceof Chunriying)){
+            while(selectedCard instanceof Chunriying){
+                randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);
                 selectedCard = musicCards.get(randomNumber);
             }
             musicCardGroup.add(selectedCard);

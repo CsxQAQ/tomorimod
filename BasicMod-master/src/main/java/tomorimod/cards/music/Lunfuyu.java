@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.monitors.card.LunfuyuMonitor;
@@ -55,17 +56,33 @@ public class Lunfuyu extends BaseMusicCard {
     }
 
     @Override
+    public void updateDescription(){
+        super.updateDescription();
+        if (musicRarity != null) {
+            String newDescription = null;
+            switch (musicRarity) {
+                case COMMON:
+                case DEFAULT:
+                case UNCOMMON:
+                    newDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+                    break;
+                case RARE:
+                    newDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+                    break;
+            }
+            this.rawDescription = newDescription+"（共造成 !D! 点伤害）";
+        }
+        initializeDescription();
+    }
+
+    @Override
     public void update(){
         super.update();
-        if(musicRarity!=null){
-            if(AbstractDungeon.player!=null){
-                if(musicRarity.equals(MusicRarity.RARE)){
-                    baseDamage = LunfuyuMonitor.hpChangeNum*magicNumber;
-                }else{
-                    baseDamage = LunfuyuMonitor.hpIncreaseNum*magicNumber;
-                }
-            }else{
-                baseDamage=0;
+        if(musicRarity!=null&&AbstractDungeon.player!=null) {
+            if (musicRarity.equals(MusicRarity.RARE)) {
+                baseDamage = LunfuyuMonitor.hpChangeNum * magicNumber;
+            } else {
+                baseDamage = LunfuyuMonitor.hpIncreaseNum * magicNumber;
             }
         }else{
             baseDamage=0;

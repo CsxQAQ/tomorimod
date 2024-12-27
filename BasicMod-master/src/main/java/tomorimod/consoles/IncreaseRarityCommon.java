@@ -41,7 +41,7 @@ public class IncreaseRarityCommon extends ConsoleCommand {
             level = ConvertHelper.tryParseInt(tokens[2], 0);
         }
 
-        BaseMusicCard copy = (BaseMusicCard) c.makeCopy();
+        BaseMusicCard copy = (BaseMusicCard) c.makeStatEquivalentCopy();
         copy.setMusicRarityByCommond(level);
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(copy, true));
     }

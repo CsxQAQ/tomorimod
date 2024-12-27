@@ -1,6 +1,7 @@
 package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -11,6 +12,8 @@ import tomorimod.savedata.customdata.CraftingRecipes;
 import tomorimod.tags.CustomTags;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
+
+import javax.xml.bind.annotation.XmlType;
 
 import static tomorimod.TomoriMod.imagePath;
 
@@ -31,7 +34,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
         this.numsInfo = numsInfo;
-        this.musicRarity=MusicRarity.COMMON;
+        musicRarity=MusicRarity.DEFAULT;
 
         setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
                 imagePath("character/specialcardback/music_cardback_p.png"));
@@ -53,7 +56,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
         setDisplayRarity(rarity); //调用setMusicRarity似乎一定会调用setDisPlayRarity，所以就放过来了
-        dataInfoInitialize();
+        dataInfoInitialize();  //理论上不用吧，因为构造方法里调用了
     }
 
     public void setMusicRarityByCommond(int level) {
@@ -68,8 +71,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 this.musicRarity=MusicRarity.RARE;
                 break;
             default:
-                this.musicRarity=MusicRarity.COMMON;
+                this.musicRarity=MusicRarity.DEFAULT;
         }
+        setDisplayRarity(rarity);
     }
 
     public static MusicRarity getMusicRarityByCost(String ID) {
@@ -93,16 +97,12 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         return musicRarity;
     }
 
-//    @Override
-//    public void update() {
-//        super.update();
-//    }
-
     public void updateDescription(){
         if (idForShow != null && musicRarity != null) {
             String newDescription = null;
             switch (musicRarity) {
                 case COMMON:
+                case DEFAULT:
                 case UNCOMMON:
                     newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
                     break;
@@ -131,15 +131,20 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public BaseMusicCard makeStatEquivalentCopy(){
         BaseCard card= super.makeStatEquivalentCopy();
         BaseMusicCard musicCard=(BaseMusicCard)card;
-        musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
-        //初始化在cardLibrary中的卡牌不会有musicRarity，而有些方法会在cardLibrary中复制，所以要重置一遍musicCard
-        //会在cardLibrary中复制的行为：
-        //1. 游戏开始时masterDeck加载
-        //2. MakeTempCardInHandAction，控制台hand add用到这个方法
-//        if(this.musicRarity!=null){
-//            musicCard.musicRarity=this.musicRarity;
-            musicCard.setDisplayRarity(rarity);
-//        }
+        //musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
+        if(this.musicRarity==MusicRarity.DEFAULT){
+            if(getMusicRarityByCost(musicCard.cardID)!=null){
+                musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
+            }
+        }else{
+            musicCard.musicRarity=this.musicRarity;
+        }
+        musicCard.dataInfoInitialize();
+        for(int i = 0; i < this.timesUpgraded; ++i) {
+            musicCard.upgrade();
+        }
+
+        musicCard.setDisplayRarity(rarity);
         musicCard.idForShow=this.idForShow;
         musicCard.updateDescription();
         return musicCard;
@@ -171,7 +176,8 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public enum MusicRarity {
         COMMON(3),
         UNCOMMON(2),
-        RARE(1);
+        RARE(1),
+        DEFAULT(0);
 
         private final int value;
 
@@ -190,6 +196,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         }
         switch (musicRarity) {
             case COMMON:
+            case DEFAULT:
                 setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
                 setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
                 setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
@@ -232,6 +239,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             if(musicRarity!=null){
                 switch (musicRarity){
                     case COMMON:
+                    case DEFAULT:
                         this.bannerSmallRegion = ImageMaster.CARD_BANNER_COMMON;
                         this.bannerLargeRegion = ImageMaster.CARD_BANNER_COMMON_L;
                         switch (this.type) {
