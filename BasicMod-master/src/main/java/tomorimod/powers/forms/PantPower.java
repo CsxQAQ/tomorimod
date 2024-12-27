@@ -21,7 +21,7 @@ public class PantPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+"层 #y格挡 。";
+        description=DESCRIPTIONS[0]+amount+" 点 #y格挡 。";
         super.updateDescription();
     }
 

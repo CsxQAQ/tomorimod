@@ -20,61 +20,55 @@
   "${modID}:WeAreMygoPower": {
     "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      " #y永久形态 ，战斗胜利时，获得5点最大生命上限。"
+      " #y永久形态 ，战斗胜利时，获得 #b5 点最大生命上限。"
     ]
   },
   "${modID}:ShineWithMePower": {
     "NAME": "光芒与我同行",
     "DESCRIPTIONS": [
-      " #y永久形态 ，战斗开始时，本局游戏中每创作1种音乐牌，获得1点 #y闪耀 。"
+      " #y永久形态 ，战斗开始时，本局游戏中每创作一种 #y音乐 牌，获得 #b1 层 #y闪耀 。"
     ]
   },
   "${modID}:AstronomyMinisterPower": {
     "NAME": "天文部长",
     "DESCRIPTIONS": [
-      "回合开始时， #y预见 "
+      "回合开始时， #y预见 #b"
     ]
   },
   "${modID}:DarkTomoriPower": {
     "NAME": "暗黑型高松灯",
     "DESCRIPTIONS": [
-      "切换形态时，获得"
+      "切换 #y形态 时，获得 #b"
     ]
   },
   "${modID}:DomainExpansionPower": {
     "NAME": "领域展开",
     "DESCRIPTIONS": [
-      "回合结束时，获得"
+      "回合结束时，获得 #b"
     ]
   },
   "${modID}:MascotPower": {
     "NAME": "吉祥物",
     "DESCRIPTIONS": [
-      "下个回合开始时，获得"
+      "下个回合开始时，获得 #b"
     ]
   },
   "${modID}:PantPower": {
     "NAME": "企鹅",
     "DESCRIPTIONS": [
-      "每当失去生命值时，获得"
+      "每当失去生命值时，获得 #b"
     ]
   },
   "${modID}:SingerPower": {
     "NAME": "主唱",
     "DESCRIPTIONS": [
-      "使用音乐牌时，抽"
+      "使用 #y音乐 牌时，抽 #b"
     ]
   },
   "${modID}:StrengthTomoriPower": {
     "NAME": "力量型高松灯",
     "DESCRIPTIONS": [
-      "每当有卡牌被 #y消耗 时，获得"
-    ]
-  },
-  "${modID}:MemoryInCrychic": {
-    "NAME": "Crychic的回忆",
-    "DESCRIPTIONS": [
-      " #y永久形态 ，*春日影额外使所有敌人失去当前生命值一半的生命值 。"
+      "每当有卡牌被 #y消耗 时，获得 #b"
     ]
   },
   "${modID}:TemporaryThornsPower": {
@@ -89,29 +83,22 @@
       "攻击伤害提升 #b"
     ]
   },
-  "${modID}:RevolutionPower": {
-    "NAME": "变革",
-    "DESCRIPTIONS": [
-      " #y永久形态 ，回合开始是额外获得",
-      " 点 #y闪耀。"
-    ]
-  },
   "${modID}:MusicCompositionPower": {
     "NAME": "创作中",
     "DESCRIPTIONS": [
-      "无法使用 *作词，获得3点 #y素材 后移除此效果并获得对应歌曲。"
+      "无法使用 #y作词 ，获得 #b3 点 #y素材 后移除此效果并获得对应 #y音乐 牌。"
     ]
   },
   "${modID}:BigGirlsBandEraPower": {
     "NAME": "大少女乐队时代",
     "DESCRIPTIONS": [
-      "回合开始时，从3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+      "回合开始时，从 #b3 张 #y音乐 牌中选择一张加入手牌，并使其耗能变为 #b0 且 #y消耗 。"
     ]
   },
   "${modID}:BigGirlsBandEraUpgradedPower": {
     "NAME": "大少女乐队时代+",
     "DESCRIPTIONS": [
-      "回合开始时，从随机稀有度的3张 #y音乐牌 中选择一张加入手牌，并使其耗能变为0且 #y消耗 。"
+      "回合开始时，从随机稀有度的 #b3 张 #y音乐 牌中选择一张加入手牌，并使其耗能变为 #b0 且 #y消耗 。"
     ]
   },
   "${modID}:TomoriApotheosisPower": {
@@ -135,25 +122,25 @@
   "${modID}:MygoTogetherPower": {
     "NAME": "一起迷失吧",
     "DESCRIPTIONS": [
-      " #y闪耀 和 #y重力 可以同时存在，获得一点 #y闪耀 和 #y力量 。"
+      " #y闪耀 和 #y重力 可以同时存在。"
     ]
   },
   "${modID}:ImmunityPower": {
     "NAME": "星盾",
     "DESCRIPTIONS": [
-      "使受到的伤害变为0，回合结束时消耗5点 #y闪耀 ，若 #y闪耀 不足5点则失去此效果。"
+      "使受到的伤害变为0。回合结束时消耗 #b5 点 #y闪耀 ，若 #y闪耀 不足 #b5 点则失去此效果。"
     ]
   },
   "${modID}:StarDustPower": {
     "NAME": "微小的星屑",
     "DESCRIPTIONS": [
-      " #y永久形态 ，受到致命伤害失去该能力，同时获得 #y免疫 直到回合结束。"
+      " #y永久形态 ，受到致命伤害失去该能力，同时获得 #y星盾 。"
     ]
   },
   "${modID}:DivergeWorldPower": {
     "NAME": "偏离世界",
     "DESCRIPTIONS": [
-      "攻击时触发 tomorimod:重力 的效果。"
+      "攻击时触发 #y重力 的效果。"
     ]
   },
   "${modID}:CompetePower": {

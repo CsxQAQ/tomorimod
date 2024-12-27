@@ -18,7 +18,7 @@ public class AstronomyMinisterPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+"。";
+        description=DESCRIPTIONS[0]+amount+" 。";
         super.updateDescription();
     }
 

@@ -22,7 +22,7 @@ public class StrengthTomoriPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+ "层 #y力量 。";
+        description=DESCRIPTIONS[0]+amount+ " 层 #y力量 。";
         super.updateDescription();
     }
 

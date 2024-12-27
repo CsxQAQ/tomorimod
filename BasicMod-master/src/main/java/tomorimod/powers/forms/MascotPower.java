@@ -30,7 +30,7 @@ public class MascotPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+ "点 [E] 。";
+        description=DESCRIPTIONS[0]+amount+ " 点 [E] 。";
         super.updateDescription();
     }
 

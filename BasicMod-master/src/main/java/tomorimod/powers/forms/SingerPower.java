@@ -23,7 +23,7 @@ public class SingerPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+"张牌。";
+        description=DESCRIPTIONS[0]+amount+" 张牌。";
         super.updateDescription();
     }
 

@@ -21,7 +21,7 @@ public class DarkTomoriPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void updateDescription(){
-        description=DESCRIPTIONS[0]+amount+ "点 #y仪式 。";
+        description=DESCRIPTIONS[0]+amount+ " 层 #y仪式 。";
         super.updateDescription();
     }
 
