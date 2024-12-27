@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.cards.music.BaseMusicCard;
+import tomorimod.cards.music.Chunriying;
 import tomorimod.util.CustomUtils;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
         for(int i=0;i<3;i++){
             int randomNumber = AbstractDungeon.miscRng.random(0, musicCards.size()-1);
             BaseMusicCard selectedCard = musicCards.get(randomNumber);
+            while(!(selectedCard instanceof Chunriying)){
+                selectedCard = musicCards.get(randomNumber);
+            }
             musicCardGroup.add(selectedCard);
             musicCards.remove(randomNumber);
         }

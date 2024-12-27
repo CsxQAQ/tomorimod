@@ -31,7 +31,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
     private boolean isNameChanged=false;
     private int curMusicDiscoveredNum=-1;
 
-    private static final int MAGIC = 1;
+    private static final int MAGIC = 5;
     private static final int UPG_MAGIC = 0;
 
     public SmallMonment() {
@@ -80,7 +80,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
         }else{
             if(curMusicDiscoveredNum!=SaveMusicDiscoverd.getInstance().musicDiscoveredNum){
                 curMusicDiscoveredNum=SaveMusicDiscoverd.getInstance().musicDiscoveredNum;
-                rawDescription=CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（已创作数量："+SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
+                rawDescription=CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（当前数量："+SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
                 initializeDescription();
             }
         }

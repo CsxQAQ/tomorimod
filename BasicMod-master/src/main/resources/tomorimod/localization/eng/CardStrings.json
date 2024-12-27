@@ -46,8 +46,8 @@
     ]
   },
   "${modID}:WhyPerformChunriying": {
-    "NAME": "为什么要演奏春日影",
-    "DESCRIPTION": "眩晕所有敌人 !M! 回合， tomorimod:瞬间 ， 消耗 。"
+    "NAME": "",
+    "DESCRIPTION": "眩晕所有敌人 !M! 回合。 tomorimod:瞬间 ， 消耗 。"
   },
   "${modID}:Motivate": {
     "NAME": "激励",
@@ -75,19 +75,11 @@
     "NAME": "命运共同体",
     "DESCRIPTION": "平均所有单位的当前生命值百分比。 tomorimod:瞬间 ， 消耗 。"
   },
-
-  "${modID}:Shout": {
-    "NAME": "内心的呐喊",
-    "DESCRIPTION": "造成 !D! 点伤害，使用一张卡牌后 tomorimod:翻面 。",
-    "EXTENDED_DESCRIPTION": [
-      "获得 !B! 点 格挡 ，使用一张卡牌后 tomorimod:翻面 。"
-    ]
-  },
   "${modID}:BigGirlsBandEra": {
     "NAME": "大少女乐队时代",
-    "DESCRIPTION": "在你的回合开始时，从3张音乐牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。 虚无 。",
+    "DESCRIPTION": " 虚无 。在你的回合开始时，从3张 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "在你的回合开始时，从3张随机稀有度的音乐牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。 虚无 。"
+      " 虚无 。在你的回合开始时，从3张随机稀有度的 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。"
     ]
   },
   "${modID}:DivergeWorld": {
@@ -99,15 +91,15 @@
     "DESCRIPTION": "使用后移除。将消耗牌堆洗牌后加入抽牌堆（ 状态 牌和 诅咒 牌除外）。"
   },
   "${modID}:YourTenDraws": {
-    "NAME": "十连抽",
-    "DESCRIPTION": " 消耗 ，将十张随机高松灯的卡牌置入手牌。",
+    "NAME": "十连",
+    "DESCRIPTION": "将十张随机高松灯的卡牌置入手牌。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，将十张升级过的随机高松灯的卡牌置入手牌。"
+      "将十张升级过的随机高松灯的卡牌置入手牌。 消耗 。"
     ]
   },
   "${modID}:ChangeClothes": {
     "NAME": "换装",
-    "DESCRIPTION": " 消耗 ，以随机的顺序使用所有具有 tomorimod:形态 的牌。"
+    "DESCRIPTION": "以随机的顺序使用所有具有 tomorimod:形态 的牌。 消耗 。"
   },
   "${modID}:Grit": {
     "NAME": "认真",
@@ -128,7 +120,7 @@
   },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
-    "DESCRIPTION": "获得 !M! 点 tomorimod:闪耀 。如果你拥有10点 tomorimod:闪耀 ，获得 tomorimod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，获得 tomorimod:星盾 。"
+    "DESCRIPTION": "获得 !M! 层 tomorimod:闪耀 。如果你拥有10层 tomorimod:闪耀 ，获得 tomorimod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
@@ -136,11 +128,11 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
-    "DESCRIPTION": " tomorimod:永久形态 ：战斗胜利时，获得5点最大生命上限。"
+    "DESCRIPTION": " tomorimod:永久形态 ：使用具有 tomorimod:瞬间 的卡牌时，获得5点最大生命上限。"
   },
   "${modID}:ShineWithMe": {
     "NAME": "光芒与我同行",
-    "DESCRIPTION": " tomorimod:永久形态 ：战斗开始时，本局游戏中每创作1种音乐牌，获得1点 tomorimod:闪耀 。"
+    "DESCRIPTION": " tomorimod:永久形态 ：战斗开始时，本局游戏中每创作1种 tomorimod:音乐 牌，获得1层 tomorimod:闪耀 。"
   },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
@@ -160,7 +152,7 @@
   },
   "${modID}:DarkTomori": {
     "NAME": "暗黑型高松灯",
-    "DESCRIPTION": " 消耗 ， tomorimod:形态 ：切换形态时，获得 !M! 层 仪式 。"
+    "DESCRIPTION": "tomorimod:形态 ：切换 tomorimod:形态 时，获得 !M! 层 仪式 。 消耗 。"
   },
   "${modID}:DomainExpansion": {
     "NAME": "领域展开",
@@ -226,9 +218,9 @@
 
   "${modID}:TomoriApotheosis": {
     "NAME": "灯神长阶",
-    "DESCRIPTION": "回合开始时升级你的所有牌，你的 tomorimod:音乐 牌没有升级上限。",
+    "DESCRIPTION": "回合开始时升级你的所有牌。你的 tomorimod:音乐 牌没有升级上限。",
     "EXTENDED_DESCRIPTION": [
-      " 固有 ，回合开始时升级你的所有牌，你的 tomorimod:音乐 牌没有升级上限。"
+      " 固有 。回合开始时升级你的所有牌。你的 tomorimod:音乐 牌没有升级上限。"
     ]
   },
   "${modID}:BandPractise": {
@@ -248,7 +240,7 @@
   },
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
-    "DESCRIPTION": "随机将一张具有 tomorimod:瞬间 的卡牌置入手牌， 消耗 。"
+    "DESCRIPTION": "随机将一张具有 tomorimod:瞬间 的卡牌置入手牌。 消耗 。"
   },
   "${modID}:SmoothCombo": {
     "NAME": "丝滑小连招",
@@ -268,13 +260,13 @@
   },
   "${modID}:MygoTogether": {
     "NAME": "一起迷失",
-    "DESCRIPTION": " 虚无 ，你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在，获得 !M! 层 tomorimod:重力 和 !M! 层 tomorimod:闪耀 。"
+    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在，获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
   },
   "${modID}:NeedAnon": {
     "NAME": "需要爱音",
-    "DESCRIPTION": " 消耗 ，使 tomorimod:重力 层数翻倍。",
+    "DESCRIPTION": "使 tomorimod:重力 层数翻倍。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ， 使 tomorimod:重力 层数变为3倍。"
+      "使 tomorimod:重力 层数变为3倍。 消耗 。"
     ]
   },
   "${modID}:ConveyFeeling": {
@@ -417,13 +409,13 @@
 
   "${modID}:SmallMonment": {
     "NAME": "小小的瞬间",
-    "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的音乐牌，则变化为 *一辈子 。",
+    "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的 tomorimod:音乐 牌，则变化为 *一辈子 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:永久形态 ，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+      " tomorimod:永久形态 ：具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
     ]
   },
   "${modID}:WholeLife": {
     "NAME": "一辈子",
-    "DESCRIPTION": " tomorimod:永久形态 ，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+    "DESCRIPTION": " tomorimod:永久形态 ：具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
   }
 }

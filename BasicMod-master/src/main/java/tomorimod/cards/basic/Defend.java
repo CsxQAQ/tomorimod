@@ -5,10 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.special.SpecialCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
-public class Defend extends BaseCard {
+public class Defend extends BaseCard implements SpecialCard {
     public static final String ID = makeID(Defend.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

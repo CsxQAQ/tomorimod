@@ -10,7 +10,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
-public class HaTaki extends BaseCard {
+public class HaTaki extends BaseCard implements SpecialCard {
     public static final String ID = makeID(HaTaki.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.special.SpecialCard;
 import tomorimod.util.CardStats;
 
-public class Chunriying extends BaseMusicCard {
+public class Chunriying extends BaseMusicCard implements SpecialCard {
     public static final String ID = makeID(Chunriying.class.getSimpleName());
     private static final CardStats info = new CardStats(
 

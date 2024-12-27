@@ -10,7 +10,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
-public class HaAnon extends BaseCard {
+public class HaAnon extends BaseCard implements SpecialCard  {
     public static final String ID = makeID(HaAnon.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

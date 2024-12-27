@@ -7,6 +7,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.music.BaseMusicCard;
+import tomorimod.cards.music.Chunriying;
+import tomorimod.cards.special.SpecialCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
@@ -35,15 +38,32 @@ public class YourTenDraws extends BaseCard {
         ArrayList<BaseCard> modCards= new ArrayList<>(CustomUtils.modCardGroup.values());
         for(int i=0;i<10;i++){
             int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
-            while(modCards.get(randomResult).rarity==CardRarity.SPECIAL
-            ||modCards.get(randomResult).rarity==CardRarity.BASIC){
+            while(modCards.get(randomResult) instanceof SpecialCard){
                 randomResult= AbstractDungeon.miscRng.random(modCards.size()-1);
             }
             BaseCard card=modCards.get(randomResult).makeStatEquivalentCopy();
+            if(card instanceof BaseMusicCard){
+                int randomRarity = AbstractDungeon.miscRng.random(2);
+                switch (randomRarity){
+                    case 0:
+                        ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.MusicRarity.COMMON);
+                        break;
+                    case 1:
+                        ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.MusicRarity.UNCOMMON);
+                        break;
+                    case 2:
+                        ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.MusicRarity.RARE);
+                        break;
+                }
+                if(card instanceof Chunriying){
+                    ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.MusicRarity.RARE);
+                }
+                card.setDisplayRarity(card.rarity);
+            }
             if(YourTenDraws.this.upgraded){
                 card.upgrade();
             }
-            addToTop(new MakeTempCardInHandAction(card, 1));
+            addToBot(new MakeTempCardInHandAction(card, 1));
         }
     }
 

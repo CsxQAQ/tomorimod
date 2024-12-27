@@ -1,6 +1,7 @@
-package tomorimod.powers;
+package tomorimod.powers.custompowers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import tomorimod.powers.BasePower;
 
 import static tomorimod.TomoriMod.makeID;
 

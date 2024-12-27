@@ -11,7 +11,7 @@ import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
 //这个设置为BaseMusicCard可能会出问题
-public class FailComposition extends BaseCard implements WithoutMaterial {
+public class FailComposition extends BaseCard implements WithoutMaterial,SpecialCard {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

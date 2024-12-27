@@ -10,7 +10,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
-public class BlankPaperAttack extends BaseCard {
+public class BlankPaperAttack extends BaseCard implements SpecialCard {
 
     public static final String ID = makeID(BlankPaperAttack.class.getSimpleName());
     private static final CardStats info = new CardStats(

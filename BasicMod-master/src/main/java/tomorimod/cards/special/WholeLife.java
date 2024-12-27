@@ -8,7 +8,7 @@ import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
 
-public class WholeLife extends BaseCard {
+public class WholeLife extends BaseCard implements SpecialCard {
     public static final String ID = makeID(WholeLife.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,

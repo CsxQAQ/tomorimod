@@ -1,10 +1,11 @@
 package tomorimod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import tomorimod.cards.special.SpecialCard;
 import tomorimod.character.MyCharacter;
 import tomorimod.util.CardStats;
 
-public class Mascot extends BaseFormCard {
+public class Mascot extends BaseFormCard implements SpecialCard {
 
     public static final String ID = makeID(Mascot.class.getSimpleName());
     private static final CardStats info = new CardStats(
