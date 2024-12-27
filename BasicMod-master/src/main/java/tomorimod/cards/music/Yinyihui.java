@@ -26,20 +26,21 @@ public class Yinyihui extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
+        isMultiDamage=true;
     }
 
 
-    private final static int DAMAGE_COMMON = 8;
-    private final static int UPG_DAMAGE_COMMON = 4;
-    private final static int BLOCK_COMMON = 0;
-    private final static int UPG_BLOCK_COMMON = 0;
+    private final static int DAMAGE_COMMON = 0;
+    private final static int UPG_DAMAGE_COMMON = 0;
+    private final static int BLOCK_COMMON = 8;
+    private final static int UPG_BLOCK_COMMON = 4;
     private final static int MAGIC_COMMON = 0;
     private final static int UPG_MAGIC_COMMON = 0;
 
-    private final static int DAMAGE_UNCOMMON = 12;
-    private final static int UPG_DAMAGE_UNCOMMON = 5;
-    private final static int BLOCK_UNCOMMON = 0;
-    private final static int UPG_BLOCK_UNCOMMON = 0;
+    private final static int DAMAGE_UNCOMMON = 0;
+    private final static int UPG_DAMAGE_UNCOMMON = 0;
+    private final static int BLOCK_UNCOMMON = 12;
+    private final static int UPG_BLOCK_UNCOMMON = 5;
     private final static int MAGIC_UNCOMMON = 0;
     private final static int UPG_MAGIC_UNCOMMON = 0;
 
@@ -66,8 +67,8 @@ public class Yinyihui extends BaseMusicCard {
                     }
                 });
             }else{
-                addToBot(new GainBlockAction(p,damage));
-                addToBot(new DamageAllEnemiesAction(p, damage, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                addToBot(new GainBlockAction(p,block));
+                addToBot(new DamageAllEnemiesAction(p, block, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 
             }
         }

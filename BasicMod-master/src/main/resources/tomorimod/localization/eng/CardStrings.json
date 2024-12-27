@@ -306,100 +306,100 @@
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
-    "DESCRIPTION": "对目标施加 !M! 层 易伤 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。",
     "EXTENDED_DESCRIPTION": [
-      "对目标施加 !M! 层 易伤 和 脆弱 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。"
+      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。"
     ]
   },
   "${modID}:Lunfuyu": {
     "NAME": "轮符雨",
-    "DESCRIPTION": "本回合你每恢复一点生命值，对所有敌人造成 !M! 点伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。本回合你每恢复一点生命值，对所有敌人造成 !M! 点伤害。",
     "EXTENDED_DESCRIPTION": [
-      "本回合你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。"
+      " tomorimod:音乐 。本回合你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。"
     ]
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
-    "DESCRIPTION": "对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果1次。",
+    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果1次。",
     "EXTENDED_DESCRIPTION": [
-      "对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果2次。"
+      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果2次。"
     ]
   },
   "${modID}:Mingwusheng": {
     "NAME": "名無声",
-    "DESCRIPTION": "造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。获得 [E] [E] 。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。获得 [E] [E] 。"
     ]
   },
   "${modID}:Mixingjiao": {
     "NAME": "迷星叫",
-    "DESCRIPTION": "造成 !D! 点伤害。当你使用一张非同名音乐牌时，自动从手牌、抽牌堆或弃牌堆中使用此牌。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。当你使用一张非同名音乐牌时，自动从手牌、抽牌堆或弃牌堆中使用此牌。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害，不在手牌中使用时造成3倍伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
+      " tomorimod:音乐 。造成 !D! 点伤害，不在手牌中使用时造成3倍伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
     ]
   },
   "${modID}:Qianzaibiaoming": {
     "NAME": "潜在表明",
-    "DESCRIPTION": "造成 !D! 点伤害，然后造成等同于当前 tomorimod:重力 层数 !M! 倍的伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害，然后造成等同于当前 tomorimod:重力 层数 !M! 倍的伤害。",
     "EXTENDED_DESCRIPTION": [
-      "对所有敌人造成 !D! 点伤害，然后对所有敌人造成等同于当前 tomorimod:重力 层数 !M! 倍的伤害。"
+      " tomorimod:音乐 。对所有敌人造成 !D! 点伤害，然后对所有敌人造成等同于当前 tomorimod:重力 层数 !M! 倍的伤害。"
     ]
   },
   "${modID}:Shichaoban": {
     "NAME": "诗超绊",
-    "DESCRIPTION": "造成 !D! 点伤害。每次使用后该牌的基础伤害提高 !M! 点。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害提高 !M! 点。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害。每次使用后该牌的基础伤害翻倍。"
+      " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害翻倍。"
     ]
   },
   "${modID}:Wulushi": {
     "NAME": "无路矢",
-    "DESCRIPTION": "造成 !D! 点伤害，然后随机攻击另一个敌人。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害，然后随机攻击另一个敌人。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害，然后使伤害减少1，随机攻击另一个敌人，重复此效果直到伤害减为0或没有攻击目标。"
+      " tomorimod:音乐 。造成 !D! 点伤害，然后使伤害减少1，随机攻击另一个敌人，重复此效果直到伤害减为0或没有攻击目标。"
     ]
   },
   "${modID}:Yinakong": {
     "NAME": "壱雫空",
-    "DESCRIPTION": "造成 !D! 点伤害 !M! 次。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害 !M! 次。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害 !M! 次。击杀目标后额外的攻击次数由随机敌人承担。"
+      " tomorimod:音乐 。造成 !D! 点伤害 !M! 次。击杀目标后额外的攻击次数由随机敌人承担。"
     ]
   },
   "${modID}:Yingsewu": {
     "NAME": "影色舞",
-    "DESCRIPTION": "造成 !D! 点伤害。触发你当前形态的效果。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。触发你当前形态的效果。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害。触发你当前形态的效果3次。"
+      " tomorimod:音乐 。造成 !D! 点伤害。触发你当前形态的效果3次。"
     ]
   },
   "${modID}:Yinyihui": {
     "NAME": "音一会",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害，获得等量的 格挡 。",
+    "DESCRIPTION": " tomorimod:音乐 。获得 !B! 点 格挡 ，对所有敌人造成等量的伤害。",
     "EXTENDED_DESCRIPTION": [
-      "获得 !B! 点 格挡 。对所有敌人造成当前 格挡 数的伤害。"
+      " tomorimod:音乐 。获得 !B! 点 格挡 。对所有敌人造成当前 格挡 数的伤害。"
     ]
   },
   "${modID}:Yeyingran": {
     "NAME": "夜影染",
-    "DESCRIPTION": "造成 !D! 点伤害。获得 !M! 点 活力 。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害。获得 !M! 点 tomorimod:临时力量 。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 tomorimod:临时力量 。"
     ]
   },
   "${modID}:Ruichengshan": {
     "NAME": "瑞程山",
-    "DESCRIPTION": "造成 !D! 点伤害。消灭敌人时，获得 [E] [E] 。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] 。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
+      " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
     ]
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
-    "DESCRIPTION": "对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。",
+    "DESCRIPTION": " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。",
     "EXTENDED_DESCRIPTION": [
-      "对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
+      " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
     ]
   },
   "${modID}:FailComposition": {
