@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
@@ -27,15 +26,15 @@ import static tomorinmod.BasicMod.makeID;
 public class NotebookScreen extends CustomScreen
 {
 
-    private static final Texture TextureStoneCommon = new Texture(imagePath("materials/notebook/stone_common.png"));
-    private static final Texture TextureBandCommon = new Texture(imagePath("materials/notebook/band_common.png"));
-    private static final Texture TextureFlowerCommon = new Texture(imagePath("materials/notebook/flower_common.png"));
-    private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/notebook/stone_uncommon.png"));
-    private static final Texture TextureBandUncommon = new Texture(imagePath("materials/notebook/band_uncommon.png"));
-    private static final Texture TextureFlowerUncommon = new Texture(imagePath("materials/notebook/flower_uncommon.png"));
-    private static final Texture TextureStoneRare = new Texture(imagePath("materials/notebook/stone_rare.png"));
-    private static final Texture TextureBandRare = new Texture(imagePath("materials/notebook/band_rare.png"));
-    private static final Texture TextureFlowerRare = new Texture(imagePath("materials/notebook/flower_rare.png"));
+    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/notebook/yellow_common.png"));
+    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/notebook/green_common.png"));
+    private static final Texture TextureRedCommon = new Texture(imagePath("materials/notebook/red_common.png"));
+    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/notebook/yellow_uncommon.png"));
+    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/notebook/green_uncommon.png"));
+    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/notebook/red_uncommon.png"));
+    private static final Texture TextureYellowRare = new Texture(imagePath("materials/notebook/yellow_rare.png"));
+    private static final Texture TextureGreenRare = new Texture(imagePath("materials/notebook/green_rare.png"));
+    private static final Texture TextureRedRare = new Texture(imagePath("materials/notebook/red_rare.png"));
 
     public AbstractCard hoveredCard;
     public static Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
@@ -322,33 +321,33 @@ public class NotebookScreen extends CustomScreen
         String material = s.substring(0, s.length() - 1); // 去掉最后一位
 
         switch (material) {
-            case "stone":
+            case "yellow":
                 if (level == 1) {
-                    return TextureStoneCommon;
+                    return TextureYellowCommon;
                 } else if (level == 2) {
-                    return TextureStoneUncommon;
+                    return TextureYellowUncommon;
                 } else if (level == 3) {
-                    return TextureStoneRare;
+                    return TextureYellowRare;
                 }
                 break;
 
-            case "band":
+            case "green":
                 if (level == 1) {
-                    return TextureBandCommon;
+                    return TextureGreenCommon;
                 } else if (level == 2) {
-                    return TextureBandUncommon;
+                    return TextureGreenUncommon;
                 } else if (level == 3) {
-                    return TextureBandRare;
+                    return TextureGreenRare;
                 }
                 break;
 
-            case "flower":
+            case "red":
                 if (level == 1) {
-                    return TextureFlowerCommon;
+                    return TextureRedCommon;
                 } else if (level == 2) {
-                    return TextureFlowerUncommon;
+                    return TextureRedUncommon;
                 } else if (level == 3) {
-                    return TextureFlowerRare;
+                    return TextureRedRare;
                 }
                 break;
         }

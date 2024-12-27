@@ -11,15 +11,15 @@ import static tomorinmod.BasicMod.imagePath;
 
 public class MaterialUi implements Renderable {
 
-    private static final Texture TextureStoneCommon = new Texture(imagePath("materials/card/stone_common.png"));
-    private static final Texture TextureBandCommon = new Texture(imagePath("materials/card/band_common.png"));
-    private static final Texture TextureFlowerCommon = new Texture(imagePath("materials/card/flower_common.png"));
-    private static final Texture TextureStoneUncommon = new Texture(imagePath("materials/card/stone_uncommon.png"));
-    private static final Texture TextureBandUncommon = new Texture(imagePath("materials/card/band_uncommon.png"));
-    private static final Texture TextureFlowerUncommon = new Texture(imagePath("materials/card/flower_uncommon.png"));
-    private static final Texture TextureStoneRare = new Texture(imagePath("materials/card/stone_rare.png"));
-    private static final Texture TextureBandRare = new Texture(imagePath("materials/card/band_rare.png"));
-    private static final Texture TextureFlowerRare = new Texture(imagePath("materials/card/flower_rare.png"));
+    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/card/yellow_common.png"));
+    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/card/green_common.png"));
+    private static final Texture TextureRedCommon = new Texture(imagePath("materials/card/red_common.png"));
+    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/card/yellow_uncommon.png"));
+    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/card/green_uncommon.png"));
+    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/card/red_uncommon.png"));
+    private static final Texture TextureYellowRare = new Texture(imagePath("materials/card/yellow_rare.png"));
+    private static final Texture TextureBandRare = new Texture(imagePath("materials/card/green_rare.png"));
+    private static final Texture TextureRedRare = new Texture(imagePath("materials/card/red_rare.png"));
 
     ArrayList<MaterialInfo> materials=new ArrayList<>();
 
@@ -47,33 +47,33 @@ public class MaterialUi implements Renderable {
 
     public Texture getMaterialTexture(MaterialInfo info){
         switch (info.getName()) {
-            case "stone":
+            case "yellow":
                 if (info.getLevel() == 1) {
-                    return TextureStoneCommon;
+                    return TextureYellowCommon;
                 } else if (info.getLevel() == 2) {
-                    return TextureStoneUncommon;
+                    return TextureYellowUncommon;
                 } else if (info.getLevel() == 3) {
-                    return TextureStoneRare;
+                    return TextureYellowRare;
                 }
                 break;
 
-            case "band":
+            case "green":
                 if (info.getLevel() == 1) {
-                    return TextureBandCommon;
+                    return TextureGreenCommon;
                 } else if (info.getLevel() == 2) {
-                    return TextureBandUncommon;
+                    return TextureGreenUncommon;
                 } else if (info.getLevel() == 3) {
                     return TextureBandRare;
                 }
                 break;
 
-            case "flower":
+            case "red":
                 if (info.getLevel() == 1) {
-                    return TextureFlowerCommon;
+                    return TextureRedCommon;
                 } else if (info.getLevel() == 2) {
-                    return TextureFlowerUncommon;
+                    return TextureRedUncommon;
                 } else if (info.getLevel() == 3) {
-                    return TextureFlowerRare;
+                    return TextureRedRare;
                 }
                 break;
         }

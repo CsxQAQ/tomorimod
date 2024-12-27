@@ -207,15 +207,15 @@
     "NAME": "重力捕获",
     "DESCRIPTION": "消灭生命值低于 tomorinmod:重力 层数 !M! 倍的敌人。"
   },
-  "${modID}:Stone": {
+  "${modID}:Yellow": {
     "NAME": "漂亮的石头",
-    "DESCRIPTION": "造成 !D! 点伤害，拥有最高等级的蓝色 tomorinmod:素材 。"
+    "DESCRIPTION": "造成 !D! 点伤害，拥有最高等级的黄色 tomorinmod:素材 。"
   },
-  "${modID}:Flower": {
+  "${modID}:Red": {
     "NAME": "花瓣",
     "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] ，拥有最高等级的红色 tomorinmod:素材 。"
   },
-  "${modID}:Band": {
+  "${modID}:Green": {
     "NAME": "企鹅创可贴",
     "DESCRIPTION": "获得 !B! 点 格挡 ，拥有最高等级的绿色 tomorinmod:素材 。"
   },

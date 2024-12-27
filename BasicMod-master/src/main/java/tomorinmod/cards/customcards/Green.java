@@ -1,18 +1,15 @@
 package tomorinmod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
-import tomorinmod.util.CustomUtils;
 
-public class Flower extends BaseCard {
-
-    public static final String ID = makeID(Flower.class.getSimpleName());
+public class Green extends BaseCard {
+    public static final String ID = makeID(Green.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -21,25 +18,25 @@ public class Flower extends BaseCard {
             1
     );
 
-    private static final int MAGIC = 1;
-    private static final int UPG_MAGIC = 1;
+    private static final int BLOCK = 5;
+    private static final int UPG_BLOCK = 3;
 
-    public Flower() {
+
+    public Green() {
         super(ID, info);
-        setMagic(MAGIC,UPG_MAGIC);
+        setBlock(BLOCK, UPG_BLOCK);
         //CustomUtils.setRareBanner(this);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(magicNumber));
-        addToBot(new GainEnergyAction(1));
-
+        addToBot(new GainBlockAction(p,block));
     }
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new Flower();
+        return new Green();
     }
+
 
 }

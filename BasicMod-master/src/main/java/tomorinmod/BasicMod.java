@@ -51,9 +51,12 @@ import static tomorinmod.character.MyCharacter.Meta.CARD_COLOR;
 
 //TODO 形态牌差一个能量的
 
-//TODO 修改结束时素材框不消失的bug
-//TODO 特效变革和星盾
+//TODO 特效变革
 
+//TODO 任意素材
+//TODO 将Stone、flower什么的换成颜色
+//TODO 平衡性调整
+//TODO 上传工坊
 @SpireInitializer
 public class BasicMod implements
 

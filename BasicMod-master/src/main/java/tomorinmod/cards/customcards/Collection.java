@@ -48,18 +48,18 @@ public class Collection extends BaseCard implements WithoutMaterial {
 
     public Collection() {
         super(ID, info);
-        this.cardsToPreview=new Band();
-        relatedCards.add(new Band());
-        relatedCards.add(new Stone());
-        relatedCards.add(new Flower());
+        this.cardsToPreview=new Green();
+        relatedCards.add(new Green());
+        relatedCards.add(new Yellow());
+        relatedCards.add(new Red());
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> cardGroup=new ArrayList<>();
-        cardGroup.add(new Band());
-        cardGroup.add(new Stone());
-        cardGroup.add(new Flower());
+        cardGroup.add(new Green());
+        cardGroup.add(new Yellow());
+        cardGroup.add(new Red());
 
         if (this.upgraded){
             for (AbstractCard card : cardGroup){

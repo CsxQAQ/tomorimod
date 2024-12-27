@@ -70,9 +70,9 @@ public class CraftingRecipes implements Clearable {
     }
 
     private ArrayList<String> materials=new ArrayList<>(Arrays.asList(
-            "stone",
-            "band",
-            "flower"
+            "yellow",
+            "green",
+            "red"
     ));
 
     private List<String> songNames = Arrays.asList(
@@ -128,9 +128,9 @@ public class CraftingRecipes implements Clearable {
                 cardMaterialHashMap.put(card.cardID,getRandomMaterials());
             }
         }
-        cardMaterialHashMap.put(makeID("Stone"),"stone");
-        cardMaterialHashMap.put(makeID("Band"),"band");
-        cardMaterialHashMap.put(makeID("Flower"),"flower");
+        cardMaterialHashMap.put(makeID("Yellow"),"yellow");
+        cardMaterialHashMap.put(makeID("Green"),"green");
+        cardMaterialHashMap.put(makeID("Red"),"red");
 
         while(cardMaterialHashMap.get(makeID("Strike")).equals(cardMaterialHashMap.get(makeID("Defend")))){
             cardMaterialHashMap.put(makeID("Strike"),getRandomMaterials());

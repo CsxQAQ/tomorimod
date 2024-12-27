@@ -9,10 +9,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorinmod.cards.BaseCard;
 import tomorinmod.character.MyCharacter;
 import tomorinmod.util.CardStats;
-import tomorinmod.util.CustomUtils;
 
-public class Stone extends BaseCard {
-    public static final String ID = makeID(Stone.class.getSimpleName());
+public class Yellow extends BaseCard {
+    public static final String ID = makeID(Yellow.class.getSimpleName());
     private static final CardStats info = new CardStats(
             MyCharacter.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -24,7 +23,7 @@ public class Stone extends BaseCard {
     private static final int DAMAGE = 6;
     private static final int UPG_DAMAGE = 3;
 
-    public Stone() {
+    public Yellow() {
         super(ID, info);
         setDamage(DAMAGE, UPG_DAMAGE);
         //CustomUtils.setRareBanner(this);
@@ -37,7 +36,7 @@ public class Stone extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Stone();
+        return new Yellow();
     }
 
 }
