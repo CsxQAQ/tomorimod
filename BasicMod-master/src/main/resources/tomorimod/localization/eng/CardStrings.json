@@ -306,9 +306,9 @@
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
-    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，造成等同于目标身上负面效果数量的伤害。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 。造成 !D! 点伤害，目标每有一层负面效果额外造成一点伤害。"
+      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，造成等同于目标身上负面效果数量的伤害。"
     ]
   },
   "${modID}:Lunfuyu": {

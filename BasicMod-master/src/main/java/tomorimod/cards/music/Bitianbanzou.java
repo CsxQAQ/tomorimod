@@ -31,29 +31,35 @@ public class Bitianbanzou extends BaseMusicCard {
     }
 
 
-    private final static int DAMAGE_COMMON = 6;
-    private final static int UPG_DAMAGE_COMMON = 3;
+    private final static int DAMAGE_COMMON = 0;
+    private final static int UPG_DAMAGE_COMMON = 0;
     private final static int BLOCK_COMMON = 0;
     private final static int UPG_BLOCK_COMMON = 0;
-    private final static int MAGIC_COMMON = 3;
-    private final static int UPG_MAGIC_COMMON = 2;
+    private final static int MAGIC_COMMON = 5;
+    private final static int UPG_MAGIC_COMMON = 8;
 
-    private final static int DAMAGE_UNCOMMON = 9;
-    private final static int UPG_DAMAGE_UNCOMMON = 4;
+    private final static int DAMAGE_UNCOMMON = 0;
+    private final static int UPG_DAMAGE_UNCOMMON = 0;
     private final static int BLOCK_UNCOMMON = 0;
     private final static int UPG_BLOCK_UNCOMMON = 0;
-    private final static int MAGIC_UNCOMMON = 5;
-    private final static int UPG_MAGIC_UNCOMMON = 3;
+    private final static int MAGIC_UNCOMMON = 8;
+    private final static int UPG_MAGIC_UNCOMMON = 12;
 
-    private final static int DAMAGE_RARE = 9;
-    private final static int UPG_DAMAGE_RARE = 4;
+    private final static int DAMAGE_RARE = 0;
+    private final static int UPG_DAMAGE_RARE = 0;
     private final static int BLOCK_RARE = 0;
     private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 5;
-    private final static int UPG_MAGIC_RARE = 3;
+    private final static int MAGIC_RARE = 8;
+    private final static int UPG_MAGIC_RARE = 12;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+
+        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
+        }
+
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
@@ -64,58 +70,16 @@ public class Bitianbanzou extends BaseMusicCard {
                     }
                 }
 
-                int extraDamage = negativeEffectsCount;
-                switch (musicRarity){
-                    case RARE:
-                        baseDamage=DAMAGE_RARE+timesUpgraded*UPG_DAMAGE_RARE+extraDamage;
-                        break;
-                    case UNCOMMON:
-                        baseDamage=DAMAGE_UNCOMMON+timesUpgraded*UPG_DAMAGE_UNCOMMON+extraDamage;
-                        break;
-                    case COMMON:
-                        baseDamage=DAMAGE_COMMON+timesUpgraded*UPG_DAMAGE_COMMON+extraDamage;
-                        break;
-                }
+                baseDamage = negativeEffectsCount;
 
-                applyPowers();
+                calculateCardDamage(m);
 
                 addToBot(new DamageAction(m,  new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL)
                         , AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 isDone=true;
             }
         });
-        addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
-        if(musicRarity.equals(MusicRarity.RARE)){
-            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, magicNumber, false), magicNumber));
-        }
 
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster m) {
-        super.calculateCardDamage(m);
-
-        int negativeEffectsCount = 0;
-        if (m != null && m.powers != null) {
-            for (AbstractPower power : m.powers) {
-                if (power.type == AbstractPower.PowerType.DEBUFF) {
-                    negativeEffectsCount += power.amount;
-                }
-            }
-        }
-
-        int extraDamage = negativeEffectsCount;
-        switch (musicRarity) {
-            case RARE:
-                this.damage = this.damage + extraDamage;
-                break;
-            case UNCOMMON:
-                this.damage = this.damage + extraDamage;
-                break;
-            case COMMON:
-                this.damage = this.damage + extraDamage;
-                break;
-        }
 
     }
 
