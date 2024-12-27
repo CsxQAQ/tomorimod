@@ -19,9 +19,9 @@
   },
   "${modID}:BlacklistYou": {
     "NAME": "我要拉黑你",
-    "DESCRIPTION": "消灭一个敌人，对boss类敌人无效。 tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "消灭一名敌人，对boss无效。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "消灭所有敌人，对boss类敌人无效。 tomorimod:瞬间 ， 消耗 。"
+      "消灭所有敌人，对boss无效。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:InterestingGirl": {
@@ -33,16 +33,16 @@
   },
   "${modID}:FallingOnFlatGround": {
     "NAME": "平地摔",
-    "DESCRIPTION": "选择一张手牌，将其从手牌和牌组中移除， tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "选择一张手牌，将其从手牌和牌组中移除。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "选择一张手牌，将其打出后从手牌和牌组中移除， tomorimod:瞬间 ， 消耗 。"
+      "选择一张手牌，将其打出后从手牌和牌组中移除。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:WishYouHappiness": {
     "NAME": "祝你幸福",
-    "DESCRIPTION": "获得 !B! 点 格挡，获得 !M! 点 tomorimod:临时荆棘 。",
+    "DESCRIPTION": "获得 !B! 点 格挡 ，获得 !M! 层 tomorimod:临时荆棘 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "获得 !B! 点 格挡，获得 !M! 点 荆棘 。"
+      "获得 !B! 点 格挡 ，获得 !M! 层 荆棘 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:WhyPerformChunriying": {
@@ -55,16 +55,16 @@
   },
   "${modID}:NeverHappy": {
     "NAME": "从没觉得开心过",
-    "DESCRIPTION": "给予所有敌人 !M! 易伤 ， tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "给予所有敌人 !M! 层 易伤 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "给予所有敌人 !M! 易伤 和 脆弱 ， tomorimod:瞬间 ， 消耗 。"
+      "给予所有敌人 !M! 层 易伤 和 脆弱 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:Pressure": {
     "NAME": "压力",
-    "DESCRIPTION": "造成 !D! 点伤害， tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "造成 !D! 点伤害。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "造成 !D! 点伤害，2个回合后再对所有敌人造成 !D! 点伤害， tomorimod:瞬间 ， 消耗 。"
+      "造成 !D! 点伤害，2个回合后再对所有敌人造成 !D! 点伤害。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:HolyAnon": {
@@ -96,7 +96,7 @@
   },
   "${modID}:Recycle": {
     "NAME": "回收",
-    "DESCRIPTION": "使用后移除，将消耗牌洗牌后加入抽牌堆（状态牌和诅咒牌除外）。"
+    "DESCRIPTION": "使用后移除。将消耗牌堆洗牌后加入抽牌堆（ 状态 牌和 诅咒 牌除外）。"
   },
   "${modID}:YourTenDraws": {
     "NAME": "十连抽",
@@ -110,17 +110,17 @@
     "DESCRIPTION": " 消耗 ，以随机的顺序使用所有具有 tomorimod:形态 的牌。"
   },
   "${modID}:Grit": {
-    "NAME": "坚毅",
+    "NAME": "认真",
     "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !M! 点 格挡 。"
   },
   "${modID}:PoemInsteadOfSong": {
     "NAME": "以诗代歌",
-    "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得一点 tomorimod:闪耀 。"
+    "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得1层 tomorimod:闪耀 。"
   },
 
   "${modID}:BlankPaper": {
     "NAME": "空白的书页",
-    "DESCRIPTION": " 消耗 ， 选择一名意图为攻击的敌人，将一张等同于其伤害和攻击次数的攻击牌置入手牌。"
+    "DESCRIPTION": "选择一名意图为攻击的敌人，将一张等同于其伤害和攻击次数的攻击牌置入手牌。 消耗 。"
   },
   "${modID}:BlankPaperAttack": {
     "NAME": "书页",
@@ -132,7 +132,7 @@
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
-    "DESCRIPTION": " 消耗 ， tomorimod:瞬间 ，获得敌人数量 !M! 倍的金币。"
+    "DESCRIPTION": "获得敌人数量 !M! 倍的金币。 消耗 ， tomorimod:瞬间 。"
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
@@ -144,7 +144,7 @@
   },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
-    "DESCRIPTION": "获得 !M! 点 tomorimod:重力 ，抽等同于 tomorimod:重力 数量的卡牌。"
+    "DESCRIPTION": "获得 !M! 层 tomorimod:重力 ，抽等同于 tomorimod:重力 数量的卡牌。"
   },
   "${modID}:ShineHugMe": {
     "NAME": "光芒拥我入怀",
@@ -152,7 +152,7 @@
   },
   "${modID}:LastGentle": {
     "NAME": "最后的温柔",
-    "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互相转换。"
+    "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互换。"
   },
   "${modID}:AstronomyMinister": {
     "NAME": "天文部长",
@@ -164,7 +164,7 @@
   },
   "${modID}:DomainExpansion": {
     "NAME": "领域展开",
-    "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 点 tomorimod:重力 。"
+    "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:Mascot": {
     "NAME": "吉祥物",
@@ -198,9 +198,9 @@
   },
   "${modID}:LightAndShadow": {
     "NAME": "光与影",
-    "DESCRIPTION": " 消耗 ，获得 !M! 点 tomorimod:重力 ，当 tomorimod:闪耀 层数多于 tomorimod:重力 改为获得 tomorimod:闪耀 。",
+    "DESCRIPTION": " 消耗 ，获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，获得 !M! 点 tomorimod:闪耀 ，当 tomorimod:重力 多余 tomorimod:闪耀 时 改为获得 tomorimod:重力 。"
+      " 消耗 ，获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
     ]
   },
   "${modID}:GravityCapture": {
@@ -209,19 +209,19 @@
   },
   "${modID}:Yellow": {
     "NAME": "漂亮的石头",
-    "DESCRIPTION": "造成 !D! 点伤害，拥有最高等级的黄色 tomorimod:素材 。"
+    "DESCRIPTION": "造成 !D! 点伤害。拥有最高等级的黄色 tomorimod:素材 。"
   },
   "${modID}:Red": {
     "NAME": "花瓣",
-    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] ，拥有最高等级的红色 tomorimod:素材 。"
+    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] 。拥有最高等级的红色 tomorimod:素材 。"
   },
   "${modID}:Green": {
     "NAME": "企鹅创可贴",
-    "DESCRIPTION": "获得 !B! 点 格挡 ，拥有最高等级的绿色 tomorimod:素材 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 。拥有最高等级的绿色 tomorimod:素材 。"
   },
   "${modID}:AquariumPass": {
     "NAME": "水族馆年票",
-    "DESCRIPTION": " 保留 ，抽一张牌，可以替代任意颜色的 tomorimod:素材 。"
+    "DESCRIPTION": " 保留 。抽一张牌，可以替代任意颜色的 tomorimod:素材 。"
   },
 
   "${modID}:TomoriApotheosis": {
@@ -233,9 +233,9 @@
   },
   "${modID}:BandPractise": {
     "NAME": "乐队练习",
-    "DESCRIPTION": "将你手牌中的一张 tomorimod:音乐 牌复制一张。",
+    "DESCRIPTION": "选择手牌中的一张 tomorimod:音乐 牌进行复制。",
     "EXTENDED_DESCRIPTION": [
-      "将你手牌中的一张 tomorimod:音乐 牌复制一张，并提升其稀有度。"
+      "选择手牌中的一张 tomorimod:音乐 牌进行复制，并提升其稀有度。"
     ]
   },
   "${modID}:Upset": {
@@ -244,7 +244,7 @@
   },
   "${modID}:MusicComposition": {
     "NAME": "作词",
-    "DESCRIPTION": "固有 ， 保留 ， 使用后移除 ，使用卡牌时获得其对应的 tomorimod:素材 。"
+    "DESCRIPTION": "固有 ， 保留 ， 使用后移除 。进入 tomorimod:音乐 创作模式。"
   },
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
@@ -252,7 +252,7 @@
   },
   "${modID}:SmoothCombo": {
     "NAME": "丝滑小连招",
-    "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌。"
+    "DESCRIPTION": "记录手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌。"
   },
 
   "${modID}:Revolution": {
@@ -261,9 +261,9 @@
   },
   "${modID}:WhiteMoonlight": {
     "NAME": "白月光",
-    "DESCRIPTION": " 消耗 ， tomorimod:瞬间 ，恢复当前损失生命值一半的生命值，移除所有的 tomorimod:重力 。",
+    "DESCRIPTION": "恢复当前损失生命值一半的生命值，移除所有的 tomorimod:重力 。 消耗 ， tomorimod:瞬间 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ， tomorimod:瞬间 ，恢复所有生命值，移除所有的 tomorimod:重力 。"
+      "恢复所有生命值，移除所有的 tomorimod:重力 。 消耗 ， tomorimod:瞬间 。"
     ]
   },
   "${modID}:MygoTogether": {
@@ -287,9 +287,9 @@
   },
   "${modID}:Saiyaku": {
     "NAME": "糟透了",
-    "DESCRIPTION": "将10张 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。",
+    "DESCRIPTION": "将10张 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "将10张升级后的 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。"
+      "将10张升级后的 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:HaTaki": {
@@ -302,7 +302,7 @@
   },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
-    "DESCRIPTION": "将该牌的复制置入你的手牌，然后抽一张牌。"
+    "DESCRIPTION": "使用后回到手牌。抽一张牌。"
   },
   "${modID}:Collection": {
     "NAME": "收集",
@@ -310,7 +310,7 @@
   },
   "${modID}:Compete": {
     "NAME": "对邦",
-    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成伤害和受到来自该目标的伤害翻倍。"
+    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成的伤害和受到来自该目标的伤害翻倍。"
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",

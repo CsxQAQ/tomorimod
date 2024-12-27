@@ -17,7 +17,7 @@ public class Grit extends BaseCard {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     private final int BLOCK=1;
