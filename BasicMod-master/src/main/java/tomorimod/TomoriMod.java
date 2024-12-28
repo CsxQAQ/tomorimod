@@ -17,7 +17,7 @@ import tomorimod.consoles.ShowRecipesCommon;
 import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
-import tomorimod.monsters.AnonMonster;
+import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
@@ -53,6 +53,7 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 上传工坊
 //TODO 击败具有对邦的敌人获得5点闪耀
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次
+//TODO 变革消耗所有的手牌，获得等量的闪耀
 @SpireInitializer
 public class TomoriMod implements
 

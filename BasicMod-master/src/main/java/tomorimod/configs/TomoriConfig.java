@@ -56,12 +56,12 @@ public class TomoriConfig {
                  600.0F,
                  Settings.CREAM_COLOR,
                  FontHelper.charDescFont,
-                 tutorialEnabled.get(),
+                 ascensionUnlocked.get(),
                  settingsPanel,
                  label -> {},
                  button -> {
-                     tutorialEnabled.set(button.enabled);
-                     config.setBool("ascension-unlock", tutorialEnabled.get());
+                     ascensionUnlocked.set(button.enabled);
+                     config.setBool("ascension-unlock", ascensionUnlocked.get());
                      save();
                  }
          );
@@ -73,12 +73,12 @@ public class TomoriConfig {
                 500.0F,
                 Settings.CREAM_COLOR,
                 FontHelper.charDescFont,
-                tutorialEnabled.get(),
+                onlyModBossEnabled.get(),
                 settingsPanel,
                 label -> {},
                 button -> {
-                    tutorialEnabled.set(button.enabled);
-                    config.setBool("onlyModBoss-enabled", tutorialEnabled.get());
+                    onlyModBossEnabled.set(button.enabled);
+                    config.setBool("onlyModBoss-enabled", onlyModBossEnabled.get());
                     save();
                 }
         );

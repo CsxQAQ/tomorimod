@@ -51,7 +51,7 @@ public class BossGeneratePatch {
             if (TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 List<String> customBosses = BossGeneratePatch.getBossKeys(AbstractDungeon.id);
                 if (customBosses != null && !customBosses.isEmpty()) {
-                    //AbstractDungeon.bossList = new ArrayList<>();
+                    AbstractDungeon.bossList = new ArrayList<>();
                     AbstractDungeon.bossList.addAll(customBosses);
                     Collections.shuffle(AbstractDungeon.bossList, new Random(AbstractDungeon.monsterRng.randomLong()));
                 }

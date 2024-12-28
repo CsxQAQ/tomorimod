@@ -12,7 +12,7 @@
       "~我的力量~ NL ~有人能及啊……~"
     ]
   },
-  "AnonMonster": {
+  "${modID}:AnonMonster": {
     "MOVES": [
       "",
       "",
@@ -23,6 +23,17 @@
       "我是不被需要的吧",
       "就和soyo桑一起组乐队吧",
       "那素世同学怎么办"
+    ]
+  },
+  "${modID}:ChordMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "和弦",
+    "DIALOG": [
+      "",
+      ""
     ]
   }
 }
