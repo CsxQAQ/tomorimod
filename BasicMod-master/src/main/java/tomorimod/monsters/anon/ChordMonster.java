@@ -46,6 +46,7 @@ public class ChordMonster extends CustomMonster {
     private static String cChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_c"+".png");
 
     public int pos=-1;
+    public ChordType chordType;
 
     public ChordMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -55,11 +56,8 @@ public class ChordMonster extends CustomMonster {
         this.dialogX = this.hb_x + -50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
 
-
-
-
-        this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));
     }
 
     public void setChordName(int rand){
@@ -67,18 +65,22 @@ public class ChordMonster extends CustomMonster {
             case 0:
                 img= ImageMaster.loadImage(gChordURL);
                 name="G和弦";
+                chordType=ChordType.G;
                 break;
             case 1:
                 img=ImageMaster.loadImage(fChordURL);
                 name="F和弦";
+                chordType=ChordType.F;
                 break;
             case 2:
                 img=ImageMaster.loadImage(cChordURL);
                 name="C和弦";
+                chordType=ChordType.C;
                 break;
             default:
                 img = ImageMaster.loadImage(cChordURL); // 默认值
                 name = "C和弦";
+                chordType=ChordType.C;
                 break;
 
         }
@@ -139,7 +141,12 @@ public class ChordMonster extends CustomMonster {
         super.die();
     }
 
-
+    public enum ChordType {
+        G, F, C
+    }
 }
+
+
+
 
 

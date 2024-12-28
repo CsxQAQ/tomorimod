@@ -54,6 +54,7 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 击败具有对邦的敌人获得5点闪耀
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次
 //TODO 变革消耗所有的手牌，获得等量的闪耀
+//TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 @SpireInitializer
 public class TomoriMod implements
 

@@ -3,6 +3,9 @@ package tomorimod.monsters.anon;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+import java.util.ArrayList;
 
 public class CallChordAction extends AbstractGameAction {
 
@@ -24,7 +27,27 @@ public class CallChordAction extends AbstractGameAction {
             }
 
             if (chordMonster != null) {
-                addToBot(new SpawnMonsterAction(chordMonster, false));
+                addToTop(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        ArrayList<AbstractMonster> mons = AbstractDungeon.getMonsters().monsters;
+                        AbstractMonster anonMonster = null;
+
+                        for (AbstractMonster m : mons) {
+                            if (m instanceof AnonMonster) {
+                                anonMonster = m;
+                                break;
+                            }
+                        }
+
+                        if (anonMonster != null) {
+                            mons.remove(anonMonster);
+                            mons.add(anonMonster);
+                        }
+                        isDone=true;
+                    }
+                });
+                addToTop(new SpawnMonsterAction(chordMonster, false));
             }
         }
         isDone = true;

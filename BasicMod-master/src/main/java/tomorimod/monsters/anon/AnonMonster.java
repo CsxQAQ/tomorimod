@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.powers.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import static tomorimod.TomoriMod.makeID;
 import static tomorimod.TomoriMod.imagePath;
@@ -43,14 +44,14 @@ public class AnonMonster extends CustomMonster {
     private static final float HB_W = 230.0F;
     private static final float HB_H = 240.0F;
 
-    // 定义动作 ID（byte 类型即可）
-    private static final byte RITUAL_MOVE = 1;       // 第一回合上仪式
-    private static final byte STRENGTH_ATTACK = 2;   // 之后的回合，加力量并攻击
     private static final String imgPath=imagePath("monsters/"+AnonMonster.class.getSimpleName()+".png");
 
     public static final float DRAW_X=1400.0F;
     public static final float DRAW_Y=450.0F;
 
+    private boolean isAllHave=false;
+    private boolean isThree=false;
+    private boolean isAllSame=false;
 
     // 给自己做个标记，是否已经使用过 Ritual
     private boolean hasUsedRitual = false;
@@ -73,6 +74,13 @@ public class AnonMonster extends CustomMonster {
 
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
+
+        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
+
+        this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
+
+        this.damage.add(new DamageInfo(this, 30, DamageInfo.DamageType.NORMAL));
+
     }
 
     public void usePreBattleAction() {
@@ -83,47 +91,91 @@ public class AnonMonster extends CustomMonster {
     @Override
     public void takeTurn() {
         switch (this.nextMove) {
-            case RITUAL_MOVE:
-                AbstractDungeon.actionManager.addToBottom(
-                        new ApplyPowerAction(this, this, new RitualPower(this, 1, false), 1)
-                );
-                // 标记已经使用过 Ritual
-                this.hasUsedRitual = true;
-                break;
-
-            case STRENGTH_ATTACK:
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this,
-                        this, new StrengthPower(this, 2), 2));
-
-                // 再对玩家进行一次攻击
+            case 0:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                                 this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
+            case 1:
+                for(int i=0;i<2;i++){
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
+            case 2:
+                for(int i=0;i<3;i++){
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
+            case 3:
+                for(int i=0;i<5;i++){
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
+        }
+
+        moveLogic();
+
+        ArrayList<ChordMonster> chordMonsters = new ArrayList<>();
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (m instanceof ChordMonster && !m.isDeadOrEscaped()) {
+                chordMonsters.add((ChordMonster) m);
+            }
+        }
+
+        // （3）如果正好 >= 3，就触发“吸收”效果
+        if (chordMonsters.size() >= 3) {
+            AbstractDungeon.actionManager.addToBottom(new AbsorbChordMonstersAction(this, chordMonsters));
         }
 
         // 回合结束后，准备下一次动作
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
-    @Override
-    public void update(){
-        super.update();
-//        int t=0;
-//        ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
-//        for(AbstractMonster m:monsters){
-//            if(m.currentHealth>0&&m instanceof ChordMonster){
-//                t++;
-//            }
-//        }
-//        chordNum=t;
+    public void moveLogic(){
+        isAllHave=false;
+        isThree=false;
+        isAllSame=false;
+
+        ArrayList<ChordMonster> chordMonsters = new ArrayList<>();
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (m instanceof ChordMonster && !m.isDeadOrEscaped()) {
+                chordMonsters.add((ChordMonster) m);
+            }
+        }
+
+        if (chordMonsters.size() < 3) {
+            return;
+        }
+
+        HashSet<ChordMonster.ChordType> typeSet = new HashSet<>();
+        for (ChordMonster cm : chordMonsters) {
+            typeSet.add(cm.chordType);
+        }
+
+        if(typeSet.size()==1){
+            isAllSame=true;
+        }else if (typeSet.size()==2){
+            isThree=true;
+        }else{
+            isAllHave=true;
+        }
     }
 
     @Override
     protected void getMove(int num) {
-        if (!this.hasUsedRitual) {
-            setMove(MOVES[0], RITUAL_MOVE, Intent.BUFF);
-        } else {
-            setMove(MOVES[1], STRENGTH_ATTACK, Intent.ATTACK_BUFF,
+        if(isThree){
+            setMove(MOVES[1], (byte)1, Intent.ATTACK,
+                    this.damage.get(1).base, 2, true);
+        }else if(isAllSame){
+            setMove(MOVES[2], (byte)2, Intent.ATTACK,
+                    this.damage.get(2).base, 3, true);
+        }else if(isAllHave){
+            setMove(MOVES[3], (byte)3, Intent.ATTACK,
+                    this.damage.get(3).base, 5, true);
+        }else{
+            setMove(MOVES[0], (byte)0, Intent.ATTACK,
                     this.damage.get(0).base, 1, false);
         }
     }
