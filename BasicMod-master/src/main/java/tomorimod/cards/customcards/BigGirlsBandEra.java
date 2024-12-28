@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.BigGirlsBandEraPower;
 import tomorimod.powers.custompowers.BigGirlsBandEraUpgradedPower;
 import tomorimod.util.CardStats;
@@ -15,7 +15,7 @@ public class BigGirlsBandEra extends BaseCard {
 
     public static final String ID = makeID(BigGirlsBandEra.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,

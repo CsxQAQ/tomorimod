@@ -9,13 +9,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 public class NeverHappy extends BaseMonmentCard {
     public static final String ID = makeID(NeverHappy.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.COMMON,
             CardTarget.ALL_ENEMY,

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.forms.BaseFormCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
 
@@ -17,7 +17,7 @@ public class ChangeClothes extends BaseCard {
 
     public static final String ID = makeID(ChangeClothes.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,

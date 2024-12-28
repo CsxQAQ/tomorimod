@@ -36,21 +36,21 @@ public class Bitianbanzou extends BaseMusicCard {
     private final static int BLOCK_COMMON = 0;
     private final static int UPG_BLOCK_COMMON = 0;
     private final static int MAGIC_COMMON = 5;
-    private final static int UPG_MAGIC_COMMON = 8;
+    private final static int UPG_MAGIC_COMMON = 3;
 
     private final static int DAMAGE_UNCOMMON = 0;
     private final static int UPG_DAMAGE_UNCOMMON = 0;
     private final static int BLOCK_UNCOMMON = 0;
     private final static int UPG_BLOCK_UNCOMMON = 0;
     private final static int MAGIC_UNCOMMON = 8;
-    private final static int UPG_MAGIC_UNCOMMON = 12;
+    private final static int UPG_MAGIC_UNCOMMON = 4;
 
     private final static int DAMAGE_RARE = 0;
     private final static int UPG_DAMAGE_RARE = 0;
     private final static int BLOCK_RARE = 0;
     private final static int UPG_BLOCK_RARE = 0;
     private final static int MAGIC_RARE = 8;
-    private final static int UPG_MAGIC_RARE = 12;
+    private final static int UPG_MAGIC_RARE = 4;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

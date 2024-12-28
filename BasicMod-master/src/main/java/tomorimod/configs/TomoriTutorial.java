@@ -1,4 +1,4 @@
-package tomorimod.tutorial;
+package tomorimod.configs;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

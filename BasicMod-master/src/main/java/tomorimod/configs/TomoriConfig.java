@@ -1,8 +1,9 @@
-package tomorimod;
+package tomorimod.configs;
 
 import basemod.BaseMod;
 import basemod.ModLabeledToggleButton;
 import basemod.ModPanel;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.core.Settings;
@@ -21,6 +22,8 @@ public class TomoriConfig {
     public static String[] TEXT;
     public static String[] TOOLTIP;
     public static AtomicReference<Boolean> tutorialEnabled;
+    public static AtomicReference<Boolean> ascensionUnlocked;
+
     public static ModPanel settingsPanel;
 
     public static void settingInitialize() {
@@ -45,7 +48,25 @@ public class TomoriConfig {
                 }
         );
 
+         ModLabeledToggleButton ascensionUnlock = new ModLabeledToggleButton(
+                 TEXT[1],
+                 TOOLTIP[1],
+                 350.0F,
+                 600.0F,
+                 Settings.CREAM_COLOR,
+                 FontHelper.charDescFont,
+                 tutorialEnabled.get(),
+                 settingsPanel,
+                 label -> {},
+                 button -> {
+                     tutorialEnabled.set(button.enabled);
+                     config.setBool("ascension-unlock", tutorialEnabled.get());
+                     save();
+                 }
+         );
+
         settingsPanel.addUIElement(enableTutorial);
+        settingsPanel.addUIElement(ascensionUnlock);
         Texture badgeTexture = ImageMaster.loadImage(imagePath("badge.png"));
         BaseMod.registerModBadge(badgeTexture, "tomorimod", "csx", "", settingsPanel);
     }
@@ -53,6 +74,7 @@ public class TomoriConfig {
     private static SpireConfig makeConfig() {
         Properties defaultProperties = new Properties();
         defaultProperties.setProperty("tutorial-enabled", String.valueOf(true));
+        defaultProperties.setProperty("ascension-unlock", String.valueOf(false));
         try {
             return new SpireConfig("SakiTheSpire", "SakiTheSpire-config", defaultProperties);
         } catch (IOException var2) {
@@ -62,6 +84,7 @@ public class TomoriConfig {
 
     public static void update() {
         tutorialEnabled = new AtomicReference<>(config.getBool("tutorial-enabled"));
+        ascensionUnlocked = new AtomicReference<>(config.getBool("ascension-unlock"));
     }
 
     public static void save() {
@@ -75,10 +98,12 @@ public class TomoriConfig {
 
     static {
         TEXT = new String[]{
-                "启用提示。"
+                "启用提示。",
+                "解锁A20。"
         };
         TOOLTIP = new String[]{
-                "提示结束后将自动关闭。"
+                "提示结束后将自动关闭。",
+                "重启游戏自动生效。"
         };
     }
 }

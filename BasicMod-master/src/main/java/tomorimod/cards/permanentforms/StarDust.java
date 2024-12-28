@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.ApplyShineAction;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.monment.BaseMonmentCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.StarDustPower;
 import tomorimod.savedata.customdata.PermanentFormsSaveData;
 import tomorimod.util.CardStats;
@@ -18,7 +18,7 @@ import static tomorimod.util.CustomUtils.idToName;
 public class StarDust extends BaseCard implements PermanentFrom{
     public static final String ID = makeID(StarDust.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,

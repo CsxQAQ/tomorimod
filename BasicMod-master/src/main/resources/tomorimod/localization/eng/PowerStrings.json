@@ -20,7 +20,7 @@
   "${modID}:WeAreMygoPower": {
     "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      " #y永久形态 ，战斗胜利时，获得 #b5 点最大生命上限。"
+      " #y永久形态 ，使用 #y音乐 牌时，获得 #b5 点最大生命上限。"
     ]
   },
   "${modID}:ShineWithMePower": {

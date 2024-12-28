@@ -1,6 +1,6 @@
 package tomorimod.relics;
 
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -11,7 +11,7 @@ public class MicrophoneRelic extends BaseRelic {
     private static final RelicTier RARITY = RelicTier.STARTER; //The relic's rarity.
     private static final LandingSound SOUND = LandingSound.CLINK; //The sound played when the relic is clicked.
     public MicrophoneRelic() {
-        super(ID, NAME, MyCharacter.Meta.CARD_COLOR, RARITY, SOUND);
+        super(ID, NAME, Tomori.Meta.CARD_COLOR, RARITY, SOUND);
     }
 
 

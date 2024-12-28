@@ -5,14 +5,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.FallingOnFlatGroundAction;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 public class FallingOnFlatGround extends BaseMonmentCard {
 
     public static final String ID = makeID(FallingOnFlatGround.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,

@@ -4,9 +4,9 @@ import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.screens.NotebookScreen;
-import tomorimod.tutorial.TomoriTutorialAction;
+import tomorimod.actions.TomoriTutorialAction;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -21,7 +21,7 @@ public class NotebookRelic extends BaseRelic {
     private boolean isOpened=false;
 
     public NotebookRelic() {
-        super(ID, NAME, MyCharacter.Meta.CARD_COLOR, RARITY, SOUND);
+        super(ID, NAME, Tomori.Meta.CARD_COLOR, RARITY, SOUND);
     }
 
     @Override

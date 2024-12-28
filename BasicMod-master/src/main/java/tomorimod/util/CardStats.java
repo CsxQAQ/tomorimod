@@ -1,7 +1,7 @@
 package tomorimod.util;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 
 public class CardStats {
     public final int baseCost;
@@ -25,6 +25,6 @@ public class CardStats {
         this.cardType = cardType;
         this.cardTarget = cardTarget;
         this.cardRarity = cardRarity;
-        this.cardColor = MyCharacter.MetaMusic.CARD_COLOR;
+        this.cardColor = Tomori.MetaMusic.CARD_COLOR;
     }
 }

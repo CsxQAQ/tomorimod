@@ -2,13 +2,13 @@ package tomorimod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorimod.cards.special.SpecialCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 public class Singer extends BaseFormCard implements SpecialCard {
     public static final String ID = makeID(Singer.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.BASIC,
             CardTarget.SELF,

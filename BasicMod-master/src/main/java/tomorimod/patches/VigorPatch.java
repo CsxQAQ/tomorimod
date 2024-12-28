@@ -21,7 +21,7 @@ public class VigorPatch {
     public static SpireReturn<Void> prefix(VigorPower __instance, AbstractCard card, UseCardAction action) {
         // 如果不是攻击卡，则继续使用原本逻辑即可
         if (card.type != AbstractCard.CardType.ATTACK) {
-            return null;
+            return SpireReturn.Return();
         }
 
         // 原本的闪光特效

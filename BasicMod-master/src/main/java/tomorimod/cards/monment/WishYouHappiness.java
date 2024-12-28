@@ -7,14 +7,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ThornsPower;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.TemporaryThornsPower;
 import tomorimod.util.CardStats;
 
 public class WishYouHappiness extends BaseMonmentCard {
     public static final String ID = makeID(WishYouHappiness.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,

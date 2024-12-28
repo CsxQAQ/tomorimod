@@ -8,14 +8,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.actions.ApplyGravityAction;
 import tomorimod.cards.BaseCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 
 public class GravitySurge extends BaseCard {
     public static final String ID = makeID(GravitySurge.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,

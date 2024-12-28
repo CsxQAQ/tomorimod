@@ -55,7 +55,7 @@ import java.util.Iterator;
 import static tomorimod.TomoriMod.characterPath;
 import static tomorimod.TomoriMod.makeID;
 
-public class MyCharacter extends CustomPlayer {
+public class Tomori extends CustomPlayer {
 
     private IntangibleEffect intangibleEffect;
 
@@ -128,7 +128,7 @@ public class MyCharacter extends CustomPlayer {
         }
 
         public static void registerCharacter() {
-            BaseMod.addCharacter(new MyCharacter(), CHAR_SELECT_BUTTON, CHAR_SELECT_PORTRAIT);
+            BaseMod.addCharacter(new Tomori(), CHAR_SELECT_BUTTON, CHAR_SELECT_PORTRAIT);
         }
     }
 
@@ -204,7 +204,7 @@ public class MyCharacter extends CustomPlayer {
 
     //Actual character class code below this point
 
-    public MyCharacter() {
+    public Tomori() {
 
 
         super(getNames()[0], Meta.TOMORI,
@@ -364,7 +364,7 @@ public class MyCharacter extends CustomPlayer {
     @Override
     public AbstractPlayer newInstance() {
         //Makes a new instance of your character class.
-        return new MyCharacter();
+        return new Tomori();
     }
 
     @Override

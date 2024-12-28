@@ -1,14 +1,14 @@
 package tomorimod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 public class DomainExpansion extends BaseFormCard {
 
     public static final String ID = makeID(DomainExpansion.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,

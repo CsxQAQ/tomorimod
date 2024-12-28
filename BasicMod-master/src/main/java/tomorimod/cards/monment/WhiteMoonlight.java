@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 
 public class WhiteMoonlight extends BaseMonmentCard {
     public static final String ID = makeID(WhiteMoonlight.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.actions.ApplyGravityAction;
 import tomorimod.actions.ApplyShineAction;
 import tomorimod.cards.BaseCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
@@ -17,7 +17,7 @@ import tomorimod.util.CardStats;
 public class LightAndShadow extends BaseCard {
     public static final String ID = makeID(LightAndShadow.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,

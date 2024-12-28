@@ -2,7 +2,7 @@ package tomorimod.relics;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -16,7 +16,7 @@ public class SystemRelic extends BaseRelic {
 
 
     public SystemRelic() {
-        super(ID, NAME, MyCharacter.Meta.CARD_COLOR, RARITY, SOUND);
+        super(ID, NAME, Tomori.Meta.CARD_COLOR, RARITY, SOUND);
     }
 
 

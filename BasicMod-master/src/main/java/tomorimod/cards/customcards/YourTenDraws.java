@@ -10,7 +10,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.music.Chunriying;
 import tomorimod.cards.special.SpecialCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
 
@@ -20,7 +20,7 @@ public class YourTenDraws extends BaseCard {
 
     public static final String ID = makeID(YourTenDraws.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,

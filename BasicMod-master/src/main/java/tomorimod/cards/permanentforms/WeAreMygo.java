@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.monment.BaseMonmentCard;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.WeAreMygoPower;
 import tomorimod.savedata.customdata.PermanentFormsSaveData;
 import tomorimod.util.CardStats;
@@ -17,7 +17,7 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
 
     public static final String ID = makeID(WeAreMygo.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            MyCharacter.Meta.CARD_COLOR,
+            Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,

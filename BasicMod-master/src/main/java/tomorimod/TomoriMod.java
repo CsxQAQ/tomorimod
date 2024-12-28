@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.special.*;
-import tomorimod.character.MyCharacter;
+import tomorimod.character.Tomori;
+import tomorimod.configs.TomoriConfig;
+import tomorimod.configs.UnlockedAscension;
 import tomorimod.consoles.IncreaseRarityCommon;
 import tomorimod.consoles.ShowRecipesCommon;
 import tomorimod.events.SystemEvent;
@@ -40,15 +42,20 @@ import org.scannotation.AnnotationDB;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static tomorimod.character.MyCharacter.Meta.CARD_COLOR;
+import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 
 //TODO 所有对象都判断是否为null
 
 //TODO 特效变革
 
-//TODO 碧天伴走
+//TODO 诗超绊升级没加攻击bug
 //TODO 平衡性调整
 //TODO 上传工坊
+//TODO 春日影升级不加回的血
+//TODO musicupgrade什么的没用
+//TODO 音乐牌还是有升级复制bug
+//TODO 击败具有对邦的敌人获得5点闪耀
+//TODO 削弱认真，我们是mygo每场战斗最多生效3次
 @SpireInitializer
 public class TomoriMod implements
 
@@ -113,8 +120,8 @@ public class TomoriMod implements
     public static void initialize() {
         new TomoriMod();
 
-        MyCharacter.Meta.registerColor();
-        MyCharacter.MetaMusic.registerColor();
+        Tomori.Meta.registerColor();
+        Tomori.MetaMusic.registerColor();
 
         //在这里注册监视器
         receiveMonitor();
@@ -142,6 +149,7 @@ public class TomoriMod implements
         ConsoleCommand.addCommand("recipe", ShowRecipesCommon.class);
 
         TomoriConfig.settingInitialize();
+        UnlockedAscension.unlockedAscension();
         //This loads the image used as an icon in the in-game mods menu.
         //Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
         //Set up the mod information displayed in the in-game mods menu.
@@ -308,7 +316,7 @@ public class TomoriMod implements
 
     @Override
     public void receiveEditCharacters() {
-        MyCharacter.Meta.registerCharacter();
+        Tomori.Meta.registerCharacter();
     }
 
     @Override

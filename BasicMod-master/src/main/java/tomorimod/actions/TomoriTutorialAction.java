@@ -1,9 +1,10 @@
-package tomorimod.tutorial;
+package tomorimod.actions;
 
 import basemod.ModLabeledToggleButton;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import tomorimod.TomoriConfig;
+import tomorimod.configs.TomoriConfig;
+import tomorimod.configs.TomoriTutorial;
 
 import java.io.IOException;
 
