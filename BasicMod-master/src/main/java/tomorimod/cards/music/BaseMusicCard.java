@@ -19,9 +19,9 @@ import static tomorimod.TomoriMod.imagePath;
 
 public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial {
 
-    protected int musicUpgradeDamage;
-    protected int musicUpgradeBlock;
-    protected int musicUpgradeMagic;
+    //protected int musicUpgradeDamage;
+    //protected int musicUpgradeBlock;
+    //protected int musicUpgradeMagic;
 
     private String idForShow;
 
@@ -40,9 +40,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 imagePath("character/specialcardback/music_cardback_p.png"));
 
         //只是为了正确显示
-        setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
-        setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
-        setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
+//        setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
+//        setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
+//        setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
         dataInfoInitialize();
         updateDescription();
     }
@@ -143,6 +143,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             }
         }
         musicCard.dataInfoInitialize();
+        musicCard.upgraded=false;
         for(int i = 0; i < this.timesUpgraded; ++i) {
             musicCard.upgrade();
         }
@@ -155,19 +156,25 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     @Override
     public void upgrade() {
-        if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomoriApotheosisPower"))) {            this.upgradeDamage(musicUpgradeDamage);
-            this.upgradeDamage(musicUpgradeDamage);
-            this.upgradeBlock(musicUpgradeBlock);
-            this.upgradeMagicNumber(musicUpgradeMagic);
+        if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomoriApotheosisPower"))) {
+//            this.upgradeDamage(musicUpgradeDamage);
+//            this.upgradeBlock(musicUpgradeBlock);
+//            this.upgradeMagicNumber(musicUpgradeMagic);
+            this.upgradeDamage(damageUpgrade);
+            this.upgradeBlock(blockUpgrade);
+            this.upgradeMagicNumber(magicUpgrade);
             ++this.timesUpgraded;
             this.upgraded = true;
             this.name = cardStrings.NAME + "+" + this.timesUpgraded;
             this.initializeTitle();
         }else{
             if (!this.upgraded) {
-                this.upgradeDamage(musicUpgradeDamage);
-                this.upgradeBlock(musicUpgradeBlock);
-                this.upgradeMagicNumber(musicUpgradeMagic);
+//                this.upgradeDamage(musicUpgradeDamage);
+//                this.upgradeBlock(musicUpgradeBlock);
+//                this.upgradeMagicNumber(musicUpgradeMagic);
+                this.upgradeDamage(damageUpgrade);
+                this.upgradeBlock(blockUpgrade);
+                this.upgradeMagicNumber(magicUpgrade);
                 upgradeName();
             }
         }
@@ -204,9 +211,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
                 setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
                 setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
-                musicUpgradeDamage = numsInfo.commonUpgDamage;
-                musicUpgradeBlock = numsInfo.commonUpgBlock;
-                musicUpgradeMagic = numsInfo.commonUpgMagic;
+//                musicUpgradeDamage = numsInfo.commonUpgDamage;
+//                musicUpgradeBlock = numsInfo.commonUpgBlock;
+//                musicUpgradeMagic = numsInfo.commonUpgMagic;
 
                 this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
                 break;
@@ -214,9 +221,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 setDamage(numsInfo.unCommonDamage, numsInfo.unCommonUpgDamage);
                 setBlock(numsInfo.unCommonBlock, numsInfo.unCommonUpgBlock);
                 setMagic(numsInfo.unCommonMagic, numsInfo.unCommonUpgMagic);
-                musicUpgradeDamage = numsInfo.unCommonUpgDamage;
-                musicUpgradeBlock = numsInfo.unCommonUpgBlock;
-                musicUpgradeMagic = numsInfo.unCommonUpgMagic;
+//                musicUpgradeDamage = numsInfo.unCommonUpgDamage;
+//                musicUpgradeBlock = numsInfo.unCommonUpgBlock;
+//                musicUpgradeMagic = numsInfo.unCommonUpgMagic;
 
                 this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
                 break;
@@ -224,9 +231,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 setDamage(numsInfo.rareDamage, numsInfo.rareUpgDamage);
                 setBlock(numsInfo.rareBlock, numsInfo.rareUpgBlock);
                 setMagic(numsInfo.rareMagic, numsInfo.rareUpgMagic);
-                musicUpgradeDamage = numsInfo.rareUpgDamage;
-                musicUpgradeBlock = numsInfo.rareUpgBlock;
-                musicUpgradeMagic = numsInfo.rareUpgMagic;
+//                musicUpgradeDamage = numsInfo.rareUpgDamage;
+//                musicUpgradeBlock = numsInfo.rareUpgBlock;
+//                musicUpgradeMagic = numsInfo.rareUpgMagic;
 
                 this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
                 break;
