@@ -17,6 +17,8 @@ import tomorimod.consoles.ShowRecipesCommon;
 import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
+import tomorimod.monsters.AnonMonster;
+import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
 import tomorimod.rewards.*;
@@ -47,13 +49,8 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 所有对象都判断是否为null
 
 //TODO 特效变革
-
-//TODO 诗超绊升级没加攻击bug
 //TODO 平衡性调整
 //TODO 上传工坊
-//TODO 春日影升级不加回的血
-//TODO musicupgrade什么的没用
-//TODO 音乐牌还是有升级复制bug
 //TODO 击败具有对邦的敌人获得5点闪耀
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次
 @SpireInitializer
@@ -142,6 +139,7 @@ public class TomoriMod implements
         receiveReward();
         receiveScreen();
         receiveEvent();
+        receiveMonstor();
 
         RegisterSaveData.saveData();
 
@@ -158,6 +156,13 @@ public class TomoriMod implements
         //If you want to set up a config panel, that will be done here.
         //The Mod Badges page has a basic example of this, but setting up config is overall a bit complex.
         //BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+    }
+
+    private void receiveMonstor() {
+        BaseMod.addMonster(AnonMonster.ID, () -> new AnonMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", AnonMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
+        .getSimpleName() + ".png", imagePath("monsters/mapiconoutline/") + AnonMonster.class
+        .getSimpleName() + ".png");
     }
 
 
@@ -212,6 +217,9 @@ public class TomoriMod implements
                 localizationPath(lang, "UIStrings.json"));
         BaseMod.loadCustomStringsFile(TutorialStrings.class,
                 localizationPath(lang, "TutorialStrings.json"));
+        BaseMod.loadCustomStringsFile(MonsterStrings.class,
+                localizationPath(lang, "TutorialStrings.json"));
+
     }
 
     @Override

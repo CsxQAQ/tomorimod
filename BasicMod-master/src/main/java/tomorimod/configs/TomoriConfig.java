@@ -23,6 +23,7 @@ public class TomoriConfig {
     public static String[] TOOLTIP;
     public static AtomicReference<Boolean> tutorialEnabled;
     public static AtomicReference<Boolean> ascensionUnlocked;
+    public static AtomicReference<Boolean> onlyModBossEnabled;
 
     public static ModPanel settingsPanel;
 
@@ -65,8 +66,26 @@ public class TomoriConfig {
                  }
          );
 
+        ModLabeledToggleButton modBossOnly = new ModLabeledToggleButton(
+                TEXT[2],
+                TOOLTIP[2],
+                350.0F,
+                500.0F,
+                Settings.CREAM_COLOR,
+                FontHelper.charDescFont,
+                tutorialEnabled.get(),
+                settingsPanel,
+                label -> {},
+                button -> {
+                    tutorialEnabled.set(button.enabled);
+                    config.setBool("onlyModBoss-enabled", tutorialEnabled.get());
+                    save();
+                }
+        );
+
         settingsPanel.addUIElement(enableTutorial);
         settingsPanel.addUIElement(ascensionUnlock);
+        settingsPanel.addUIElement(modBossOnly);
         Texture badgeTexture = ImageMaster.loadImage(imagePath("badge.png"));
         BaseMod.registerModBadge(badgeTexture, "tomorimod", "csx", "", settingsPanel);
     }
@@ -75,8 +94,9 @@ public class TomoriConfig {
         Properties defaultProperties = new Properties();
         defaultProperties.setProperty("tutorial-enabled", String.valueOf(true));
         defaultProperties.setProperty("ascension-unlock", String.valueOf(false));
+        defaultProperties.setProperty("onlyModBoss-enabled", String.valueOf(true));
         try {
-            return new SpireConfig("SakiTheSpire", "SakiTheSpire-config", defaultProperties);
+            return new SpireConfig("TomoriMod", "Tomori-config", defaultProperties);
         } catch (IOException var2) {
             return null;
         }
@@ -85,6 +105,7 @@ public class TomoriConfig {
     public static void update() {
         tutorialEnabled = new AtomicReference<>(config.getBool("tutorial-enabled"));
         ascensionUnlocked = new AtomicReference<>(config.getBool("ascension-unlock"));
+        onlyModBossEnabled = new AtomicReference<>(config.getBool("onlyModBoss-enabled"));
     }
 
     public static void save() {
@@ -99,11 +120,14 @@ public class TomoriConfig {
     static {
         TEXT = new String[]{
                 "启用提示。",
-                "解锁A20。"
+                "解锁A20。",
+                "仅生成ModBoss。"
+
         };
         TOOLTIP = new String[]{
                 "提示结束后将自动关闭。",
-                "重启游戏自动生效。"
+                "重启游戏自动生效。",
+                "mod-boss only。"
         };
     }
 }
