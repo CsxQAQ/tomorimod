@@ -220,7 +220,7 @@ public class TomoriMod implements
         BaseMod.loadCustomStringsFile(TutorialStrings.class,
                 localizationPath(lang, "TutorialStrings.json"));
         BaseMod.loadCustomStringsFile(MonsterStrings.class,
-                localizationPath(lang, "TutorialStrings.json"));
+                localizationPath(lang, "MonsterStrings.json"));
 
     }
 

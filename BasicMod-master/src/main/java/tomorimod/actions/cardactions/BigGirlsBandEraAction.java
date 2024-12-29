@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.music.Chunriying;
+import tomorimod.patches.CardTipRenderPatch;
 import tomorimod.util.CustomUtils;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class BigGirlsBandEraAction extends AbstractGameAction {
             }
             card.setCostForTurn(0);
             card.exhaust=true;
+
 
             AbstractCard cloneCard=card.makeStatEquivalentCopy();
             cardGroup.add(cloneCard);

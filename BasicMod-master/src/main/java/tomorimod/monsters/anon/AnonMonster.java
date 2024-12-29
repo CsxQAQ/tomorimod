@@ -1,7 +1,9 @@
 package tomorimod.monsters.anon;
 
 import basemod.abstracts.CustomMonster;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -97,14 +99,26 @@ public class AnonMonster extends BaseMonster {
     }
 
     @Override
+    protected Texture getAttackIntent() {
+        super.getAttackIntent();
+        if(isAllHave||isThree||isAllSame){
+            return new Texture(imagePath("monsters/intents/attack_guitar_heavy.png"));
+        }
+        return new Texture(imagePath("monsters/intents/attack_guitar_normal.png"));
+
+    }
+
+    @Override
     public void takeTurn() {
+        if(nextMove!=0){
+            playChordVFX();
+        }
         switch (this.nextMove) {
             case 0:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                                 this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 1:
-                playChordVFX();
                 for(int i=0;i<2;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -112,7 +126,6 @@ public class AnonMonster extends BaseMonster {
 
                 break;
             case 2:
-                playChordVFX();
                 for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
@@ -120,12 +133,10 @@ public class AnonMonster extends BaseMonster {
 
                 break;
             case 3:
-                playChordVFX();
                 for(int i=0;i<5;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
-
                 break;
         }
 
@@ -199,16 +210,16 @@ public class AnonMonster extends BaseMonster {
     @Override
     protected void getMove(int num) {
         if(isThree){
-            setMove(MOVES[1], (byte)1, Intent.ATTACK,
+            setMove(MOVES[0], (byte)1, Intent.ATTACK,
                     this.damage.get(1).base, 2, true);
         }else if(isAllSame){
-            setMove(MOVES[2], (byte)2, Intent.ATTACK,
+            setMove(MOVES[1], (byte)2, Intent.ATTACK,
                     this.damage.get(2).base, 3, true);
         }else if(isAllHave){
-            setMove(MOVES[3], (byte)3, Intent.ATTACK,
+            setMove(MOVES[1], (byte)3, Intent.ATTACK,
                     this.damage.get(3).base, 5, true);
         }else{
-            setMove(MOVES[0], (byte)0, Intent.ATTACK,
+            setMove( (byte)0, Intent.ATTACK,
                     this.damage.get(0).base, 1, false);
         }
     }

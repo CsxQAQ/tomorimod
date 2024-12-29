@@ -141,10 +141,10 @@ public class ChordMonster extends CustomMonster {
     protected void getMove(int num) {
         int rand = AbstractDungeon.miscRng.random(0, 1);
         if (rand==0) {
-            setMove(MOVES[0], ATTACK_MOVE, Intent.ATTACK,
+            setMove( ATTACK_MOVE, Intent.ATTACK,
                     this.damage.get(0).base, 1, false);
         } else {
-            setMove(MOVES[1], HEAVY_ATTACK_MOVE, Intent.ATTACK,
+            setMove( HEAVY_ATTACK_MOVE, Intent.ATTACK,
                     this.damage.get(1).base, 1, false);
         }
     }
