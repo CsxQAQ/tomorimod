@@ -157,7 +157,16 @@ public class ChordMonster extends CustomMonster {
     }
 
     public enum ChordType {
-        G, F, C
+        G, F, C;
+        @Override
+        public String toString() {
+            switch (this) {
+                case G: return "g";
+                case F: return "f";
+                case C: return "c";
+                default: throw new IllegalArgumentException();
+            }
+        }
     }
 }
 

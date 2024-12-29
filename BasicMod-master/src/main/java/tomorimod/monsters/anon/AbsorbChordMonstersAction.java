@@ -109,6 +109,7 @@ public class AbsorbChordMonstersAction extends AbstractGameAction {
         if (time >= duration) {
             for (ChordMonster cm : chordMonsters) {
                 if (!cm.isDeadOrEscaped()) {
+                    AnonMonster.chordAbsorbed.add(cm.chordType.toString());
                     cm.hideHealthBar();
                     cm.die();
                 }

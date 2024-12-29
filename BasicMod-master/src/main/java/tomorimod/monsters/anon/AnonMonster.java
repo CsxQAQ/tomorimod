@@ -2,9 +2,11 @@ package tomorimod.monsters.anon;
 
 import basemod.abstracts.CustomMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -12,7 +14,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-//import myMod.scenes.AnonBossScene;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
@@ -39,6 +40,7 @@ public class AnonMonster extends BaseMonster {
 
     public static int chordNum=0;
     public static ArrayList<Integer> chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
+    public static ArrayList<String> chordAbsorbed=new ArrayList<>();
 
     // 怪物血量
     private static final int HP_MIN = 200;
@@ -76,7 +78,6 @@ public class AnonMonster extends BaseMonster {
 
         this.drawX=DRAW_X*Settings.scale;
         this.drawY=DRAW_Y*Settings.scale;
-        // 定义一个伤害动作，这里假设伤害是 6
 
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
@@ -103,22 +104,28 @@ public class AnonMonster extends BaseMonster {
                                 this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 1:
+                playChordVFX();
                 for(int i=0;i<2;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
+
                 break;
             case 2:
+                playChordVFX();
                 for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
+
                 break;
             case 3:
+                playChordVFX();
                 for(int i=0;i<5;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
+
                 break;
         }
 
@@ -131,13 +138,32 @@ public class AnonMonster extends BaseMonster {
             }
         }
 
-        // （3）如果正好 >= 3，就触发“吸收”效果
         if (chordMonsters.size() >= 3) {
             AbstractDungeon.actionManager.addToBottom(new AbsorbChordMonstersAction(this, chordMonsters));
         }
 
-        // 回合结束后，准备下一次动作
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+    }
+
+    public void playChordVFX(){
+        for(int i=0;i<3;i++) {
+
+            AbstractDungeon.actionManager.addToBottom(new VFXAction(
+                    new ChordFlyingEffect(
+                            hb.cX,
+                            hb.cY,
+                            AbstractDungeon.player.hb.cX,
+                            AbstractDungeon.player.hb.cY,
+                            ImageMaster.loadImage(imagePath("monsters/ChordMonster_"+chordAbsorbed.get(i)+".png"))
+                    ),
+                    0.0F
+            ));
+
+            if(i!=2){
+                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.1F));
+            }
+        }
+        chordAbsorbed.clear();
     }
 
     public void moveLogic(){
