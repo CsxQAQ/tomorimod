@@ -18,6 +18,7 @@ import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
+import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
@@ -162,9 +163,15 @@ public class TomoriMod implements
 
     private void receiveMonstor() {
         BaseMod.addMonster(AnonMonster.ID, () -> new AnonMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", AnonMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
+        BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
         .getSimpleName() + ".png", imagePath("monsters/mapiconoutline/") + AnonMonster.class
         .getSimpleName() + ".png");
+
+
+        BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", TakiMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
+                .getSimpleName() + ".png", imagePath("monsters/mapiconoutline/") + AnonMonster.class
+                .getSimpleName() + ".png");
     }
 
 

@@ -15,12 +15,13 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import tomorimod.monsters.BaseMonster;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
 
-public class ChordMonster extends CustomMonster {
+public class ChordMonster extends BaseMonster {
     public static final String ID = makeID(ChordMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -39,8 +40,6 @@ public class ChordMonster extends CustomMonster {
     private static final float HB_H = 100.0F;
 
     // 定义动作 ID（byte 类型即可）
-    private static final byte ATTACK_MOVE = 1;       // 第一回合上仪式
-    private static final byte HEAVY_ATTACK_MOVE = 2;       // 第一回合上仪式
     private static final String imgPath=imagePath("monsters/"+ ChordMonster.class.getSimpleName()+"_c.png");
     private static String gChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_g"+".png");
     private static String fChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_f"+".png");
@@ -124,11 +123,11 @@ public class ChordMonster extends CustomMonster {
     @Override
     public void takeTurn() {
         switch (this.nextMove) {
-            case ATTACK_MOVE:
+            case 0:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                                 this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
-            case HEAVY_ATTACK_MOVE:
+            case 1:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                         this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
@@ -141,10 +140,10 @@ public class ChordMonster extends CustomMonster {
     protected void getMove(int num) {
         int rand = AbstractDungeon.miscRng.random(0, 1);
         if (rand==0) {
-            setMove( ATTACK_MOVE, Intent.ATTACK,
+            setMove( (byte)0, Intent.ATTACK,
                     this.damage.get(0).base, 1, false);
         } else {
-            setMove( HEAVY_ATTACK_MOVE, Intent.ATTACK,
+            setMove( (byte)1, Intent.ATTACK,
                     this.damage.get(1).base, 1, false);
         }
     }
