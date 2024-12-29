@@ -57,7 +57,7 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 @SpireInitializer
 public class TomoriMod implements
-
+        AddAudioSubscriber,
         EditRelicsSubscriber,
         EditCardsSubscriber,
         EditCharactersSubscriber,
@@ -264,6 +264,10 @@ public class TomoriMod implements
         return resourcesFolder + "/images/" + file;
     }
 
+    public static String audioPath(String file) {
+        return resourcesFolder + "/audios/" + file;
+    }
+
     public static String characterPath(String file) {
         return resourcesFolder + "/images/character/" + file;
     }
@@ -361,4 +365,7 @@ public class TomoriMod implements
                 });
     }
 
+    @Override
+    public void receiveAddAudio() {
+    }
 }

@@ -6,13 +6,19 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+//import myMod.scenes.AnonBossScene;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import tomorimod.actions.PlayBGMAction;
+import tomorimod.monsters.BaseMonster;
+import tomorimod.patches.MusicPatch;
+import tomorimod.vfx.ChangeSceneEffect;
 
 
 import java.util.ArrayList;
@@ -23,7 +29,7 @@ import static tomorimod.TomoriMod.makeID;
 import static tomorimod.TomoriMod.imagePath;
 
 
-public class AnonMonster extends CustomMonster {
+public class AnonMonster extends BaseMonster {
     public static final String ID = makeID(AnonMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -53,8 +59,6 @@ public class AnonMonster extends CustomMonster {
     private boolean isThree=false;
     private boolean isAllSame=false;
 
-    // 给自己做个标记，是否已经使用过 Ritual
-    private boolean hasUsedRitual = false;
 
     public AnonMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -64,6 +68,8 @@ public class AnonMonster extends CustomMonster {
 
         // setHp(HP_MAX, HP_MIN); // 你原本写的，建议改为：
         setHp(HP_MIN, HP_MAX);
+
+        this.type = AbstractMonster.EnemyType.BOSS;
 
         this.dialogX = this.hb_x + -50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
@@ -81,7 +87,10 @@ public class AnonMonster extends CustomMonster {
     }
 
     public void usePreBattleAction() {
-
+        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.BITIANBANZOU,this));
+        AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
+        AbstractDungeon.effectList.add(effect);
+        AbstractDungeon.scene.fadeOutAmbiance();
         addToBot(new ApplyPowerAction(this, this, new AnonCallPower(this)));
         addToBot(new ApplyPowerAction(this, this, new AnonGuitarSingerPower(this)));
     }
@@ -180,13 +189,19 @@ public class AnonMonster extends CustomMonster {
 
     @Override
     public void die() {
+        super.die();
         ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
         for(AbstractMonster m:monsters){
             if(m.currentHealth>0&&m instanceof ChordMonster){
                 m.die();
             }
         }
-        super.die();
+        if (this.currentHealth <= 0) {
+            useFastShakeAnimation(5.0F);
+            CardCrawlGame.screenShake.rumble(4.0F);
+            onBossVictoryLogic();
+        }
+
     }
 }
 
