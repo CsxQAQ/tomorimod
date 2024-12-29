@@ -183,5 +183,29 @@
     "DESCRIPTIONS":[
       "回合结束时，从 #yC和弦 ， #yF和弦 ， #yG和弦 中随机召唤一个。"
     ]
+  },
+  "${modID}:AnonGuitarSingerPower": {
+    "NAME": "吉他主唱",
+    "DESCRIPTIONS":[
+      "具有 #b3 种 #y和弦 时，将吸收所有 #y和弦 以强化下一次攻击。如果 #b3 种 #y和弦 相同或者各部不同，则使攻击得到进一步强化。"
+    ]
+  },
+  "${modID}:AnonLittlePractisePower": {
+    "NAME": "小练习",
+    "DESCRIPTIONS":[
+      "每点 #y小练习 使攻击造成的伤害加 #b1 ，使召唤的 #y和弦 获得 #b5 点额外最大生命值。"
+    ]
+  },
+  "${modID}:ChordImmunityPower": {
+    "NAME": "音符",
+    "DESCRIPTIONS":[
+      "只会受到来自 #y音乐 牌的伤害。"
+    ]
+  },
+  "${modID}:ChordDeathPower": {
+    "NAME": "练习成果",
+    "DESCRIPTIONS":[
+      "死亡时使 #y千早爱音 获得 #b1 层 #y小练习 。"
+    ]
   }
 }

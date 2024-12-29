@@ -1,6 +1,7 @@
 package tomorimod.monsters.anon;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -47,6 +48,7 @@ public class CallChordAction extends AbstractGameAction {
                         isDone=true;
                     }
                 });
+
                 addToTop(new SpawnMonsterAction(chordMonster, false));
             }
         }

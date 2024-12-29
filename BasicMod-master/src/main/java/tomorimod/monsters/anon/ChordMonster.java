@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
@@ -28,8 +29,8 @@ public class ChordMonster extends CustomMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     // 怪物血量
-    private static final int HP_MIN = 30;
-    private static final int HP_MAX = 30;
+    private static final int HP_MIN = 5;
+    private static final int HP_MAX = 5;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -55,6 +56,20 @@ public class ChordMonster extends CustomMonster {
 
         this.dialogX = this.hb_x + -50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
+
+
+        addToBot(new ApplyPowerAction(this,this,new ChordImmunityPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new ChordDeathPower(this)));
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (m instanceof AnonMonster && !m.isDeadOrEscaped()) {
+                if(m.hasPower(makeID("AnonLittlePractisePower"))){
+                    setHp(HP_MIN+m.getPower(makeID("AnonLittlePractisePower")).amount*5,
+                            HP_MAX+m.getPower(makeID("AnonLittlePractisePower")).amount*5);
+
+                }
+            }
+        }
+
 
         this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));

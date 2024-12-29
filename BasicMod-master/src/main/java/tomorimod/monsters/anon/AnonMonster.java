@@ -74,11 +74,8 @@ public class AnonMonster extends CustomMonster {
 
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
-
         this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
-
         this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
-
         this.damage.add(new DamageInfo(this, 30, DamageInfo.DamageType.NORMAL));
 
     }
@@ -86,6 +83,7 @@ public class AnonMonster extends CustomMonster {
     public void usePreBattleAction() {
 
         addToBot(new ApplyPowerAction(this, this, new AnonCallPower(this)));
+        addToBot(new ApplyPowerAction(this, this, new AnonGuitarSingerPower(this)));
     }
 
     @Override
