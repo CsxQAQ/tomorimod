@@ -1,17 +1,18 @@
 package tomorimod.monsters.taki;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.patches.MusicPatch;
@@ -31,8 +32,8 @@ public class TakiMonster extends BaseMonster {
 
 
     // 怪物血量
-    private static final int HP_MIN = 40;
-    private static final int HP_MAX = 40;
+    private static final int HP_MIN = 400;
+    private static final int HP_MAX = 400;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -44,8 +45,10 @@ public class TakiMonster extends BaseMonster {
 
     public static final float DRAW_X=1200.0F;
     public static final float DRAW_Y=400.0F;
+    private RanaMonster ranaMonster;
 
-
+    private int turnNum=1;
+    private boolean isFirstTurn=true;
 
     public TakiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -62,6 +65,9 @@ public class TakiMonster extends BaseMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
         this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 8, DamageInfo.DamageType.NORMAL));
+
+
 
 
 //        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
@@ -71,7 +77,9 @@ public class TakiMonster extends BaseMonster {
 
     @Override
     public void usePreBattleAction() {
-        addToBot(new SpawnMonsterAction(new RanaMonster(0f,0f),false));
+        RanaMonster ranaMonster=new RanaMonster(0f,0f);
+        this.ranaMonster=ranaMonster;
+        addToBot(new SpawnMonsterAction(ranaMonster,false));
 
         addToBot(new PlayBGMAction(MusicPatch.MusicHelper.MIXINGJIAO,this));
         AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
@@ -90,36 +98,77 @@ public class TakiMonster extends BaseMonster {
 //
 //    }
 
+    private final int BLOCK=20;
+
     @Override
     public void takeTurn() {
-
         switch (this.nextMove) {
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                for(int i=0;i<2;i++){
+                    addToBot(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+
+                break;
+
+            case 1:
+                int block=0;
+                if(this.hasPower("Dexterity")){
+                    block=block+this.getPower("Dexterity").amount;
+                }
+                addToBot(new GainBlockAction(this,this,BLOCK+block));
+                if(ranaMonster!=null&&!ranaMonster.isDeadOrEscaped()){
+                    addToBot(new GainBlockAction(ranaMonster,this,BLOCK+block));
+                }
+                addToBot(new ApplyPowerAction(this,this,new DexterityPower(this,2),2));
+                break;
+            case 2:
+                for(int i=0;i<3;i++){
+                    addToBot(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
                 break;
 
         }
-
-
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     @Override
     protected void getMove(int num) {
-        setMove( (byte)0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
+        if(isFirstTurn){
+            setMove( (byte)0, Intent.ATTACK,
+                    this.damage.get(0).base, 2, true);
+            isFirstTurn=false;
+        }else {
+            if(ranaMonster!=null&&!ranaMonster.isDeadOrEscaped()){
+                if(turnNum%2==0){
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 2, true);
+                }else{
+                    setMove( (byte)1, Intent.DEFEND_BUFF);
+                }
+                turnNum++;
+            }else{
+                addToBot(new SFXAction("MONSTER_CHAMP_CHARGE"));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                setMove( (byte)2, Intent.ATTACK,
+                        this.damage.get(1).base, 3, true);
+            }
+        }
+
     }
 
     @Override
     public void die() {
         super.die();
 
-//        if (this.currentHealth <= 0) {
-//            useFastShakeAnimation(5.0F);
-//            CardCrawlGame.screenShake.rumble(4.0F);
-//            onBossVictoryLogic();
-//        }
+        if (this.currentHealth <= 0) {
+            useFastShakeAnimation(5.0F);
+            CardCrawlGame.screenShake.rumble(4.0F);
+            onBossVictoryLogic();
+        }
     }
 }
 

@@ -49,7 +49,7 @@ public class CallChordAction extends AbstractGameAction {
                     }
                 });
 
-                addToTop(new SpawnMonsterAction(chordMonster, false));
+                addToTop(new SpawnMonsterAction(chordMonster, true));
             }
         }
         isDone = true;

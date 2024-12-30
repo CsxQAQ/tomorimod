@@ -41,7 +41,7 @@ public class MakeStatEquivalentCopyPatch {
 
 
             card.exhaust=__instance.exhaust;
-            card.selfRetain=__instance.selfRetain;
+            card.isInnate=__instance.isInnate;
             TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.set(card,
                     TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(__instance));
 

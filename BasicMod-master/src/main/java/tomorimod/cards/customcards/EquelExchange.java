@@ -16,7 +16,7 @@ public class EquelExchange extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public EquelExchange() {
@@ -43,7 +43,7 @@ public class EquelExchange extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            isInnate=true;
         }
     }
 }

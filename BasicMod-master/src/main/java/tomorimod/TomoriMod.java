@@ -5,6 +5,7 @@ import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorimod.cards.BaseCard;
@@ -57,6 +58,7 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次
 //TODO 变革消耗所有的手牌，获得等量的闪耀
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
+//TODO 不知道什么原因，boss打赢后重进会闪退
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
@@ -165,14 +167,17 @@ public class TomoriMod implements
 
     private void receiveMonstor() {
         BaseMod.addMonster(AnonMonster.ID, () -> new AnonMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
-        .getSimpleName() + ".png", imagePath("monsters/mapiconoutline/") + AnonMonster.class
+//        BaseMod.addBoss(TheCity.ID, AnonMonster.ID,
+//                "images/mymod/ui/map/boss/myBoss.png",
+//                "images/mymod/ui/map/bossOutline/myBoss.png");
+        BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
         .getSimpleName() + ".png");
 
 
         BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", TakiMonster.ID, imagePath("monsters/mapicon/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapiconoutline/") + AnonMonster.class
+        BossGeneratePatch.addBoss("Exordium", TakiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }
 

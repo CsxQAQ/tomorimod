@@ -175,19 +175,6 @@
     "DESCRIPTION": " tomorimod:形态 ：每当有卡牌被 消耗 时，获得 !M! 层 力量 。"
   },
 
-
-
-  "${modID}:GiftBox": {
-  "NAME": "礼物盒",
-  "DESCRIPTION": "无法被打出， 保留 ， 消耗 ， tomorimod:瞬间 ，回合开始时若此牌在手牌中 tomorimod:翻面 。",
-    "EXTENDED_DESCRIPTION": [
-      "无法被打出， 虚无 ， tomorimod:瞬间 ，战斗结束时，获得爱音的礼物。",
-      "无法被打出， 虚无 ， tomorimod:瞬间 ，战斗结束时，获得素世的礼物。",
-      "无法被打出， 虚无 ， tomorimod:瞬间 ，战斗结束时，获得立希的礼物。",
-      "无法被打出， 虚无 ， tomorimod:瞬间 ，战斗结束时，获得乐奈的礼物。",
-      "无法被打出， 虚无 ， tomorimod:瞬间 ，已经获得了所有成员的礼物。"
-    ]
-  },
   "${modID}:LightAndShadow": {
     "NAME": "光与影",
     "DESCRIPTION": " 消耗 ，获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
@@ -294,7 +281,10 @@
   },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
-    "DESCRIPTION": "使用后回到手牌。抽一张牌。"
+    "DESCRIPTION": "使用后回到手牌。抽一张牌。",
+    "EXTENDED_DESCRIPTION": [
+      " 保留 。使用后回到手牌。抽一张牌。"
+    ]
   },
   "${modID}:Collection": {
     "NAME": "收集",

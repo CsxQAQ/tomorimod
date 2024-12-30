@@ -6,10 +6,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.ShoutAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,8 +22,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.anon.ChordMonster;
@@ -60,6 +66,9 @@ public class RanaMonster extends BaseMonster {
 
     private TakiMonster takiMonster=null;
     private boolean isTakiGet=false;
+    private int turnNum=0;
+
+    private boolean isFirstTurn=true;
 
 
     public RanaMonster(float x, float y) {
@@ -76,7 +85,8 @@ public class RanaMonster extends BaseMonster {
         this.drawX=DRAW_X*Settings.scale;
         this.drawY=DRAW_Y*Settings.scale;
 
-        this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 10, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));
 
         addToBot(new ApplyPowerAction(this,this,new IntangiblePlayerPower(this,999),999));
         addToBot(new ApplyPowerAction(this,this,new RanaFreeCatPower(this)));
@@ -145,10 +155,23 @@ public class RanaMonster extends BaseMonster {
 
         switch (this.nextMove) {
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                for(int i=0;i<2;i++){
+                    addToBot(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
                 break;
-
+            case 1:
+                addToBot(new ApplyPowerAction(this,this,new StrengthPower(this,2),2));
+                if(takiMonster!=null&&!takiMonster.isDeadOrEscaped()){
+                    addToBot(new ApplyPowerAction(takiMonster,this,new StrengthPower(this,2),2));
+                }
+                break;
+            case 2:
+                for(int i=0;i<3;i++){
+                    addToBot(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
         }
 
 
@@ -157,22 +180,40 @@ public class RanaMonster extends BaseMonster {
 
     @Override
     protected void getMove(int num) {
-        setMove( (byte)0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
+        if(isFirstTurn){
+            setMove( (byte)1, Intent.BUFF);
+            isFirstTurn=false;
+        }else{
+            if(takiMonster!=null&&!takiMonster.isDeadOrEscaped()){
+                if(turnNum%2==0){
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 2, true);
+                }else{
+                    setMove( (byte)1, Intent.BUFF);
+                }
+                turnNum++;
+            }else{
+                setMove( (byte)2, Intent.ATTACK,
+                        this.damage.get(1).base, 3, true);
+                addToBot(new SFXAction("MONSTER_CHAMP_CHARGE"));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+                addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
+            }
+        }
+
     }
 
     @Override
     public void die() {
         super.die();
 
-//        if (this.currentHealth <= 0) {
-//            useFastShakeAnimation(5.0F);
-//            CardCrawlGame.screenShake.rumble(4.0F);
-//            onBossVictoryLogic();
-//        }
+        if (this.currentHealth <= 0) {
+            useFastShakeAnimation(5.0F);
+            CardCrawlGame.screenShake.rumble(4.0F);
+            onBossVictoryLogic();
+        }
     }
-
-
 
 }
 

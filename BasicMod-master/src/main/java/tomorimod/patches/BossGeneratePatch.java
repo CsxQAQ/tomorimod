@@ -3,7 +3,9 @@ package tomorimod.patches;
 import basemod.BaseMod;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.CustomBosses;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import javassist.CtBehavior;
 import tomorimod.configs.TomoriConfig;
 
@@ -58,4 +60,15 @@ public class BossGeneratePatch {
             }
         }
     }
+
+    @SpirePatch(clz= MonsterRoomBoss.class,method = "onPlayerEntry")
+    public static class fixBugPatch{
+        @SpirePostfixPatch
+        public static void postfix(MonsterRoomBoss __instance){
+            if(AbstractDungeon.bossList.isEmpty()){
+                AbstractDungeon.bossList.add(CardCrawlGame.dungeon.getBoss().monsters.get(0).id);
+            }
+        }
+    }
+
 }
