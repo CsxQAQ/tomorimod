@@ -44,6 +44,7 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
             SaveDataInstanceFactory.clearAll();
             CraftingRecipes.getInstance().generate();
             allocateCardMaterial();
+            AbstractDungeon.shopRelicPool.remove("PrismaticShard");
         }
     }
 

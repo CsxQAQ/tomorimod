@@ -26,26 +26,6 @@ public class BossGeneratePatch {
         return keys.get(dungeon);
     }
 
-//    @SpirePatch2(clz = CustomBosses.AddBosses.class, method = "Do")
-//    public static class removeThisBoss {
-//        @SpireInsertPatch(locator = Locator.class)
-//        public static void Insert(@ByRef List<String>[] ___customBosses) {
-//            if (___customBosses != null &&
-//                    !TomoriConfig.config.getBool("modBoss-enabled") &&
-//                    ___customBosses[0] != null && !___customBosses[0].isEmpty()) {
-//                ___customBosses[0].removeAll(BossGeneratePatch.getBossKeys(AbstractDungeon.id));
-//            }
-//        }
-//
-//        private static class Locator extends SpireInsertLocator {
-//            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-//                Matcher.MethodCallMatcher matcher = new Matcher.MethodCallMatcher(BaseMod.class, "getBossIDs");
-//                int line = LineFinder.findAllInOrder(ctMethodToPatch, matcher)[0] + 1;
-//                return new int[] { line };
-//            }
-//        }
-//    }
-
     @SpirePatch2(clz = CustomBosses.AddBosses.class, method = "Do")
     public static class removeOtherBoss {
         @SpirePostfixPatch
