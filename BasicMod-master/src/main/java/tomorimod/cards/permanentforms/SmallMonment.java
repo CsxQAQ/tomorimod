@@ -59,7 +59,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m){
-        return isNameChanged;
+        return super.canUse(p,m)&&isNameChanged;
     }
 
     @Override

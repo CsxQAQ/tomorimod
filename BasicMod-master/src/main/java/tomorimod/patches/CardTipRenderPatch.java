@@ -1,10 +1,7 @@
 package tomorimod.patches;
 
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.audio.MainMusic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 
@@ -28,7 +25,7 @@ public class CardTipRenderPatch {
             if(___card.selfRetain==true&&!keywords.contains("保留")){
                 keywords.add("保留");
             }
-            if(TakiLockPatch.AbstractCardLockPatch.isTakiLocked.get(___card)&&!keywords.contains(makeID("压力"))){
+            if(TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(___card)&&!keywords.contains(makeID("压力"))){
                 keywords.add(makeID("压力"));
             }
         }

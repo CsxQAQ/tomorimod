@@ -1,30 +1,21 @@
 package tomorimod.monsters.taki;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.anon.*;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -87,7 +78,7 @@ public class TakiMonster extends BaseMonster {
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        addToBot(new ApplyPowerAction(this,this,new TakiLockPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new TakiPressurePower(this)));
 
     }
 

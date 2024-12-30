@@ -35,7 +35,7 @@ public class MusicComposition extends BaseCard implements WithoutMaterial, Speci
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        return p.getPower(MusicCompositionPower.POWER_ID)==null;
+        return super.canUse(p,m)&&p.getPower(MusicCompositionPower.POWER_ID)==null;
     }
 
     @Override

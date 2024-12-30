@@ -213,5 +213,11 @@
     "DESCRIPTIONS":[
       " #y椎名立希 存活时，无法被选中。"
     ]
+  },
+  "${modID}:TakiPressurePower": {
+    "NAME": "赛亚库",
+    "DESCRIPTIONS":[
+      "每当你使用卡牌时使该卡牌获得 #y压力 ，具有 #y压力 的卡牌本回合无法主动打出。"
+    ]
   }
 }
