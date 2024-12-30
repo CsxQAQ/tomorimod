@@ -207,5 +207,11 @@
     "DESCRIPTIONS":[
       "死亡时使 #y千早爱音 获得 #b1 层 #y小练习 。"
     ]
+  },
+  "${modID}:RanaFreeCatPower": {
+    "NAME": "猫猫是自由的",
+    "DESCRIPTIONS":[
+      " #y椎名立希 存活时，无法被选中。"
+    ]
   }
 }

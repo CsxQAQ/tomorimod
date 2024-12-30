@@ -439,8 +439,8 @@ public abstract class BaseCard extends CustomCard {
             ((BaseCard) card).upgRetain = this.upgRetain;
 
             //气坏了，不复制是否消耗
-            ((BaseCard) card).exhaust = this.exhaust;
-            ((BaseCard) card).selfRetain = this.selfRetain;
+//            ((BaseCard) card).exhaust = this.exhaust;
+//            ((BaseCard) card).selfRetain = this.selfRetain;
 
             for (Map.Entry<String, LocalVarInfo> varEntry : cardVariables.entrySet()) {
                 LocalVarInfo target = ((BaseCard) card).getCustomVar(varEntry.getKey()),

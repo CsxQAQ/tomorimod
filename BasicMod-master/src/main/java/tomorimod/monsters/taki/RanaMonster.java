@@ -1,5 +1,7 @@
 package tomorimod.monsters.taki;
 
+import basemod.animations.AbstractAnimation;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
@@ -16,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
@@ -25,6 +28,7 @@ import tomorimod.vfx.ChangeSceneEffect;
 
 import java.util.ArrayList;
 
+import static com.badlogic.gdx.Gdx.graphics;
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
@@ -87,13 +91,15 @@ public class RanaMonster extends BaseMonster {
 //        AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
 //        AbstractDungeon.effectList.add(effect);
 //        AbstractDungeon.scene.fadeOutAmbiance();
-
-
     }
 
+    private float timeCounter = 0f;
+    private float alphaValue = 1.0f;
+    private final float period = 4.0f;
     @Override
     public void update(){
         super.update();
+
         if(!isTakiGet){
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
                 if (m instanceof TakiMonster && !m.isDeadOrEscaped()) {
@@ -105,6 +111,11 @@ public class RanaMonster extends BaseMonster {
         }
         if(takiMonster != null) {
             if (!takiMonster.isDeadOrEscaped()) {
+
+                timeCounter += graphics.getDeltaTime();
+                alphaValue = 0.1f + 0.75f * (float) Math.abs(Math.sin(timeCounter * Math.PI / period));
+                this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, alphaValue));
+
                 this.hb.move(this.drawX, this.drawY+HB_H/2*Settings.scale);
                 this.hb.height=0;
                 //this.hb.width=0.1f;
@@ -112,6 +123,8 @@ public class RanaMonster extends BaseMonster {
                 this.hb.move(this.drawX + this.hb_x + this.animX, this.drawY + this.hb_y + this.hb_h / 2.0F);
                 this.hb.height=HB_H*Settings.scale;
                 //this.hb.width=HB_W*Settings.scale;
+
+                this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, 1));
             }
             this.hb.update();
             this.updateHealthBar();

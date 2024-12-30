@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 
 import java.util.ArrayList;
 
+import static tomorimod.TomoriMod.makeID;
+
 public class CardTipRenderPatch {
 
     @SpirePatch(
@@ -25,6 +27,9 @@ public class CardTipRenderPatch {
             }
             if(___card.selfRetain==true&&!keywords.contains("保留")){
                 keywords.add("保留");
+            }
+            if(TakiLockPatch.AbstractCardLockPatch.isTakiLocked.get(___card)&&!keywords.contains(makeID("压力"))){
+                keywords.add(makeID("压力"));
             }
         }
     }

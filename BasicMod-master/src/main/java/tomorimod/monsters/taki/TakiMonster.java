@@ -71,20 +71,26 @@ public class TakiMonster extends BaseMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
         this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
+
+
 //        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
 //        this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
 //        this.damage.add(new DamageInfo(this, 30, DamageInfo.DamageType.NORMAL));
     }
 
+    @Override
     public void usePreBattleAction() {
         addToBot(new SpawnMonsterAction(new RanaMonster(0f,0f),false));
 
-        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.BITIANBANZOU,this));
+        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.MIXINGJIAO,this));
         AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
+        addToBot(new ApplyPowerAction(this,this,new TakiLockPower(this)));
+
     }
+
 
 //    @Override
 //    protected Texture getAttackIntent() {

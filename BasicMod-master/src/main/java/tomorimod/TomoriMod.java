@@ -19,6 +19,7 @@ import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.monsters.taki.TakiMonster;
+import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
@@ -82,6 +83,7 @@ public class TomoriMod implements
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
         BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
+        BaseMod.subscribe(new TakiPressureMonitor());
 
     }
 
