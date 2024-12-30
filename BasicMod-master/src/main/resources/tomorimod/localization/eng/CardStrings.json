@@ -292,7 +292,10 @@
   },
   "${modID}:Compete": {
     "NAME": "对邦",
-    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成的伤害和受到来自该目标的伤害翻倍。"
+    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成的伤害和受到来自该目标的伤害翻倍。",
+    "EXTENDED_DESCRIPTION": [
+      " 保留 。选定一名目标， !M! 个回合内对其造成的伤害和受到来自该目标的伤害翻倍。"
+    ]
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",

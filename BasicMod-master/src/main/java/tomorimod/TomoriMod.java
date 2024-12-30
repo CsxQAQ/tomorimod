@@ -51,10 +51,8 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 
 //TODO 所有对象都判断是否为null
 
-//TODO 特效变革
+//TODO 特效变革，感觉变革可以删了
 //TODO 平衡性调整
-//TODO 上传工坊
-//TODO 击败具有对邦的敌人获得5点闪耀
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次
 //TODO 变革消耗所有的手牌，获得等量的闪耀
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留

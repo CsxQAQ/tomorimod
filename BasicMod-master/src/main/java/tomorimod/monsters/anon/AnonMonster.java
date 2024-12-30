@@ -100,11 +100,11 @@ public class AnonMonster extends BaseMonster {
 
     @Override
     protected Texture getAttackIntent() {
-        super.getAttackIntent();
+        //super.getAttackIntent();
         if(isAllHave||isThree||isAllSame){
-            return new Texture(imagePath("monsters/intents/attack_guitar_heavy.png"));
+            return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_heavy.png"));
         }
-        return new Texture(imagePath("monsters/intents/attack_guitar_normal.png"));
+        return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_normal.png"));
 
     }
 

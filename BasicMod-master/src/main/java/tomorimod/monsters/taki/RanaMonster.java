@@ -3,6 +3,7 @@ package tomorimod.monsters.taki;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -142,12 +143,26 @@ public class RanaMonster extends BaseMonster {
 
     }
 
+    @Override
+    protected Texture getAttackIntent() {
+        //super.getAttackIntent();
+        if(takiMonster!=null&&!takiMonster.isDeadOrEscaped()){
+            return new Texture(imagePath("monsters/intents/attack_guitar_normal.png"));
+        }else{
+            return new Texture(imagePath("monsters/intents/attack_guitar_heavy.png"));
+        }
+    }
+
 //    @Override
 //    protected Texture getAttackIntent() {
 //        super.getAttackIntent();
-//
+//        if(isAllHave||isThree||isAllSame){
+//            return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_heavy.png"));
+//        }
+//        return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_normal.png"));
 //
 //    }
+
 
 
     @Override
@@ -208,7 +223,7 @@ public class RanaMonster extends BaseMonster {
     public void die() {
         super.die();
 
-        if (this.currentHealth <= 0) {
+        if (this.currentHealth <= 0&&takiMonster.isDeadOrEscaped()) {
             useFastShakeAnimation(5.0F);
             CardCrawlGame.screenShake.rumble(4.0F);
             onBossVictoryLogic();

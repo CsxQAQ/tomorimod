@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
@@ -24,7 +25,7 @@ public class Compete extends BaseCard {
     );
 
     private final int MAGIC=2;
-    private final int UPG_MAGIC=1;
+    private final int UPG_MAGIC=0;
 
     public Compete() {
         super(ID, info);
@@ -46,5 +47,23 @@ public class Compete extends BaseCard {
     @Override
     public AbstractCard makeCopy() {
         return new Compete();
+    }
+
+    @Override
+    public void upgrade(){
+        if(!upgraded){
+            upgradeName();
+            updateDescription();
+            isInnate=true;
+        }
+    }
+
+    public void updateDescription(){
+        if(upgraded){
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        }
+        initializeDescription();
     }
 }

@@ -1,5 +1,6 @@
 package tomorimod.monsters.taki;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -91,12 +92,15 @@ public class TakiMonster extends BaseMonster {
     }
 
 
-//    @Override
-//    protected Texture getAttackIntent() {
-//        super.getAttackIntent();
-//
-//
-//    }
+    @Override
+    protected Texture getAttackIntent() {
+        //super.getAttackIntent();
+        if(ranaMonster!=null&&!ranaMonster.isDeadOrEscaped()){
+            return new Texture(imagePath("monsters/intents/attack_drum_normal.png"));
+        }else{
+            return new Texture(imagePath("monsters/intents/attack_drum_heavy.png"));
+        }
+    }
 
     private final int BLOCK=20;
 
@@ -164,7 +168,7 @@ public class TakiMonster extends BaseMonster {
     public void die() {
         super.die();
 
-        if (this.currentHealth <= 0) {
+        if (this.currentHealth <= 0&&ranaMonster.isDeadOrEscaped()) {
             useFastShakeAnimation(5.0F);
             CardCrawlGame.screenShake.rumble(4.0F);
             onBossVictoryLogic();
