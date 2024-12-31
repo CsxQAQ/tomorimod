@@ -4,7 +4,6 @@ import basemod.interfaces.OnPlayerTurnStartSubscriber;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.monitors.BaseMonitor;
-import tomorimod.patches.TakiPressurePatch;
 
 public class TakiPressureMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber {
     @Override

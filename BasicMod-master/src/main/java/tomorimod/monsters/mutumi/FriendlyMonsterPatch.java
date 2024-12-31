@@ -1,4 +1,4 @@
-package tomorimod.patches;
+package tomorimod.monsters.mutumi;
 
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.*;

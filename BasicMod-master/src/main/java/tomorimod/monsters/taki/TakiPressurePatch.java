@@ -1,4 +1,4 @@
-package tomorimod.patches;
+package tomorimod.monsters.taki;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
