@@ -1,10 +1,18 @@
 package tomorimod.actions.cardactions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import tomorimod.cards.customcards.SmoothCombo;
+
+import static tomorimod.TomoriMod.makeID;
 
 public class SmoothComboAction extends AbstractGameAction {
     private AbstractCard.CardType cardType;
@@ -37,22 +45,35 @@ public class SmoothComboAction extends AbstractGameAction {
             isContinue=false;
         }
 
+
+
         if(isContinue){
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
+                    AbstractMonster exception=null;
+                    for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                        if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
+                            exception=monster;
+                        }
+                    }
                     addToBot(new PlayTopCardAction(
-                            (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+                            (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( exception,true,AbstractDungeon.cardRandomRng),
                             false
                     ));
-
                     addToBot(new SmoothComboAction(cardType));
                     isDone = true; // 标记当前动作完成
                 }
             });
         }else{
+            AbstractMonster exception=null;
+            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+                if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
+                    exception=monster;
+                }
+            }
             addToBot(new PlayTopCardAction(
-                    (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster(null, true, AbstractDungeon.cardRandomRng),
+                    (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( exception,true,AbstractDungeon.cardRandomRng),
                     false
             ));
         }

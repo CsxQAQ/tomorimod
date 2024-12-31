@@ -68,7 +68,7 @@ public class WhyPerformChunriying extends BaseMonmentCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-            if (!monster.isDead && !monster.isDying) {
+            if (!monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
                 addToBot(new StunMonsterAction(monster, p, magicNumber));
             }
         }

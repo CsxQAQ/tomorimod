@@ -71,8 +71,6 @@ public class MutumiMonster extends SpecialMonster {
 
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
-
-
     }
 
     public void usePreBattleAction() {
