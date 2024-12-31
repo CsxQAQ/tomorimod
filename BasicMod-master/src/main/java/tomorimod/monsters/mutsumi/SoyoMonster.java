@@ -1,4 +1,4 @@
-package tomorimod.monsters.mutumi;
+package tomorimod.monsters.mutsumi;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -10,9 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.taki.TakiMonster;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -43,7 +40,7 @@ public class SoyoMonster extends SpecialMonster {
     public static final float DRAW_X=1600.0F;
     public static final float DRAW_Y=450.0F;
     private boolean isMutumiGet;
-    private MutumiMonster mutumiMonster;
+    private MutsumiMonster mutsumiMonster;
 
 
     public SoyoMonster(float x, float y) {
@@ -72,11 +69,11 @@ public class SoyoMonster extends SpecialMonster {
         super.update();
         if(!isMutumiGet){
             for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if (m instanceof MutumiMonster && !m.isDeadOrEscaped()) {
-                    MutumiMonster mutumi = (MutumiMonster) m;
-                    this.mutumiMonster = mutumi;
+                if (m instanceof MutsumiMonster && !m.isDeadOrEscaped()) {
+                    MutsumiMonster mutumi = (MutsumiMonster) m;
+                    this.mutsumiMonster = mutumi;
                     isMutumiGet = true;
-                    target=mutumiMonster;
+                    target= mutsumiMonster;
                 }
             }
         }

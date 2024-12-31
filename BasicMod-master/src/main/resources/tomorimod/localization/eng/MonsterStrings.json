@@ -33,7 +33,29 @@
       ""
     ]
   },
-  "${modID}:MutumiMonster": {
+  "${modID}:TakiMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "椎名立希",
+    "DIALOG": [
+      "流浪猫！",
+      ""
+    ]
+  },
+  "${modID}:RanaMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "要乐奈",
+    "DIALOG": [
+      "坏女人",
+      ""
+    ]
+  },
+  "${modID}:MustumiMonster": {
     "MOVES": [
       "",
       ""
@@ -51,8 +73,9 @@
     ],
     "NAME": "长崎素世",
     "DIALOG": [
-      "",
-      ""
+      "小灯，连你也......",
+      "为什么......",
+      "不要"
     ]
   }
 }

@@ -1,26 +1,22 @@
-package tomorimod.monsters.mutumi;
+package tomorimod.monsters.mutsumi;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.powers.BasePower;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class MutumiOneHeartTwoHurtPower extends BasePower {
-    public static final String POWER_ID = makeID(MutumiOneHeartTwoHurtPower.class.getSimpleName());
+public class MutsumiOneHeartTwoHurtPower extends BasePower {
+    public static final String POWER_ID = makeID(MutsumiOneHeartTwoHurtPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
     private SoyoMonster soyoMonster;
 
-    public MutumiOneHeartTwoHurtPower(AbstractCreature owner,SoyoMonster soyoMonster) {
+    public MutsumiOneHeartTwoHurtPower(AbstractCreature owner, SoyoMonster soyoMonster) {
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
         loadRegion("surrounded");
         this.soyoMonster=soyoMonster;
@@ -45,8 +41,8 @@ public class MutumiOneHeartTwoHurtPower extends BasePower {
     public int onAttacked(DamageInfo info, int damageAmount) {
         if (info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != null && info.owner != this.owner) {
             flash();
-            if(owner instanceof MutumiMonster){
-                ((MutumiMonster) owner).target=info.owner;
+            if(owner instanceof MutsumiMonster){
+                ((MutsumiMonster) owner).target=info.owner;
                 if(info.owner.hasPower(makeID("BehindAttackPower"))){
                     if(info.owner==AbstractDungeon.player){
                         addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player,owner,makeID("BehindAttackPower")));

@@ -1,4 +1,4 @@
-package tomorimod.monsters.mutumi;
+package tomorimod.monsters.mutsumi;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,7 +13,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
-import tomorimod.monsters.BaseMonster;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -25,8 +23,8 @@ import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
 
-public class MutumiMonster extends SpecialMonster {
-    public static final String ID = makeID(MutumiMonster.class.getSimpleName());
+public class MutsumiMonster extends SpecialMonster {
+    public static final String ID = makeID(MutsumiMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
     public static final String NAME = monsterStrings.NAME;
@@ -37,30 +35,27 @@ public class MutumiMonster extends SpecialMonster {
     public static ArrayList<Integer> chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
     public static ArrayList<String> chordAbsorbed=new ArrayList<>();
 
-    // 怪物血量
     private static final int HP_MIN = 2000;
     private static final int HP_MAX = 2000;
 
-    // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
     private static final float HB_Y = 0F;
     private static final float HB_W = 230.0F;
     private static final float HB_H = 240.0F;
 
-    private static final String imgPath=imagePath("monsters/"+ MutumiMonster.class.getSimpleName()+".png");
+    private static final String imgPath=imagePath("monsters/"+ MutsumiMonster.class.getSimpleName()+".png");
 
     public static final float DRAW_X=1000.0F;
     public static final float DRAW_Y=450.0F;
     private SoyoMonster soyoMonster;
 
 
-    public MutumiMonster(float x, float y) {
+    public MutsumiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
         chordNum=0;
         chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
 
-        // setHp(HP_MAX, HP_MIN); // 你原本写的，建议改为：
         setHp(HP_MIN, HP_MAX);
 
         this.type = EnemyType.BOSS;
@@ -87,7 +82,7 @@ public class MutumiMonster extends SpecialMonster {
         target=soyoMonster;
 
         addToBot(new SpawnMonsterAction(soyoMonster,false));
-        addToBot(new ApplyPowerAction(this,this,new MutumiOneHeartTwoHurtPower(this,soyoMonster)));
+        addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
     }
@@ -99,13 +94,6 @@ public class MutumiMonster extends SpecialMonster {
 
         switch (this.nextMove) {
             case 0:
-//                if(soyoMonster!=null&&!soyoMonster.isDeadOrEscaped()){
-//                    AbstractDungeon.actionManager.addToBottom(new DamageAction(soyoMonster,
-//                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-//                }else{
-//                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-//                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-//                }
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(target,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
@@ -122,6 +110,12 @@ public class MutumiMonster extends SpecialMonster {
             if(soyoMonster.isDeadOrEscaped()){
                 target=AbstractDungeon.player;
             }
+        }
+
+        if (target != AbstractDungeon.player) {
+            this.flipHorizontal = false;
+        } else {
+            this.flipHorizontal = true;
         }
     }
 

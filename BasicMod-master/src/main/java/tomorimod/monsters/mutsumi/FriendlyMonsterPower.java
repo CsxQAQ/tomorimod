@@ -1,6 +1,5 @@
-package tomorimod.monsters.mutumi;
+package tomorimod.monsters.mutsumi;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import tomorimod.powers.BasePower;
 

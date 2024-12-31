@@ -226,7 +226,7 @@
       "以敌方角色作为攻击目标。不会受到你的群体攻击和群体减益效果的影响。"
     ]
   },
-  "${modID}:MutumiOneHeartTwoHurtPower": {
+  "${modID}:MutsumiOneHeartTwoHurtPower": {
     "NAME": "一颗心脏两面受伤",
     "DESCRIPTIONS":[
       "受到来自背后的伤害提高 #b50 %。受到攻击时以攻击来源作为攻击目标。"

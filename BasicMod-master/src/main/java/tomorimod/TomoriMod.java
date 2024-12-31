@@ -5,7 +5,6 @@ import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import tomorimod.cards.BaseCard;
@@ -19,7 +18,7 @@ import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
-import tomorimod.monsters.mutumi.MutumiMonster;
+import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.patches.BossGeneratePatch;
@@ -179,8 +178,8 @@ public class TomoriMod implements
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
 
-        BaseMod.addMonster(MutumiMonster.ID, () -> new MutumiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", MutumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", MutsumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }
