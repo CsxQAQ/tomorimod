@@ -3,6 +3,7 @@ package tomorimod.monsters.mutumi;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -12,7 +13,6 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.mutumi.friendly.SpawnFriendlyMonsterAction;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -23,7 +23,7 @@ import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
 
-public class MutumiMonster extends BaseMonster {
+public class MutumiMonster extends SpecialMonster {
     public static final String ID = makeID(MutumiMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -83,7 +83,8 @@ public class MutumiMonster extends BaseMonster {
 
         SoyoMonster soyoMonster=new SoyoMonster(0f,0f);
         this.soyoMonster=soyoMonster;
-        addToBot(new SpawnFriendlyMonsterAction(soyoMonster,false));
+        target=soyoMonster;
+        addToBot(new SpawnMonsterAction(soyoMonster,false));
     }
 
 
@@ -93,8 +94,14 @@ public class MutumiMonster extends BaseMonster {
 
         switch (this.nextMove) {
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if(soyoMonster!=null&&!soyoMonster.isDeadOrEscaped()){
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(soyoMonster,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }else{
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+
                 break;
 
         }

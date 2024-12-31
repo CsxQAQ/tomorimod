@@ -18,7 +18,7 @@ public class ImmunityPower extends BasePower {
     }
 
     @Override
-    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
         if (damage > 1.0F) {
             damage = 0;
         }

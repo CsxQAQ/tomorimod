@@ -3,23 +3,22 @@ package tomorimod.monsters.mutumi;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import tomorimod.monsters.mutumi.friendly.AbstractFriendlyMonster;
-import tomorimod.monsters.mutumi.friendly.FriendlyMonsterRollMoveAction;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import tomorimod.monsters.BaseMonster;
+import tomorimod.monsters.taki.TakiMonster;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
 
-public class SoyoMonster extends AbstractFriendlyMonster {
+public class SoyoMonster extends SpecialMonster {
     public static final String ID = makeID(SoyoMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -27,9 +26,7 @@ public class SoyoMonster extends AbstractFriendlyMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    public static int chordNum=0;
-    public static ArrayList<Integer> chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
-    public static ArrayList<String> chordAbsorbed=new ArrayList<>();
+
 
     // 怪物血量
     private static final int HP_MIN = 200;
@@ -45,14 +42,12 @@ public class SoyoMonster extends AbstractFriendlyMonster {
 
     public static final float DRAW_X=1600.0F;
     public static final float DRAW_Y=450.0F;
-
+    private boolean isMutumiGet;
+    private MutumiMonster mutumiMonster;
 
 
     public SoyoMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
-
-        chordNum=0;
-        chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
 
         // setHp(HP_MAX, HP_MIN); // 你原本写的，建议改为：
         setHp(HP_MIN, HP_MAX);
@@ -73,16 +68,38 @@ public class SoyoMonster extends AbstractFriendlyMonster {
     }
 
     @Override
+    public void update(){
+        super.update();
+        if(!isMutumiGet){
+            for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+                if (m instanceof MutumiMonster && !m.isDeadOrEscaped()) {
+                    MutumiMonster mutumi = (MutumiMonster) m;
+                    this.mutumiMonster = mutumi;
+                    isMutumiGet = true;
+                    target=mutumiMonster;
+                }
+            }
+        }
+    }
+
+    @Override
     public void takeTurn() {
 
         switch (this.nextMove) {
+
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                if(mutumiMonster!=null&&!mutumiMonster.isDeadOrEscaped()){
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(mutumiMonster,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }else{
+                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+
                 break;
 
         }
-        AbstractDungeon.actionManager.addToBottom(new FriendlyMonsterRollMoveAction(this));
+        AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
 
