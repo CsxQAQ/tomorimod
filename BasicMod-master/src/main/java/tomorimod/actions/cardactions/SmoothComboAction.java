@@ -51,14 +51,14 @@ public class SmoothComboAction extends AbstractGameAction {
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    AbstractMonster exception=null;
-                    for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-                        if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
-                            exception=monster;
-                        }
-                    }
+//                    AbstractMonster exception=null;
+//                    for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+//                        if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
+//                            exception=monster;
+//                        }
+//                    }
                     addToBot(new PlayTopCardAction(
-                            (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( exception,true,AbstractDungeon.cardRandomRng),
+                            (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
                             false
                     ));
                     addToBot(new SmoothComboAction(cardType));
@@ -66,14 +66,14 @@ public class SmoothComboAction extends AbstractGameAction {
                 }
             });
         }else{
-            AbstractMonster exception=null;
-            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-                if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
-                    exception=monster;
-                }
-            }
+//            AbstractMonster exception=null;
+//            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
+//                if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
+//                    exception=monster;
+//                }
+//            }
             addToBot(new PlayTopCardAction(
-                    (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( exception,true,AbstractDungeon.cardRandomRng),
+                    (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
                     false
             ));
         }

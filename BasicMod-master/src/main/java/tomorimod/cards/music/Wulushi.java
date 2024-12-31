@@ -1,6 +1,7 @@
 package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -54,39 +55,23 @@ public class Wulushi extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int tempDamage = damage;
-        AbstractMonster target = m;
+        int reduceDamage = 0;
         if(musicRarity!=null){
             if(musicRarity.equals(MusicRarity.RARE)){
-                while (tempDamage > 0 && target != null) {
-                    addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
-                    tempDamage -= 1;
-                    target = getRandomEnemy(target);
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                while (reduceDamage < baseDamage) {
+                    BaseMusicCard wulushi=this.makeStatEquivalentCopy();
+                    wulushi.baseDamage=wulushi.baseDamage-reduceDamage;
+                    if(wulushi.baseDamage>0){
+                        addToBot(new AttackDamageRandomEnemyAction(wulushi,AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                    }
+                    reduceDamage++;
                 }
             }else{
-                addToBot(new DamageAction(m, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                target = getRandomEnemy(target);
-                if(target!=null){
-                    addToBot(new DamageAction(target, new DamageInfo(p, tempDamage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                }
+                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new AttackDamageRandomEnemyAction(this,AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
             }
         }
-    }
-
-    private AbstractMonster getRandomEnemy(AbstractMonster exclude) {
-        ArrayList<AbstractMonster> possibleTargets = new ArrayList<>();
-        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!monster.isDying && !monster.isDead && monster != exclude) {
-                possibleTargets.add(monster);
-            }
-        }
-
-        if (possibleTargets.isEmpty()) {
-            return null;
-        }
-
-        return possibleTargets.get(AbstractDungeon.miscRng.random(possibleTargets.size() - 1));
     }
 
     @Override
