@@ -61,6 +61,7 @@ public class SoyoMonster extends SpecialMonster {
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
 
         addToBot(new ApplyPowerAction(this,this,new FriendlyMonsterPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new SoyoMultiChangePower(this)));
 
     }
 
@@ -85,13 +86,7 @@ public class SoyoMonster extends SpecialMonster {
         switch (this.nextMove) {
 
             case 0:
-//                if(mutumiMonster!=null&&!mutumiMonster.isDeadOrEscaped()){
-//                    AbstractDungeon.actionManager.addToBottom(new DamageAction(mutumiMonster,
-//                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-//                }else{
-//                    AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-//                            this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-//                }
+
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(target,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 

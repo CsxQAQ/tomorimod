@@ -42,7 +42,7 @@
     "NAMES": [
       "形态"
     ],
-    "DESCRIPTION": "使用带有 #y形态 的卡牌会覆盖原有 #y形态 能力。"
+    "DESCRIPTION": "同时只能拥有一种 #y形态 。"
   },
   {
     "NAMES": [
