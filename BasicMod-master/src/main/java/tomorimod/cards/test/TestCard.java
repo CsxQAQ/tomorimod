@@ -11,8 +11,8 @@ import tomorimod.cards.special.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class Test extends BaseCard implements SpecialCard {
-    public static final String ID = makeID(Test.class.getSimpleName());
+public class TestCard extends BaseCard implements SpecialCard {
+    public static final String ID = makeID(TestCard.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -24,7 +24,7 @@ public class Test extends BaseCard implements SpecialCard {
     private static final int DAMAGE = 9999;
     private static final int UPG_DAMAGE = 3;
 
-    public Test() {
+    public TestCard() {
         super(ID, info);
 
         setDamage(DAMAGE, UPG_DAMAGE);
@@ -40,6 +40,6 @@ public class Test extends BaseCard implements SpecialCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new Test();
+        return new TestCard();
     }
 }

@@ -51,12 +51,6 @@ public class SmoothComboAction extends AbstractGameAction {
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-//                    AbstractMonster exception=null;
-//                    for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-//                        if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
-//                            exception=monster;
-//                        }
-//                    }
                     addToBot(new PlayTopCardAction(
                             (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
                             false
@@ -66,12 +60,6 @@ public class SmoothComboAction extends AbstractGameAction {
                 }
             });
         }else{
-//            AbstractMonster exception=null;
-//            for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-//                if (!monster.isDeadOrEscaped()&&monster.hasPower(makeID("FriendlyMonsterPower"))) {
-//                    exception=monster;
-//                }
-//            }
             addToBot(new PlayTopCardAction(
                     (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
                     false

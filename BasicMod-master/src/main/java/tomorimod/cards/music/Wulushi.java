@@ -3,11 +3,14 @@ package tomorimod.cards.music;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.actions.cardactions.WulushiAction;
+import tomorimod.cards.test.TestCard;
 import tomorimod.util.CardStats;
 
 import java.util.ArrayList;
@@ -55,23 +58,39 @@ public class Wulushi extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int reduceDamage = 0;
+
         if(musicRarity!=null){
             if(musicRarity.equals(MusicRarity.RARE)){
                 addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                while (reduceDamage < baseDamage) {
-                    BaseMusicCard wulushi=this.makeStatEquivalentCopy();
-                    wulushi.baseDamage=wulushi.baseDamage-reduceDamage;
-                    if(wulushi.baseDamage>0){
-                        addToBot(new AttackDamageRandomEnemyAction(wulushi,AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                    }
-                    reduceDamage++;
-                }
+                addToBot(new WulushiAction(baseDamage-1,m));
             }else{
                 addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToBot(new AttackDamageRandomEnemyAction(this,AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractMonster target=getRandomEnemy(m);
+                        TestCard testCard=new TestCard();
+                        testCard.baseDamage=Wulushi.this.baseDamage;
+                        testCard.calculateCardDamage(target);
+                        addToBot(new DamageAction(target, new DamageInfo(p, testCard.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        isDone=true;
+                    }
+                });
             }
         }
+    }
+
+    private AbstractMonster getRandomEnemy(AbstractMonster except) {
+        ArrayList<AbstractMonster> possibleTargets = new ArrayList<>();
+        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
+                possibleTargets.add(monster);
+            }
+        }
+        if (possibleTargets.isEmpty()) {
+            return null;
+        }
+        return possibleTargets.get(AbstractDungeon.miscRng.random(possibleTargets.size() - 1));
     }
 
     @Override
