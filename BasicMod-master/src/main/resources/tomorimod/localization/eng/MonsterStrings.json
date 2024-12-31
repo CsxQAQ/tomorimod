@@ -32,5 +32,27 @@
       "",
       ""
     ]
+  },
+  "${modID}:MutumiMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "若叶睦",
+    "DIALOG": [
+      "",
+      ""
+    ]
+  },
+  "${modID}:SoyoMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "长崎素世",
+    "DIALOG": [
+      "",
+      ""
+    ]
   }
 }

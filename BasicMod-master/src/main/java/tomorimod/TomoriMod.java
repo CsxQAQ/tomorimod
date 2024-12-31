@@ -19,6 +19,7 @@ import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
+import tomorimod.monsters.mutumi.MutumiMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.patches.BossGeneratePatch;
@@ -174,7 +175,12 @@ public class TomoriMod implements
 
 
         BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", TakiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("TheCity", TakiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
+                .getSimpleName() + ".png");
+
+        BaseMod.addMonster(MutumiMonster.ID, () -> new MutumiMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", MutumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }
