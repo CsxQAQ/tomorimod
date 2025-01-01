@@ -38,16 +38,18 @@ public class SoyoFormPower extends BasePower {
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
         if(color.equals("red")){
             return damage*2.0f;
+        }else if(color.equals("green")){
+            return 1-0.4f-0.1f*amount<0?0:damage*(1-0.4f-0.1f*amount);
         }
         return damage;
     }
 
     @Override
     public void atEndOfTurn(boolean isPlayer){
-        if(color.equals("green")){
-            addToBot(new HealAction(owner,owner,20+5*amount));
-            addToBot(new HealAction(AbstractDungeon.player,owner,20+5*amount));
-        }
+//        if(color.equals("green")){
+//            addToBot(new HealAction(owner,owner,20+5*amount));
+//            addToBot(new HealAction(AbstractDungeon.player,owner,20+5*amount));
+//        }
         if(color.equals("yellow")){
             addToBot(new ApplyPowerAction(owner,owner,new StrengthPower(owner,4+amount),4+amount));
         }

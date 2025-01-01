@@ -410,5 +410,18 @@
   "${modID}:WholeLife": {
     "NAME": "一辈子",
     "DESCRIPTION": " tomorimod:永久形态 ：具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+  },
+
+
+
+
+
+
+
+
+
+  "${modID}:Cucumber": {
+    "NAME": "小黄瓜",
+    "DESCRIPTION": " 虚无 ，不能被打出。回合结束时使 *若叶睦 获得2点 力量 并恢复50点生命值。"
   }
 }

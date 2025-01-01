@@ -1,15 +1,14 @@
 package tomorimod.monsters.mutsumi;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -42,11 +41,12 @@ public class SoyoMonster extends SpecialMonster {
     private boolean isMutumiGet;
     private MutsumiMonster mutsumiMonster;
 
+    private int point=0;
+
 
     public SoyoMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
-        // setHp(HP_MAX, HP_MIN); // 你原本写的，建议改为：
         setHp(HP_MIN, HP_MAX);
 
         this.type = EnemyType.BOSS;
@@ -58,7 +58,10 @@ public class SoyoMonster extends SpecialMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
 
-        this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 100, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 8, DamageInfo.DamageType.NORMAL));
 
         addToBot(new ApplyPowerAction(this,this,new FriendlyMonsterPower(this)));
         addToBot(new ApplyPowerAction(this,this,new SoyoMultiChangePower(this)));
@@ -82,16 +85,37 @@ public class SoyoMonster extends SpecialMonster {
 
     @Override
     public void takeTurn() {
-
         switch (this.nextMove) {
-
             case 0:
-
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(target,
+                addToBot(new DamageAction(target,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
                 break;
-
+            case 1:
+                addToBot(new ApplyPowerAction(this,this,
+                        new PlatedArmorPower(this,5),5));
+                addToBot(new ApplyPowerAction(AbstractDungeon.player,this,
+                        new PlatedArmorPower(AbstractDungeon.player,5),5));
+                break;
+            case 2:
+                for(int i=0;i<5;i++){
+                    addToBot(new DamageAction(target,
+                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
+            case 3:
+                addToBot(new HealAction(this,this,40));
+                addToBot(new HealAction(AbstractDungeon.player,this,40));
+                break;
+            case 4:
+                addToBot(new DamageAction(target,
+                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                break;
+            case 5:
+                for(int i=0;i<10;i++){
+                    addToBot(new DamageAction(target,
+                            this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
@@ -101,10 +125,41 @@ public class SoyoMonster extends SpecialMonster {
 
     @Override
     protected void getMove(int num) {
-
-        setMove( (byte)0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
-
+        int rand=AbstractDungeon.miscRng.random(point);
+        if(rand>2){
+            rand=2;
+        }
+        int tmp=AbstractDungeon.miscRng.random(1);
+        switch (rand){
+            case 0:
+                if(tmp==0){
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 1, false);
+                }else{
+                    setMove((byte)1,Intent.DEFEND);
+                }
+                point++;
+                break;
+            case 1:
+                if(tmp==0){
+                    setMove((byte)2,Intent.ATTACK,
+                            this.damage.get(1).base,5,true);
+                }else{
+                    setMove((byte)3,Intent.BUFF);
+                }
+                point--;
+                break;
+            case 2:
+                if(tmp==0){
+                    setMove((byte)4,Intent.ATTACK,
+                            this.damage.get(2).base,1,false);
+                }else{
+                    setMove((byte)5,Intent.ATTACK,
+                            this.damage.get(3).base,10,true);
+                }
+                point=point-2;
+                break;
+        }
     }
 
     @Override

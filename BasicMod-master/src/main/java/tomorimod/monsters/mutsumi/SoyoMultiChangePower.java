@@ -30,8 +30,6 @@ public class SoyoMultiChangePower extends BasePower {
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action){
         if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card)!=""){
-
-
             if(this.color==null){
                 this.color=AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
                 addToBot(new ApplyPowerAction(owner,owner,new SoyoFormPower(owner,

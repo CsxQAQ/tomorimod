@@ -123,7 +123,7 @@ public class CraftingRecipes implements Clearable {
     public void initializeCardsMaterials(){
         //for(AbstractCard card : CustomUtils.getAllModCards()){
         for(AbstractCard card : CardLibrary.getAllCards()){
-            if(!(card instanceof WithoutMaterial)){
+            if(!(card instanceof WithoutMaterial)&&card.type!= AbstractCard.CardType.CURSE&&card.type!= AbstractCard.CardType.STATUS){
                 cardMaterialHashMap.put(card.cardID,getRandomMaterials());
             }
         }

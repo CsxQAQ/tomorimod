@@ -49,6 +49,10 @@ public class MutsumiMonster extends SpecialMonster {
     public static final float DRAW_Y=450.0F;
     private SoyoMonster soyoMonster;
 
+    public static final int CUCUMBER=20;
+    public static final int HEALNUM=50;
+    public static final int STRENGTHNUM=2;
+
 
     public MutsumiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -83,6 +87,7 @@ public class MutsumiMonster extends SpecialMonster {
 
         addToBot(new SpawnMonsterAction(soyoMonster,false));
         addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
+        addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this)));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
     }
@@ -96,8 +101,9 @@ public class MutsumiMonster extends SpecialMonster {
             case 0:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(target,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
                 break;
+
+
 
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
