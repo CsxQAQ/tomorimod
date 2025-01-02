@@ -84,8 +84,11 @@ public class MutsumiMonster extends SpecialMonster {
         SoyoMonster soyoMonster=new SoyoMonster(0f,0f);
         this.soyoMonster=soyoMonster;
         target=soyoMonster;
-
+        addToBot(new ApplyPowerAction(soyoMonster,this,new FriendlyMonsterPower(soyoMonster)));
+        addToBot(new ApplyPowerAction(soyoMonster,this,new SoyoMultiChangePower(soyoMonster)));
         addToBot(new SpawnMonsterAction(soyoMonster,false));
+
+
         addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
         addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this)));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));

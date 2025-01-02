@@ -19,6 +19,7 @@ import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
+import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.patches.BossGeneratePatch;
@@ -43,6 +44,8 @@ import com.megacrit.cardcrawl.localization.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
+import tomorimod.vfx.DynamicBackgroundContinueEffect;
+import tomorimod.vfx.DynamicBackgroundEffect;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -161,6 +164,10 @@ public class TomoriMod implements
         //If you want to set up a config panel, that will be done here.
         //The Mod Badges page has a basic example of this, but setting up config is overall a bit complex.
         //BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+
+        DynamicBackgroundEffect.preloadImages();
+        DynamicBackgroundContinueEffect.initializeTexture();
+
     }
 
     private void receiveMonstor() {
@@ -179,7 +186,12 @@ public class TomoriMod implements
                 .getSimpleName() + ".png");
 
         BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", MutsumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("TheCity", MutsumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
+                .getSimpleName() + ".png");
+
+        BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }

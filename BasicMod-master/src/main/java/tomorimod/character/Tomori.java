@@ -12,9 +12,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.red.Strike_Red;
@@ -23,16 +22,19 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
+import com.megacrit.cardcrawl.helpers.*;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.LizardTail;
+import com.megacrit.cardcrawl.relics.SlaversCollar;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.ui.MultiPageFtue;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
@@ -43,6 +45,8 @@ import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
 import tomorimod.cards.forms.Mascot;
 import tomorimod.cards.forms.Singer;
+import tomorimod.cards.special.WelcomeToAveMujica;
+import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
 import tomorimod.relics.NotebookRelic;
@@ -558,5 +562,64 @@ public class Tomori extends CustomPlayer {
         } else {
             AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
         }
+    }
+
+
+    @Override
+    public void preBattlePrep(){
+        if (!(Boolean) TipTracker.tips.get("COMBAT_TIP")) {
+            AbstractDungeon.ftue = new MultiPageFtue();
+            TipTracker.neverShowAgain("COMBAT_TIP");
+        }
+
+        AbstractDungeon.actionManager.clear();
+        this.damagedThisCombat = 0;
+        this.cardsPlayedThisTurn = 0;
+        this.maxOrbs = 0;
+        this.orbs.clear();
+        this.increaseMaxOrbSlots(this.masterMaxOrbs, false);
+        this.isBloodied = this.currentHealth <= this.maxHealth / 2;
+        poisonKillCount = 0;
+        GameActionManager.playerHpLastTurn = this.currentHealth;
+        this.endTurnQueued = false;
+        this.gameHandSize = this.masterHandSize;
+        this.isDraggingCard = false;
+        this.isHoveringDropZone = false;
+        this.hoveredCard = null;
+        this.cardInUse = null;
+        this.drawPile.initializeDeck(this.masterDeck);
+        for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+            if(monster instanceof SakiShadowMonster){
+                this.drawPile.clear();
+                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new WelcomeToAveMujica()));
+            }
+        }
+        AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
+        this.hand.clear();
+        this.discardPile.clear();
+        this.exhaustPile.clear();
+        if (AbstractDungeon.player.hasRelic("SlaversCollar")) {
+            ((SlaversCollar)AbstractDungeon.player.getRelic("SlaversCollar")).beforeEnergyPrep();
+        }
+
+        this.energy.prep();
+        this.powers.clear();
+        this.isEndingTurn = false;
+        this.healthBarUpdatedEvent();
+        if (ModHelper.isModEnabled("Lethality")) {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 3), 3));
+        }
+
+        if (ModHelper.isModEnabled("Terminal")) {
+            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new PlatedArmorPower(this, 5), 5));
+        }
+
+        AbstractDungeon.getCurrRoom().monsters.usePreBattleAction();
+        if (Settings.isFinalActAvailable && AbstractDungeon.getCurrMapNode().hasEmeraldKey) {
+            AbstractDungeon.getCurrRoom().applyEmeraldEliteBuff();
+        }
+
+        AbstractDungeon.actionManager.addToTop(new WaitAction(1.0F));
+        this.applyPreCombatLogic();
     }
 }
