@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -19,13 +20,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import tomorimod.actions.PlayBGMAction;
+import tomorimod.cards.special.FearlessDeath;
+import tomorimod.cards.special.FearlessFear;
+import tomorimod.cards.special.FearlessLove;
+import tomorimod.cards.special.FearlessSad;
 import tomorimod.monsters.mutsumi.*;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 import tomorimod.vfx.DynamicBackgroundContinueEffect;
 import tomorimod.vfx.DynamicBackgroundEffect;
 import tomorimod.vfx.DynamicBackgroundTestEffect;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -75,6 +84,7 @@ public class SakiShadowMonster extends SpecialMonster {
         this.damage.add(new DamageInfo(this, 999, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 10, DamageInfo.DamageType.NORMAL));
         isFirstTurn=true;
+        isGiveCurse=true;
     }
 
 
@@ -142,13 +152,45 @@ public class SakiShadowMonster extends SpecialMonster {
                     }
                     break;
                 case 99:
+                    List<AbstractCard> cards = Arrays.asList(
+                            new FearlessDeath(),
+                            new FearlessFear(),
+                            new FearlessLove(),
+                            new FearlessSad()
+                    );
 
+                    float startX = (float) Settings.WIDTH / 5.0F;
+                    float startY = (float) Settings.HEIGHT / 2.0F;
+                    float spacing = (float) Settings.WIDTH / 5.0F;
+                    float delay = 0.5F;
 
+                    for (int i = 0; i < cards.size(); i++) {
+                        addToBot(new ShowCardAndObtainAction(cards.get(i),startX+i*spacing,startY));
+                        addToBot(new TrueWaitAction(delay));
+                    }
+                    break;
             }
         }
 
 
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+    }
+
+    @Override
+    protected void getMove(int num) {
+        if(!isFirstTurn){
+            if(isGiveCurse){
+                setMove((byte)99,Intent.DEBUFF);
+                isGiveCurse=false;
+            }else{
+                setMove( (byte)1, Intent.ATTACK,
+                        this.damage.get(1).base, 2, true);
+            }
+        }else{
+            setMove( (byte)0, Intent.ATTACK,
+                    this.damage.get(0).base, 1, false);
+        }
+
     }
 
     // 是否正在执行淡入动画
@@ -198,19 +240,7 @@ public class SakiShadowMonster extends SpecialMonster {
         }
     }
 
-    @Override
-    protected void getMove(int num) {
 
-        if(isGiveCurse){
-            setMove((byte)99,Intent.DEBUFF);
-        }else{
-            setMove( (byte)1, Intent.ATTACK,
-                    this.damage.get(1).base, 2, true);
-        }
-
-
-
-    }
 
     @Override
     public void die() {
