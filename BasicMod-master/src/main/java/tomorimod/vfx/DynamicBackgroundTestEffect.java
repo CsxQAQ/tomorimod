@@ -5,20 +5,24 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static tomorimod.TomoriMod.imagePath;
 
-public class DynamicBackgroundEffect extends AbstractGameEffect {
+public class DynamicBackgroundTestEffect extends AbstractGameEffect {
 
     private static List<Texture> images = new ArrayList<>();      // 存储所有背景图片
     private int currentIndex;          // 当前显示的图片索引
     private float timer;               // 计时器
     private float switchInterval;      // 图片切换的时间间隔（秒）
-    private static final int IMAGENUM=50;
+    private static final int STARTPOS=29;
+    private static final int ENDPOS=49;
 
-    public DynamicBackgroundEffect(float switchInterval) {
+    private static final int IMAGENUM=ENDPOS-STARTPOS+1;
+
+    public DynamicBackgroundTestEffect(float switchInterval) {
         this.color = Color.WHITE.cpy();
         this.renderBehind = true;
         this.currentIndex = 0;
@@ -29,11 +33,11 @@ public class DynamicBackgroundEffect extends AbstractGameEffect {
     }
 
     public static void preloadImages() {
-        for(int i = 0; i <IMAGENUM; i++) {
-            String path = imagePath("monsters/sakishadow/frame_" + i + ".png");
+        for(int i = STARTPOS; i <=ENDPOS; i++) {
+            String path = imagePath("monsters/test/frame_" + i + ".png");
             try {
                 Texture texture = new Texture(path);
-                DynamicBackgroundEffect.images.add(texture);
+                DynamicBackgroundTestEffect.images.add(texture);
                 System.out.println("预加载纹理: " + path);
             } catch (Exception e) {
                 System.err.println("预加载纹理失败: " + path);
@@ -53,7 +57,7 @@ public class DynamicBackgroundEffect extends AbstractGameEffect {
             currentIndex++;
             timer = switchInterval;
 
-            if (currentIndex >= images.size()*2) {
+            if (currentIndex >= 2*IMAGENUM) {
                 // 播放完所有图片，结束效果
                 isDone = true;
                 //dispose(); // 释放资源
@@ -71,8 +75,8 @@ public class DynamicBackgroundEffect extends AbstractGameEffect {
             Texture currentImg = images.get(currentIndex);
             sb.draw(currentImg, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);
         }else{
-            if(IMAGENUM*2-currentIndex-1>0){
-                Texture currentImg = images.get(IMAGENUM*2-currentIndex-1);
+            if(2*IMAGENUM-currentIndex-1>0){
+                Texture currentImg = images.get(2*IMAGENUM-currentIndex-1);
                 sb.draw(currentImg, 0.0F, 0.0F, Settings.WIDTH, Settings.HEIGHT);
             }
         }

@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -23,6 +25,7 @@ import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 import tomorimod.vfx.DynamicBackgroundContinueEffect;
 import tomorimod.vfx.DynamicBackgroundEffect;
+import tomorimod.vfx.DynamicBackgroundTestEffect;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -41,7 +44,7 @@ public class SakiShadowMonster extends SpecialMonster {
     private static final int HP_MAX = 1000;
 
     private static final float HB_X = 0F;
-    private static final float HB_Y = 0F;
+    private static final float HB_Y = 50F;
     private static final float HB_W = 230.0F;
     private static final float HB_H = 240.0F;
 
@@ -50,6 +53,8 @@ public class SakiShadowMonster extends SpecialMonster {
     public static final float DRAW_X=1400.0F;
     public static final float DRAW_Y=450.0F;
     private SoyoMonster soyoMonster;
+
+    private boolean isFirstTurn;
 
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -67,6 +72,8 @@ public class SakiShadowMonster extends SpecialMonster {
 
 
         this.damage.add(new DamageInfo(this, 999, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 10, DamageInfo.DamageType.NORMAL));
+        isFirstTurn=true;
     }
 
 
@@ -74,10 +81,12 @@ public class SakiShadowMonster extends SpecialMonster {
     public void usePreBattleAction() {
 
         AbstractGameEffect effect = new ChangeSceneEffect
-                (ImageMaster.loadImage(imagePath("monsters/scenes/SakiShadow_bg.png")));
+                (ImageMaster.loadImage(imagePath("monsters/scenes/frame_29.png")));
         AbstractDungeon.effectList.add(effect);
 
         AbstractDungeon.scene.fadeOutAmbiance();
+
+        //AbstractDungeon.overlayMenu.endTurnButton.disable();
 
         initializeSoyoMonster();
     }
@@ -88,31 +97,47 @@ public class SakiShadowMonster extends SpecialMonster {
         soyoMonster.drawX=AbstractDungeon.player.drawX+300.0F*Settings.scale;
         soyoMonster.drawY=AbstractDungeon.player.drawY;
         soyoMonster.flipHorizontal=true;
-        //this.hb.move(this.drawX + this.hb_x + this.animX, this.drawY + this.hb_y + this.hb_h / 2.0F);
+
         addToBot(new SpawnMonsterAction(soyoMonster,false));
         addToBot(new ApplyPowerAction(soyoMonster,soyoMonster,new FriendlyMonsterPower(soyoMonster)));
+        soyoMonster.intent=Intent.UNKNOWN;
+
     }
 
     @Override
     public void takeTurn() {
+        if(isFirstTurn){
 
-        switch (this.nextMove) {
-            case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(soyoMonster,
-                        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            addToTop(new PlayBGMAction(MusicPatch.MusicHelper.KILLKISS,this));
 
-                addToBot(new PlayBGMAction(MusicPatch.MusicHelper.BITIANBANZOU,this));
-                AbstractDungeon.effectList.add(new DynamicBackgroundEffect(0.05f));
+            //addToBot(new WaitAction(2.0f));
 
-                drawX=DRAW_X*Settings.scale;
-                drawY=DRAW_Y*Settings.scale;
+            addToBot(new DamageAction(soyoMonster,
+                    this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-                AbstractDungeon.player.initializeStarterDeck();
-                isFadingIn=true;
-                break;
+            //AbstractDungeon.effectList.add(new DynamicBackgroundEffect(0.05f));
+            AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
 
+            drawX=DRAW_X*Settings.scale;
+            drawY=DRAW_Y*Settings.scale;
 
+            //AbstractDungeon.player.initializeStarterDeck();
+            AbstractDungeon.player.drawPile.initializeDeck(AbstractDungeon.player.masterDeck);
+            isFadingIn=true;
+            isFirstTurn=false;
+        }else{
+            switch (this.nextMove) {
+                case 1:
+                    for(int i=0;i<2;i++){
+                        addToBot(new DamageAction(AbstractDungeon.player,
+                                this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    }
+                    break;
+
+            }
         }
+
+
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
@@ -172,9 +197,15 @@ public class SakiShadowMonster extends SpecialMonster {
 
     @Override
     protected void getMove(int num) {
+//        if(isFirstTurn){
+//            setMove( (byte)0, Intent.ATTACK,
+//                this.damage.get(0).base, 1, false);
+//            isFirstTurn=false;
+//        }else{
+            setMove( (byte)1, Intent.ATTACK,
+                    this.damage.get(1).base, 2, true);
+//        }
 
-        setMove( (byte)0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
 
     }
 

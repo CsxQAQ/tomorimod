@@ -46,6 +46,7 @@ import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
 import tomorimod.vfx.DynamicBackgroundContinueEffect;
 import tomorimod.vfx.DynamicBackgroundEffect;
+import tomorimod.vfx.DynamicBackgroundTestEffect;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -166,7 +167,8 @@ public class TomoriMod implements
         //BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
 
         DynamicBackgroundEffect.preloadImages();
-        DynamicBackgroundContinueEffect.initializeTexture();
+        DynamicBackgroundTestEffect.preloadImages();
+        //DynamicBackgroundContinueEffect.initializeTexture();
 
     }
 

@@ -20,23 +20,27 @@ public class PlayBGMAction extends AbstractGameAction {
         this(musicHelper, monster, false);
     }
 
-    public void update() {
-        if (this.isForce) {
-            CardCrawlGame.music.silenceBGMInstantly();
-            CardCrawlGame.music.silenceTempBgmInstantly();
-            CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
-            this.isDone = true;
-            return;
-        }
-        if (!this.monster.isPlayBGM) {
-            CardCrawlGame.music.silenceBGMInstantly();
-            CardCrawlGame.music.silenceTempBgmInstantly();
-            CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
-            this.monster.isPlayBGM = true;
-        }
-//        CardCrawlGame.music.silenceBGMInstantly();
-//        CardCrawlGame.music.silenceTempBgmInstantly();
-//        CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
-        this.isDone = true;
+//    public void update() {
+//        if (this.isForce) {
+//            CardCrawlGame.music.silenceBGMInstantly();
+//            CardCrawlGame.music.silenceTempBgmInstantly();
+//            CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
+//            this.isDone = true;
+//            return;
+//        }
+//        if (!this.monster.isPlayBGM) {
+//            CardCrawlGame.music.silenceBGMInstantly();
+//            CardCrawlGame.music.silenceTempBgmInstantly();
+//            CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
+//            this.monster.isPlayBGM = true;
+//        }
+//
+//        this.isDone = true;
+//    }
+    public void update(){
+        CardCrawlGame.music.silenceBGMInstantly();
+        CardCrawlGame.music.silenceTempBgmInstantly();
+        CardCrawlGame.music.playTempBgmInstantly(this.musicHelper.name(), true);
+        isDone=true;
     }
 }
