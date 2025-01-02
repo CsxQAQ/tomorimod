@@ -116,7 +116,7 @@ public class SoyoMonster extends SpecialMonster {
                             this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;
-            case 10:
+            case 99:
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));

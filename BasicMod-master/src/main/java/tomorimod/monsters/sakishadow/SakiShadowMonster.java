@@ -86,8 +86,6 @@ public class SakiShadowMonster extends SpecialMonster {
 
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        //AbstractDungeon.overlayMenu.endTurnButton.disable();
-
         initializeSoyoMonster();
     }
 
@@ -100,7 +98,15 @@ public class SakiShadowMonster extends SpecialMonster {
 
         addToBot(new SpawnMonsterAction(soyoMonster,false));
         addToBot(new ApplyPowerAction(soyoMonster,soyoMonster,new FriendlyMonsterPower(soyoMonster)));
-        soyoMonster.intent=Intent.UNKNOWN;
+
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                soyoMonster.setMove((byte) 99, Intent.UNKNOWN);
+                soyoMonster.createIntent();
+                isDone=true;
+            }
+        });
 
     }
 
@@ -110,21 +116,19 @@ public class SakiShadowMonster extends SpecialMonster {
 
             addToTop(new PlayBGMAction(MusicPatch.MusicHelper.KILLKISS,this));
 
-            //addToBot(new WaitAction(2.0f));
-
             addToBot(new DamageAction(soyoMonster,
                     this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 
-            //AbstractDungeon.effectList.add(new DynamicBackgroundEffect(0.05f));
             AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
 
             drawX=DRAW_X*Settings.scale;
             drawY=DRAW_Y*Settings.scale;
 
-            //AbstractDungeon.player.initializeStarterDeck();
             AbstractDungeon.player.drawPile.initializeDeck(AbstractDungeon.player.masterDeck);
             isFadingIn=true;
             isFirstTurn=false;
+            addToBot(new TrueWaitAction(3.0f));
+
         }else{
             switch (this.nextMove) {
                 case 1:

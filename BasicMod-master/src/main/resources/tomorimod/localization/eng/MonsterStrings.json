@@ -77,5 +77,15 @@
       "为什么......",
       "不要"
     ]
+  },
+  "${modID}:SakiShadowMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "祥子的幻影",
+    "DIALOG": [
+      ""
+    ]
   }
 }
