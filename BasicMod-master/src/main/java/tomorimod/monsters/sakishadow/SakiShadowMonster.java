@@ -55,6 +55,7 @@ public class SakiShadowMonster extends SpecialMonster {
     private SoyoMonster soyoMonster;
 
     private boolean isFirstTurn;
+    private boolean isGiveCurse;
 
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -85,6 +86,9 @@ public class SakiShadowMonster extends SpecialMonster {
         AbstractDungeon.effectList.add(effect);
 
         AbstractDungeon.scene.fadeOutAmbiance();
+
+        addToBot(new ApplyPowerAction(this,this,new SakiFearlessPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new SakiShadowImmunityPower(this)));
 
         initializeSoyoMonster();
     }
@@ -137,6 +141,8 @@ public class SakiShadowMonster extends SpecialMonster {
                                 this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     }
                     break;
+                case 99:
+
 
             }
         }
@@ -160,22 +166,16 @@ public class SakiShadowMonster extends SpecialMonster {
     public void update() {
         super.update();
 
-        // 如果正在淡入
         if (isFadingIn) {
-            // 计算本帧经过的时间
             fadeInTimer -= Gdx.graphics.getDeltaTime();
             if (fadeInTimer < 0f) {
                 fadeInTimer = 0f;
                 isFadingIn = false;
             }
 
-            // 计算 0~1 的进度
             float progress = 1.0f - (fadeInTimer / fadeInDuration);
-            // 也可以换成别的插值，比如 Interpolation.pow2In 或 Interpolation.linear
             alpha = Interpolation.fade.apply(0f, 1f, progress);
-            //alpha=alpha==1.0f?0:alpha;
             this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, alpha));
-            // 当淡入结束，alpha=1，就可以显示血条和意图
             if (!isFadingIn) {
                 alpha = 1.0f;
                 this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, 1));
@@ -198,17 +198,16 @@ public class SakiShadowMonster extends SpecialMonster {
         }
     }
 
-
     @Override
     protected void getMove(int num) {
-//        if(isFirstTurn){
-//            setMove( (byte)0, Intent.ATTACK,
-//                this.damage.get(0).base, 1, false);
-//            isFirstTurn=false;
-//        }else{
+
+        if(isGiveCurse){
+            setMove((byte)99,Intent.DEBUFF);
+        }else{
             setMove( (byte)1, Intent.ATTACK,
                     this.damage.get(1).base, 2, true);
-//        }
+        }
+
 
 
     }

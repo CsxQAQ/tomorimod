@@ -425,7 +425,24 @@
     "DESCRIPTION": " 虚无 ，不能被打出。回合结束时使 *若叶睦 获得2点 力量 并恢复50点生命值。"
   },
   "${modID}:WelcomeToAveMujica": {
-    "NAME": "",
+    "NAME": "舞会邀请函",
     "DESCRIPTION": "欢迎来到AveＭujica的世界"
+  },
+  "${modID}:FearlessDeath": {
+    "NAME": "无畏死亡",
+    "DESCRIPTION": "无法被打出。回合结束时受到 !M! 点伤害。"
+  },
+  "${modID}:FearlessFear": {
+    "NAME": "无畏恐惧",
+    "DESCRIPTION": "无法被打出。 保留 。"
+  },
+  "${modID}:FearlessLove": {
+    "NAME": "无畏爱",
+    "DESCRIPTION": "无法被打出。 回合结束时获得 !M! 层 虚弱 、 易伤 和 脆弱 。"
+  },
+  "${modID}:FearlessSad": {
+    "NAME": "无畏悲伤",
+    "DESCRIPTION": "无法被打出。 回合结束时使 *祥子的幻影 获得 !M! 点 tomorinmod:复权 。"
   }
+
 }

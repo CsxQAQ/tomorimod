@@ -252,5 +252,23 @@
       " NL #g绿色 ：受到的伤害减少 b40 %，每点层数额外减少 #b10 %的伤害。",
       " NL #y黄色 ：回合结束时获得 #b4 点 #y力量 ，每点层数额外获得 #b1 点 #y力量 。"
     ]
+  },
+  "${modID}:SakiShadowImmunityPower": {
+    "NAME": "幻影",
+    "DESCRIPTIONS":[
+      "只受到来自音乐牌的伤害。"
+    ]
+  },
+  "${modID}:SakiWorldViewPower": {
+    "NAME": "世界观",
+    "DESCRIPTIONS":[
+      "当你的抽牌堆为空时，不再从弃牌堆洗牌，改为从牌组洗牌。"
+    ]
+  },
+  "${modID}:SakiRightPower": {
+    "NAME": "复权",
+    "DESCRIPTIONS":[
+      "攻击时使你减少等同于 #y复权 层数的最大生命值。"
+    ]
   }
 }
