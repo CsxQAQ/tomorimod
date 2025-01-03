@@ -97,8 +97,9 @@ public class SakiShadowMonster extends SpecialMonster {
 
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        addToBot(new ApplyPowerAction(this,this,new SakiFearlessPower(this)));
+        //addToBot(new ApplyPowerAction(this,this,new SakiFearlessPower(this)));
         addToBot(new ApplyPowerAction(this,this,new SakiShadowImmunityPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new SakiWorldViewPower(this)));
 
         initializeSoyoMonster();
     }

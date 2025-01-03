@@ -256,7 +256,7 @@
   "${modID}:SakiShadowImmunityPower": {
     "NAME": "幻影",
     "DESCRIPTIONS":[
-      "只受到来自音乐牌的伤害。"
+      "只受到来自 #y音乐 牌的伤害。"
     ]
   },
   "${modID}:SakiWorldViewPower": {
