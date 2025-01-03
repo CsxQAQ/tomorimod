@@ -443,6 +443,67 @@
   "${modID}:FearlessSad": {
     "NAME": "无畏悲伤",
     "DESCRIPTION": " 不能被打出 。 回合结束时使 *祥子的幻影 获得 !M! 点 tomorimod:复权 。"
+  },
+
+
+  "${modID}:UikaConveyFeeling": {
+    "NAME": "传达心意",
+    "DESCRIPTION": " tomorimod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
+  },
+  "${modID}:UikaDivergeWorld": {
+    "NAME": "偏离世界",
+    "DESCRIPTION": "攻击时触发 tomorimod:重力 的效果。"
+  },
+  "${modID}:UikaDomainExpansion": {
+    "NAME": "领域展开",
+    "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
+  },
+  "${modID}:UikaDoughnut": {
+    "NAME": "甜甜圈",
+    "DESCRIPTION": "恢复当前损失生命值一半的生命值。 消耗 ， tomorimod:瞬间 。"
+  },
+
+  "${modID}:UikaLastGentle": {
+    "NAME": "最后的温柔",
+    "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互换。"
+  },
+  "${modID}:UikaLastOne": {
+    "NAME": "压轴",
+    "DESCRIPTION": " 获得 !M! 层 tomorimod:闪耀 。"
+  },
+  "${modID}:UikaLightAndShadow": {
+    "NAME": "光与影",
+    "DESCRIPTION": " 消耗 ，获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
+    "EXTENDED_DESCRIPTION": [
+      " 消耗 ，获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
+    ]
+  },
+  "${modID}:UikaLiveForever": {
+    "NAME": "和你永远在一起",
+    "DESCRIPTION": " 获得 !M! 层 tomorimod:重力 。"
+  },
+  "${modID}:UikaManaGuard": {
+    "NAME": "真奈的守护",
+    "DESCRIPTION": "获得等同于 tomorimod:闪耀 层数3倍的 格挡 。"
+  },
+  "${modID}:UikaMygoTogether": {
+    "NAME": "一起迷失",
+    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在，获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
+  },
+  "${modID}:UikaNeedAnon": {
+    "NAME": "需要爱音",
+    "DESCRIPTION": "使 tomorimod:重力 层数翻倍。 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "使 tomorimod:重力 层数变为3倍。 消耗 。"
+    ]
+  },
+  "${modID}:UikaStrike": {
+    "NAME": "打击",
+    "DESCRIPTION": "造成 !M! 点伤害。"
+  },
+  "${modID}:UikaSumimi": {
+    "NAME": "Sumimi",
+    "DESCRIPTION": "造成 !M! 点伤害。每有一层 tomorimod:闪耀 重复一次。"
   }
 
 }

@@ -22,6 +22,7 @@ import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
@@ -193,7 +194,12 @@ public class TomoriMod implements
                 .getSimpleName() + ".png");
 
         BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
+                .getSimpleName() + ".png");
+
+        BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }
