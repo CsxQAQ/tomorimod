@@ -9,7 +9,7 @@ import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.ConveyFeelingPower;
 import tomorimod.util.CardStats;
 
-public class UikaConveyFeeling extends BaseCard {
+public class UikaConveyFeeling extends BaseCard implements UikaCard {
 
     public static final String ID = makeID(UikaConveyFeeling.class.getSimpleName());
     private static final CardStats info = new CardStats(

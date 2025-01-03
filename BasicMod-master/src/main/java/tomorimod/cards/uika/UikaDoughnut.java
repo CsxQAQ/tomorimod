@@ -11,6 +11,8 @@ import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 
+import static tomorimod.TomoriMod.imagePath;
+
 public class UikaDoughnut extends BaseCard implements UikaCard {
     public static final String ID = makeID(UikaDoughnut.class.getSimpleName());
     private static final CardStats info = new CardStats(
@@ -25,6 +27,8 @@ public class UikaDoughnut extends BaseCard implements UikaCard {
         super(ID, info);
         tags.add(CardTags.HEALING);
         this.exhaust=true;
+        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override

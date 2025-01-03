@@ -11,6 +11,8 @@ import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.util.CardStats;
 
+import static tomorimod.TomoriMod.imagePath;
+
 public class UikaStrike extends BaseCard implements UikaCard{
 
     public static final String ID = makeID(UikaStrike.class.getSimpleName());
@@ -30,6 +32,8 @@ public class UikaStrike extends BaseCard implements UikaCard{
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
         this.isEthereal = true;
+        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
+                imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override

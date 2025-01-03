@@ -26,14 +26,12 @@ public class UikaLastOne extends BaseCard implements UikaCard {
     private final int MAGIC=20;
     private final int UPG_MAGIC=0;
 
-    @Override
-    public void update() {
-        super.update();
-        setMagic(MAGIC,UPG_MAGIC);
 
-    }
     public UikaLastOne() {
         super(ID, info);
+        setMagic(MAGIC,UPG_MAGIC);
+        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override

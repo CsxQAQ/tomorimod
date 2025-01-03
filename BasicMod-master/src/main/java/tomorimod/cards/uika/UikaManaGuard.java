@@ -25,6 +25,8 @@ public class UikaManaGuard extends BaseCard implements UikaCard {
 
     public UikaManaGuard() {
         super(ID, info);
+        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override

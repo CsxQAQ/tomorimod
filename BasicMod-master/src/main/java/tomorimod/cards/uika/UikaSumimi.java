@@ -27,13 +27,11 @@ public class UikaSumimi extends BaseCard implements UikaCard {
     public final static int UPG_MAGIC=0;
 
 
-    @Override
-    public void update() {
-        super.update();
-        this.setMagic(MAGIC,UPG_MAGIC);
-    }
     public UikaSumimi() {
         super(ID, info);
+        this.setMagic(MAGIC,UPG_MAGIC);
+        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
+                imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override
