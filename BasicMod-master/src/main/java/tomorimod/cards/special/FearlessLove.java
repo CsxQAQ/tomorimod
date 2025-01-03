@@ -37,14 +37,19 @@ public class FearlessLove extends BaseCard implements SpecialCard, WithoutMateri
     }
 
     @Override
-    public void triggerOnEndOfPlayerTurn() {
+    public void triggerWhenDrawn() {
         addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,
-            new VulnerablePower(AbstractDungeon.player,magicNumber,false),magicNumber));
+                new VulnerablePower(AbstractDungeon.player,magicNumber,false),magicNumber));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,
                 new WeakPower(AbstractDungeon.player,magicNumber,false),magicNumber));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,
                 new FrailPower(AbstractDungeon.player,magicNumber,false),magicNumber));
     }
+
+//    @Override
+//    public void triggerOnEndOfPlayerTurn() {
+//
+//    }
 
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
