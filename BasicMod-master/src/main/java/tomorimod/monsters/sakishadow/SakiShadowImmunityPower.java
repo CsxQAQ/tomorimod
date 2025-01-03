@@ -25,4 +25,20 @@ public class SakiShadowImmunityPower extends BasePower {
         }
         return damage;
     }
+    @Override
+    public int onAttacked(DamageInfo info, int damageAmount) {
+
+
+        return 0;
+    }
+
+//    @Override
+//    public float atDamageFinalReceive(float damage, DamageInfo.DamageType type) {
+//        return 0;
+//    }
+//
+//    @Override
+//    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+//        return 0;
+//    }
 }

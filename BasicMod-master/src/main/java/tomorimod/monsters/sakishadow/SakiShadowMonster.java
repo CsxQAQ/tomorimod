@@ -277,7 +277,7 @@ public class SakiShadowMonster extends SpecialMonster {
         setHp(400);
         // 先砍一下玩家
         damagePlayer(AbstractDungeon.player, 2, 1, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
+        //AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
         // 自己瞬间回满血
         addToBot(new HealAction(this, this, this.maxHealth));
 

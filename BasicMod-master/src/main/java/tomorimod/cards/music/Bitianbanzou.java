@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import tomorimod.tags.CustomTags;
 import tomorimod.util.CardStats;
 
 public class Bitianbanzou extends BaseMusicCard {
@@ -74,7 +75,8 @@ public class Bitianbanzou extends BaseMusicCard {
 
                 calculateCardDamage(m);
 
-                addToBot(new DamageAction(m,  new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL)
+                //addToBot(new DamageAction(m,  new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL)
+                addToBot(new DamageAction(m,  new DamageInfo(p, damage, CustomTags.MUSIC)
                         , AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 isDone=true;
             }
