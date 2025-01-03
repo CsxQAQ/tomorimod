@@ -20,11 +20,12 @@ import tomorimod.util.CardStats;
 public class FearlessLove extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessLove.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            Tomori.Meta.CARD_COLOR,
+            //Tomori.Meta.CARD_COLOR,
+            CardColor.CURSE,
             CardType.CURSE,
             CardRarity.CURSE,
-            CardTarget.SELF,
-            1
+            CardTarget.NONE,
+            -2
     );
 
     private final int MAGIC=2;
@@ -46,20 +47,12 @@ public class FearlessLove extends BaseCard implements SpecialCard, WithoutMateri
                 new FrailPower(AbstractDungeon.player,magicNumber,false),magicNumber));
     }
 
-//    @Override
-//    public void triggerOnEndOfPlayerTurn() {
-//
-//    }
 
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
         return false;
     }
 
-    @SpireOverride
-    public void renderEnergy(SpriteBatch sb){
-
-    }
 
 
     @Override

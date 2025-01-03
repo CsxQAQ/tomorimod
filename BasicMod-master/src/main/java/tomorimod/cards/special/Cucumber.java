@@ -23,7 +23,7 @@ public class Cucumber extends BaseCard implements SpecialCard, WithoutMaterial {
             CardType.SKILL,
             CardRarity.SPECIAL,
             CardTarget.SELF,
-            1
+            -2
     );
 
     public Cucumber() {

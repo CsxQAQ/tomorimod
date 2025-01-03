@@ -20,11 +20,12 @@ import tomorimod.util.CardStats;
 public class FearlessSad extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessSad.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            Tomori.Meta.CARD_COLOR,
+            //Tomori.Meta.CARD_COLOR,
+            CardColor.CURSE,
             CardType.CURSE,
             CardRarity.CURSE,
-            CardTarget.SELF,
-            1
+            CardTarget.NONE,
+            -2
     );
     private final int MAGIC=3;
     private final int UPG_MAGIC=0;
@@ -41,10 +42,6 @@ public class FearlessSad extends BaseCard implements SpecialCard, WithoutMateria
         return false;
     }
 
-    @SpireOverride
-    public void renderEnergy(SpriteBatch sb){
-
-    }
 
     @Override
     public void triggerOnEndOfPlayerTurn() {

@@ -21,11 +21,12 @@ import static tomorimod.TomoriMod.imagePath;
 public class WelcomeToAveMujica extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(WelcomeToAveMujica.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            Tomori.Meta.CARD_COLOR,
+            //Tomori.Meta.CARD_COLOR,
+            CardColor.CURSE,
             CardType.CURSE,
             CardRarity.CURSE,
             CardTarget.SELF,
-            1
+            -2
     );
 
     public WelcomeToAveMujica() {
@@ -37,11 +38,6 @@ public class WelcomeToAveMujica extends BaseCard implements SpecialCard, Without
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
         return false;
-    }
-
-    @SpireOverride
-    public void renderEnergy(SpriteBatch sb){
-
     }
 
 

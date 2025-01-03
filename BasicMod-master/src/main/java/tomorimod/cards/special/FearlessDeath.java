@@ -22,11 +22,12 @@ import tomorimod.util.CardStats;
 public class FearlessDeath extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessDeath.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            Tomori.Meta.CARD_COLOR,
+            //Tomori.Meta.CARD_COLOR,
+            CardColor.CURSE,
             CardType.CURSE,
             CardRarity.CURSE,
-            CardTarget.SELF,
-            1
+            CardTarget.NONE,
+            -2
     );
 
     private final int MAGIC=10;
@@ -51,10 +52,10 @@ public class FearlessDeath extends BaseCard implements SpecialCard, WithoutMater
     }
 
 
-    @SpireOverride
-    public void renderEnergy(SpriteBatch sb){
-
-    }
+//    @SpireOverride
+//    public void renderEnergy(SpriteBatch sb){
+//
+//    }
 
 
     @Override

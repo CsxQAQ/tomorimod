@@ -13,11 +13,12 @@ import tomorimod.util.CardStats;
 public class FearlessFear extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessFear.class.getSimpleName());
     private static final CardStats info = new CardStats(
-            Tomori.Meta.CARD_COLOR,
+            //Tomori.Meta.CARD_COLOR,
+            CardColor.CURSE,
             CardType.CURSE,
             CardRarity.CURSE,
-            CardTarget.SELF,
-            1
+            CardTarget.NONE,
+            -2
     );
 
     public FearlessFear() {
@@ -31,10 +32,6 @@ public class FearlessFear extends BaseCard implements SpecialCard, WithoutMateri
         return false;
     }
 
-    @SpireOverride
-    public void renderEnergy(SpriteBatch sb){
-
-    }
 
 
     @Override
