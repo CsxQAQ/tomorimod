@@ -15,6 +15,11 @@ public class ConveyFeelingMonitor extends BaseMonitor implements OnStartBattleSu
 
     @Override
     public void receivePostBattle(AbstractRoom abstractRoom) {
-        AbstractDungeon.player.decreaseMaxHealth(ConveyFeeling.maxHPOverflow);
+        if(ConveyFeeling.maxHPOverflow>=AbstractDungeon.player.maxHealth){
+            AbstractDungeon.player.decreaseMaxHealth(ConveyFeeling.maxHPOverflow-1);
+        }else{
+            AbstractDungeon.player.decreaseMaxHealth(ConveyFeeling.maxHPOverflow);
+        }
+
     }
 }

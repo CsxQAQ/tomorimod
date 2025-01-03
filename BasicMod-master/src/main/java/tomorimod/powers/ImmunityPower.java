@@ -17,13 +17,13 @@ public class ImmunityPower extends BasePower {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
     }
 
-    @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
-        if (damage > 1.0F) {
-            damage = 0;
-        }
-        return damage;
-    }
+//    @Override
+//    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+//        if (damage > 1.0F) {
+//            damage = 0;
+//        }
+//        return damage;
+//    }
     @Override
     public void updateDescription() {
         description = DESCRIPTIONS[0];

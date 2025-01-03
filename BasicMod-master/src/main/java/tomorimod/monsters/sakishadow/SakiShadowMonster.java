@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -25,6 +26,7 @@ import tomorimod.cards.special.FearlessDeath;
 import tomorimod.cards.special.FearlessFear;
 import tomorimod.cards.special.FearlessLove;
 import tomorimod.cards.special.FearlessSad;
+import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.mutsumi.FriendlyMonsterPower;
 import tomorimod.monsters.mutsumi.SoyoMonster;
 import tomorimod.monsters.mutsumi.SpecialMonster;
@@ -43,7 +45,7 @@ import java.util.List;
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
-public class SakiShadowMonster extends SpecialMonster {
+public class SakiShadowMonster extends BaseMonster {
     public static final String ID = makeID(SakiShadowMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
