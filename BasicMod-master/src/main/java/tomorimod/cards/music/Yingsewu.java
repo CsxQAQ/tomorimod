@@ -4,10 +4,11 @@ package tomorimod.cards.music;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.YingsewuAction;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Yingsewu extends BaseMusicCard {
@@ -54,12 +55,12 @@ public class Yingsewu extends BaseMusicCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(musicRarity!=null){
             if(musicRarity.equals(MusicRarity.RARE)){
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 addToBot(new YingsewuAction());
                 addToBot(new YingsewuAction());
                 addToBot(new YingsewuAction());
             }else{
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 addToBot(new YingsewuAction());
             }
         }

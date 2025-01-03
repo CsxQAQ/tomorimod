@@ -9,7 +9,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.BaseMusicCard;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.cards.test.TestCard;
+import tomorimod.tags.CustomTags;
 
 import java.util.ArrayList;
 
@@ -42,8 +44,8 @@ public class WulushiAction extends AbstractGameAction {
         testCard.calculateCardDamage(target);
 
         addToTop(new WulushiAction(baseDamage-1,target));
-        addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player,
-                testCard.damage, testCard.damageTypeForTurn), AttackEffect.SLASH_DIAGONAL));
+        addToTop(new DamageAction(target, new MusicDamageInfo(AbstractDungeon.player,
+                testCard.damage, CustomTags.MUSIC), AttackEffect.SLASH_DIAGONAL));
 
 
         isDone=true;

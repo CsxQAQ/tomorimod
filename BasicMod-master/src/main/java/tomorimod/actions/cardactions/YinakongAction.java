@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.Yinakong;
+import tomorimod.cards.music.utils.MusicAttackDamageRandomEnemyAction;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 
 public class YinakongAction extends AbstractGameAction {
 
@@ -24,9 +26,9 @@ public class YinakongAction extends AbstractGameAction {
     @Override
     public void update() {
         if (target.isDying||target.currentHealth <= 0) {
-            addToBot(new AttackDamageRandomEnemyAction(yinakong, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+            addToBot(new MusicAttackDamageRandomEnemyAction(yinakong, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }else {
-            addToTop(new DamageAction(target, new DamageInfo(AbstractDungeon.player, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToTop(new DamageAction(target, new MusicDamageInfo(AbstractDungeon.player, damage, yinakong.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
         isDone=true;
     }

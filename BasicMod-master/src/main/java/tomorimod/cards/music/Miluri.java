@@ -3,10 +3,10 @@ package tomorimod.cards.music;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Miluri extends BaseMusicCard {
@@ -61,7 +61,7 @@ public class Miluri extends BaseMusicCard {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {
-                    addToBot(new DamageAction(target, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                    addToBot(new DamageAction(target, new MusicDamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 }
             }
         }else{
@@ -69,7 +69,7 @@ public class Miluri extends BaseMusicCard {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {
-                    addToBot(new DamageAction(target, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                    addToBot(new DamageAction(target, new MusicDamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 }
             }
         }

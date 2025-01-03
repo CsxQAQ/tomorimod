@@ -4,13 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import tomorimod.tags.CustomTags;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Bitianbanzou extends BaseMusicCard {
@@ -75,8 +74,8 @@ public class Bitianbanzou extends BaseMusicCard {
 
                 calculateCardDamage(m);
 
-                //addToBot(new DamageAction(m,  new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL)
-                addToBot(new DamageAction(m,  new DamageInfo(p, damage, CustomTags.MUSIC)
+                //addToBot(new DamageAction(m,  new MusicDamageInfo(p, damage, MusicDamageInfo.DamageType.NORMAL)
+                addToBot(new DamageAction(m,  new MusicDamageInfo(p, damage, Bitianbanzou.this.damageTypeForTurn)
                         , AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                 isDone=true;
             }

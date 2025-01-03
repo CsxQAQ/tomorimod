@@ -1,19 +1,17 @@
 package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorimod.TomoriMod;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.savedata.customdata.CraftingRecipes;
-import tomorimod.tags.CustomTags;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
-
-import javax.xml.bind.annotation.XmlType;
 
 import static tomorimod.TomoriMod.imagePath;
 
@@ -31,13 +29,16 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
-        tags.add(CustomTags.MUSIC);
+        //tags.add(CustomTags.MUSIC);
         this.idForShow=ID;
         this.numsInfo = numsInfo;
         musicRarity=MusicRarity.DEFAULT;
 
         setBackgroundTexture(imagePath("character/specialcardback/music_cardback.png"),
                 imagePath("character/specialcardback/music_cardback_p.png"));
+
+        this.damageTypeForTurn = MusicDamageInfo.DamageType.NORMAL;
+        this.damageType = MusicDamageInfo.DamageType.NORMAL;
 
         //只是为了正确显示
 //        setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);

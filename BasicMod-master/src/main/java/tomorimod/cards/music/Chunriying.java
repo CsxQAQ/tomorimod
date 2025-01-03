@@ -1,11 +1,12 @@
 package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.cards.special.SpecialCard;
 import tomorimod.util.CardStats;
 
@@ -57,7 +58,7 @@ public class Chunriying extends BaseMusicCard implements SpecialCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
-        addToBot(new DamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         addToBot(new HealAction(p,p, magicNumber));
     }
 

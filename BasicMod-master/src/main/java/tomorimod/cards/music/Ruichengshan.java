@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Ruichengshan extends BaseMusicCard {
@@ -57,7 +58,7 @@ public class Ruichengshan extends BaseMusicCard {
             @Override
             public void update() {
 
-                m.damage(new DamageInfo(p, damage, damageTypeForTurn));
+                m.damage(new MusicDamageInfo(p, damage, damageTypeForTurn));
 
                 if (m.isDying || m.currentHealth <= 0) {
                     AbstractDungeon.effectList.add(new FlashAtkImgEffect(m.hb.cX, m.hb.cY, AbstractGameAction.AttackEffect.BLUNT_HEAVY));

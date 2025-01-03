@@ -3,11 +3,11 @@ package tomorimod.cards.music;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorimod.monitors.card.LunfuyuMonitor;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Shichaoban extends BaseMusicCard {
@@ -52,7 +52,7 @@ public class Shichaoban extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         if(musicRarity.equals(MusicRarity.RARE)){
             baseDamage=baseDamage*2;
         }else{

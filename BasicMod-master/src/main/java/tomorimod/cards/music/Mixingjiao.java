@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 
 public class Mixingjiao extends BaseMusicCard {
@@ -63,12 +64,12 @@ public class Mixingjiao extends BaseMusicCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(p.hand.contains(this)){
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }else{
             if(this.musicRarity.equals(MusicRarity.RARE)){
-                addToBot(new DamageAction(m, new DamageInfo(p, damage*3, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage*3, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }else{
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }
         }
     }

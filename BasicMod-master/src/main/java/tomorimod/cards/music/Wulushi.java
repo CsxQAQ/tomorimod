@@ -1,15 +1,14 @@
 package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.AttackDamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.WulushiAction;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.cards.test.TestCard;
 import tomorimod.util.CardStats;
 
@@ -61,10 +60,10 @@ public class Wulushi extends BaseMusicCard {
 
         if(musicRarity!=null){
             if(musicRarity.equals(MusicRarity.RARE)){
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 addToBot(new WulushiAction(baseDamage-1,m));
             }else{
-                addToBot(new DamageAction(m, new DamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
@@ -72,7 +71,7 @@ public class Wulushi extends BaseMusicCard {
                         TestCard testCard=new TestCard();
                         testCard.baseDamage=Wulushi.this.baseDamage;
                         testCard.calculateCardDamage(target);
-                        addToBot(new DamageAction(target, new DamageInfo(p, testCard.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        addToBot(new DamageAction(target, new MusicDamageInfo(p, testCard.damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                         isDone=true;
                     }
                 });
