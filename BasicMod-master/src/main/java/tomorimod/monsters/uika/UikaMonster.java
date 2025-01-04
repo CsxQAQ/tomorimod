@@ -42,6 +42,7 @@ import tomorimod.vfx.ChangeSceneEffect;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -346,6 +347,7 @@ public class UikaMonster extends BaseMonster {
     }
 
     private int damageForShow;
+    private int gravityDamageForShow;
 
     @Override
     public void update(){
@@ -353,7 +355,8 @@ public class UikaMonster extends BaseMonster {
         updateCard();
         updateInputLogic();
         if(!damageNumFroze){
-            damageForShow =calculate();
+            damageForShow =calculate().get(0);
+            gravityDamageForShow =calculate().get(1);
         }
 
         // 先确定图标在屏幕上的坐标
@@ -416,8 +419,9 @@ public class UikaMonster extends BaseMonster {
         }
     }
 
-    public int calculate(){
+    public ArrayList<Integer> calculate(){
         int damageNum=0;
+        int gravityDamageNum=0;
         int monsterDamage = getPublicField(this, "intentDmg", Integer.class);
         int attackCount = getPublicField(this, "intentMultiAmt", Integer.class);
         if(attackCount==-1){
@@ -449,6 +453,7 @@ public class UikaMonster extends BaseMonster {
             }else if(cardForShow1.cardID.equals(makeID("UikaStrike"))){
                 damageNum+=monsterDamage;
                 damageNum+=divergeWorldAmount*gravityAmount;
+                gravityDamageNum+=divergeWorldAmount*gravityAmount;
             }
         }
 
@@ -474,11 +479,14 @@ public class UikaMonster extends BaseMonster {
             }else if(cardForShow2.cardID.equals(makeID("UikaStrike"))){
                 damageNum+=monsterDamage;
                 damageNum+=divergeWorldAmount*gravityAmount;
+                gravityDamageNum+=divergeWorldAmount*gravityAmount;
             }
         }
 
         damageNum+=gravityAmount;
-        return damageNum;
+        gravityDamageNum+=gravityAmount;
+
+        return new ArrayList<>(Arrays.asList(damageNum,gravityDamageNum));
     }
 
     public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
@@ -504,8 +512,9 @@ public class UikaMonster extends BaseMonster {
             TipHelper.renderGenericTip(
                     InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
                     InputHelper.mY - 50.0F * Settings.scale,
-                    "伤害预警",
-                    "本回合敌人将对你造成 #b" + damageForShow+ " 点伤害。 NL （不考虑己方效果）"
+                    "预警",
+                    "敌人将对你造成 #b" + damageForShow+ " 点伤害。 NL #b"+(damageForShow-gravityDamageForShow) +
+                            " 点来自攻击。 NL #b"+gravityDamageForShow+" 点来自 #y重力 。"
             );
         }
     }
