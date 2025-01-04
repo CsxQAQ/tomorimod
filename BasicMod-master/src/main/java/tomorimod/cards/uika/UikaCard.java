@@ -7,4 +7,5 @@ public abstract class UikaCard extends BaseCard {
     public UikaCard(String ID, CardStats info) {
         super(ID, info);
     }
+    public int position;
 }

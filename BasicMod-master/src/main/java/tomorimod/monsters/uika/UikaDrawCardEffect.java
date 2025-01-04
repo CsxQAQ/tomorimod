@@ -13,12 +13,13 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
     private float targetX, targetY;
     private float startScale, targetScale;
     private float delay; // 延迟时间
+    private int position;
 
     public UikaDrawCardEffect(AbstractMonster monster, AbstractCard card,
                               float startX, float startY,
                               float targetX, float targetY,
                               float startScale, float targetScale,
-                              float delay) { // 添加 delay 参数
+                              float delay,int position) { // 添加 delay 参数
         this.monster = monster;
         this.card = card;
 
@@ -32,6 +33,7 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
         this.delay = delay; // 设置延迟时间
         this.duration = 0.3f; // 动画持续时间
         this.startingDuration = this.duration;
+        this.position=position;
 
         // 先把卡牌的初始位置、缩放设好
         card.current_x = startX;
@@ -65,7 +67,11 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
         if (this.duration <= 0.0f) {
             this.isDone = true;
             // 动画结束后，把卡牌“交给”怪物的意图渲染
-            UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(monster, card);
+            if(position==1) {
+                UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(monster, card);
+            }else if(position==2){
+                UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard2.set(monster, card);
+            }
 
             // 确保卡牌落到最终位置
             card.current_x = targetX;
