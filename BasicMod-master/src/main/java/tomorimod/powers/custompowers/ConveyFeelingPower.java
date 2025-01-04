@@ -1,7 +1,10 @@
 package tomorimod.powers.custompowers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.powers.BasePower;
+
+import javax.swing.text.AbstractDocument;
 
 import static tomorimod.TomoriMod.makeID;
 

@@ -1,18 +1,17 @@
-package tomorimod.cards.uika;
+package tomorimod.monsters.uika.uikacard;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.ReversalAction;
-import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
 
-public class UikaSumimi extends UikaCard implements WithoutMaterial {
-    public static final String ID = makeID(UikaSumimi.class.getSimpleName());
+public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
+    public static final String ID = makeID(UikaTwoMoon.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -25,7 +24,7 @@ public class UikaSumimi extends UikaCard implements WithoutMaterial {
     public final static int UPG_MAGIC=0;
 
 
-    public UikaSumimi() {
+    public UikaTwoMoon() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
         setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
@@ -39,7 +38,7 @@ public class UikaSumimi extends UikaCard implements WithoutMaterial {
 
     @Override
     public AbstractCard makeCopy() {
-        return new UikaSumimi();
+        return new UikaTwoMoon();
     }
 
     @Override

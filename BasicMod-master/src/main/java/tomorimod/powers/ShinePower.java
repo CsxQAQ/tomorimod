@@ -37,6 +37,9 @@ public class ShinePower extends BasePower {
 
     public void atStartOfMonsterTurn(){
         flash();
+        if(owner.hasPower(makeID("ConveyFeelingPower"))){
+            owner.maxHealth+=this.amount;
+        }
         addToBot(new HealAction(this.owner, this.owner, this.amount));
     }
 

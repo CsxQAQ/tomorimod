@@ -1,4 +1,4 @@
-package tomorimod.cards.uika;
+package tomorimod.monsters.uika.uikacard;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.actions.ApplyGravityAction;
-import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;

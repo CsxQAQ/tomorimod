@@ -1,49 +1,43 @@
-package tomorimod.cards.uika;
+package tomorimod.monsters.uika.uikacard;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorimod.actions.cardactions.ReversalAction;
-import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.powers.custompowers.DivergeWorldPower;
 import tomorimod.util.CardStats;
 
-public class UikaLastGentle extends UikaCard implements WithoutMaterial {
-    public static final String ID = makeID(UikaLastGentle.class.getSimpleName());
+public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
+    public static final String ID = makeID(UikaDivergeWorld.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
-            CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardType.POWER,
+            CardRarity.RARE,
             CardTarget.SELF,
-            1
+            3
     );
 
-
-    @Override
-    public void update() {
-        super.update();
-
-    }
-    public UikaLastGentle() {
+    public UikaDivergeWorld() {
         super(ID, info);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ReversalAction(p));
+        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p,1),1));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new UikaLastGentle();
+        return new UikaDivergeWorld();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            upgradeBaseCost(2);
         }
     }
 }

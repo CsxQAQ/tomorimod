@@ -1,4 +1,4 @@
-package tomorimod.cards.uika;
+package tomorimod.monsters.uika.uikacard;
 
 import tomorimod.cards.BaseCard;
 import tomorimod.util.CardStats;

@@ -446,10 +446,6 @@
   },
 
 
-  "${modID}:UikaConveyFeeling": {
-    "NAME": "传达心意",
-    "DESCRIPTION": " tomorimod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
-  },
   "${modID}:UikaDivergeWorld": {
     "NAME": "偏离世界",
     "DESCRIPTION": "攻击时触发 tomorimod:重力 的效果。"
@@ -460,7 +456,7 @@
   },
   "${modID}:UikaDoughnut": {
     "NAME": "甜甜圈",
-    "DESCRIPTION": "恢复当前损失生命值一半的生命值。 消耗 ， tomorimod:瞬间 。"
+    "DESCRIPTION": "恢复最大生命值一半的生命值。 消耗 ， tomorimod:瞬间 。"
   },
 
   "${modID}:UikaLastGentle": {
@@ -469,7 +465,7 @@
   },
   "${modID}:UikaLastOne": {
     "NAME": "压轴",
-    "DESCRIPTION": " 获得 !M! 层 tomorimod:闪耀 。"
+    "DESCRIPTION": " 获得 !M! 层 tomorimod:闪耀 。 消耗 。"
   },
   "${modID}:UikaLightAndShadow": {
     "NAME": "光与影",
@@ -479,7 +475,7 @@
     ]
   },
   "${modID}:UikaLiveForever": {
-    "NAME": "和你永远在一起",
+    "NAME": "想和你永远在一起",
     "DESCRIPTION": " 获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:UikaManaGuard": {
@@ -501,9 +497,16 @@
     "NAME": "打击",
     "DESCRIPTION": "造成 !M! 点伤害。"
   },
-  "${modID}:UikaSumimi": {
-    "NAME": "Sumimi",
-    "DESCRIPTION": "造成 !M! 点伤害。每有一层 tomorimod:闪耀 重复一次。"
+  "${modID}:UikaTwoMoon": {
+    "NAME": "双月",
+    "DESCRIPTION": " tomorimod:音乐 。造成 tomorimod:闪耀 层数 !M! 倍的伤害，获得 tomorimod:闪耀 层数 !M! 倍的 格挡 。"
+  },
+  "${modID}:UikaDefend": {
+    "NAME": "防御",
+    "DESCRIPTION": "获得5点 格挡 。"
+  },
+  "${modID}:UikaPoemInsteadOfSong": {
+    "NAME": "以诗代歌",
+    "DESCRIPTION": "移除所有的负面效果。每有一层负面效果被移除，获得1层 tomorimod:闪耀 。"
   }
-
 }

@@ -5,9 +5,8 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.Soul;
-import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.core.Settings;
-import tomorimod.cards.uika.UikaCard;
+import tomorimod.monsters.uika.uikacard.UikaCard;
 
 public class UikaDiscardPatch {
 

@@ -1,6 +1,5 @@
 package tomorimod.monsters.uika;
 
-import basemod.interfaces.OnPlayerTurnStartSubscriber;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.cards.SoulGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
@@ -23,18 +23,21 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import tomorimod.actions.ApplyShineAction;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.cards.customcards.LightAndShadow;
 import tomorimod.cards.customcards.MygoTogether;
 import tomorimod.cards.customcards.NeedAnon;
 import tomorimod.cards.forms.DomainExpansion;
-import tomorimod.cards.uika.*;
+import tomorimod.monsters.uika.uikacard.*;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.taki.TakiPressurePower;
 import tomorimod.patches.MusicPatch;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
+import tomorimod.powers.custompowers.ConveyFeelingPower;
 import tomorimod.powers.custompowers.DivergeWorldPower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.powers.forms.DomainExpansionPower;
@@ -90,6 +93,8 @@ public class UikaMonster extends BaseMonster {
 
     private Hitbox damageNumberHb;
 
+    private boolean isGravityMode;
+
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
@@ -135,6 +140,22 @@ public class UikaMonster extends BaseMonster {
                 showCardsDiscard(2);
                 addToBot(new TrueWaitAction(WAIT_TIME));
                 break;
+            case 50:
+                lightAndShadow();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                lastGentle();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                break;
+            case 99:
+                poemInsteadOfSong();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                lightAndShadow();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                break;
 
             case 11:
                 domainExpansion();
@@ -162,6 +183,32 @@ public class UikaMonster extends BaseMonster {
                 showCardsDiscard(2);
                 addToBot(new TrueWaitAction(WAIT_TIME));
 
+                break;
+            case 21:
+                lastOne();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                manaGuard();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+
+                break;
+            case 22:
+                twoMoon();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                lightAndShadow();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+
+                break;
+            case 23:
+                doughnut();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                defend();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
                 break;
 
         }
@@ -195,13 +242,22 @@ public class UikaMonster extends BaseMonster {
     }
 
     public void lightAndShadow(){
-        int gravityNum=this.hasPower(makeID("GravityPower"))?0:this.getPower(makeID("GravityPower")).amount;
-        int shineNum=this.hasPower(makeID("ShinePower"))?0:this.getPower(makeID("ShinePower")).amount;
-        if(gravityNum>=shineNum){
-            addToBot(new ApplyPowerAction(this,this,new GravityPower(this, LightAndShadow.MAGIC),LightAndShadow.MAGIC));
-        }else{
-            addToBot(new ApplyPowerAction(this,this,new ShinePower(this,LightAndShadow.MAGIC),LightAndShadow.MAGIC));
-        }
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int gravityNum=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
+                int shineNum=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+                if(gravityNum>=shineNum){
+                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,
+                            new GravityPower(UikaMonster.this, LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+                }else{
+                    addToTop(new ApplyPowerAction(UikaMonster.this,
+                            UikaMonster.this,new ShinePower(UikaMonster.this,LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+                }
+                isDone=true;
+            }
+        });
+
     }
 
     public void needAnon(){
@@ -223,20 +279,118 @@ public class UikaMonster extends BaseMonster {
                 new DivergeWorldPower(this,1),1));
     }
 
+    public void lastGentle(){
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int gravityAmount=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
+                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+                UikaMonster.this.getPower(makeID("ShinePower")).amount=gravityAmount;
+                UikaMonster.this.getPower(makeID("GravityPower")).amount=shineAmount;
+                isDone=true;
+            }
+        });
+    }
+
+    public void lastOne(){
+        addToBot(new ApplyPowerAction(this,this,
+                new ShinePower(this,UikaLastOne.MAGIC),UikaLastOne.MAGIC));
+    }
+
+    public void manaGuard(){
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+                addToTop(new GainBlockAction(UikaMonster.this,shineAmount*UikaManaGuard.MAGIC));
+                isDone=true;
+            }
+        });
+
+    }
+
+    public void twoMoon(){
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+                int intentDamage = getPublicField(UikaMonster.this, "intentDmg", Integer.class);
+                addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(UikaMonster.this,
+                        intentDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToTop(new GainBlockAction(UikaMonster.this,shineAmount*UikaTwoMoon.MAGIC));
+                isDone=true;
+            }
+        });
+
+    }
+
+    public void doughnut(){
+        addToBot(new HealAction(this,this,this.maxHealth/2));
+    }
+
+    public void defend(){
+        addToBot(new GainBlockAction(this,5));
+    }
+
+    public void poemInsteadOfSong(){
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int shineNum = 0;
+
+                for (AbstractPower power : UikaMonster.this.powers) {
+                    if (power.type == AbstractPower.PowerType.DEBUFF) {
+                        shineNum += power.amount;
+                        addToTop(new RemoveSpecificPowerAction(UikaMonster.this,UikaMonster.this,power.ID));
+                    }
+                }
+
+                if (shineNum > 0) {
+                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,
+                            new ShinePower(UikaMonster.this,shineNum),shineNum));
+                }
+                isDone=true;
+            }
+        });
+
+    }
+
 
     @Override
     protected void getMove(int num) {
-        if(turnNum==0||turnNum>3) {
+        if(turnNum==0) {
             setMove((byte) 0, Intent.ATTACK_BUFF,
                     this.damage.get(0).base, 1, false);
             // 先创建卡
             cardForShow1 = new UikaMygoTogether();
             cardForShow2 = new UikaStrike();
-            showCardsDraw();
+            int rand=AbstractDungeon.miscRng.random(1);
+            isGravityMode= rand == 0;
             turnNum++;
         }else{
-            gravityUika();
+            if(getDebuffNum()>=10){
+                setMove((byte) 99, Intent.BUFF);
+                // 先创建卡
+                cardForShow1 = new UikaPoemInsteadOfSong();
+                cardForShow2 = new UikaLightAndShadow();
+            }else{
+                if(turnNum==4){
+                    setMove((byte) 50, Intent.BUFF);
+                    // 先创建卡
+                    cardForShow1 = new UikaLightAndShadow();
+                    cardForShow2 = new UikaLastGentle();
+                    isGravityMode=!isGravityMode;
+                    turnNum=1;
+                }else{
+                    if(isGravityMode){
+                        gravityUika();
+                    }else{
+                        shineUika();
+                    }
+                }
+            }
         }
+        showCardsDraw();
     }
 
     private void gravityUika(){
@@ -261,8 +415,43 @@ public class UikaMonster extends BaseMonster {
                 cardForShow2 =new UikaStrike();
                 break;
         }
-        showCardsDraw();
         turnNum++;
+    }
+
+    private void shineUika(){
+        switch (turnNum){
+            case 1:
+                setMove((byte) 21, Intent.DEFEND_BUFF);
+                // 先创建卡
+                cardForShow1 = new UikaLastOne();
+                cardForShow2 = new UikaManaGuard();
+                break;
+            case 2:
+                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+
+                setMove((byte) 22, Intent.ATTACK_DEFEND,
+                        shineAmount*UikaTwoMoon.MAGIC, 1, false);
+                cardForShow1 = new UikaTwoMoon();
+                cardForShow2 = new UikaLightAndShadow();
+
+                break;
+            case 3:
+                setMove((byte) 23, Intent.BUFF);
+                cardForShow1 =new UikaDoughnut();
+                cardForShow2 =new UikaDefend();
+                break;
+        }
+        turnNum++;
+    }
+
+    private int getDebuffNum(){
+        int amount=0;
+        for(AbstractPower power:this.powers){
+            if(power.type== AbstractPower.PowerType.DEBUFF){
+                amount+=power.amount;
+            }
+        }
+        return amount;
     }
 
     public void showCardsDiscard(int pos){
