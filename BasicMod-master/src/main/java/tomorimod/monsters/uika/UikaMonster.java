@@ -16,13 +16,12 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
-import tomorimod.cards.uika.UikaCard;
-import tomorimod.cards.uika.UikaLastGentle;
-import tomorimod.cards.uika.UikaMygoTogether;
-import tomorimod.cards.uika.UikaStrike;
+import tomorimod.cards.uika.*;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.taki.TakiPressurePower;
 import tomorimod.patches.MusicPatch;
+import tomorimod.powers.GravityPower;
+import tomorimod.powers.forms.DomainExpansionPower;
 import tomorimod.vfx.ChangeSceneEffect;
 
 import java.lang.reflect.Field;
@@ -111,8 +110,48 @@ public class UikaMonster extends BaseMonster {
 
                 break;
 
+
+            case 11:
+                addToBot(new ApplyPowerAction(this,this,
+                        new DomainExpansionPower(this,3),3));
+                addToBot(new ApplyPowerAction(this,this,
+                        new GravityPower(this,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
+                showCardsDiscard();
+
+                break;
+
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+    }
+
+    private int turnNum=0;
+
+    @Override
+    protected void getMove(int num) {
+        if(turnNum==0) {
+            setMove((byte) 0, Intent.ATTACK_BUFF,
+                    this.damage.get(0).base, 1, false);
+            // 先创建卡
+            cardForShow1 = new UikaMygoTogether();
+            cardForShow2 = new UikaStrike();
+            showCardsDraw();
+            turnNum++;
+        }else{
+            gravityUika();
+        }
+    }
+
+    private void gravityUika(){
+        switch (turnNum){
+            case 1:
+                setMove((byte) 11, Intent.BUFF);
+                // 先创建卡
+                cardForShow1 = new UikaDomainExpansion();
+                cardForShow2 = new UikaLiveForever();
+                showCardsDraw();
+                break;
+        }
+        turnNum=0;
     }
 
     public void showCardsDiscard(){
@@ -143,20 +182,6 @@ public class UikaMonster extends BaseMonster {
                 isDone=true;
             }
         });
-    }
-
-    private int turnNum=0;
-
-    @Override
-    protected void getMove(int num) {
-        if(turnNum==0) {
-            setMove((byte) 0, Intent.ATTACK,
-                    this.damage.get(0).base, 1, false);
-            // 先创建卡
-            cardForShow1 = new UikaMygoTogether();
-            cardForShow2 = new UikaStrike();
-            showCardsDraw();
-        }
     }
 
     public void showCardsDraw(){
@@ -191,13 +216,6 @@ public class UikaMonster extends BaseMonster {
                 0.5f,  // 结束时的 scale
                 0.5f,2
         ));
-    }
-
-    private void gravityUika(){
-        switch (turnNum){
-            case 1:
-
-        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package tomorimod.powers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -22,8 +24,12 @@ public class GravityPower extends BasePower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        if (!isPlayer) return;
-        applyEffect();
+        if(isPlayer){
+            applyEffect();
+        }else{
+            addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.amount,
+                    DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        }
     }
 
     @Override

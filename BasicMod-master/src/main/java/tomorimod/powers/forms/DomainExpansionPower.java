@@ -1,7 +1,9 @@
 package tomorimod.powers.forms;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import tomorimod.actions.ApplyGravityAction;
+import tomorimod.powers.GravityPower;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -19,7 +21,12 @@ public class DomainExpansionPower extends BaseFormPower implements FormEffect{
 
     @Override
     public void atEndOfTurn(boolean isPlayer) {
-        applyEffectPower();
+        if(isPlayer){
+            applyEffectPower();
+        }else{
+            addToBot(new ApplyPowerAction(this.owner,this.owner,
+                    new GravityPower(this.owner,this.amount),this.amount));
+        }
     }
 
     @Override
