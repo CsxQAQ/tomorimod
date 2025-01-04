@@ -15,7 +15,7 @@ import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
 
-public class UikaLightAndShadow extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaLightAndShadow extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaLightAndShadow.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

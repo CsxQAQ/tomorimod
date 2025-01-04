@@ -9,12 +9,9 @@ import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-import java.util.ArrayList;
-
-import static com.badlogic.gdx.Gdx.graphics;
 import static tomorimod.TomoriMod.imagePath;
 
-public class UikaManaGuard extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaManaGuard extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaManaGuard.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

@@ -2,24 +2,23 @@ package tomorimod.monsters.uika;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import tomorimod.monsters.uika.UikaIntentCardPatch;
 
-// 这是示例的“怪物抽牌动画”效果类
 public class UikaDrawCardEffect extends AbstractGameEffect {
     private AbstractMonster monster; // 哪个怪物要“抽”这张卡
     private AbstractCard card;
     private float startX, startY;
     private float targetX, targetY;
     private float startScale, targetScale;
+    private float delay; // 延迟时间
 
     public UikaDrawCardEffect(AbstractMonster monster, AbstractCard card,
-                                 float startX, float startY,
-                                 float targetX, float targetY,
-                                 float startScale, float targetScale) {
+                              float startX, float startY,
+                              float targetX, float targetY,
+                              float startScale, float targetScale,
+                              float delay) { // 添加 delay 参数
         this.monster = monster;
         this.card = card;
 
@@ -30,7 +29,8 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
         this.startScale = startScale;
         this.targetScale = targetScale;
 
-        this.duration = 0.1f; // 让动画持续 0.5 秒，可自定义
+        this.delay = delay; // 设置延迟时间
+        this.duration = 0.3f; // 动画持续时间
         this.startingDuration = this.duration;
 
         // 先把卡牌的初始位置、缩放设好
@@ -42,6 +42,12 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
 
     @Override
     public void update() {
+        // 处理延迟逻辑
+        if (this.delay > 0) {
+            this.delay -= com.badlogic.gdx.Gdx.graphics.getDeltaTime();
+            return; // 在延迟时间内不执行动画逻辑
+        }
+
         // 随时间推移，卡牌从 startX, startY 逐步移动到 targetX, targetY
         this.duration -= com.badlogic.gdx.Gdx.graphics.getDeltaTime();
         float progress = 1f - (duration / startingDuration);
@@ -59,23 +65,21 @@ public class UikaDrawCardEffect extends AbstractGameEffect {
         if (this.duration <= 0.0f) {
             this.isDone = true;
             // 动画结束后，把卡牌“交给”怪物的意图渲染
-            // 这里示例放到 intentCard1，你也可以根据需要放 intentCard2
             UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(monster, card);
 
-            // 同时要确保卡牌落到最终位置
+            // 确保卡牌落到最终位置
             card.current_x = targetX;
-            card.target_x=targetX;
+            card.target_x = targetX;
             card.current_y = targetY;
-            card.target_y=targetY;
+            card.target_y = targetY;
             card.drawScale = targetScale;
         }
     }
 
     @Override
     public void render(SpriteBatch sb) {
-        // 在动画未结束前，也要把卡牌渲染出来
-        // 这里是“飞行中的卡牌”
-        if (!this.isDone) {
+        // 在延迟和动画未结束前，把卡牌渲染出来
+        if (!this.isDone && this.delay <= 0) {
             card.render(sb);
         }
     }

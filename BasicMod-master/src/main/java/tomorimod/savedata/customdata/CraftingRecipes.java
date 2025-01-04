@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.uika.UikaCard;
 import tomorimod.savedata.Clearable;
 import tomorimod.savedata.SaveDataInstanceFactory;
 

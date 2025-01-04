@@ -12,7 +12,7 @@ import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.util.CardStats;
 
-public class UikaMygoTogether extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaMygoTogether extends UikaCard implements WithoutMaterial {
 
     public static final String ID = makeID(UikaMygoTogether.class.getSimpleName());
     private static final CardStats info = new CardStats(

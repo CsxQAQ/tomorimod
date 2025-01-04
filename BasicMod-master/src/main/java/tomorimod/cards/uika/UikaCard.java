@@ -1,4 +1,10 @@
 package tomorimod.cards.uika;
 
-public interface UikaCard {
+import tomorimod.cards.BaseCard;
+import tomorimod.util.CardStats;
+
+public abstract class UikaCard extends BaseCard {
+    public UikaCard(String ID, CardStats info) {
+        super(ID, info);
+    }
 }

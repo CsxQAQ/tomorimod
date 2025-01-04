@@ -10,7 +10,7 @@ import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.DivergeWorldPower;
 import tomorimod.util.CardStats;
 
-public class UikaDivergeWorld extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaDivergeWorld.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

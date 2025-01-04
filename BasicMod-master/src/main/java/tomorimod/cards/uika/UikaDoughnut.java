@@ -14,7 +14,7 @@ import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
 
-public class UikaDoughnut extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaDoughnut extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaDoughnut.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

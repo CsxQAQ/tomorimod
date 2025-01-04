@@ -14,7 +14,7 @@ import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
 
-public class UikaLiveForever extends BaseCard implements UikaCard, WithoutMaterial {
+public class UikaLiveForever extends UikaCard implements WithoutMaterial {
 
     public static final String ID = makeID(UikaLiveForever.class.getSimpleName());
     private static final CardStats info = new CardStats(
