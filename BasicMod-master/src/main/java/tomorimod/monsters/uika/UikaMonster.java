@@ -1,5 +1,9 @@
 package tomorimod.monsters.uika;
 
+import basemod.interfaces.OnPlayerTurnStartSubscriber;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
@@ -11,13 +15,14 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
-import tomorimod.cards.customcards.DivergeWorld;
 import tomorimod.cards.customcards.LightAndShadow;
 import tomorimod.cards.customcards.MygoTogether;
 import tomorimod.cards.customcards.NeedAnon;
@@ -41,6 +46,7 @@ import static tomorimod.TomoriMod.makeID;
 
 
 public class UikaMonster extends BaseMonster {
+
     public static final String ID = makeID(UikaMonster.class.getSimpleName());
     private static final MonsterStrings monsterStrings =
             CardCrawlGame.languagePack.getMonsterStrings(ID);
@@ -74,6 +80,8 @@ public class UikaMonster extends BaseMonster {
     public static final float CARDFORSHOW_Y=(DRAW_Y+400.0F)*Settings.scale;
 
     public static final float WAIT_TIME=0.3F;
+
+    public static boolean damageNumFroze=false;
 
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -325,11 +333,16 @@ public class UikaMonster extends BaseMonster {
         ));
     }
 
+    private int damageForShow;
+
     @Override
     public void update(){
         super.update();
         updateCard();
         updateInputLogic();
+        if(!damageNumFroze){
+            damageForShow =calculate();
+        }
     }
 
     private void updateCard(){
@@ -370,6 +383,137 @@ public class UikaMonster extends BaseMonster {
         } else {
             this.clickStartedCard = null;
         }
+    }
+
+    public int calculate(){
+        int damageNum=0;
+        int monsterDamage = getPublicField(this, "intentDmg", Integer.class);
+        int attackCount = getPublicField(this, "intentMultiAmt", Integer.class);
+        if(attackCount==-1){
+            attackCount=1;
+        }
+        int gravityAmount=this.hasPower(makeID("GravityPower"))?this.getPower(makeID("GravityPower")).amount:0;
+        int divergeWorldAmount=this.hasPower(makeID("DivergeWorldPower"))?this.getPower(makeID("DivergeWorldPower")).amount:0;
+        int shineAmount=this.hasPower(makeID("ShinePower"))?this.getPower(makeID("ShinePower")).amount:0;
+        if(cardForShow1!=null){
+            if(cardForShow1.cardID.equals(makeID("UikaMygoTogether"))){
+                gravityAmount++;
+            }else if(cardForShow1.cardID.equals(makeID("UikaLiveForever"))){
+                gravityAmount+=UikaLiveForever.MAGIC;
+            }else if(cardForShow1.cardID.equals(makeID("UikaLightAndShadow"))){
+                if(gravityAmount>=shineAmount){
+                    gravityAmount+=LightAndShadow.MAGIC;
+                }else{
+                    shineAmount+=LightAndShadow.MAGIC;
+                }
+            }else if(cardForShow1.cardID.equals(makeID("UikaNeedAnon"))){
+                gravityAmount+=gravityAmount*NeedAnon.MAGIC;
+            }else if(cardForShow1.cardID.equals(makeID("UikaDivergeWorld"))){
+                divergeWorldAmount++;
+            }else if(cardForShow1.cardID.equals(makeID("UikaLastGendle"))){
+                int tmp=gravityAmount;
+                gravityAmount=shineAmount;
+                shineAmount=tmp;
+            }else if(cardForShow1.cardID.equals(makeID("UikaStrike"))){
+                damageNum+=monsterDamage*attackCount;
+                damageNum+=divergeWorldAmount*gravityAmount;
+            }
+        }
+        if(cardForShow2!=null){
+            if(cardForShow2.cardID.equals(makeID("UikaMygoTogether"))){
+                gravityAmount++;
+            }else if(cardForShow2.cardID.equals(makeID("UikaLiveForever"))){
+                gravityAmount+=UikaLiveForever.MAGIC;
+            }else if(cardForShow2.cardID.equals(makeID("UikaLightAndShadow"))){
+                if(gravityAmount>=shineAmount){
+                    gravityAmount+=LightAndShadow.MAGIC;
+                }else{
+                    shineAmount+=LightAndShadow.MAGIC;
+                }
+            }else if(cardForShow2.cardID.equals(makeID("UikaNeedAnon"))){
+                gravityAmount+=gravityAmount*NeedAnon.MAGIC;
+            }else if(cardForShow2.cardID.equals(makeID("UikaDivergeWorld"))){
+                divergeWorldAmount++;
+            }else if(cardForShow2.cardID.equals(makeID("UikaLastGendle"))){
+                int tmp=gravityAmount;
+                gravityAmount=shineAmount;
+                shineAmount=tmp;
+            }else if(cardForShow2.cardID.equals(makeID("UikaStrike"))){
+                damageNum+=monsterDamage*attackCount;
+                damageNum+=divergeWorldAmount*gravityAmount;
+            }
+        }
+        damageNum+=gravityAmount;
+        return damageNum;
+    }
+
+    public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
+        try {
+            Field field = AbstractMonster.class.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return fieldType.cast(field.get(instance));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+
+        renderAttackIntent(sb);
+        renderDamageNumber(sb);
+    }
+
+    private Texture getIntentTexture(int dmg) {
+        if (dmg < 5) {
+            return ImageMaster.INTENT_ATK_1;
+        } else if (dmg < 10) {
+            return ImageMaster.INTENT_ATK_2;
+        } else if (dmg < 15) {
+            return ImageMaster.INTENT_ATK_3;
+        } else if (dmg < 20) {
+            return ImageMaster.INTENT_ATK_4;
+        } else if (dmg < 25) {
+            return ImageMaster.INTENT_ATK_5;
+        } else {
+            return dmg < 30 ? ImageMaster.INTENT_ATK_6 : ImageMaster.INTENT_ATK_7;
+        }
+    }
+
+    private void renderAttackIntent(SpriteBatch sb) {
+        if (damageForShow <= 0) {
+            return;
+        }
+
+        // 拿到对应的纹理
+        Texture intentTex = getAttackIntent(damageForShow);
+        if (intentTex == null) {
+            return;
+        }
+
+        // 设置渲染颜色和位置
+        // 注意：玩家的 Hitbox 中心是 hb.cX, hb.cY，可以按需求微调
+        sb.setColor(Color.WHITE.cpy());
+        float iconX = AbstractDungeon.player.hb.cX - 128.0f*Settings.scale;  // 让图标居中
+        float iconY = AbstractDungeon.player.hb.cY + 320.0f*Settings.scale;  // 高度可以根据需求调整
+
+        // 画图标（64 x 64 大小）
+        sb.draw(intentTex, iconX, iconY, 128.0f*Settings.scale, 128.0f*Settings.scale);
+    }
+
+    private void renderDamageNumber(SpriteBatch sb) {
+        if (damageForShow <= 0) {
+            return;
+        }
+
+        float textX = AbstractDungeon.player.hb.cX-64.0f*Settings.scale;
+        float textY = AbstractDungeon.player.hb.cY + 320.0f*Settings.scale;
+
+        // 用红色来渲染伤害数字
+        FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
+                Integer.toString(damageForShow), textX, textY, Color.RED);
     }
 
     @Override

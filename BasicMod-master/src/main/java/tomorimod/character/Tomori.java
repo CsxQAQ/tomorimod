@@ -48,6 +48,7 @@ import tomorimod.cards.forms.Singer;
 import tomorimod.cards.special.WelcomeToAveMujica;
 import tomorimod.monsters.sakishadow.SakiRightPower;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
 import tomorimod.relics.NotebookRelic;
@@ -656,5 +657,11 @@ public class Tomori extends CustomPlayer {
 
         AbstractDungeon.actionManager.addToTop(new WaitAction(1.0F));
         this.applyPreCombatLogic();
+    }
+
+    @Override
+    public void applyEndOfTurnTriggers() {
+        super.applyEndOfTurnTriggers();
+        UikaMonster.damageNumFroze=true;
     }
 }
