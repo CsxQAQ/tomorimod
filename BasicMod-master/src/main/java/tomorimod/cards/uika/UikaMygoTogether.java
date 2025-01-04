@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.util.CardStats;
 
-public class UikaMygoTogether extends BaseCard implements UikaCard{
+public class UikaMygoTogether extends BaseCard implements UikaCard, WithoutMaterial {
 
     public static final String ID = makeID(UikaMygoTogether.class.getSimpleName());
     private static final CardStats info = new CardStats(

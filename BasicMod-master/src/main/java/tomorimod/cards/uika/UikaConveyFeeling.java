@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.ConveyFeelingPower;
 import tomorimod.util.CardStats;
 
-public class UikaConveyFeeling extends BaseCard implements UikaCard {
+public class UikaConveyFeeling extends BaseCard implements UikaCard, WithoutMaterial {
 
     public static final String ID = makeID(UikaConveyFeeling.class.getSimpleName());
     private static final CardStats info = new CardStats(

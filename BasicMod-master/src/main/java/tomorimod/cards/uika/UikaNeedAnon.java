@@ -8,11 +8,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.actions.ApplyGravityAction;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 
-public class UikaNeedAnon extends BaseCard implements UikaCard {
+public class UikaNeedAnon extends BaseCard implements UikaCard, WithoutMaterial {
 
     public static final String ID = makeID(UikaNeedAnon.class.getSimpleName());
     private static final CardStats info = new CardStats(

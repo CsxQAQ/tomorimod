@@ -2,21 +2,24 @@ package tomorimod.monsters.uika;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
-public class MonsterDrawCardEffect extends AbstractGameEffect {
+// 这是示例的“怪物抽牌动画”效果类
+public class UikaDrawCardEffect extends AbstractGameEffect {
     private AbstractMonster monster; // 哪个怪物要“抽”这张卡
     private AbstractCard card;
     private float startX, startY;
     private float targetX, targetY;
     private float startScale, targetScale;
-    private int num;
 
-    public MonsterDrawCardEffect(AbstractMonster monster, AbstractCard card,
+    public UikaDrawCardEffect(AbstractMonster monster, AbstractCard card,
                                  float startX, float startY,
                                  float targetX, float targetY,
-                                 float startScale, float targetScale,int num) {
+                                 float startScale, float targetScale) {
         this.monster = monster;
         this.card = card;
 
@@ -26,9 +29,8 @@ public class MonsterDrawCardEffect extends AbstractGameEffect {
         this.targetY = targetY;
         this.startScale = startScale;
         this.targetScale = targetScale;
-        this.num=num;
 
-        this.duration = 0.5f; // 让动画持续 0.5 秒，可自定义
+        this.duration = 0.1f; // 让动画持续 0.5 秒，可自定义
         this.startingDuration = this.duration;
 
         // 先把卡牌的初始位置、缩放设好
@@ -58,20 +60,14 @@ public class MonsterDrawCardEffect extends AbstractGameEffect {
             this.isDone = true;
             // 动画结束后，把卡牌“交给”怪物的意图渲染
             // 这里示例放到 intentCard1，你也可以根据需要放 intentCard2
-            if(num==1){
-                tomorimod.monsters.uika.UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(monster, card);
-            }else if(num==2) {
-                tomorimod.monsters.uika.UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard2.set(monster, card);
-            }
+            UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(monster, card);
 
             // 同时要确保卡牌落到最终位置
             card.current_x = targetX;
+            card.target_x=targetX;
             card.current_y = targetY;
-            card.target_x = targetX;
-            card.target_y = targetY;
-
+            card.target_y=targetY;
             card.drawScale = targetScale;
-            card.targetDrawScale = targetScale;
         }
     }
 

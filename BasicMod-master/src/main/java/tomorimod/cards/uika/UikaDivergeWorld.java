@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.DivergeWorldPower;
 import tomorimod.util.CardStats;
 
-public class UikaDivergeWorld extends BaseCard implements UikaCard{
+public class UikaDivergeWorld extends BaseCard implements UikaCard, WithoutMaterial {
     public static final String ID = makeID(UikaDivergeWorld.class.getSimpleName());
     private static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

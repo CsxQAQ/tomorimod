@@ -4,11 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.forms.BaseFormCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class UikaDomainExpansion extends BaseCard implements UikaCard {
+public class UikaDomainExpansion extends BaseCard implements UikaCard, WithoutMaterial {
 
     public static final String ID = makeID(UikaDomainExpansion.class.getSimpleName());
     private static final CardStats info = new CardStats(

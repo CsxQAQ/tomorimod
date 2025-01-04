@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
@@ -13,7 +14,7 @@ import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
 
-public class UikaStrike extends BaseCard implements UikaCard{
+public class UikaStrike extends BaseCard implements UikaCard, WithoutMaterial {
 
     public static final String ID = makeID(UikaStrike.class.getSimpleName());
     private static final CardStats info = new CardStats(

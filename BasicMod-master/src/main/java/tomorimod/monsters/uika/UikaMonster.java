@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,9 +20,13 @@ import tomorimod.cards.uika.UikaCard;
 import tomorimod.cards.uika.UikaMygoTogether;
 import tomorimod.cards.uika.UikaStrike;
 import tomorimod.monsters.BaseMonster;
+import tomorimod.monsters.sakishadow.ShuffleFromMasterDeckPatch;
 import tomorimod.monsters.taki.TakiPressurePower;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -116,38 +122,72 @@ public class UikaMonster extends BaseMonster {
             cardForShow1 = new UikaMygoTogether();
             cardForShow2 = new UikaStrike();
 
-            // 这里假设怪物头顶要显示的最终坐标是 CARDFORSHOW1_X, CARDFORSHOW_Y
-            // 先把它们的目标坐标记录下来
+//            addToBot(new AbstractGameAction() {
+//                @Override
+//                public void update() {
+////                    cardForShow1.untip();
+////                    cardForShow1.unhover();
+////                    cardForShow1.darken(true);
+////                    cardForShow1.shrink(true);
+//
+//                    // 创建新的 Soul
+//                    Soul soul = new Soul();
+//                    soul.shuffle(cardForShow1, false);
+//                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
+//                    try {
+//                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
+//                        soulsField.setAccessible(true); // 绕过访问限制
+//                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+//                        souls.add(soul); // 修改字段
+//                    } catch (NoSuchFieldException | IllegalAccessException e) {
+//                        e.printStackTrace();
+//                    }
+//                    ShuffleFromMasterDeckPatch.SoulFieldPatch.isFromMasterDeck.set(soul,false);
+//                    isDone=true;
+//                }
+//            });
+//            addToBot(new AbstractGameAction() {
+//                @Override
+//                public void update() {
+//                    UikaIntentCardPatch.setPosition(cardForShow1,CARDFORSHOW1_X,CARDFORSHOW_Y);
+//                    UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(UikaMonster.this,cardForShow1);
+//                    isDone=true;
+//                }
+//            });
+
+
+//             这里假设怪物头顶要显示的最终坐标是 CARDFORSHOW1_X, CARDFORSHOW_Y
+//             先把它们的目标坐标记录下来
             float endX1 = CARDFORSHOW1_X;
             float endY = CARDFORSHOW_Y;
             float endX2 = CARDFORSHOW2_X;
 
             // 让它“飞”过去。假设让它从屏幕中央(Settings.WIDTH/2, Settings.HEIGHT/2)飞到怪物头顶
             // 也可以自定义别的起始点，比如怪物自己的“牌堆”位置
-            float startX = (float) Settings.WIDTH / 2f;
-            float startY = (float) Settings.HEIGHT / 2f;
+            float startX = endX1-50.0f*Settings.scale;
+            float startY = endY+50.0f*Settings.scale;
 
             // 把动画丢进 effect 列表
-            AbstractDungeon.topLevelEffects.add(new MonsterDrawCardEffect(
+            AbstractDungeon.topLevelEffects.add(new UikaDrawCardEffect(
                     this, // 当前怪物
                     cardForShow1,
                     startX, startY,
                     endX1, endY,
                     0.5f, // 开始时的 scale
-                    0.5f,  // 结束时的 scale
-                    1
+                    0.5f  // 结束时的 scale
+
             ));
 
             // 如果需要第二张卡同样动画，可以再加一个
-            AbstractDungeon.topLevelEffects.add(new MonsterDrawCardEffect(
-                    this,
-                    cardForShow2,
-                    startX, startY,
-                    endX2, endY,
-                    0.5f,
-                    0.5f,
-                    2
-            ));
+//            AbstractDungeon.topLevelEffects.add(new UikaDrawCardEffect(
+//                    this,
+//                    cardForShow2,
+//                    startX, startY,
+//                    endX2, endY,
+//                    0.5f,
+//                    0.5f,
+//
+//            ));
 //            cardForShow1=new UikaMygoTogether();
 //            UikaIntentCardPatch.setPosition(cardForShow1,CARDFORSHOW1_X,CARDFORSHOW_Y);
 //            UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard1.set(this,cardForShow1);
