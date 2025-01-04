@@ -155,7 +155,7 @@
     "DESCRIPTION": "tomorimod:形态 ：切换 tomorimod:形态 时，获得 !M! 层 仪式 。 消耗 。"
   },
   "${modID}:DomainExpansion": {
-    "NAME": "领域展开",
+    "NAME": "重力展开",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:Mascot": {
@@ -455,7 +455,7 @@
     "DESCRIPTION": "攻击时触发 tomorimod:重力 的效果。"
   },
   "${modID}:UikaDomainExpansion": {
-    "NAME": "领域展开",
+    "NAME": "重力展开",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:UikaDoughnut": {

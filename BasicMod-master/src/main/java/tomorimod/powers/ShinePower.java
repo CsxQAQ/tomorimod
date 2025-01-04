@@ -20,17 +20,24 @@ public class ShinePower extends BasePower {
     }
     @Override
     public void atStartOfTurn() {
-        flash();
-        AbstractPlayer abstractPlayer=AbstractDungeon.player;
-        addToBot(new HealAction(this.owner, this.owner, this.amount));
+        if(owner==AbstractDungeon.player){
+            flash();
+            AbstractPlayer abstractPlayer=AbstractDungeon.player;
+            addToBot(new HealAction(this.owner, this.owner, this.amount));
 
-        if(AbstractDungeon.player.hasPower(makeID("ConveyFeelingPower"))){
-            int maxHPOverflow = Math.max(0, abstractPlayer.currentHealth + this.amount - abstractPlayer.maxHealth);
-            if(maxHPOverflow>0){
-                ConveyFeeling.maxHPOverflow=ConveyFeeling.maxHPOverflow+maxHPOverflow;
-                abstractPlayer.increaseMaxHp(maxHPOverflow,true);
+            if(AbstractDungeon.player.hasPower(makeID("ConveyFeelingPower"))){
+                int maxHPOverflow = Math.max(0, abstractPlayer.currentHealth + this.amount - abstractPlayer.maxHealth);
+                if(maxHPOverflow>0){
+                    ConveyFeeling.maxHPOverflow=ConveyFeeling.maxHPOverflow+maxHPOverflow;
+                    abstractPlayer.increaseMaxHp(maxHPOverflow,true);
+                }
             }
         }
+    }
+
+    public void atStartOfMonsterTurn(){
+        flash();
+        addToBot(new HealAction(this.owner, this.owner, this.amount));
     }
 
     @Override

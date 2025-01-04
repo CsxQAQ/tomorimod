@@ -21,6 +21,7 @@ import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.taki.TakiPressurePower;
 import tomorimod.patches.MusicPatch;
 import tomorimod.powers.GravityPower;
+import tomorimod.powers.ShinePower;
 import tomorimod.powers.forms.DomainExpansionPower;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -106,10 +107,12 @@ public class UikaMonster extends BaseMonster {
             case 0:
                 addToBot(new DamageAction(AbstractDungeon.player,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToBot(new ApplyPowerAction(this,this,
+                        new GravityPower(this,1),1));
+                addToBot(new ApplyPowerAction(this,this,
+                        new ShinePower(this,1),1));
                 showCardsDiscard();
-
                 break;
-
 
             case 11:
                 addToBot(new ApplyPowerAction(this,this,

@@ -19,7 +19,6 @@ public class GravityPower extends BasePower {
 
     public GravityPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        //this.amount = amount;
     }
 
     @Override
