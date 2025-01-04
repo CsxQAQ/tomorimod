@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 public class Grit extends BaseCard {
 
     public static final String ID = makeID(Grit.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -20,11 +20,11 @@ public class Grit extends BaseCard {
             1
     );
 
-    private final int BLOCK=1;
-    private final int UPG_BLOCK=1;
+    public final int BLOCK=1;
+    public final int UPG_BLOCK=1;
 
-    private final int MAGIC=1;
-    private final int UPG_MAGIC=1;
+    public final int MAGIC=1;
+    public final int UPG_MAGIC=1;
 
     public Grit() {
         super(ID, info);

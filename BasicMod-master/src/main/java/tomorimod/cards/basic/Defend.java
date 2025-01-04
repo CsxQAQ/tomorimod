@@ -11,7 +11,7 @@ import tomorimod.util.CardStats;
 
 public class Defend extends BaseCard implements SpecialCard {
     public static final String ID = makeID(Defend.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.BASIC,
@@ -20,8 +20,8 @@ public class Defend extends BaseCard implements SpecialCard {
 
     );
 
-    private static final int BLOCK = 5;
-    private static final int UPG_BLOCK = 3;
+    public static final int BLOCK = 5;
+    public static final int UPG_BLOCK = 3;
 
     public Defend() {
         super(ID, info);

@@ -13,7 +13,7 @@ import tomorimod.util.CardStats;
 public class BlankPaperAttack extends BaseCard implements SpecialCard {
 
     public static final String ID = makeID(BlankPaperAttack.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.SPECIAL,

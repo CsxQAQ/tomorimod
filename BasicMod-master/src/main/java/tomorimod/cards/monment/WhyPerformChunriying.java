@@ -16,7 +16,7 @@ import static tomorimod.TomoriMod.imagePath;
 public class WhyPerformChunriying extends BaseMonmentCard {
 
     public static final String ID = makeID(WhyPerformChunriying.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
@@ -31,14 +31,14 @@ public class WhyPerformChunriying extends BaseMonmentCard {
         this.exhaust=true;
     }
 
-    private static final int MAGIC = 2;
-    private static final int UPG_MAGIC = 1;
+    public static final int MAGIC = 2;
+    public static final int UPG_MAGIC = 1;
 
-    private static final ArrayList<String> imagePaths = new ArrayList<>();
-    private float timeElapsed = 0f;
-    private float interval = 0.04f;
-    private int currentImageIndex = 0;
-    private static final int totalImages = 61;
+    public static final ArrayList<String> imagePaths = new ArrayList<>();
+    public float timeElapsed = 0f;
+    public float interval = 0.04f;
+    public int currentImageIndex = 0;
+    public static final int totalImages = 61;
 
 
     static {

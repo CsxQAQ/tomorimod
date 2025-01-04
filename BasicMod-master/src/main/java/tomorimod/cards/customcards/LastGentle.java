@@ -15,7 +15,7 @@ import static tomorimod.TomoriMod.imagePath;
 
 public class LastGentle extends BaseCard {
     public static final String ID = makeID(LastGentle.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
@@ -23,11 +23,11 @@ public class LastGentle extends BaseCard {
             1
     );
 
-    private static final ArrayList<String> imagePaths = new ArrayList<>();
-    private float timeElapsed = 0f;
-    private float interval = 0.05f;
-    private int currentImageIndex = 0;
-    private static final int totalImages = 43;
+    public static final ArrayList<String> imagePaths = new ArrayList<>();
+    public float timeElapsed = 0f;
+    public float interval = 0.05f;
+    public int currentImageIndex = 0;
+    public static final int totalImages = 43;
 
 
     static {

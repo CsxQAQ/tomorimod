@@ -16,7 +16,7 @@ import static tomorimod.util.CustomUtils.idToName;
 public class WeAreMygo extends BaseCard implements PermanentFrom{
 
     public static final String ID = makeID(WeAreMygo.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,

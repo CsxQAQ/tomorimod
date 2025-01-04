@@ -10,7 +10,7 @@ import tomorimod.util.CustomUtils;
 
 public class WholeLife extends BaseCard implements SpecialCard {
     public static final String ID = makeID(WholeLife.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.SPECIAL,

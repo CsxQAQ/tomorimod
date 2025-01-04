@@ -14,7 +14,7 @@ import tomorimod.util.CardStats;
 
 public class GravitySurge extends BaseCard {
     public static final String ID = makeID(GravitySurge.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -22,8 +22,8 @@ public class GravitySurge extends BaseCard {
             1
     );
 
-    private static final int MAGIC = 1;
-    private static final int UPG_MAGIC = 1;
+    public static final int MAGIC = 1;
+    public static final int UPG_MAGIC = 1;
 
     public GravitySurge() {
         super(ID, info);

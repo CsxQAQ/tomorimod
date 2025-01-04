@@ -26,6 +26,7 @@ public class GravityPower extends BasePower {
         if(isPlayer){
             applyEffect();
         }else{
+            flash();
             addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(this.owner, this.amount,
                     DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
@@ -41,7 +42,7 @@ public class GravityPower extends BasePower {
 
 
     public void applyEffect() {
-
+        flash();
         int[] damageArray = new int[AbstractDungeon.getMonsters().monsters.size()];
         for (int i = 0; i < damageArray.length; i++) {
             damageArray[i] = this.amount;

@@ -10,7 +10,7 @@ import tomorimod.util.CardStats;
 
 public class Green extends BaseCard {
     public static final String ID = makeID(Green.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -18,8 +18,8 @@ public class Green extends BaseCard {
             1
     );
 
-    private static final int BLOCK = 5;
-    private static final int UPG_BLOCK = 3;
+    public static final int BLOCK = 5;
+    public static final int UPG_BLOCK = 3;
 
 
     public Green() {

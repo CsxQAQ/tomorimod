@@ -15,7 +15,7 @@ import tomorimod.util.CardStats;
 
 public class MusicComposition extends BaseCard implements WithoutMaterial, SpecialCard {
     public static final String ID = makeID(MusicComposition.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.BASIC,

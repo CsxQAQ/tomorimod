@@ -16,7 +16,7 @@ import tomorimod.util.CardStats;
 
 public class Qianzaibiaoming extends BaseMusicCard {
     public static final String ID = makeID(Qianzaibiaoming.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
 
             CardType.ATTACK,
             CardRarity.SPECIAL,
@@ -32,26 +32,26 @@ public class Qianzaibiaoming extends BaseMusicCard {
         ));
     }
 
-    private final static int DAMAGE_COMMON = 5;
-    private final static int UPG_DAMAGE_COMMON = 3;
-    private final static int BLOCK_COMMON = 0;
-    private final static int UPG_BLOCK_COMMON = 0;
-    private final static int MAGIC_COMMON = 2;
-    private final static int UPG_MAGIC_COMMON = 1;
+    public final static int DAMAGE_COMMON = 5;
+    public final static int UPG_DAMAGE_COMMON = 3;
+    public final static int BLOCK_COMMON = 0;
+    public final static int UPG_BLOCK_COMMON = 0;
+    public final static int MAGIC_COMMON = 2;
+    public final static int UPG_MAGIC_COMMON = 1;
 
-    private final static int DAMAGE_UNCOMMON = 8;
-    private final static int UPG_DAMAGE_UNCOMMON = 4;
-    private final static int BLOCK_UNCOMMON = 0;
-    private final static int UPG_BLOCK_UNCOMMON = 0;
-    private final static int MAGIC_UNCOMMON = 3;
-    private final static int UPG_MAGIC_UNCOMMON = 1;
+    public final static int DAMAGE_UNCOMMON = 8;
+    public final static int UPG_DAMAGE_UNCOMMON = 4;
+    public final static int BLOCK_UNCOMMON = 0;
+    public final static int UPG_BLOCK_UNCOMMON = 0;
+    public final static int MAGIC_UNCOMMON = 3;
+    public final static int UPG_MAGIC_UNCOMMON = 1;
 
-    private final static int DAMAGE_RARE = 8;
-    private final static int UPG_DAMAGE_RARE = 4;
-    private final static int BLOCK_RARE = 0;
-    private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 3;
-    private final static int UPG_MAGIC_RARE = 1;
+    public final static int DAMAGE_RARE = 8;
+    public final static int UPG_DAMAGE_RARE = 4;
+    public final static int BLOCK_RARE = 0;
+    public final static int UPG_BLOCK_RARE = 0;
+    public final static int MAGIC_RARE = 3;
+    public final static int UPG_MAGIC_RARE = 1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

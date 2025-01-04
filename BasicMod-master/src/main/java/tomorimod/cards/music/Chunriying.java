@@ -14,7 +14,7 @@ import static tomorimod.TomoriMod.imagePath;
 
 public class Chunriying extends BaseMusicCard implements SpecialCard {
     public static final String ID = makeID(Chunriying.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
 
             CardType.ATTACK,
             CardRarity.SPECIAL,
@@ -22,26 +22,26 @@ public class Chunriying extends BaseMusicCard implements SpecialCard {
             1
     );
 
-    private final static int DAMAGE_COMMON = 15;
-    private final static int UPG_DAMAGE_COMMON = 5;
-    private final static int BLOCK_COMMON = 0;
-    private final static int UPG_BLOCK_COMMON = 0;
-    private final static int MAGIC_COMMON = 15;
-    private final static int UPG_MAGIC_COMMON = 5;
+    public final static int DAMAGE_COMMON = 15;
+    public final static int UPG_DAMAGE_COMMON = 5;
+    public final static int BLOCK_COMMON = 0;
+    public final static int UPG_BLOCK_COMMON = 0;
+    public final static int MAGIC_COMMON = 15;
+    public final static int UPG_MAGIC_COMMON = 5;
 
-    private final static int DAMAGE_UNCOMMON = 15;
-    private final static int UPG_DAMAGE_UNCOMMON = 5;
-    private final static int BLOCK_UNCOMMON = 0;
-    private final static int UPG_BLOCK_UNCOMMON = 0;
-    private final static int MAGIC_UNCOMMON = 15;
-    private final static int UPG_MAGIC_UNCOMMON = 5;
+    public final static int DAMAGE_UNCOMMON = 15;
+    public final static int UPG_DAMAGE_UNCOMMON = 5;
+    public final static int BLOCK_UNCOMMON = 0;
+    public final static int UPG_BLOCK_UNCOMMON = 0;
+    public final static int MAGIC_UNCOMMON = 15;
+    public final static int UPG_MAGIC_UNCOMMON = 5;
 
-    private final static int DAMAGE_RARE = 15;
-    private final static int UPG_DAMAGE_RARE = 5;
-    private final static int BLOCK_RARE = 0;
-    private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 15;
-    private final static int UPG_MAGIC_RARE = 5;
+    public final static int DAMAGE_RARE = 15;
+    public final static int UPG_DAMAGE_RARE = 5;
+    public final static int BLOCK_RARE = 0;
+    public final static int UPG_BLOCK_RARE = 0;
+    public final static int MAGIC_RARE = 15;
+    public final static int UPG_MAGIC_RARE = 5;
 
     public Chunriying() {
         super(ID, info,new NumsInfo(

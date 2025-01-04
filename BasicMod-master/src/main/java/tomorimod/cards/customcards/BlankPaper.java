@@ -15,7 +15,7 @@ import java.lang.reflect.Field;
 public class BlankPaper extends BaseCard {
 
     public static final String ID = makeID(BlankPaper.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
@@ -34,8 +34,8 @@ public class BlankPaper extends BaseCard {
                 m.intent == AbstractMonster.Intent.ATTACK_BUFF ||
                 m.intent == AbstractMonster.Intent.ATTACK_DEBUFF ||
                 m.intent == AbstractMonster.Intent.ATTACK_DEFEND)) {
-            int monsterDamage = getPrivateField(m, "intentDmg", Integer.class);
-            int attackCount = getPrivateField(m, "intentMultiAmt", Integer.class);
+            int monsterDamage = getpublicField(m, "intentDmg", Integer.class);
+            int attackCount = getpublicField(m, "intentMultiAmt", Integer.class);
 
             AbstractCard attackCard = new BlankPaperAttack();
             attackCard.baseDamage = monsterDamage;
@@ -49,7 +49,7 @@ public class BlankPaper extends BaseCard {
 
     }
 
-    public static <T> T getPrivateField(Object instance, String fieldName, Class<T> fieldType) {
+    public static <T> T getpublicField(Object instance, String fieldName, Class<T> fieldType) {
         try {
             Field field = AbstractMonster.class.getDeclaredField(fieldName);
             field.setAccessible(true);

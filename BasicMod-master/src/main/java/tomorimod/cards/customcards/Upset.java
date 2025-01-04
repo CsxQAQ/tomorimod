@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 public class Upset extends BaseCard {
 
     public static final String ID = makeID(Upset.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -20,8 +20,8 @@ public class Upset extends BaseCard {
             1
     );
 
-    private final int BLOCK=2;
-    private final int UPG_BLOCK=1;
+    public final int BLOCK=2;
+    public final int UPG_BLOCK=1;
 
     public Upset() {
         super(ID, info);

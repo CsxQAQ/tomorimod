@@ -15,7 +15,7 @@ import javax.smartcardio.Card;
 public class UikaConveyFeeling extends UikaCard implements WithoutMaterial {
 
     public static final String ID = makeID(UikaConveyFeeling.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.UNCOMMON,

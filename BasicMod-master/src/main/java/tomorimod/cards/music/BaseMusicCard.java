@@ -21,9 +21,9 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     //protected int musicUpgradeBlock;
     //protected int musicUpgradeMagic;
 
-    private String idForShow;
+    public String idForShow;
 
-    private NumsInfo numsInfo;
+    public NumsInfo numsInfo;
 
     public MusicRarity musicRarity;
 
@@ -191,7 +191,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         RARE(1),
         DEFAULT(0);
 
-        private final int value;
+        public final int value;
 
         MusicRarity(int value) {
             this.value = value;

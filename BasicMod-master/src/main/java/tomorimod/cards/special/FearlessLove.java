@@ -19,7 +19,7 @@ import tomorimod.util.CardStats;
 
 public class FearlessLove extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessLove.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,
             CardColor.CURSE,
             CardType.CURSE,
@@ -28,8 +28,8 @@ public class FearlessLove extends BaseCard implements SpecialCard, WithoutMateri
             -2
     );
 
-    private final int MAGIC=2;
-    private final int UPG_MAGIC=0;
+    public final int MAGIC=2;
+    public final int UPG_MAGIC=0;
 
     public FearlessLove() {
         super(ID, info);

@@ -19,9 +19,9 @@ import java.util.Iterator;
 
 public class MusicDamageAllEnemiesAction extends AbstractGameAction {
     public int[] damage;
-    private int baseDamage;
-    private boolean firstFrame;
-    private boolean utilizeBaseDamage;
+    public int baseDamage;
+    public boolean firstFrame;
+    public boolean utilizeBaseDamage;
 
     public MusicDamageAllEnemiesAction(AbstractCreature source, int[] amount, DamageInfo.DamageType type, AbstractGameAction.AttackEffect effect, boolean isFast) {
         this.firstFrame = true;

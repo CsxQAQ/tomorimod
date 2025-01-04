@@ -21,7 +21,7 @@ import static tomorimod.util.TextureLoader.getCardTextureString;
 
 
 public abstract class BaseCard extends CustomCard {
-    final private static Map<String, DynamicVariable> customVars = new HashMap<>();
+    final public static Map<String, DynamicVariable> customVars = new HashMap<>();
 
     //public static final Set<BaseCard> allInstances = new HashSet<>();
 
@@ -93,10 +93,10 @@ public abstract class BaseCard extends CustomCard {
         this.magicUpgrade = 0;
     }
 
-    private static String getName(String ID) {
+    public static String getName(String ID) {
         return CardCrawlGame.languagePack.getCardStrings(ID).NAME;
     }
-    private static String getInitialDescription(String ID) {
+    public static String getInitialDescription(String ID) {
         return CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
     }
 
@@ -263,7 +263,7 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    private void setCustomVarValue(String key, int base, int upg) {
+    public void setCustomVarValue(String key, int base, int upg) {
         cardVariables.compute(key, (k, old)->{
             if (old == null) {
                 return new LocalVarInfo(base, upg);
@@ -295,7 +295,7 @@ public abstract class BaseCard extends CustomCard {
     }
 
 
-    private LocalVarInfo getCustomVar(String key) {
+    public LocalVarInfo getCustomVar(String key) {
         return cardVariables.get(key);
     }
 
@@ -595,10 +595,10 @@ public abstract class BaseCard extends CustomCard {
         }
     }
 
-    private static class QuickDynamicVariable extends DynamicVariable {
+    public static class QuickDynamicVariable extends DynamicVariable {
         final String localKey, key;
 
-        private BaseCard current = null;
+        public BaseCard current = null;
 
         public QuickDynamicVariable(String key) {
             this.localKey = key;
@@ -691,7 +691,7 @@ public abstract class BaseCard extends CustomCard {
             this.upgrade = upgrade;
         }
 
-        private static int noCalc(BaseCard c, AbstractMonster m, int base) {
+        public static int noCalc(BaseCard c, AbstractMonster m, int base) {
             return base;
         }
 

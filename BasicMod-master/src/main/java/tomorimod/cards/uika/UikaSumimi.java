@@ -13,7 +13,7 @@ import static tomorimod.TomoriMod.imagePath;
 
 public class UikaSumimi extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaSumimi.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.COMMON,

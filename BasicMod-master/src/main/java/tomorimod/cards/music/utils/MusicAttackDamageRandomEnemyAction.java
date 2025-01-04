@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 
 
 public class MusicAttackDamageRandomEnemyAction extends AbstractGameAction {
-    private AbstractCard card;
-    private AbstractGameAction.AttackEffect effect;
+    public AbstractCard card;
+    public AbstractGameAction.AttackEffect effect;
 
     public MusicAttackDamageRandomEnemyAction(AbstractCard card, AbstractGameAction.AttackEffect effect) {
         this.card = card;

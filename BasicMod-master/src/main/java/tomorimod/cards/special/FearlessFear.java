@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 
 public class FearlessFear extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(FearlessFear.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,
             CardColor.CURSE,
             CardType.CURSE,

@@ -13,7 +13,7 @@ import static tomorimod.TomoriMod.imagePath;
 
 public class UikaLastOne extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaLastOne.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
@@ -21,8 +21,8 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
             1
     );
 
-    private final int MAGIC=20;
-    private final int UPG_MAGIC=0;
+    public final int MAGIC=20;
+    public final int UPG_MAGIC=0;
 
 
     public UikaLastOne() {

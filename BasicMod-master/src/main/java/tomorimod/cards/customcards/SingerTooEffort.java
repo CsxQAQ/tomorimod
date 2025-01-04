@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 
 public class SingerTooEffort extends BaseCard {
     public static final String ID = makeID(SingerTooEffort.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
@@ -20,8 +20,8 @@ public class SingerTooEffort extends BaseCard {
             0
     );
 
-    private final int MAGIC=2;
-    private final int UPG_MAGIC=1;
+    public final int MAGIC=2;
+    public final int UPG_MAGIC=1;
 
     public SingerTooEffort() {
         super(ID, info);

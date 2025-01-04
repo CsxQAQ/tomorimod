@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 
 public class HaTaki extends BaseCard implements SpecialCard {
     public static final String ID = makeID(HaTaki.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.SPECIAL,
@@ -20,8 +20,8 @@ public class HaTaki extends BaseCard implements SpecialCard {
             0
     );
 
-    private static final int DAMAGE = 3;
-    private static final int UPG_DAMAGE = 2;
+    public static final int DAMAGE = 3;
+    public static final int UPG_DAMAGE = 2;
 
     public HaTaki() {
         super(ID, info);

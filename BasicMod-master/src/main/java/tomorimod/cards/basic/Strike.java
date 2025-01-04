@@ -13,7 +13,7 @@ import tomorimod.util.CardStats;
 
 public class Strike extends BaseCard implements SpecialCard {
     public static final String ID = makeID(Strike.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.BASIC,
@@ -21,8 +21,8 @@ public class Strike extends BaseCard implements SpecialCard {
             1
     );
 
-    private static final int DAMAGE = 6;
-    private static final int UPG_DAMAGE = 3;
+    public static final int DAMAGE = 6;
+    public static final int UPG_DAMAGE = 3;
 
     public Strike() {
         super(ID, info);

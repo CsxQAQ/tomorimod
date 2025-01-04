@@ -13,7 +13,7 @@ import tomorimod.util.CardStats;
 
 public class WishYouHappiness extends BaseMonmentCard {
     public static final String ID = makeID(WishYouHappiness.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -21,10 +21,10 @@ public class WishYouHappiness extends BaseMonmentCard {
             1
     );
 
-    private final static int BLOCK = 999;
-    private final static int UPG_BLOCK = 0;
-    private final static int MAGIC = 20;
-    private final static int UPG_MAGIC = 0;
+    public final static int BLOCK = 999;
+    public final static int UPG_BLOCK = 0;
+    public final static int MAGIC = 20;
+    public final static int UPG_MAGIC = 0;
 
     public WishYouHappiness() {
         super(ID, info);

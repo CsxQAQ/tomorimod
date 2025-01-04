@@ -14,7 +14,7 @@ import tomorimod.util.CardStats;
 public class BigGirlsBandEra extends BaseCard {
 
     public static final String ID = makeID(BigGirlsBandEra.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,

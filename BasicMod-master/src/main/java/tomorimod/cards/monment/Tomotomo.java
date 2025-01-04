@@ -12,7 +12,7 @@ import tomorimod.util.CardStats;
 
 public class Tomotomo extends BaseMonmentCard {
     public static final String ID = makeID(Tomotomo.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
@@ -20,8 +20,8 @@ public class Tomotomo extends BaseMonmentCard {
             1
     );
 
-    private static final int MONEY = 30;
-    private static final int UPG_MONEY = 15;
+    public static final int MONEY = 30;
+    public static final int UPG_MONEY = 15;
 
     public Tomotomo() {
         super(ID, info);

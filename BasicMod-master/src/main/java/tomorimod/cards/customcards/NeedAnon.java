@@ -15,7 +15,7 @@ import tomorimod.util.CardStats;
 public class NeedAnon extends BaseCard {
 
     public static final String ID = makeID(NeedAnon.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
@@ -23,8 +23,8 @@ public class NeedAnon extends BaseCard {
             1
     );
 
-    private final int MAGIC=1;
-    private final int UPG_MAGIC=1;
+    public static final int MAGIC=1;
+    public static final int UPG_MAGIC=1;
     public NeedAnon() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);

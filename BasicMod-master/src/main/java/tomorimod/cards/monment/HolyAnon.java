@@ -10,7 +10,7 @@ import tomorimod.util.CardStats;
 
 public class HolyAnon extends BaseMonmentCard {
     public static final String ID = makeID(HolyAnon.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,
@@ -24,8 +24,8 @@ public class HolyAnon extends BaseMonmentCard {
         setMagic(MAGIC,UPG_MAGIC);
     }
 
-    private static final int MAGIC = 5;
-    private static final int UPG_MAGIC = 5;
+    public static final int MAGIC = 5;
+    public static final int UPG_MAGIC = 5;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

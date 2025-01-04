@@ -20,7 +20,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
 
 
     public static final String ID = makeID(SmallMonment.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
@@ -28,11 +28,11 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
             1
     );
 
-    private boolean isNameChanged=false;
-    private int curMusicDiscoveredNum=-1;
+    public boolean isNameChanged=false;
+    public int curMusicDiscoveredNum=-1;
 
-    private static final int MAGIC = 5;
-    private static final int UPG_MAGIC = 0;
+    public static final int MAGIC = 5;
+    public static final int UPG_MAGIC = 0;
 
     public SmallMonment() {
         super(ID, info);

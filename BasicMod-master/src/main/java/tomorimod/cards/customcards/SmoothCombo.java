@@ -11,7 +11,7 @@ import tomorimod.util.CardStats;
 
 public class SmoothCombo extends BaseCard {
     public static final String ID = makeID(SmoothCombo.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,

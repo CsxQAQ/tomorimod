@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Wulushi extends BaseMusicCard {
     public static final String ID = makeID(Wulushi.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
 
             CardType.ATTACK,
             CardRarity.SPECIAL,
@@ -33,26 +33,26 @@ public class Wulushi extends BaseMusicCard {
     }
 
 
-    private final static int DAMAGE_COMMON = 10;
-    private final static int UPG_DAMAGE_COMMON = 4;
-    private final static int BLOCK_COMMON = 0;
-    private final static int UPG_BLOCK_COMMON = 0;
-    private final static int MAGIC_COMMON = 0;
-    private final static int UPG_MAGIC_COMMON = 0;
+    public final static int DAMAGE_COMMON = 10;
+    public final static int UPG_DAMAGE_COMMON = 4;
+    public final static int BLOCK_COMMON = 0;
+    public final static int UPG_BLOCK_COMMON = 0;
+    public final static int MAGIC_COMMON = 0;
+    public final static int UPG_MAGIC_COMMON = 0;
 
-    private final static int DAMAGE_UNCOMMON = 12;
-    private final static int UPG_DAMAGE_UNCOMMON = 5;
-    private final static int BLOCK_UNCOMMON = 0;
-    private final static int UPG_BLOCK_UNCOMMON = 0;
-    private final static int MAGIC_UNCOMMON = 0;
-    private final static int UPG_MAGIC_UNCOMMON = 0;
+    public final static int DAMAGE_UNCOMMON = 12;
+    public final static int UPG_DAMAGE_UNCOMMON = 5;
+    public final static int BLOCK_UNCOMMON = 0;
+    public final static int UPG_BLOCK_UNCOMMON = 0;
+    public final static int MAGIC_UNCOMMON = 0;
+    public final static int UPG_MAGIC_UNCOMMON = 0;
 
-    private final static int DAMAGE_RARE = 12;
-    private final static int UPG_DAMAGE_RARE = 5;
-    private final static int BLOCK_RARE = 0;
-    private final static int UPG_BLOCK_RARE = 0;
-    private final static int MAGIC_RARE = 0;
-    private final static int UPG_MAGIC_RARE = 0;
+    public final static int DAMAGE_RARE = 12;
+    public final static int UPG_DAMAGE_RARE = 5;
+    public final static int BLOCK_RARE = 0;
+    public final static int UPG_BLOCK_RARE = 0;
+    public final static int MAGIC_RARE = 0;
+    public final static int UPG_MAGIC_RARE = 0;
 
 
     @Override
@@ -79,7 +79,7 @@ public class Wulushi extends BaseMusicCard {
         }
     }
 
-    private AbstractMonster getRandomEnemy(AbstractMonster except) {
+    public AbstractMonster getRandomEnemy(AbstractMonster except) {
         ArrayList<AbstractMonster> possibleTargets = new ArrayList<>();
         for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {

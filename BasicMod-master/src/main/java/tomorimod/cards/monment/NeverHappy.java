@@ -14,7 +14,7 @@ import tomorimod.util.CardStats;
 
 public class NeverHappy extends BaseMonmentCard {
     public static final String ID = makeID(NeverHappy.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
             CardRarity.COMMON,
@@ -28,8 +28,8 @@ public class NeverHappy extends BaseMonmentCard {
         setMagic(MAGIC,UPG_MAGIC);
     }
 
-    private static final int MAGIC = 99;
-    private static final int UPG_MAGIC = 0;
+    public static final int MAGIC = 99;
+    public static final int UPG_MAGIC = 0;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

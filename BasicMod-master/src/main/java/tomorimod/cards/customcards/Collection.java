@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Collection extends BaseCard implements WithoutMaterial {
     public static final String ID = makeID(Collection.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.UNCOMMON,
@@ -22,10 +22,10 @@ public class Collection extends BaseCard implements WithoutMaterial {
             0
     );
 
-    private int previewIndex = 0;
-    private float previewTimer = 1.0f;
-    private static final float PREVIEW_INTERVAL = 1.5f; // 每张卡显示的时间
-    private ArrayList<AbstractCard> relatedCards=new ArrayList<>();
+    public int previewIndex = 0;
+    public float previewTimer = 1.0f;
+    public static final float PREVIEW_INTERVAL = 1.5f; // 每张卡显示的时间
+    public ArrayList<AbstractCard> relatedCards=new ArrayList<>();
 
     @Override
     public void update() {

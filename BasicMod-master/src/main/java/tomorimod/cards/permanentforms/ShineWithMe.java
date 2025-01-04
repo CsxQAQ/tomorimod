@@ -19,7 +19,7 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
 
 
     public static final String ID = makeID(ShineWithMe.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
             CardRarity.RARE,
@@ -30,7 +30,7 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
         super(ID, info);
     }
 
-    private int musicDiscovered=-1;
+    public int musicDiscovered=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

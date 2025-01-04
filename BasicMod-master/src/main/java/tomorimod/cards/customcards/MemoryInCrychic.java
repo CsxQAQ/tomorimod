@@ -15,7 +15,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRandomRng;
 public class MemoryInCrychic extends BaseCard {
 
     public static final String ID = makeID(MemoryInCrychic.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,

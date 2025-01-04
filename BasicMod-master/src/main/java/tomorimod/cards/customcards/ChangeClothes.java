@@ -16,7 +16,7 @@ import java.util.Collections;
 public class ChangeClothes extends BaseCard {
 
     public static final String ID = makeID(ChangeClothes.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,

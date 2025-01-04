@@ -2,6 +2,7 @@ package tomorimod.monsters.uika;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.Soul;
@@ -16,12 +17,19 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
+import tomorimod.cards.customcards.DivergeWorld;
+import tomorimod.cards.customcards.LightAndShadow;
+import tomorimod.cards.customcards.MygoTogether;
+import tomorimod.cards.customcards.NeedAnon;
+import tomorimod.cards.forms.DomainExpansion;
 import tomorimod.cards.uika.*;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.taki.TakiPressurePower;
 import tomorimod.patches.MusicPatch;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
+import tomorimod.powers.custompowers.DivergeWorldPower;
+import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.powers.forms.DomainExpansionPower;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -65,6 +73,7 @@ public class UikaMonster extends BaseMonster {
     public static final float CARDFORSHOW2_X=(DRAW_X+100.0f)*Settings.scale;
     public static final float CARDFORSHOW_Y=(DRAW_Y+400.0F)*Settings.scale;
 
+    public static final float WAIT_TIME=0.3F;
 
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -81,13 +90,6 @@ public class UikaMonster extends BaseMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
-
-//        cardForShow1=null;
-//        cardForShow2=null;
-//        showCards.add(cardForShow1);
-//        showCards.add(cardForShow2);
-        //UikaIntentCardPatch.setPosition(cardForShow,drawX,drawY+300*Settings.scale);
-        //UikaIntentCardPatch.AbstractMonsterFieldPatch.intentCard.set(this,cardForShow);
     }
 
     @Override
@@ -105,21 +107,39 @@ public class UikaMonster extends BaseMonster {
     public void takeTurn() {
         switch (this.nextMove) {
             case 0:
-                addToBot(new DamageAction(AbstractDungeon.player,
-                        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToBot(new ApplyPowerAction(this,this,
-                        new GravityPower(this,1),1));
-                addToBot(new ApplyPowerAction(this,this,
-                        new ShinePower(this,1),1));
-                showCardsDiscard();
+                mygoTogether();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                strike();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
                 break;
 
             case 11:
-                addToBot(new ApplyPowerAction(this,this,
-                        new DomainExpansionPower(this,3),3));
-                addToBot(new ApplyPowerAction(this,this,
-                        new GravityPower(this,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
-                showCardsDiscard();
+                domainExpansion();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                liveForever();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+
+                break;
+            case 12:
+                lightAndShadow();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                needAnon();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+
+                break;
+            case 13:
+                divergeWorld();
+                showCardsDiscard(1);
+                addToBot(new TrueWaitAction(WAIT_TIME));
+                strike();
+                showCardsDiscard(2);
+                addToBot(new TrueWaitAction(WAIT_TIME));
 
                 break;
 
@@ -129,9 +149,63 @@ public class UikaMonster extends BaseMonster {
 
     private int turnNum=0;
 
+    public void strike(){
+        addToBot(new DamageAction(AbstractDungeon.player,
+                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+
+    }
+
+    public void mygoTogether(){
+        addToBot(new ApplyPowerAction(this,this,new MygoTogetherPower(this)));
+        addToBot(new ApplyPowerAction(this,this,
+                new GravityPower(this, MygoTogether.MAGIC),MygoTogether.MAGIC));
+        addToBot(new ApplyPowerAction(this,this,
+                new ShinePower(this,MygoTogether.MAGIC),MygoTogether.MAGIC));
+    }
+
+    public void domainExpansion(){
+        addToBot(new ApplyPowerAction(this,this,
+                new DomainExpansionPower(this, DomainExpansion.MAGIC),DomainExpansion.MAGIC));
+    }
+
+    public void liveForever(){
+        addToBot(new ApplyPowerAction(this,this,
+                new GravityPower(this,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
+    }
+
+    public void lightAndShadow(){
+        int gravityNum=this.hasPower(makeID("GravityPower"))?0:this.getPower(makeID("GravityPower")).amount;
+        int shineNum=this.hasPower(makeID("ShinePower"))?0:this.getPower(makeID("ShinePower")).amount;
+        if(gravityNum>=shineNum){
+            addToBot(new ApplyPowerAction(this,this,new GravityPower(this, LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+        }else{
+            addToBot(new ApplyPowerAction(this,this,new ShinePower(this,LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+        }
+    }
+
+    public void needAnon(){
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int gravityNum=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
+                if(gravityNum!=0){
+                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,new GravityPower
+                            (UikaMonster.this,gravityNum* NeedAnon.MAGIC),gravityNum*NeedAnon.MAGIC));
+                }
+                isDone=true;
+            }
+        });
+    }
+
+    public void divergeWorld(){
+        addToBot(new ApplyPowerAction(this,this,
+                new DivergeWorldPower(this,1),1));
+    }
+
+
     @Override
     protected void getMove(int num) {
-        if(turnNum==0) {
+        if(turnNum==0||turnNum>3) {
             setMove((byte) 0, Intent.ATTACK_BUFF,
                     this.damage.get(0).base, 1, false);
             // 先创建卡
@@ -151,26 +225,57 @@ public class UikaMonster extends BaseMonster {
                 // 先创建卡
                 cardForShow1 = new UikaDomainExpansion();
                 cardForShow2 = new UikaLiveForever();
-                showCardsDraw();
+                break;
+            case 2:
+                setMove((byte) 12, Intent.BUFF);
+                // 先创建卡
+                cardForShow1 = new UikaLightAndShadow();
+                cardForShow2 = new UikaNeedAnon();
+
+                break;
+            case 3:
+                setMove((byte) 13, Intent.ATTACK_BUFF,
+                        this.damage.get(0).base, 1, false);
+                cardForShow1 =new UikaDivergeWorld();
+                cardForShow2 =new UikaStrike();
                 break;
         }
-        turnNum=0;
+        showCardsDraw();
+        turnNum++;
     }
 
-    public void showCardsDiscard(){
+    public void showCardsDiscard(int pos){
         //ArrayList<UikaCard> tmp=new ArrayList<>(showCards);
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                for(UikaCard uikaCard:showCards){
-                    uikaCard.untip();
-                    uikaCard.unhover();
-                    uikaCard.darken(true);
-                    uikaCard.shrink(true);
+                if(pos==1){
+                    cardForShow1.untip();
+                    cardForShow1.unhover();
+                    cardForShow1.darken(true);
+                    cardForShow1.shrink(true);
 
                     // 创建新的 Soul
                     Soul soul = new Soul();
-                    soul.discard(uikaCard, false);
+                    soul.discard(cardForShow1, false);
+                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
+                    try {
+                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
+                        soulsField.setAccessible(true); // 绕过访问限制
+                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                        souls.add(soul); // 修改字段
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }else if(pos==2){
+                    cardForShow2.untip();
+                    cardForShow2.unhover();
+                    cardForShow2.darken(true);
+                    cardForShow2.shrink(true);
+
+                    // 创建新的 Soul
+                    Soul soul = new Soul();
+                    soul.discard(cardForShow2, false);
                     SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
                     try {
                         Field soulsField = SoulGroup.class.getDeclaredField("souls");
@@ -181,7 +286,6 @@ public class UikaMonster extends BaseMonster {
                         e.printStackTrace();
                     }
                 }
-
                 isDone=true;
             }
         });

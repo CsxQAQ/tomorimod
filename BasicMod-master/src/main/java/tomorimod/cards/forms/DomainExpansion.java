@@ -7,7 +7,7 @@ import tomorimod.util.CardStats;
 public class DomainExpansion extends BaseFormCard {
 
     public static final String ID = makeID(DomainExpansion.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.COMMON,

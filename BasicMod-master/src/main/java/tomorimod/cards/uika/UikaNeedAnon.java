@@ -16,7 +16,7 @@ import tomorimod.util.CardStats;
 public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
 
     public static final String ID = makeID(UikaNeedAnon.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.RARE,
@@ -24,8 +24,8 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
             1
     );
 
-    private final int MAGIC=1;
-    private final int UPG_MAGIC=1;
+    public final int MAGIC=1;
+    public final int UPG_MAGIC=1;
     public UikaNeedAnon() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);

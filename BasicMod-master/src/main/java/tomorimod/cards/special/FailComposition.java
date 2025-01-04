@@ -13,7 +13,7 @@ import tomorimod.util.CardStats;
 //这个设置为BaseMusicCard可能会出问题
 public class FailComposition extends BaseCard implements WithoutMaterial,SpecialCard {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
-    private static final CardStats info = new CardStats(
+    public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
             CardRarity.SPECIAL,
@@ -21,8 +21,8 @@ public class FailComposition extends BaseCard implements WithoutMaterial,Special
             0
     );
 
-    private final int MAGIC=5;
-    private final int UPG_MAGIC=0;
+    public final int MAGIC=5;
+    public final int UPG_MAGIC=0;
 
 
     public FailComposition() {
