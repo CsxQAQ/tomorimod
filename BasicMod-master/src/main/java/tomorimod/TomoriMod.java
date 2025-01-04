@@ -194,12 +194,12 @@ public class TomoriMod implements
                 .getSimpleName() + ".png");
 
         BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("Exordium", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
 
         BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("TheCity", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
                 .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
                 .getSimpleName() + ".png");
     }

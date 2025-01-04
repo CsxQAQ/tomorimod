@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class UikaIntentCardPatch {
@@ -14,7 +15,8 @@ public class UikaIntentCardPatch {
             method=SpirePatch.CLASS
     )
     public static class AbstractMonsterFieldPatch{
-        public static SpireField<AbstractCard> intentCard = new SpireField<>(() -> null);
+        public static SpireField<AbstractCard> intentCard1 = new SpireField<>(() -> null);
+        public static SpireField<AbstractCard> intentCard2 = new SpireField<>(() -> null);
     }
 
     @SpirePatch(
@@ -24,8 +26,11 @@ public class UikaIntentCardPatch {
     public static class RenderCardPatch{
         @SpirePostfixPatch
         public static void postfix(AbstractMonster __instance, SpriteBatch sb){
-            if(AbstractMonsterFieldPatch.intentCard.get(__instance)!=null){
-                AbstractMonsterFieldPatch.intentCard.get(__instance).render(sb);
+            if(AbstractMonsterFieldPatch.intentCard1.get(__instance)!=null){
+                AbstractMonsterFieldPatch.intentCard1.get(__instance).render(sb);
+            }
+            if(AbstractMonsterFieldPatch.intentCard2.get(__instance)!=null){
+                AbstractMonsterFieldPatch.intentCard2.get(__instance).render(sb);
             }
         }
     }

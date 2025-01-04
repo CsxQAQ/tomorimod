@@ -89,6 +89,11 @@ public class ShuffleFromMasterDeckPatch{
                 // 如果只是演示，也可 c.makeCopy() 或 c.makeStatEquivalentCopy()
                 AbstractCard copyCard = c.makeStatEquivalentCopy();
 
+                copyCard.untip();
+                copyCard.unhover();
+                copyCard.darken(true);
+                copyCard.shrink(true);
+
                 // 创建新的 Soul
                 Soul soul = new Soul();
 
@@ -107,11 +112,11 @@ public class ShuffleFromMasterDeckPatch{
                 } catch (NoSuchFieldException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-                SoulFieldPatch.isFromMasterDeck.set(soul,true);
+                SoulFieldPatch.isFromMasterDeck.set(soul,false);
             }
 
             AbstractDungeon.player.drawPile.shuffle();
-
+            
             __instance.isDone = true;
         }
     }
