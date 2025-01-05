@@ -1,15 +1,10 @@
-package tomorimod.monsters.uika.uikacard;
+package tomorimod.cards.uikacard;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorimod.actions.ApplyGravityAction;
-import tomorimod.actions.ApplyShineAction;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.customcards.LightAndShadow;
 import tomorimod.character.Tomori;
@@ -17,8 +12,6 @@ import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
-
-import static tomorimod.TomoriMod.makeID;
 
 public class UikaLightAndShadow extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaLightAndShadow.class.getSimpleName());

@@ -1,4 +1,4 @@
-package tomorimod.monsters.uika.uikacard;
+package tomorimod.cards.uikacard;
 
 import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
 import tomorimod.cards.BaseCard;

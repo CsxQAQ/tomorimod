@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.monsters.uika.uikacard.UikaCard;
+import tomorimod.cards.uikacard.UikaCard;
 
 public class UikaCardPatch {
 

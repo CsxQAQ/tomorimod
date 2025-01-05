@@ -7,8 +7,12 @@ import basemod.interfaces.*;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import org.clapper.util.classutil.ClassFilter;
+import org.clapper.util.classutil.ClassFinder;
+import org.clapper.util.classutil.ClassInfo;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.special.*;
+import tomorimod.cards.uikacard.UikaCard;
 import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
 import tomorimod.configs.UnlockedAscension;
@@ -377,14 +381,33 @@ public class TomoriMod implements
 
         new AutoAdd(modID) //Loads files from this mod
                 .packageFilter(BaseCard.class) //In the same package as this class
+                .filter(new ClassFilter() {
+                    @Override
+                    public boolean accept(ClassInfo classInfo, ClassFinder classFinder) {
+                        String className = classInfo.getClassName();
+                        String[] interfaces = classInfo.getInterfaces();
+
+                        boolean isSpecialCard = false;
+                        for (String iface : interfaces) {
+                            if (iface.contains("SpecialCard")) {
+                                isSpecialCard = true;
+                                break;
+                            }
+                        }
+
+                        boolean isUikaCard = className.contains("Uika");
+
+                        return !isSpecialCard && !isUikaCard;
+                    }
+                })
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
 
-        BaseMod.removeCard(BlankPaperAttack.ID,CARD_COLOR);
-        BaseMod.removeCard(HaTaki.ID,CARD_COLOR);
-        BaseMod.removeCard(HaAnon.ID,CARD_COLOR);
-        BaseMod.removeCard(WholeLife.ID,CARD_COLOR);
-        BaseMod.removeCard(FailComposition.ID,CARD_COLOR);
+//        BaseMod.removeCard(BlankPaperAttack.ID,CARD_COLOR);
+//        BaseMod.removeCard(HaTaki.ID,CARD_COLOR);
+//        BaseMod.removeCard(HaAnon.ID,CARD_COLOR);
+//        BaseMod.removeCard(WholeLife.ID,CARD_COLOR);
+//        BaseMod.removeCard(FailComposition.ID,CARD_COLOR);
     }
 
     @Override

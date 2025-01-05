@@ -1,4 +1,4 @@
-package tomorimod.monsters.uika.uikacard;
+package tomorimod.cards.uikacard;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -17,7 +17,6 @@ import tomorimod.util.CardStats;
 import java.lang.reflect.Field;
 
 import static tomorimod.TomoriMod.imagePath;
-import static tomorimod.TomoriMod.makeID;
 
 public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaTwoMoon.class.getSimpleName());

@@ -1,7 +1,6 @@
-package tomorimod.monsters.uika.uikacard;
+package tomorimod.cards.uikacard;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,9 +9,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
-import tomorimod.powers.GravityPower;
-import tomorimod.powers.ShinePower;
-import tomorimod.powers.custompowers.MygoTogetherPower;
 import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
@@ -37,6 +33,8 @@ public class UikaStrike extends UikaCard implements WithoutMaterial {
         this.setMagic(MAGIC,UPG_MAGIC);
         setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
                 imagePath("character/specialcardback/uika_attack_p.png"));
+//        setPortraitTextures(imagePath("cards/uika/"+this.getClass().getSimpleName()+".png"),
+//                imagePath("cards/uika/"+this.getClass().getSimpleName()+"_p.png"));
     }
 
     @Override
