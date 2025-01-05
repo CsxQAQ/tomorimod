@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
@@ -31,16 +32,12 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
     public UikaLiveForever() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        this.isEthereal = true;
         setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
                 imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new MygoTogetherPower(p),0));
-        addToBot(new ApplyPowerAction(p, p, new GravityPower(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new ShinePower(p,this.magicNumber),this.magicNumber));
     }
 
     @Override
@@ -48,12 +45,11 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
         return new UikaLiveForever();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
-    }
 
+    @Override
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
+                new GravityPower(uikaMonster,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
+        super.uikaUse(uikaMonster);
+    }
 }

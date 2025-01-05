@@ -1,10 +1,14 @@
 package tomorimod.monsters.uika.uikacard;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.forms.DomainExpansion;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
+import tomorimod.powers.forms.DomainExpansionPower;
 import tomorimod.util.CardStats;
 
 public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
@@ -32,16 +36,16 @@ public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
         return new UikaDomainExpansion();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
-    }
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
 
+    }
+
+    @Override
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
+                new DomainExpansionPower(uikaMonster, DomainExpansion.MAGIC),DomainExpansion.MAGIC));
+        super.uikaUse(uikaMonster);
     }
 }

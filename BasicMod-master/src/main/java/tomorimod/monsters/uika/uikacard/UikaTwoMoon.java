@@ -1,14 +1,23 @@
 package tomorimod.monsters.uika.uikacard;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.ReversalAction;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.util.CardStats;
 
+import java.lang.reflect.Field;
+
 import static tomorimod.TomoriMod.imagePath;
+import static tomorimod.TomoriMod.makeID;
 
 public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaTwoMoon.class.getSimpleName());
@@ -42,10 +51,29 @@ public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
     }
 
     @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                int shineAmount=uikaMonster.hasPower(makeID("ShinePower"))?uikaMonster.getPower(makeID("ShinePower")).amount:0;
+                int intentDamage = getPublicField(uikaMonster, "intentDmg", Integer.class);
+                addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(uikaMonster,
+                        intentDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                addToTop(new GainBlockAction(uikaMonster,shineAmount*UikaTwoMoon.MAGIC));
+                isDone=true;
+            }
+        });
+        super.uikaUse(uikaMonster);
+    }
+
+    public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
+        try {
+            Field field = AbstractMonster.class.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return fieldType.cast(field.get(instance));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

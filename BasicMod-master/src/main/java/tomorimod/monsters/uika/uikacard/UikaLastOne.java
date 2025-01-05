@@ -1,11 +1,14 @@
 package tomorimod.monsters.uika.uikacard;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.ReversalAction;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
+import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;
@@ -33,7 +36,6 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ReversalAction(p));
     }
 
     @Override
@@ -42,10 +44,9 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
     }
 
     @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
+                new ShinePower(uikaMonster,UikaLastOne.MAGIC),UikaLastOne.MAGIC));
+        super.uikaUse(uikaMonster);
     }
 }

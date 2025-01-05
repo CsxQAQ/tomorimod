@@ -1,11 +1,15 @@
 package tomorimod.monsters.uika.uikacard;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
@@ -26,21 +30,17 @@ public class UikaStrike extends UikaCard implements WithoutMaterial {
 
 
     public final static int MAGIC=6;
-    public final static int UPG_MAGIC=0;
+    public final static int UPG_MAGIC=3;
 
     public UikaStrike() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        this.isEthereal = true;
         setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
                 imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new MygoTogetherPower(p),0));
-        addToBot(new ApplyPowerAction(p, p, new GravityPower(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new ShinePower(p,this.magicNumber),this.magicNumber));
     }
 
     @Override
@@ -49,11 +49,9 @@ public class UikaStrike extends UikaCard implements WithoutMaterial {
     }
 
     @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new DamageAction(AbstractDungeon.player,
+                uikaMonster.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        super.uikaUse(uikaMonster);
     }
-
 }

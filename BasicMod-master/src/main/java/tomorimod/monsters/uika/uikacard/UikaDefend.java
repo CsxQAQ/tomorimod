@@ -1,11 +1,14 @@
 package tomorimod.monsters.uika.uikacard;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.powers.custompowers.MygoTogetherPower;
@@ -26,21 +29,24 @@ public class UikaDefend extends UikaCard implements WithoutMaterial {
 
 
     public final static int MAGIC=5;
-    public final static int UPG_MAGIC=0;
+    public final static int UPG_MAGIC=3;
 
     public UikaDefend() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        this.isEthereal = true;
         setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
                 imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new MygoTogetherPower(p),0));
-        addToBot(new ApplyPowerAction(p, p, new GravityPower(p,this.magicNumber),this.magicNumber));
-        addToBot(new ApplyPowerAction(p, p, new ShinePower(p,this.magicNumber),this.magicNumber));
+    public void uikaUse(UikaMonster uikaMonster) {
+        addToBot(new GainBlockAction(uikaMonster,5));
+        super.uikaUse(uikaMonster);
+    }
+
+    @Override
+    public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
+
     }
 
     @Override
@@ -48,12 +54,7 @@ public class UikaDefend extends UikaCard implements WithoutMaterial {
         return new UikaDefend();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
-    }
+
+
 
 }

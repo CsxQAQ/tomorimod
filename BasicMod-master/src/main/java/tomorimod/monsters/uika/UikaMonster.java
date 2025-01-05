@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import tomorimod.actions.ApplyShineAction;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.cards.customcards.LightAndShadow;
@@ -131,230 +132,13 @@ public class UikaMonster extends BaseMonster {
 
     @Override
     public void takeTurn() {
-        switch (this.nextMove) {
-            case 0:
-                mygoTogether();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                strike();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                break;
-            case 50:
-                lightAndShadow();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                lastGentle();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                break;
-            case 99:
-                poemInsteadOfSong();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                lightAndShadow();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                break;
+        cardForShow1.uikaUse(this);
+        cardForShow2.uikaUse(this);
 
-            case 11:
-                domainExpansion();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                liveForever();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-
-                break;
-            case 12:
-                lightAndShadow();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                needAnon();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-
-                break;
-            case 13:
-                divergeWorld();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                strike();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-
-                break;
-            case 21:
-                lastOne();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                manaGuard();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-
-                break;
-            case 22:
-                twoMoon();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                lightAndShadow();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-
-                break;
-            case 23:
-                doughnut();
-                showCardsDiscard(1);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                defend();
-                showCardsDiscard(2);
-                addToBot(new TrueWaitAction(WAIT_TIME));
-                break;
-
-        }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
     private int turnNum=0;
-
-    public void strike(){
-        addToBot(new DamageAction(AbstractDungeon.player,
-                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-
-    }
-
-    public void mygoTogether(){
-        addToBot(new ApplyPowerAction(this,this,new MygoTogetherPower(this)));
-        addToBot(new ApplyPowerAction(this,this,
-                new GravityPower(this, MygoTogether.MAGIC),MygoTogether.MAGIC));
-        addToBot(new ApplyPowerAction(this,this,
-                new ShinePower(this,MygoTogether.MAGIC),MygoTogether.MAGIC));
-    }
-
-    public void domainExpansion(){
-        addToBot(new ApplyPowerAction(this,this,
-                new DomainExpansionPower(this, DomainExpansion.MAGIC),DomainExpansion.MAGIC));
-    }
-
-    public void liveForever(){
-        addToBot(new ApplyPowerAction(this,this,
-                new GravityPower(this,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
-    }
-
-    public void lightAndShadow(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int gravityNum=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
-                int shineNum=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
-                if(gravityNum>=shineNum){
-                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,
-                            new GravityPower(UikaMonster.this, LightAndShadow.MAGIC),LightAndShadow.MAGIC));
-                }else{
-                    addToTop(new ApplyPowerAction(UikaMonster.this,
-                            UikaMonster.this,new ShinePower(UikaMonster.this,LightAndShadow.MAGIC),LightAndShadow.MAGIC));
-                }
-                isDone=true;
-            }
-        });
-
-    }
-
-    public void needAnon(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int gravityNum=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
-                if(gravityNum!=0){
-                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,new GravityPower
-                            (UikaMonster.this,gravityNum* NeedAnon.MAGIC),gravityNum*NeedAnon.MAGIC));
-                }
-                isDone=true;
-            }
-        });
-    }
-
-    public void divergeWorld(){
-        addToBot(new ApplyPowerAction(this,this,
-                new DivergeWorldPower(this,1),1));
-    }
-
-    public void lastGentle(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int gravityAmount=UikaMonster.this.hasPower(makeID("GravityPower"))?UikaMonster.this.getPower(makeID("GravityPower")).amount:0;
-                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
-                UikaMonster.this.getPower(makeID("ShinePower")).amount=gravityAmount;
-                UikaMonster.this.getPower(makeID("GravityPower")).amount=shineAmount;
-                isDone=true;
-            }
-        });
-    }
-
-    public void lastOne(){
-        addToBot(new ApplyPowerAction(this,this,
-                new ShinePower(this,UikaLastOne.MAGIC),UikaLastOne.MAGIC));
-    }
-
-    public void manaGuard(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
-                addToTop(new GainBlockAction(UikaMonster.this,shineAmount*UikaManaGuard.MAGIC));
-                isDone=true;
-            }
-        });
-
-    }
-
-    public void twoMoon(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
-                int intentDamage = getPublicField(UikaMonster.this, "intentDmg", Integer.class);
-                addToTop(new DamageAction(AbstractDungeon.player, new DamageInfo(UikaMonster.this,
-                        intentDamage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                addToTop(new GainBlockAction(UikaMonster.this,shineAmount*UikaTwoMoon.MAGIC));
-                isDone=true;
-            }
-        });
-
-    }
-
-    public void doughnut(){
-        addToBot(new HealAction(this,this,this.maxHealth/2));
-    }
-
-    public void defend(){
-        addToBot(new GainBlockAction(this,5));
-    }
-
-    public void poemInsteadOfSong(){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                int shineNum = 0;
-
-                for (AbstractPower power : UikaMonster.this.powers) {
-                    if (power.type == AbstractPower.PowerType.DEBUFF) {
-                        shineNum += power.amount;
-                        addToTop(new RemoveSpecificPowerAction(UikaMonster.this,UikaMonster.this,power.ID));
-                    }
-                }
-
-                if (shineNum > 0) {
-                    addToTop(new ApplyPowerAction(UikaMonster.this,UikaMonster.this,
-                            new ShinePower(UikaMonster.this,shineNum),shineNum));
-                }
-                isDone=true;
-            }
-        });
-
-    }
-
 
     @Override
     protected void getMove(int num) {
@@ -454,47 +238,26 @@ public class UikaMonster extends BaseMonster {
         return amount;
     }
 
-    public void showCardsDiscard(int pos){
-        //ArrayList<UikaCard> tmp=new ArrayList<>(showCards);
+    public void showCardsDiscard(UikaCard card){
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                if(pos==1){
-                    cardForShow1.untip();
-                    cardForShow1.unhover();
-                    cardForShow1.darken(true);
-                    cardForShow1.shrink(true);
+                card.untip();
+                card.unhover();
+                card.darken(true);
+                card.shrink(true);
 
-                    // 创建新的 Soul
-                    Soul soul = new Soul();
-                    soul.discard(cardForShow1, false);
-                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
-                    try {
-                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
-                        soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
-                        souls.add(soul); // 修改字段
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }else if(pos==2){
-                    cardForShow2.untip();
-                    cardForShow2.unhover();
-                    cardForShow2.darken(true);
-                    cardForShow2.shrink(true);
-
-                    // 创建新的 Soul
-                    Soul soul = new Soul();
-                    soul.discard(cardForShow2, false);
-                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
-                    try {
-                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
-                        soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
-                        souls.add(soul); // 修改字段
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+                // 创建新的 Soul
+                Soul soul = new Soul();
+                soul.discard(card, false);
+                SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
+                try {
+                    Field soulsField = SoulGroup.class.getDeclaredField("souls");
+                    soulsField.setAccessible(true); // 绕过访问限制
+                    ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                    souls.add(soul); // 修改字段
+                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    e.printStackTrace();
                 }
                 isDone=true;
             }
