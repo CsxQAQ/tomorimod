@@ -24,8 +24,8 @@ public class UikaDoughnut extends UikaCard implements WithoutMaterial {
     public UikaDoughnut() {
         super(ID, info);
         exhaust=true;
-        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-                imagePath("character/specialcardback/uika_skill_p.png"));
+//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+//                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override

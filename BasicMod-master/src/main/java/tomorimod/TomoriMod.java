@@ -201,8 +201,8 @@ public class TomoriMod implements
 
         BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + "_outline.png");
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + "_map.png");
     }
 
 
@@ -380,20 +380,10 @@ public class TomoriMod implements
                     @Override
                     public boolean accept(ClassInfo classInfo, ClassFinder classFinder) {
                         String className = classInfo.getClassName();
-//                        String[] interfaces = classInfo.getInterfaces();
-//
-//                        boolean isSpecialCard = false;
-//                        for (String iface : interfaces) {
-//                            if (iface.contains("notshow")) {
-//                                isSpecialCard = true;
-//                                break;
-//                            }
-//                        }
                         boolean isSpecialCard=className.contains("notshow");
                         boolean isUikaCard = className.contains("Uika");
 
                         return !isSpecialCard && !isUikaCard;
-                        //return !isUikaCard;
                     }
                 })
                 .setDefaultSeen(true) //And marks them as seen in the compendium

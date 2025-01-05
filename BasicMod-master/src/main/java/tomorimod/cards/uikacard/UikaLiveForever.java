@@ -30,8 +30,8 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
     public UikaLiveForever() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-                imagePath("character/specialcardback/uika_skill_p.png"));
+//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+//                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override

@@ -35,8 +35,8 @@ public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
     public UikaTwoMoon() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
-                imagePath("character/specialcardback/uika_attack_p.png"));
+//        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
+//                imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override

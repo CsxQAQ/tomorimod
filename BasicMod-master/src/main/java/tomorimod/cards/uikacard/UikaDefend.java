@@ -29,10 +29,8 @@ public class UikaDefend extends UikaCard implements WithoutMaterial {
     public UikaDefend() {
         super(ID, info);
         this.setMagic(MAGIC,UPG_MAGIC);
-        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
-                imagePath("character/specialcardback/uika_attack_p.png"));
-//        setPortraitTextures(imagePath("cards/uika/"+this.getClass().getSimpleName()+".png"),
-//                imagePath("cards/uika/"+this.getClass().getSimpleName()+"_p.png"));
+//        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
+//                imagePath("character/specialcardback/uika_attack_p.png"));
     }
 
     @Override

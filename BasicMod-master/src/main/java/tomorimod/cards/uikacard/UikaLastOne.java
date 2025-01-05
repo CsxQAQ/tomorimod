@@ -30,8 +30,8 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         exhaust=true;
-        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-                imagePath("character/specialcardback/uika_skill_p.png"));
+//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
+//                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override
