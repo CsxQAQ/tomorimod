@@ -98,6 +98,8 @@ public class UikaMonster extends BaseMonster {
 
     private boolean isGravityMode;
 
+    private boolean isDomainExpansionUsed=false;
+
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
@@ -179,10 +181,17 @@ public class UikaMonster extends BaseMonster {
     private void gravityUika(){
         switch (turnNum){
             case 1:
-                setMove((byte) 11, Intent.BUFF);
-                // 先创建卡
-                cardForShow1 = new UikaDomainExpansion();
-                cardForShow2 = new UikaLiveForever();
+                if(!isDomainExpansionUsed){
+                    setMove((byte) 11, Intent.BUFF);
+                    // 先创建卡
+                    cardForShow1 = new UikaDomainExpansion();
+                    cardForShow2 = new UikaLiveForever();
+                    isDomainExpansionUsed=true;
+                }else{
+                    cardForShow1 = new UikaStrike();
+                    cardForShow2 = new UikaLiveForever();
+                }
+
                 break;
             case 2:
                 setMove((byte) 12, Intent.BUFF);
