@@ -1,7 +1,5 @@
-package tomorimod.cards.special;
+package tomorimod.cards.notshow;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,9 +10,6 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
-import tomorimod.character.Tomori;
-import tomorimod.monsters.sakishadow.SakiRightPower;
-import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.util.CardStats;
 
 public class FearlessLove extends BaseCard implements SpecialCard, WithoutMaterial {

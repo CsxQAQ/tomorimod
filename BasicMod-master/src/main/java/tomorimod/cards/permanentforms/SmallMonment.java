@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.monment.BaseMonmentCard;
-import tomorimod.cards.special.WholeLife;
+import tomorimod.cards.notshow.WholeLife;
 import tomorimod.character.Tomori;
 import tomorimod.powers.custompowers.SmallMonmentPower;
 import tomorimod.savedata.customdata.PermanentFormsSaveData;

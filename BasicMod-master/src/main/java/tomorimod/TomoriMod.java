@@ -11,8 +11,6 @@ import org.clapper.util.classutil.ClassFilter;
 import org.clapper.util.classutil.ClassFinder;
 import org.clapper.util.classutil.ClassInfo;
 import tomorimod.cards.BaseCard;
-import tomorimod.cards.special.*;
-import tomorimod.cards.uikacard.UikaCard;
 import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
 import tomorimod.configs.UnlockedAscension;
@@ -50,14 +48,11 @@ import com.megacrit.cardcrawl.localization.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.scannotation.AnnotationDB;
-import tomorimod.vfx.DynamicBackgroundContinueEffect;
 import tomorimod.vfx.DynamicBackgroundEffect;
 import tomorimod.vfx.DynamicBackgroundTestEffect;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-
-import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 
 //TODO 所有对象都判断是否为null
 
@@ -185,29 +180,29 @@ public class TomoriMod implements
 //                "images/mymod/ui/map/boss/myBoss.png",
 //                "images/mymod/ui/map/bossOutline/myBoss.png");
         BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-        .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
-        .getSimpleName() + ".png");
+        .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
+        .getSimpleName() + "_outline.png");
 
 
         BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("TheCity", TakiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
-                .getSimpleName() + ".png");
+                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + "_outline.png");
 
         BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("TheCity", MutsumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
-                .getSimpleName() + ".png");
+                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + "_outline.png");
 
         BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
-                .getSimpleName() + ".png");
+                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + "_outline.png");
 
         BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapiconoutlines/") + AnonMonster.class
-                .getSimpleName() + ".png");
+                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
+                .getSimpleName() + "_outline.png");
     }
 
 
@@ -385,29 +380,24 @@ public class TomoriMod implements
                     @Override
                     public boolean accept(ClassInfo classInfo, ClassFinder classFinder) {
                         String className = classInfo.getClassName();
-                        String[] interfaces = classInfo.getInterfaces();
-
-                        boolean isSpecialCard = false;
-                        for (String iface : interfaces) {
-                            if (iface.contains("SpecialCard")) {
-                                isSpecialCard = true;
-                                break;
-                            }
-                        }
-
+//                        String[] interfaces = classInfo.getInterfaces();
+//
+//                        boolean isSpecialCard = false;
+//                        for (String iface : interfaces) {
+//                            if (iface.contains("notshow")) {
+//                                isSpecialCard = true;
+//                                break;
+//                            }
+//                        }
+                        boolean isSpecialCard=className.contains("notshow");
                         boolean isUikaCard = className.contains("Uika");
 
                         return !isSpecialCard && !isUikaCard;
+                        //return !isUikaCard;
                     }
                 })
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
-
-//        BaseMod.removeCard(BlankPaperAttack.ID,CARD_COLOR);
-//        BaseMod.removeCard(HaTaki.ID,CARD_COLOR);
-//        BaseMod.removeCard(HaAnon.ID,CARD_COLOR);
-//        BaseMod.removeCard(WholeLife.ID,CARD_COLOR);
-//        BaseMod.removeCard(FailComposition.ID,CARD_COLOR);
     }
 
     @Override

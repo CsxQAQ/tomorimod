@@ -1,22 +1,11 @@
-package tomorimod.cards.special;
+package tomorimod.cards.notshow;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
-import tomorimod.character.Tomori;
-import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.util.CardStats;
-
-import static tomorimod.TomoriMod.imagePath;
 
 public class WelcomeToAveMujica extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(WelcomeToAveMujica.class.getSimpleName());

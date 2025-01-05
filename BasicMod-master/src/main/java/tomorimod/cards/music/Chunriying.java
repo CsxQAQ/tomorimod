@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
-import tomorimod.cards.special.SpecialCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.util.CardStats;
 
 import static tomorimod.TomoriMod.imagePath;

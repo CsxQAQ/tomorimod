@@ -1,4 +1,4 @@
-package tomorimod.cards.test;
+package tomorimod.cards.notshow;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
-import tomorimod.cards.special.SpecialCard;
+import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class TestCard extends BaseCard implements SpecialCard {
+public class TestCard extends BaseCard implements SpecialCard, WithoutMaterial {
     public static final String ID = makeID(TestCard.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

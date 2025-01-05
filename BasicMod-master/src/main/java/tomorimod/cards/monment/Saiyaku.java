@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.SaiyakuAction;
-import tomorimod.cards.special.HaAnon;
-import tomorimod.cards.special.HaTaki;
+import tomorimod.cards.notshow.HaAnon;
+import tomorimod.cards.notshow.HaTaki;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 

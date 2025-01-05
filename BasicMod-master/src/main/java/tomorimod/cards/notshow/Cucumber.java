@@ -1,4 +1,4 @@
-package tomorimod.cards.special;
+package tomorimod.cards.notshow;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;

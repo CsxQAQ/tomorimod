@@ -1,7 +1,7 @@
 package tomorimod.cards.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.cards.special.SpecialCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 

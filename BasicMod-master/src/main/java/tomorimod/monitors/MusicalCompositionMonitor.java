@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.cards.music.*;
-import tomorimod.cards.special.FailComposition;
+import tomorimod.cards.notshow.FailComposition;
 import tomorimod.effects.MaterialUiDelayClearAction;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.powers.custompowers.MusicCompositionPower;

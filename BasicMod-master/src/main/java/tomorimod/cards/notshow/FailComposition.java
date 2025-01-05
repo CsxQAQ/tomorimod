@@ -1,5 +1,5 @@
 
-package tomorimod.cards.special;
+package tomorimod.cards.notshow;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

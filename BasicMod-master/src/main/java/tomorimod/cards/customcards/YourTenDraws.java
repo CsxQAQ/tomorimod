@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.music.Chunriying;
-import tomorimod.cards.special.SpecialCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;

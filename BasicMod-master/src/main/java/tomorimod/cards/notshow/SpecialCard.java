@@ -1,4 +1,4 @@
-package tomorimod.cards.special;
+package tomorimod.cards.notshow;
 
 public interface SpecialCard {
 }

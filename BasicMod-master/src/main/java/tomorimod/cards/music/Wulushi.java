@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.WulushiAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
-import tomorimod.cards.test.TestCard;
+import tomorimod.cards.notshow.TestCard;
 import tomorimod.util.CardStats;
 
 import java.util.ArrayList;

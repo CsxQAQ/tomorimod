@@ -45,7 +45,7 @@ import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
 import tomorimod.cards.forms.Mascot;
 import tomorimod.cards.forms.Singer;
-import tomorimod.cards.special.WelcomeToAveMujica;
+import tomorimod.cards.notshow.WelcomeToAveMujica;
 import tomorimod.monsters.sakishadow.SakiRightPower;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.uika.UikaMonster;

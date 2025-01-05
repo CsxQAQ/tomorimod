@@ -1,14 +1,9 @@
 package tomorimod.monsters.sakishadow;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import tomorimod.actions.CheckShineGravityAction;
-import tomorimod.cards.special.FearlessDeath;
-import tomorimod.powers.GravityPower;
 
 public class ShowCardAndObtainAction extends AbstractGameAction {
 
