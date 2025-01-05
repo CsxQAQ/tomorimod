@@ -66,8 +66,8 @@ public class UikaMonster extends BaseMonster {
 
 
     // 怪物血量
-    private static final int HP_MIN = 800;
-    private static final int HP_MAX = 800;
+    private static final int HP_MIN = 300;
+    private static final int HP_MAX = 300;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -103,7 +103,6 @@ public class UikaMonster extends BaseMonster {
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
-
         setHp(HP_MIN, HP_MAX);
 
         this.type = EnemyType.BOSS;
@@ -131,7 +130,8 @@ public class UikaMonster extends BaseMonster {
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        addToBot(new ApplyPowerAction(this,this,new TakiPressurePower(this)));
+        addToBot(new ApplyPowerAction(this,this,
+               new UikaMaskPower(this,UikaMaskPower.END_TURN),UikaMaskPower.END_TURN));
     }
 
     @Override

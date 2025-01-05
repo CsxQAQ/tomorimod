@@ -63,7 +63,6 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 //TODO 变革删除
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 
-//TODO 初华能力牌使用过后不会再次出现
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
