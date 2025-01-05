@@ -25,6 +25,9 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.ExhaustBlurEffect;
+import com.megacrit.cardcrawl.vfx.ExhaustEmberEffect;
+import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import tomorimod.actions.ApplyShineAction;
 import tomorimod.actions.PlayBGMAction;
@@ -235,30 +238,80 @@ public class UikaMonster extends BaseMonster {
     }
 
     public void showCardsDiscard(UikaCard card){
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                card.untip();
-                card.unhover();
-                card.darken(true);
-                card.shrink(true);
+        if(card.type.equals(AbstractCard.CardType.POWER)){
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    card.untip();
+                    card.unhover();
+                    card.darken(true);
+                    card.shrink(true);
 
-                // 创建新的 Soul
-                Soul soul = new Soul();
-                soul.discard(card, false);
-                SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
-                try {
-                    Field soulsField = SoulGroup.class.getDeclaredField("souls");
-                    soulsField.setAccessible(true); // 绕过访问限制
-                    ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
-                    souls.add(soul); // 修改字段
-                } catch (NoSuchFieldException | IllegalAccessException e) {
-                    e.printStackTrace();
+                    Soul soul = new Soul();
+                    soul.empower(card);
+                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
+                    try {
+                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
+                        soulsField.setAccessible(true); // 绕过访问限制
+                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                        souls.add(soul); // 修改字段
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    isDone=true;
                 }
-                isDone=true;
-            }
-        });
+            });
+        }
+        else if(card.exhaust){
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    showCardsExhaust(card);
+                    isDone=true;
+                }
+            });
+        }else{
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    card.untip();
+                    card.unhover();
+                    card.darken(true);
+                    card.shrink(true);
+
+                    // 创建新的 Soul
+                    Soul soul = new Soul();
+                    soul.discard(card, false);
+                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
+                    try {
+                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
+                        soulsField.setAccessible(true); // 绕过访问限制
+                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                        souls.add(soul); // 修改字段
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                    isDone=true;
+                }
+            });
+        }
+
     }
+
+    public void showCardsExhaust(UikaCard card){
+        CardCrawlGame.sound.play("CARD_EXHAUST", 0.2F);
+
+        for (int i = 0; i < 90; i++) {
+            AbstractDungeon.effectsQueue.add(new ExhaustBlurEffect(card.current_x, card.current_y));
+        }
+        for (int i = 0; i < 50; i++) {
+            AbstractDungeon.effectsQueue.add(new ExhaustEmberEffect(card.current_x, card.current_y));
+        }
+
+        AbstractDungeon.effectsQueue.add(new ExhaustCardDelayEffect(card,0.5f));
+    }
+
+
 
     public void showCardsDraw(){
         showCards.clear();

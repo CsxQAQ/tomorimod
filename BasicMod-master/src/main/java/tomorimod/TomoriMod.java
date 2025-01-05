@@ -59,10 +59,11 @@ import static tomorimod.character.Tomori.Meta.CARD_COLOR;
 
 //TODO 特效变革，感觉变革可以删了
 //TODO 平衡性调整
-//TODO 削弱认真，我们是mygo每场战斗最多生效3次
-//TODO 变革消耗所有的手牌，获得等量的闪耀
+//TODO 削弱认真，我们是mygo每场战斗最多生效3次，认真改个名
+//TODO 变革删除
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
-//TODO 不知道什么原因，boss打赢后重进会闪退
+
+//TODO 初华能力牌使用过后不会再次出现
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

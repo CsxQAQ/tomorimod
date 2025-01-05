@@ -33,6 +33,7 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
     public final int UPG_MAGIC=1;
     public UikaNeedAnon() {
         super(ID, info);
+        exhaust=true;
         setMagic(MAGIC,UPG_MAGIC);
     }
 
