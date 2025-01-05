@@ -32,7 +32,6 @@ public class LightAndShadow extends BaseCard {
 
     public LightAndShadow() {
         super(ID, info);
-        this.exhaust=true;
         setMagic(MAGIC,UPG_MAGIC);
     }
 

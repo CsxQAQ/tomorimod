@@ -91,7 +91,6 @@ public class UikaMonster extends BaseMonster {
     public static boolean damageNumFroze=false;
 
     private Hitbox attackIntentHb;
-
     private Hitbox damageNumberHb;
 
     private boolean isGravityMode;
@@ -142,38 +141,35 @@ public class UikaMonster extends BaseMonster {
 
     @Override
     protected void getMove(int num) {
-        if(turnNum==0) {
+        if (turnNum == 0) {
             setMove((byte) 0, Intent.ATTACK_BUFF,
                     this.damage.get(0).base, 1, false);
             // 先创建卡
             cardForShow1 = new UikaMygoTogether();
             cardForShow2 = new UikaStrike();
-            int rand=AbstractDungeon.miscRng.random(1);
-            isGravityMode= rand == 0;
+            int rand = AbstractDungeon.miscRng.random(1);
+            isGravityMode = (rand == 0);
             turnNum++;
-        }else{
-            if(getDebuffNum()>=10){
-                setMove((byte) 99, Intent.BUFF);
-                // 先创建卡
-                cardForShow1 = new UikaPoemInsteadOfSong();
-                cardForShow2 = new UikaLightAndShadow();
-            }else{
-                if(turnNum==4){
-                    setMove((byte) 50, Intent.BUFF);
-                    // 先创建卡
-                    cardForShow1 = new UikaLightAndShadow();
-                    cardForShow2 = new UikaLastGentle();
-                    isGravityMode=!isGravityMode;
-                    turnNum=1;
-                }else{
-                    if(isGravityMode){
-                        gravityUika();
-                    }else{
-                        shineUika();
-                    }
-                }
+        } else if (getDebuffNum() >= 10) {
+            setMove((byte) 99, Intent.BUFF);
+            cardForShow1 = new UikaPoemInsteadOfSong();
+            cardForShow2 = new UikaLightAndShadow();
+        } else if (turnNum == 4) {
+            setMove((byte) 50, Intent.BUFF);
+            cardForShow1 = new UikaLightAndShadow();
+            cardForShow2 = new UikaLastGentle();
+            // 注意：这里原代码是 UikaLastGentle() 还是 UikaLastGendle()？
+            isGravityMode = !isGravityMode;
+            turnNum = 1;
+        } else {
+            // 普通情况下，根据 isGravityMode 切换
+            if (isGravityMode) {
+                gravityUika();
+            } else {
+                shineUika();
             }
         }
+        // 最后记得刷新卡片绘制
         showCardsDraw();
     }
 
@@ -331,20 +327,15 @@ public class UikaMonster extends BaseMonster {
         damageNumberHb.update();
     }
 
-    private void updateCard(){
+    private void updateCard() {
         this.hoveredCard = null;
-        if(cardForShow1!=null){
-            cardForShow1.update();
-            cardForShow1.updateHoverLogic();
-            if(cardForShow1.hb.hovered){
-                this.hoveredCard=cardForShow1;
-            }
-        }
-        if(cardForShow2!=null){
-            cardForShow2.update();
-            cardForShow2.updateHoverLogic();
-            if(cardForShow2.hb.hovered){
-                this.hoveredCard=cardForShow2;
+        for (UikaCard c : Arrays.asList(cardForShow1, cardForShow2)) {
+            if (c != null) {
+                c.update();
+                c.updateHoverLogic();
+                if (c.hb.hovered) {
+                    this.hoveredCard = c;
+                }
             }
         }
     }
@@ -398,11 +389,19 @@ public class UikaMonster extends BaseMonster {
                 gravityAmount+=gravityAmount*NeedAnon.MAGIC;
             }else if(cardForShow1.cardID.equals(makeID("UikaDivergeWorld"))){
                 divergeWorldAmount++;
-            }else if(cardForShow1.cardID.equals(makeID("UikaLastGendle"))){
+            }else if(cardForShow1.cardID.equals(makeID("UikaLastGentle"))){
                 int tmp=gravityAmount;
                 gravityAmount=shineAmount;
                 shineAmount=tmp;
             }else if(cardForShow1.cardID.equals(makeID("UikaStrike"))){
+                damageNum+=monsterDamage;
+                damageNum+=divergeWorldAmount*gravityAmount;
+                gravityDamageNum+=divergeWorldAmount*gravityAmount;
+            }else if(cardForShow1.cardID.equals(makeID("UikaLastOne"))){
+                shineAmount+=UikaLastOne.MAGIC;
+            }else if(cardForShow1.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
+                shineAmount+=getDebuffNum();
+            }else if(cardForShow1.cardID.equals(makeID("UikaTwoMoon"))){
                 damageNum+=monsterDamage;
                 damageNum+=divergeWorldAmount*gravityAmount;
                 gravityDamageNum+=divergeWorldAmount*gravityAmount;
@@ -424,11 +423,19 @@ public class UikaMonster extends BaseMonster {
                 gravityAmount+=gravityAmount*NeedAnon.MAGIC;
             }else if(cardForShow2.cardID.equals(makeID("UikaDivergeWorld"))){
                 divergeWorldAmount++;
-            }else if(cardForShow2.cardID.equals(makeID("UikaLastGendle"))){
+            }else if(cardForShow2.cardID.equals(makeID("UikaLastGentle"))){
                 int tmp=gravityAmount;
                 gravityAmount=shineAmount;
                 shineAmount=tmp;
             }else if(cardForShow2.cardID.equals(makeID("UikaStrike"))){
+                damageNum+=monsterDamage;
+                damageNum+=divergeWorldAmount*gravityAmount;
+                gravityDamageNum+=divergeWorldAmount*gravityAmount;
+            }else if(cardForShow2.cardID.equals(makeID("UikaLastOne"))){
+                shineAmount+=UikaLastOne.MAGIC;
+            }else if(cardForShow2.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
+                shineAmount+=getDebuffNum();
+            }else if(cardForShow2.cardID.equals(makeID("UikaTwoMoon"))){
                 damageNum+=monsterDamage;
                 damageNum+=divergeWorldAmount*gravityAmount;
                 gravityDamageNum+=divergeWorldAmount*gravityAmount;

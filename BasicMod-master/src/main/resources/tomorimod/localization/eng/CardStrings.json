@@ -176,10 +176,10 @@
   },
 
   "${modID}:LightAndShadow": {
-    "NAME": "光与影",
-    "DESCRIPTION": " 消耗 ，获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
+    "NAME": "光影",
+    "DESCRIPTION": "获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
+      "获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
     ]
   },
   "${modID}:GravityCapture": {
@@ -468,10 +468,10 @@
     "DESCRIPTION": " 获得 !M! 层 tomorimod:闪耀 。 消耗 。"
   },
   "${modID}:UikaLightAndShadow": {
-    "NAME": "光与影",
-    "DESCRIPTION": " 消耗 ，获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
+    "NAME": "光影",
+    "DESCRIPTION": "获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",
     "EXTENDED_DESCRIPTION": [
-      " 消耗 ，获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
+      "获得 !M! 层 tomorimod:闪耀 。当 tomorimod:重力 层数多于 tomorimod:闪耀 时，改为获得 !M! 层 tomorimod:重力 。"
     ]
   },
   "${modID}:UikaLiveForever": {
