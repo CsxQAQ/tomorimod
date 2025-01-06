@@ -25,6 +25,8 @@ public abstract class UikaCard extends BaseCard {
                         imagePath("character/specialcardback/uika_power_p.png"));
                 break;
         }
+        setOrbTexture(imagePath("monsters/uikaorbs/energy_orb.png"),
+                imagePath("monsters/uikaorbs/energy_orb_p.png"));
 
     }
 

@@ -20,7 +20,7 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
 

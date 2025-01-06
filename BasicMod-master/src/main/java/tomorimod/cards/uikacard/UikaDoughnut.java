@@ -18,7 +18,7 @@ public class UikaDoughnut extends UikaCard implements WithoutMaterial {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
     public UikaDoughnut() {

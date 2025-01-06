@@ -54,13 +54,14 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 所有对象都判断是否为null
 
 //TODO 特效变革，感觉变革可以删了
 //TODO 平衡性调整
 //TODO 削弱认真，我们是mygo每场战斗最多生效3次，认真改个名
 //TODO 变革删除
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
+
+//TODO 小睦战任意素材
 
 @SpireInitializer
 public class TomoriMod implements
