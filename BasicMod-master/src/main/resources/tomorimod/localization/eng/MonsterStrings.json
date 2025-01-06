@@ -78,6 +78,17 @@
       "不要"
     ]
   },
+  "${modID}:UikaMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "三角初华",
+    "DIALOG": [
+      "",
+      ""
+    ]
+  },
   "${modID}:SakiShadowMonster": {
     "MOVES": [
       "",

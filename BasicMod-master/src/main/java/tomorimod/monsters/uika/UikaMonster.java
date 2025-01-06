@@ -63,7 +63,7 @@ public class UikaMonster extends BaseMonster {
 
     private static final String imgPath=imagePath("monsters/"+ UikaMonster.class.getSimpleName()+".png");
 
-    public static final float DRAW_X=1200.0F;
+    public static final float DRAW_X=1350.0F;
     public static final float DRAW_Y=400.0F;
     private UikaCard cardForShow1;
     private UikaCard cardForShow2;
@@ -559,7 +559,7 @@ public class UikaMonster extends BaseMonster {
 
         // 用红色来渲染伤害数字
         FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
-                Integer.toString(damageForShow), textX, textY, Color.RED);
+                Integer.toString(damageForShow), textX, textY, Color.WHITE);
     }
 
     @Override

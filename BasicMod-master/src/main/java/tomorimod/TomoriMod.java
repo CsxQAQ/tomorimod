@@ -177,32 +177,29 @@ public class TomoriMod implements
 
     private void receiveMonstor() {
         BaseMod.addMonster(AnonMonster.ID, () -> new AnonMonster(0.0F, 0.0F));
-//        BaseMod.addBoss(TheCity.ID, AnonMonster.ID,
-//                "images/mymod/ui/map/boss/myBoss.png",
-//                "images/mymod/ui/map/bossOutline/myBoss.png");
         BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-        .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
-        .getSimpleName() + "_outline.png");
+        .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + AnonMonster.class
+        .getSimpleName() + "_map.png");
 
 
         BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", TakiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + "_outline.png");
+        BossGeneratePatch.addBoss("TheCity", TakiMonster.ID, imagePath("monsters/mapicons/") + TakiMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + TakiMonster.class
+                .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", MutsumiMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + "_outline.png");
+        BossGeneratePatch.addBoss("TheCity", MutsumiMonster.ID, imagePath("monsters/mapicons/") + MutsumiMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + MutsumiMonster.class
+                .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + ".png", imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + "_outline.png");
+        BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
+                .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
-                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + UikaMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + UikaMonster.class
                 .getSimpleName() + "_map.png");
     }
 

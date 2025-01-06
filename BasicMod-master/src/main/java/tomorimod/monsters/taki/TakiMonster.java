@@ -87,7 +87,7 @@ public class TakiMonster extends BaseMonster {
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        addToBot(new ApplyPowerAction(this,this,new TakiPressurePower(this)));
+        //addToBot(new ApplyPowerAction(this,this,new TakiPressurePower(this)));
 
     }
 
