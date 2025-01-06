@@ -22,7 +22,9 @@ public class MusicPatch {
     public enum MusicHelper {
         BITIANBANZOU(audioPath("musics/bitianbanzou.ogg")),
         MIXINGJIAO(audioPath("musics/mixingjiao.ogg")),
-        KILLKISS(audioPath("musics/killkiss.ogg"));
+        KILLKISS(audioPath("musics/killkiss.ogg")),
+        HEISESHENGRI(audioPath("musics/heiseshengri.ogg")),
+        AVEMUJICA(audioPath("musics/avemujica.ogg"));
 
 
         private final String path;

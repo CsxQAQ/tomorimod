@@ -111,7 +111,7 @@ public class UikaMonster extends BaseMonster {
     @Override
     public void usePreBattleAction() {
 
-        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.MIXINGJIAO,this));
+        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.AVEMUJICA,this));
         AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Uika_bg.png")));
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();

@@ -76,7 +76,7 @@ public class MutsumiMonster extends SpecialMonster {
     }
 
     public void usePreBattleAction() {
-        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.BITIANBANZOU,this));
+        addToBot(new PlayBGMAction(MusicPatch.MusicHelper.HEISESHENGRI,this));
         AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
