@@ -106,8 +106,6 @@ public class MutsumiMonster extends SpecialMonster {
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
 
-
-
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
@@ -136,6 +134,8 @@ public class MutsumiMonster extends SpecialMonster {
                 this.damage.get(0).base, 1, false);
 
     }
+
+
 
     @Override
     public void die() {

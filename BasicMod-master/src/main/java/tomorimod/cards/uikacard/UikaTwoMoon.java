@@ -62,6 +62,7 @@ public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
                 isDone=true;
             }
         });
+        UikaMonster.isTwoMoon=false;
         super.uikaUse(uikaMonster);
     }
 

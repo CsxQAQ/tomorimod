@@ -85,6 +85,7 @@ public class UikaMonster extends BaseMonster {
     private boolean isGravityMode;
 
     private boolean isDomainExpansionUsed=false;
+    public static boolean isTwoMoon=false;
 
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -211,6 +212,7 @@ public class UikaMonster extends BaseMonster {
                         shineAmount*UikaTwoMoon.MAGIC, 1, false);
                 cardForShow1 = new UikaTwoMoon();
                 cardForShow2 = new UikaLightAndShadow();
+                isTwoMoon=true;
 
                 break;
             case 3:
@@ -558,6 +560,15 @@ public class UikaMonster extends BaseMonster {
         // 用红色来渲染伤害数字
         FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
                 Integer.toString(damageForShow), textX, textY, Color.RED);
+    }
+
+    @Override
+    protected Texture getAttackIntent() {
+        if(isTwoMoon){
+            return new Texture(imagePath("monsters/intents/attack_singer_heavy.png"));
+        }else{
+            return new Texture(imagePath("monsters/intents/attack_singer_normal.png"));
+        }
     }
 
     @Override
