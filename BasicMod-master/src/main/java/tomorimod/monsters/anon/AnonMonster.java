@@ -250,17 +250,17 @@ public class AnonMonster extends BaseMonster {
     @Override
     public void die() {
         super.die();
+        CardCrawlGame.sound.playA(makeID("tangcry"), 0.0F);
+
         ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
         for(AbstractMonster m:monsters){
             if(m.currentHealth>0&&m instanceof ChordMonster){
                 m.die();
             }
         }
-        if (this.currentHealth <= 0) {
-            useFastShakeAnimation(5.0F);
-            CardCrawlGame.screenShake.rumble(4.0F);
-            onBossVictoryLogic();
-        }
+        useFastShakeAnimation(5.0F);
+        CardCrawlGame.screenShake.rumble(4.0F);
+        onBossVictoryLogic();
 
     }
 }

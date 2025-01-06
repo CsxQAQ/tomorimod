@@ -2,10 +2,12 @@ package tomorimod.monsters.taki;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -33,8 +35,8 @@ public class TakiMonster extends BaseMonster {
 
 
     // 怪物血量
-    private static final int HP_MIN = 400;
-    private static final int HP_MAX = 400;
+    private static final int HP_MIN = 260;
+    private static final int HP_MAX = 260;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -50,6 +52,7 @@ public class TakiMonster extends BaseMonster {
 
     private int turnNum=1;
     private boolean isFirstTurn=true;
+    private boolean hasTalked=false;
 
     public TakiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -106,6 +109,10 @@ public class TakiMonster extends BaseMonster {
 
     @Override
     public void takeTurn() {
+        int block=0;
+        if(this.hasPower(makeID("TakiProtectPower"))){
+            block=block+this.getPower(makeID("TakiProtectPower")).amount;
+        }
         switch (this.nextMove) {
             case 0:
                 for(int i=0;i<2;i++){
@@ -116,21 +123,21 @@ public class TakiMonster extends BaseMonster {
                 break;
 
             case 1:
-                int block=0;
-                if(this.hasPower("Dexterity")){
-                    block=block+this.getPower("Dexterity").amount;
-                }
+
                 addToBot(new GainBlockAction(this,this,BLOCK+block));
                 if(ranaMonster!=null&&!ranaMonster.isDeadOrEscaped()){
                     addToBot(new GainBlockAction(ranaMonster,this,BLOCK+block));
                 }
-                addToBot(new ApplyPowerAction(this,this,new DexterityPower(this,2),2));
+                addToBot(new ApplyPowerAction(this,this,new TakiProtectPower(this,2),2));
                 break;
             case 2:
+
                 for(int i=0;i<3;i++){
                     addToBot(new DamageAction(AbstractDungeon.player,
                             this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToBot(new GainBlockAction(this,this.damage.get(1).base+block));
                 }
+                this.damage.get(1).base+=2;
                 break;
 
         }
@@ -153,11 +160,15 @@ public class TakiMonster extends BaseMonster {
                 }
                 turnNum++;
             }else{
+                if(!hasTalked){
+                    AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 1.0F, 2.0F));
+                    hasTalked=true;
+                }
                 addToBot(new SFXAction("MONSTER_CHAMP_CHARGE"));
                 addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
                 addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
                 addToBot(new VFXAction(this, new InflameEffect(this), 0.25F));
-                setMove( (byte)2, Intent.ATTACK,
+                setMove( (byte)2, Intent.ATTACK_DEFEND,
                         this.damage.get(1).base, 3, true);
             }
         }

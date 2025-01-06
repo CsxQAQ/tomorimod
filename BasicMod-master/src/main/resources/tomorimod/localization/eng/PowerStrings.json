@@ -193,7 +193,7 @@
   "${modID}:AnonLittlePractisePower": {
     "NAME": "小练习",
     "DESCRIPTIONS":[
-      "每点 #y小练习 使攻击造成的伤害加 #b1 ，使召唤的 #y和弦 获得 #b5 点额外最大生命值。"
+      "每点 #y小练习 使攻击造成的伤害加 #b1 ，使召唤的 #y和弦 获得 #b3 点额外最大生命值。"
     ]
   },
   "${modID}:ChordImmunityPower": {
@@ -212,6 +212,12 @@
     "NAME": "猫猫是自由的",
     "DESCRIPTIONS":[
       " #y椎名立希 存活时，无法被选中。"
+    ]
+  },
+  "${modID}:TakiProtectPower": {
+    "NAME": "守护",
+    "DESCRIPTIONS":[
+      "每有 #b1 点 #y守护 ，获得 #y格挡 时额外获得 #b1 点。"
     ]
   },
   "${modID}:TakiPressurePower": {

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
+import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -50,8 +51,8 @@ public class RanaMonster extends BaseMonster {
 
 
     // 怪物血量
-    private static final int HP_MIN = 20;
-    private static final int HP_MAX = 20;
+    private static final int HP_MIN = 10;
+    private static final int HP_MAX = 10;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -70,6 +71,7 @@ public class RanaMonster extends BaseMonster {
     private int turnNum=0;
 
     private boolean isFirstTurn=true;
+    private boolean hasTalked=false;
 
 
     public RanaMonster(float x, float y) {
@@ -186,6 +188,7 @@ public class RanaMonster extends BaseMonster {
                     addToBot(new DamageAction(AbstractDungeon.player,
                             this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
+                this.damage.get(1).base+=2;
                 break;
         }
 
@@ -208,6 +211,10 @@ public class RanaMonster extends BaseMonster {
                 }
                 turnNum++;
             }else{
+                if(!hasTalked){
+                    AbstractDungeon.actionManager.addToBottom(new TalkAction(this, DIALOG[0], 1.0F, 2.0F));
+                    hasTalked=true;
+                }
                 setMove( (byte)2, Intent.ATTACK,
                         this.damage.get(1).base, 3, true);
                 addToBot(new SFXAction("MONSTER_CHAMP_CHARGE"));

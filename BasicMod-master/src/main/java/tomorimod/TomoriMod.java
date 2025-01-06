@@ -407,5 +407,6 @@ public class TomoriMod implements
 
     @Override
     public void receiveAddAudio() {
+        BaseMod.addAudio(makeID("tangcry"), audioPath("sounds/tangcry.wav"));
     }
 }
