@@ -83,7 +83,7 @@ public class TakiMonster extends BaseMonster {
         addToBot(new SpawnMonsterAction(ranaMonster,false));
 
         addToBot(new PlayBGMAction(MusicPatch.MusicHelper.MIXINGJIAO,this));
-        AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Anon_bg.png")));
+        AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/Taki_bg.png")));
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 

@@ -120,7 +120,7 @@ public class SakiShadowMonster extends BaseMonster {
     public void usePreBattleAction() {
         // 切换场景特效
         AbstractGameEffect effect = new ChangeSceneEffect(
-                ImageMaster.loadImage(imagePath("monsters/scenes/frame_29.png"))
+                ImageMaster.loadImage(imagePath("monsters/scenes/SakiShadow_bg.png"))
         );
         AbstractDungeon.effectList.add(effect);
 
