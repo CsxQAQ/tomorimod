@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class ChordFlyingEffect extends AbstractGameEffect {
-    private static final float DURATION = 0.7f;  // 总时长 1 秒
+    private static final float DURATION = 0.5f;  // 总时长 1 秒
     private float elapsedTime = 0.0f;
 
     // 坐标相关
@@ -22,7 +22,7 @@ public class ChordFlyingEffect extends AbstractGameEffect {
     private float radius;              // 绕圈的半径（可自行调节）
     private float startAngle;          // 绕圈开始角度（弧度制 or 角度制都行，下面以弧度为例）
     private float endAngle;            // 绕圈结束角度
-    private float circleDuration = 0.35f; // 绕圈占用前 0.5 秒
+    private float circleDuration = 0.25f; // 绕圈占用前 0.5 秒
     // 记录绕圈结束时的坐标，用于后面直线飞往玩家
     private float circleEndX;
     private float circleEndY;

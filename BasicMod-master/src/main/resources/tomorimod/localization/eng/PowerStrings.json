@@ -187,7 +187,7 @@
   "${modID}:AnonGuitarSingerPower": {
     "NAME": "吉他主唱",
     "DESCRIPTIONS":[
-      "具有 #b3 种 #y和弦 时，将吸收所有 #y和弦 以强化下一次攻击。如果 #b3 种 #y和弦 相同或者各部不同，则使攻击得到进一步强化。"
+      "具有 #b3 种 #y和弦 时，将吸收所有 #y和弦 以强化下一次攻击。如果 #b3 种 #y和弦 都相同或者各不相同，则使攻击得到进一步强化。"
     ]
   },
   "${modID}:AnonLittlePractisePower": {

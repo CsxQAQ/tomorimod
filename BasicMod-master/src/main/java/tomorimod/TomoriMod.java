@@ -177,7 +177,7 @@ public class TomoriMod implements
 
     private void receiveMonstor() {
         BaseMod.addMonster(AnonMonster.ID, () -> new AnonMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", AnonMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
+        BossGeneratePatch.addBoss("Exordium", AnonMonster.ID, imagePath("monsters/mapicons/") + AnonMonster.class
         .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + AnonMonster.class
         .getSimpleName() + "_map.png");
 
@@ -188,18 +188,18 @@ public class TomoriMod implements
                 .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", MutsumiMonster.ID, imagePath("monsters/mapicons/") + MutsumiMonster.class
+        BossGeneratePatch.addBoss("TheBeyond", MutsumiMonster.ID, imagePath("monsters/mapicons/") + MutsumiMonster.class
                 .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + MutsumiMonster.class
                 .getSimpleName() + "_map.png");
 
-        BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheCity", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
-                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
+        BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("TheBeyond", UikaMonster.ID, imagePath("monsters/mapicons/") + UikaMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + UikaMonster.class
                 .getSimpleName() + "_map.png");
 
-        BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("Exordium", UikaMonster.ID, imagePath("monsters/mapicons/") + UikaMonster.class
-                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + UikaMonster.class
+        BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("TheEnding", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
                 .getSimpleName() + "_map.png");
     }
 

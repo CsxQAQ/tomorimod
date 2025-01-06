@@ -30,8 +30,8 @@ public class ChordMonster extends BaseMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
     // 怪物血量
-    private static final int HP_MIN = 5;
-    private static final int HP_MAX = 5;
+    private static final int HP_MIN = 3;
+    private static final int HP_MAX = 3;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -48,6 +48,8 @@ public class ChordMonster extends BaseMonster {
     public int pos=-1;
     public ChordType chordType;
 
+    public static final int HPINCREASE=3;
+
     public ChordMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
@@ -57,13 +59,13 @@ public class ChordMonster extends BaseMonster {
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
 
 
-        addToBot(new ApplyPowerAction(this,this,new ChordImmunityPower(this)));
+        //addToBot(new ApplyPowerAction(this,this,new ChordImmunityPower(this)));
         addToBot(new ApplyPowerAction(this,this,new ChordDeathPower(this)));
         for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (m instanceof AnonMonster && !m.isDeadOrEscaped()) {
                 if(m.hasPower(makeID("AnonLittlePractisePower"))){
-                    setHp(HP_MIN+m.getPower(makeID("AnonLittlePractisePower")).amount*5,
-                            HP_MAX+m.getPower(makeID("AnonLittlePractisePower")).amount*5);
+                    setHp(HP_MIN+m.getPower(makeID("AnonLittlePractisePower")).amount*HPINCREASE,
+                            HP_MAX+m.getPower(makeID("AnonLittlePractisePower")).amount*HPINCREASE);
 
                 }
             }

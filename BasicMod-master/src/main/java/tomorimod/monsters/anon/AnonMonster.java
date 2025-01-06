@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -62,6 +63,7 @@ public class AnonMonster extends BaseMonster {
     private boolean isAllHave=false;
     private boolean isThree=false;
     private boolean isAllSame=false;
+    private int turnNum=0;
 
 
     public AnonMonster(float x, float y) {
@@ -84,8 +86,9 @@ public class AnonMonster extends BaseMonster {
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 30, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
 
     }
 
@@ -110,7 +113,7 @@ public class AnonMonster extends BaseMonster {
 
     @Override
     public void takeTurn() {
-        if(nextMove!=0){
+        if(nextMove>10){
             playChordVFX();
         }
         switch (this.nextMove) {
@@ -119,21 +122,29 @@ public class AnonMonster extends BaseMonster {
                                 this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 1:
+                addToBot(new ApplyPowerAction(this,this,new AnonLittlePractisePower(this,1),1));
+                addToBot(new GainBlockAction(this,10));
+                break;
+            case 2:
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
+                        this.damage.get(4), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                break;
+            case 11:
                 for(int i=0;i<2;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
 
                 break;
-            case 2:
+            case 12:
                 for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
 
                 break;
-            case 3:
-                for(int i=0;i<5;i++){
+            case 13:
+                for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
                             this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
@@ -210,17 +221,29 @@ public class AnonMonster extends BaseMonster {
     @Override
     protected void getMove(int num) {
         if(isThree){
-            setMove(MOVES[0], (byte)1, Intent.ATTACK,
+            setMove(MOVES[0], (byte)11, Intent.ATTACK,
                     this.damage.get(1).base, 2, true);
         }else if(isAllSame){
-            setMove(MOVES[1], (byte)2, Intent.ATTACK,
+            setMove(MOVES[1], (byte)12, Intent.ATTACK,
                     this.damage.get(2).base, 3, true);
         }else if(isAllHave){
-            setMove(MOVES[1], (byte)3, Intent.ATTACK,
-                    this.damage.get(3).base, 5, true);
+            setMove(MOVES[1], (byte)13, Intent.ATTACK,
+                    this.damage.get(3).base, 3, true);
         }else{
-            setMove( (byte)0, Intent.ATTACK,
-                    this.damage.get(0).base, 1, false);
+            switch (turnNum%3){
+                case 0:
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 1, false);
+                    break;
+                case 1:
+                    setMove((byte) 1,Intent.DEFEND_BUFF);
+                    break;
+                case 2:
+                    setMove( (byte)2, Intent.ATTACK,
+                            this.damage.get(4).base, 1, false);
+                    break;
+            }
+            turnNum++;
         }
     }
 

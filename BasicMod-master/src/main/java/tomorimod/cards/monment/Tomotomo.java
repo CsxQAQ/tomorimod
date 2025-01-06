@@ -20,23 +20,27 @@ public class Tomotomo extends BaseMonmentCard {
             1
     );
 
-    public static final int MONEY = 30;
-    public static final int UPG_MONEY = 15;
+    public static final int MAGIC = 75;
+    public static final int UPG_MAGIC = 25;
 
     public Tomotomo() {
         super(ID, info);
 
-        setMagic(MONEY,UPG_MONEY);
+        setMagic(MAGIC,UPG_MAGIC);
         this.exhaust = true;
-        tags.add(CardTags.HEALING);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         AbstractDungeon.effectList.add(new RainingGoldEffect(this.magicNumber * 2, true));
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
-        int totalGold = this.magicNumber * AbstractDungeon.getMonsters().monsters.size();
-        this.addToBot(new GainGoldAction(totalGold));
+        int monsterNum=0;
+        for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+            if(!monster.isDeadOrEscaped())            {
+                monsterNum++;
+            }
+        }
+        this.addToBot(new GainGoldAction(monsterNum*magicNumber));
         super.use(p,m);
     }
 
