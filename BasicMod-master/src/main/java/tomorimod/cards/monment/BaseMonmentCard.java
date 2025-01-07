@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.util.CardStats;
 import tomorimod.vfx.ExhaustMasterDeckEffect;
+import tomorimod.vfx.MonmentEffect;
 
 import java.util.Iterator;
 
@@ -30,17 +31,19 @@ public abstract class BaseMonmentCard extends BaseCard {
         while (iterator.hasNext()) {
             AbstractCard card = iterator.next();
             if (aCard.uuid.equals(card.uuid)) {
+                AbstractDungeon.effectsQueue.add(new MonmentEffect(card,
+                        Settings.WIDTH -200.0f*Settings.scale, Settings.HEIGHT -200.0f*Settings.scale));
                 iterator.remove();
-                addExhaustEffectOnMasterDeck();
+                //addExhaustEffectOnMasterDeck();
                 break;
             }
         }
     }
 
-    public static void addExhaustEffectOnMasterDeck(){
-        AbstractDungeon.effectsQueue.add(new ExhaustMasterDeckEffect(
-                Settings.WIDTH -100.0f*Settings.scale, Settings.HEIGHT -100.0f*Settings.scale));
-    }
+//    public static void addExhaustEffectOnMasterDeck(){
+//        AbstractDungeon.effectsQueue.add(new ExhaustMasterDeckEffect(
+//                Settings.WIDTH -100.0f*Settings.scale, Settings.HEIGHT -100.0f*Settings.scale));
+//    }
 
     @Override
     public BaseMonmentCard makeStatEquivalentCopy() {
