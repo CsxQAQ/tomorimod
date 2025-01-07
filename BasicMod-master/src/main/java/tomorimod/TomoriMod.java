@@ -188,8 +188,8 @@ public class TomoriMod implements
                 .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(MutsumiMonster.ID, () -> new MutsumiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheBeyond", MutsumiMonster.ID, imagePath("monsters/mapicons/") + MutsumiMonster.class
-                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + MutsumiMonster.class
+        BossGeneratePatch.addBoss("TheBeyond", MutsumiMonster.ID, imagePath("monsters/mapicons/") + UikaMonster.class
+                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + UikaMonster.class
                 .getSimpleName() + "_map.png");
 
         BaseMod.addMonster(UikaMonster.ID, () -> new UikaMonster(0.0F, 0.0F));

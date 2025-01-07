@@ -4,8 +4,10 @@ import basemod.BaseMod;
 import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.CustomBosses;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CtBehavior;
 import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
@@ -34,22 +36,31 @@ public class BossGeneratePatch {
             if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 List<String> customBosses = BossGeneratePatch.getBossKeys(AbstractDungeon.id);
                 if (customBosses != null && !customBosses.isEmpty()) {
-                    AbstractDungeon.bossList = new ArrayList<>();
-                    AbstractDungeon.bossList.addAll(customBosses);
-                    //Collections.shuffle(AbstractDungeon.bossList, new Random(AbstractDungeon.monsterRng.randomLong()));
+                    if(!AbstractDungeon.id.equals("TheBeyond")){
+                        for(String boss:customBosses){
+                            AbstractDungeon.bossList.add(0,boss);
+                        }
+                    }else{ //boss数剩余2才会触发双boss
+                        AbstractDungeon.bossList.remove(0);
+                        AbstractDungeon.bossList.remove(0);
+                        Collections.shuffle(customBosses, new Random(AbstractDungeon.monsterRng.randomLong()));
+                        for(String boss:customBosses){
+                            AbstractDungeon.bossList.add(0,boss);
+                        }
+                    }
+
+
                 }
             }
         }
     }
 
-    @SpirePatch(clz= MonsterRoomBoss.class,method = "onPlayerEntry")
-    public static class fixBugPatch{
-        @SpirePostfixPatch
-        public static void postfix(MonsterRoomBoss __instance){
-            if(AbstractDungeon.bossList.isEmpty()){
-                AbstractDungeon.bossList.add(CardCrawlGame.dungeon.getBoss().monsters.get(0).id);
-            }
-        }
-    }
+//    @SpirePatch(clz= MonsterRoomBoss.class,method = "onPlayerEntry")
+//    public static class fixBugPatch{
+//        @SpirePostfixPatch
+//        public static void postfix(MonsterRoomBoss __instance){
+//            AbstractDungeon.bossList.add(CardCrawlGame.dungeon.getBoss().monsters.get(0).id);
+//        }
+//    }
 
 }
