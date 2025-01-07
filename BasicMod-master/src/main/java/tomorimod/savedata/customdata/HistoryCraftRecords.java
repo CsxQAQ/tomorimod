@@ -11,7 +11,7 @@ public class HistoryCraftRecords implements Clearable {
     private static HistoryCraftRecords instance;
 
     // 用于保存表单数据
-    public ArrayList<ArrayList<String>> historyCraftRecords =new ArrayList<>();
+    public ArrayList<CraftingRecipes.Recipe> historyCraftRecords =new ArrayList<>();
 
     // 私有化构造函数，防止外部实例化
     private HistoryCraftRecords() {

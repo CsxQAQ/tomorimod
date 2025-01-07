@@ -14,11 +14,12 @@ import static tomorimod.TomoriMod.makeID;
 public class CraftingRecipes implements Clearable {
 
     public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
-    public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
+    //public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
+    public Map<String, Material> cardMaterialHashMap = new HashMap<>();
     public ArrayList<Recipe> recipeArrayList =new ArrayList<>();
-    public class Recipe{
-        public ArrayList<String> needs=new ArrayList<>();
-        public ArrayList<Integer> levels=new ArrayList<>();
+    public static class Recipe {
+        public ArrayList<Material> needs = new ArrayList<>();
+        public ArrayList<Integer> levels = new ArrayList<>();
         public String music;
 
         // 默认构造函数（必须有，Gson 需要用到）
@@ -34,10 +35,10 @@ public class CraftingRecipes implements Clearable {
                     '}';
         }
 
-        public Recipe(String s1, String s2, String s3, int a1, int a2, int a3, String music) {
-            this.needs.add(s1);
-            this.needs.add(s2);
-            this.needs.add(s3);
+        public Recipe(Material m1, Material m2, Material m3, int a1, int a2, int a3, String music) {
+            this.needs.add(m1);
+            this.needs.add(m2);
+            this.needs.add(m3);
             this.levels.add(a1);
             this.levels.add(a2);
             this.levels.add(a3);
@@ -55,7 +56,6 @@ public class CraftingRecipes implements Clearable {
         public void setMusic(String music) {
             this.music = music;
         }
-
     }
 
     // 静态方法：对列表按 levels 总和排序
@@ -68,11 +68,8 @@ public class CraftingRecipes implements Clearable {
         });
     }
 
-    private ArrayList<String> materials=new ArrayList<>(Arrays.asList(
-            "yellow",
-            "green",
-            "red"
-    ));
+    private ArrayList<Material> materials=new ArrayList<>(
+            Arrays.asList(Material.RED,Material.GREEN,Material.YELLOW));
 
     private List<String> songNames = Arrays.asList(
             "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
@@ -115,36 +112,49 @@ public class CraftingRecipes implements Clearable {
         musicsCostHashMap.put("Chunriying", RARECOST_MAX);
     }
 
-    public String getRandomMaterials(){
+//    public String getRandomMaterials(){
+//        int randomResult = AbstractDungeon.miscRng.random(materials.size()-1);
+//        return materials.get(randomResult);
+//    }
+
+    public Material getRandomMaterials(){
         int randomResult = AbstractDungeon.miscRng.random(materials.size()-1);
         return materials.get(randomResult);
     }
 
     public void initializeCardsMaterials(){
-        //for(AbstractCard card : CustomUtils.getAllModCards()){
         for(AbstractCard card : CardLibrary.getAllCards()){
-            if(!(card instanceof WithoutMaterial)&&card.type!= AbstractCard.CardType.CURSE&&card.type!= AbstractCard.CardType.STATUS){
-                cardMaterialHashMap.put(card.cardID,getRandomMaterials());
+            if(!(card instanceof WithoutMaterial)
+                    && card.type != AbstractCard.CardType.CURSE
+                    && card.type != AbstractCard.CardType.STATUS){
+                cardMaterialHashMap.put(card.cardID, getRandomMaterials());
+            }else{
+                cardMaterialHashMap.put(card.cardID, Material.NONE);
             }
         }
-        cardMaterialHashMap.put(makeID("Yellow"),"yellow");
-        cardMaterialHashMap.put(makeID("Green"),"green");
-        cardMaterialHashMap.put(makeID("Red"),"red");
-        cardMaterialHashMap.put(makeID("AquariumPass"),"aquariumpass");
 
+        // 使用枚举替代硬编码字符串
+        cardMaterialHashMap.put(makeID("Yellow"), Material.YELLOW);
+        cardMaterialHashMap.put(makeID("Green"), Material.GREEN);
+        cardMaterialHashMap.put(makeID("Red"), Material.RED);
+        cardMaterialHashMap.put(makeID("AquariumPass"), Material.AQUARIUMPASS);
+
+        // 确保 "Strike" 和 "Defend" 的材料不同
         while(cardMaterialHashMap.get(makeID("Strike")).equals(cardMaterialHashMap.get(makeID("Defend")))){
-            cardMaterialHashMap.put(makeID("Strike"),getRandomMaterials());
+            cardMaterialHashMap.put(makeID("Strike"), getRandomMaterials());
         }
 
+        // 确保 "Mascot" 的材料不同于 "Strike" 和 "Defend"
         while(cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Strike")))
-        ||cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Defend")))){
-            cardMaterialHashMap.put(makeID("Mascot"),getRandomMaterials());
+                || cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Defend")))){
+            cardMaterialHashMap.put(makeID("Mascot"), getRandomMaterials());
         }
 
-        cardMaterialHashMap.put(makeID("Singer"),cardMaterialHashMap.get(makeID("Mascot")));
-        cardMaterialHashMap.put(makeID("HaAnon"),cardMaterialHashMap.get(makeID("HaTaki")));
-
+        // 将 "Singer" 和 "HaAnon" 的材料设置为其他卡的材料
+        cardMaterialHashMap.put(makeID("Singer"), cardMaterialHashMap.get(makeID("Mascot")));
+        //cardMaterialHashMap.put(makeID("HaAnon"), cardMaterialHashMap.get(makeID("HaTaki")));
     }
+
 
     public boolean recipeAlreadyHave(Recipe aRecipe){
         for(Recipe recipe: recipeArrayList){
@@ -206,4 +216,26 @@ public class CraftingRecipes implements Clearable {
     }
 
 
+    public enum Material {
+        YELLOW("yellow"),
+        GREEN("green"),
+        RED("red"),
+        AQUARIUMPASS("aquariumpass"),
+        NONE("");
+
+        private final String value;
+
+        Material(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
 }

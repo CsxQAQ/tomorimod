@@ -21,7 +21,7 @@ public class AbstractCardSetMaterialPatch {
             method=SpirePatch.CLASS
     )
     public static class AbstractCardFieldPatch {
-        public static SpireField<String> material = new SpireField<>(() -> "");
+        public static SpireField<CraftingRecipes.Material> material = new SpireField<>(() -> CraftingRecipes.Material.NONE);
         public static SpireField<Integer> level = new SpireField<>(() -> -1);
         public static SpireField<Texture> ICON = new SpireField<>(() -> null);
     }
@@ -70,7 +70,7 @@ public class AbstractCardSetMaterialPatch {
     public static void initializeMaterialIcon(AbstractCard card){
         setMaterialAndLevel(card);
         try {
-            if(AbstractCardFieldPatch.material.get(card)!=""){
+            if(!AbstractCardFieldPatch.material.get(card).equals(CraftingRecipes.Material.NONE)){
                 switch(card.rarity){
                     case COMMON:
                     case BASIC:

@@ -39,7 +39,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         if(AbstractDungeon.player.hasPower(makeID("MusicCompositionPower"))){
         //if(MusicComposition.isMusicCompositionUsed){
 
-            if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).isEmpty()){
+            if(!AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard).equals(CraftingRecipes.Material.NONE)){
                 MaterialUi.getInstance().setMaterial(
                     AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(abstractCard),
                         AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(abstractCard));
@@ -51,7 +51,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
                 addHistoryRecipes(music);
                 //MusicComposition.isMusicCompositionUsed=false;
 
-                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, MusicCompositionPower.POWER_ID));
+                AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction
+                        (AbstractDungeon.player, AbstractDungeon.player, MusicCompositionPower.POWER_ID));
                 AbstractDungeon.actionManager.addToBottom(new MaterialUiDelayClearAction());
                 cardsUsed.clear();
             }
@@ -60,7 +61,7 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     public void getMusic(String music){
         BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(music);
-        BaseMusicCard card = null;
+        BaseMusicCard card;
 
         if(music.equals("fail")){
             AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new FailComposition(), 1));
@@ -80,14 +81,14 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
     }
 
     public void addHistoryRecipes(String music){
-        ArrayList<String> records = new ArrayList<>(4);
+        CraftingRecipes.Recipe records=new CraftingRecipes.Recipe();
+
+        //ArrayList<String> records = new ArrayList<>(4);
         for (AbstractCard card : cardsUsed) {
-            String material=CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID);
-            int level= AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card);
-            records.add(material+level);
-            //records.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
+            records.needs.add(CraftingRecipes.getInstance().cardMaterialHashMap.get(card.cardID));
+            records.levels.add(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card));
         }
-        records.add(music);
+        records.music=music;
         HistoryCraftRecords.getInstance().historyCraftRecords.add(records);
 
         if (!"fail".equals(music)) {
@@ -121,8 +122,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
         return true;
     }
 
-    public boolean cardMatch(AbstractCard card, String recipe, int rarity) {
-        if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals("aquariumpass")){
+    public boolean cardMatch(AbstractCard card, CraftingRecipes.Material recipe, int rarity) {
+        if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(CraftingRecipes.Material.AQUARIUMPASS)){
             return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card) >= rarity;
         }
         return AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(recipe) &&
@@ -143,10 +144,8 @@ public class MusicalCompositionMonitor extends BaseMonitor implements OnCardUseS
 
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
-        //ScreenPostProcessorManager.addPostProcessor(MaterialScreenProcessor.getInstance());
         cardsUsed.clear();
         MaterialUi.getInstance().clear();
-        //MusicComposition.isMusicCompositionUsed=false;
     }
 }
 

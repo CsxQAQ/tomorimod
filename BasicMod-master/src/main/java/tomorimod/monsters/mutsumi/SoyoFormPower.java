@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorimod.powers.BasePower;
+import tomorimod.savedata.customdata.CraftingRecipes;
 
 import javax.xml.soap.Text;
 import java.lang.invoke.SwitchPoint;
@@ -26,14 +27,14 @@ public class SoyoFormPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    private String color=null;
+    private CraftingRecipes.Material color;
     public static final int RED_NUM=25;
     public static final int GREEN_NUM=10;
     public static final int YELLOW_NUM=1;
 
 
 
-    public SoyoFormPower(AbstractCreature owner,int amount,String color) {
+    public SoyoFormPower(AbstractCreature owner, int amount, CraftingRecipes.Material color) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         this.color=color;
         setPowerName();
@@ -45,14 +46,14 @@ public class SoyoFormPower extends BasePower {
     public void updateDescription(){
         if(this.color!=null){
             switch (this.color){
-                case "red":
+                case RED:
                     description=" #y形态 。受到的伤害提高 #b" +RED_NUM*4+ " %，攻击造成的伤害提高 #b" +RED_NUM*amount+" %。";
                     break;
-                case "green":
+                case GREEN:
                     description=" #y形态 。受到的伤害减少 #b" +GREEN_NUM*(4+amount)+ " %。";
                     break;
                 default:
-                case "yellow":
+                case YELLOW:
                     description=" #y形态 。回合结束时，获得 #b"+YELLOW_NUM*(4+amount)+" 点 #y力量 。";
                     break;
             }
@@ -71,14 +72,14 @@ public class SoyoFormPower extends BasePower {
     public void setPowerName(){
         if(this.color!=null){
             switch (color){
-                case "red":
+                case RED:
                     name="红色";
                     break;
-                case "green":
+                case GREEN:
                     name="绿色";
                     break;
                 default:
-                case "yellow":
+                case YELLOW:
                     name="黄色";
                     break;
             }
@@ -89,7 +90,7 @@ public class SoyoFormPower extends BasePower {
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        if(color.equals("red")){
+        if(color.equals(CraftingRecipes.Material.RED)){
             return damage*(2.0f+0.5f*amount);
         }
         return damage;
@@ -97,9 +98,9 @@ public class SoyoFormPower extends BasePower {
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
-        if(color.equals("red")){
+        if(color.equals(CraftingRecipes.Material.RED)){
             return damage*2.0f;
-        }else if(color.equals("green")){
+        }else if(color.equals(CraftingRecipes.Material.GREEN)){
             return 1-0.4f-0.1f*amount<0?0:damage*(1-0.4f-0.1f*amount);
         }
         return damage;
@@ -107,11 +108,8 @@ public class SoyoFormPower extends BasePower {
 
     @Override
     public void atEndOfTurn(boolean isPlayer){
-//        if(color.equals("green")){
-//            addToBot(new HealAction(owner,owner,20+5*amount));
-//            addToBot(new HealAction(AbstractDungeon.player,owner,20+5*amount));
-//        }
-        if(color.equals("yellow")){
+
+        if(color.equals(CraftingRecipes.Material.YELLOW)){
             addToBot(new ApplyPowerAction(owner,owner,new StrengthPower(owner,4+amount),4+amount));
         }
     }

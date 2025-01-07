@@ -52,21 +52,6 @@ public class RegisterSaveData {
             }
         });
 
-//        BaseMod.addSaveField("SaveGifts", new CustomSavableRaw() {
-//            private final Gson gson = new Gson();
-//
-//            @Override
-//            public JsonElement onSaveRaw() {
-//                return gson.toJsonTree(SaveGifts.getInstance().giftGeted);
-//            }
-//
-//            @Override
-//            public void onLoadRaw(JsonElement jsonElement) {
-//                if (jsonElement != null) {
-//                    SaveGifts.getInstance().giftGeted = gson.fromJson(jsonElement, new TypeToken<ArrayList<Integer>>() {}.getType());
-//                }
-//            }
-//        });
 
         BaseMod.addSaveField("cardMaterialHashMap", new CustomSavableRaw() {
             private final Gson gson = new Gson();
@@ -79,7 +64,7 @@ public class RegisterSaveData {
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    CraftingRecipes.getInstance().cardMaterialHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<String,String>>() {}.getType());
+                    CraftingRecipes.getInstance().cardMaterialHashMap = gson.fromJson(jsonElement, new TypeToken<HashMap<String, CraftingRecipes.Material>>() {}.getType());
                 }
             }
         });
@@ -127,7 +112,7 @@ public class RegisterSaveData {
             @Override
             public void onLoadRaw(JsonElement jsonElement) {
                 if (jsonElement != null) {
-                    HistoryCraftRecords.getInstance().historyCraftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<ArrayList<String>>>() {}.getType());
+                    HistoryCraftRecords.getInstance().historyCraftRecords = gson.fromJson(jsonElement, new TypeToken<ArrayList<CraftingRecipes.Recipe>>() {}.getType());
                 }
             }
         });

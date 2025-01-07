@@ -3,25 +3,44 @@ package tomorimod.ui;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import tomorimod.savedata.customdata.CraftingRecipes;
 import tomorimod.screens.Renderable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static tomorimod.TomoriMod.imagePath;
 
 public class MaterialUi implements Renderable {
 
-    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/card/yellow_common.png"));
-    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/card/green_common.png"));
-    private static final Texture TextureRedCommon = new Texture(imagePath("materials/card/red_common.png"));
-    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/card/yellow_uncommon.png"));
-    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/card/green_uncommon.png"));
-    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/card/red_uncommon.png"));
-    private static final Texture TextureYellowRare = new Texture(imagePath("materials/card/yellow_rare.png"));
-    private static final Texture TextureBandRare = new Texture(imagePath("materials/card/green_rare.png"));
-    private static final Texture TextureRedRare = new Texture(imagePath("materials/card/red_rare.png"));
-    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/card/aquariumpass_uncommon.png"));
-    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/card/aquariumpass_rare.png"));
+    private static final Map<CraftingRecipes.Material, Map<Integer, Texture>> TEXTURE_MAP = new HashMap<>();
+
+    static {
+        // 初始化纹理映射
+        for (CraftingRecipes.Material material : CraftingRecipes.Material.values()) {
+            Map<Integer, String> levelToPath = new HashMap<>();
+            switch (material) {
+                case YELLOW:
+                case GREEN:
+                case RED:
+                    levelToPath.put(1, "materials/card/" + material.name().toLowerCase() + "_common.png");
+                    levelToPath.put(2, "materials/card/" + material.name().toLowerCase() + "_uncommon.png");
+                    levelToPath.put(3, "materials/card/" + material.name().toLowerCase() + "_rare.png");
+                    break;
+                case AQUARIUMPASS:
+                    levelToPath.put(2, "materials/card/aquariumpass_uncommon.png");
+                    levelToPath.put(3, "materials/card/aquariumpass_rare.png");
+                    break;
+            }
+
+            Map<Integer, Texture> levelToTexture = new HashMap<>();
+            for (Map.Entry<Integer, String> entry : levelToPath.entrySet()) {
+                levelToTexture.put(entry.getKey(), new Texture(imagePath(entry.getValue())));
+            }
+            TEXTURE_MAP.put(material, levelToTexture);
+        }
+    }
 
     ArrayList<MaterialInfo> materials=new ArrayList<>();
 
@@ -44,50 +63,14 @@ public class MaterialUi implements Renderable {
 
     }
 
-    public void setMaterial(String material,int level){
+    public void setMaterial(CraftingRecipes.Material material, int level){
         materials.add(new MaterialInfo(material,level));
     }
 
-    public Texture getMaterialTexture(MaterialInfo info){
-        switch (info.getName()) {
-            case "yellow":
-                if (info.getLevel() == 1) {
-                    return TextureYellowCommon;
-                } else if (info.getLevel() == 2) {
-                    return TextureYellowUncommon;
-                } else if (info.getLevel() == 3) {
-                    return TextureYellowRare;
-                }
-                break;
-
-            case "green":
-                if (info.getLevel() == 1) {
-                    return TextureGreenCommon;
-                } else if (info.getLevel() == 2) {
-                    return TextureGreenUncommon;
-                } else if (info.getLevel() == 3) {
-                    return TextureBandRare;
-                }
-                break;
-
-            case "red":
-                if (info.getLevel() == 1) {
-                    return TextureRedCommon;
-                } else if (info.getLevel() == 2) {
-                    return TextureRedUncommon;
-                } else if (info.getLevel() == 3) {
-                    return TextureRedRare;
-                }
-                break;
-
-            case "aquariumpass":
-                if (info.getLevel() == 2) {
-                    return TextureAquariumPassUncommon;
-                } else if (info.getLevel() == 3) {
-                    return TextureAquariumPassRare;
-                }
-                break;
-
+    private Texture getMaterialTexture(CraftingRecipes.Material material, int level) {
+        Map<Integer, Texture> levelMap = TEXTURE_MAP.get(material);
+        if (levelMap != null) {
+            return levelMap.get(level);
         }
         return null;
     }
@@ -96,7 +79,7 @@ public class MaterialUi implements Renderable {
     public void render(SpriteBatch sb) {
         float yoffset=Y_OFFSET;
         for(int i=0;i<materials.size();i++){
-            sb.draw(getMaterialTexture(materials.get(i)), X_OFFSET*Settings.scale,
+            sb.draw(getMaterialTexture(materials.get(i).name,materials.get(i).level), X_OFFSET*Settings.scale,
                     yoffset*Settings.scale,SIZE*Settings.scale,SIZE*Settings.scale);
             yoffset=yoffset+INTERVAL;
         }
@@ -107,15 +90,15 @@ public class MaterialUi implements Renderable {
     }
 
     public class MaterialInfo {
-        private final String name;
+        private final CraftingRecipes.Material name;
         private final int level;
 
-        public MaterialInfo(String name, int level) {
+        public MaterialInfo(CraftingRecipes.Material name, int level) {
             this.name = name;
             this.level = level;
         }
 
-        public String getName() {
+        public CraftingRecipes.Material getName() {
             return name;
         }
 

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.powers.BasePower;
+import tomorimod.savedata.customdata.CraftingRecipes;
 
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class SoyoMultiChangePower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
-    private String color=null;
+    private CraftingRecipes.Material color=null;
     public SoyoMultiChangePower(AbstractCreature owner) {
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
     }
@@ -31,34 +32,28 @@ public class SoyoMultiChangePower extends BasePower {
 
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        // 定义常量
-        final String AQUARIUM_PASS = "aquariumpass";
-        final String SOYO_FORM_POWER_ID = makeID("SoyoFormPower");
 
         // 提取材料和等级到局部变量
-        String material = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
-        if (!material.equals("")) {
+        CraftingRecipes.Material material = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
+        if (!material.equals(CraftingRecipes.Material.NONE)) {
             int level = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card);
 
             if (this.color == null) {
                 // 根据材料设置颜色
-                if (!material.equals(AQUARIUM_PASS)) {
+                if (!material.equals(CraftingRecipes.Material.AQUARIUMPASS)) {
                     this.color = material;
                     addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
                 }
             } else {
                 if (!this.color.equals(material)) {
-                    if (material.equals(AQUARIUM_PASS)) {
-                        // 当材料为 aquariumpass 时，应用当前颜色的 SoyoFormPower
+                    if (material.equals(CraftingRecipes.Material.AQUARIUMPASS)) {
                         addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, this.color)));
                     } else {
-                        // 移除现有的 SoyoFormPower 并应用新的
-                        addToBot(new RemoveSpecificPowerAction(owner, owner, SOYO_FORM_POWER_ID));
+                        addToBot(new RemoveSpecificPowerAction(owner, owner, makeID("SoyoFormPower")));
                         this.color = material;
                         addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
                     }
                 } else {
-                    // 材料相同，直接应用 SoyoFormPower
                     addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
                 }
             }

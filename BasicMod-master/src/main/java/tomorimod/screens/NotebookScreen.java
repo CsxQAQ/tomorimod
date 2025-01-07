@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
+import com.google.gson.internal.LinkedHashTreeMap;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
@@ -15,6 +16,8 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import tomorimod.cards.music.BaseMusicCard;
+import tomorimod.cards.notshow.FailComposition;
+import tomorimod.savedata.customdata.CraftingRecipes;
 import tomorimod.savedata.customdata.HistoryCraftRecords;
 import tomorimod.util.CustomUtils;
 
@@ -26,22 +29,101 @@ import static tomorimod.TomoriMod.makeID;
 public class NotebookScreen extends CustomScreen
 {
 
-    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/notebook/yellow_common.png"));
-    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/notebook/green_common.png"));
-    private static final Texture TextureRedCommon = new Texture(imagePath("materials/notebook/red_common.png"));
-    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/notebook/yellow_uncommon.png"));
-    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/notebook/green_uncommon.png"));
-    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/notebook/red_uncommon.png"));
-    private static final Texture TextureYellowRare = new Texture(imagePath("materials/notebook/yellow_rare.png"));
-    private static final Texture TextureGreenRare = new Texture(imagePath("materials/notebook/green_rare.png"));
-    private static final Texture TextureRedRare = new Texture(imagePath("materials/notebook/red_rare.png"));
-    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/notebook/aquariumpass_uncommon.png"));
-    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/notebook/aquariumpass_rare.png"));
+    private static final Map<CraftingRecipes.Material, Map<Integer, Texture>> TEXTURE_MAP = new HashMap<>();
+
+    static {
+        // 初始化纹理映射
+        for (CraftingRecipes.Material material : CraftingRecipes.Material.values()) {
+            Map<Integer, String> levelToPath = new HashMap<>();
+            switch (material) {
+                case YELLOW:
+                case GREEN:
+                case RED:
+                    levelToPath.put(1, "materials/notebook/" + material.name().toLowerCase() + "_common.png");
+                    levelToPath.put(2, "materials/notebook/" + material.name().toLowerCase() + "_uncommon.png");
+                    levelToPath.put(3, "materials/notebook/" + material.name().toLowerCase() + "_rare.png");
+                    break;
+                case AQUARIUMPASS:
+                    levelToPath.put(2, "materials/notebook/" + material.name().toLowerCase() + "_uncommon.png");
+                    levelToPath.put(3, "materials/notebook/" + material.name().toLowerCase() + "_rare.png");
+                    break;
+            }
+
+            Map<Integer, Texture> levelToTexture = new HashMap<>();
+            for (Map.Entry<Integer, String> entry : levelToPath.entrySet()) {
+                levelToTexture.put(entry.getKey(), new Texture(imagePath(entry.getValue())));
+            }
+            TEXTURE_MAP.put(material, levelToTexture);
+        }
+    }
+
+//    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/notebook/yellow_common.png"));
+//    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/notebook/green_common.png"));
+//    private static final Texture TextureRedCommon = new Texture(imagePath("materials/notebook/red_common.png"));
+//    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/notebook/yellow_uncommon.png"));
+//    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/notebook/green_uncommon.png"));
+//    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/notebook/red_uncommon.png"));
+//    private static final Texture TextureYellowRare = new Texture(imagePath("materials/notebook/yellow_rare.png"));
+//    private static final Texture TextureGreenRare = new Texture(imagePath("materials/notebook/green_rare.png"));
+//    private static final Texture TextureRedRare = new Texture(imagePath("materials/notebook/red_rare.png"));
+//    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/notebook/aquariumpass_uncommon.png"));
+//    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/notebook/aquariumpass_rare.png"));
 
     public AbstractCard hoveredCard;
     public static Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
     public AbstractCard clickStartedCard;
     public static ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
+
+    private Texture getMaterialTexture(CraftingRecipes.Material material, int level) {
+        Map<Integer, Texture> levelMap = TEXTURE_MAP.get(material);
+        if (levelMap != null) {
+            return levelMap.get(level);
+        }
+        return null;
+    }
+
+//    public Texture getMaterialTexture(CraftingRecipes.Material material,int level){
+//
+//        switch (material) {
+//            case YELLOW:
+//                if (level == 1) {
+//                    return TextureYellowCommon;
+//                } else if (level == 2) {
+//                    return TextureYellowUncommon;
+//                } else if (level == 3) {
+//                    return TextureYellowRare;
+//                }
+//                break;
+//
+//            case GREEN:
+//                if (level == 1) {
+//                    return TextureGreenCommon;
+//                } else if (level == 2) {
+//                    return TextureGreenUncommon;
+//                } else if (level == 3) {
+//                    return TextureGreenRare;
+//                }
+//                break;
+//
+//            case RED:
+//                if (level == 1) {
+//                    return TextureRedCommon;
+//                } else if (level == 2) {
+//                    return TextureRedUncommon;
+//                } else if (level == 3) {
+//                    return TextureRedRare;
+//                }
+//                break;
+//            case AQUARIUMPASS:
+//                if (level == 2) {
+//                    return TextureAquariumPassUncommon;
+//                } else if (level == 3) {
+//                    return TextureAquariumPassRare;
+//                }
+//                break;
+//        }
+//        return null;
+//    }
 
     public NotebookScreen() {
 
@@ -168,14 +250,14 @@ public class NotebookScreen extends CustomScreen
     private static final float MATERIAL_HEIGHT = 200.0f * SCALE;
 
     public void renderPageContent(SpriteBatch sb,
-                                  ArrayList<ArrayList<String>> historyRecords,
+                                  ArrayList<CraftingRecipes.Recipe> historyRecords,
                                   int startIndex,
                                   int endIndex) {
         currentPageCards.clear();
 
         for (int recordIndex = startIndex; recordIndex < endIndex; recordIndex++) {
             // 获取当前记录
-            ArrayList<String> record = historyRecords.get(recordIndex);
+            CraftingRecipes.Recipe record = historyRecords.get(recordIndex);
 
             // 计算当前行的 X/Y 坐标
             float currentY = Y_OFFSET - (recordIndex - startIndex) * (MATERIAL_HEIGHT + Y_INTERVAL);
@@ -185,7 +267,7 @@ public class NotebookScreen extends CustomScreen
             currentX = renderMaterials(sb, record, currentX, currentY);
 
             // 第四项是卡牌 ID
-            String cardID = record.get(3);
+            String cardID = record.music;
 
             // 从缓存或卡组中获取（或创建）卡牌
             AbstractCard card = getOrCreateCard(recordIndex, cardID);
@@ -207,12 +289,12 @@ public class NotebookScreen extends CustomScreen
      * 抽取公共的“渲染材料”逻辑
      * @return 渲染完三张材料后最新的 X 坐标
      */
-    private float renderMaterials(SpriteBatch sb, ArrayList<String> record, float startX, float startY) {
+    private float renderMaterials(SpriteBatch sb, CraftingRecipes.Recipe record, float startX, float startY) {
         float currentX = startX;
         for (int i = 0; i < 3; i++) {
             // record.get(i) 是材料名，取到对应 Texture
             if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
-                displayedImages[i] = getMaterialTexture(record.get(i));
+                displayedImages[i] = getMaterialTexture(record.needs.get(i),record.levels.get(i));
             }
             // 绘制材料图片
             sb.draw(displayedImages[i],
@@ -240,7 +322,7 @@ public class NotebookScreen extends CustomScreen
         // 缓存没有，就去对应卡组里找
         if ("fail".equals(cardID)) {
             // “失败”卡牌来自 CustomUtils.modCardGroup
-            card = CustomUtils.modCardGroup.get(makeID("FailComposition")).makeStatEquivalentCopy();
+            card = new FailComposition();
                     //findAndCopyCard(cardID, CustomUtils.modCardGroup);
         } else {
             // 否则来自 CustomUtils.musicCardGroup
@@ -264,7 +346,7 @@ public class NotebookScreen extends CustomScreen
     private Texture[] displayedImages = new Texture[3];
     private Texture notebookImage=new Texture(imagePath("materials/notebook.png"));
 
-    private ArrayList<ArrayList<String>> historyRecords;
+    private ArrayList<CraftingRecipes.Recipe> historyRecords;
 
     private final int recordsPerPage=2;
     public static int currentPage=-1;
@@ -318,50 +400,7 @@ public class NotebookScreen extends CustomScreen
         return new int[]{startIndex, endIndex};
     }
 
-    public Texture getMaterialTexture(String s){
-        int level = Character.getNumericValue(s.charAt(s.length() - 1)); // 获取最后一位并转为数字
-        String material = s.substring(0, s.length() - 1); // 去掉最后一位
 
-        switch (material) {
-            case "yellow":
-                if (level == 1) {
-                    return TextureYellowCommon;
-                } else if (level == 2) {
-                    return TextureYellowUncommon;
-                } else if (level == 3) {
-                    return TextureYellowRare;
-                }
-                break;
-
-            case "green":
-                if (level == 1) {
-                    return TextureGreenCommon;
-                } else if (level == 2) {
-                    return TextureGreenUncommon;
-                } else if (level == 3) {
-                    return TextureGreenRare;
-                }
-                break;
-
-            case "red":
-                if (level == 1) {
-                    return TextureRedCommon;
-                } else if (level == 2) {
-                    return TextureRedUncommon;
-                } else if (level == 3) {
-                    return TextureRedRare;
-                }
-                break;
-            case "aquariumpass":
-                if (level == 2) {
-                    return TextureAquariumPassUncommon;
-                } else if (level == 3) {
-                    return TextureAquariumPassRare;
-                }
-                break;
-        }
-        return null;
-    }
 
 
     // 提取参数为静态常量
