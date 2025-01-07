@@ -25,6 +25,7 @@ import tomorimod.cards.notshow.FearlessDeath;
 import tomorimod.cards.notshow.FearlessFear;
 import tomorimod.cards.notshow.FearlessLove;
 import tomorimod.cards.notshow.FearlessSad;
+import tomorimod.character.Tomori;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.mutsumi.FriendlyMonsterPower;
 import tomorimod.monsters.mutsumi.SoyoMonster;
@@ -128,7 +129,9 @@ public class SakiShadowMonster extends BaseMonster {
         AbstractDungeon.scene.fadeOutAmbiance();
 
         // 给自己加一些特殊能力
-        addToBot(new ApplyPowerAction(this, this, new SakiShadowImmunityPower(this)));
+        if(AbstractDungeon.player instanceof Tomori){
+            addToBot(new ApplyPowerAction(this, this, new SakiShadowImmunityPower(this)));
+        }
         addToBot(new ApplyPowerAction(this, this, new SakiWorldViewPower(this)));
 
         initializeSoyoMonster();

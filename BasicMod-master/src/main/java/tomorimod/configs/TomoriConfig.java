@@ -119,15 +119,15 @@ public class TomoriConfig {
 
     static {
         TEXT = new String[]{
-                "启用提示。",
-                "解锁A20。",
-                "仅生成ModBoss。"
+                "启用提示",
+                "自动解锁A20",
+                "允许其他角色生成ModBoss"
 
         };
         TOOLTIP = new String[]{
-                "提示结束后将自动关闭。",
-                "重启游戏自动生效。",
-                "mod-boss only。"
+                "提示结束后将自动关闭",
+                "重启游戏后生效",
+                "mod-boss only"
         };
     }
 }

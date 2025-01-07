@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import javassist.CtBehavior;
+import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class BossGeneratePatch {
     public static class removeOtherBoss {
         @SpirePostfixPatch
         public static void postfix() {
-            if (TomoriConfig.config.getBool("onlyModBoss-enabled")) {
+            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 List<String> customBosses = BossGeneratePatch.getBossKeys(AbstractDungeon.id);
                 if (customBosses != null && !customBosses.isEmpty()) {
                     AbstractDungeon.bossList = new ArrayList<>();
