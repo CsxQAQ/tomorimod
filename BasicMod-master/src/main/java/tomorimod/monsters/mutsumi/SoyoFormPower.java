@@ -91,7 +91,7 @@ public class SoyoFormPower extends BasePower {
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
         if(color.equals(CraftingRecipes.Material.RED)){
-            return damage*(2.0f+0.5f*amount);
+            return damage*(2.0f+(RED_NUM/100.0f)*amount);
         }
         return damage;
     }
@@ -101,7 +101,7 @@ public class SoyoFormPower extends BasePower {
         if(color.equals(CraftingRecipes.Material.RED)){
             return damage*2.0f;
         }else if(color.equals(CraftingRecipes.Material.GREEN)){
-            return 1-0.4f-0.1f*amount<0?0:damage*(1-0.4f-0.1f*amount);
+            return 1-(YELLOW_NUM/100.0f)*(4+amount)<0?0:damage*(1-(YELLOW_NUM/100.0f)*(4+amount));
         }
         return damage;
     }
@@ -110,7 +110,7 @@ public class SoyoFormPower extends BasePower {
     public void atEndOfTurn(boolean isPlayer){
 
         if(color.equals(CraftingRecipes.Material.YELLOW)){
-            addToBot(new ApplyPowerAction(owner,owner,new StrengthPower(owner,4+amount),4+amount));
+            addToBot(new ApplyPowerAction(owner,owner,new StrengthPower(owner,YELLOW_NUM*(4+amount)),YELLOW_NUM*(4+amount)));
         }
     }
 

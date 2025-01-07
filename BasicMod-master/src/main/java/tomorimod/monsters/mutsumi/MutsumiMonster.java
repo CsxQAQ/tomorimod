@@ -1,24 +1,36 @@
 package tomorimod.monsters.mutsumi;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import tomorimod.actions.PlayBGMAction;
+import tomorimod.cards.uikacard.UikaCard;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,9 +46,6 @@ public class MutsumiMonster extends SpecialMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    public static int chordNum=0;
-    public static ArrayList<Integer> chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
-    public static ArrayList<String> chordAbsorbed=new ArrayList<>();
 
     private static final int HP_MIN = 2000;
     private static final int HP_MAX = 2000;
@@ -59,14 +68,14 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int POWERNUM=2;
     private int point=0;
 
-
+    private Hitbox attackIntentHb;
+    private Hitbox damageNumberHb;
+    private int damageForShow;
+    private int damageNum;
 
 
     public MutsumiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
-
-        chordNum=0;
-        chordPos=new ArrayList<>(Arrays.asList(0, 0, 0));
 
         setHp(HP_MIN, HP_MAX);
 
@@ -82,8 +91,14 @@ public class MutsumiMonster extends SpecialMonster {
         this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 120, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));
         this.target=soyoMonster;
+
+        // 攻击意图图标的大小
+        this.attackIntentHb = new Hitbox(128.0f * Settings.scale, 128.0f * Settings.scale);
+
+        // 伤害数字的大小(这里随意示例了一个 64x32 的范围)
+        this.damageNumberHb = new Hitbox(64.0f * Settings.scale, 32.0f * Settings.scale);
     }
 
     public void usePreBattleAction() {
@@ -111,26 +126,26 @@ public class MutsumiMonster extends SpecialMonster {
 
         switch (this.nextMove) {
             case 0:
-                addToBot(new DamageAction(target,
-                        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                //addToBot(new DamageAction(target,
+                //        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                mutsumiAttack(0);
                 break;
             case 1:
                 addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,CUCUMBER_UPG),CUCUMBER_UPG));
                 break;
             case 2:
                 for(int i=0;i<5;i++){
-                    addToBot(new DamageAction(target,
-                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    mutsumiAttack(1);
                 }
                 break;
             case 3:
                 addToBot(new ApplyPowerAction(target,this,new VulnerablePower(target,POWERNUM,true),POWERNUM));
                 addToBot(new ApplyPowerAction(target,this,new WeakPower(target,POWERNUM,true),POWERNUM));
                 break;
-            case 4:
-                addToBot(new DamageAction(target,
-                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                break;
+//            case 4:
+//                addToBot(new DamageAction(target,
+//                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+//                break;
             case 5:
                 for (int i = 0; i < 3; i++) {
                     addToBot(new VFXAction(this, new ShockWaveEffect(
@@ -144,6 +159,65 @@ public class MutsumiMonster extends SpecialMonster {
                 break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
+    }
+
+    private void mutsumiAttack(int k){
+        if(target==AbstractDungeon.player){
+            addToBot(new DamageAction(target,
+                    this.damage.get(k), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        }else{
+            DamageInfo newInfo=new DamageInfo(this,this.damage.get(k).base);
+            newInfo.applyPowers(this,soyoMonster);
+            addToBot(new DamageAction(target,new DamageInfo(this,newInfo.output)));
+        }
+
+    }
+
+    @Override
+    protected Texture getAttackIntent() {
+        if(nextMove==4||nextMove==5){
+            return new Texture(imagePath("monsters/intents/attack_guitar_heavy.png"));
+        }
+        return new Texture(imagePath("monsters/intents/attack_guitar_normal.png"));
+
+    }
+
+    @Override
+    protected void getMove(int num) {
+        int rand=AbstractDungeon.miscRng.random(point);
+        if(rand>3){
+            rand=3;
+        }
+        int tmp=AbstractDungeon.miscRng.random(1);
+        switch (rand){
+            case 0:
+                if(tmp==0){
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 1, false);
+                }else{
+                    setMove((byte)1,Intent.BUFF);
+                }
+                point+=2;
+                break;
+
+            case 1:
+            case 2:
+                if(tmp==0){
+                    setMove((byte)2,Intent.ATTACK,
+                            this.damage.get(1).base,5,true);
+                }else{
+                    setMove((byte)3,Intent.DEBUFF);
+                }
+                point++;
+                break;
+            case 3:
+
+                isMultiTarget=true;
+                setMove((byte)5,Intent.ATTACK,
+                            this.damage.get(3).base,3,true);
+                point-=3;
+                break;
+        }
     }
 
     @Override
@@ -163,49 +237,95 @@ public class MutsumiMonster extends SpecialMonster {
         } else {
             this.flipHorizontal = true;
         }
+
+        damageForShow=calculateDamageSingle(getPublicField(this, "intentBaseDmg", Integer.class),AbstractDungeon.player);
+        damageNum=getPublicField(this, "intentMultiAmt", Integer.class);
+
+        // 先确定图标在屏幕上的坐标
+        float iconX = AbstractDungeon.player.hb.cX - 96.0f * Settings.scale;
+        float iconY = AbstractDungeon.player.hb.cY + 320.0f * Settings.scale;
+
+        // 把 attackIntentHb 的中心移到图标正中央
+        // 注意要加上宽/高的一半，以使其对准图标中心
+        attackIntentHb.move(iconX + (128.0f * Settings.scale) / 2f,
+                iconY + (128.0f * Settings.scale) / 2f);
+        attackIntentHb.update(); // 必须调用，才能检测鼠标悬浮
+
+        // 再确定伤害数字的坐标
+        float textX = AbstractDungeon.player.hb.cX - 32.0f * Settings.scale;
+        float textY = AbstractDungeon.player.hb.cY + 340.0f * Settings.scale;
+
+        // 让 damageNumberHb 跟随伤害数字区域
+        damageNumberHb.move(textX + (64.0f * Settings.scale) / 2f,
+                textY + (32.0f * Settings.scale) / 2f);
+        damageNumberHb.update();
     }
 
     @Override
-    protected void getMove(int num) {
-        int rand=AbstractDungeon.miscRng.random(point);
-        if(rand>2){
-            rand=2;
-        }
-        int tmp=AbstractDungeon.miscRng.random(1);
-        switch (rand){
-            case 0:
-                if(tmp==0){
-                    setMove( (byte)0, Intent.ATTACK,
-                            this.damage.get(0).base, 1, false);
-                }else{
-                    setMove((byte)1,Intent.DEFEND_BUFF);
-                }
-                point++;
-                break;
-            case 1:
-                if(tmp==0){
-                    setMove((byte)2,Intent.ATTACK,
-                            this.damage.get(1).base,5,true);
-                }else{
-                    setMove((byte)3,Intent.DEFEND_DEBUFF);
-                }
-                point--;
-                break;
-            case 2:
-                if(tmp==0){
-                    setMove((byte)4,Intent.ATTACK,
-                            this.damage.get(2).base,1,false);
-                }else{
-                    isMultiTarget=true;
-                    setMove((byte)5,Intent.ATTACK,
-                            this.damage.get(3).base,3,true);
-                }
-                point=point-2;
-                break;
+    public void render(SpriteBatch sb) {
+        super.render(sb);
+
+        if(isMultiTarget){
+            renderAttackIntent(sb);
+            renderDamageNumber(sb);
+            if (this.attackIntentHb.hovered||this.damageNumberHb.hovered) {
+                // 这类方法可以渲染一个简单的提示
+                // 参数：Tip的左下角X, Tip的左下角Y, 标题, 内容
+                TipHelper.renderGenericTip(
+                        InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
+                        InputHelper.mY - 50.0F * Settings.scale,
+                        "预警",
+                        "敌人将使用群体攻击对你造成 #b" + damageForShow+ " 点伤害 #b"+damageNum+" 次。"
+                );
+            }
         }
     }
 
+    private void renderAttackIntent(SpriteBatch sb) {
+        if (damageForShow <= 0) {
+            return;
+        }
 
+        // 拿到对应的纹理
+        Texture intentTex = getAttackIntent(damageForShow);
+        if (intentTex == null) {
+            return;
+        }
+
+        // 设置渲染颜色和位置
+        // 注意：玩家的 Hitbox 中心是 hb.cX, hb.cY，可以按需求微调
+        sb.setColor(Color.WHITE.cpy());
+        float iconX = AbstractDungeon.player.hb.cX - 96.0f*Settings.scale;  // 让图标居中
+        float iconY = AbstractDungeon.player.hb.cY + 320.0f*Settings.scale;  // 高度可以根据需求调整
+
+        // 画图标（64 x 64 大小）
+        sb.draw(intentTex, iconX, iconY, 128.0f*Settings.scale, 128.0f*Settings.scale);
+    }
+
+    private void renderDamageNumber(SpriteBatch sb) {
+        if (damageForShow <= 0) {
+            return;
+        }
+
+        float textX = AbstractDungeon.player.hb.cX-32.0f*Settings.scale;
+        float textY = AbstractDungeon.player.hb.cY + 340.0f*Settings.scale;
+
+        // 用红色来渲染伤害数字
+        FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
+                damageForShow+"x"+damageNum, textX, textY, Color.WHITE);
+    }
+
+
+    public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
+        try {
+            Field field = AbstractMonster.class.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return fieldType.cast(field.get(instance));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public void die() {

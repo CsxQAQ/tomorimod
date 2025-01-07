@@ -421,8 +421,8 @@
 
 
   "${modID}:Cucumber": {
-    "NAME": "小黄瓜",
-    "DESCRIPTION": " 虚无 ，不能被打出。回合结束时使 *若叶睦 获得2点 力量 并恢复50点生命值。"
+    "NAME": "一袋黄瓜",
+    "DESCRIPTION": " 虚无 ， 不能被打出 。抽到此牌时使 *若叶睦 获得2点 力量 并恢复50点生命值。"
   },
   "${modID}:WelcomeToAveMujica": {
     "NAME": "舞会邀请函",

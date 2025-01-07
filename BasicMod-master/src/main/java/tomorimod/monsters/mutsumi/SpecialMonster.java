@@ -156,9 +156,9 @@ public abstract class SpecialMonster extends BaseMonster {
                     p = (AbstractPower)var5.next();
                 }
 
-                for(var5 = this.powers.iterator(); var5.hasNext(); damageAmount = (int)p.atDamageReceive(damageAmount,info.type)) {
-                    p = (AbstractPower)var5.next();
-                }
+//                for(var5 = this.powers.iterator(); var5.hasNext(); damageAmount = (int)p.atDamageReceive(damageAmount,info.type)) {
+//                    p = (AbstractPower)var5.next();
+//                }
 
                 this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
                 boolean probablyInstantKill = this.currentHealth == 0;

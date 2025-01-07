@@ -39,7 +39,7 @@ public class Cucumber extends BaseCard implements SpecialCard, WithoutMaterial {
     }
 
     @Override
-    public void triggerOnEndOfPlayerTurn() {
+    public void triggerWhenDrawn(){
         for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
             if (!monster.isDeadOrEscaped()&&monster instanceof MutsumiMonster) {
                 addToBot(new ApplyPowerAction(monster,AbstractDungeon.player,

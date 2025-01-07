@@ -88,19 +88,15 @@ public class SoyoMonster extends SpecialMonster {
     public void takeTurn() {
         switch (this.nextMove) {
             case 0:
-                addToBot(new DamageAction(target,
-                        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                soyoAttack(0);
                 break;
             case 1:
-                addToBot(new ApplyPowerAction(this,this,
-                        new PlatedArmorPower(this,5),5));
                 addToBot(new ApplyPowerAction(AbstractDungeon.player,this,
-                        new PlatedArmorPower(AbstractDungeon.player,5),5));
+                        new PlatedArmorPower(AbstractDungeon.player,10),10));
                 break;
             case 2:
                 for(int i=0;i<5;i++){
-                    addToBot(new DamageAction(target,
-                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    soyoAttack(1);
                 }
                 break;
             case 3:
@@ -108,13 +104,11 @@ public class SoyoMonster extends SpecialMonster {
                 addToBot(new HealAction(AbstractDungeon.player,this,40));
                 break;
             case 4:
-                addToBot(new DamageAction(target,
-                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                soyoAttack(2);
                 break;
             case 5:
                 for(int i=0;i<10;i++){
-                    addToBot(new DamageAction(target,
-                            this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    soyoAttack(3);
                 }
                 break;
             case 99:
@@ -123,21 +117,31 @@ public class SoyoMonster extends SpecialMonster {
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
+    private void soyoAttack(int k){
+        if(target==AbstractDungeon.player){
+            addToBot(new DamageAction(target,
+                    this.damage.get(k), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+        }else{
+            DamageInfo newInfo=new DamageInfo(this,this.damage.get(k).base);
+            newInfo.applyPowers(this,mutsumiMonster);
+            addToBot(new DamageAction(target,new DamageInfo(this,newInfo.output)));
+        }
+    }
 
     @Override
     protected Texture getAttackIntent() {
         if(nextMove==4||nextMove==5){
-            return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_heavy.png"));
+            return new Texture(imagePath("monsters/intents/attack_bass_heavy.png"));
         }
-        return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_normal.png"));
+        return new Texture(imagePath("monsters/intents/attack_bass_normal.png"));
 
     }
 
     @Override
     protected void getMove(int num) {
         int rand=AbstractDungeon.miscRng.random(point);
-        if(rand>2){
-            rand=2;
+        if(rand>3){
+            rand=3;
         }
         int tmp=AbstractDungeon.miscRng.random(1);
         switch (rand){
@@ -148,18 +152,19 @@ public class SoyoMonster extends SpecialMonster {
                 }else{
                     setMove((byte)1,Intent.DEFEND);
                 }
-                point++;
+                point+=2;
                 break;
             case 1:
+            case 2:
                 if(tmp==0){
                     setMove((byte)2,Intent.ATTACK,
                             this.damage.get(1).base,5,true);
                 }else{
                     setMove((byte)3,Intent.BUFF);
                 }
-                point--;
+                point++;
                 break;
-            case 2:
+            case 3:
                 if(tmp==0){
                     setMove((byte)4,Intent.ATTACK,
                             this.damage.get(2).base,1,false);
