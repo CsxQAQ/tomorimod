@@ -1,5 +1,6 @@
 package tomorimod.monsters.mutsumi;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -123,7 +124,14 @@ public class SoyoMonster extends SpecialMonster {
     }
 
 
+    @Override
+    protected Texture getAttackIntent() {
+        if(nextMove==4||nextMove==5){
+            return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_heavy.png"));
+        }
+        return new Texture(imagePath("monsters/intents/attack_rhythm_guitar_normal.png"));
 
+    }
 
     @Override
     protected void getMove(int num) {

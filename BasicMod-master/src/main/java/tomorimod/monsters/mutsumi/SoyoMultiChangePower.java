@@ -10,6 +10,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.powers.BasePower;
 
+import java.util.Objects;
+
 import static tomorimod.TomoriMod.makeID;
 
 public class SoyoMultiChangePower extends BasePower {
@@ -28,27 +30,38 @@ public class SoyoMultiChangePower extends BasePower {
     }
 
     @Override
-    public void onUseCard(AbstractCard card, UseCardAction action){
-        if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card)!=""){
-            if(this.color==null){
-                this.color=AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
-                addToBot(new ApplyPowerAction(owner,owner,new SoyoFormPower(owner,
-                        AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card),
-                        AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card))));
-            }else{
-                if(!this.color.equals(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card))){
-                    addToBot(new RemoveSpecificPowerAction(owner,owner,makeID("SoyoFormPower")));
-                    this.color=AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
-                    addToBot(new ApplyPowerAction(owner,owner,new SoyoFormPower(owner,
-                            AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card),
-                            AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card))));
-                }else{
-                    addToBot(new ApplyPowerAction(owner,owner,new SoyoFormPower(owner,
-                            AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card),
-                            AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card))));
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        // 定义常量
+        final String AQUARIUM_PASS = "aquariumpass";
+        final String SOYO_FORM_POWER_ID = makeID("SoyoFormPower");
+
+        // 提取材料和等级到局部变量
+        String material = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
+        if (!material.equals("")) {
+            int level = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.level.get(card);
+
+            if (this.color == null) {
+                // 根据材料设置颜色
+                if (!material.equals(AQUARIUM_PASS)) {
+                    this.color = material;
+                    addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
+                }
+            } else {
+                if (!this.color.equals(material)) {
+                    if (material.equals(AQUARIUM_PASS)) {
+                        // 当材料为 aquariumpass 时，应用当前颜色的 SoyoFormPower
+                        addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, this.color)));
+                    } else {
+                        // 移除现有的 SoyoFormPower 并应用新的
+                        addToBot(new RemoveSpecificPowerAction(owner, owner, SOYO_FORM_POWER_ID));
+                        this.color = material;
+                        addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
+                    }
+                } else {
+                    // 材料相同，直接应用 SoyoFormPower
+                    addToBot(new ApplyPowerAction(owner, owner, new SoyoFormPower(owner, level, material)));
                 }
             }
-
         }
     }
 
