@@ -61,8 +61,8 @@ public class SoyoMonster extends SpecialMonster {
 
         this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 100, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 8, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 200, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 4, DamageInfo.DamageType.NORMAL));
 
         //addToBot(new ApplyPowerAction(this,this,new FriendlyMonsterPower(this)));
         //addToBot(new ApplyPowerAction(this,this,new SoyoMultiChangePower(this)));
@@ -165,7 +165,7 @@ public class SoyoMonster extends SpecialMonster {
                             this.damage.get(2).base,1,false);
                 }else{
                     setMove((byte)5,Intent.ATTACK,
-                            this.damage.get(3).base,10,true);
+                            this.damage.get(3).base,15,true);
                 }
                 point=point-2;
                 break;

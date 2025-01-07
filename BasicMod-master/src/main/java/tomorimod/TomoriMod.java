@@ -63,7 +63,8 @@ import java.util.*;
 
 //TODO 背景图片的前景
 //TODO 睦的行动逻辑
-//TODO 瞬间牌展示并消耗
+//TODO 睦的群攻
+//TODO 睦的预警
 
 @SpireInitializer
 public class TomoriMod implements

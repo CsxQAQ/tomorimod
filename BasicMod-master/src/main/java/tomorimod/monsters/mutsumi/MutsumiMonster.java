@@ -1,17 +1,20 @@
 package tomorimod.monsters.mutsumi;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
+import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
@@ -50,8 +53,13 @@ public class MutsumiMonster extends SpecialMonster {
     private SoyoMonster soyoMonster;
 
     public static final int CUCUMBER=20;
+    public static final int CUCUMBER_UPG=3;
     public static final int HEALNUM=50;
     public static final int STRENGTHNUM=2;
+    public static final int POWERNUM=2;
+    private int point=0;
+
+
 
 
     public MutsumiMonster(float x, float y) {
@@ -71,7 +79,10 @@ public class MutsumiMonster extends SpecialMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
 
-        this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 120, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
         this.target=soyoMonster;
     }
 
@@ -90,22 +101,47 @@ public class MutsumiMonster extends SpecialMonster {
 
 
         addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
-        addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this)));
+        addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,CUCUMBER),CUCUMBER));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
     }
-
-
 
     @Override
     public void takeTurn() {
 
         switch (this.nextMove) {
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(target,
+                addToBot(new DamageAction(target,
                         this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
+            case 1:
+                addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,CUCUMBER_UPG),CUCUMBER_UPG));
+                break;
+            case 2:
+                for(int i=0;i<5;i++){
+                    addToBot(new DamageAction(target,
+                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                }
+                break;
+            case 3:
+                addToBot(new ApplyPowerAction(target,this,new VulnerablePower(target,POWERNUM,true),POWERNUM));
+                addToBot(new ApplyPowerAction(target,this,new WeakPower(target,POWERNUM,true),POWERNUM));
+                break;
+            case 4:
+                addToBot(new DamageAction(target,
+                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                break;
+            case 5:
+                for (int i = 0; i < 3; i++) {
+                    addToBot(new VFXAction(this, new ShockWaveEffect(
+                            this.hb.cX, this.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
 
+                    addToBot(new MonsterDamageAllAction(this,this.damage.get(3),AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    isMultiTarget=false;
+                }
+                break;
+            case 99:
+                break;
         }
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
@@ -116,6 +152,9 @@ public class MutsumiMonster extends SpecialMonster {
         if(soyoMonster!=null){
             if(soyoMonster.isDeadOrEscaped()){
                 target=AbstractDungeon.player;
+                if(AbstractDungeon.player.hasPower(makeID("BehindAttackPower"))){
+                    addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player,AbstractDungeon.player,makeID("BehindAttackPower")));
+                }
             }
         }
 
@@ -126,13 +165,44 @@ public class MutsumiMonster extends SpecialMonster {
         }
     }
 
-
     @Override
     protected void getMove(int num) {
-
-        setMove( (byte)0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
-
+        int rand=AbstractDungeon.miscRng.random(point);
+        if(rand>2){
+            rand=2;
+        }
+        int tmp=AbstractDungeon.miscRng.random(1);
+        switch (rand){
+            case 0:
+                if(tmp==0){
+                    setMove( (byte)0, Intent.ATTACK,
+                            this.damage.get(0).base, 1, false);
+                }else{
+                    setMove((byte)1,Intent.DEFEND_BUFF);
+                }
+                point++;
+                break;
+            case 1:
+                if(tmp==0){
+                    setMove((byte)2,Intent.ATTACK,
+                            this.damage.get(1).base,5,true);
+                }else{
+                    setMove((byte)3,Intent.DEFEND_DEBUFF);
+                }
+                point--;
+                break;
+            case 2:
+                if(tmp==0){
+                    setMove((byte)4,Intent.ATTACK,
+                            this.damage.get(2).base,1,false);
+                }else{
+                    isMultiTarget=true;
+                    setMove((byte)5,Intent.ATTACK,
+                            this.damage.get(3).base,3,true);
+                }
+                point=point-2;
+                break;
+        }
     }
 
 

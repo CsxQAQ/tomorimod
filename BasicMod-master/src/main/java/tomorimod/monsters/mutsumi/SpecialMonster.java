@@ -22,6 +22,7 @@ import java.util.Iterator;
 public abstract class SpecialMonster extends BaseMonster {
 
     public AbstractCreature target;
+    public boolean isMultiTarget=false;
 
     public SpecialMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
@@ -29,12 +30,22 @@ public abstract class SpecialMonster extends BaseMonster {
 
     @SpireOverride
     public void calculateDamage(int dmg) {
-        AbstractCreature target;
-        if(this.target==null){
-            target=AbstractDungeon.player;
+
+        int tmp;
+        if(!isMultiTarget){
+            tmp=calculateDamageSingle(dmg,this.target);
         }else{
-            target=this.target;
+            tmp=calculateDamageMulti(dmg);
         }
+        setPrivateField(this, "intentDmg", tmp);
+    }
+
+    public int calculateDamageSingle(int dmg,AbstractCreature target){
+        //AbstractCreature target;
+        if(target==null){
+            target=AbstractDungeon.player;
+        }
+
         float tmp = (float)dmg;
         if (Settings.isEndless && AbstractDungeon.player.hasBlight("DeadlyEnemies")) {
             float mod = AbstractDungeon.player.getBlight("DeadlyEnemies").effectFloat();
@@ -51,11 +62,6 @@ public abstract class SpecialMonster extends BaseMonster {
             p = (AbstractPower)var6.next();
         }
 
-//        tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
-//        if (this.applyBackAttack()) {
-//            tmp = (float)((int)(tmp * 1.5F));
-//        }
-
         for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
             p = (AbstractPower)var6.next();
         }
@@ -68,8 +74,28 @@ public abstract class SpecialMonster extends BaseMonster {
         if (dmg < 0) {
             dmg = 0;
         }
+        return dmg;
+    }
 
-        setPrivateField(this, "intentDmg", dmg);
+    public int calculateDamageMulti(int dmg){
+        AbstractCreature target;
+        float tmp = (float)dmg;
+
+        AbstractPower p;
+        Iterator var6;
+        for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            p = (AbstractPower)var6.next();
+        }
+
+        for(var6 = this.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalGive(tmp, DamageInfo.DamageType.NORMAL)) {
+            p = (AbstractPower)var6.next();
+        }
+
+        dmg = MathUtils.floor(tmp);
+        if (dmg < 0) {
+            dmg = 0;
+        }
+        return dmg;
     }
 
     @Override
@@ -77,6 +103,8 @@ public abstract class SpecialMonster extends BaseMonster {
         if(info.owner==AbstractDungeon.player){
             super.damage(info);
         }else{
+            //info.applyPowers(info.owner,this);
+
             if (info.output > 0 && this.hasPower("IntangiblePlayer")) {
                 info.output = 1;
             }
@@ -182,8 +210,9 @@ public abstract class SpecialMonster extends BaseMonster {
 
             }
         }
-
     }
+
+
 
     public static <T> T getPrivateField(Object instance, String fieldName, Class<T> fieldType) {
         try {

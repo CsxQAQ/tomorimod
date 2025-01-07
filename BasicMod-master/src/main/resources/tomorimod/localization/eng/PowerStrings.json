@@ -241,7 +241,7 @@
   "${modID}:MutsumiGiveCucumberPower": {
     "NAME": "给你小黄瓜",
     "DESCRIPTIONS":[
-      "当你洗牌时，如果你的抽牌堆卡牌数量不足 #b20 ，用 #y小黄瓜 将你的抽牌堆卡牌数量补充到 #b20 。"
+      "当你洗牌时，如果你的抽牌堆卡牌数量不足 #b"
     ]
   },
   "${modID}:BehindAttackPower": {
@@ -257,7 +257,7 @@
     ]
   },
   "${modID}:SoyoMultiChangePower": {
-    "NAME": "百变素姐",
+    "NAME": "百变素世",
     "DESCRIPTIONS":[
       "每当你使用一张具有 #y素材 的卡牌，使 #y长崎素世 获得对应颜色的 #y形态 并获得等同于 #y素材 稀有度的层数。回合结束时清除 #y形态 。",
       " NL #r红色 ：造成和受到的伤害提升 #b100 %，每点层数额外提高 #b25 %的伤害。",
