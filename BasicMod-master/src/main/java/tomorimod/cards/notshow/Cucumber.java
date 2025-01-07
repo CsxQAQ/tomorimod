@@ -47,9 +47,9 @@ public class Cucumber extends BaseCard implements SpecialCard, WithoutMaterial {
                 addToBot(new HealAction(monster,AbstractDungeon.player,MutsumiMonster.HEALNUM));
             }
         }
-        if (this.isEthereal) {
-            this.addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
-        }
+//        if (this.isEthereal) {
+//            this.addToTop(new ExhaustSpecificCardAction(this, AbstractDungeon.player.hand));
+//        }
     }
 
     @Override

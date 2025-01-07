@@ -24,7 +24,7 @@ public class MutsumiPatch {
                     int num=AbstractDungeon.player.drawPile.group.size();
                     if(num<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount){
                         for(int i=0;i<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount-num+getDrawCardActionCount();i++){
-                            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInDrawPileAction
+                            AbstractDungeon.actionManager.addToBottom(new QuickMakeTempCardInDrawPileAction
                                     (new Cucumber(), 1, true, true));
                         }
                     }
