@@ -64,8 +64,6 @@ public class SoyoMonster extends SpecialMonster {
         this.damage.add(new DamageInfo(this, 200, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 4, DamageInfo.DamageType.NORMAL));
 
-        //addToBot(new ApplyPowerAction(this,this,new FriendlyMonsterPower(this)));
-        //addToBot(new ApplyPowerAction(this,this,new SoyoMultiChangePower(this)));
 
     }
 

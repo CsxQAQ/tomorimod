@@ -49,7 +49,10 @@ public class WulushiAction extends AbstractGameAction {
     private AbstractMonster getRandomEnemy(AbstractMonster except) {
         ArrayList<AbstractMonster> possibleTargets = new ArrayList<>();
         for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
+//            if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
+//                possibleTargets.add(monster);
+//            }
+            if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()) {
                 possibleTargets.add(monster);
             }
         }

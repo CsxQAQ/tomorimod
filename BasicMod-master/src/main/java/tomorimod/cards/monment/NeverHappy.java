@@ -35,14 +35,14 @@ public class NeverHappy extends BaseMonmentCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (!upgraded) {
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-                if (!monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
+                if (!monster.isDeadOrEscaped()) {
                     addToBot(new RemoveSpecificPowerAction(monster,p,"Artifact"));
                     addToBot(new ApplyPowerAction(monster, p, new VulnerablePower(monster, magicNumber, false), magicNumber));
                 }
             }
         } else {
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-                if (!monster.isDeadOrEscaped()&&!monster.hasPower(makeID("FriendlyMonsterPower"))) {
+                if (!monster.isDeadOrEscaped()) {
                     addToBot(new RemoveSpecificPowerAction(monster,p,"Artifact"));
                     addToBot(new ApplyPowerAction(monster, p, new VulnerablePower(monster, magicNumber, false), magicNumber));
                     addToBot(new ApplyPowerAction(monster, p, new WeakPower(monster, magicNumber, false), magicNumber));

@@ -229,7 +229,7 @@
   "${modID}:FriendlyMonsterPower": {
     "NAME": "友方单位",
     "DESCRIPTIONS":[
-      "以敌方单位作为攻击目标。不会受到你的群体攻击和群体减益效果的影响。"
+      "以敌方单位作为攻击目标。免疫你的攻击伤害和减益效果。"
     ]
   },
   "${modID}:MutsumiOneHeartTwoHurtPower": {
