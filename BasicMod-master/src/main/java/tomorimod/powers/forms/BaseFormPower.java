@@ -34,7 +34,9 @@ public class BaseFormPower extends BasePower {
     @Override
     public void updateDescription(){
         if(AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
-            description=" #y永久形态 ，"+description;
+            description=" #y永久形态 。"+description;
+        }else {
+            description=" #y形态 。"+description;
         }
     }
 
@@ -58,7 +60,7 @@ public class BaseFormPower extends BasePower {
         assetManager.dispose();
     }
 
-    private static TextureAtlas.AtlasRegion getCachedAtlasRegion(Texture texture) {
+    public static TextureAtlas.AtlasRegion getCachedAtlasRegion(Texture texture) {
         String key = texture.toString();
         return atlasRegionCache.computeIfAbsent(key, k -> {
             System.out.println("创建AtlasRegion: " + key);

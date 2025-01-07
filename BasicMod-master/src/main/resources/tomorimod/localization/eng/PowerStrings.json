@@ -250,6 +250,12 @@
       "伤害提高 #b50 %。"
     ]
   },
+  "${modID}:SoyoFormPower": {
+    "NAME": "",
+    "DESCRIPTIONS":[
+      ""
+    ]
+  },
   "${modID}:SoyoMultiChangePower": {
     "NAME": "百变素姐",
     "DESCRIPTIONS":[
