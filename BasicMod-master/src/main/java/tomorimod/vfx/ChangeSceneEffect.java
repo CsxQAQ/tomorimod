@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.scenes.AbstractScene;
+import com.megacrit.cardcrawl.scenes.TheEndingScene;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 import static tomorimod.TomoriMod.imagePath;
@@ -21,7 +24,7 @@ public class ChangeSceneEffect extends AbstractGameEffect {
         this.color = Color.WHITE.cpy();
         this.renderBehind = true;
         this.img = img;
-
+        AbstractDungeon.scene =new TheEndingScene();
     }
 
 

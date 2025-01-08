@@ -61,9 +61,6 @@ import java.util.*;
 //TODO 变革删除
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 
-//TODO 背景图片的前景
-//TODO 攻击素世彩蛋
-
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

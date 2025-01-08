@@ -87,6 +87,8 @@ public class UikaMonster extends BaseMonster {
     private boolean isDomainExpansionUsed=false;
     public static boolean isTwoMoon=false;
 
+    public static SoulGroup goldenSouls=new SoulGroup();
+
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
@@ -245,12 +247,12 @@ public class UikaMonster extends BaseMonster {
                     card.shrink(true);
 
                     Soul soul = new Soul();
+                    GoldTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
                     soul.empower(card);
-                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
                     try {
                         Field soulsField = SoulGroup.class.getDeclaredField("souls");
                         soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(goldenSouls);
                         souls.add(soul); // 修改字段
                     } catch (NoSuchFieldException | IllegalAccessException e) {
                         e.printStackTrace();
@@ -278,12 +280,12 @@ public class UikaMonster extends BaseMonster {
 
                     // 创建新的 Soul
                     Soul soul = new Soul();
+                    GoldTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
                     soul.discard(card, false);
-                    SoulGroup soulGroup = AbstractDungeon.getCurrRoom().souls;
                     try {
                         Field soulsField = SoulGroup.class.getDeclaredField("souls");
                         soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(soulGroup);
+                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(goldenSouls);
                         souls.add(soul); // 修改字段
                     } catch (NoSuchFieldException | IllegalAccessException e) {
                         e.printStackTrace();
@@ -375,6 +377,8 @@ public class UikaMonster extends BaseMonster {
         damageNumberHb.move(textX + (64.0f * Settings.scale) / 2f,
                 textY + (32.0f * Settings.scale) / 2f);
         damageNumberHb.update();
+
+        goldenSouls.update();
     }
 
     private void updateCard() {
