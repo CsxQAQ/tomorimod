@@ -1,18 +1,18 @@
 package tomorimod.cards.notshow;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.monsters.sakishadow.SakiShadowRightPower;
+import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.util.CardStats;
 
-public class FearlessDeath extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
-    public static final String ID = makeID(FearlessDeath.class.getSimpleName());
+public class Sad extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
+    public static final String ID = makeID(Sad.class.getSimpleName());
     public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,
             CardColor.CURSE,
@@ -21,33 +21,31 @@ public class FearlessDeath extends BaseCard implements SpecialCard, WithoutMater
             CardTarget.NONE,
             -2
     );
-
-    public final int MAGIC=10;
+    public final int MAGIC=3;
     public final int UPG_MAGIC=0;
 
-
-    public FearlessDeath() {
+    public Sad() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
-
     }
+
+
 
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
         return false;
     }
 
+
     @Override
     public void triggerOnEndOfPlayerTurn() {
-        addToBot(new DamageAction(AbstractDungeon.player, new DamageInfo(AbstractDungeon.player, magicNumber,
-                DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+            if(monster instanceof SakiShadowMonster){
+                addToBot(new ApplyPowerAction(monster,AbstractDungeon.player,
+                        new SakiShadowRightPower(monster,magicNumber),magicNumber));
+            }
+        }
     }
-
-
-//    @SpireOverride
-//    public void renderEnergy(SpriteBatch sb){
-//
-//    }
 
 
     @Override
@@ -57,7 +55,7 @@ public class FearlessDeath extends BaseCard implements SpecialCard, WithoutMater
 
     @Override
     public AbstractCard makeCopy() {
-        return new FearlessDeath();
+        return new Sad();
     }
 
 

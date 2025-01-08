@@ -7,8 +7,8 @@ import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.util.CardStats;
 
-public class FearlessFear extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
-    public static final String ID = makeID(FearlessFear.class.getSimpleName());
+public class Fear extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
+    public static final String ID = makeID(Fear.class.getSimpleName());
     public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,
             CardColor.CURSE,
@@ -18,7 +18,7 @@ public class FearlessFear extends BaseCard implements SpecialCard, WithoutMateri
             -2
     );
 
-    public FearlessFear() {
+    public Fear() {
         super(ID, info);
         selfRetain=true;
 
@@ -38,7 +38,7 @@ public class FearlessFear extends BaseCard implements SpecialCard, WithoutMateri
 
     @Override
     public AbstractCard makeCopy() {
-        return new FearlessFear();
+        return new Fear();
     }
 
 

@@ -21,10 +21,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
-import tomorimod.cards.notshow.FearlessDeath;
-import tomorimod.cards.notshow.FearlessFear;
-import tomorimod.cards.notshow.FearlessLove;
-import tomorimod.cards.notshow.FearlessSad;
+import tomorimod.cards.notshow.Death;
+import tomorimod.cards.notshow.Fear;
+import tomorimod.cards.notshow.Love;
+import tomorimod.cards.notshow.Sad;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.mutsumi.FriendlyMonsterPower;
@@ -73,10 +73,10 @@ public class SakiShadowMonster extends BaseMonster {
 
     // 记录用于随机展示的卡牌
     private final List<AbstractCard> cards = Arrays.asList(
-            new FearlessDeath(),
-            new FearlessFear(),
-            new FearlessLove(),
-            new FearlessSad()
+            new Death(),
+            new Fear(),
+            new Love(),
+            new Sad()
     );
 
     // 用于在 getMove 中判断走哪个分支
