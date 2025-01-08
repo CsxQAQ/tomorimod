@@ -10,14 +10,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.utils.Pool;
-import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
-public class GoldenCardTrailEffect extends AbstractGameEffect {
+public class CustomCardTrailEffect extends AbstractGameEffect {
     private static final float EFFECT_DUR = 0.5F;
     private static final float DUR_DIV_2 = 0.25F;
     private static TextureAtlas.AtlasRegion img = null;
@@ -27,12 +24,13 @@ public class GoldenCardTrailEffect extends AbstractGameEffect {
     private float x;
     private float y;
 
-    public GoldenCardTrailEffect() {
+    public CustomCardTrailEffect(Color color) {
         if (img == null) {
             img = ImageMaster.vfxAtlas.findRegion("combat/blurDot2");
         }
 
         this.renderBehind = false;
+        this.color = color;
     }
 
     public void init(float x, float y) {
@@ -40,7 +38,6 @@ public class GoldenCardTrailEffect extends AbstractGameEffect {
         this.startingDuration = 0.5F;
         this.x = x - 6.0F;
         this.y = y - 6.0F;
-        this.color = Color.GOLD.cpy();
         this.scale = 0.01F;
         this.isDone = false;
     }

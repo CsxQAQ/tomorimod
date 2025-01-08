@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.cards.music.*;
 import tomorimod.cards.notshow.FailComposition;
-import tomorimod.effects.MaterialUiDelayClearAction;
+import tomorimod.actions.MaterialUiDelayClearAction;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.powers.custompowers.MusicCompositionPower;
 import tomorimod.rewards.MusicReward;

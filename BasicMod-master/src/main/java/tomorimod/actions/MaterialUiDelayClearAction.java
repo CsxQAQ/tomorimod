@@ -1,4 +1,4 @@
-package tomorimod.effects;
+package tomorimod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import tomorimod.ui.MaterialUi;

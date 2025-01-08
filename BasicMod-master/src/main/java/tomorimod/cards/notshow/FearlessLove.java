@@ -12,7 +12,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.util.CardStats;
 
-public class FearlessLove extends BaseCard implements SpecialCard, WithoutMaterial {
+public class FearlessLove extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
     public static final String ID = makeID(FearlessLove.class.getSimpleName());
     public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,

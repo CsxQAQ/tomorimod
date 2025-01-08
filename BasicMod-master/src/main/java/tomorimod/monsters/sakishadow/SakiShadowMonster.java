@@ -132,7 +132,7 @@ public class SakiShadowMonster extends BaseMonster {
         if(AbstractDungeon.player instanceof Tomori){
             addToBot(new ApplyPowerAction(this, this, new SakiShadowImmunityPower(this)));
         }
-        addToBot(new ApplyPowerAction(this, this, new SakiWorldViewPower(this)));
+        addToBot(new ApplyPowerAction(this, this, new SakiShadowWorldViewPower(this)));
 
         initializeSoyoMonster();
         // 使房间处于“无法失败”状态
@@ -179,7 +179,7 @@ public class SakiShadowMonster extends BaseMonster {
                     break;
                 case 2:
                     // 给自己添加一个 BUFF (SakiRightPower)
-                    addToBot(new ApplyPowerAction(this, this, new SakiRightPower(this, 5), 5));
+                    addToBot(new ApplyPowerAction(this, this, new SakiShadowRightPower(this, 5), 5));
                     break;
                 case 3:
                     // 给玩家“随机一张”负面牌（这里 cards 是 FearlessXX）
@@ -192,7 +192,7 @@ public class SakiShadowMonster extends BaseMonster {
                 case 5:
                     // 造成一次大伤害 + 给自己加个 BUFF
                     damagePlayer(AbstractDungeon.player, 4, 1, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-                    addToBot(new ApplyPowerAction(this, this, new SakiRightPower(this, 3), 3));
+                    addToBot(new ApplyPowerAction(this, this, new SakiShadowRightPower(this, 3), 3));
                     break;
                 case 6:
                     // 伤害玩家 2 次 + 获得随机牌

@@ -46,7 +46,7 @@ import tomorimod.cards.basic.Strike;
 import tomorimod.cards.forms.Mascot;
 import tomorimod.cards.forms.Singer;
 import tomorimod.cards.notshow.WelcomeToAveMujica;
-import tomorimod.monsters.sakishadow.SakiRightPower;
+import tomorimod.monsters.sakishadow.SakiShadowRightPower;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
@@ -473,8 +473,8 @@ public class Tomori extends CustomPlayer {
             for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
                 if(monster instanceof SakiShadowMonster){
                     for(AbstractPower power:monster.powers){
-                        if(power instanceof SakiRightPower){
-                            ((SakiRightPower)power).decreaseMaxHealth();
+                        if(power instanceof SakiShadowRightPower){
+                            ((SakiShadowRightPower)power).decreaseMaxHealth();
                             break;
                         }
                     }

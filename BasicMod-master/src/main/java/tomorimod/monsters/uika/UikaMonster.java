@@ -30,6 +30,7 @@ import tomorimod.cards.customcards.LightAndShadow;
 import tomorimod.cards.customcards.NeedAnon;
 import tomorimod.cards.uikacard.*;
 import tomorimod.monsters.BaseMonster;
+import tomorimod.monsters.CustomColorTrailEffectPatch;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -247,7 +248,7 @@ public class UikaMonster extends BaseMonster {
                     card.shrink(true);
 
                     Soul soul = new Soul();
-                    GoldTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
+                    CustomColorTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
                     soul.empower(card);
                     try {
                         Field soulsField = SoulGroup.class.getDeclaredField("souls");
@@ -280,7 +281,7 @@ public class UikaMonster extends BaseMonster {
 
                     // 创建新的 Soul
                     Soul soul = new Soul();
-                    GoldTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
+                    CustomColorTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
                     soul.discard(card, false);
                     try {
                         Field soulsField = SoulGroup.class.getDeclaredField("souls");

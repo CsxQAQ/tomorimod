@@ -61,6 +61,7 @@ import java.util.*;
 //TODO 变革删除
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 
+//TODO 考虑所有insert patch用定位器重写
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
-import tomorimod.monsters.sakishadow.SakiRightPower;
+import tomorimod.monsters.sakishadow.SakiShadowRightPower;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.util.CardStats;
 
-public class FearlessSad extends BaseCard implements SpecialCard, WithoutMaterial {
+public class FearlessSad extends BaseCard implements SpecialCard, WithoutMaterial,SakiShadow {
     public static final String ID = makeID(FearlessSad.class.getSimpleName());
     public static final CardStats info = new CardStats(
             //Tomori.Meta.CARD_COLOR,
@@ -42,7 +42,7 @@ public class FearlessSad extends BaseCard implements SpecialCard, WithoutMateria
         for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
             if(monster instanceof SakiShadowMonster){
                 addToBot(new ApplyPowerAction(monster,AbstractDungeon.player,
-                        new SakiRightPower(monster,magicNumber),magicNumber));
+                        new SakiShadowRightPower(monster,magicNumber),magicNumber));
             }
         }
     }
