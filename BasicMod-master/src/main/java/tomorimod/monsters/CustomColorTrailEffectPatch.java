@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -14,8 +15,10 @@ import tomorimod.cards.notshow.SakiShadow;
 import tomorimod.monsters.uika.CustomCardTrailEffect;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CustomColorTrailEffectPatch {
+    //public static ArrayList<CustomCardTrailEffect> effectsPool=new ArrayList<>();
 
     @SpirePatch(
             clz= Soul.class,
@@ -88,6 +91,7 @@ public class CustomColorTrailEffectPatch {
                             Vector2 derp = crs.valueAt(points[i], (float) i / 19.0F);
 
                             CustomCardTrailEffect effect = new CustomCardTrailEffect(color);
+                            //effectsPool.add(effect);
                             effect.init(derp.x, derp.y);
                             AbstractDungeon.topLevelEffects.add(effect);
                         }
