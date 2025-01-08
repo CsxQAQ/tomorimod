@@ -293,6 +293,13 @@
       " 保留 。使用后回到手牌。抽一张牌。"
     ]
   },
+  "${modID}:SingleThread": {
+    "NAME": "单线程",
+    "DESCRIPTION": "如果你没有 tomorimod:缓冲 ，获得 !M! 点 tomorimod:缓冲 。",
+    "EXTENDED_DESCRIPTION": [
+      " 保留 。如果你没有 tomorimod:缓冲 ，获得 !M! 点 tomorimod:缓冲 。"
+    ]
+  },
   "${modID}:Collection": {
     "NAME": "收集",
     "DESCRIPTION": "从 *漂亮的石头 ， *企鹅创可贴 ， *花瓣 中选择一张加入手牌，并使其获得 消耗 。"
