@@ -9,9 +9,9 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class Grit extends BaseCard {
+public class Protect extends BaseCard {
 
-    public static final String ID = makeID(Grit.class.getSimpleName());
+    public static final String ID = makeID(Protect.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -26,7 +26,7 @@ public class Grit extends BaseCard {
     public final int MAGIC=1;
     public final int UPG_MAGIC=1;
 
-    public Grit() {
+    public Protect() {
         super(ID, info);
         setBlock(BLOCK,UPG_BLOCK);
         setMagic(MAGIC,UPG_MAGIC);
@@ -52,6 +52,6 @@ public class Grit extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Grit();
+        return new Protect();
     }
 }

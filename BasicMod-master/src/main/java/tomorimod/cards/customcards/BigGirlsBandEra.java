@@ -24,7 +24,6 @@ public class BigGirlsBandEra extends BaseCard {
 
     public BigGirlsBandEra() {
         super(ID, info);
-        this.isEthereal = true;
     }
 
     @Override

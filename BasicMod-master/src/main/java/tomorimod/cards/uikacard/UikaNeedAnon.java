@@ -18,7 +18,7 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.UNCOMMON,
             CardTarget.SELF,
             1
     );

@@ -82,7 +82,6 @@ public class TomoriMod implements
         BaseMod.subscribe(new FormsMonitor());
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new MusicalCompositionMonitor());
-        BaseMod.subscribe(new RevolutionMonitor());
         BaseMod.subscribe(new ConveyFeelingMonitor());
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());

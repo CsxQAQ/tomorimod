@@ -16,7 +16,7 @@ public class AstronomyMinister extends BaseFormCard {
             1
     );
 
-    public final static int MAGIC = 2;
+    public final static int MAGIC = 3;
     public final static int UPG_MAGIC = 1;
 
     public AstronomyMinister() {

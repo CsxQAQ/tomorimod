@@ -21,7 +21,7 @@ public class Tomotomo extends BaseMonmentCard {
     );
 
     public static final int MAGIC = 75;
-    public static final int UPG_MAGIC = 25;
+    public static final int UPG_MAGIC = 75;
 
     public Tomotomo() {
         super(ID, info);

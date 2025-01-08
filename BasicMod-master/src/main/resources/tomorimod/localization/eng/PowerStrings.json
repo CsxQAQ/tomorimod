@@ -158,7 +158,7 @@
   "${modID}:CompeteMonsterPower": {
     "NAME": "对邦",
     "DESCRIPTIONS":[
-      "对具有 #y对邦 的目标造成双倍伤害，受到来自 #y对邦 目标的伤害翻倍，回合结束时失去一层。"
+      "造成的攻击伤害和受到的攻击伤害翻倍。回合结束时失去一层。"
     ]
   },
   "${modID}:SmoothComboPower": {

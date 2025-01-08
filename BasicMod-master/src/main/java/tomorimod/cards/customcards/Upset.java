@@ -20,17 +20,21 @@ public class Upset extends BaseCard {
             1
     );
 
-    public final int BLOCK=2;
-    public final int UPG_BLOCK=1;
+    public final int BLOCK=6;
+    public final int UPG_BLOCK=3;
+
+    public final int MAGIC=2;
+    public final int UPG_MAGIC=1;
 
     public Upset() {
         super(ID, info);
         setBlock(BLOCK,UPG_BLOCK);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyGravityAction(block));
+        addToBot(new ApplyGravityAction(magicNumber));
         addToBot(new GainBlockAction(p,block));
     }
 

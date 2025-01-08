@@ -17,6 +17,10 @@
     "NAME": "防御",
     "DESCRIPTION": "获得 !B! 点 格挡 。"
   },
+  "${modID}:MusicComposition": {
+    "NAME": "作词",
+    "DESCRIPTION": "固有 ， 保留 ， 使用后移除 。开始 tomorimod:音乐 创作。"
+  },
   "${modID}:BlacklistYou": {
     "NAME": "我要拉黑你",
     "DESCRIPTION": "消灭一名敌人，对boss无效。 tomorimod:瞬间 ， 消耗 。",
@@ -77,9 +81,9 @@
   },
   "${modID}:BigGirlsBandEra": {
     "NAME": "大少女乐队时代",
-    "DESCRIPTION": " 虚无 。在你的回合开始时，从3张 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。",
+    "DESCRIPTION": "在你的回合开始时，从3张 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      " 虚无 。在你的回合开始时，从3张随机稀有度的 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。"
+      "在你的回合开始时，从3张随机稀有度的 tomorimod:音乐 牌中选择1张加入手牌，使其本回合耗能变为0并且 消耗 。"
     ]
   },
   "${modID}:DivergeWorld": {
@@ -101,8 +105,8 @@
     "NAME": "换装",
     "DESCRIPTION": "以随机的顺序使用所有具有 tomorimod:形态 的牌。 消耗 。"
   },
-  "${modID}:Grit": {
-    "NAME": "认真",
+  "${modID}:Protect": {
+    "NAME": "守护",
     "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !M! 点 格挡 。"
   },
   "${modID}:PoemInsteadOfSong": {
@@ -115,12 +119,12 @@
     "DESCRIPTION": "选择一名意图为攻击的敌人，将一张等同于其伤害和攻击次数的攻击牌置入手牌。 消耗 。"
   },
   "${modID}:BlankPaperAttack": {
-    "NAME": "书页",
+    "NAME": "内心的呐喊",
     "DESCRIPTION": " 造成 !D! 点伤害 !M! 次。"
   },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
-    "DESCRIPTION": "获得 !M! 层 tomorimod:闪耀 。如果你拥有10层 tomorimod:闪耀 ，获得 tomorimod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
+    "DESCRIPTION": " tomorimod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
@@ -221,16 +225,13 @@
     "NAME": "失落",
     "DESCRIPTION": "获得 !B! 点 格挡 和 tomorimod:重力 。"
   },
-  "${modID}:MusicComposition": {
-    "NAME": "作词",
-    "DESCRIPTION": "固有 ， 保留 ， 使用后移除 。进入 tomorimod:音乐 创作模式。"
-  },
+
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
     "DESCRIPTION": "随机将一张具有 tomorimod:瞬间 的卡牌置入手牌。 消耗 。"
   },
   "${modID}:SmoothCombo": {
-    "NAME": "丝滑小连招",
+    "NAME": "触发连招",
     "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌或者抽牌堆为空。"
   },
 
@@ -247,7 +248,7 @@
   },
   "${modID}:MygoTogether": {
     "NAME": "一起迷失",
-    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在，获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
+    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在。获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
   },
   "${modID}:NeedAnon": {
     "NAME": "需要爱音",
@@ -295,9 +296,9 @@
   },
   "${modID}:SingleThread": {
     "NAME": "单线程",
-    "DESCRIPTION": "如果你没有 tomorimod:缓冲 ，获得 !M! 点 tomorimod:缓冲 。",
+    "DESCRIPTION": "如果你没有 tomorimod:缓冲 ，获得 !M! 层 tomorimod:缓冲 。",
     "EXTENDED_DESCRIPTION": [
-      " 保留 。如果你没有 tomorimod:缓冲 ，获得 !M! 点 tomorimod:缓冲 。"
+      " 保留 。如果你没有 tomorimod:缓冲 ，获得 !M! 层 tomorimod:缓冲 。"
     ]
   },
   "${modID}:Collection": {
@@ -310,9 +311,9 @@
   },
   "${modID}:Compete": {
     "NAME": "对邦",
-    "DESCRIPTION": "选定一名目标， !M! 个回合内对其造成的攻击伤害和受到来自该目标的攻击伤害翻倍。",
+    "DESCRIPTION": "选定一名目标， !M! 个回合其造成的攻击伤害和受到的攻击伤害翻倍。",
     "EXTENDED_DESCRIPTION": [
-      " 保留 。选定一名目标， !M! 个回合内对其造成的攻击伤害和受到来自该目标的攻击伤害翻倍。"
+      " 保留 。选定一名目标， !M! 个回合其造成的攻击伤害和受到的攻击伤害翻倍。"
     ]
   },
   "${modID}:Bitianbanzou": {
@@ -502,7 +503,7 @@
   },
   "${modID}:UikaMygoTogether": {
     "NAME": "一起迷失",
-    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在，获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
+    "DESCRIPTION": " 虚无 。你的 tomorimod:重力 和 tomorimod:闪耀 可以同时存在。获得 !M! 层 tomorimod:重力 和 tomorimod:闪耀 。"
   },
   "${modID}:UikaNeedAnon": {
     "NAME": "需要爱音",

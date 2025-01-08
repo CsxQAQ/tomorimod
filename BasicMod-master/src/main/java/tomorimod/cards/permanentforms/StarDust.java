@@ -34,24 +34,27 @@ public class StarDust extends BaseCard implements PermanentFrom{
         setMagic(MAGIC,UPG_MAGIC);
     }
 
-    @Override
-    public void triggerOnGlowCheck() {
-        if(AbstractDungeon.player.hasPower((makeID("ShinePower")))
-                        &&AbstractDungeon.player.getPower(makeID("ShinePower")).amount>=10){
-            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-        }else{
-            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        }
-    }
+//    @Override
+//    public void triggerOnGlowCheck() {
+//        if(AbstractDungeon.player.hasPower((makeID("ShinePower")))
+//                        &&AbstractDungeon.player.getPower(makeID("ShinePower")).amount>=10){
+//            glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
+//        }else{
+//            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+//        }
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(p.hasPower((makeID("ShinePower")))&&p.getPower(makeID("ShinePower")).amount>=10){
-            addToBot(new ApplyPowerAction(p,p,new StarDustPower(p),0));
-            BaseMonmentCard.removeFromMasterDeck(this);
-            PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
-        }
-        addToBot(new ApplyShineAction(magicNumber));
+//        if(p.hasPower((makeID("ShinePower")))&&p.getPower(makeID("ShinePower")).amount>=10){
+//            addToBot(new ApplyPowerAction(p,p,new StarDustPower(p),0));
+//            BaseMonmentCard.removeFromMasterDeck(this);
+//            PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
+//        }
+        //addToBot(new ApplyShineAction(magicNumber));
+        addToBot(new ApplyPowerAction(p,p,new StarDustPower(p),0));
+        BaseMonmentCard.removeFromMasterDeck(this);
+        PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
     }
 
     @Override

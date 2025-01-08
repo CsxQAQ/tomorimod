@@ -15,8 +15,8 @@ public class Pant extends BaseFormCard {
             1
     );
 
-    public final static int MAGIC = 3;
-    public final static int UPG_MAGIC = 1;
+    public final static int MAGIC = 5;
+    public final static int UPG_MAGIC = 3;
 
     public Pant() {
         super(ID, info);
