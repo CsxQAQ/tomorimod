@@ -264,6 +264,13 @@
     "NAME": "主唱太拼命了",
     "DESCRIPTION": "失去5点生命值，抽 !M! 张牌，获得 !M! 点 [E] 。"
   },
+  "${modID}:SoulView": {
+    "NAME": "灵视",
+    "DESCRIPTION": "从玩家牌组中选择一张牌放入你的手牌。 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "从玩家牌组中选择一张牌放入你的手牌。"
+    ]
+  },
   "${modID}:Saiyaku": {
     "NAME": "糟透了",
     "DESCRIPTION": "将10张 *哈 置入你的手牌，每有一张溢出的卡牌使剩余的 *哈 获得额外3点伤害。 tomorimod:瞬间 ， 消耗 。",
