@@ -17,7 +17,7 @@ public class NeverHappy extends BaseMonmentCard {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.UNCOMMON,
             CardTarget.ALL_ENEMY,
             1
     );

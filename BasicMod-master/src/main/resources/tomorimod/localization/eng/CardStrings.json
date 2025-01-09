@@ -144,7 +144,7 @@
   },
   "${modID}:ShineHugMe": {
     "NAME": "光芒拥我入怀",
-    "DESCRIPTION": "每有1点 tomorimod:闪耀 ，获得1点 [E] "
+    "DESCRIPTION": "每有1点 tomorimod:闪耀 ，获得1点 [E] 。"
   },
   "${modID}:LastGentle": {
     "NAME": "最后的温柔",
@@ -223,7 +223,7 @@
   },
   "${modID}:Upset": {
     "NAME": "失落",
-    "DESCRIPTION": "获得 !B! 点 格挡 和 tomorimod:重力 。"
+    "DESCRIPTION": "获得 !B! 点 格挡 和 !M! 层 tomorimod:重力 。"
   },
 
   "${modID}:MemoryInCrychic": {
@@ -241,9 +241,9 @@
   },
   "${modID}:WhiteMoonlight": {
     "NAME": "白月光",
-    "DESCRIPTION": "恢复当前损失生命值一半的生命值，移除所有的 tomorimod:重力 。 消耗 ， tomorimod:瞬间 。",
+    "DESCRIPTION": "恢复当前损失生命值一半的生命值。移除所有的 tomorimod:重力 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "恢复所有生命值，移除所有的 tomorimod:重力 。 消耗 ， tomorimod:瞬间 。"
+      "恢复所有生命值。移除所有的 tomorimod:重力 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:MygoTogether": {
