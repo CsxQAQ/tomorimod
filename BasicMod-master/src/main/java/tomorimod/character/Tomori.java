@@ -600,65 +600,6 @@ public class Tomori extends CustomPlayer {
         }
     }
 
-
-    @Override
-    public void preBattlePrep(){
-        if (!(Boolean) TipTracker.tips.get("COMBAT_TIP")) {
-            AbstractDungeon.ftue = new MultiPageFtue();
-            TipTracker.neverShowAgain("COMBAT_TIP");
-        }
-
-        AbstractDungeon.actionManager.clear();
-        this.damagedThisCombat = 0;
-        this.cardsPlayedThisTurn = 0;
-        this.maxOrbs = 0;
-        this.orbs.clear();
-        this.increaseMaxOrbSlots(this.masterMaxOrbs, false);
-        this.isBloodied = this.currentHealth <= this.maxHealth / 2;
-        poisonKillCount = 0;
-        GameActionManager.playerHpLastTurn = this.currentHealth;
-        this.endTurnQueued = false;
-        this.gameHandSize = this.masterHandSize;
-        this.isDraggingCard = false;
-        this.isHoveringDropZone = false;
-        this.hoveredCard = null;
-        this.cardInUse = null;
-        this.drawPile.initializeDeck(this.masterDeck);
-        for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-            if(monster instanceof SakiShadowMonster){
-                this.drawPile.clear();
-                AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new WelcomeToAveMujica()));
-            }
-        }
-        AbstractDungeon.overlayMenu.endTurnButton.enabled = false;
-        this.hand.clear();
-        this.discardPile.clear();
-        this.exhaustPile.clear();
-        if (AbstractDungeon.player.hasRelic("SlaversCollar")) {
-            ((SlaversCollar)AbstractDungeon.player.getRelic("SlaversCollar")).beforeEnergyPrep();
-        }
-
-        this.energy.prep();
-        this.powers.clear();
-        this.isEndingTurn = false;
-        this.healthBarUpdatedEvent();
-        if (ModHelper.isModEnabled("Lethality")) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new StrengthPower(this, 3), 3));
-        }
-
-        if (ModHelper.isModEnabled("Terminal")) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new PlatedArmorPower(this, 5), 5));
-        }
-
-        AbstractDungeon.getCurrRoom().monsters.usePreBattleAction();
-        if (Settings.isFinalActAvailable && AbstractDungeon.getCurrMapNode().hasEmeraldKey) {
-            AbstractDungeon.getCurrRoom().applyEmeraldEliteBuff();
-        }
-
-        AbstractDungeon.actionManager.addToTop(new WaitAction(1.0F));
-        this.applyPreCombatLogic();
-    }
-
     @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();

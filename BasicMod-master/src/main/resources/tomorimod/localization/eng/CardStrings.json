@@ -475,19 +475,19 @@
     "DESCRIPTION": "欢迎来到AveＭujica的世界"
   },
   "${modID}:Death": {
-    "NAME": "死亡",
+    "NAME": "顺从",
     "DESCRIPTION": " 不能被打出 。回合结束时对你造成 !M! 点伤害。"
   },
   "${modID}:Fear": {
-    "NAME": "恐惧",
+    "NAME": "聪慧",
     "DESCRIPTION": " 不能被打出 。 保留 。"
   },
   "${modID}:Love": {
-    "NAME": "爱",
+    "NAME": "慈爱",
     "DESCRIPTION": " 不能被打出 。 抽到此牌时获得 !M! 层 虚弱 、 易伤 和 脆弱 。"
   },
   "${modID}:Sad": {
-    "NAME": "悲伤",
+    "NAME": "善良",
     "DESCRIPTION": " 不能被打出 。 回合结束时使 *祥子的幻影 获得 !M! 点 tomorimod:复权 。"
   },
 
