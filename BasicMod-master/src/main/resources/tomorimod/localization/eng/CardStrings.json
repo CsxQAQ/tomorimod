@@ -44,9 +44,9 @@
   },
   "${modID}:WishYouHappiness": {
     "NAME": "祝你幸福",
-    "DESCRIPTION": "获得 !B! 点 格挡 ，获得 !M! 层 tomorimod:临时荆棘 。 tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "获得 !B! 点 格挡 。获得 !M! 层 tomorimod:临时荆棘 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "获得 !B! 点 格挡 ，获得 !M! 层 荆棘 。 tomorimod:瞬间 ， 消耗 。"
+      "获得 !B! 点 格挡 。获得 !M! 层 荆棘 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:WhyPerformChunriying": {
@@ -75,8 +75,8 @@
     "NAME": "圣爱音的行动力",
     "DESCRIPTION": "获得 !M! 点 [E] ，抽牌直到手牌上限。 tomorimod:瞬间 ， 消耗 。"
   },
-  "${modID}:NorthStar": {
-    "NAME": "北极星",
+  "${modID}:GreatFace": {
+    "NAME": "伟大的一张脸",
     "DESCRIPTION": "获得 !M! 层 tomorimod:闪耀 。 tomorimod:瞬间 ， 消耗 。"
   },
   "${modID}:FateCommunity": {
@@ -271,10 +271,14 @@
   },
   "${modID}:SoulView": {
     "NAME": "灵视",
-    "DESCRIPTION": "从玩家牌组中选择一张牌放入你的手牌。 消耗 。",
+    "DESCRIPTION": "从玩家牌组中选择一张卡牌，将其复制置入手牌。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "从玩家牌组中选择一张牌放入你的手牌。"
+      "从玩家牌组中选择一张卡牌，将其复制置入手牌。"
     ]
+  },
+  "${modID}:ShortTermGoal": {
+    "NAME": "短期目标",
+    "DESCRIPTION": "从玩家手牌中选择一张卡牌，回合开始时若该卡牌处于抽牌堆或弃牌堆，将其置入手牌。 消耗 。"
   },
   "${modID}:Saiyaku": {
     "NAME": "糟透了",

@@ -87,6 +87,7 @@ public class TomoriMod implements
         BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
         BaseMod.subscribe(new TakiPressureMonitor());
         BaseMod.subscribe(new DamageNumFrozeMonitor());
+        BaseMod.subscribe(new ShortTermGoalMonitor());
 
     }
 

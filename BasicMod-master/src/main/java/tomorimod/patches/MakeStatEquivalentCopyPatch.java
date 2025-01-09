@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorimod.monsters.taki.TakiPressurePatch;
+import tomorimod.tags.CustomTags;
 
 public class MakeStatEquivalentCopyPatch {
 
@@ -45,6 +46,10 @@ public class MakeStatEquivalentCopyPatch {
             card.isInnate=__instance.isInnate;
             TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.set(card,
                     TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(__instance));
+
+            if(__instance.tags.contains(CustomTags.SHORTTERMGOAL)){
+                card.tags.add(CustomTags.SHORTTERMGOAL);
+            }
 
             return SpireReturn.Return(card);
         }

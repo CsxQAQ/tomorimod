@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import tomorimod.monsters.taki.TakiPressurePatch;
+import tomorimod.tags.CustomTags;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,10 @@ public class CardTipRenderPatch {
             }
             if(TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(___card)&&!keywords.contains(makeID("压力"))){
                 keywords.add(makeID("压力"));
+            }
+
+            if(___card.tags.contains(CustomTags.SHORTTERMGOAL)&&!keywords.contains(makeID("短期目标"))){
+                keywords.add(makeID("短期目标"));
             }
         }
     }
