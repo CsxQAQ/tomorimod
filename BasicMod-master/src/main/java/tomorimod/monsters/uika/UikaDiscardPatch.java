@@ -2,6 +2,7 @@ package tomorimod.monsters.uika;
 
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.Soul;
@@ -9,7 +10,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.combat.EmpowerEffect;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import tomorimod.cards.uikacard.UikaCard;
+
+import java.util.ArrayList;
 
 public class UikaDiscardPatch {
 
@@ -22,13 +27,22 @@ public class UikaDiscardPatch {
     )
     public static class DiscardInsertPatch{
         @SpireInsertPatch(
-                rloc=8
+                locator = Locator.class
         )
         public static void insert(Soul __instance, AbstractCard card, boolean isInvisible, CardGroup ___group, @ByRef Vector2[] ___pos, @ByRef Vector2[] ___target){
             if(card instanceof UikaCard){
                 ___pos[0]=new Vector2(card.current_x,card.current_y);
                 ___target[0]=new Vector2(Settings.WIDTH+200.0f*Settings.scale,Settings.HEIGHT-200.0f*Settings.scale);
                 ___group.removeTopCard();
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Soul.class, "target");
+
+                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+                return new int[]{lines[0]+1};
             }
         }
     }
@@ -70,7 +84,7 @@ public class UikaDiscardPatch {
     )
     public static class updatePatch{
         @SpireInsertPatch(
-                rloc =19
+                locator = Locator.class
         )
         public static SpireReturn<?> insert(Soul __instance){
             if(__instance.card instanceof UikaCard){
@@ -112,6 +126,15 @@ public class UikaDiscardPatch {
                 return SpireReturn.Return();
             }else{
                 return SpireReturn.Continue();
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Soul.class, "isDone");
+
+                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+                return new int[]{lines[0]+2};
             }
         }
     }

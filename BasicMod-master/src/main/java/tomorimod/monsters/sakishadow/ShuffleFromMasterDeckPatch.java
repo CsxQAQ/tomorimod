@@ -3,12 +3,15 @@ package tomorimod.monsters.sakishadow;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -34,13 +37,22 @@ public class ShuffleFromMasterDeckPatch{
     )
     public static class ShuffleReplacePatch{
         @SpireInsertPatch(
-            rloc=6
+            locator = Locator.class
         )
         public static void insert(Soul __instance, AbstractCard card, boolean isInvisible, @ByRef Vector2[] ___pos,
         float ___MASTER_DECK_X,float ___MASTER_DECK_Y){
             if(SoulFieldPatch.isFromMasterDeck.get(__instance)){
                ___pos[0]=new Vector2(___MASTER_DECK_X,___MASTER_DECK_Y);
                //AbstractDungeon.player.drawPile.group.remove(0);
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Soul.class, "pos");
+
+                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+                return new int[]{lines[0]};
             }
         }
     }

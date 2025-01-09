@@ -1,11 +1,18 @@
 package tomorimod.monsters.mutsumi;
 
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CNCardTextColors;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import tomorimod.cards.notshow.Cucumber;
+
+import java.util.ArrayList;
 
 import static tomorimod.TomoriMod.makeID;
 
@@ -16,7 +23,7 @@ public class MutsumiPatch {
     )
     public static class MutsumiGiveCucumberPatch {
         @SpireInsertPatch(
-                rloc=20
+                locator = Locator.class
         )
         public static void insert(){
             for(AbstractMonster monster: AbstractDungeon.getCurrRoom().monsters.monsters){
@@ -29,6 +36,15 @@ public class MutsumiPatch {
                         }
                     }
                 }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(EmptyDeckShuffleAction.class, "isDone");
+
+                int[] lines = LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+                return new int[]{lines[lines.length-1]};
             }
         }
 

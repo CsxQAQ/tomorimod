@@ -59,8 +59,8 @@ import java.util.*;
 
 //TODO 考虑所有insert patch用定位器重写
 //TODO 不用tempcard农
-//TODO 平地摔和乐队练习用另一种窗口
 
+//TODO map图标减小
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
