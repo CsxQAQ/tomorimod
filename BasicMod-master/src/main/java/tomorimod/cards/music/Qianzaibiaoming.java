@@ -89,26 +89,29 @@ public class Qianzaibiaoming extends BaseMusicCard {
 
     @Override
     public void updateDescription(){
-        if (musicRarity != null) {
-            int gravityAmount=0;
-            if(AbstractDungeon.player!=null){
-                if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
-                    gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if (musicRarity != null) {
+                int gravityAmount=0;
+                if(AbstractDungeon.player!=null){
+                    if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
+                        gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
+                    }
+                }
+                switch (musicRarity) {
+                    case COMMON:
+                    case DEFAULT:
+                    case UNCOMMON:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                                +"（拥有"+ gravityAmount+"点重力）";
+                        break;
+                    case RARE:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                                +"（拥有"+gravityAmount+"点重力）";
+                        break;
                 }
             }
-            switch (musicRarity) {
-                case COMMON:
-                case DEFAULT:
-                case UNCOMMON:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
-                            +"（拥有"+ gravityAmount+"点重力）";
-                    break;
-                case RARE:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
-                            +"（拥有"+gravityAmount+"点重力）";
-                    break;
-            }
         }
+
         initializeDescription();
     }
     @Override

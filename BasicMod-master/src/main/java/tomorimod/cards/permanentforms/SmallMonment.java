@@ -72,16 +72,18 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
     @Override
     public void update(){
         super.update();
-        if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>=magicNumber){
-            if(!isNameChanged){
-                changeToWholeLife();
-                isNameChanged=true;
-            }
-        }else{
-            if(curMusicDiscoveredNum!=SaveMusicDiscoverd.getInstance().musicDiscoveredNum){
-                curMusicDiscoveredNum=SaveMusicDiscoverd.getInstance().musicDiscoveredNum;
-                rawDescription=CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（当前数量："+SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
-                initializeDescription();
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if(SaveMusicDiscoverd.getInstance().musicDiscoveredNum>=magicNumber){
+                if(!isNameChanged){
+                    changeToWholeLife();
+                    isNameChanged=true;
+                }
+            }else{
+                if(curMusicDiscoveredNum!=SaveMusicDiscoverd.getInstance().musicDiscoveredNum){
+                    curMusicDiscoveredNum=SaveMusicDiscoverd.getInstance().musicDiscoveredNum;
+                    rawDescription=CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（当前数量："+SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
+                    initializeDescription();
+                }
             }
         }
     }

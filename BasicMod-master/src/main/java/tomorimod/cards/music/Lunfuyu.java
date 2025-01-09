@@ -2,6 +2,7 @@ package tomorimod.cards.music;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -54,26 +55,30 @@ public class Lunfuyu extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        //addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        addToBot(new DamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public void updateDescription(){
         //super.updateDescription();
-        if (musicRarity != null) {
-            switch (musicRarity) {
-                case COMMON:
-                case DEFAULT:
-                case UNCOMMON:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
-                            +"（本回合生命恢复"+LunfuyuMonitor.hpIncreaseNum+"点）";
-                    break;
-                case RARE:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
-                            +"（本回合生命变化"+LunfuyuMonitor.hpChangeNum+"点）";
-                    break;
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if (musicRarity != null) {
+                switch (musicRarity) {
+                    case COMMON:
+                    case DEFAULT:
+                    case UNCOMMON:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                                +"（本回合生命恢复"+LunfuyuMonitor.hpIncreaseNum+"点）";
+                        break;
+                    case RARE:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                                +"（本回合生命变化"+LunfuyuMonitor.hpChangeNum+"点）";
+                        break;
+                }
             }
         }
+
         initializeDescription();
     }
 

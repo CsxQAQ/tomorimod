@@ -41,7 +41,9 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
 
 
     public void updateDescription(){
-        rawDescription= CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（当前数量："+ SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            rawDescription= CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+"（当前数量："+ SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
+        }
         initializeDescription();
     }
 

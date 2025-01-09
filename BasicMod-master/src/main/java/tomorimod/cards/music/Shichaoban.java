@@ -63,20 +63,23 @@ public class Shichaoban extends BaseMusicCard {
 
     @Override
     public void updateDescription(){
-        if (musicRarity != null) {
-            switch (musicRarity) {
-                case COMMON:
-                case DEFAULT:
-                case UNCOMMON:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
-                            +"（当前基础伤害："+baseDamage+ "）";
-                    break;
-                case RARE:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
-                            +"（当前基础伤害："+baseDamage+ "）";
-                    break;
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if (musicRarity != null) {
+                switch (musicRarity) {
+                    case COMMON:
+                    case DEFAULT:
+                    case UNCOMMON:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
+                                +"（当前基础伤害："+baseDamage+ "）";
+                        break;
+                    case RARE:
+                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
+                                +"（当前基础伤害："+baseDamage+ "）";
+                        break;
+                }
             }
         }
+
         initializeDescription();
     }
 

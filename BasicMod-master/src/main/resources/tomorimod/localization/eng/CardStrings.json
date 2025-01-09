@@ -96,7 +96,7 @@
   },
   "${modID}:Recycle": {
     "NAME": "回收",
-    "DESCRIPTION": "使用后移除。将消耗牌堆洗牌后加入抽牌堆（ 状态 牌和 诅咒 牌除外）。"
+    "DESCRIPTION": "使用后移除。将消耗牌堆洗牌后加入抽牌堆（ 状态牌 和 诅咒 牌除外）。"
   },
   "${modID}:YourTenDraws": {
     "NAME": "十连",
