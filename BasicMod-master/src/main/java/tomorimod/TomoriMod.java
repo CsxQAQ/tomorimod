@@ -3,8 +3,16 @@ package tomorimod;
 import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
+import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.EventUtils;
+import basemod.eventUtil.util.Condition;
 import basemod.interfaces.*;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
+import com.megacrit.cardcrawl.dungeons.TheCity;
+import com.megacrit.cardcrawl.dungeons.TheEnding;
+import com.megacrit.cardcrawl.events.shrines.Nloth;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.clapper.util.classutil.ClassFilter;
@@ -16,6 +24,7 @@ import tomorimod.configs.TomoriConfig;
 import tomorimod.configs.UnlockedAscension;
 import tomorimod.consoles.IncreaseRarityCommon;
 import tomorimod.consoles.ShowRecipesCommon;
+import tomorimod.events.EventForReplace;
 import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
@@ -60,7 +69,8 @@ import java.util.*;
 //TODO 考虑所有insert patch用定位器重写
 //TODO 不用tempcard农
 
-//TODO 卡牌power图片
+//TODO 删除某个事件，让某个事件只有tomori触发
+//TODO 优化systemevent
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
@@ -93,7 +103,17 @@ public class TomoriMod implements
     }
 
     public static void receiveEvent() {
-        BaseMod.addEvent(SystemEvent.ID,SystemEvent.class, Exordium.ID);
+        BaseMod.addEvent(new AddEventParams.Builder(SystemEvent.ID, SystemEvent.class)
+                .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(EventForReplace.ID, EventForReplace.class).dungeonID(TheEnding.ID)
+//                        .overrideEvent(Nloth.ID).eventType(EventUtils.EventType.FULL_REPLACE).spawnCondition(new Condition(){
+//                    @Override
+//                    public boolean test() {
+//                        return true;
+//                    }
+//                }).create());
+
+
     }
 
     public static void receiveReward(){
@@ -149,6 +169,7 @@ public class TomoriMod implements
         receiveReward();
         receiveScreen();
         receiveEvent();
+
         receiveMonstor();
 
         RegisterSaveData.saveData();
