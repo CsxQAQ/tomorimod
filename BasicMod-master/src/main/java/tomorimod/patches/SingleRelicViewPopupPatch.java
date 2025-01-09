@@ -2,6 +2,7 @@ package tomorimod.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleRelicViewPopup;
 
@@ -17,11 +18,9 @@ public class SingleRelicViewPopupPatch {
     )
     public static class SingleRelicViewPopupPreClosePatch {
 
-        @SpireInsertPatch(
-                rloc=0
-        )
-        public static void setRelicWindowOpenedTure() {
-            SingleRelicViewPopupPatch.isRelicWindowOpened=false;
+        @SpirePrefixPatch
+        public static void prefix() {
+            isRelicWindowOpened=false;
         }
     }
 
@@ -35,10 +34,8 @@ public class SingleRelicViewPopupPatch {
     )
     public static class SingleRelicViewPopupPreOpenPatch {
 
-        @SpireInsertPatch(
-                rloc=0
-        )
-        public static void setRelicWindowOpenedTure() {
+        @SpirePrefixPatch
+        public static void prefix () {
             isRelicWindowOpened=true;
         }
     }

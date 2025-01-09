@@ -1,14 +1,17 @@
 package tomorimod.patches;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.EnableEndTurnButtonAction;
+import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+
+import java.util.ArrayList;
 
 @SpirePatch(
         clz = GameActionManager.class,
@@ -16,7 +19,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 )
 public class GameActionManagerPatch {
     @SpireInsertPatch(
-        rloc = 247
+        locator = Locator.class
     )
     public static SpireReturn insert(GameActionManager __instance){
         AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
@@ -40,6 +43,15 @@ public class GameActionManagerPatch {
             AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new EnableEndTurnButtonAction());
         }
         return SpireReturn.Return();
+    }
+
+    private static class Locator extends SpireInsertLocator {
+        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+            Matcher finalMatcher = new Matcher.FieldAccessMatcher(GameActionManager.class, "damageReceivedThisTurn");
+
+            int[] lines = LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            return new int[]{lines[lines.length-1] + 1};
+        }
     }
 
 }
