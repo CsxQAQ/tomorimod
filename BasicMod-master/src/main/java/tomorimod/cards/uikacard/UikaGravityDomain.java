@@ -5,15 +5,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
-import tomorimod.cards.forms.DomainExpansion;
+import tomorimod.cards.forms.GravityDomain;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.forms.DomainExpansionPower;
 import tomorimod.util.CardStats;
 
-public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
+public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
 
-    public static final String ID = makeID(UikaDomainExpansion.class.getSimpleName());
+    public static final String ID = makeID(UikaGravityDomain.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -25,7 +25,7 @@ public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
     public final static int MAGIC = 3;
     public final static int UPG_MAGIC = 0;
 
-    public UikaDomainExpansion() {
+    public UikaGravityDomain() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
     }
@@ -33,7 +33,7 @@ public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
 
     @Override
     public AbstractCard makeCopy() {
-        return new UikaDomainExpansion();
+        return new UikaGravityDomain();
     }
 
 
@@ -45,7 +45,7 @@ public class UikaDomainExpansion extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new DomainExpansionPower(uikaMonster, DomainExpansion.MAGIC),DomainExpansion.MAGIC));
+                new DomainExpansionPower(uikaMonster, GravityDomain.MAGIC), GravityDomain.MAGIC));
         super.uikaUse(uikaMonster);
     }
 }

@@ -1,10 +1,12 @@
 package tomorimod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
@@ -31,8 +33,9 @@ public class Red extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DrawCardAction(magicNumber));
-        addToBot(new GainEnergyAction(1));
+        addToBot(new ApplyPowerAction(p,p,new StrengthPower(p,magicNumber),magicNumber));
+        //addToBot(new DrawCardAction(magicNumber));
+        //addToBot(new GainEnergyAction(1));
 
     }
 

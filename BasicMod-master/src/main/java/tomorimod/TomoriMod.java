@@ -62,6 +62,9 @@ import java.util.*;
 //TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 
 //TODO 考虑所有insert patch用定位器重写
+//TODO 熙熙攘攘我们的街道，重复获得升级稀有度
+//TODO 选择保留手牌或保留耗能的音乐
+//TODO neverhappy改为skill
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

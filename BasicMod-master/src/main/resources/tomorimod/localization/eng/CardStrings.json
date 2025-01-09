@@ -158,8 +158,8 @@
     "NAME": "暗黑型高松灯",
     "DESCRIPTION": "tomorimod:形态 ：切换 tomorimod:形态 时，获得 !M! 层 仪式 。 消耗 。"
   },
-  "${modID}:DomainExpansion": {
-    "NAME": "重力展开",
+  "${modID}:GravityDomain": {
+    "NAME": "重力领域",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:Mascot": {
@@ -196,7 +196,7 @@
   },
   "${modID}:Red": {
     "NAME": "花瓣",
-    "DESCRIPTION": "抽 !M! 张牌，获得1点 [E] 。拥有最高等级的红色 tomorimod:素材 。"
+    "DESCRIPTION": "获得 !M! 层 力量 。拥有最高等级的红色 tomorimod:素材 。"
   },
   "${modID}:Green": {
     "NAME": "企鹅创可贴",
@@ -469,8 +469,8 @@
     "NAME": "偏离世界",
     "DESCRIPTION": "攻击时触发 tomorimod:重力 的效果。"
   },
-  "${modID}:UikaDomainExpansion": {
-    "NAME": "重力展开",
+  "${modID}:GravityUikaDomain": {
+    "NAME": "重力领域",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
   "${modID}:UikaDoughnut": {

@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class DomainExpansion extends BaseFormCard {
+public class GravityDomain extends BaseFormCard {
 
-    public static final String ID = makeID(DomainExpansion.class.getSimpleName());
+    public static final String ID = makeID(GravityDomain.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -18,7 +18,7 @@ public class DomainExpansion extends BaseFormCard {
     public final static int MAGIC = 3;
     public final static int UPG_MAGIC = 0;
 
-    public DomainExpansion() {
+    public GravityDomain() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
@@ -31,7 +31,7 @@ public class DomainExpansion extends BaseFormCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new DomainExpansion();
+        return new GravityDomain();
     }
 
     @Override

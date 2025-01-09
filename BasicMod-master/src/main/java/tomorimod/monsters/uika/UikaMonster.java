@@ -174,7 +174,7 @@ public class UikaMonster extends BaseMonster {
                 if(!isDomainExpansionUsed){
                     setMove((byte) 11, Intent.BUFF);
                     // 先创建卡
-                    cardForShow1 = new UikaDomainExpansion();
+                    cardForShow1 = new UikaGravityDomain();
                     cardForShow2 = new UikaLiveForever();
                     isDomainExpansionUsed=true;
                 }else{
