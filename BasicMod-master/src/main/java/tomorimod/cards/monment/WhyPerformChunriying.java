@@ -34,36 +34,36 @@ public class WhyPerformChunriying extends BaseMonmentCard {
     public static final int MAGIC = 2;
     public static final int UPG_MAGIC = 1;
 
-    public static final ArrayList<String> imagePaths = new ArrayList<>();
-    public float timeElapsed = 0f;
-    public float interval = 0.04f;
-    public int currentImageIndex = 0;
-    public static final int totalImages = 61;
+//    public static final ArrayList<String> imagePaths = new ArrayList<>();
+//    public float timeElapsed = 0f;
+//    public float interval = 0.04f;
+//    public int currentImageIndex = 0;
+//    public static final int totalImages = 61;
 
 
-    static {
-        for (int i = 1; i <= totalImages; i++) {
+//    static {
+//        for (int i = 1; i <= totalImages; i++) {
+//
+//            imagePaths.add(imagePath("cards/WhyPerformChunriying/" + i + ".png"));
+//        }
+//    }
 
-            imagePaths.add(imagePath("cards/WhyPerformChunriying/" + i + ".png"));
-        }
-    }
-
-    @Override
-    public void update() {
-        super.update();
-        timeElapsed += graphics.getDeltaTime();
-
-        if (timeElapsed >= interval) {
-            timeElapsed = 0f;
-            currentImageIndex++;
-
-            if (currentImageIndex >= totalImages) {
-                currentImageIndex = 0;
-            }
-
-            loadCardImage(imagePaths.get(currentImageIndex));
-        }
-    }
+//    @Override
+//    public void update() {
+//        super.update();
+//        timeElapsed += graphics.getDeltaTime();
+//
+//        if (timeElapsed >= interval) {
+//            timeElapsed = 0f;
+//            currentImageIndex++;
+//
+//            if (currentImageIndex >= totalImages) {
+//                currentImageIndex = 0;
+//            }
+//
+//            loadCardImage(imagePaths.get(currentImageIndex));
+//        }
+//    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -61,6 +61,7 @@ import java.util.*;
 //TODO 不用tempcard农
 
 //TODO map图标减小
+//TODO 卡牌power图片
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

@@ -269,8 +269,8 @@
     "NAME": "主唱太拼命了",
     "DESCRIPTION": "失去5点生命值，抽 !M! 张牌，获得 !M! 点 [E] 。"
   },
-  "${modID}:SoulView": {
-    "NAME": "灵视",
+  "${modID}:ElectricWave": {
+    "NAME": "电波",
     "DESCRIPTION": "从玩家牌组中选择一张卡牌，将其复制置入手牌。 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "从玩家牌组中选择一张卡牌，将其复制置入手牌。"

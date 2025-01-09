@@ -1,6 +1,5 @@
 package tomorimod.cards.customcards;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,11 +7,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.SoulViewAction;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
-import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.util.CardStats;
 
-public class SoulView extends BaseCard {
-    public static final String ID = makeID(SoulView.class.getSimpleName());
+public class ElectricWave extends BaseCard {
+    public static final String ID = makeID(ElectricWave.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -21,7 +19,7 @@ public class SoulView extends BaseCard {
             1
     );
 
-    public SoulView() {
+    public ElectricWave() {
         super(ID, info);
         exhaust=true;
     }
@@ -53,7 +51,7 @@ public class SoulView extends BaseCard {
 
     @Override
     public AbstractCard makeCopy() { //Optional
-        return new SoulView();
+        return new ElectricWave();
     }
 
 }
