@@ -496,7 +496,7 @@
     "NAME": "偏离世界",
     "DESCRIPTION": "攻击时触发 tomorimod:重力 的效果。"
   },
-  "${modID}:GravityUikaDomain": {
+  "${modID}:UikaGravityDomain": {
     "NAME": "重力领域",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },

@@ -46,8 +46,8 @@ public class AnonMonster extends BaseMonster {
     public static ArrayList<String> chordAbsorbed=new ArrayList<>();
 
     // 怪物血量
-    private static final int HP_MIN = 200;
-    private static final int HP_MAX = 200;
+    private static final int HP_MIN = 230;
+    private static final int HP_MAX = 230;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -86,9 +86,9 @@ public class AnonMonster extends BaseMonster {
 
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 16, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, 18, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
 
     }
 
@@ -127,26 +127,26 @@ public class AnonMonster extends BaseMonster {
                 break;
             case 2:
                 AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                        this.damage.get(4), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                        this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 break;
             case 11:
                 for(int i=0;i<2;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                            this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                            this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
 
                 break;
             case 12:
                 for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                            this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                            this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
 
                 break;
             case 13:
                 for(int i=0;i<3;i++){
                     AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                            this.damage.get(3), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                            this.damage.get(4), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                 }
                 break;
         }

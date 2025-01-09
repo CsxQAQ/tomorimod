@@ -88,8 +88,8 @@ public class RanaMonster extends BaseMonster {
         this.drawX=DRAW_X*Settings.scale;
         this.drawY=DRAW_Y*Settings.scale;
 
-        this.damage.add(new DamageInfo(this, 10, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 8, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, 12, DamageInfo.DamageType.NORMAL));
 
         addToBot(new ApplyPowerAction(this,this,new IntangiblePlayerPower(this,999),999));
         addToBot(new ApplyPowerAction(this,this,new RanaFreeCatPower(this)));

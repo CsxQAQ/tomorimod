@@ -52,7 +52,7 @@ public class ShuffleFromMasterDeckPatch{
                 Matcher finalMatcher = new Matcher.FieldAccessMatcher(Soul.class, "pos");
 
                 int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-                return new int[]{lines[0]};
+                return new int[]{lines[0]+1};
             }
         }
     }

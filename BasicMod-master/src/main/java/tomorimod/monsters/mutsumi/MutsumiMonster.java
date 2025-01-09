@@ -332,6 +332,9 @@ public class MutsumiMonster extends SpecialMonster {
         super.die();
 
         if (this.currentHealth <= 0) {
+            if(!soyoMonster.isDeadOrEscaped()){
+                soyoMonster.escape();
+            }
             useFastShakeAnimation(5.0F);
             CardCrawlGame.screenShake.rumble(4.0F);
             onBossVictoryLogic();
