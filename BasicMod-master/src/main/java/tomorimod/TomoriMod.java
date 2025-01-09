@@ -55,17 +55,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
-//TODO 特效变革，感觉变革可以删了
 //TODO 平衡性调整
-//TODO 削弱认真，我们是mygo每场战斗最多生效3次，认真改个名
-//TODO 变革删除
-//TODO 选择X张手牌消耗，然后使剩下的手牌获得保留
 
 //TODO 考虑所有insert patch用定位器重写
-//TODO 熙熙攘攘我们的街道，重复获得升级稀有度
-//TODO 选择保留手牌或保留耗能的音乐
-//TODO neverhappy改为skill
-//TODO 夜影染bug
+//TODO 不用tempcard农
+
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

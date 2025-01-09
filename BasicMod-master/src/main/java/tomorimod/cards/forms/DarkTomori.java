@@ -16,7 +16,7 @@ public class DarkTomori extends BaseFormCard {
     );
 
     public final static int MAGIC = 1;
-    public final static int UPG_MAGIC = 0;
+    public final static int UPG_MAGIC = 1;
 
     public DarkTomori() {
         super(ID, info);
@@ -35,11 +35,4 @@ public class DarkTomori extends BaseFormCard {
         return new DarkTomori();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
-    }
 }
