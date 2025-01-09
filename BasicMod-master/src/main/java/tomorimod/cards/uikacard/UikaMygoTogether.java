@@ -21,7 +21,7 @@ public class UikaMygoTogether extends UikaCard implements WithoutMaterial {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
 

@@ -19,7 +19,7 @@ public class MygoTogether extends BaseCard {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
 
@@ -44,12 +44,12 @@ public class MygoTogether extends BaseCard {
         return new MygoTogether();
     }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
-    }
+//    @Override
+//    public void upgrade() {
+//        if (!upgraded) {
+//            upgradeName();
+//            upgradeBaseCost(1);
+//        }
+//    }
 
 }

@@ -17,7 +17,7 @@ public class ConveyFeeling extends BaseCard {
             CardType.POWER,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public static int maxHPOverflow=0;
@@ -39,7 +39,7 @@ public class ConveyFeeling extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }
