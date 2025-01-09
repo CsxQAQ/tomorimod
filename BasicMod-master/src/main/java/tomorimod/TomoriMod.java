@@ -65,6 +65,7 @@ import java.util.*;
 //TODO 熙熙攘攘我们的街道，重复获得升级稀有度
 //TODO 选择保留手牌或保留耗能的音乐
 //TODO neverhappy改为skill
+//TODO 夜影染bug
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

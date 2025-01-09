@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.savedata.Clearable;
 import tomorimod.savedata.SaveDataInstanceFactory;
 
@@ -124,7 +125,7 @@ public class CraftingRecipes implements Clearable {
 
     public void initializeCardsMaterials(){
         for(AbstractCard card : CardLibrary.getAllCards()){
-            if(!(card instanceof WithoutMaterial)
+            if(!(card instanceof SpecialCard)
                     && card.type != AbstractCard.CardType.CURSE
                     && card.type != AbstractCard.CardType.STATUS){
                 cardMaterialHashMap.put(card.cardID, getRandomMaterials());
@@ -133,26 +134,21 @@ public class CraftingRecipes implements Clearable {
             }
         }
 
-        // 使用枚举替代硬编码字符串
         cardMaterialHashMap.put(makeID("Yellow"), Material.YELLOW);
         cardMaterialHashMap.put(makeID("Green"), Material.GREEN);
         cardMaterialHashMap.put(makeID("Red"), Material.RED);
         cardMaterialHashMap.put(makeID("AquariumPass"), Material.AQUARIUMPASS);
 
-        // 确保 "Strike" 和 "Defend" 的材料不同
         while(cardMaterialHashMap.get(makeID("Strike")).equals(cardMaterialHashMap.get(makeID("Defend")))){
             cardMaterialHashMap.put(makeID("Strike"), getRandomMaterials());
         }
 
-        // 确保 "Mascot" 的材料不同于 "Strike" 和 "Defend"
         while(cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Strike")))
                 || cardMaterialHashMap.get(makeID("Mascot")).equals(cardMaterialHashMap.get(makeID("Defend")))){
             cardMaterialHashMap.put(makeID("Mascot"), getRandomMaterials());
         }
 
-        // 将 "Singer" 和 "HaAnon" 的材料设置为其他卡的材料
         cardMaterialHashMap.put(makeID("Singer"), cardMaterialHashMap.get(makeID("Mascot")));
-        //cardMaterialHashMap.put(makeID("HaAnon"), cardMaterialHashMap.get(makeID("HaTaki")));
     }
 
 

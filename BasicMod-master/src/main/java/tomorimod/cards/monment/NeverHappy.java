@@ -16,7 +16,7 @@ public class NeverHappy extends BaseMonmentCard {
     public static final String ID = makeID(NeverHappy.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
-            CardType.ATTACK,
+            CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.ALL_ENEMY,
             1

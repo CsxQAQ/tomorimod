@@ -55,7 +55,7 @@
   },
   "${modID}:Motivate": {
     "NAME": "激励",
-    "DESCRIPTION": "获得 !M! 点 力量 。 tomorimod:瞬间 。"
+    "DESCRIPTION": "造成 !D! 点伤害。如果本场战斗中打出的上一张牌的 tomorimod:素材 颜色与该牌相同，额外攻击一次。"
   },
   "${modID}:NeverHappy": {
     "NAME": "从没觉得开心过",
@@ -407,12 +407,27 @@
       " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
     ]
   },
+  "${modID}:Huifutu": {
+    "NAME": "回浮屠",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。选择一项： 保留 手牌到下一回合，或保留剩余 [E] 到下一回合。",
+    "EXTENDED_DESCRIPTION": [
+      " tomorimod:音乐 。造成 !D! 点伤害。 保留 手牌和剩余 [E] 到下一回合。"
+    ]
+  },
   "${modID}:Chunriying": {
     "NAME": "春日影",
     "DESCRIPTION": " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
     ]
+  },
+  "${modID}:HuifutuRetainCards": {
+    "NAME": "回浮屠",
+    "DESCRIPTION": " 保留 手牌到下一回合。"
+  },
+  "${modID}:HuifutuRetainEnergy": {
+    "NAME": "回浮屠",
+    "DESCRIPTION": " 保留 剩余 [E] 到下一回合。"
   },
   "${modID}:FailComposition": {
     "NAME": "失败的创作",

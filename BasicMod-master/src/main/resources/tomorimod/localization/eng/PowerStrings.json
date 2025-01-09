@@ -167,6 +167,18 @@
       "记录从手牌中使用的下一张卡牌的类型，然后打出抽牌堆顶的牌，重复此效果直到打出一张类型与之不同的卡牌或者抽牌堆为空。"
     ]
   },
+  "${modID}:RetainCardsPower": {
+    "NAME": "保留卡牌",
+    "DESCRIPTIONS":[
+      " #y保留 手牌到下一回合。"
+    ]
+  },
+  "${modID}:RetainEnergyPower": {
+    "NAME": "保留能量",
+    "DESCRIPTIONS":[
+      " #y保留 剩余能量到下一回合。"
+    ]
+  },
 
 
 
