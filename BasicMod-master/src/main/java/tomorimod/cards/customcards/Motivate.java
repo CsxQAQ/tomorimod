@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -14,6 +15,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.savedata.customdata.CraftingRecipes;
+import tomorimod.savedata.customdata.SaveMusicDiscoverd;
 import tomorimod.util.CardStats;
 
 public class Motivate extends BaseCard {
@@ -36,8 +38,15 @@ public class Motivate extends BaseCard {
     }
 
     @Override
-    public void use(AbstractPlayer p, AbstractMonster m) {
+    public void updateDescription(){
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            rawDescription= CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+
+                    "（额外攻击："+ calculateAttackNum()+"）";
+        }
+        initializeDescription();
+    }
 
+    public int calculateAttackNum(){
         CraftingRecipes.Material currentMaterial = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this);
 
         int consecutiveSameMaterialCount = 0;
@@ -51,12 +60,21 @@ public class Motivate extends BaseCard {
                 break;
             }
         }
+        return consecutiveSameMaterialCount;
+    }
 
-        for (int i = 0; i < consecutiveSameMaterialCount; i++) {
+    @Override
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        for (int i = 0; i < calculateAttackNum(); i++) {
             addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL),
                     AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
+    }
 
+    @Override
+    public void update(){
+        super.update();
+        updateDescription();
     }
 
     @Override
