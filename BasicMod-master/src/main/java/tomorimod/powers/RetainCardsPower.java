@@ -23,6 +23,7 @@ public class RetainCardsPower extends BasePower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
+            flash();
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 if (!c.isEthereal) {
                     c.retain = true;

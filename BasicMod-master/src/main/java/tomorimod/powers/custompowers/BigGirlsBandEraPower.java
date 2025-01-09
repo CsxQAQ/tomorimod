@@ -21,6 +21,7 @@ public class BigGirlsBandEraPower extends BasePower {
 
     @Override
     public void atStartOfTurn() {
+        flash();
         for(int i=0;i<amount;i++){
             addToBot(new BigGirlsBandEraAction(false));
         }

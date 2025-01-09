@@ -41,10 +41,10 @@ public class CompeteMonsterPower extends BasePower {
         }
     }
 
-    @Override
-    public void onDeath() {
-        if(AbstractDungeon.player.hasPower(makeID("CompetePower"))){
-            addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player,owner,makeID("CompetePower")));
-        }
-    }
+//    @Override
+//    public void onDeath() {
+//        if(AbstractDungeon.player.hasPower(makeID("CompetePower"))){
+//            addToBot(new RemoveSpecificPowerAction(AbstractDungeon.player,owner,makeID("CompetePower")));
+//        }
+//    }
 }

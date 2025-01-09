@@ -25,6 +25,7 @@ public class DivergeWorldPower extends BasePower {
 
     @Override
     public void onAttack(DamageInfo info, int damageAmount,AbstractCreature target) {
+        flash();
         if (info.type != DamageInfo.DamageType.THORNS) {
             flash();
             if(owner == AbstractDungeon.player){

@@ -25,6 +25,7 @@ public class TomoriApotheosisPower extends BasePower {
 
     @Override
     public void atStartOfTurn() {
+        flash();
         //isAnyCardUpgrade=false;
         AbstractPlayer p= AbstractDungeon.player;
         for(int i=0;i<amount;i++){
@@ -40,7 +41,6 @@ public class TomoriApotheosisPower extends BasePower {
             });
 
         }
-        this.flash();
         CardCrawlGame.sound.play("CARD_UPGRADE");
     }
 

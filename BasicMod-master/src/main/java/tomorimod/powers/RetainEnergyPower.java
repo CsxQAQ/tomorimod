@@ -24,6 +24,7 @@ public class RetainEnergyPower extends BasePower {
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
+            flash();
             amount2= EnergyPanel.totalCount;
         }
     }

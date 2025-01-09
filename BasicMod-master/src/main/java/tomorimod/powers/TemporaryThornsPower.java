@@ -21,7 +21,6 @@ public class TemporaryThornsPower extends BasePower {
 
     @Override
     public void atEndOfRound() {
-        flash();
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, POWER_ID));
     }
 

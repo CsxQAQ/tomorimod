@@ -24,6 +24,7 @@ public class WeAreMygoPower extends BasePower {
     @Override
     public void onAfterCardPlayed(AbstractCard usedCard) {
         if(usedCard instanceof BaseMonmentCard){
+            flash();
             AbstractDungeon.player.increaseMaxHp(5,true);
         }
     }
