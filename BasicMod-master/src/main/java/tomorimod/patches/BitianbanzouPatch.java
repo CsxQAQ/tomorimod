@@ -12,11 +12,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
-import tomorimod.cards.music.Yeyingran;
+import tomorimod.cards.music.Bitianbanzou;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class YeyingranPatch{
+public class BitianbanzouPatch {
     @SpirePatch(
             clz = VigorPower.class,
             method = "onUseCard"
@@ -56,10 +56,10 @@ public class YeyingranPatch{
     public static class UseCardActionPatch{
         @SpirePostfixPatch
         public static void postfix(){
-            if(Yeyingran.vigorNum>0){
+            if(Bitianbanzou.vigorNum>0){
                 AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player,
-                        AbstractDungeon.player,new VigorPower(AbstractDungeon.player,Yeyingran.vigorNum),Yeyingran.vigorNum));
-                Yeyingran.vigorNum=0;
+                        AbstractDungeon.player,new VigorPower(AbstractDungeon.player, Bitianbanzou.vigorNum), Bitianbanzou.vigorNum));
+                Bitianbanzou.vigorNum=0;
             }
         }
     }

@@ -324,8 +324,8 @@
       " 保留 。选定一名目标， !M! 个回合其造成的攻击伤害和受到的攻击伤害翻倍。"
     ]
   },
-  "${modID}:Bitianbanzou": {
-    "NAME": "碧天伴走",
+  "${modID}:Yeyingran": {
+    "NAME": "夜隠染",
     "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，造成等同于目标身上负面效果数量的伤害。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，造成等同于目标身上负面效果数量的伤害。"
@@ -401,8 +401,8 @@
       " tomorimod:音乐 。获得 !B! 点 格挡 。对所有敌人造成当前 格挡 数的伤害。"
     ]
   },
-  "${modID}:Yeyingran": {
-    "NAME": "夜隠染",
+  "${modID}:Bitianbanzou": {
+    "NAME": "碧天伴走",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。 活力 效果改为在使用攻击牌后减少1层。"
