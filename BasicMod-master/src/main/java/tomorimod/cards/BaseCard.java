@@ -3,6 +3,7 @@ package tomorimod.cards;
 import basemod.BaseMod;
 import basemod.abstracts.CustomCard;
 import basemod.abstracts.DynamicVariable;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import tomorimod.TomoriMod;
 import tomorimod.util.CardStats;
 import tomorimod.util.TriFunction;
@@ -29,7 +30,7 @@ public abstract class BaseCard extends CustomCard {
 
     @Override
     public void onChoseThisOption() {
-        AbstractDungeon.player.hand.addToHand(this.makeStatEquivalentCopy());
+        addToBot(new MakeTempCardInHandAction(this.makeStatEquivalentCopy()));
     }
 
     public BaseCard(String ID, CardStats info) {
