@@ -41,7 +41,7 @@
       "切换 #y形态 时，获得 #b"
     ]
   },
-  "${modID}:DomainExpansionPower": {
+  "${modID}:GravityDomainPower": {
     "NAME": "领域展开",
     "DESCRIPTIONS": [
       "回合结束时，获得 #b"
@@ -83,8 +83,8 @@
       "攻击伤害提升 #b"
     ]
   },
-  "${modID}:YeyingranPower": {
-    "NAME": "夜影染",
+  "${modID}:BitianbanzouPower": {
+    "NAME": "碧天伴走",
     "DESCRIPTIONS": [
       "使用攻击牌后 #y活力 效果不再移除，而是改为减少 #b1 层。"
     ]
@@ -168,13 +168,13 @@
     ]
   },
   "${modID}:RetainCardsPower": {
-    "NAME": "保留卡牌",
+    "NAME": "回層浮-保留卡牌",
     "DESCRIPTIONS":[
       " #y保留 手牌到下一回合。"
     ]
   },
   "${modID}:RetainEnergyPower": {
-    "NAME": "保留能量",
+    "NAME": "回層浮-保留能量",
     "DESCRIPTIONS":[
       " #y保留 剩余能量到下一回合。"
     ]

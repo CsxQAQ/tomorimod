@@ -71,9 +71,9 @@ public abstract class BaseFormCard extends BaseCard {
         powerMap.put(new FormInfo("DarkTomoriPower", DarkTomori.MAGIC+ DarkTomori.UPG_MAGIC),
                 (player) -> new DarkTomoriPower(player, DarkTomori.MAGIC+ DarkTomori.UPG_MAGIC));
         powerMap.put(new FormInfo("DomainExpansionPower", GravityDomain.MAGIC),
-                (player) -> new DomainExpansionPower(player, GravityDomain.MAGIC));
+                (player) -> new GravityDomainPower(player, GravityDomain.MAGIC));
         powerMap.put(new FormInfo("DomainExpansionPower", GravityDomain.MAGIC+ GravityDomain.UPG_MAGIC),
-                (player) -> new DomainExpansionPower(player, GravityDomain.MAGIC+ GravityDomain.UPG_MAGIC));
+                (player) -> new GravityDomainPower(player, GravityDomain.MAGIC+ GravityDomain.UPG_MAGIC));
         powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC),
                 (player) -> new MascotPower(player, Mascot.MAGIC));
         powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC+Mascot.UPG_MAGIC),

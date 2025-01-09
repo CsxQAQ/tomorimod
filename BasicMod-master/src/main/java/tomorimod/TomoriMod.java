@@ -60,7 +60,6 @@ import java.util.*;
 //TODO 考虑所有insert patch用定位器重写
 //TODO 不用tempcard农
 
-//TODO map图标减小
 //TODO 卡牌power图片
 @SpireInitializer
 public class TomoriMod implements

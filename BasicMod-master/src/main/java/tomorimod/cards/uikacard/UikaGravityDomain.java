@@ -8,7 +8,7 @@ import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.forms.GravityDomain;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
-import tomorimod.powers.forms.DomainExpansionPower;
+import tomorimod.powers.forms.GravityDomainPower;
 import tomorimod.util.CardStats;
 
 public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
@@ -45,7 +45,7 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new DomainExpansionPower(uikaMonster, GravityDomain.MAGIC), GravityDomain.MAGIC));
+                new GravityDomainPower(uikaMonster, GravityDomain.MAGIC), GravityDomain.MAGIC));
         super.uikaUse(uikaMonster);
     }
 }
