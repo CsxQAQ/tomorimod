@@ -52,18 +52,17 @@ public class Yeyingran extends BaseMusicCard {
     public final static int MAGIC_RARE = 4;
     public final static int UPG_MAGIC_RARE = 3;
 
+
+    public static int vigorNum=0;
+
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-//        if(musicRarity.equals(MusicRarity.RARE)){
-//            addToBot(new ApplyPowerAction(p,p,new TemporaryStrengthPower(p,magicNumber),magicNumber));
-//        }else{
-//            addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
-//        }
         if(musicRarity.equals(MusicRarity.RARE)){
             addToBot(new ApplyPowerAction(p,p,new YeyingranPower(p)));
         }
-        addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
+        //addToBot(new ApplyPowerAction(p,p,new VigorPower(p,magicNumber),magicNumber));
+        vigorNum+=magicNumber;
     }
 
     @Override

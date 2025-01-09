@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
-import tomorimod.powers.custompowers.CompetePower;
 import tomorimod.powers.custompowers.CompeteMonsterPower;
 import tomorimod.util.CardStats;
 

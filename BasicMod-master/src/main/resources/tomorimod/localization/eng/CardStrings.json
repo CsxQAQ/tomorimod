@@ -397,7 +397,7 @@
     "NAME": "夜影染",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 tomorimod:临时力量 。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。 活力 效果改为在使用攻击牌后减少1层。"
     ]
   },
   "${modID}:Ruichengshan": {
