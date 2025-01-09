@@ -332,7 +332,7 @@
     ]
   },
   "${modID}:Lunfuyu": {
-    "NAME": "轮符雨",
+    "NAME": "輪符雨",
     "DESCRIPTION": " tomorimod:音乐 。本回合你每恢复一点生命值，对所有敌人造成 !M! 点伤害。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。本回合你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。"
@@ -367,14 +367,14 @@
     ]
   },
   "${modID}:Shichaoban": {
-    "NAME": "诗超绊",
+    "NAME": "詩超絆",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害提高 !M! 点。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害翻倍。"
     ]
   },
   "${modID}:Wulushi": {
-    "NAME": "无路矢",
+    "NAME": "無路矢",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害，然后随机攻击另一个敌人。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害，然后使基础伤害减少1，随机攻击另一个敌人，重复此效果直到基础伤害减为0或没有攻击目标。"
@@ -402,25 +402,33 @@
     ]
   },
   "${modID}:Yeyingran": {
-    "NAME": "夜影染",
+    "NAME": "夜隠染",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。 活力 效果改为在使用攻击牌后减少1层。"
     ]
   },
   "${modID}:Ruichengshan": {
-    "NAME": "瑞程山",
+    "NAME": "端程山",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] 。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
     ]
   },
   "${modID}:Huifutu": {
-    "NAME": "回浮屠",
+    "NAME": "回層浮",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。选择一项： 保留 手牌到下一回合，或保留剩余 [E] 到下一回合。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。 保留 手牌和剩余 [E] 到下一回合。"
     ]
+  },
+  "${modID}:HuifutuRetainCards": {
+    "NAME": "回層浮",
+    "DESCRIPTION": " 保留 手牌到下一回合。"
+  },
+  "${modID}:HuifutuRetainEnergy": {
+    "NAME": "回層浮",
+    "DESCRIPTION": " 保留 剩余 [E] 到下一回合。"
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
@@ -429,14 +437,7 @@
       " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
     ]
   },
-  "${modID}:HuifutuRetainCards": {
-    "NAME": "回浮屠",
-    "DESCRIPTION": " 保留 手牌到下一回合。"
-  },
-  "${modID}:HuifutuRetainEnergy": {
-    "NAME": "回浮屠",
-    "DESCRIPTION": " 保留 剩余 [E] 到下一回合。"
-  },
+
   "${modID}:FailComposition": {
     "NAME": "失败的创作",
     "DESCRIPTION": " 恢复 !M! 点生命值，使用后移除。"
