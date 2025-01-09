@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
+import tomorimod.savedata.customdata.CraftingRecipes;
 import tomorimod.util.CardStats;
 
 public class Motivate extends BaseCard {
@@ -25,7 +26,7 @@ public class Motivate extends BaseCard {
             1
     );
 
-    public static final int DAMAGE=9;
+    public static final int DAMAGE=7;
     public static final int UPG_DAMAGE=4;
 
 
@@ -36,15 +37,25 @@ public class Motivate extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (AbstractDungeon.actionManager.cardsPlayedThisCombat.size() >= 2 &&
-                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(AbstractDungeon.actionManager.cardsPlayedThisCombat
-                        .get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 2))
-                        == AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this)) {
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL),
+
+        CraftingRecipes.Material currentMaterial = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this);
+
+        int consecutiveSameMaterialCount = 0;
+        for (int i = AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1; i >= 0; i--) {
+            AbstractCard card = AbstractDungeon.actionManager.cardsPlayedThisCombat.get(i);
+            CraftingRecipes.Material materialOfPlayedCard = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
+
+            if (materialOfPlayedCard == currentMaterial) {
+                consecutiveSameMaterialCount++;
+            } else {
+                break;
+            }
+        }
+
+        for (int i = 0; i < consecutiveSameMaterialCount; i++) {
+            addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL),
                     AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL),
-                AbstractGameAction.AttackEffect.SLASH_VERTICAL));
 
     }
 
