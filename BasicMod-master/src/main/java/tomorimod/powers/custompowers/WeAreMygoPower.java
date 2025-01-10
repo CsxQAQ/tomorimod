@@ -10,6 +10,7 @@ import tomorimod.actions.cardactions.SmoothComboAction;
 import tomorimod.cards.monment.BaseMonmentCard;
 import tomorimod.powers.BasePower;
 
+import static tomorimod.TomoriMod.audioPath;
 import static tomorimod.TomoriMod.makeID;
 
 public class WeAreMygoPower extends BasePower {

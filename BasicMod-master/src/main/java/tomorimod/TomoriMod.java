@@ -90,11 +90,10 @@ public class TomoriMod implements
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
-        //BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
+        BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
         BaseMod.subscribe(new TakiPressureMonitor());
         BaseMod.subscribe(new DamageNumFrozeMonitor());
         BaseMod.subscribe(new ShortTermGoalMonitor());
-
     }
 
     public static void receiveEvent() {
@@ -413,6 +412,8 @@ public class TomoriMod implements
                     if (info.seen)
                         UnlockTracker.markRelicAsSeen(relic.relicId);
                 });
+
+        //BaseMod.removeRelic();
     }
 
     @Override
