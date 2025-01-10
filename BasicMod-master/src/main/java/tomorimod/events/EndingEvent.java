@@ -18,7 +18,7 @@ public class EndingEvent extends AbstractImageEvent {
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static final String IMG = imagePath("events/Anon.png");
+    private static final String IMG = imagePath("events/Tomori_kime.png");
     // 3) 枚举，用于区分不同事件阶段（如果需要多阶段则可自行扩展）
     private enum CurScreen {
         INTRO, // 初始对话
