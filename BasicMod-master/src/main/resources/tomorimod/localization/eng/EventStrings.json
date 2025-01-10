@@ -31,7 +31,7 @@
       "[离开]"
     ]
   },
-  "${modID}:SakiShadowEvent": {
+  "${modID}:EndingEvent": {
     "NAME": "终局",
     "DESCRIPTIONS": [
       "小祥，等着我..."

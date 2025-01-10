@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.notshow.SpecialCard;
+import tomorimod.character.Tomori;
+import tomorimod.configs.TomoriConfig;
 import tomorimod.savedata.Clearable;
 import tomorimod.savedata.SaveDataInstanceFactory;
 
@@ -125,8 +127,7 @@ public class CraftingRecipes implements Clearable {
 
     public void initializeCardsMaterials(){
         for(AbstractCard card : CardLibrary.getAllCards()){
-            if(!(card instanceof SpecialCard)
-                    && card.type != AbstractCard.CardType.CURSE
+            if(card.type != AbstractCard.CardType.CURSE
                     && card.type != AbstractCard.CardType.STATUS){
                 cardMaterialHashMap.put(card.cardID, getRandomMaterials());
             }else{
@@ -197,10 +198,12 @@ public class CraftingRecipes implements Clearable {
     }
 
     public void generate(){
-        initializeMusicsCostHashMap();
-        initializeCardsMaterials();
-        initializeRecipeArrayList();
-        sortByLevelsSum(recipeArrayList);
+        if(AbstractDungeon.player instanceof Tomori || TomoriConfig.config.getBool("onlyModBoss-enabled")){
+            initializeMusicsCostHashMap();
+            initializeCardsMaterials();
+            initializeRecipeArrayList();
+            sortByLevelsSum(recipeArrayList);
+        }
     }
 
     // 获取单例实例的静态方法

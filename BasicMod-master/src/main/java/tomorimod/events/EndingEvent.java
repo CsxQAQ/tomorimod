@@ -2,26 +2,18 @@ package tomorimod.events;
 
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.scenes.TheEndingScene;
-import com.megacrit.cardcrawl.dungeons.TheEnding;
 
-import basemod.helpers.CardBorderGlowManager;
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.screens.DeathScreen;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
-public class SakiShadowEvent extends AbstractImageEvent {
+public class EndingEvent extends AbstractImageEvent {
     // 1) 定义 ID（应与你的 eventStrings.json 里对应）
-    public static final String ID = makeID(SakiShadowEvent.class.getSimpleName());;
+    public static final String ID = makeID(EndingEvent.class.getSimpleName());;
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString(ID);
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
@@ -36,7 +28,7 @@ public class SakiShadowEvent extends AbstractImageEvent {
     private CurScreen screen = CurScreen.INTRO;
 
     // 4) 构造方法
-    public SakiShadowEvent() {
+    public EndingEvent() {
         // 父类 AbstractImageEvent 的构造参数：
         // super(事件标题, 事件描述（第一段）, 事件图片路径)
         super(NAME, DESCRIPTIONS[0], IMG);

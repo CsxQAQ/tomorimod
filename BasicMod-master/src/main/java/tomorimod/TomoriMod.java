@@ -4,15 +4,9 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.AddEventParams;
-import basemod.eventUtil.EventUtils;
-import basemod.eventUtil.util.Condition;
 import basemod.interfaces.*;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
-import com.megacrit.cardcrawl.dungeons.TheCity;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
-import com.megacrit.cardcrawl.events.shrines.Nloth;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.clapper.util.classutil.ClassFilter;
@@ -24,8 +18,7 @@ import tomorimod.configs.TomoriConfig;
 import tomorimod.configs.UnlockedAscension;
 import tomorimod.consoles.IncreaseRarityCommon;
 import tomorimod.consoles.ShowRecipesCommon;
-import tomorimod.events.EventForReplace;
-import tomorimod.events.SakiShadowEvent;
+import tomorimod.events.EndingEvent;
 import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
@@ -106,7 +99,7 @@ public class TomoriMod implements
     public static void receiveEvent() {
         BaseMod.addEvent(new AddEventParams.Builder(SystemEvent.ID, SystemEvent.class)
                 .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
-        BaseMod.addEvent(new AddEventParams.Builder(SakiShadowEvent.ID, SakiShadowEvent.class)
+        BaseMod.addEvent(new AddEventParams.Builder(EndingEvent.ID, EndingEvent.class)
                 .dungeonID(TheEnding.ID).playerClass(Tomori.Meta.TOMORI).create());
 //        BaseMod.addEvent(new AddEventParams.Builder(EventForReplace.ID, EventForReplace.class).dungeonID(TheEnding.ID)
 //                        .overrideEvent(Nloth.ID).eventType(EventUtils.EventType.FULL_REPLACE).spawnCondition(new Condition(){
