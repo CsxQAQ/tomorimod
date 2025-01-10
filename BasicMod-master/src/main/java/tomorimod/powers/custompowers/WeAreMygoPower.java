@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import tomorimod.actions.cardactions.SmoothComboAction;
 import tomorimod.cards.monment.BaseMonmentCard;
 import tomorimod.powers.BasePower;
+import tomorimod.savedata.customdata.SaveMusicDiscoverd;
 
 import static tomorimod.TomoriMod.audioPath;
 import static tomorimod.TomoriMod.makeID;
@@ -18,14 +19,29 @@ public class WeAreMygoPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
+    private boolean isEffected;
+
     public WeAreMygoPower(AbstractCreature owner) {
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
+        isEffected=false;
+        updateDescription();
+    }
+
+    @Override
+    public void updateDescription(){
+        if(isEffected){
+            description=DESCRIPTIONS[0]+"（ #y已生效 ）";
+        }else{
+            description=DESCRIPTIONS[0];
+        }
     }
 
     @Override
     public void onAfterCardPlayed(AbstractCard usedCard) {
-        if(usedCard instanceof BaseMonmentCard){
+        if(!isEffected&&usedCard instanceof BaseMonmentCard){
             flash();
+            isEffected=true;
+            updateDescription();
             AbstractDungeon.player.increaseMaxHp(5,true);
         }
     }
