@@ -30,4 +30,12 @@ public class MonsterUtils {
         }
         return 0;
     }
+
+    public static int getPowerNum(AbstractMonster monster,String powerId){
+        if(monster.hasPower(makeID(powerId))){
+            return monster.getPower(makeID(powerId)).amount;
+        }else{
+            return 0;
+        }
+    }
 }
