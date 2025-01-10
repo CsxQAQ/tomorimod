@@ -1,7 +1,10 @@
 package tomorimod.monsters;
 
 import basemod.abstracts.CustomMonster;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,20 +14,34 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
+import tomorimod.character.Tomori;
 
 import java.util.Iterator;
 
 public abstract class BaseMonster extends CustomMonster {
 
-    public boolean isPlayBGM=false;
+    public boolean isTomori=false;
 
     public BaseMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
+        if(AbstractDungeon.player!=null){
+            isTomori=(AbstractDungeon.player instanceof Tomori);
+        }
     }
 
     public abstract void takeTurn();
 
     protected abstract void getMove(int i);
+
+    public void damagePlayer(AbstractCreature target, int damageIndex, int times, AbstractGameAction.AttackEffect effect) {
+        for (int i = 0; i < times; i++) {
+            addToBot(new DamageAction(target, this.damage.get(damageIndex), effect));
+        }
+    }
+
+    public void damagePlayer(int damageIndex, int times) {
+        this.damagePlayer(AbstractDungeon.player,damageIndex,times,AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+    }
 
     @Override
     public void damage(DamageInfo info) {

@@ -373,11 +373,7 @@ public class SakiShadowMonster extends BaseMonster {
         return newNum;
     }
 
-    private void damagePlayer(AbstractCreature target, int damageIndex, int times, AbstractGameAction.AttackEffect effect) {
-        for (int i = 0; i < times; i++) {
-            addToBot(new DamageAction(target, this.damage.get(damageIndex), effect));
-        }
-    }
+
 
 
     private void obtainRandomCard() {
@@ -403,7 +399,7 @@ public class SakiShadowMonster extends BaseMonster {
             }
         }
     }
-    
+
     private void handleRebirthFadeOut() {
         if (isRebirth) {
             fadeOutTimer -= Gdx.graphics.getDeltaTime();

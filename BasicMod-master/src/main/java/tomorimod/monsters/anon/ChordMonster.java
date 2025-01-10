@@ -15,7 +15,9 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import sun.security.mscapi.PRNG;
 import tomorimod.monsters.BaseMonster;
+import tomorimod.util.MonsterUtils;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -29,9 +31,6 @@ public class ChordMonster extends BaseMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    // 怪物血量
-    private static final int HP_MIN = 3;
-    private static final int HP_MAX = 3;
 
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
@@ -40,84 +39,106 @@ public class ChordMonster extends BaseMonster {
     private static final float HB_H = 100.0F;
 
     // 定义动作 ID（byte 类型即可）
-    private static final String imgPath=imagePath("monsters/"+ ChordMonster.class.getSimpleName()+"_c.png");
-    private static String gChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_g"+".png");
-    private static String fChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_f"+".png");
-    private static String cChordURL=imagePath("monsters/"+ChordMonster.class.getSimpleName()+"_c"+".png");
+    private static final String imgPath = imagePath("monsters/" + ChordMonster.class.getSimpleName() + "_c.png");
+    private static String gChordURL = imagePath("monsters/" + ChordMonster.class.getSimpleName() + "_g" + ".png");
+    private static String fChordURL = imagePath("monsters/" + ChordMonster.class.getSimpleName() + "_f" + ".png");
+    private static String cChordURL = imagePath("monsters/" + ChordMonster.class.getSimpleName() + "_c" + ".png");
 
-    public int pos=-1;
+    public int pos = -1;
     public ChordType chordType;
 
-    public static final int HPINCREASE=3;
+
+    // 怪物血量
+    public static final int HP_MIN = 5;
+    public static final int HP_MAX = 5;
+    public static final int HP_INCREASE = 5;
+    public static final int DAMAGE_0 = 3;
+    public static final int DAMAGE_1 = 6;
+
+    public static final int HP_MIN_WEAK = 3;
+    public static final int HP_MAX_WEAK = 3;
+    public static final int HP_INCREASE_WEAK = 3;
+    public static final int DAMAGE_0_WEAK = 3;
+    public static final int DAMAGE_1_WEAK = 3;
+
+    private int hpMinVal;
+    private int hpMaxVal;
+    private int hpIncreaseVal;
+    private int damageVal0;
+    private int damageVal1;
 
     public ChordMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
-        setHp(HP_MIN, HP_MAX);
 
         this.dialogX = this.hb_x + -50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
 
-
-        //addToBot(new ApplyPowerAction(this,this,new ChordImmunityPower(this)));
-        addToBot(new ApplyPowerAction(this,this,new ChordDeathPower(this)));
-        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (m instanceof AnonMonster && !m.isDeadOrEscaped()) {
-                if(m.hasPower(makeID("AnonLittlePractisePower"))){
-                    setHp(HP_MIN+m.getPower(makeID("AnonLittlePractisePower")).amount*HPINCREASE,
-                            HP_MAX+m.getPower(makeID("AnonLittlePractisePower")).amount*HPINCREASE);
-
-                }
-            }
+        if (isTomori) {
+            this.hpMinVal = HP_MIN;
+            this.hpMaxVal = HP_MAX;
+            this.hpIncreaseVal = HP_INCREASE;
+            this.damageVal0 = DAMAGE_0;
+            this.damageVal1 = DAMAGE_1;
+        } else {
+            this.hpMinVal = HP_MIN_WEAK;
+            this.hpMaxVal = HP_MAX_WEAK;
+            this.hpIncreaseVal = HP_INCREASE_WEAK;
+            this.damageVal0 = DAMAGE_0_WEAK;
+            this.damageVal1 = DAMAGE_1_WEAK;
         }
 
+        setHp(hpMinVal + MonsterUtils.getPowerNum("AnonMonster", "AnonLittlePractisePower") * hpIncreaseVal,
+                hpMaxVal + MonsterUtils.getPowerNum("AnonMonster", "AnonLittlePractisePower") * hpIncreaseVal);
 
-        this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 3, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+
+        addToBot(new ApplyPowerAction(this, this, new ChordDeathPower(this)));
     }
 
-    public void setChordName(int rand){
-        switch (rand){
+    public void setChordName(int rand) {
+        switch (rand) {
             case 0:
-                img= ImageMaster.loadImage(gChordURL);
-                name="G和弦";
-                chordType=ChordType.G;
+                img = ImageMaster.loadImage(gChordURL);
+                name = "G和弦";
+                chordType = ChordType.G;
                 break;
             case 1:
-                img=ImageMaster.loadImage(fChordURL);
-                name="F和弦";
-                chordType=ChordType.F;
+                img = ImageMaster.loadImage(fChordURL);
+                name = "F和弦";
+                chordType = ChordType.F;
                 break;
             case 2:
-                img=ImageMaster.loadImage(cChordURL);
-                name="C和弦";
-                chordType=ChordType.C;
+                img = ImageMaster.loadImage(cChordURL);
+                name = "C和弦";
+                chordType = ChordType.C;
                 break;
             default:
                 img = ImageMaster.loadImage(cChordURL); // 默认值
                 name = "C和弦";
-                chordType=ChordType.C;
+                chordType = ChordType.C;
                 break;
 
         }
     }
 
-    public void setDrawPosition(int pos){
-        this.pos=pos;
-        AnonMonster.chordPos.set(pos,1);
+    public void setDrawPosition(int pos) {
+        this.pos = pos;
+        AnonMonster.chordPos.set(pos, 1);
         AnonMonster.chordNum++;
-        switch (pos){
+        switch (pos) {
             case 0:
-                drawX=(AnonMonster.DRAW_X+200)*Settings.scale;
-                drawY=(AnonMonster.DRAW_Y-50)*Settings.scale;
+                drawX = (AnonMonster.DRAW_X + 200) * Settings.scale;
+                drawY = (AnonMonster.DRAW_Y - 50) * Settings.scale;
                 break;
             case 1:
-                drawX=(AnonMonster.DRAW_X-200)*Settings.scale;
-                drawY=(AnonMonster.DRAW_Y-50)*Settings.scale;
+                drawX = (AnonMonster.DRAW_X - 200) * Settings.scale;
+                drawY = (AnonMonster.DRAW_Y - 50) * Settings.scale;
                 break;
             case 2:
-                drawX=(AnonMonster.DRAW_X+0f)*Settings.scale;
-                drawY=(AnonMonster.DRAW_Y+375)*Settings.scale;
+                drawX = (AnonMonster.DRAW_X + 0f) * Settings.scale;
+                drawY = (AnonMonster.DRAW_Y + 375) * Settings.scale;
                 break;
         }
     }
@@ -126,12 +147,10 @@ public class ChordMonster extends BaseMonster {
     public void takeTurn() {
         switch (this.nextMove) {
             case 0:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                                this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                damagePlayer(0, 1);
                 break;
             case 1:
-                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player,
-                        this.damage.get(1), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                damagePlayer(1, 1);
                 break;
         }
         // 回合结束后，准备下一次动作
@@ -141,31 +160,36 @@ public class ChordMonster extends BaseMonster {
     @Override
     protected void getMove(int num) {
         int rand = AbstractDungeon.miscRng.random(0, 1);
-        if (rand==0) {
-            setMove( (byte)0, Intent.ATTACK,
+        if (rand == 0) {
+            setMove((byte) 0, Intent.ATTACK,
                     this.damage.get(0).base, 1, false);
         } else {
-            setMove( (byte)1, Intent.ATTACK,
+            setMove((byte) 1, Intent.ATTACK,
                     this.damage.get(1).base, 1, false);
         }
     }
 
     @Override
     public void die() {
-        AnonMonster.chordPos.set(pos,0);
+        AnonMonster.chordPos.set(pos, 0);
         AnonMonster.chordNum--;
         super.die();
     }
 
     public enum ChordType {
         G, F, C;
+
         @Override
         public String toString() {
             switch (this) {
-                case G: return "g";
-                case F: return "f";
-                case C: return "c";
-                default: throw new IllegalArgumentException();
+                case G:
+                    return "g";
+                case F:
+                    return "f";
+                case C:
+                    return "c";
+                default:
+                    throw new IllegalArgumentException();
             }
         }
     }
