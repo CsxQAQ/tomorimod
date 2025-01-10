@@ -48,10 +48,10 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         updateDescription();
     }
 
-    public BaseMusicCard(String ID, CardStats info) {
-        super(ID, info);
-        this.idForShow=ID;
-    }
+//    public BaseMusicCard(String ID, CardStats info) {
+//        super(ID, info);
+//        this.idForShow=ID;
+//    }
 
     public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
@@ -94,9 +94,10 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             musicRarity = MusicRarity.RARE;
         }
 
-        return musicRarity;
+        return musicRarity==null?MusicRarity.DEFAULT:musicRarity;
     }
 
+    @Override
     public void updateDescription(){
         if (idForShow != null && musicRarity != null) {
             String newDescription = null;
@@ -112,14 +113,11 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             }
             this.rawDescription = newDescription;
         }
-        if (this.upgradesDescription)
-        {
-            if (cardStrings.UPGRADE_DESCRIPTION == null)
-            {
+        if (this.upgradesDescription) {
+            if (cardStrings.UPGRADE_DESCRIPTION == null) {
                 TomoriMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
             }
-            else
-            {
+            else {
                 this.rawDescription = cardStrings.UPGRADE_DESCRIPTION; //应该是这个方法导致更新变绿
             }
         }
@@ -144,7 +142,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             }
         }
         musicCard.dataInfoInitialize();
-        musicCard.upgraded=false;
+        musicCard.upgraded=card.upgraded;
         for(int i = 0; i < this.timesUpgraded; ++i) {
             musicCard.upgrade();
         }
@@ -158,9 +156,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     @Override
     public void upgrade() {
         if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomoriApotheosisPower"))) {
-//            this.upgradeDamage(musicUpgradeDamage);
-//            this.upgradeBlock(musicUpgradeBlock);
-//            this.upgradeMagicNumber(musicUpgradeMagic);
             this.upgradeDamage(damageUpgrade);
             this.upgradeBlock(blockUpgrade);
             this.upgradeMagicNumber(magicUpgrade);
@@ -170,13 +165,11 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             this.initializeTitle();
         }else{
             if (!this.upgraded) {
-//                this.upgradeDamage(musicUpgradeDamage);
-//                this.upgradeBlock(musicUpgradeBlock);
-//                this.upgradeMagicNumber(musicUpgradeMagic);
                 this.upgradeDamage(damageUpgrade);
                 this.upgradeBlock(blockUpgrade);
                 this.upgradeMagicNumber(magicUpgrade);
                 upgradeName();
+                //upgraded=true;
             }
         }
 

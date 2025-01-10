@@ -79,7 +79,7 @@ public class CraftingRecipes implements Clearable {
             "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
             "Yinyihui", "Miluri", "Wulushi", "Bitianbanzou",
             "Yinakong", "Mingwusheng", "Qianzaibiaoming",
-            "Yeyingran","Ruichengshan"
+            "Yeyingran","Ruichengshan","Huifutu"
 
     );
 
@@ -96,19 +96,19 @@ public class CraftingRecipes implements Clearable {
         Random random = new Random(); // 创建随机数生成器
 
         // 分配 commonCost
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             int commonCost = COMMONCOST_MIN + random.nextInt(COMMONCOST_MAX - COMMONCOST_MIN + 1); // 范围内随机数
             musicsCostHashMap.put(songNames.get(i), commonCost);
         }
 
         // 分配 uncommonCost
-        for (int i = 4; i < 8; i++) {
+        for (int i = 5; i < 10; i++) {
             int uncommonCost = UNCOMMONCOST_MIN + random.nextInt(UNCOMMONCOST_MAX - UNCOMMONCOST_MIN + 1);
             musicsCostHashMap.put(songNames.get(i), uncommonCost);
         }
 
         // 分配 rareCost
-        for (int i = 8; i < songNames.size(); i++) {
+        for (int i = 10; i < songNames.size(); i++) {
             int rareCost = RARECOST_MIN + random.nextInt(RARECOST_MAX - RARECOST_MIN + 1);
             musicsCostHashMap.put(songNames.get(i), rareCost);
         }
