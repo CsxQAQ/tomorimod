@@ -206,7 +206,7 @@ public class UikaMonster extends BaseMonster {
                 setMove((byte) 21, Intent.DEFEND_BUFF);
                 // 先创建卡
                 cardForShow1 = new UikaLastOne();
-                cardForShow2 = new UikaManaGuard();
+                cardForShow2 = new UikaTwoPeopleOneBody();
                 break;
             case 2:
                 int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;

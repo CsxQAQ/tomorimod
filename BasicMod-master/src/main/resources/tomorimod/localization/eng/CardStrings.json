@@ -524,8 +524,8 @@
     "NAME": "想和你永远在一起",
     "DESCRIPTION": " 获得 !M! 层 tomorimod:重力 。"
   },
-  "${modID}:UikaManaGuard": {
-    "NAME": "真奈的守护",
+  "${modID}:UikaTwoPeopleOneBody": {
+    "NAME": "二人一体",
     "DESCRIPTION": "获得等同于 tomorimod:闪耀 层数3倍的 格挡 。"
   },
   "${modID}:UikaMygoTogether": {

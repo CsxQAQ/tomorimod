@@ -10,10 +10,8 @@ import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.util.CardStats;
 
-import static tomorimod.TomoriMod.imagePath;
-
-public class UikaManaGuard extends UikaCard implements WithoutMaterial {
-    public static final String ID = makeID(UikaManaGuard.class.getSimpleName());
+public class UikaTwoPeopleOneBody extends UikaCard implements WithoutMaterial {
+    public static final String ID = makeID(UikaTwoPeopleOneBody.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -25,7 +23,7 @@ public class UikaManaGuard extends UikaCard implements WithoutMaterial {
     public static final int MAGIC=3;
     public static final int UPG_MAGIC=0;
 
-    public UikaManaGuard() {
+    public UikaTwoPeopleOneBody() {
         super(ID, info);
 //        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
 //                imagePath("character/specialcardback/uika_skill_p.png"));
@@ -37,7 +35,7 @@ public class UikaManaGuard extends UikaCard implements WithoutMaterial {
 
     @Override
     public AbstractCard makeCopy() {
-        return new UikaManaGuard();
+        return new UikaTwoPeopleOneBody();
     }
 
     @Override
@@ -46,7 +44,7 @@ public class UikaManaGuard extends UikaCard implements WithoutMaterial {
             @Override
             public void update() {
                 int shineAmount=uikaMonster.hasPower(makeID("ShinePower"))?uikaMonster.getPower(makeID("ShinePower")).amount:0;
-                addToTop(new GainBlockAction(uikaMonster,shineAmount*UikaManaGuard.MAGIC));
+                addToTop(new GainBlockAction(uikaMonster,shineAmount* UikaTwoPeopleOneBody.MAGIC));
                 isDone=true;
             }
         });
