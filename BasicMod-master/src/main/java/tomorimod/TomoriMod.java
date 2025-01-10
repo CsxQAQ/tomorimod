@@ -64,6 +64,8 @@ import java.util.*;
 //TODO 不用tempcard农
 
 //TODO 音乐攻击牌重写
+//TODO boss写两个，适配原版的和tomori的
+//TODO 潜在表明
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

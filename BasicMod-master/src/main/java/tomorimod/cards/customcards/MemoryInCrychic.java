@@ -20,9 +20,9 @@ public class MemoryInCrychic extends BaseCard {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.UNCOMMON,
+            CardRarity.RARE,
             CardTarget.SELF,
-            2
+            3
     );
 
     public MemoryInCrychic() {
