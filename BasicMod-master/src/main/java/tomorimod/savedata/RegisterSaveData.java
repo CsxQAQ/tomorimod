@@ -167,21 +167,21 @@ public class RegisterSaveData {
             }
         });
 
-        BaseMod.addSaveField("CardsRemovedFromPoolSaveData", new CustomSavableRaw() {
-            private final Gson gson = new Gson();
-
-            @Override
-            public JsonElement onSaveRaw() {
-                return gson.toJsonTree(CardsRemovedFromPoolSaveData.getInstance().cardsRemoved);
-            }
-
-            @Override
-            public void onLoadRaw(JsonElement jsonElement) {
-                if (jsonElement != null) {
-                    CardsRemovedFromPoolSaveData.getInstance().cardsRemoved = gson.fromJson(jsonElement, new TypeToken<ArrayList<String>>() {}.getType());
-                }
-            }
-        });
+//        BaseMod.addSaveField("CardsRemovedFromPoolSaveData", new CustomSavableRaw() {
+//            private final Gson gson = new Gson();
+//
+//            @Override
+//            public JsonElement onSaveRaw() {
+//                return gson.toJsonTree(CardsRemovedFromPoolSaveData.getInstance().cardsRemoved);
+//            }
+//
+//            @Override
+//            public void onLoadRaw(JsonElement jsonElement) {
+//                if (jsonElement != null) {
+//                    CardsRemovedFromPoolSaveData.getInstance().cardsRemoved = gson.fromJson(jsonElement, new TypeToken<ArrayList<String>>() {}.getType());
+//                }
+//            }
+//        });
 
     }
 }

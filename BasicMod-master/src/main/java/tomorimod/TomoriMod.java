@@ -63,8 +63,7 @@ import java.util.*;
 //TODO 考虑所有insert patch用定位器重写
 //TODO 不用tempcard农
 
-//TODO 删除某个事件，让某个事件只有tomori触发
-//TODO 优化systemevent
+//TODO 音乐攻击牌重写
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
@@ -89,7 +88,7 @@ public class TomoriMod implements
         BaseMod.subscribe(new LunfuyuMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
-        BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
+        //BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
         BaseMod.subscribe(new TakiPressureMonitor());
         BaseMod.subscribe(new DamageNumFrozeMonitor());
         BaseMod.subscribe(new ShortTermGoalMonitor());
@@ -101,13 +100,7 @@ public class TomoriMod implements
                 .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
         BaseMod.addEvent(new AddEventParams.Builder(EndingEvent.ID, EndingEvent.class)
                 .dungeonID(TheEnding.ID).playerClass(Tomori.Meta.TOMORI).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(EventForReplace.ID, EventForReplace.class).dungeonID(TheEnding.ID)
-//                        .overrideEvent(Nloth.ID).eventType(EventUtils.EventType.FULL_REPLACE).spawnCondition(new Condition(){
-//                    @Override
-//                    public boolean test() {
-//                        return true;
-//                    }
-//                }).create());
+
 
 
     }

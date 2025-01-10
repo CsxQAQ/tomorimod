@@ -54,7 +54,7 @@ public class Motivate extends BaseCard {
             AbstractCard card = AbstractDungeon.actionManager.cardsPlayedThisCombat.get(i);
             CraftingRecipes.Material materialOfPlayedCard = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card);
 
-            if (materialOfPlayedCard == currentMaterial) {
+            if (materialOfPlayedCard == currentMaterial||materialOfPlayedCard.equals(CraftingRecipes.Material.AQUARIUMPASS)) {
                 consecutiveSameMaterialCount++;
             } else {
                 break;

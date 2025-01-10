@@ -10,6 +10,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.music.Chunriying;
 import tomorimod.cards.notshow.SpecialCard;
+import tomorimod.cards.permanentforms.PermanentFrom;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
@@ -38,7 +39,7 @@ public class YourTenDraws extends BaseCard {
         ArrayList<BaseCard> modCards= new ArrayList<>(CustomUtils.modCardGroup.values());
         for(int i=0;i<10;i++){
             int randomResult = AbstractDungeon.miscRng.random(modCards.size()-1);
-            while(modCards.get(randomResult) instanceof SpecialCard){
+            while(modCards.get(randomResult) instanceof SpecialCard||modCards.get(randomResult) instanceof PermanentFrom){
                 randomResult= AbstractDungeon.miscRng.random(modCards.size()-1);
             }
             BaseCard card=modCards.get(randomResult).makeStatEquivalentCopy();

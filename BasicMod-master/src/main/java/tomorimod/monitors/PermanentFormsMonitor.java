@@ -35,6 +35,7 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
                 case "ShineWithMe":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new ShineWithMePower(p)));
                     AbstractDungeon.actionManager.addToBottom(new ApplyShineAction(SaveMusicDiscoverd.getInstance().musicDiscoveredNum));
+                    break;
             }
         }
     }
