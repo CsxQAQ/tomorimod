@@ -17,7 +17,7 @@ public class EventForReplace extends PhasedEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static final String IMG = imagePath("events/AnonMonster.png");
+    private static final String IMG = imagePath("events/Anon.png");
 
     public EventForReplace() {
         super(ID, NAME, IMG);

@@ -17,7 +17,7 @@ public class SystemEvent extends PhasedEvent {
     private static final String NAME = eventStrings.NAME;
     private static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     private static final String[] OPTIONS = eventStrings.OPTIONS;
-    private static final String IMG = imagePath("events/AnonMonster.png");
+    private static final String IMG = imagePath("events/Anon.png");
 
     public SystemEvent() {
         super(ID, NAME, IMG);
@@ -27,7 +27,6 @@ public class SystemEvent extends PhasedEvent {
                         .setOptionResult((i)->{
                             AbstractRelic relic = new SystemRelic();
                             AbstractDungeon.getCurrRoom().addRelicToRewards(relic);
-                            //不要卡牌奖励要手动设置，真是日狗
                             AbstractDungeon.getCurrRoom().event.noCardsInRewards=true;
                             AbstractDungeon.combatRewardScreen.open();
                             this.imageEventText.clearRemainingOptions();

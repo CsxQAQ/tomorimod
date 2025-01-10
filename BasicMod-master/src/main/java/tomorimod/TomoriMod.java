@@ -25,6 +25,7 @@ import tomorimod.configs.UnlockedAscension;
 import tomorimod.consoles.IncreaseRarityCommon;
 import tomorimod.consoles.ShowRecipesCommon;
 import tomorimod.events.EventForReplace;
+import tomorimod.events.SakiShadowEvent;
 import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
@@ -105,6 +106,8 @@ public class TomoriMod implements
     public static void receiveEvent() {
         BaseMod.addEvent(new AddEventParams.Builder(SystemEvent.ID, SystemEvent.class)
                 .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
+        BaseMod.addEvent(new AddEventParams.Builder(SakiShadowEvent.ID, SakiShadowEvent.class)
+                .dungeonID(TheEnding.ID).playerClass(Tomori.Meta.TOMORI).create());
 //        BaseMod.addEvent(new AddEventParams.Builder(EventForReplace.ID, EventForReplace.class).dungeonID(TheEnding.ID)
 //                        .overrideEvent(Nloth.ID).eventType(EventUtils.EventType.FULL_REPLACE).spawnCondition(new Condition(){
 //                    @Override
