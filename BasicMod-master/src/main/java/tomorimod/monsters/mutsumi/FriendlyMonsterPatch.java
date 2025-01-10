@@ -29,7 +29,7 @@ public class FriendlyMonsterPatch{
     public static class debuffNotAffected{
         @SpirePrefixPatch
         public static SpireReturn prefix(ApplyPowerAction __instance,AbstractPower ___powerToApply){
-            if(__instance.target.hasPower(makeID("FriendlyMonsterPower"))
+            if(__instance!=null&&__instance.target!=null&&__instance.source!=null&&__instance.target.hasPower(makeID("FriendlyMonsterPower"))
                     &&__instance.source==AbstractDungeon.player&&___powerToApply.type.equals(AbstractPower.PowerType.DEBUFF)){
                 __instance.isDone=true;
                 return SpireReturn.Return();

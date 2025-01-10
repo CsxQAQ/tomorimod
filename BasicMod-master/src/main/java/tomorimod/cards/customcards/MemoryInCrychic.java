@@ -10,6 +10,8 @@ import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 import tomorimod.util.CustomUtils;
 
+import java.util.ArrayList;
+
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRandomRng;
 
 public class MemoryInCrychic extends BaseCard {
@@ -30,8 +32,8 @@ public class MemoryInCrychic extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        BaseMonmentCard card = CustomUtils.monmentCardGroup.get(
-                cardRandomRng.random(CustomUtils.monmentCardGroup.size() - 1));
+        ArrayList<BaseMonmentCard> tmp=new ArrayList<>(CustomUtils.monmentCardGroup.values());
+        BaseMonmentCard card = tmp.get(cardRandomRng.random(tmp.size() - 1));
         if(upgraded){
             card.upgrade();
         }

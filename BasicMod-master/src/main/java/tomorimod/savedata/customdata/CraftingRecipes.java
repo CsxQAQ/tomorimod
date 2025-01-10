@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
@@ -128,7 +129,7 @@ public class CraftingRecipes implements Clearable {
     public void initializeCardsMaterials(){
         for(AbstractCard card : CardLibrary.getAllCards()){
             if(card.type != AbstractCard.CardType.CURSE
-                    && card.type != AbstractCard.CardType.STATUS){
+                    && card.type != AbstractCard.CardType.STATUS&&!(card instanceof BaseMusicCard)){
                 cardMaterialHashMap.put(card.cardID, getRandomMaterials());
             }else{
                 cardMaterialHashMap.put(card.cardID, Material.NONE);

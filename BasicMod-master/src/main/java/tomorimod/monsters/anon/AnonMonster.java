@@ -222,13 +222,13 @@ public class AnonMonster extends BaseMonster {
     protected void getMove(int num) {
         if(isThree){
             setMove(MOVES[0], (byte)11, Intent.ATTACK,
-                    this.damage.get(1).base, 2, true);
+                    this.damage.get(2).base, 2, true);
         }else if(isAllSame){
             setMove(MOVES[1], (byte)12, Intent.ATTACK,
-                    this.damage.get(2).base, 3, true);
+                    this.damage.get(3).base, 3, true);
         }else if(isAllHave){
             setMove(MOVES[1], (byte)13, Intent.ATTACK,
-                    this.damage.get(3).base, 3, true);
+                    this.damage.get(4).base, 3, true);
         }else{
             switch (turnNum%3){
                 case 0:
@@ -240,7 +240,7 @@ public class AnonMonster extends BaseMonster {
                     break;
                 case 2:
                     setMove( (byte)2, Intent.ATTACK,
-                            this.damage.get(4).base, 1, false);
+                            this.damage.get(1).base, 1, false);
                     break;
             }
             turnNum++;

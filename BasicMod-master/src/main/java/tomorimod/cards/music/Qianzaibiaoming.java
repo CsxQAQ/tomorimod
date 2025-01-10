@@ -81,7 +81,7 @@ public class Qianzaibiaoming extends BaseMusicCard {
     @Override
     public void update(){
         super.update();
-        if(musicRarity!=null){
+        if(musicRarity!=null&&musicRarity==MusicRarity.RARE){
             this.target=CardTarget.ALL_ENEMY;
         }
         updateDescription();

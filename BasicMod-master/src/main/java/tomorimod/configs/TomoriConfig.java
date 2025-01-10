@@ -93,7 +93,7 @@ public class TomoriConfig {
     private static SpireConfig makeConfig() {
         Properties defaultProperties = new Properties();
         defaultProperties.setProperty("tutorial-enabled", String.valueOf(true));
-        defaultProperties.setProperty("ascension-unlock", String.valueOf(false));
+        defaultProperties.setProperty("ascension-unlock", String.valueOf(true));
         defaultProperties.setProperty("onlyModBoss-enabled", String.valueOf(true));
         try {
             return new SpireConfig("TomoriMod", "Tomori-config", defaultProperties);
