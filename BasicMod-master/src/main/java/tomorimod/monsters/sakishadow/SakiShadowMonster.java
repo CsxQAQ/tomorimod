@@ -92,6 +92,7 @@ public class SakiShadowMonster extends BaseMonster {
     public boolean isFadingIn = false;
     public boolean isRebirth = false;
     public float alpha = 1.0f;
+    public static boolean damageNumFrozen=false;
 
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -393,7 +394,7 @@ public class SakiShadowMonster extends BaseMonster {
             super.render(sb);
         }
 
-        if(halfDead){
+        if(halfDead||damageNumFrozen){
             warningUi.render(sb);
         }
     }
@@ -408,6 +409,7 @@ public class SakiShadowMonster extends BaseMonster {
                 // 进入“半死”状态
                 this.halfDead = true;
                 this.isRebirth = true;
+                damageNumFrozen=true;
             }
             // 处理遗物与光环等
             for (AbstractPower p : this.powers) {

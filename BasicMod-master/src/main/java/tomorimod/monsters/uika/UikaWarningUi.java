@@ -27,30 +27,11 @@ public class UikaWarningUi extends WarningUi {
     }
 
     @Override
-    public void update(){
+    public void setDamageForShow(){
         if(!uikaMonster.damageNumFroze){
             damageForShow =calculate().get(0);
             gravityDamageForShow =calculate().get(1);
         }
-
-        // 先确定图标在屏幕上的坐标
-        float iconX = AbstractDungeon.player.hb.cX - 96.0f * Settings.scale;
-        float iconY = AbstractDungeon.player.hb.cY + 320.0f * Settings.scale;
-
-        // 把 attackIntentHb 的中心移到图标正中央
-        // 注意要加上宽/高的一半，以使其对准图标中心
-        attackIntentHb.move(iconX + (128.0f * Settings.scale) / 2f,
-                iconY + (128.0f * Settings.scale) / 2f);
-        attackIntentHb.update(); // 必须调用，才能检测鼠标悬浮
-
-        // 再确定伤害数字的坐标
-        float textX = AbstractDungeon.player.hb.cX - 32.0f * Settings.scale;
-        float textY = AbstractDungeon.player.hb.cY + 340.0f * Settings.scale;
-
-        // 让 damageNumberHb 跟随伤害数字区域
-        damageNumberHb.move(textX + (64.0f * Settings.scale) / 2f,
-                textY + (32.0f * Settings.scale) / 2f);
-        damageNumberHb.update();
     }
 
     @Override

@@ -32,9 +32,15 @@ public class WarningUi {
     }
 
     public void update(){
-        damageForShow=getPublicField(monster, "intentDmg", Integer.class);
-        //damageNum=getPublicField(this, "intentMultiAmt", Integer.class);
+        setDamageForShow();
+        initializePositionAndHb();
+    }
 
+    public void setDamageForShow(){
+        damageForShow=getPublicField(monster, "intentDmg", Integer.class);
+    }
+
+    public void initializePositionAndHb(){
         // 先确定图标在屏幕上的坐标
         float iconX = AbstractDungeon.player.hb.cX - 96.0f * Settings.scale;
         float iconY = AbstractDungeon.player.hb.cY + 320.0f * Settings.scale;
