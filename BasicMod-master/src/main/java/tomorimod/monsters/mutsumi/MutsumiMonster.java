@@ -61,15 +61,16 @@ public class MutsumiMonster extends SpecialMonster {
     private int point=0;
 
     private MutsumiWarningUi mutsumiWarningUi;
+    private SoyoWarningUi soyoWarningUi;
 
 
     public static final int HP_MIN       = 6000;
     public static final int HP_MAX       = 6000;
-    public static final int DAMAGE_0     = 6;
+    public static final int DAMAGE_0     = 20;
     public static final int DAMAGE_1     = 12;
     public static final int DAMAGE_2     = 15;
     public static final int DAMAGETIME_0 = 1;
-    public static final int DAMAGETIME_1 = 1;
+    public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 3;
     public static final int CUCUMBER=20;
     public static final int CUCUMBER_UPG=3;
@@ -79,11 +80,11 @@ public class MutsumiMonster extends SpecialMonster {
 
     public static final int HP_MIN_WEAK       = 2000;
     public static final int HP_MAX_WEAK       = 2000;
-    public static final int DAMAGE_0_WEAK     = 6;
+    public static final int DAMAGE_0_WEAK     = 20;
     public static final int DAMAGE_1_WEAK     = 12;
     public static final int DAMAGE_2_WEAK     = 15;
     public static final int DAMAGETIME_0_WEAK = 1;
-    public static final int DAMAGETIME_1_WEAK = 1;
+    public static final int DAMAGETIME_1_WEAK = 5;
     public static final int DAMAGETIME_2_WEAK = 3;
     public static final int CUCUMBER_WEAK=10;
     public static final int CUCUMBER_UPG_WEAK=3;
@@ -151,6 +152,7 @@ public class MutsumiMonster extends SpecialMonster {
 
 
         mutsumiWarningUi=new MutsumiWarningUi(this);
+
     }
 
     public void usePreBattleAction() {
@@ -171,6 +173,8 @@ public class MutsumiMonster extends SpecialMonster {
         addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,cucumberVal),cucumberVal));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
+
+        soyoWarningUi=new SoyoWarningUi(this,soyoMonster);
     }
 
     @Override
@@ -195,6 +199,8 @@ public class MutsumiMonster extends SpecialMonster {
 //                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 //                break;
             case 5:
+                mutsumiWarningUi.setFrozen();
+                soyoWarningUi.setFrozen();
                 for (int i = 0; i < 3; i++) {
                     addToBot(new VFXAction(this, new ShockWaveEffect(
                             this.hb.cX, this.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
@@ -262,7 +268,7 @@ public class MutsumiMonster extends SpecialMonster {
             case 3:
 
                 isMultiTarget=true;
-                mutsumiWarningUi.setFrozen();
+
                 setMove((byte)5,Intent.ATTACK,
                             this.damage.get(2).base,damageTimeVal2,true);
                 point-=3;
@@ -289,6 +295,9 @@ public class MutsumiMonster extends SpecialMonster {
         }
 
         mutsumiWarningUi.update();
+        if(!soyoMonster.isDeadOrEscaped()){
+            soyoWarningUi.update();
+        }
     }
 
     @Override
@@ -297,7 +306,12 @@ public class MutsumiMonster extends SpecialMonster {
 
         if(isMultiTarget||mutsumiWarningUi.damageFrozen){
             mutsumiWarningUi.render(sb);
+            if(!soyoMonster.isDeadOrEscaped()){
+                soyoWarningUi.render(sb);
+            }
         }
+
+
     }
 
 

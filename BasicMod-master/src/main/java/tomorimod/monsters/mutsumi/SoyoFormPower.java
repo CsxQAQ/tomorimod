@@ -101,7 +101,7 @@ public class SoyoFormPower extends BasePower {
         if(color.equals(CraftingRecipes.Material.RED)){
             return damage*2.0f;
         }else if(color.equals(CraftingRecipes.Material.GREEN)){
-            return 1-(YELLOW_NUM/100.0f)*(4+amount)<0?0:damage*(1-(YELLOW_NUM/100.0f)*(4+amount));
+            return 1-(GREEN_NUM/100.0f)*(4+amount)<0?0:damage*(1-(GREEN_NUM/100.0f)*(4+amount));
         }
         return damage;
     }

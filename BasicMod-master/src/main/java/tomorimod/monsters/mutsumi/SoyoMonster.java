@@ -102,7 +102,6 @@ public class SoyoMonster extends SpecialMonster {
                 addToBot(new AbstractGameAction() {
                     @Override
                     public void update() {
-                        AbstractDungeon.player.increaseMaxHp(40,true);
                         increaseMaxHp(40,true);
                         isDone=true;
                     }
