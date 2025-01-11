@@ -101,9 +101,7 @@ public class MutsumiMonster extends SpecialMonster {
     private int damageTimeVal2;
     private int cucumberVal;
     private int cucumberUpgVal;
-
     private int powerVal;
-    public static boolean damageNumFrozen=false;
 
 
     public MutsumiMonster(float x, float y) {
@@ -264,7 +262,7 @@ public class MutsumiMonster extends SpecialMonster {
             case 3:
 
                 isMultiTarget=true;
-                damageNumFrozen=true;
+                mutsumiWarningUi.setFrozen();
                 setMove((byte)5,Intent.ATTACK,
                             this.damage.get(2).base,damageTimeVal2,true);
                 point-=3;
@@ -297,7 +295,7 @@ public class MutsumiMonster extends SpecialMonster {
     public void render(SpriteBatch sb) {
         super.render(sb);
 
-        if(isMultiTarget||damageNumFrozen){
+        if(isMultiTarget||mutsumiWarningUi.damageFrozen){
             mutsumiWarningUi.render(sb);
         }
     }
