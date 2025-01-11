@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -53,8 +54,7 @@ import tomorimod.vfx.StarDustEffect;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static tomorimod.TomoriMod.characterPath;
-import static tomorimod.TomoriMod.makeID;
+import static tomorimod.TomoriMod.*;
 
 public class Tomori extends CustomPlayer {
 
@@ -316,6 +316,8 @@ public class Tomori extends CustomPlayer {
         return FontHelper.energyNumFontRed;
     }
 
+
+
     @Override
     public void doCharSelectScreenSelectEffect() {
         //This occurs when you click the character's button in the character select screen.
@@ -367,6 +369,16 @@ public class Tomori extends CustomPlayer {
         //Makes a new instance of your character class.
         return new Tomori();
     }
+
+    @Override
+    public ArrayList<CutscenePanel> getCutscenePanels() {
+        ArrayList<CutscenePanel> panels = new ArrayList<>();
+        panels.add(new CutscenePanel(imagePath("character/ed/page1.png")));
+        panels.add(new CutscenePanel(imagePath("character/ed/page2.png")));
+        panels.add(new CutscenePanel(imagePath("character/ed/page3.png")));
+        return panels;
+    }
+
 
     @Override
     public void damage(DamageInfo info) {

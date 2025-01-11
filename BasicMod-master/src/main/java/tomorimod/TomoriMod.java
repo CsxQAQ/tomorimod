@@ -67,11 +67,7 @@ import java.util.*;
 //TODO boss写两个，适配原版的和tomori的
 //TODO 通关用mujica的ed
 //TODO 潜在表明
-//TODO 素世预警
 //TODO 用动态变量重写描述
-//TODO 提取预警
-//TODO soyo改为生命上限/或者血量高于多少不回血
-//TODO damageFrozen作为属性
 //TODO savedata单例模式取消，全部直接用static
 @SpireInitializer
 public class TomoriMod implements

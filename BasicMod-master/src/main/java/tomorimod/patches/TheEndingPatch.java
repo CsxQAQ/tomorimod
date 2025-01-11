@@ -59,61 +59,16 @@ public class TheEndingPatch {
 
     }
 
-
-    @SpirePatch(
-            clz = Cutscene.class,
-            method = "update"
-    )
-    public static class CutscenePatch {
-        @SpirePrefixPatch
-        public static SpireReturn prefix(Cutscene __instance,Color ___bgColor,ArrayList<CutscenePanel> ___panels){
-            ___bgColor.a -= Gdx.graphics.getDeltaTime();
-
-//            for (CutscenePanel p : ___panels) {
-//                if (!p.finished) {
-//                    return;
-//                }
-//            }
-
-            //dispose();
-            ___bgColor.a = 0.0F;
-            GameCursor.hidden = false;
-            AbstractDungeon.victoryScreen = new VictoryScreen(null);
-            return SpireReturn.Return();
-        }
-
-        private static class Locator extends SpireInsertLocator {
-            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Cutscene.class, "isDone");
-
-                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-                return new int[]{lines[0]};
+    @SpirePatch(clz = TrueVictoryRoom.class, method = "onPlayerEntry")
+    public static class TrueVictoryRoomPatch {
+        public static void Postfix(TrueVictoryRoom __instance) {
+            if (AbstractDungeon.player instanceof Tomori) {
+                CardCrawlGame.music.silenceBGMInstantly();
+                CardCrawlGame.music.silenceTempBgmInstantly();
+                CardCrawlGame.music.playTempBgmInstantly(MusicPatch.MusicHelper.GEORGETTE.name(), false);
             }
         }
-
     }
-//    @SpirePatch(
-//            clz = ProceedButton.class,
-//            method = "goToTrueVictoryRoom"
-//    )
-//    public static class ProceedButtonTrueVictoryPatch {
-//        @SpirePrefixPatch
-//        public static SpireReturn<Void> prefix(ProceedButton __instance) {
-//            if (AbstractDungeon.player instanceof Tomori || TomoriConfig.config.getBool("onlyModBoss-enabled")) {
-//                CardCrawlGame.music.fadeOutBGM();
-//                MapRoomNode node = new MapRoomNode(3, 4);
-//                node.room = new TomoriTrueVictoryRoom();
-//                AbstractDungeon.nextRoom = node;
-//                AbstractDungeon.closeCurrentScreen();
-//                AbstractDungeon.nextRoomTransitionStart();
-//                __instance.hide();
-//
-//                return SpireReturn.Return(null);
-//            }
-//            return SpireReturn.Continue();
-//        }
-//
-//    }
 
 
 }

@@ -150,8 +150,6 @@ public class UikaMonster extends BaseMonster {
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
-
-
     @Override
     protected void getMove(int num) {
         if (turnNum == 0) {
@@ -254,82 +252,6 @@ public class UikaMonster extends BaseMonster {
         }
         return amount;
     }
-
-    public void showCardsDiscard(UikaCard card){
-        if(card.type.equals(AbstractCard.CardType.POWER)){
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    card.untip();
-                    card.unhover();
-                    card.darken(true);
-                    card.shrink(true);
-
-                    Soul soul = new Soul();
-                    CustomColorTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
-                    soul.empower(card);
-                    try {
-                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
-                        soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(goldenSouls);
-                        souls.add(soul); // 修改字段
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                    isDone=true;
-                }
-            });
-        }
-        else if(card.exhaust){
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    showCardsExhaust(card);
-                    isDone=true;
-                }
-            });
-        }else{
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    card.untip();
-                    card.unhover();
-                    card.darken(true);
-                    card.shrink(true);
-
-                    // 创建新的 Soul
-                    Soul soul = new Soul();
-                    CustomColorTrailEffectPatch.SoulFieldPatch.isUika.set(soul,true);
-                    soul.discard(card, false);
-                    try {
-                        Field soulsField = SoulGroup.class.getDeclaredField("souls");
-                        soulsField.setAccessible(true); // 绕过访问限制
-                        ArrayList<Soul> souls = (ArrayList<Soul>) soulsField.get(goldenSouls);
-                        souls.add(soul); // 修改字段
-                    } catch (NoSuchFieldException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                    isDone=true;
-                }
-            });
-        }
-
-    }
-
-    public void showCardsExhaust(UikaCard card){
-        CardCrawlGame.sound.play("CARD_EXHAUST", 0.2F);
-
-        for (int i = 0; i < 90; i++) {
-            AbstractDungeon.effectsQueue.add(new ExhaustBlurEffect(card.current_x, card.current_y));
-        }
-        for (int i = 0; i < 50; i++) {
-            AbstractDungeon.effectsQueue.add(new ExhaustEmberEffect(card.current_x, card.current_y));
-        }
-
-        AbstractDungeon.effectsQueue.add(new ExhaustCardDelayEffect(card,0.5f));
-    }
-
-
 
     public void showCardsDraw(){
         showCards.clear();

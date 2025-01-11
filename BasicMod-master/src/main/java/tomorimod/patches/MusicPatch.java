@@ -24,7 +24,8 @@ public class MusicPatch {
         MIXINGJIAO(audioPath("musics/mixingjiao.ogg")),
         KILLKISS(audioPath("musics/killkiss.ogg")),
         HEISESHENGRI(audioPath("musics/heiseshengri.ogg")),
-        AVEMUJICA(audioPath("musics/avemujica.ogg"));
+        AVEMUJICA(audioPath("musics/avemujica.ogg")),
+        GEORGETTE(audioPath("musics/georgette.ogg"));
 
 
         private final String path;
