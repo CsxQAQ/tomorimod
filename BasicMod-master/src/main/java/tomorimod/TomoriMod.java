@@ -27,7 +27,7 @@ import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
-import tomorimod.monsters.uika.DamageNumFrozeMonitor;
+import tomorimod.monsters.DamageNumFrozeMonitor;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.patches.BossGeneratePatch;
 import tomorimod.powers.*;
