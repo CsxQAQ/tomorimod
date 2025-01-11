@@ -47,7 +47,7 @@ public class SoyoFormPower extends BasePower {
         if(this.color!=null){
             switch (this.color){
                 case RED:
-                    description=" #y形态 。受到的伤害提高 #b" +RED_NUM*4+ " %，攻击造成的伤害提高 #b" +RED_NUM*amount+" %。";
+                    description=" #y形态 。受到的伤害提高 #b" +RED_NUM*4+ " %，攻击造成的伤害提高 #b" +RED_NUM*(amount+4)+" %。";
                     break;
                 case GREEN:
                     description=" #y形态 。受到的伤害减少 #b" +GREEN_NUM*(4+amount)+ " %。";

@@ -70,6 +70,9 @@ import java.util.*;
 //TODO 素世预警
 //TODO 用动态变量重写描述
 //TODO 提取预警
+//TODO soyo改为生命上限/或者血量高于多少不回血
+//TODO damageFrozen作为属性
+//TODO savedata单例模式取消，全部直接用static
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

@@ -3,6 +3,7 @@ package tomorimod.monsters.mutsumi;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.unique.IncreaseMaxHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -98,8 +99,14 @@ public class SoyoMonster extends SpecialMonster {
                 }
                 break;
             case 3:
-                addToBot(new HealAction(this,this,40));
-                addToBot(new HealAction(AbstractDungeon.player,this,40));
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        AbstractDungeon.player.increaseMaxHp(40,true);
+                        increaseMaxHp(40,true);
+                        isDone=true;
+                    }
+                });
                 break;
             case 4:
                 soyoAttack(2);
