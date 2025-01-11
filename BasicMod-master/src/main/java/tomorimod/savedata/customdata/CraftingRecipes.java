@@ -128,8 +128,7 @@ public class CraftingRecipes implements Clearable {
 
     public void initializeCardsMaterials(){
         for(AbstractCard card : CardLibrary.getAllCards()){
-            if(card.type != AbstractCard.CardType.CURSE
-                    && card.type != AbstractCard.CardType.STATUS&&!(card instanceof BaseMusicCard)){
+            if(card.type != AbstractCard.CardType.CURSE && !(card instanceof WithoutMaterial) && card.type != AbstractCard.CardType.STATUS){
                 cardMaterialHashMap.put(card.cardID, getRandomMaterials());
             }else{
                 cardMaterialHashMap.put(card.cardID, Material.NONE);

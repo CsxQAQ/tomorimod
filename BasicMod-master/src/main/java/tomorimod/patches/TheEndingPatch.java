@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.cutscenes.Cutscene;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
+import com.megacrit.cardcrawl.cutscenes.NeowNarrationScreen;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
@@ -22,6 +23,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
 import com.megacrit.cardcrawl.screens.VictoryScreen;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -59,13 +61,33 @@ public class TheEndingPatch {
 
     }
 
-    @SpirePatch(clz = TrueVictoryRoom.class, method = "onPlayerEntry")
+    @SpirePatch(
+            clz = TrueVictoryRoom.class,
+            method = "onPlayerEntry"
+    )
     public static class TrueVictoryRoomPatch {
         public static void Postfix(TrueVictoryRoom __instance) {
-            if (AbstractDungeon.player instanceof Tomori) {
+            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 CardCrawlGame.music.silenceBGMInstantly();
                 CardCrawlGame.music.silenceTempBgmInstantly();
                 CardCrawlGame.music.playTempBgmInstantly(MusicPatch.MusicHelper.GEORGETTE.name(), false);
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = NeowNarrationScreen.class,
+            method = "update"
+    )
+    public static class NeowNarrationScreenPatch {
+        public static void Prefix(NeowNarrationScreen __instance,float ___fadeOutTimer) {
+            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
+                ___fadeOutTimer=0f;
+                GameCursor.hidden = false;
+                CardCrawlGame.mainMenuScreen.lighten();
+                CardCrawlGame.mainMenuScreen.screen = MainMenuScreen.CurScreen.MAIN_MENU;
+                CardCrawlGame.music.changeBGM("MENU");
+
             }
         }
     }
