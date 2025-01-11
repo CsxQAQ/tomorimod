@@ -3,8 +3,8 @@ package tomorimod.actions.cardactions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.cards.notshow.HuifutuRetainCards;
-import tomorimod.cards.notshow.HuifutuRetainEnergy;
+import tomorimod.cards.notshow.utilcards.HuifutuRetainCards;
+import tomorimod.cards.notshow.utilcards.HuifutuRetainEnergy;
 
 import java.util.ArrayList;
 

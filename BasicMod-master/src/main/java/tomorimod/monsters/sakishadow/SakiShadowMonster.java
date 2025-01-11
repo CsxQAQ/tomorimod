@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.utility.TrueWaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -27,14 +26,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 import tomorimod.actions.PlayBGMAction;
-import tomorimod.cards.notshow.Death;
-import tomorimod.cards.notshow.Fear;
-import tomorimod.cards.notshow.Love;
-import tomorimod.cards.notshow.Sad;
+import tomorimod.cards.notshow.sakishadow.Death;
+import tomorimod.cards.notshow.sakishadow.Fear;
+import tomorimod.cards.notshow.sakishadow.Love;
+import tomorimod.cards.notshow.sakishadow.Sad;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.BaseMonster;
+import tomorimod.monsters.WarningUi;
 import tomorimod.monsters.mutsumi.FriendlyMonsterPower;
 import tomorimod.monsters.mutsumi.SoyoMonster;
 import tomorimod.patches.MusicPatch;
@@ -101,10 +100,10 @@ public class SakiShadowMonster extends BaseMonster {
     private final float fadeOutDuration = 0.5f;
     private float fadeOutTimer = fadeOutDuration;
 
-    private Hitbox attackIntentHb;
-    private Hitbox damageNumberHb;
-    private int damageForShow;
-    private int damageNum;
+
+    private WarningUi warningUi;
+
+
 
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -130,11 +129,8 @@ public class SakiShadowMonster extends BaseMonster {
         isFirstTurn = true;
         isGiveCurse = true;
 
-        // 攻击意图图标的大小
-        this.attackIntentHb = new Hitbox(128.0f * Settings.scale, 128.0f * Settings.scale);
+        warningUi=new WarningUi(this);
 
-        // 伤害数字的大小(这里随意示例了一个 64x32 的范围)
-        this.damageNumberHb = new Hitbox(64.0f * Settings.scale, 32.0f * Settings.scale);
     }
 
     @Override
@@ -373,9 +369,6 @@ public class SakiShadowMonster extends BaseMonster {
         return newNum;
     }
 
-
-
-
     private void obtainRandomCard() {
         AbstractCard c = cards.get(AbstractDungeon.miscRng.random(3)).makeStatEquivalentCopy();
         addToBot(new ShowCardAndObtainAction(c, Settings.WIDTH / 2, Settings.HEIGHT / 2));
@@ -424,27 +417,9 @@ public class SakiShadowMonster extends BaseMonster {
         handleFadeIn();
         handleRebirthFadeOut();
 
-        damageForShow=getPublicField(this, "intentBaseDmg", Integer.class);
-        //damageNum=getPublicField(this, "intentMultiAmt", Integer.class);
+        warningUi.update();
 
-        // 先确定图标在屏幕上的坐标
-        float iconX = AbstractDungeon.player.hb.cX - 96.0f * Settings.scale;
-        float iconY = AbstractDungeon.player.hb.cY + 320.0f * Settings.scale;
 
-        // 把 attackIntentHb 的中心移到图标正中央
-        // 注意要加上宽/高的一半，以使其对准图标中心
-        attackIntentHb.move(iconX + (128.0f * Settings.scale) / 2f,
-                iconY + (128.0f * Settings.scale) / 2f);
-        attackIntentHb.update(); // 必须调用，才能检测鼠标悬浮
-
-        // 再确定伤害数字的坐标
-        float textX = AbstractDungeon.player.hb.cX - 32.0f * Settings.scale;
-        float textY = AbstractDungeon.player.hb.cY + 340.0f * Settings.scale;
-
-        // 让 damageNumberHb 跟随伤害数字区域
-        damageNumberHb.move(textX + (64.0f * Settings.scale) / 2f,
-                textY + (32.0f * Settings.scale) / 2f);
-        damageNumberHb.update();
     }
 
     @Override
@@ -466,66 +441,7 @@ public class SakiShadowMonster extends BaseMonster {
         }
 
         if(halfDead){
-            renderAttackIntent(sb);
-            renderDamageNumber(sb);
-            if (this.attackIntentHb.hovered||this.damageNumberHb.hovered) {
-                // 这类方法可以渲染一个简单的提示
-                // 参数：Tip的左下角X, Tip的左下角Y, 标题, 内容
-                TipHelper.renderGenericTip(
-                        InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
-                        InputHelper.mY - 50.0F * Settings.scale,
-                        "预警",
-                        "敌人将对你造成 #b" + damageForShow+ " 点伤害。"
-                );
-            }
-        }
-    }
-
-
-
-    private void renderAttackIntent(SpriteBatch sb) {
-        if (damageForShow <= 0) {
-            return;
-        }
-
-        // 拿到对应的纹理
-        Texture intentTex = getAttackIntent(damageForShow);
-        if (intentTex == null) {
-            return;
-        }
-
-        // 设置渲染颜色和位置
-        // 注意：玩家的 Hitbox 中心是 hb.cX, hb.cY，可以按需求微调
-        sb.setColor(Color.WHITE.cpy());
-        float iconX = AbstractDungeon.player.hb.cX - 96.0f*Settings.scale;  // 让图标居中
-        float iconY = AbstractDungeon.player.hb.cY + 320.0f*Settings.scale;  // 高度可以根据需求调整
-
-        // 画图标（64 x 64 大小）
-        sb.draw(intentTex, iconX, iconY, 128.0f*Settings.scale, 128.0f*Settings.scale);
-    }
-
-    private void renderDamageNumber(SpriteBatch sb) {
-        if (damageForShow <= 0) {
-            return;
-        }
-
-        float textX = AbstractDungeon.player.hb.cX-32.0f*Settings.scale;
-        float textY = AbstractDungeon.player.hb.cY + 340.0f*Settings.scale;
-
-        // 用红色来渲染伤害数字
-        FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
-                damageForShow+"", textX, textY, Color.WHITE);
-    }
-
-
-    public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
-        try {
-            Field field = AbstractMonster.class.getDeclaredField(fieldName);
-            field.setAccessible(true);
-            return fieldType.cast(field.get(instance));
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
+            warningUi.render(sb);
         }
     }
 

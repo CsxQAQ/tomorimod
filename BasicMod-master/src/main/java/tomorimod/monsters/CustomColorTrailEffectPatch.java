@@ -6,16 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.Soul;
-import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import tomorimod.cards.notshow.Cucumber;
-import tomorimod.cards.notshow.SakiShadow;
+import tomorimod.cards.notshow.mutsumi.Cucumber;
+import tomorimod.cards.notshow.sakishadow.SakiShadow;
 import tomorimod.monsters.uika.CustomCardTrailEffect;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CustomColorTrailEffectPatch {
     //public static ArrayList<CustomCardTrailEffect> effectsPool=new ArrayList<>();

@@ -75,18 +75,13 @@ public class AnonMonster extends BaseMonster {
     public static final int DAMAGETIME_3_WEAK = 3;
     public static final int DAMAGETIME_4_WEAK = 3;
 
-    // HP区间
     private int hpMinVal;
     private int hpMaxVal;
-
-    // 伤害数值
     private int damageVal0;
     private int damageVal1;
     private int damageVal2;
     private int damageVal3;
     private int damageVal4;
-
-    // 多段伤害次数
     private int damageTimeVal0;
     private int damageTimeVal1;
     private int damageTimeVal2;

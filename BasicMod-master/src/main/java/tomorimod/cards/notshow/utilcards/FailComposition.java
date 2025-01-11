@@ -1,5 +1,5 @@
 
-package tomorimod.cards.notshow;
+package tomorimod.cards.notshow.utilcards;
 
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,11 +7,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 //这个设置为BaseMusicCard可能会出问题
-public class FailComposition extends BaseCard implements WithoutMaterial,SpecialCard {
+public class FailComposition extends BaseCard implements WithoutMaterial, SpecialCard {
     public static final String ID = makeID(FailComposition.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,

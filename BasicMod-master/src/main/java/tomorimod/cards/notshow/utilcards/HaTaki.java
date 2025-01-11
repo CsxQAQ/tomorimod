@@ -1,4 +1,4 @@
-package tomorimod.cards.notshow;
+package tomorimod.cards.notshow.utilcards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -7,12 +7,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class BlankPaperAttack extends BaseCard implements SpecialCard {
-
-    public static final String ID = makeID(BlankPaperAttack.class.getSimpleName());
+public class HaTaki extends BaseCard implements SpecialCard {
+    public static final String ID = makeID(HaTaki.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -21,32 +21,22 @@ public class BlankPaperAttack extends BaseCard implements SpecialCard {
             0
     );
 
-    public BlankPaperAttack() {
+    public static final int DAMAGE = 6;
+    public static final int UPG_DAMAGE = 3;
+
+    public HaTaki() {
         super(ID, info);
-        //this.isLocked=true;
-    }
-
-    @Override
-    public boolean canUpgrade() {
-        return false;
-    }
-
-    @Override
-    public void upgrade() {
-
+        setDamage(DAMAGE,UPG_DAMAGE);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for(int i=0;i<baseMagicNumber;i++){
-            addToBot(new DamageAction(m, new DamageInfo(p, damage,
-                    DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        }
+        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new BlankPaperAttack();
+        return new HaTaki();
     }
 
 }

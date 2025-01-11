@@ -1,4 +1,4 @@
-package tomorimod.cards.notshow;
+package tomorimod.cards.notshow.utilcards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -7,11 +7,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class HaAnon extends BaseCard implements SpecialCard  {
-    public static final String ID = makeID(HaAnon.class.getSimpleName());
+public class BlankPaperAttack extends BaseCard implements SpecialCard {
+
+    public static final String ID = makeID(BlankPaperAttack.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -20,23 +22,32 @@ public class HaAnon extends BaseCard implements SpecialCard  {
             0
     );
 
-    public static final int DAMAGE = 3;
-    public static final int UPG_DAMAGE = 2;
-
-    public HaAnon() {
+    public BlankPaperAttack() {
         super(ID, info);
-        setDamage(DAMAGE,UPG_DAMAGE);
+        //this.isLocked=true;
+    }
+
+    @Override
+    public boolean canUpgrade() {
+        return false;
+    }
+
+    @Override
+    public void upgrade() {
+
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new DamageAction(m, new DamageInfo(p, damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        for(int i=0;i<baseMagicNumber;i++){
+            addToBot(new DamageAction(m, new DamageInfo(p, damage,
+                    DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+        }
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new HaAnon();
+        return new BlankPaperAttack();
     }
-
 
 }

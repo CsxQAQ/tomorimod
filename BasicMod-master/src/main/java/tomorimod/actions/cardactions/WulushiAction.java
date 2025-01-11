@@ -5,12 +5,10 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageInfo;
-import tomorimod.cards.notshow.TestCard;
+import tomorimod.cards.notshow.utilcards.TestCard;
 import tomorimod.tags.CustomTags;
 
 import java.util.ArrayList;
-
-import static tomorimod.TomoriMod.makeID;
 
 public class WulushiAction extends AbstractGameAction {
 

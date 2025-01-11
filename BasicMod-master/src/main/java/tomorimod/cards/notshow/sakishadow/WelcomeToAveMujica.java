@@ -1,10 +1,11 @@
-package tomorimod.cards.notshow;
+package tomorimod.cards.notshow.sakishadow;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.util.CardStats;
 
 public class WelcomeToAveMujica extends BaseCard implements SpecialCard, WithoutMaterial {
@@ -34,7 +35,15 @@ public class WelcomeToAveMujica extends BaseCard implements SpecialCard, Without
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
 
     }
+    @Override
+    public boolean canUpgrade(){
+        return false;
+    }
 
+    @Override
+    public void upgrade(){
+
+    }
     @Override
     public AbstractCard makeCopy() {
         return new WelcomeToAveMujica();

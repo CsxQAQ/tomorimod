@@ -1,4 +1,4 @@
-package tomorimod.cards.notshow;
+package tomorimod.cards.notshow.utilcards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -7,30 +7,26 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
-import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class TestCard extends BaseCard implements SpecialCard, WithoutMaterial {
-    public static final String ID = makeID(TestCard.class.getSimpleName());
+public class HaAnon extends BaseCard implements SpecialCard {
+    public static final String ID = makeID(HaAnon.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
-            CardRarity.BASIC,
+            CardRarity.SPECIAL,
             CardTarget.ENEMY,
-            1
+            0
     );
 
-    public static final int DAMAGE = 9999;
+    public static final int DAMAGE = 6;
     public static final int UPG_DAMAGE = 3;
 
-    public TestCard() {
+    public HaAnon() {
         super(ID, info);
-
-        setDamage(DAMAGE, UPG_DAMAGE);
-
-        tags.add(CardTags.STARTER_STRIKE);
-        tags.add(CardTags.STRIKE);
+        setDamage(DAMAGE,UPG_DAMAGE);
     }
 
     @Override
@@ -39,7 +35,9 @@ public class TestCard extends BaseCard implements SpecialCard, WithoutMaterial {
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
-        return new TestCard();
+    public AbstractCard makeCopy() {
+        return new HaAnon();
     }
+
+
 }

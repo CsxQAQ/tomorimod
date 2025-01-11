@@ -47,9 +47,6 @@ public class MutsumiMonster extends SpecialMonster {
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
 
-    private static final int HP_MIN = 2000;
-    private static final int HP_MAX = 2000;
-
     private static final float HB_X = 0F;
     private static final float HB_Y = 0F;
     private static final float HB_W = 230.0F;
@@ -61,11 +58,6 @@ public class MutsumiMonster extends SpecialMonster {
     public static final float DRAW_Y=450.0F;
     private SoyoMonster soyoMonster;
 
-    public static final int CUCUMBER=20;
-    public static final int CUCUMBER_UPG=3;
-    public static final int HEALNUM=50;
-    public static final int STRENGTHNUM=2;
-    public static final int POWERNUM=2;
     private int point=0;
 
     private Hitbox attackIntentHb;
@@ -74,10 +66,78 @@ public class MutsumiMonster extends SpecialMonster {
     private int damageNum;
 
 
+    public static final int HP_MIN       = 6000;
+    public static final int HP_MAX       = 6000;
+    public static final int DAMAGE_0     = 6;
+    public static final int DAMAGE_1     = 12;
+    public static final int DAMAGE_2     = 15;
+    public static final int DAMAGETIME_0 = 1;
+    public static final int DAMAGETIME_1 = 1;
+    public static final int DAMAGETIME_2 = 3;
+    public static final int CUCUMBER=20;
+    public static final int CUCUMBER_UPG=3;
+    public static final int HEALNUM=50;
+    public static final int STRENGTHNUM=2;
+    public static final int POWERNUM=2;
+
+    public static final int HP_MIN_WEAK       = 2000;
+    public static final int HP_MAX_WEAK       = 2000;
+    public static final int DAMAGE_0_WEAK     = 6;
+    public static final int DAMAGE_1_WEAK     = 12;
+    public static final int DAMAGE_2_WEAK     = 15;
+    public static final int DAMAGETIME_0_WEAK = 1;
+    public static final int DAMAGETIME_1_WEAK = 1;
+    public static final int DAMAGETIME_2_WEAK = 3;
+    public static final int CUCUMBER_WEAK=10;
+    public static final int CUCUMBER_UPG_WEAK=3;
+    public static final int HEALNUM_WEAK=50;
+    public static final int STRENGTHNUM_WEAK=2;
+    public static final int POWERNUM_WEAK=2;
+
+    private int hpMinVal;
+    private int hpMaxVal;
+    private int damageVal0;
+    private int damageVal1;
+    private int damageVal2;
+    private int damageTimeVal0;
+    private int damageTimeVal1;
+    private int damageTimeVal2;
+    private int cucumberVal;
+    private int cucumberUpgVal;
+
+    private int powerVal;
+
+
     public MutsumiMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
-        setHp(HP_MIN, HP_MAX);
+        if(isTomori){
+            this.hpMinVal = HP_MIN;
+            this.hpMaxVal = HP_MAX;
+            this.damageVal0 = DAMAGE_0;
+            this.damageVal1 = DAMAGE_1;
+            this.damageVal2 = DAMAGE_2;
+            this.damageTimeVal0 = DAMAGETIME_0;
+            this.damageTimeVal1 = DAMAGETIME_1;
+            this.damageTimeVal2 = DAMAGETIME_2;
+            this.cucumberVal = CUCUMBER;
+            this.cucumberUpgVal = CUCUMBER_UPG;
+            this.powerVal = POWERNUM;
+        } else{
+            this.hpMinVal = HP_MIN_WEAK;
+            this.hpMaxVal = HP_MAX_WEAK;
+            this.damageVal0 = DAMAGE_0_WEAK;
+            this.damageVal1 = DAMAGE_1_WEAK;
+            this.damageVal2 = DAMAGE_2_WEAK;
+            this.damageTimeVal0 = DAMAGETIME_0_WEAK;
+            this.damageTimeVal1 = DAMAGETIME_1_WEAK;
+            this.damageTimeVal2 = DAMAGETIME_2_WEAK;
+            this.cucumberVal = CUCUMBER_WEAK;
+            this.cucumberUpgVal = CUCUMBER_UPG_WEAK;
+            this.powerVal = POWERNUM_WEAK;
+        }
+
+        setHp(hpMinVal, hpMaxVal);
 
         this.type = EnemyType.BOSS;
 
@@ -88,10 +148,9 @@ public class MutsumiMonster extends SpecialMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
 
-        this.damage.add(new DamageInfo(this, 20, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 5, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 120, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
         this.target=soyoMonster;
 
         // 攻击意图图标的大小
@@ -116,7 +175,7 @@ public class MutsumiMonster extends SpecialMonster {
 
 
         addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
-        addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,CUCUMBER),CUCUMBER));
+        addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,cucumberVal),cucumberVal));
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
     }
@@ -126,21 +185,17 @@ public class MutsumiMonster extends SpecialMonster {
 
         switch (this.nextMove) {
             case 0:
-                //addToBot(new DamageAction(target,
-                //        this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                mutsumiAttack(0);
+                mutsumiAttack(0,damageTimeVal0);
                 break;
             case 1:
-                addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,CUCUMBER_UPG),CUCUMBER_UPG));
+                addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,cucumberUpgVal),cucumberUpgVal));
                 break;
             case 2:
-                for(int i=0;i<5;i++){
-                    mutsumiAttack(1);
-                }
+                mutsumiAttack(1,damageTimeVal1);
                 break;
             case 3:
-                addToBot(new ApplyPowerAction(target,this,new VulnerablePower(target,POWERNUM,true),POWERNUM));
-                addToBot(new ApplyPowerAction(target,this,new WeakPower(target,POWERNUM,true),POWERNUM));
+                addToBot(new ApplyPowerAction(target,this,new VulnerablePower(target,powerVal,true),powerVal));
+                addToBot(new ApplyPowerAction(target,this,new WeakPower(target,powerVal,true),powerVal));
                 break;
 //            case 4:
 //                addToBot(new DamageAction(target,
@@ -151,7 +206,7 @@ public class MutsumiMonster extends SpecialMonster {
                     addToBot(new VFXAction(this, new ShockWaveEffect(
                             this.hb.cX, this.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
 
-                    addToBot(new MonsterDamageAllAction(this,this.damage.get(3),AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+                    addToBot(new MonsterDamageAllAction(this,this.damage.get(2),AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
                     isMultiTarget=false;
                 }
                 break;
@@ -161,16 +216,17 @@ public class MutsumiMonster extends SpecialMonster {
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
-    private void mutsumiAttack(int k){
-        if(target==AbstractDungeon.player){
-            addToBot(new DamageAction(target,
-                    this.damage.get(k), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        }else{
-            DamageInfo newInfo=new DamageInfo(this,this.damage.get(k).base);
-            newInfo.applyPowers(this,soyoMonster);
-            addToBot(new DamageAction(target,new DamageInfo(this,newInfo.output)));
+    private void mutsumiAttack(int index,int times){
+        for(int i=0;i<times;i++){
+            if(target==AbstractDungeon.player){
+                addToBot(new DamageAction(target,
+                        this.damage.get(index), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            }else{
+                DamageInfo newInfo=new DamageInfo(this,this.damage.get(index).base);
+                newInfo.applyPowers(this,soyoMonster);
+                addToBot(new DamageAction(target,new DamageInfo(this,newInfo.output)));
+            }
         }
-
     }
 
     @Override
@@ -193,7 +249,7 @@ public class MutsumiMonster extends SpecialMonster {
             case 0:
                 if(tmp==0){
                     setMove( (byte)0, Intent.ATTACK,
-                            this.damage.get(0).base, 1, false);
+                            this.damage.get(0).base, damageTimeVal0, false);
                 }else{
                     setMove((byte)1,Intent.BUFF);
                 }
@@ -204,7 +260,7 @@ public class MutsumiMonster extends SpecialMonster {
             case 2:
                 if(tmp==0){
                     setMove((byte)2,Intent.ATTACK,
-                            this.damage.get(1).base,5,true);
+                            this.damage.get(1).base,damageTimeVal1,true);
                 }else{
                     setMove((byte)3,Intent.DEBUFF);
                 }
@@ -214,7 +270,7 @@ public class MutsumiMonster extends SpecialMonster {
 
                 isMultiTarget=true;
                 setMove((byte)5,Intent.ATTACK,
-                            this.damage.get(3).base,3,true);
+                            this.damage.get(2).base,damageTimeVal2,true);
                 point-=3;
                 break;
         }

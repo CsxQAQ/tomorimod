@@ -1,16 +1,14 @@
 package tomorimod.monsters.mutsumi;
 
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.CNCardTextColors;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.cards.Soul;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import tomorimod.cards.notshow.Cucumber;
+import tomorimod.cards.notshow.mutsumi.Cucumber;
 
 import java.util.ArrayList;
 

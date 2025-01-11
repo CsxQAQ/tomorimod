@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
-import tomorimod.cards.notshow.BlankPaperAttack;
+import tomorimod.cards.notshow.utilcards.BlankPaperAttack;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
