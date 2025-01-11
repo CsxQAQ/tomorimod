@@ -60,7 +60,7 @@ public class Miluri extends BaseMusicCard {
         int shineAmount= PlayerUtils.getPowerNum("ShinePower");
 
         if(this.musicRarity.equals(MusicRarity.RARE)){
-            for (int i = 0; i < shineAmount*2 + 1; i++) {
+            for (int i = 0; i < shineAmount*REPEAT_TIME_RARE + 1; i++) {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {
@@ -68,7 +68,7 @@ public class Miluri extends BaseMusicCard {
                 }
             }
         }else{
-            for (int i = 0; i < shineAmount + 1; i++) {
+            for (int i = 0; i < shineAmount*REPEAT_TIME_COMMON + 1; i++) {
                 AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
                 if (target != null) {

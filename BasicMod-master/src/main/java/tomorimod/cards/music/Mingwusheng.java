@@ -29,6 +29,7 @@ public class Mingwusheng extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
+        setCustomVar("EN",ENERGY_RARE);
     }
 
 
@@ -36,27 +37,29 @@ public class Mingwusheng extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 2;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 2;
-    public final static int UPG_MAGIC_COMMON = 1;
+    public final static int MAGIC_COMMON = 4;
+    public final static int UPG_MAGIC_COMMON = 2;
 
     public final static int DAMAGE_UNCOMMON = 5;
     public final static int UPG_DAMAGE_UNCOMMON = 3;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 3;
-    public final static int UPG_MAGIC_UNCOMMON = 2;
+    public final static int MAGIC_UNCOMMON = 5;
+    public final static int UPG_MAGIC_UNCOMMON = 3;
 
     public final static int DAMAGE_RARE = 5;
     public final static int UPG_DAMAGE_RARE = 3;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 3;
-    public final static int UPG_MAGIC_RARE = 2;
+    public final static int MAGIC_RARE = 5;
+    public final static int UPG_MAGIC_RARE = 3;
+
+    public final static int ENERGY_RARE=2;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(this.musicRarity.equals(MusicRarity.RARE)){
-            addToBot(new GainEnergyAction(2));
+            addToBot(new GainEnergyAction(ENERGY_RARE));
         }
         addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot(new ApplyGravityAction(magicNumber));

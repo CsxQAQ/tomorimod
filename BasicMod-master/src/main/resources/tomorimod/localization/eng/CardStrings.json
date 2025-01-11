@@ -344,9 +344,9 @@
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
-    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。",
+    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有1层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。"
+      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。"
     ],
     "UPGRADE_DESCRIPTION": "（攻击 !${modID}:SN! 次）"
   },
@@ -354,7 +354,7 @@
     "NAME": "名無声",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。获得 [E] [E] 。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。获得 !${modID}:EN! 点 [E] 。"
     ]
   },
   "${modID}:Mixingjiao": {
