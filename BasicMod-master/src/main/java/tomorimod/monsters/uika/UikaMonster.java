@@ -66,8 +66,8 @@ public class UikaMonster extends BaseMonster {
     private AbstractCard hoveredCard;
     private AbstractCard clickStartedCard;
 
-    private UikaCard cardForShow1;
-    private UikaCard cardForShow2;
+    public UikaCard cardForShow1;
+    public UikaCard cardForShow2;
 
     public static final float CARDFORSHOW1_X=(DRAW_X-100.0f)*Settings.scale;
     public static final float CARDFORSHOW2_X=(DRAW_X+100.0f)*Settings.scale;
@@ -77,15 +77,13 @@ public class UikaMonster extends BaseMonster {
 
     public static boolean damageNumFroze=false;
 
-    private Hitbox attackIntentHb;
-    private Hitbox damageNumberHb;
-
     private boolean isGravityMode;
-
     private boolean isDomainExpansionUsed=false;
     public static boolean isTwoMoon=false;
 
     public static SoulGroup goldenSouls=new SoulGroup();
+
+    public UikaWarningUi uikaWarningUi;
 
     private int turnNum=0;
 
@@ -126,13 +124,10 @@ public class UikaMonster extends BaseMonster {
         this.drawX=DRAW_X*Settings.scale;
         this.drawY=DRAW_Y*Settings.scale;
 
+        uikaWarningUi=new UikaWarningUi(this);
+
         this.damage.add(new DamageInfo(this, 6, DamageInfo.DamageType.NORMAL));
 
-        // 攻击意图图标的大小
-        this.attackIntentHb = new Hitbox(128.0f * Settings.scale, 128.0f * Settings.scale);
-
-        // 伤害数字的大小(这里随意示例了一个 64x32 的范围)
-        this.damageNumberHb = new Hitbox(64.0f * Settings.scale, 32.0f * Settings.scale);
     }
 
     @Override
@@ -250,7 +245,7 @@ public class UikaMonster extends BaseMonster {
         turnNum++;
     }
 
-    private int getDebuffNum(){
+    public int getDebuffNum(){
         int amount=0;
         for(AbstractPower power:this.powers){
             if(power.type== AbstractPower.PowerType.DEBUFF){
@@ -370,37 +365,14 @@ public class UikaMonster extends BaseMonster {
         ));
     }
 
-    private int damageForShow;
-    private int gravityDamageForShow;
 
     @Override
     public void update(){
         super.update();
         updateCard();
         updateInputLogic();
-        if(!damageNumFroze){
-            damageForShow =calculate().get(0);
-            gravityDamageForShow =calculate().get(1);
-        }
 
-        // 先确定图标在屏幕上的坐标
-        float iconX = AbstractDungeon.player.hb.cX - 96.0f * Settings.scale;
-        float iconY = AbstractDungeon.player.hb.cY + 320.0f * Settings.scale;
-
-        // 把 attackIntentHb 的中心移到图标正中央
-        // 注意要加上宽/高的一半，以使其对准图标中心
-        attackIntentHb.move(iconX + (128.0f * Settings.scale) / 2f,
-                iconY + (128.0f * Settings.scale) / 2f);
-        attackIntentHb.update(); // 必须调用，才能检测鼠标悬浮
-
-        // 再确定伤害数字的坐标
-        float textX = AbstractDungeon.player.hb.cX - 32.0f * Settings.scale;
-        float textY = AbstractDungeon.player.hb.cY + 340.0f * Settings.scale;
-
-        // 让 damageNumberHb 跟随伤害数字区域
-        damageNumberHb.move(textX + (64.0f * Settings.scale) / 2f,
-                textY + (32.0f * Settings.scale) / 2f);
-        damageNumberHb.update();
+        uikaWarningUi.update();
 
         goldenSouls.update();
     }
@@ -440,155 +412,15 @@ public class UikaMonster extends BaseMonster {
         }
     }
 
-    public ArrayList<Integer> calculate(){
-        int damageNum=0;
-        int gravityDamageNum=0;
-        int monsterDamage = getPublicField(this, "intentDmg", Integer.class);
-        int attackCount = getPublicField(this, "intentMultiAmt", Integer.class);
-        if(attackCount==-1){
-            attackCount=1;
-        }
-        int gravityAmount=this.hasPower(makeID("GravityPower"))?this.getPower(makeID("GravityPower")).amount:0;
-        int divergeWorldAmount=this.hasPower(makeID("DivergeWorldPower"))?this.getPower(makeID("DivergeWorldPower")).amount:0;
-        int shineAmount=this.hasPower(makeID("ShinePower"))?this.getPower(makeID("ShinePower")).amount:0;
 
-        if(cardForShow1!=null){
-            if(cardForShow1.cardID.equals(makeID("UikaMygoTogether"))){
-                gravityAmount++;
-            }else if(cardForShow1.cardID.equals(makeID("UikaLiveForever"))){
-                gravityAmount+=UikaLiveForever.MAGIC;
-            }else if(cardForShow1.cardID.equals(makeID("UikaLightAndShadow"))){
-                if(gravityAmount>=shineAmount){
-                    gravityAmount+=LightAndShadow.MAGIC;
-                }else{
-                    shineAmount+=LightAndShadow.MAGIC;
-                }
-            }else if(cardForShow1.cardID.equals(makeID("UikaNeedAnon"))){
-                gravityAmount+=gravityAmount*NeedAnon.MAGIC;
-            }else if(cardForShow1.cardID.equals(makeID("UikaDivergeWorld"))){
-                divergeWorldAmount++;
-            }else if(cardForShow1.cardID.equals(makeID("UikaLastGentle"))){
-                int tmp=gravityAmount;
-                gravityAmount=shineAmount;
-                shineAmount=tmp;
-            }else if(cardForShow1.cardID.equals(makeID("UikaStrike"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
-            }else if(cardForShow1.cardID.equals(makeID("UikaLastOne"))){
-                shineAmount+=UikaLastOne.MAGIC;
-            }else if(cardForShow1.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
-                shineAmount+=getDebuffNum();
-            }else if(cardForShow1.cardID.equals(makeID("UikaTwoMoon"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
-            }
-        }
-
-        if(cardForShow2!=null){
-            if(cardForShow2.cardID.equals(makeID("UikaMygoTogether"))){
-                gravityAmount++;
-            }else if(cardForShow2.cardID.equals(makeID("UikaLiveForever"))){
-                gravityAmount+=UikaLiveForever.MAGIC;
-            }else if(cardForShow2.cardID.equals(makeID("UikaLightAndShadow"))){
-                if(gravityAmount>=shineAmount){
-                    gravityAmount+=LightAndShadow.MAGIC;
-                }else{
-                    shineAmount+=LightAndShadow.MAGIC;
-                }
-            }else if(cardForShow2.cardID.equals(makeID("UikaNeedAnon"))){
-                gravityAmount+=gravityAmount*NeedAnon.MAGIC;
-            }else if(cardForShow2.cardID.equals(makeID("UikaDivergeWorld"))){
-                divergeWorldAmount++;
-            }else if(cardForShow2.cardID.equals(makeID("UikaLastGentle"))){
-                int tmp=gravityAmount;
-                gravityAmount=shineAmount;
-                shineAmount=tmp;
-            }else if(cardForShow2.cardID.equals(makeID("UikaStrike"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
-            }else if(cardForShow2.cardID.equals(makeID("UikaLastOne"))){
-                shineAmount+=UikaLastOne.MAGIC;
-            }else if(cardForShow2.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
-                shineAmount+=getDebuffNum();
-            }else if(cardForShow2.cardID.equals(makeID("UikaTwoMoon"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
-            }
-        }
-
-        damageNum+=gravityAmount;
-        gravityDamageNum+=gravityAmount;
-
-        return new ArrayList<>(Arrays.asList(damageNum,gravityDamageNum));
-    }
-
-    public static <T> T getPublicField(Object instance, String fieldName, Class<T> fieldType) {
-        try {
-            Field field = AbstractMonster.class.getDeclaredField(fieldName);
-            field.setAccessible(true);
-            return fieldType.cast(field.get(instance));
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-
-        renderAttackIntent(sb);
-        renderDamageNumber(sb);
-        if (this.attackIntentHb.hovered||this.damageNumberHb.hovered) {
-            // 这类方法可以渲染一个简单的提示
-            // 参数：Tip的左下角X, Tip的左下角Y, 标题, 内容
-            TipHelper.renderGenericTip(
-                    InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
-                    InputHelper.mY - 50.0F * Settings.scale,
-                    "预警",
-                    "敌人将对你造成 #b" + damageForShow+ " 点伤害。 NL #b"+(damageForShow-gravityDamageForShow) +
-                            " 点来自攻击。 NL #b"+gravityDamageForShow+" 点来自 #y重力 。"
-            );
-        }
+        uikaWarningUi.render(sb);
     }
 
-    private void renderAttackIntent(SpriteBatch sb) {
-        if (damageForShow <= 0) {
-            return;
-        }
 
-        // 拿到对应的纹理
-        Texture intentTex = getAttackIntent(damageForShow);
-        if (intentTex == null) {
-            return;
-        }
-
-        // 设置渲染颜色和位置
-        // 注意：玩家的 Hitbox 中心是 hb.cX, hb.cY，可以按需求微调
-        sb.setColor(Color.WHITE.cpy());
-        float iconX = AbstractDungeon.player.hb.cX - 96.0f*Settings.scale;  // 让图标居中
-        float iconY = AbstractDungeon.player.hb.cY + 320.0f*Settings.scale;  // 高度可以根据需求调整
-
-        // 画图标（64 x 64 大小）
-        sb.draw(intentTex, iconX, iconY, 128.0f*Settings.scale, 128.0f*Settings.scale);
-    }
-
-    private void renderDamageNumber(SpriteBatch sb) {
-        if (damageForShow <= 0) {
-            return;
-        }
-
-        float textX = AbstractDungeon.player.hb.cX-32.0f*Settings.scale;
-        float textY = AbstractDungeon.player.hb.cY + 340.0f*Settings.scale;
-
-        // 用红色来渲染伤害数字
-        FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
-                Integer.toString(damageForShow), textX, textY, Color.WHITE);
-    }
 
     @Override
     protected Texture getAttackIntent() {

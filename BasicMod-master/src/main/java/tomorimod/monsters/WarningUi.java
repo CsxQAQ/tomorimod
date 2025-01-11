@@ -20,7 +20,7 @@ public class WarningUi {
     public int damageForShow;
     public int damageNum;
 
-    private AbstractMonster monster;
+    public AbstractMonster monster;
     //private float x;
     //private float y;
 
@@ -61,16 +61,8 @@ public class WarningUi {
     public void render(SpriteBatch sb){
         renderAttackIntent(sb);
         renderDamageNumber(sb);
-        if (this.attackIntentHb.hovered||this.damageNumberHb.hovered) {
-            // 这类方法可以渲染一个简单的提示
-            // 参数：Tip的左下角X, Tip的左下角Y, 标题, 内容
-            TipHelper.renderGenericTip(
-                    InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
-                    InputHelper.mY - 50.0F * Settings.scale,
-                    "预警",
-                    "敌人将对你造成 #b" + damageForShow+ " 点伤害。"
-            );
-        }
+        renderTip();
+
     }
 
     public void renderAttackIntent(SpriteBatch sb) {
@@ -105,6 +97,19 @@ public class WarningUi {
         // 用红色来渲染伤害数字
         FontHelper.renderFontCentered(sb, FontHelper.cardDescFont_N,
                 damageForShow+"", textX, textY, Color.WHITE);
+    }
+
+    public void renderTip(){
+        if (this.attackIntentHb.hovered||this.damageNumberHb.hovered) {
+            // 这类方法可以渲染一个简单的提示
+            // 参数：Tip的左下角X, Tip的左下角Y, 标题, 内容
+            TipHelper.renderGenericTip(
+                    InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
+                    InputHelper.mY - 50.0F * Settings.scale,
+                    "预警",
+                    "敌人将对你造成 #b" + damageForShow+ " 点伤害。"
+            );
+        }
     }
 
 
