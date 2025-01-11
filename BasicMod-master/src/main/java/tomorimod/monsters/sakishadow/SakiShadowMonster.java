@@ -81,29 +81,17 @@ public class SakiShadowMonster extends BaseMonster {
 
     // 记录用于随机展示的卡牌
     private final List<AbstractCard> cards = Arrays.asList(
-            new Death(),
-            new Fear(),
-            new Love(),
-            new Sad()
-    );
+            new Death(), new Fear(), new Love(), new Sad());
 
     // 用于在 getMove 中判断走哪个分支
     private int curNum = -1;
 
-    // 用于处理渐入渐出
-    private float alpha = 1.0f;
-    private boolean isFadingIn = false;
-    private final float fadeInDuration = 4.0f;
-    private float fadeInTimer = fadeInDuration;
-
-    private boolean isRebirth = false;
-    private final float fadeOutDuration = 0.5f;
-    private float fadeOutTimer = fadeOutDuration;
-
-
     private WarningUi warningUi;
 
-
+    private SakiShadowFadeVFX sakiShadowFadeVFX;
+    public boolean isFadingIn = false;
+    public boolean isRebirth = false;
+    public float alpha = 1.0f;
 
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -130,6 +118,7 @@ public class SakiShadowMonster extends BaseMonster {
         isGiveCurse = true;
 
         warningUi=new WarningUi(this);
+        sakiShadowFadeVFX=new SakiShadowFadeVFX(this);
 
     }
 
@@ -374,52 +363,16 @@ public class SakiShadowMonster extends BaseMonster {
         addToBot(new ShowCardAndObtainAction(c, Settings.WIDTH / 2, Settings.HEIGHT / 2));
     }
 
-    private void handleFadeIn() {
-        if (isFadingIn) {
-            fadeInTimer -= Gdx.graphics.getDeltaTime();
-            if (fadeInTimer < 0f) {
-                fadeInTimer = 0f;
-                isFadingIn = false;
-            }
-            float progress = 1.0f - (fadeInTimer / fadeInDuration);
-            alpha = Interpolation.fade.apply(0f, 1f, progress);
-            this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, alpha));
-
-            // 若渐入结束，把 alpha 设回 1
-            if (!isFadingIn) {
-                alpha = 1.0f;
-                this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, alpha));
-            }
-        }
-    }
-
-    private void handleRebirthFadeOut() {
-        if (isRebirth) {
-            fadeOutTimer -= Gdx.graphics.getDeltaTime();
-            if (fadeOutTimer < 0f) {
-                fadeOutTimer = 0f;
-                isRebirth = false;
-            }
-            alpha = fadeOutTimer / fadeOutDuration;
-            this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, alpha));
-
-            if (!isRebirth) {
-                // 减到 0 之后，再把怪移到屏幕外
-                this.drawX = -1000.0f;
-                this.drawY = -1000.0f;
-            }
-        }
-    }
-
     @Override
     public void update() {
         super.update();
-        handleFadeIn();
-        handleRebirthFadeOut();
-
+        if(isFadingIn){
+            sakiShadowFadeVFX.handleFadeIn();
+        }
+        if(isRebirth){
+            sakiShadowFadeVFX.handleRebirthFadeOut();
+        }
         warningUi.update();
-
-
     }
 
     @Override
