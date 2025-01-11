@@ -60,13 +60,9 @@ import java.util.*;
 
 //TODO 平衡性调整
 
-//TODO 考虑所有insert patch用定位器重写
 //TODO 不用tempcard农
-
 //TODO 音乐攻击牌重写
 //TODO 潜在表明
-//TODO 用动态变量重写描述
-//TODO savedata单例模式取消，全部直接用static
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

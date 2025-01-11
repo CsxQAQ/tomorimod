@@ -100,18 +100,16 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     @Override
     public void updateDescription(){
         if (idForShow != null && musicRarity != null) {
-            String newDescription = null;
             switch (musicRarity) {
                 case COMMON:
                 case DEFAULT:
                 case UNCOMMON:
-                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
                     break;
                 case RARE:
-                    newDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
+                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
                     break;
             }
-            this.rawDescription = newDescription;
         }
         if (this.upgradesDescription) {
             if (cardStrings.UPGRADE_DESCRIPTION == null) {

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.monitors.card.LunfuyuMonitor;
@@ -43,58 +44,71 @@ public class Lunfuyu extends BaseMusicCard {
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 8;
+    public final static int MAGIC_UNCOMMON = 9;
     public final static int UPG_MAGIC_UNCOMMON = 4;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 8;
+    public final static int MAGIC_RARE = 9;
     public final static int UPG_MAGIC_RARE = 4;
+
+    //private int curHpIncreaseNum=-1;
+    private int curHpChangeNum=-1;
+    private int curHpChangeWholeBattleNum=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        addToBot(new DamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        calculateBaseDamage();
+        addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn,
+                AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     @Override
     public void updateDescription(){
         //super.updateDescription();
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if (musicRarity != null) {
-                switch (musicRarity) {
-                    case COMMON:
-                    case DEFAULT:
-                    case UNCOMMON:
-                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
-                                +"（本回合生命恢复"+LunfuyuMonitor.hpIncreaseNum+"点）";
-                        break;
-                    case RARE:
-                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
-                                +"（本回合生命变化"+LunfuyuMonitor.hpChangeNum+"点）";
-                        break;
-                }
-            }
+        switch (musicRarity) {
+            case COMMON:
+            case DEFAULT:
+            case UNCOMMON:
+                this.rawDescription=cardStrings.DESCRIPTION;
+                break;
+            case RARE:
+                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+                break;
         }
-
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        }
         initializeDescription();
+    }
+
+    public void calculateBaseDamage(){
+        switch (musicRarity) {
+            case COMMON:
+            case DEFAULT:
+            case UNCOMMON:
+                baseDamage=LunfuyuMonitor.hpChangeNum*magicNumber;
+                break;
+            case RARE:
+                baseDamage=LunfuyuMonitor.hpChangeNumWholeBattle*magicNumber;
+                break;
+        }
     }
 
     @Override
     public void update(){
         super.update();
-        if(musicRarity!=null&&AbstractDungeon.player!=null) {
-            if (musicRarity.equals(MusicRarity.RARE)) {
-                baseDamage = LunfuyuMonitor.hpChangeNum * magicNumber;
-            } else {
-                baseDamage = LunfuyuMonitor.hpIncreaseNum * magicNumber;
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if(curHpChangeNum!=LunfuyuMonitor.hpChangeNum||curHpChangeWholeBattleNum!=LunfuyuMonitor.hpChangeNumWholeBattle){
+                calculateBaseDamage();
+                applyPowers();
+                updateDescription();
+                curHpChangeNum=LunfuyuMonitor.hpChangeNum; //避免频繁applyPower
+                curHpChangeWholeBattleNum=LunfuyuMonitor.hpChangeNumWholeBattle;
             }
-        }else{
-            baseDamage=0;
         }
-        updateDescription();
     }
 
     @Override
