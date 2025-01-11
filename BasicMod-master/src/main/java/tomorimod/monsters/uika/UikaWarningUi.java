@@ -28,7 +28,7 @@ public class UikaWarningUi extends WarningUi {
 
     @Override
     public void setDamageForShow(){
-        if(!uikaMonster.damageNumFroze){
+        if(!damageFrozen){
             damageForShow =calculate().get(0);
             gravityDamageForShow =calculate().get(1);
         }

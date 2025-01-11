@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class WarningUi {
     public Hitbox attackIntentHb;
@@ -21,9 +22,10 @@ public class WarningUi {
     public int damageNum;
 
     public AbstractMonster monster;
+
+    public boolean damageFrozen;
     //private float x;
     //private float y;
-
 
     public WarningUi(AbstractMonster monster){
         this.attackIntentHb = new Hitbox(128.0f * Settings.scale, 128.0f * Settings.scale);
@@ -34,6 +36,11 @@ public class WarningUi {
     public void update(){
         setDamageForShow();
         initializePositionAndHb();
+    }
+
+    public void setFrozen(){
+        damageFrozen=true;
+        DamageNumFrozeMonitor.warningUis.add(this);
     }
 
     public void setDamageForShow(){

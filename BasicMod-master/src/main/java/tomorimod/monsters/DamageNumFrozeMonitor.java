@@ -12,11 +12,20 @@ import tomorimod.monsters.mutsumi.MutsumiWarningUi;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.uika.UikaMonster;
 
+import java.util.ArrayList;
+
 public class DamageNumFrozeMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber {
+
+    public static ArrayList<WarningUi> warningUis=new ArrayList<>();
+
     @Override
     public void receiveOnPlayerTurnStart() {
-        UikaMonster.damageNumFroze=false;
-        SakiShadowMonster.damageNumFrozen=false;
-        MutsumiMonster.damageNumFrozen=false;
+        for(WarningUi ui:warningUis){
+            ui.damageFrozen=false;
+        }
+        warningUis.clear();
+//        UikaMonster.damageNumFroze=false;
+//        SakiShadowMonster.damageNumFrozen=false;
+//        MutsumiMonster.damageNumFrozen=false;
     }
 }

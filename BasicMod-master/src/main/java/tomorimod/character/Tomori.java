@@ -46,6 +46,7 @@ import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
 import tomorimod.relics.NotebookRelic;
+import tomorimod.util.MonsterUtils;
 import tomorimod.vfx.IntangibleEffect;
 import tomorimod.vfx.StarDustEffect;
 
@@ -597,6 +598,11 @@ public class Tomori extends CustomPlayer {
     @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();
-        UikaMonster.damageNumFroze=true;
+        if(MonsterUtils.getMonster("UikaMonster")!=null){
+            AbstractMonster monster=MonsterUtils.getMonster("UikaMonster");
+            if(monster instanceof UikaMonster){
+                ((UikaMonster)monster).uikaWarningUi.setFrozen();
+            }
+        }
     }
 }

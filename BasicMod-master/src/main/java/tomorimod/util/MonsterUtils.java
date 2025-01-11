@@ -7,6 +7,15 @@ import static tomorimod.TomoriMod.makeID;
 
 public class MonsterUtils {
 
+    public static AbstractMonster getMonster(String monsterId){
+        for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+            if(monster.id.equals(makeID(monsterId))){
+                return monster;
+            }
+        }
+        return null;
+    }
+
     public static boolean hasPower(String monsterId,String powerId){
         for(AbstractMonster monster: AbstractDungeon.getCurrRoom().monsters.monsters){
             if(monster.id.equals(makeID(monsterId))){

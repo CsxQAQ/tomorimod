@@ -75,7 +75,7 @@ public class UikaMonster extends BaseMonster {
 
     public static final float WAIT_TIME=0.3F;
 
-    public static boolean damageNumFroze=false;
+    //public static boolean damageNumFroze=false;
 
     private boolean isGravityMode;
     private boolean isDomainExpansionUsed=false;
