@@ -51,11 +51,6 @@ public class UikaMonster extends BaseMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-
-    // 怪物血量
-    private static final int HP_MIN = 300;
-    private static final int HP_MAX = 300;
-
     // 怪物的碰撞箱坐标和大小
     private static final float HB_X = 0F;
     private static final float HB_Y = 0F;
@@ -66,11 +61,13 @@ public class UikaMonster extends BaseMonster {
 
     public static final float DRAW_X=1350.0F;
     public static final float DRAW_Y=400.0F;
-    private UikaCard cardForShow1;
-    private UikaCard cardForShow2;
+
     private ArrayList<UikaCard> showCards=new ArrayList<>();
     private AbstractCard hoveredCard;
     private AbstractCard clickStartedCard;
+
+    private UikaCard cardForShow1;
+    private UikaCard cardForShow2;
 
     public static final float CARDFORSHOW1_X=(DRAW_X-100.0f)*Settings.scale;
     public static final float CARDFORSHOW2_X=(DRAW_X+100.0f)*Settings.scale;
@@ -90,10 +87,36 @@ public class UikaMonster extends BaseMonster {
 
     public static SoulGroup goldenSouls=new SoulGroup();
 
+    private int turnNum=0;
+
+    // 怪物血量
+    public static final int HP_MIN = 300;
+    public static final int HP_MAX = 300;
+    public static final int MASK_NUM = 50;
+
+    public static final int HP_MIN_WEAK = 300;
+    public static final int HP_MAX_WEAK = 300;
+    public static final int MASK_NUM_WEAK = 100;
+
+    private int hpMinVal;
+    private int hpMaxVal;
+    private int maskVal;
+
     public UikaMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
-        setHp(HP_MIN, HP_MAX);
+        if(isTomori){
+            this.hpMinVal = HP_MIN;
+            this.hpMaxVal = HP_MAX;
+            this.maskVal=MASK_NUM;
+        }else{
+            this.hpMinVal = HP_MIN_WEAK;
+            this.hpMaxVal = HP_MAX_WEAK;
+            this.maskVal=MASK_NUM_WEAK;
+        }
+
+
+        setHp(hpMinVal, hpMaxVal);
 
         this.type = EnemyType.BOSS;
 
@@ -121,7 +144,7 @@ public class UikaMonster extends BaseMonster {
         AbstractDungeon.scene.fadeOutAmbiance();
 
         addToBot(new ApplyPowerAction(this,this,
-               new UikaMaskPower(this,UikaMaskPower.END_TURN),UikaMaskPower.END_TURN));
+               new UikaMaskPower(this,maskVal),maskVal));
     }
 
     @Override
@@ -132,7 +155,7 @@ public class UikaMonster extends BaseMonster {
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
-    private int turnNum=0;
+
 
     @Override
     protected void getMove(int num) {

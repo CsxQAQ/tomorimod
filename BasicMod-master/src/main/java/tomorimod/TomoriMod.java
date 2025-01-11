@@ -67,6 +67,7 @@ import java.util.*;
 //TODO boss写两个，适配原版的和tomori的
 //TODO 通关用mujica的ed
 //TODO 潜在表明
+//TODO 每拥有一点重力闪耀，可以让初华多受一点伤害
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
