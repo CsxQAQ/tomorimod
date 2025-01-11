@@ -451,7 +451,8 @@
     "NAME": "小小的瞬间",
     "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的 tomorimod:音乐 牌，则变化为 *一辈子 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:永久形态 ：具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+      " tomorimod:永久形态 ：具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。",
+      "（当前数量： !${modID}:N! ）"
     ]
   },
   "${modID}:WholeLife": {
