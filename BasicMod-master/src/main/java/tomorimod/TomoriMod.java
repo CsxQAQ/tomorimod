@@ -65,7 +65,6 @@ import java.util.*;
 
 //TODO 音乐攻击牌重写
 //TODO boss写两个，适配原版的和tomori的
-//TODO 通关用mujica的ed
 //TODO 潜在表明
 //TODO 用动态变量重写描述
 //TODO savedata单例模式取消，全部直接用static

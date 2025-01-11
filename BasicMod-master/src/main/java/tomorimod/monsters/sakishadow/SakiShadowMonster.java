@@ -1,10 +1,8 @@
 package tomorimod.monsters.sakishadow;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.ClearCardQueueAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -16,11 +14,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -40,7 +34,6 @@ import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 import tomorimod.vfx.DynamicBackgroundTestEffect;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -56,110 +49,141 @@ public class SakiShadowMonster extends BaseMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    // 血量相关
-    private static final int HP_MIN = 200;
-    private static final int HP_MAX = 200;
+    public static final int HP_MIN = 200;
+    public static final int HP_MAX = 200;
+    public static final int DAMAGE_0 = 999;
+    public static final int DAMAGE_1 = 10;
+    public static final int DAMAGE_2 = 999;
+    public static final int DAMAGE_3 = 2;
+    public static final int DAMAGE_4 = 40;
+    public static final int DAMAGE_5 = 15;
+    public static final int DAMAGETIME_0 = 1;
+    public static final int DAMAGETIME_1 = 2;
+    public static final int DAMAGETIME_2 = 1;
+    public static final int DAMAGETIME_3 = 5;
+    public static final int DAMAGETIME_4 = 1;
+    public static final int DAMAGETIME_5 = 2;
+    public static final int REBIRTH_HEALTH = 1000;
 
-    // hit box
+    public static final int HP_MIN_WEAK = 200;
+    public static final int HP_MAX_WEAK = 200;
+    public static final int DAMAGE_0_WEAK = 200;
+    public static final int DAMAGE_1_WEAK = 10;
+    public static final int DAMAGE_2_WEAK = 200;
+    public static final int DAMAGE_3_WEAK = 2;
+    public static final int DAMAGE_4_WEAK = 40;
+    public static final int DAMAGE_5_WEAK = 15;
+    public static final int DAMAGETIME_0_WEAK = 1;
+    public static final int DAMAGETIME_1_WEAK = 2;
+    public static final int DAMAGETIME_2_WEAK = 1;
+    public static final int DAMAGETIME_3_WEAK = 5;
+    public static final int DAMAGETIME_4_WEAK = 1;
+    public static final int DAMAGETIME_5_WEAK = 2;
+    public static final int REBIRTH_HEALTH_WEAK = 200;
+
+    private int hpMinVal, hpMaxVal;
+    private int damageVal0, damageVal1, damageVal2, damageVal3, damageVal4, damageVal5;
+    private int damageTimeVal0, damageTimeVal1, damageTimeVal2, damageTimeVal3, damageTimeVal4, damageTimeVal5;
+    private int rebirthHealth;
+
     private static final float HB_X = 0F;
     private static final float HB_Y = 50F;
     private static final float HB_W = 230.0F;
     private static final float HB_H = 240.0F;
-
-    // 图片资源
     private static final String imgPath = imagePath("monsters/" + SakiShadowMonster.class.getSimpleName() + ".png");
     public static final float DRAW_X = 1400.0F;
     public static final float DRAW_Y = 450.0F;
 
-    // 小怪
     private SoyoMonster soyoMonster;
-
-    // 状态标记
-    private boolean isFirstTurn;
-    private boolean isGiveCurse;
+    private boolean isFirstTurn = true;
+    private boolean isGiveCurse = true;
     private boolean isSecondPhase = false;
-
-    // 记录用于随机展示的卡牌
-    private final List<AbstractCard> cards = Arrays.asList(
-            new Death(), new Fear(), new Love(), new Sad());
-
-    // 用于在 getMove 中判断走哪个分支
     private int curNum = -1;
-
     private WarningUi warningUi;
-
     private SakiShadowFadeVFX sakiShadowFadeVFX;
     public boolean isFadingIn = false;
     public boolean isRebirth = false;
     public float alpha = 1.0f;
 
+    private final List<AbstractCard> cards = Arrays.asList(new Death(), new Fear(), new Love(), new Sad());
+
     public SakiShadowMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
-        setHp(HP_MIN, HP_MAX);
-        this.type = EnemyType.BOSS;
 
-        // 对话位置微调
+        if (isTomori) {
+            hpMinVal = HP_MIN;
+            hpMaxVal = HP_MAX;
+            damageVal0 = DAMAGE_0;
+            damageVal1 = DAMAGE_1;
+            damageVal2 = DAMAGE_2;
+            damageVal3 = DAMAGE_3;
+            damageVal4 = DAMAGE_4;
+            damageVal5 = DAMAGE_5;
+            damageTimeVal0 = DAMAGETIME_0;
+            damageTimeVal1 = DAMAGETIME_1;
+            damageTimeVal2 = DAMAGETIME_2;
+            damageTimeVal3 = DAMAGETIME_3;
+            damageTimeVal4 = DAMAGETIME_4;
+            damageTimeVal5 = DAMAGETIME_5;
+            rebirthHealth=REBIRTH_HEALTH;
+        } else {
+            hpMinVal = HP_MIN_WEAK;
+            hpMaxVal = HP_MAX_WEAK;
+            damageVal0 = DAMAGE_0_WEAK;
+            damageVal1 = DAMAGE_1_WEAK;
+            damageVal2 = DAMAGE_2_WEAK;
+            damageVal3 = DAMAGE_3_WEAK;
+            damageVal4 = DAMAGE_4_WEAK;
+            damageVal5 = DAMAGE_5_WEAK;
+            damageTimeVal0 = DAMAGETIME_0_WEAK;
+            damageTimeVal1 = DAMAGETIME_1_WEAK;
+            damageTimeVal2 = DAMAGETIME_2_WEAK;
+            damageTimeVal3 = DAMAGETIME_3_WEAK;
+            damageTimeVal4 = DAMAGETIME_4_WEAK;
+            damageTimeVal5 = DAMAGETIME_5_WEAK;
+            rebirthHealth=REBIRTH_HEALTH_WEAK;
+        }
+
+        setHp(hpMinVal, hpMaxVal);
+        this.type = EnemyType.BOSS;
         this.dialogX = this.hb_x - 50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
-
-        // 先让自己画到屏幕外，看起来是“隐藏”的状态
         this.drawX = -1000.0f;
         this.drawY = -1000.0f;
 
-        // 准备各种伤害（注意顺序和 takeTurn 中 damage.get(i) 的索引对应）
-        this.damage.add(new DamageInfo(this, 999, DamageInfo.DamageType.NORMAL)); // index=0
-        this.damage.add(new DamageInfo(this, 10, DamageInfo.DamageType.NORMAL));  // index=1
-        this.damage.add(new DamageInfo(this, 999, DamageInfo.DamageType.NORMAL));  // index=2
-        this.damage.add(new DamageInfo(this, 2, DamageInfo.DamageType.NORMAL));   // index=3
-        this.damage.add(new DamageInfo(this, 40, DamageInfo.DamageType.NORMAL));  // index=4
-        this.damage.add(new DamageInfo(this, 15, DamageInfo.DamageType.NORMAL));  // index=5
+        this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal3, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal4, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new DamageInfo(this, damageVal5, DamageInfo.DamageType.NORMAL));
 
-        isFirstTurn = true;
-        isGiveCurse = true;
-
-        warningUi=new WarningUi(this);
-        sakiShadowFadeVFX=new SakiShadowFadeVFX(this);
-
+        warningUi = new WarningUi(this);
+        sakiShadowFadeVFX = new SakiShadowFadeVFX(this);
     }
 
     @Override
     public void usePreBattleAction() {
-        // 切换场景特效
-        AbstractGameEffect effect = new ChangeSceneEffect(
-                ImageMaster.loadImage(imagePath("monsters/scenes/SakiShadow_bg.png"))
-        );
+        AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/SakiShadow_bg.png")));
         AbstractDungeon.effectList.add(effect);
-
-        // 关闭原场景音效
         AbstractDungeon.scene.fadeOutAmbiance();
-
-        // 给自己加一些特殊能力
-        if(AbstractDungeon.player instanceof Tomori){
+        if (AbstractDungeon.player instanceof Tomori) {
             addToBot(new ApplyPowerAction(this, this, new SakiShadowImmunityPower(this)));
         }
         addToBot(new ApplyPowerAction(this, this, new SakiShadowWorldViewPower(this)));
-
         initializeSoyoMonster();
-        // 使房间处于“无法失败”状态
         AbstractDungeon.getCurrRoom().cannotLose = true;
-
-        setMove((byte) 0, Intent.ATTACK,
-                this.damage.get(0).base, 1, false);
+        setMove((byte) 0, Intent.ATTACK, this.damage.get(0).base, damageTimeVal0, false);
         createIntent();
     }
 
     private void initializeSoyoMonster() {
-        // 初始化 SoyoMonster
-        this.soyoMonster = new SoyoMonster(0f, 0f);
+        soyoMonster = new SoyoMonster(0f, 0f);
         soyoMonster.drawX = AbstractDungeon.player.drawX + 300.0F * Settings.scale;
         soyoMonster.drawY = AbstractDungeon.player.drawY;
         soyoMonster.flipHorizontal = true;
-
-        // 召唤友方小怪
         addToBot(new SpawnMonsterAction(soyoMonster, false));
         addToBot(new ApplyPowerAction(soyoMonster, soyoMonster, new FriendlyMonsterPower(soyoMonster)));
-
-        // 让 soyoMonster 维持在一个 UNKNOWN 的意图
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
@@ -172,147 +196,106 @@ public class SakiShadowMonster extends BaseMonster {
 
     @Override
     public void takeTurn() {
-        // 第一次回合的特殊处理
         if (isFirstTurn) {
-            handleFirstTurn();
+            addToTop(new PlayBGMAction(MusicPatch.MusicHelper.KILLKISS, this));
+            addToBot(new DamageAction(soyoMonster, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
+            this.drawX = DRAW_X * Settings.scale;
+            this.drawY = DRAW_Y * Settings.scale;
+            AbstractDungeon.player.drawPile.initializeDeck(AbstractDungeon.player.masterDeck);
+            isFadingIn = true;
+            isFirstTurn = false;
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    if(!soyoMonster.isDeadOrEscaped()){
+                        soyoMonster.die();
+                    }
+                    isDone=true;
+                }
+            });
+            addToBot(new TrueWaitAction(3.0f));
+
         } else {
-            // 后续回合根据 nextMove 做动作
             switch (this.nextMove) {
                 case 1:
-                    // 伤害玩家 2 次
-                    damagePlayer(AbstractDungeon.player, 1, 2, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+                    damagePlayer(1, damageTimeVal1);
                     break;
                 case 2:
-                    // 给自己添加一个 BUFF (SakiRightPower)
                     addToBot(new ApplyPowerAction(this, this, new SakiShadowRightPower(this, 5), 5));
                     break;
                 case 3:
-                    // 给玩家“随机一张”负面牌（这里 cards 是 FearlessXX）
                     obtainRandomCard();
                     break;
                 case 4:
-                    // 伤害玩家 5 次
-                    damagePlayer(AbstractDungeon.player, 3, 5, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+                    damagePlayer(3, damageTimeVal3);
                     break;
                 case 5:
-                    // 造成一次大伤害 + 给自己加个 BUFF
-                    damagePlayer(AbstractDungeon.player, 4, 1, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+                    damagePlayer(4, damageTimeVal4);
                     addToBot(new ApplyPowerAction(this, this, new SakiShadowRightPower(this, 3), 3));
                     break;
                 case 6:
-                    // 伤害玩家 2 次 + 获得随机牌
-                    damagePlayer(AbstractDungeon.player, 5, 2, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+                    damagePlayer(5, damageTimeVal5);
                     obtainRandomCard();
                     break;
                 case 50:
-                    // 进入下一阶段逻辑
-                    transitionToSecondPhase();
+                    AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
+                    addToBot(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            halfDead = false;
+                            isDead = false;
+                            isDying = false;
+                            AbstractDungeon.getCurrRoom().cannotLose = false;
+                            isDone = true;
+                        }
+                    });
+                    setHp(rebirthHealth);
+                    addToBot(new VFXAction(new ViceCrushRedEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
+                    damagePlayer(2, damageTimeVal2);
+                    addToBot(new HealAction(SakiShadowMonster.this, SakiShadowMonster.this, maxHealth));
+                    this.drawX = DRAW_X * Settings.scale;
+                    this.drawY = DRAW_Y * Settings.scale;
+                    alpha = 1.0f;
+                    this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, 1));
+                    isSecondPhase = true;
                     break;
                 case 99:
-                    // 一次性给玩家 4 张 FearlessXX
                     float startX = (float) Settings.WIDTH / 5.0F;
                     float startY = (float) Settings.HEIGHT / 2.0F;
                     float spacing = (float) Settings.WIDTH / 5.0F;
                     float delay = 0.5F;
-
                     for (int i = 0; i < cards.size(); i++) {
-                        addToBot(new ShowCardAndObtainAction(
-                                cards.get(i).makeStatEquivalentCopy(),
-                                startX + i * spacing, startY
-                        ));
+                        addToBot(new ShowCardAndObtainAction(cards.get(i).makeStatEquivalentCopy(),
+                                startX + i * spacing, startY));
                         addToBot(new TrueWaitAction(delay));
                     }
                     isGiveCurse = false;
                     break;
             }
         }
-
-        // 回合结束后，告诉怪物管理器：该轮结束，下一轮 rollMove
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
-    /**
-     * 第一个回合的特殊逻辑。
-     */
-    private void handleFirstTurn() {
-        addToTop(new PlayBGMAction(MusicPatch.MusicHelper.KILLKISS, this));
-
-        // 先砍一下 SoyoMonster（通常是那下大伤害 999）
-        addToBot(new DamageAction(
-                soyoMonster, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL
-        ));
-
-        // 给背景加上一个特效
-        AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
-
-        // 自己出现
-        this.drawX = DRAW_X * Settings.scale;
-        this.drawY = DRAW_Y * Settings.scale;
-
-        // 重置玩家的抽牌堆
-        AbstractDungeon.player.drawPile.initializeDeck(AbstractDungeon.player.masterDeck);
-
-        // 渐入动画开始
-        isFadingIn = true;
-        // 标记不是第一回合了
-        isFirstTurn = false;
-
-        // 等个 3 秒，等过场动画
-        addToBot(new TrueWaitAction(3.0f));
-    }
-
-    /**
-     * 进入下一阶段的逻辑：让怪物可以被真正击败，并恢复满血等。
-     */
-    private void transitionToSecondPhase() {
-        AbstractDungeon.actionManager.addToBottom(new CanLoseAction());
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                SakiShadowMonster.this.halfDead = false;
-                SakiShadowMonster.this.isDead = false;
-                SakiShadowMonster.this.isDying = false;
-                // 让房间可以真正结束战斗，而不是不能输
-                AbstractDungeon.getCurrRoom().cannotLose = false;
-                this.isDone = true;
-            }
-        });
-
-        setHp(400);
-        // 先砍一下玩家
-        AbstractDungeon.actionManager.addToBottom(new VFXAction
-                (new ViceCrushRedEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 0.5F));
-        damagePlayer(AbstractDungeon.player, 2, 1, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        //AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
-        // 自己瞬间回满血
-        addToBot(new HealAction(this, this, this.maxHealth));
-
-        this.drawX = DRAW_X * Settings.scale;
-        this.drawY = DRAW_Y * Settings.scale;
-        alpha = 1.0f;
-        this.tint.changeColor(new Color(1.0F, 1.0F, 1.0F, 1));
-
-        isSecondPhase = true;
+    @Override
+    protected Texture getAttackIntent() {
+        return super.getAttackIntent();
     }
 
     @Override
     protected void getMove(int num) {
-        // 如果已经不是第一回合
         if (!isFirstTurn) {
             if (isGiveCurse) {
                 setMove((byte) 99, Intent.DEBUFF);
             } else {
-                // 一阶段 vs 二阶段的意图逻辑
                 if (!isSecondPhase) {
-                    // 第一阶段
                     if (curNum == -1) {
-                        setMove((byte) 1, Intent.ATTACK, this.damage.get(1).base, 2, true);
+                        setMove((byte) 1, Intent.ATTACK, this.damage.get(1).base, damageTimeVal1, true);
                         curNum = 0;
                     } else {
                         switch (getDifferentNum(curNum)) {
                             case 0:
-                                setMove((byte) 1, Intent.ATTACK,
-                                        this.damage.get(1).base, 2, true);
+                                setMove((byte) 1, Intent.ATTACK, this.damage.get(1).base, damageTimeVal1, true);
                                 break;
                             case 1:
                                 setMove((byte) 2, Intent.BUFF);
@@ -323,29 +306,21 @@ public class SakiShadowMonster extends BaseMonster {
                         }
                     }
                 } else {
-                    // 第二阶段
                     switch (getDifferentNum(curNum)) {
                         case 0:
-                            setMove((byte) 4, Intent.ATTACK,
-                                    this.damage.get(3).base, 5, true);
+                            setMove((byte) 4, Intent.ATTACK, this.damage.get(3).base, damageTimeVal3, true);
                             break;
                         case 1:
-                            setMove((byte) 5, Intent.ATTACK_BUFF,
-                                    this.damage.get(4).base, 1, false);
+                            setMove((byte) 5, Intent.ATTACK_BUFF, this.damage.get(4).base, damageTimeVal4, false);
                             break;
                         case 2:
-                            // 注意：此处原代码写的是 (byte)5，但如果你想表现“ATTACK_DEBUFF”，
-                            // 需要修改为 (byte)6 或者另一个数字，以免覆盖上一条 case
-                            setMove((byte) 6, Intent.ATTACK_DEBUFF,
-                                    this.damage.get(5).base, 2, true);
+                            setMove((byte) 6, Intent.ATTACK_DEBUFF, this.damage.get(5).base, damageTimeVal5, true);
                             break;
                     }
                 }
             }
         } else {
-            // 第一回合
-            setMove((byte) 0, Intent.ATTACK,
-                    this.damage.get(0).base, 1, false);
+            setMove((byte) 0, Intent.ATTACK, this.damage.get(0).base, damageTimeVal0, false);
         }
     }
 
@@ -360,16 +335,16 @@ public class SakiShadowMonster extends BaseMonster {
 
     private void obtainRandomCard() {
         AbstractCard c = cards.get(AbstractDungeon.miscRng.random(3)).makeStatEquivalentCopy();
-        addToBot(new ShowCardAndObtainAction(c, Settings.WIDTH / 2, Settings.HEIGHT / 2));
+        addToBot(new ShowCardAndObtainAction(c, Settings.WIDTH / 2f, Settings.HEIGHT / 2f));
     }
 
     @Override
     public void update() {
         super.update();
-        if(isFadingIn){
+        if (isFadingIn) {
             sakiShadowFadeVFX.handleFadeIn();
         }
-        if(isRebirth){
+        if (isRebirth) {
             sakiShadowFadeVFX.handleRebirthFadeOut();
         }
         warningUi.update();
@@ -389,28 +364,22 @@ public class SakiShadowMonster extends BaseMonster {
                     this.flipHorizontal, this.flipVertical
             );
         } else {
-            // 如果透明度满了，就用默认的父类绘制
             super.render(sb);
         }
-
-        if(halfDead||warningUi.damageFrozen){
+        if (halfDead || warningUi.damageFrozen) {
             warningUi.render(sb);
         }
     }
 
-
     @Override
     public void damage(DamageInfo info) {
         super.damage(info);
-        // 如果血量 <= 0，并且之前没有处于 halfDead
         if (this.currentHealth <= 0 && !this.halfDead) {
             if (AbstractDungeon.getCurrRoom().cannotLose) {
-                // 进入“半死”状态
                 this.halfDead = true;
                 this.isRebirth = true;
                 warningUi.setFrozen();
             }
-            // 处理遗物与光环等
             for (AbstractPower p : this.powers) {
                 p.onDeath();
             }
@@ -418,8 +387,6 @@ public class SakiShadowMonster extends BaseMonster {
                 r.onMonsterDeath(this);
             }
             addToTop(new ClearCardQueueAction());
-
-            // 清理身上的 DEBUFF
             for (Iterator<AbstractPower> s = this.powers.iterator(); s.hasNext(); ) {
                 AbstractPower p = s.next();
                 if (p.type == AbstractPower.PowerType.DEBUFF
@@ -429,10 +396,7 @@ public class SakiShadowMonster extends BaseMonster {
                     s.remove();
                 }
             }
-
-            // 改变意图为 50（下一回合进入下一阶段）
-            setMove((byte) 50, Intent.ATTACK_BUFF,
-                    this.damage.get(2).base, 1, false);
+            setMove((byte) 50, Intent.ATTACK_BUFF, this.damage.get(2).base, damageTimeVal2, false);
             createIntent();
             applyPowers();
         }
@@ -440,11 +404,8 @@ public class SakiShadowMonster extends BaseMonster {
 
     @Override
     public void die() {
-        // 如果房间可以输了（已经解除 cannotLose）
         if (!AbstractDungeon.getCurrRoom().cannotLose) {
             super.die();
-
-            // 这里是 boss 死亡时的特效和结算
             if (this.currentHealth <= 0) {
                 useFastShakeAnimation(5.0F);
                 CardCrawlGame.screenShake.rumble(4.0F);
