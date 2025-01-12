@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import tomorimod.actions.MusicLoseHPAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.util.CardStats;
 import tomorimod.util.MonsterUtils;
@@ -64,7 +65,7 @@ public class Yeyingran extends BaseMusicCard {
                 @Override
                 public void update() {
                     int negativeEffectsCount = MonsterUtils.getDebuffNum(m);
-                    addToTop(new LoseHPAction(m,p,negativeEffectsCount));
+                    addToTop(new MusicLoseHPAction(m,p,negativeEffectsCount));
                     isDone=true;
                 }
             });
@@ -74,7 +75,7 @@ public class Yeyingran extends BaseMusicCard {
                 @Override
                 public void update() {
                     int vulnerableCount = MonsterUtils.getPowerNum(m, "Vulnerable");
-                    addToTop(new LoseHPAction(m,p,vulnerableCount));
+                    addToTop(new MusicLoseHPAction(m,p,vulnerableCount));
                     isDone=true;
                 }
             });
