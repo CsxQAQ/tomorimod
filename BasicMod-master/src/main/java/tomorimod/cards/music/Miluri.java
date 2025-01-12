@@ -57,7 +57,7 @@ public class Miluri extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int shineAmount= PlayerUtils.getPowerNum("ShinePower");
+        int shineAmount= PlayerUtils.getPowerNum(makeID ("ShinePower"));
 
         if(this.musicRarity.equals(MusicRarity.RARE)){
             for (int i = 0; i < shineAmount*REPEAT_TIME_RARE + 1; i++) {
@@ -88,7 +88,7 @@ public class Miluri extends BaseMusicCard {
                 setCustomVar("RT",REPEAT_TIME_COMMON);
                 this.rawDescription=cardStrings.DESCRIPTION;
                 if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-                    setCustomVar("SN",PlayerUtils.getPowerNum("ShinePower")*REPEAT_TIME_COMMON+1);
+                    setCustomVar("SN",PlayerUtils.getPowerNum(makeID("ShinePower"))*REPEAT_TIME_COMMON+1);
                     this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
                 }
                 break;
@@ -97,7 +97,7 @@ public class Miluri extends BaseMusicCard {
                 this.rawDescription=cardStrings.DESCRIPTION;
                 //this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
                 if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-                    setCustomVar("SN",PlayerUtils.getPowerNum("ShinePower")*REPEAT_TIME_RARE+1);
+                    setCustomVar("SN",PlayerUtils.getPowerNum(makeID("ShinePower"))*REPEAT_TIME_RARE+1);
                     this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
                 }
                 break;

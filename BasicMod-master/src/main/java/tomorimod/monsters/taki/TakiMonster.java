@@ -170,7 +170,7 @@ public class TakiMonster extends BaseMonster {
     @Override
     public void takeTurn() {
         // 额外的防御力（由 TakiProtectPower 等提供）
-        int extraBlock = MonsterUtils.getPowerNum(this,"TakiProtectPower");
+        int extraBlock = MonsterUtils.getPowerNum(this,makeID("TakiProtectPower"));
 
         switch (this.nextMove) {
             case 0:

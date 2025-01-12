@@ -44,8 +44,8 @@ public class UikaMaskPower extends BasePower {
     @Override
     public void atStartOfTurn() {
 
-        amount=maskVal+ PlayerUtils.getPowerNum("ShinePower")+
-                PlayerUtils.getPowerNum("GravityPower");
+        amount=maskVal+ PlayerUtils.getPowerNum(makeID("ShinePower"))+
+                PlayerUtils.getPowerNum(makeID("GravityPower"));
         isEffected=false;
         updateDescription();
     }

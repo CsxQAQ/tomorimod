@@ -88,8 +88,8 @@ public class ChordMonster extends BaseMonster {
             this.damageVal1 = DAMAGE_1_WEAK;
         }
 
-        setHp(hpMinVal + MonsterUtils.getPowerNum("AnonMonster", "AnonLittlePractisePower") * hpIncreaseVal,
-                hpMaxVal + MonsterUtils.getPowerNum("AnonMonster", "AnonLittlePractisePower") * hpIncreaseVal);
+        setHp(hpMinVal + MonsterUtils.getPowerNum(makeID("AnonMonster"), makeID("AnonLittlePractisePower")) * hpIncreaseVal,
+                hpMaxVal + MonsterUtils.getPowerNum(makeID("AnonMonster"), makeID("AnonLittlePractisePower")) * hpIncreaseVal);
 
         this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
         this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));

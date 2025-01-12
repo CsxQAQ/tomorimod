@@ -610,8 +610,8 @@ public class Tomori extends CustomPlayer {
     @Override
     public void applyEndOfTurnTriggers() {
         super.applyEndOfTurnTriggers();
-        if(MonsterUtils.getMonster("UikaMonster")!=null){
-            AbstractMonster monster=MonsterUtils.getMonster("UikaMonster");
+        if(MonsterUtils.getMonster(makeID("UikaMonster"))!=null){
+            AbstractMonster monster=MonsterUtils.getMonster(makeID("UikaMonster"));
             if(monster instanceof UikaMonster){
                 ((UikaMonster)monster).uikaWarningUi.setFrozen();
             }

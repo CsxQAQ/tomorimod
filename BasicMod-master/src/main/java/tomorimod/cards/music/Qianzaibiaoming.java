@@ -90,7 +90,7 @@ public class Qianzaibiaoming extends BaseMusicCard {
     }
 
     public void calculateBaseDamage(){
-        baseDamage= PlayerUtils.getPowerNum("GravityPower")*magicNumber;
+        baseDamage= PlayerUtils.getPowerNum(makeID("GravityPower"))*magicNumber;
     }
 
     @Override
@@ -100,11 +100,11 @@ public class Qianzaibiaoming extends BaseMusicCard {
             target=CardTarget.ALL_ENEMY;
         }
         if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if(curGravityNum!=PlayerUtils.getPowerNum("GravityPower")){
+            if(curGravityNum!=PlayerUtils.getPowerNum(makeID("GravityPower"))){
                 calculateBaseDamage();
                 applyPowers();
                 updateDescription();
-                curGravityNum=PlayerUtils.getPowerNum("GravityPower");
+                curGravityNum=PlayerUtils.getPowerNum(makeID("GravityPower"));
             }
         }
     }

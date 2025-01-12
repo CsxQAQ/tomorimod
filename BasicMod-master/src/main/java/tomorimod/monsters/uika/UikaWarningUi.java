@@ -58,9 +58,9 @@ public class UikaWarningUi extends WarningUi {
         if(attackCount==-1){
             attackCount=1;
         }
-        int gravityAmount= MonsterUtils.getPowerNum(monster, "GravityPower");
-        int divergeWorldAmount=MonsterUtils.getPowerNum(monster, "divergeWorldPower");
-        int shineAmount=MonsterUtils.getPowerNum(monster, "shineAmount");
+        int gravityAmount= MonsterUtils.getPowerNum(monster, makeID("GravityPower"));
+        int divergeWorldAmount=MonsterUtils.getPowerNum(monster, makeID("divergeWorldPower"));
+        int shineAmount=MonsterUtils.getPowerNum(monster, makeID("shineAmount"));
 
         if(uikaMonster.cardForShow1!=null){
             if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaMygoTogether"))){
