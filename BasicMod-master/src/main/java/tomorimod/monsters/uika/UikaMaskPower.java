@@ -53,6 +53,9 @@ public class UikaMaskPower extends BasePower {
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+DESCRIPTIONS[1]+amount+DESCRIPTIONS[2];
+        if(AbstractDungeon.player!=null&&AbstractDungeon.player instanceof Tomori){
+            description+=DESCRIPTIONS[3];
+        }
     }
 
     @Override
