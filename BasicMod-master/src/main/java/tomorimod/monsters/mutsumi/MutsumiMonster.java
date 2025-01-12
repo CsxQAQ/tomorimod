@@ -78,15 +78,15 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int STRENGTHNUM=2;
     public static final int POWERNUM=2;
 
-    public static final int HP_MIN_WEAK       = 2000;
-    public static final int HP_MAX_WEAK       = 2000;
+    public static final int HP_MIN_WEAK       = 1000;
+    public static final int HP_MAX_WEAK       = 1000;
     public static final int DAMAGE_0_WEAK     = 20;
     public static final int DAMAGE_1_WEAK     = 12;
     public static final int DAMAGE_2_WEAK     = 15;
     public static final int DAMAGETIME_0_WEAK = 1;
     public static final int DAMAGETIME_1_WEAK = 5;
     public static final int DAMAGETIME_2_WEAK = 3;
-    public static final int CUCUMBER_WEAK=10;
+    public static final int CUCUMBER_WEAK=5;
     public static final int CUCUMBER_UPG_WEAK=3;
     public static final int HEALNUM_WEAK=50;
     public static final int STRENGTHNUM_WEAK=2;

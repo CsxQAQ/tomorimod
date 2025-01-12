@@ -160,7 +160,7 @@ public class TakiMonster extends BaseMonster {
     @Override
     protected Texture getAttackIntent() {
         // 根据拉娜怪是否存活来切换意图贴图
-        if (ranaMonster != null && !ranaMonster.isDeadOrEscaped()) {
+        if (!hasTalked) {
             return new Texture(imagePath("monsters/intents/attack_drum_normal.png"));
         } else {
             return new Texture(imagePath("monsters/intents/attack_drum_heavy.png"));

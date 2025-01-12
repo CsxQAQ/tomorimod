@@ -236,7 +236,7 @@ public class RanaMonster extends BaseMonster {
 
     @Override
     protected Texture getAttackIntent() {
-        if (takiMonster != null && !takiMonster.isDeadOrEscaped()) {
+        if (!hasTalked) {
             return new Texture(imagePath("monsters/intents/attack_guitar_normal.png"));
         } else {
             return new Texture(imagePath("monsters/intents/attack_guitar_heavy.png"));
