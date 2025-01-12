@@ -3,6 +3,8 @@ package tomorimod.util;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+import java.util.ArrayList;
+
 import static tomorimod.TomoriMod.makeID;
 
 public class MonsterUtils {
@@ -46,5 +48,18 @@ public class MonsterUtils {
         }else{
             return 0;
         }
+    }
+
+    public static AbstractMonster getRandomEnemy(AbstractMonster except) {
+        ArrayList<AbstractMonster> possibleTargets = new ArrayList<>();
+        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (monster!=except&&!monster.isDying && !monster.isDeadOrEscaped()) {
+                possibleTargets.add(monster);
+            }
+        }
+        if (possibleTargets.isEmpty()) {
+            return null;
+        }
+        return possibleTargets.get(AbstractDungeon.miscRng.random(possibleTargets.size() - 1));
     }
 }
