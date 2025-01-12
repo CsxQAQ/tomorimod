@@ -329,9 +329,9 @@
   },
   "${modID}:Yeyingran": {
     "NAME": "夜隠染",
-    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，然后使目标失去等同于 易伤 层数的伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，然后使目标失去等同于 易伤 层数的生命值。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，然后使目标失去负面效果层数之和的伤害。"
+      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，然后使目标失去等同于负面效果层数之和的生命值。"
     ]
   },
   "${modID}:Lunfuyu": {
@@ -391,7 +391,7 @@
     "NAME": "壱雫空",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害 !M! 次。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害 !M! 次。击杀目标后额外的攻击次数由随机敌人承担。"
+      " tomorimod:音乐 。造成 !D! 点伤害 !M! 次。"
     ]
   },
   "${modID}:Yingsewu": {

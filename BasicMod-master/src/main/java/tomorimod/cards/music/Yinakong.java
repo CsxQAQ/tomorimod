@@ -33,36 +33,28 @@ public class Yinakong extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 1;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 4;
+    public final static int MAGIC_COMMON = 6;
     public final static int UPG_MAGIC_COMMON = 2;
 
     public final static int DAMAGE_UNCOMMON = 2;
     public final static int UPG_DAMAGE_UNCOMMON = 1;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 6;
+    public final static int MAGIC_UNCOMMON = 8;
     public final static int UPG_MAGIC_UNCOMMON = 3;
 
-    public final static int DAMAGE_RARE = 2;
+    public final static int DAMAGE_RARE = 3;
     public final static int UPG_DAMAGE_RARE = 1;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 6;
-    public final static int UPG_MAGIC_RARE = 3;
+    public final static int MAGIC_RARE = 10;
+    public final static int UPG_MAGIC_RARE = 4;
 
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                for(int i=0;i<magicNumber;i++){
-                    addToBot(new YinakongAction(damage,m,this));
-                }
-            }else{
-                for (int i = 0; i < this.magicNumber; i++) {
-                    addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                }
-            }
+        for (int i = 0; i < this.magicNumber; i++) {
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
     }
 
