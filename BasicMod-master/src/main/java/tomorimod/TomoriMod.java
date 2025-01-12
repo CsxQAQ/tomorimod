@@ -63,7 +63,6 @@ import java.util.*;
 //TODO 不用tempcard农
 //TODO 音乐攻击牌重写
 //TODO 潜在表明
-//TODO 角色图像往右一点
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

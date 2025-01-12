@@ -30,7 +30,7 @@ public class BitianbanzouPatch {
 
             __instance.flash();
 
-            if (__instance.owner.hasPower(makeID("YeyingranPower"))) {
+            if (__instance.owner.hasPower(makeID("BitianbanzouPower"))) {
                 AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(__instance.owner, __instance.owner, "Vigor", 1));
                 if (__instance.amount <= 0) {
                     AbstractDungeon.actionManager.addToBottom(
