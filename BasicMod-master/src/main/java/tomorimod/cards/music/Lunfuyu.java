@@ -67,7 +67,7 @@ public class Lunfuyu extends BaseMusicCard {
 
     @Override
     public void updateDescription(){
-        //super.updateDescription();
+
         switch (musicRarity) {
             case COMMON:
             case DEFAULT:

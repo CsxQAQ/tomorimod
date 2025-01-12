@@ -5,14 +5,17 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
+import tomorimod.monitors.card.LunfuyuMonitor;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
+import tomorimod.util.PlayerUtils;
 
 public class Qianzaibiaoming extends BaseMusicCard {
     public static final String ID = makeID(Qianzaibiaoming.class.getSimpleName());
@@ -32,88 +35,80 @@ public class Qianzaibiaoming extends BaseMusicCard {
         ));
     }
 
-    public final static int DAMAGE_COMMON = 5;
-    public final static int UPG_DAMAGE_COMMON = 3;
+    public final static int DAMAGE_COMMON = 0;
+    public final static int UPG_DAMAGE_COMMON = 0;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 2;
-    public final static int UPG_MAGIC_COMMON = 1;
+    public final static int MAGIC_COMMON = 5;
+    public final static int UPG_MAGIC_COMMON = 3;
 
-    public final static int DAMAGE_UNCOMMON = 8;
-    public final static int UPG_DAMAGE_UNCOMMON = 4;
+    public final static int DAMAGE_UNCOMMON = 0;
+    public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 3;
-    public final static int UPG_MAGIC_UNCOMMON = 1;
+    public final static int MAGIC_UNCOMMON = 8;
+    public final static int UPG_MAGIC_UNCOMMON = 4;
 
-    public final static int DAMAGE_RARE = 8;
-    public final static int UPG_DAMAGE_RARE = 4;
+    public final static int DAMAGE_RARE = 0;
+    public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 3;
-    public final static int UPG_MAGIC_RARE = 1;
+    public final static int MAGIC_RARE = 8;
+    public final static int UPG_MAGIC_RARE = 4;
+
+    private int curGravityNum=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int gravityAmount=0;
-        if(AbstractDungeon.player!=null){
-            if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
-                gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
-            }
+        calculateBaseDamage();
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new MusicDamageAllEnemiesAction(p, baseDamage,
+                    this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        }else{
+            calculateCardDamage(m);
+            addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageType),
+                    AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)) {
+    }
 
-                addToBot(new MusicDamageAllEnemiesAction(p, baseDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                addToBot(new MusicDamageAllEnemiesAction(p, gravityAmount*magicNumber, this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-
-            }else{
-                int tempBaseDamage=baseDamage;
-                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                baseDamage=gravityAmount*magicNumber;
-                calculateCardDamage(m);
-                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                baseDamage=tempBaseDamage;
-            }
+    @Override
+    public void updateDescription(){
+        switch (musicRarity) {
+            case COMMON:
+            case DEFAULT:
+            case UNCOMMON:
+                this.rawDescription=cardStrings.DESCRIPTION;
+                break;
+            case RARE:
+                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+                break;
         }
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        }
+        initializeDescription();
+    }
+
+    public void calculateBaseDamage(){
+        baseDamage= PlayerUtils.getPowerNum("GravityPower")*magicNumber;
     }
 
     @Override
     public void update(){
         super.update();
-        if(musicRarity!=null){
-            this.target=CardTarget.ALL_ENEMY;
+        if(musicRarity.equals(MusicRarity.RARE)){
+            target=CardTarget.ALL_ENEMY;
         }
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription(){
         if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if (musicRarity != null) {
-                int gravityAmount=0;
-                if(AbstractDungeon.player!=null){
-                    if(AbstractDungeon.player.getPower(GravityPower.POWER_ID)!=null){
-                        gravityAmount=AbstractDungeon.player.getPower(GravityPower.POWER_ID).amount;
-                    }
-                }
-                switch (musicRarity) {
-                    case COMMON:
-                    case DEFAULT:
-                    case UNCOMMON:
-                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION
-                                +"（拥有"+ gravityAmount+"点重力）";
-                        break;
-                    case RARE:
-                        this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0]
-                                +"（拥有"+gravityAmount+"点重力）";
-                        break;
-                }
+            if(curGravityNum!=PlayerUtils.getPowerNum("GravityPower")){
+                calculateBaseDamage();
+                applyPowers();
+                updateDescription();
+                curGravityNum=PlayerUtils.getPowerNum("GravityPower");
             }
         }
-
-        initializeDescription();
     }
+
     @Override
     public AbstractCard makeCopy() {
         return new Qianzaibiaoming();
