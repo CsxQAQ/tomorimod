@@ -10,9 +10,11 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.GameCursor;
+import com.megacrit.cardcrawl.credits.CreditsScreen;
 import com.megacrit.cardcrawl.cutscenes.Cutscene;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.cutscenes.NeowNarrationScreen;
@@ -35,6 +37,7 @@ import tomorimod.rooms.TomoriTrueVictoryRoom;
 
 import java.util.ArrayList;
 
+import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
 
 public class TheEndingPatch {
@@ -66,13 +69,15 @@ public class TheEndingPatch {
             method = "onPlayerEntry"
     )
     public static class TrueVictoryRoomPatch {
-        public static void Postfix(TrueVictoryRoom __instance) {
+        @SpirePostfixPatch
+        public static void postfix(TrueVictoryRoom __instance) {
             if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 CardCrawlGame.music.silenceBGMInstantly();
                 CardCrawlGame.music.silenceTempBgmInstantly();
                 CardCrawlGame.music.playTempBgmInstantly(MusicPatch.MusicHelper.GEORGETTE.name(), false);
             }
         }
+        //new CreditsScreen
     }
 
     @SpirePatch(
@@ -80,7 +85,8 @@ public class TheEndingPatch {
             method = "update"
     )
     public static class NeowNarrationScreenPatch {
-        public static void Prefix(NeowNarrationScreen __instance,float ___fadeOutTimer) {
+        @SpirePrefixPatch
+        public static void prefix(NeowNarrationScreen __instance,float ___fadeOutTimer) {
             if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
                 ___fadeOutTimer=0f;
                 GameCursor.hidden = false;
@@ -92,6 +98,41 @@ public class TheEndingPatch {
         }
     }
 
+    @SpirePatch(
+            clz = Cutscene.class,
+            method = SpirePatch.CONSTRUCTOR,
+            paramtypez = {
+                    AbstractPlayer.PlayerClass.class
+            }
+    )
+    public static class CutscenePanelsPatch {
+        @SpirePostfixPatch
+        public static void postfix(Cutscene __instance,AbstractPlayer.PlayerClass chosenClass,ArrayList<CutscenePanel> ___panels) {
+            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
+                ___panels.clear();
+                ___panels.add(new CutscenePanel(imagePath("character/ed/page1.png")));
+                ___panels.add(new CutscenePanel(imagePath("character/ed/page2.png")));
+                ___panels.add(new CutscenePanel(imagePath("character/ed/page3.png")));
+            }
+        }
+    }
+
+    @SpirePatch(
+            clz = CreditsScreen.class,
+            method = "open",
+            paramtypez = {
+                    boolean.class
+            }
+    )
+    public static class CreditsScreenPatch {
+        @SpirePrefixPatch
+        public static void prefix(CreditsScreen __instance,@ByRef boolean playCreditsBgm[]) {
+            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
+                CardCrawlGame.music.silenceBGMInstantly();
+                CardCrawlGame.music.silenceTempBgmInstantly();
+            }
+        }
+    }
 
 }
 

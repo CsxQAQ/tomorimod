@@ -27,51 +27,51 @@ public class WelcomeToAveMujicaPatch {
 
     @SpirePatch(
             clz= AbstractPlayer.class,
-            method="applyStartOfCombatPreDrawLogic"
+            method="applyPreCombatLogic"
     )
-    public static class AbstractPlayerStartOfCombatPreDrawPatch{
-        @SpirePostfixPatch
-        public static void postfix(AbstractPlayer __instance){
+    public static class ApplyPreCombatLogicPatch{
+        @SpirePrefixPatch
+        public static SpireReturn prefix(AbstractPlayer __instance){
             for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
                 if(monster instanceof SakiShadowMonster){
-                    AbstractDungeon.actionManager.addToBottom(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            __instance.hand.clear();
-                            isDone=true;
-                        }
-                    });
-                    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new WelcomeToAveMujica()));
+                    return SpireReturn.Return();
                 }
             }
+            return SpireReturn.Continue();
         }
     }
-//    @SpirePatch(
-//            clz= AbstractPlayer.class,
-//            method="preBattlePrep"
-//    )
-//    public static class AbstractPlayerPreBattlePrepPatch{
-//        @SpireInsertPatch(
-//                locator = Locator.class
-//        )
-//        public static void insert(AbstractPlayer __instance){
-//            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-//                if(monster instanceof SakiShadowMonster){
-//                    __instance.drawPile.clear();
-//                    AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new WelcomeToAveMujica()));
-//                }
-//            }
-//        }
-//
-//        private static class Locator extends SpireInsertLocator {
-//            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-//                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "drawPile");
-//
-//                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-//                return new int[]{lines[0]+1};
-//            }
-//        }
-//    }
+
+    @SpirePatch(
+            clz= AbstractPlayer.class,
+            method="applyStartOfCombatLogic"
+    )
+    public static class ApplyStartOfCombatLogic{
+        @SpirePrefixPatch
+        public static SpireReturn prefix(AbstractPlayer __instance){
+            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+                if(monster instanceof SakiShadowMonster){
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(
+            clz= AbstractPlayer.class,
+            method="applyStartOfCombatPreDrawLogic"
+    )
+    public static class ApplyStartOfCombatPreDrawLogic{
+        @SpirePrefixPatch
+        public static SpireReturn prefix(AbstractPlayer __instance){
+            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
+                if(monster instanceof SakiShadowMonster){
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
 
 
 
