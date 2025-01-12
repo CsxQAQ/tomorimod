@@ -98,6 +98,7 @@ public class Qianzaibiaoming extends BaseMusicCard {
         super.update();
         if(musicRarity.equals(MusicRarity.RARE)){
             target=CardTarget.ALL_ENEMY;
+            isMultiDamage=true;
         }
         if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
             if(curGravityNum!=PlayerUtils.getPowerNum(makeID("GravityPower"))){

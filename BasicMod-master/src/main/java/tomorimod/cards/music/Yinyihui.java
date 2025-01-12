@@ -55,25 +55,26 @@ public class Yinyihui extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                addToBot(new GainBlockAction(p, block));
 
-                addToBot(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        int curBlock = AbstractDungeon.player.currentBlock;
-                        addToBot(new MusicDamageAllEnemiesAction(p, curBlock, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                        this.isDone = true;
-                    }
-                });
-            }else{
-                addToBot(new GainBlockAction(p,block));
-                addToBot(new MusicDamageAllEnemiesAction(p, block, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new GainBlockAction(p, block));
 
-            }
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    baseDamage = AbstractDungeon.player.currentBlock;
+                    addToTop(new MusicDamageAllEnemiesAction(p, baseDamage, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                    this.isDone = true;
+                }
+            });
+        }else{
+            addToBot(new GainBlockAction(p,block));
+            addToBot(new MusicDamageAllEnemiesAction(p, block, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
+
     }
+
+    //造成(点伤害)
 
     @Override
     public AbstractCard makeCopy() {

@@ -18,7 +18,7 @@ public class Yingsewu extends BaseMusicCard {
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,
-            1
+            0
     );
 
     public Yingsewu() {
@@ -53,18 +53,15 @@ public class Yingsewu extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(musicRarity!=null){
-            if(musicRarity.equals(MusicRarity.RARE)){
-                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                addToBot(new YingsewuAction());
-                addToBot(new YingsewuAction());
-                addToBot(new YingsewuAction());
-            }else{
-                addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                addToBot(new YingsewuAction());
-            }
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToBot(new YingsewuAction());
+            addToBot(new YingsewuAction());
+            addToBot(new YingsewuAction());
+        }else{
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToBot(new YingsewuAction());
         }
-
     }
 
     @Override
