@@ -16,11 +16,14 @@ public class DerivativeGlowPatch {
     public static class AbstractCardInsertPatch {
         @SpirePrefixPatch
         public static void preFix(AbstractCard __instance) {
-            if(TomoriConfig.config.getBool("derivativeGlow-enabled")&&checkInMasterDeck(__instance)){
-                __instance.glowColor = new Color(0.2F, 0.9F, 1.0F, 0.25F); //蓝
-            }else{
-                __instance.glowColor = new Color(0.0F, 1.0F, 0.0F, 0.25F); //绿
+            if(TomoriConfig.config.getBool("derivativeGlow-enabled")){
+                if(checkInMasterDeck(__instance)){
+                    __instance.glowColor = new Color(0.2F, 0.9F, 1.0F, 0.25F); //蓝
+                }else{
+                    __instance.glowColor = new Color(0.0F, 1.0F, 0.0F, 0.25F); //绿
+                }
             }
+
         }
     }
 

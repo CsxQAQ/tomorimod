@@ -65,7 +65,7 @@
     ]
   },
   "${modID}:Pressure": {
-    "NAME": "压力",
+    "NAME": "鼓棒硬了",
     "DESCRIPTION": "造成 !D! 点伤害。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "造成 !D! 点伤害，2个回合后再对所有敌人造成 !D! 点伤害。 tomorimod:瞬间 ， 消耗 。"
@@ -236,7 +236,7 @@
   },
   "${modID}:SmoothCombo": {
     "NAME": "触发连招",
-    "DESCRIPTION": "从手牌中打出下一张牌时，自动打出抽牌堆顶的牌，重复此效果直到打出类型与之不同的牌或者抽牌堆为空。"
+    "DESCRIPTION": "依次打出抽牌堆中所有 tomorimod:素材 颜色与该牌相同的卡牌。"
   },
 
   "${modID}:Revolution": {
