@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.util.CardStats;
+import tomorimod.util.PlayerUtils;
 
 public class Yinyihui extends BaseMusicCard {
     public static final String ID = makeID(Yinyihui.class.getSimpleName());
@@ -52,6 +54,7 @@ public class Yinyihui extends BaseMusicCard {
     public final static int MAGIC_RARE = 0;
     public final static int UPG_MAGIC_RARE = 0;
 
+    private int curBlock=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -71,10 +74,53 @@ public class Yinyihui extends BaseMusicCard {
             addToBot(new GainBlockAction(p,block));
             addToBot(new MusicDamageAllEnemiesAction(p, block, damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
-
     }
 
-    //造成(点伤害)
+    @Override
+    public void updateDescription(){
+        switch (musicRarity) {
+            case COMMON:
+            case DEFAULT:
+            case UNCOMMON:
+                this.rawDescription=cardStrings.DESCRIPTION;
+                break;
+            case RARE:
+                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+                break;
+        }
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        }
+        initializeDescription();
+    }
+
+    public void calculateBaseDamage(){
+        if(musicRarity.equals(MusicRarity.RARE)){
+            baseDamage= AbstractDungeon.player.currentBlock+block;
+        }else{
+            baseDamage=block;
+        }
+    }
+
+    @Override
+    public void update(){
+        super.update();
+        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
+            if(curBlock!=AbstractDungeon.player.currentBlock){
+                calculateBaseDamage();
+                applyPowers();
+                updateDescription();
+                curBlock=AbstractDungeon.player.currentBlock;
+            }
+        }
+    }
+
+    @Override
+    public void applyPowers(){
+        calculateBaseDamage();
+        super.applyPowers();
+        updateDescription();
+    }
 
     @Override
     public AbstractCard makeCopy() {

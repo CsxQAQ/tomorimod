@@ -406,7 +406,8 @@
     "DESCRIPTION": " tomorimod:音乐 。获得 !B! 点 格挡 ，对所有敌人造成等量的伤害。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。获得 !B! 点 格挡 。对所有敌人造成当前 格挡 数的伤害。"
-    ]
+    ],
+    "UPGRADE_DESCRIPTION":" NL （造成 !D! 点伤害）"
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
