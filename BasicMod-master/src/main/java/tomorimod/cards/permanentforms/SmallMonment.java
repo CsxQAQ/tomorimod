@@ -38,6 +38,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         cardsToPreview=new WholeLife();
+        tags.add(CardTags.HEALING);
     }
 
     @Override

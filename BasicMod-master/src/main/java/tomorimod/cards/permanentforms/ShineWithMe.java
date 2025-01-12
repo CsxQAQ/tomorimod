@@ -28,6 +28,7 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
     );
     public ShineWithMe() {
         super(ID, info);
+        tags.add(CardTags.HEALING);
     }
 
     public int musicDiscovered=-1;

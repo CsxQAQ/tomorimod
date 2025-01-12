@@ -27,6 +27,7 @@ public class WeAreMygo extends BaseCard implements PermanentFrom{
 
     public WeAreMygo() {
         super(ID, info);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

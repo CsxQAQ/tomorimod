@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import tomorimod.cards.basic.MusicComposition;
+import tomorimod.cards.permanentforms.PermanentFrom;
 
 public class SoulViewAction
         extends AbstractGameAction {
@@ -29,7 +31,9 @@ public class SoulViewAction
         if (this.duration == Settings.ACTION_DUR_MED) {
             CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : this.p.masterDeck.group) {
-                tmp.addToRandomSpot(c);
+                if(!(c instanceof MusicComposition)&&!(c instanceof PermanentFrom)){
+                    tmp.addToRandomSpot(c);
+                }
             }
 
             if (tmp.size() == 0) {

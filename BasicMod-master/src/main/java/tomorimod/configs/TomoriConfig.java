@@ -24,6 +24,7 @@ public class TomoriConfig {
     public static AtomicReference<Boolean> tutorialEnabled;
     public static AtomicReference<Boolean> ascensionUnlocked;
     public static AtomicReference<Boolean> onlyModBossEnabled;
+    public static AtomicReference<Boolean> derivativeGlowEnabled;
 
     public static ModPanel settingsPanel;
 
@@ -83,9 +84,27 @@ public class TomoriConfig {
                 }
         );
 
+        ModLabeledToggleButton derivativeGlow = new ModLabeledToggleButton(
+                TEXT[3],
+                TOOLTIP[3],
+                350.0F,
+                400.0F,
+                Settings.CREAM_COLOR,
+                FontHelper.charDescFont,
+                derivativeGlowEnabled.get(),
+                settingsPanel,
+                label -> {},
+                button -> {
+                    derivativeGlowEnabled.set(button.enabled);
+                    config.setBool("derivativeGlow-enabled", derivativeGlowEnabled.get());
+                    save();
+                }
+        );
+
         settingsPanel.addUIElement(enableTutorial);
         settingsPanel.addUIElement(ascensionUnlock);
         settingsPanel.addUIElement(modBossOnly);
+        settingsPanel.addUIElement(derivativeGlow);
         Texture badgeTexture = ImageMaster.loadImage(imagePath("badge.png"));
         BaseMod.registerModBadge(badgeTexture, "tomorimod", "csx", "", settingsPanel);
     }
@@ -95,6 +114,7 @@ public class TomoriConfig {
         defaultProperties.setProperty("tutorial-enabled", String.valueOf(true));
         defaultProperties.setProperty("ascension-unlock", String.valueOf(true));
         defaultProperties.setProperty("onlyModBoss-enabled", String.valueOf(true));
+        defaultProperties.setProperty("derivativeGlow-enabled", String.valueOf(true));
         try {
             return new SpireConfig("TomoriMod", "Tomori-config", defaultProperties);
         } catch (IOException var2) {
@@ -106,6 +126,7 @@ public class TomoriConfig {
         tutorialEnabled = new AtomicReference<>(config.getBool("tutorial-enabled"));
         ascensionUnlocked = new AtomicReference<>(config.getBool("ascension-unlock"));
         onlyModBossEnabled = new AtomicReference<>(config.getBool("onlyModBoss-enabled"));
+        derivativeGlowEnabled = new AtomicReference<>(config.getBool("derivativeGlow-enabled"));
     }
 
     public static void save() {
@@ -121,13 +142,15 @@ public class TomoriConfig {
         TEXT = new String[]{
                 "启用提示",
                 "自动解锁A20",
-                "允许其他角色生成ModBoss"
+                "允许其他角色生成ModBoss",
+                "不来自玩家牌组的卡牌显示绿光"
 
         };
         TOOLTIP = new String[]{
                 "提示结束后将自动关闭",
                 "重启游戏后生效",
-                "mod-boss only"
+                "mod-boss only",
+                "鼠标悬浮在卡牌上显示是否为衍生牌"
         };
     }
 }

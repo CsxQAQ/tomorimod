@@ -3,6 +3,7 @@ package tomorimod.patches;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import tomorimod.monsters.taki.TakiPressurePatch;
 import tomorimod.tags.CustomTags;
@@ -34,6 +35,20 @@ public class CardTipRenderPatch {
             if(___card.tags.contains(CustomTags.SHORTTERMGOAL)&&!keywords.contains(makeID("短期目标"))){
                 keywords.add(makeID("短期目标"));
             }
+            if(AbstractDungeon.player!=null&&!checkInMasterDeck(___card)&&!keywords.contains(makeID("衍生"))){
+                keywords.add(makeID("衍生"));
+            }
         }
+    }
+
+    public static boolean checkInMasterDeck(AbstractCard card){
+        if(AbstractDungeon.player!=null){
+            for(AbstractCard c:AbstractDungeon.player.masterDeck.group){
+                if(c.uuid.equals(card.uuid)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

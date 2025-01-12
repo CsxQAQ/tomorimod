@@ -32,6 +32,7 @@ public class StarDust extends BaseCard implements PermanentFrom{
     public StarDust() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
+        tags.add(CardTags.HEALING);
     }
 
 //    @Override
