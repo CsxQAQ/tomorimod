@@ -28,25 +28,26 @@ public class Ruichengshan extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
+        selfRetain=true;
     }
 
 
-    public final static int DAMAGE_COMMON = 9;
-    public final static int UPG_DAMAGE_COMMON = 4;
+    public final static int DAMAGE_COMMON = 10;
+    public final static int UPG_DAMAGE_COMMON = 5;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
     public final static int MAGIC_COMMON = 0;
     public final static int UPG_MAGIC_COMMON = 0;
 
-    public final static int DAMAGE_UNCOMMON = 12;
-    public final static int UPG_DAMAGE_UNCOMMON = 5;
+    public final static int DAMAGE_UNCOMMON = 14;
+    public final static int UPG_DAMAGE_UNCOMMON = 6;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
     public final static int MAGIC_UNCOMMON = 0;
     public final static int UPG_MAGIC_UNCOMMON = 0;
 
-    public final static int DAMAGE_RARE = 12;
-    public final static int UPG_DAMAGE_RARE = 5;
+    public final static int DAMAGE_RARE = 14;
+    public final static int UPG_DAMAGE_RARE = 6;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
     public final static int MAGIC_RARE = 0;

@@ -377,7 +377,8 @@
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害提高 !M! 点。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。造成 !D! 点伤害。每次使用后该牌的基础伤害翻倍。"
-    ]
+    ],
+    "UPGRADE_DESCRIPTION":" NL （当前基础伤害： !${modID}:BD! ）"
   },
   "${modID}:Wulushi": {
     "NAME": "無路矢",
@@ -416,9 +417,9 @@
   },
   "${modID}:Ruichengshan": {
     "NAME": "端程山",
-    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] 。",
+    "DESCRIPTION": " tomorimod:音乐 。 保留 。 造成 !D! 点伤害。消灭敌人时，获得 [E] [E] 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
+      " tomorimod:音乐 。保留 。 造成 !D! 点伤害。消灭敌人时，获得 [E] [E] ，然后将两张该牌的复制置入手牌。"
     ]
   },
   "${modID}:Huifutu": {
