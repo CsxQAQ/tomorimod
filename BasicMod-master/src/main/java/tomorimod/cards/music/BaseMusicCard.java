@@ -40,41 +40,16 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         this.damageTypeForTurn = MusicDamageInfo.DamageType.NORMAL;
         this.damageType = MusicDamageInfo.DamageType.NORMAL;
 
-        //只是为了正确显示
-//        setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
-//        setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
-//        setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
         dataInfoInitialize();
         //updateDescription();
     }
 
-//    public BaseMusicCard(String ID, CardStats info) {
-//        super(ID, info);
-//        this.idForShow=ID;
-//    }
-
     public void setMusicRarity(MusicRarity musicRarity) {
         this.musicRarity=musicRarity;
-        setDisplayRarity(rarity); //调用setMusicRarity似乎一定会调用setDisPlayRarity，所以就放过来了
-        dataInfoInitialize();  //理论上不用吧，因为构造方法里调用了
+        setDisplayRarity(rarity);
+        dataInfoInitialize(); //会重置base属性，就是会重置升级效果
     }
 
-    public void setMusicRarityByCommond(int level) {
-        switch (level){
-            case 1:
-                this.musicRarity=MusicRarity.COMMON;
-                break;
-            case 2:
-                this.musicRarity=MusicRarity.UNCOMMON;
-                break;
-            case 3:
-                this.musicRarity=MusicRarity.RARE;
-                break;
-            default:
-                this.musicRarity=MusicRarity.DEFAULT;
-        }
-        setDisplayRarity(rarity);
-    }
 
     public static MusicRarity getMusicRarityByCost(String ID) {
         int cost = -1;

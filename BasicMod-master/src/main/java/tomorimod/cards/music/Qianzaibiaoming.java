@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.BaseCard;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.monitors.card.LunfuyuMonitor;
@@ -56,8 +57,6 @@ public class Qianzaibiaoming extends BaseMusicCard {
     public final static int MAGIC_RARE = 8;
     public final static int UPG_MAGIC_RARE = 4;
 
-    private int curGravityNum=-1;
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         calculateBaseDamage();
@@ -71,42 +70,54 @@ public class Qianzaibiaoming extends BaseMusicCard {
         }
     }
 
-    @Override
-    public void updateDescription(){
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                this.rawDescription=cardStrings.DESCRIPTION;
-                break;
-            case RARE:
-                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
-                break;
-        }
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-        }
+
+    public void updateDescriptionWithUPG(){
+        getBaseDescription();
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 
-    public void calculateBaseDamage(){
-        baseDamage= PlayerUtils.getPowerNum(makeID("GravityPower"))*magicNumber;
+    @Override
+    public void applyPowers(){
+        calculateBaseDamage();
+        super.applyPowers();
+        updateDescriptionWithUPG();
     }
 
     @Override
-    public void update(){
-        super.update();
+    public void onMoveToDiscard() {
+        getBaseDescription();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        updateDescriptionWithUPG();
+    }
+
+    public void calculateBaseDamage(){
+        baseDamage=PlayerUtils.getPowerNum(makeID("GravityPower"))*magicNumber;
+    }
+
+
+    @Override
+    public Qianzaibiaoming makeStatEquivalentCopy(){
+        BaseMusicCard card= super.makeStatEquivalentCopy();
+        Qianzaibiaoming qianzaibiaoming=(Qianzaibiaoming) card;
         if(musicRarity.equals(MusicRarity.RARE)){
             target=CardTarget.ALL_ENEMY;
             isMultiDamage=true;
         }
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if(curGravityNum!=PlayerUtils.getPowerNum(makeID("GravityPower"))){
-                calculateBaseDamage();
-                applyPowers();
-                updateDescription();
-                curGravityNum=PlayerUtils.getPowerNum(makeID("GravityPower"));
-            }
+        return qianzaibiaoming;
+    }
+
+    @Override
+    public void setMusicRarity(MusicRarity musicRarity){
+        super.setMusicRarity(musicRarity);
+        if(musicRarity.equals(MusicRarity.RARE)){
+            target=CardTarget.ALL_ENEMY;
+            isMultiDamage=true;
         }
     }
 
