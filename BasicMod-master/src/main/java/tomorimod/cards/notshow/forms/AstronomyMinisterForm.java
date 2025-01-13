@@ -1,4 +1,4 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.notshow.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class AstronomyMinister extends BaseFormCard {
-    public static final String ID = makeID(AstronomyMinister.class.getSimpleName());
+public class AstronomyMinisterForm extends BaseFormCard {
+    public static final String ID = makeID(AstronomyMinisterForm.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -19,7 +19,7 @@ public class AstronomyMinister extends BaseFormCard {
     public final static int MAGIC = 3;
     public final static int UPG_MAGIC = 1;
 
-    public AstronomyMinister() {
+    public AstronomyMinisterForm() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
@@ -37,7 +37,7 @@ public class AstronomyMinister extends BaseFormCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new AstronomyMinister();
+        return new AstronomyMinisterForm();
     }
 
     @Override

@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.powers.RitualPower;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class DarkTomoriPower extends BaseFormPower implements FormEffect{
-    public static final String POWER_ID = makeID(DarkTomoriPower.class.getSimpleName());
+public class DarkTomoriFormPower extends BaseFormPower implements FormEffect{
+    public static final String POWER_ID = makeID(DarkTomoriFormPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
 
-    public DarkTomoriPower(AbstractCreature owner, int amount) {
+    public DarkTomoriFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         //this.amount=amount;
         updateDescription();

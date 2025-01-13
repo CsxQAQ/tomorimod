@@ -1,38 +1,38 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.notshow.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class DarkTomori extends BaseFormCard {
+public class MascotForm extends BaseFormCard implements SpecialCard {
 
-    public static final String ID = makeID(DarkTomori.class.getSimpleName());
+    public static final String ID = makeID(MascotForm.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.BASIC,
             CardTarget.SELF,
-            1
+            0
     );
 
-    public final static int MAGIC = 1;
+    public final static int MAGIC = 2;
     public final static int UPG_MAGIC = 1;
 
-    public DarkTomori() {
+    public MascotForm() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
-        exhaust=true;
     }
 
     @Override
     public void setPowerName(){
-        formName ="DarkTomoriPower";
+        formName ="MascotPower";
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new DarkTomori();
+        return new MascotForm();
     }
 
 }

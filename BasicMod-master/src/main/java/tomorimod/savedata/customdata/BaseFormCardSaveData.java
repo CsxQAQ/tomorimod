@@ -1,6 +1,6 @@
 //package tomorimod.savedata.customdata;
 //
-//import tomorimod.cards.forms.forms.BaseFormCard;
+//import tomorimod.cards.notshow.forms.forms.BaseFormCard;
 //import tomorimod.savedata.Clearable;
 //import tomorimod.savedata.SaveDataInstanceFactory;
 //

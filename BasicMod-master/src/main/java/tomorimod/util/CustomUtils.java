@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import tomorimod.cards.BaseCard;
-import tomorimod.cards.forms.BaseFormCard;
+import tomorimod.cards.notshow.forms.BaseFormCard;
 import tomorimod.cards.monment.BaseMonmentCard;
 import tomorimod.cards.music.BaseMusicCard;
 

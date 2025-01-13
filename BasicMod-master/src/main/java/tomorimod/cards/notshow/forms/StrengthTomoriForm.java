@@ -1,44 +1,46 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.notshow.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class Pant extends BaseFormCard {
+public class StrengthTomoriForm extends BaseFormCard {
 
-    public static final String ID = makeID(Pant.class.getSimpleName());
+    public static final String ID = makeID(StrengthTomoriForm.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.UNCOMMON,
             CardTarget.SELF,
             1
     );
 
-    public final static int MAGIC = 5;
-    public final static int UPG_MAGIC = 3;
+    public final static int MAGIC = 1;
+    public final static int UPG_MAGIC = 0;
 
-    public Pant() {
+
+    public StrengthTomoriForm() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
     }
 
+
     @Override
     public void setPowerName(){
-        formName ="PantPower";
+        formName ="StrengthTomoriPower";
     }
 
     @Override
     public AbstractCard makeCopy() {
-        return new Pant();
+        return new StrengthTomoriForm();
     }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(magicUpgrade);
+            upgradeBaseCost(0);
         }
     }
 }

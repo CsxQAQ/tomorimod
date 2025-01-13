@@ -1,15 +1,21 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.customcards;
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import tomorimod.cards.BaseCard;
+import tomorimod.cards.notshow.forms.BaseFormCard;
 import tomorimod.character.Tomori;
+import tomorimod.powers.custompowers.GravityDomainPower;
 import tomorimod.util.CardStats;
 
-public class GravityDomain extends BaseFormCard {
+public class GravityDomain extends BaseCard {
 
     public static final String ID = makeID(GravityDomain.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
-            CardType.SKILL,
+            CardType.POWER,
             CardRarity.COMMON,
             CardTarget.SELF,
             2
@@ -20,15 +26,13 @@ public class GravityDomain extends BaseFormCard {
 
     public GravityDomain() {
         super(ID, info);
-        setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
-    public void setPowerName(){
-        formName ="DomainExpansionPower";
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new ApplyPowerAction(p,p,new GravityDomainPower(p,magicNumber),magicNumber));
     }
-
     @Override
     public AbstractCard makeCopy() {
         return new GravityDomain();
@@ -41,4 +45,6 @@ public class GravityDomain extends BaseFormCard {
             upgradeBaseCost(1);
         }
     }
+
+
 }

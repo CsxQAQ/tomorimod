@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class PantPower extends BaseFormPower implements FormEffect{
-    public static final String POWER_ID = makeID(PantPower.class.getSimpleName());
+public class PantFormPower extends BaseFormPower implements FormEffect{
+    public static final String POWER_ID = makeID(PantFormPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
 
-    public PantPower(AbstractCreature owner,int amount) {
+    public PantFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         //this.amount=amount;
         updateDescription();

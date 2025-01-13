@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class MascotPower extends BaseFormPower implements FormEffect{
-    public static final String POWER_ID = makeID(MascotPower.class.getSimpleName());
+public class MascotFormPower extends BaseFormPower implements FormEffect{
+    public static final String POWER_ID = makeID(MascotFormPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
     private boolean isEffected=false;
 
-    public MascotPower(AbstractCreature owner,int amount) {
+    public MascotFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
        // this.amount=amount;
         updateDescription();

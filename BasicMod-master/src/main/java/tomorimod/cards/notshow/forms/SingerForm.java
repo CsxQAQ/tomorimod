@@ -1,12 +1,12 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.notshow.forms;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class Singer extends BaseFormCard implements SpecialCard {
-    public static final String ID = makeID(Singer.class.getSimpleName());
+public class SingerForm extends BaseFormCard implements SpecialCard {
+    public static final String ID = makeID(SingerForm.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -19,7 +19,7 @@ public class Singer extends BaseFormCard implements SpecialCard {
     public final static int UPG_MAGIC = 0;
 
 
-    public Singer() {
+    public SingerForm() {
         super(ID, info);
         setPowerName();
         setMagic(MAGIC,UPG_MAGIC);
@@ -32,7 +32,7 @@ public class Singer extends BaseFormCard implements SpecialCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new Singer();
+        return new SingerForm();
     }
 
     @Override

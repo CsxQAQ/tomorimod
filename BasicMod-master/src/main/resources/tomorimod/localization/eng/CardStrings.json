@@ -154,35 +154,52 @@
     "NAME": "最后的温柔",
     "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互换。"
   },
-  "${modID}:AstronomyMinister": {
+  "${modID}:AstronomyMinisterForm": {
     "NAME": "天文部长",
     "DESCRIPTION": " tomorimod:形态 ：回合开始时， 预见 !M! 。"
   },
-  "${modID}:DarkTomori": {
+  "${modID}:DarkTomoriForm": {
     "NAME": "暗黑型高松灯",
     "DESCRIPTION": "tomorimod:形态 ：切换 tomorimod:形态 时，获得 !M! 层 仪式 。 消耗 。"
   },
-  "${modID}:GravityDomain": {
+  "${modID}:GravityDomainForm": {
     "NAME": "重力领域",
     "DESCRIPTION": " tomorimod:形态 ：回合结束时，获得 !M! 层 tomorimod:重力 。"
   },
-  "${modID}:Mascot": {
+  "${modID}:MascotForm": {
     "NAME": "吉祥物",
     "DESCRIPTION": " tomorimod:形态 ：下个回合开始时，获得 !M! 点 [E] 。"
   },
-  "${modID}:Pant": {
+  "${modID}:PantForm": {
     "NAME": "企鹅",
     "DESCRIPTION": " tomorimod:形态 ：每当失去生命值时，获得 !M! 点 格挡 。"
   },
-  "${modID}:Singer": {
+  "${modID}:SingerForm": {
     "NAME": "主唱",
     "DESCRIPTION": " tomorimod:形态 ：使用音乐牌时，抽 !M! 张牌。"
   },
-  "${modID}:StrengthTomori": {
+  "${modID}:StrengthTomoriForm": {
     "NAME": "力量型高松灯",
     "DESCRIPTION": " tomorimod:形态 ：每当有卡牌被 消耗 时，获得 !M! 层 力量 。"
   },
 
+
+  "${modID}:AstronomyMinister": {
+    "NAME": "天文部长",
+    "DESCRIPTION": "回合开始时， 预见 !M! 。"
+  },
+  "${modID}:GravityDomain": {
+    "NAME": "重力领域",
+    "DESCRIPTION": "回合结束时，获得 !M! 层 tomorimod:重力 。"
+  },
+  "${modID}:Singer": {
+    "NAME": "主唱",
+    "DESCRIPTION": "使用音乐牌时，抽 !M! 张牌。"
+  },
+  "${modID}:StrengthTomori": {
+    "NAME": "力量型高松灯",
+    "DESCRIPTION": "每当有卡牌被 消耗 时，获得 !M! 层 力量 。"
+  },
   "${modID}:LightAndShadow": {
     "NAME": "光影",
     "DESCRIPTION": "获得 !M! 层 tomorimod:重力 。当 tomorimod:闪耀 层数多于 tomorimod:重力 时，改为获得 !M! 层 tomorimod:闪耀 。",

@@ -1,4 +1,4 @@
-package tomorimod.cards.forms;
+package tomorimod.cards.notshow.forms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.actions.FormPowerChangeBlueAction;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.monment.BaseMonmentCard;
+import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.powers.forms.*;
 import tomorimod.savedata.customdata.FormsSaveData;
 import tomorimod.util.CardStats;
@@ -19,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
-public abstract class BaseFormCard extends BaseCard {
+public abstract class BaseFormCard extends BaseCard implements SpecialCard {
 
     public String formName;
     public static String curForm="";
@@ -68,34 +69,34 @@ public abstract class BaseFormCard extends BaseCard {
     }
 
     static {
-        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC),
-                (player) -> new AstronomyMinisterPower(player,  AstronomyMinister.MAGIC));
-        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC),
-                (player) -> new AstronomyMinisterPower(player,  AstronomyMinister.MAGIC+AstronomyMinister.UPG_MAGIC));
-        powerMap.put(new FormInfo("DarkTomoriPower", DarkTomori.MAGIC),
-                (player) -> new DarkTomoriPower(player, DarkTomori.MAGIC));
-        powerMap.put(new FormInfo("DarkTomoriPower", DarkTomori.MAGIC+ DarkTomori.UPG_MAGIC),
-                (player) -> new DarkTomoriPower(player, DarkTomori.MAGIC+ DarkTomori.UPG_MAGIC));
-        powerMap.put(new FormInfo("DomainExpansionPower", GravityDomain.MAGIC),
-                (player) -> new GravityDomainPower(player, GravityDomain.MAGIC));
-        powerMap.put(new FormInfo("DomainExpansionPower", GravityDomain.MAGIC+ GravityDomain.UPG_MAGIC),
-                (player) -> new GravityDomainPower(player, GravityDomain.MAGIC+ GravityDomain.UPG_MAGIC));
-        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC),
-                (player) -> new MascotPower(player, Mascot.MAGIC));
-        powerMap.put(new FormInfo("MascotPower", Mascot.MAGIC+Mascot.UPG_MAGIC),
-                (player) -> new MascotPower(player, Mascot.MAGIC+Mascot.UPG_MAGIC));
-        powerMap.put(new FormInfo("PantPower", Pant.MAGIC),
-                (player) -> new PantPower(player,Pant.MAGIC));
-        powerMap.put(new FormInfo("PantPower", Pant.MAGIC+Pant.UPG_MAGIC),
-                (player) -> new PantPower(player,  Pant.MAGIC+Pant.UPG_MAGIC));
-        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC),
-                (player) -> new SingerPower(player,  Singer.MAGIC));
-        powerMap.put(new FormInfo("SingerPower", Singer.MAGIC+Singer.UPG_MAGIC),
-                (player) -> new SingerPower(player,  Singer.MAGIC+Singer.UPG_MAGIC));
-        powerMap.put(new FormInfo("StrengthTomoriPower", StrengthTomori.MAGIC),
-                (player) -> new StrengthTomoriPower(player,  StrengthTomori.MAGIC));
-        powerMap.put(new FormInfo("StrengthTomoriPower", StrengthTomori.MAGIC+ StrengthTomori.UPG_MAGIC),
-                (player) -> new StrengthTomoriPower(player,  StrengthTomori.MAGIC+ StrengthTomori.UPG_MAGIC));
+        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinisterForm.MAGIC),
+                (player) -> new AstronomyMinisterFormPower(player,  AstronomyMinisterForm.MAGIC));
+        powerMap.put(new FormInfo("AstronomyMinisterPower", AstronomyMinisterForm.MAGIC+ AstronomyMinisterForm.UPG_MAGIC),
+                (player) -> new AstronomyMinisterFormPower(player,  AstronomyMinisterForm.MAGIC+ AstronomyMinisterForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("DarkTomoriPower", DarkTomoriForm.MAGIC),
+                (player) -> new DarkTomoriFormPower(player, DarkTomoriForm.MAGIC));
+        powerMap.put(new FormInfo("DarkTomoriPower", DarkTomoriForm.MAGIC+ DarkTomoriForm.UPG_MAGIC),
+                (player) -> new DarkTomoriFormPower(player, DarkTomoriForm.MAGIC+ DarkTomoriForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("DomainExpansionPower", GravityDomainForm.MAGIC),
+                (player) -> new GravityDomainFormPower(player, GravityDomainForm.MAGIC));
+        powerMap.put(new FormInfo("DomainExpansionPower", GravityDomainForm.MAGIC+ GravityDomainForm.UPG_MAGIC),
+                (player) -> new GravityDomainFormPower(player, GravityDomainForm.MAGIC+ GravityDomainForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("MascotPower", MascotForm.MAGIC),
+                (player) -> new MascotFormPower(player, MascotForm.MAGIC));
+        powerMap.put(new FormInfo("MascotPower", MascotForm.MAGIC+ MascotForm.UPG_MAGIC),
+                (player) -> new MascotFormPower(player, MascotForm.MAGIC+ MascotForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("PantPower", PantForm.MAGIC),
+                (player) -> new PantFormPower(player, PantForm.MAGIC));
+        powerMap.put(new FormInfo("PantPower", PantForm.MAGIC+ PantForm.UPG_MAGIC),
+                (player) -> new PantFormPower(player,  PantForm.MAGIC+ PantForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("SingerPower", SingerForm.MAGIC),
+                (player) -> new SingerFormPower(player,  SingerForm.MAGIC));
+        powerMap.put(new FormInfo("SingerPower", SingerForm.MAGIC+ SingerForm.UPG_MAGIC),
+                (player) -> new SingerFormPower(player,  SingerForm.MAGIC+ SingerForm.UPG_MAGIC));
+        powerMap.put(new FormInfo("StrengthTomoriPower", StrengthTomoriForm.MAGIC),
+                (player) -> new StrengthTomoriFormPower(player,  StrengthTomoriForm.MAGIC));
+        powerMap.put(new FormInfo("StrengthTomoriPower", StrengthTomoriForm.MAGIC+ StrengthTomoriForm.UPG_MAGIC),
+                (player) -> new StrengthTomoriFormPower(player,  StrengthTomoriForm.MAGIC+ StrengthTomoriForm.UPG_MAGIC));
     }
 
     public static class FormInfo {

@@ -7,13 +7,13 @@ import tomorimod.powers.GravityPower;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class GravityDomainPower extends BaseFormPower implements FormEffect{
-    public static final String POWER_ID = makeID(GravityDomainPower.class.getSimpleName());
+public class GravityDomainFormPower extends BaseFormPower implements FormEffect{
+    public static final String POWER_ID = makeID(GravityDomainFormPower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = true;
 
 
-    public GravityDomainPower(AbstractCreature owner, int amount) {
+    public GravityDomainFormPower(AbstractCreature owner, int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
         //this.amount=amount;
         updateDescription();

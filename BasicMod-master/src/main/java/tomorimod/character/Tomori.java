@@ -39,10 +39,9 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorimod.cards.basic.Defend;
 import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
-import tomorimod.cards.forms.Mascot;
-import tomorimod.cards.forms.Singer;
+import tomorimod.cards.notshow.forms.MascotForm;
+import tomorimod.cards.notshow.forms.SingerForm;
 import tomorimod.monsters.sakishadow.SakiShadowRightPower;
-import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
@@ -246,8 +245,8 @@ public class Tomori extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(MusicComposition.ID);
-        retVal.add(Mascot.ID);
-        retVal.add(Singer.ID);
+        retVal.add(MascotForm.ID);
+        retVal.add(SingerForm.ID);
         return retVal;
     }
 

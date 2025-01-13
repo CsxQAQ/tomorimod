@@ -3,7 +3,7 @@ package tomorimod.actions.cardactions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import tomorimod.cards.forms.BaseFormCard;
+import tomorimod.cards.notshow.forms.BaseFormCard;
 import tomorimod.powers.forms.FormEffect;
 
 import static tomorimod.TomoriMod.makeID;
