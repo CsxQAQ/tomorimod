@@ -220,10 +220,7 @@
   },
   "${modID}:BandPractise": {
     "NAME": "乐队练习",
-    "DESCRIPTION": "选择手牌中的一张 tomorimod:音乐 牌进行复制。",
-    "EXTENDED_DESCRIPTION": [
-      "选择手牌中的一张 tomorimod:音乐 牌进行复制，并提升其稀有度。"
-    ]
+    "DESCRIPTION": "选择手牌中的一张 tomorimod:音乐 牌，将 !M! 张该牌的复制置入手牌。"
   },
   "${modID}:Upset": {
     "NAME": "失落",

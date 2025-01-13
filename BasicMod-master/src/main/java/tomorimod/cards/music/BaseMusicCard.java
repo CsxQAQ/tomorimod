@@ -48,6 +48,8 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         this.musicRarity=musicRarity;
         setDisplayRarity(rarity);
         dataInfoInitialize(); //会重置base属性，就是会重置升级效果
+                                //应该避免对战内调用这个，否则会重置诗超绊的基础攻击以及卡牌的升级效果
+                                //也不要和升级一起
     }
 
 

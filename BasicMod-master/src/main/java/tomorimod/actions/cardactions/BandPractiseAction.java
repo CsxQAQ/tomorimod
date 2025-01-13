@@ -20,7 +20,7 @@ public class BandPractiseAction extends AbstractGameAction {
     private boolean hasOpenedSelectScreen=false;
     private AbstractPlayer p;
 
-    public BandPractiseAction(boolean upgraded) {
+    public BandPractiseAction() {
         this.upgraded=upgraded;
         this.p = AbstractDungeon.player;
         this.actionType = ActionType.CARD_MANIPULATION;
@@ -50,15 +50,15 @@ public class BandPractiseAction extends AbstractGameAction {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 //addToTop(new MakeTempCardInHandAction(c.makeStatEquivalentCopy()));
                 BaseMusicCard card= (BaseMusicCard) c.makeStatEquivalentCopy();
-                if(upgraded){
-                    if(card.musicRarity.equals(BaseMusicCard.MusicRarity.COMMON)){
-                        card.musicRarity= BaseMusicCard.MusicRarity.UNCOMMON;
-                    }else{
-                        card.musicRarity= BaseMusicCard.MusicRarity.RARE;
-                    }
-                }
-                card.setDisplayRarity(card.rarity);
-                addToTop(new MakeTempCardInHandAction(card.makeStatEquivalentCopy()));
+//                if(upgraded){
+//                    if(card.musicRarity.equals(BaseMusicCard.MusicRarity.COMMON)){
+//                        card.musicRarity= BaseMusicCard.MusicRarity.UNCOMMON;
+//                    }else{
+//                        card.musicRarity= BaseMusicCard.MusicRarity.RARE;
+//                    }
+//                }
+//                card.setDisplayRarity(card.rarity);
+                addToTop(new MakeTempCardInHandAction(card));
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

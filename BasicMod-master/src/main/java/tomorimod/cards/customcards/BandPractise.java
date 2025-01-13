@@ -20,22 +20,20 @@ public class BandPractise extends BaseCard {
             1
     );
 
+    public static final int MAGIC=1;
+    public static final int UPG_MAGIC=1;
+
+
     public BandPractise() {
         super(ID, info);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new BandPractiseAction(upgraded));
-    }
-
-    public void updateDescription(){
-        if(upgraded){
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-        }else{
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        for(int i=0;i<magicNumber;i++){
+            addToBot(new BandPractiseAction());
         }
-        initializeDescription();
     }
 
     @Override
