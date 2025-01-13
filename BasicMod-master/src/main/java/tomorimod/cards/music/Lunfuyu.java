@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.monitors.card.LunfuyuMonitor;
 import tomorimod.util.CardStats;
@@ -100,15 +101,16 @@ public class Lunfuyu extends BaseMusicCard {
     @Override
     public void update(){
         super.update();
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if(curHpChangeNum!=LunfuyuMonitor.hpChangeNum||curHpChangeWholeBattleNum!=LunfuyuMonitor.hpChangeNumWholeBattle){
-                calculateBaseDamage();
-                applyPowers();
-                updateDescription();
-                curHpChangeNum=LunfuyuMonitor.hpChangeNum; //避免频繁applyPower
-                curHpChangeWholeBattleNum=LunfuyuMonitor.hpChangeNumWholeBattle;
-            }
-        }
+//        if(AbstractDungeon.getCurrRoom() != null
+//                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
+//            if(curHpChangeNum!=LunfuyuMonitor.hpChangeNum||curHpChangeWholeBattleNum!=LunfuyuMonitor.hpChangeNumWholeBattle){
+//                calculateBaseDamage();
+//                applyPowers();
+//                updateDescription();
+//                curHpChangeNum=LunfuyuMonitor.hpChangeNum; //避免频繁applyPower
+//                curHpChangeWholeBattleNum=LunfuyuMonitor.hpChangeNumWholeBattle;
+//            }
+//        }
     }
 
     @Override

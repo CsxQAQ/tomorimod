@@ -21,7 +21,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     //protected int musicUpgradeBlock;
     //protected int musicUpgradeMagic;
 
-    public String idForShow;
+    //public String idForShow;
 
     public NumsInfo numsInfo;
 
@@ -30,7 +30,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
     public BaseMusicCard(String ID, CardStats info, NumsInfo numsInfo) {
         super(ID, info);
         //tags.add(CustomTags.MUSIC);
-        this.idForShow=ID;
+        //this.idForShow=ID;
         this.numsInfo = numsInfo;
         musicRarity=MusicRarity.DEFAULT;
 
@@ -45,7 +45,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 //        setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
 //        setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
         dataInfoInitialize();
-        updateDescription();
+        //updateDescription();
     }
 
 //    public BaseMusicCard(String ID, CardStats info) {
@@ -97,28 +97,22 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         return musicRarity==null?MusicRarity.DEFAULT:musicRarity;
     }
 
+    public void getBaseDescription(){
+        switch (musicRarity) {
+            case COMMON:
+            case DEFAULT:
+            case UNCOMMON:
+                this.rawDescription=cardStrings.DESCRIPTION;
+                break;
+            case RARE:
+                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+                break;
+        }
+    }
+
     @Override
     public void updateDescription(){
-        if (idForShow != null && musicRarity != null) {
-            switch (musicRarity) {
-                case COMMON:
-                case DEFAULT:
-                case UNCOMMON:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
-                    break;
-                case RARE:
-                    this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
-                    break;
-            }
-        }
-        if (this.upgradesDescription) {
-            if (cardStrings.UPGRADE_DESCRIPTION == null) {
-                TomoriMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
-            }
-            else {
-                this.rawDescription = cardStrings.UPGRADE_DESCRIPTION; //应该是这个方法导致更新变绿
-            }
-        }
+        getBaseDescription();
         initializeDescription();
     }
 
@@ -140,13 +134,13 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             }
         }
         musicCard.dataInfoInitialize();
-        musicCard.upgraded=card.upgraded;
+        //musicCard.upgraded=false;
         for(int i = 0; i < this.timesUpgraded; ++i) {
             musicCard.upgrade();
         }
 
         musicCard.setDisplayRarity(rarity);
-        musicCard.idForShow=this.idForShow;
+        //musicCard.idForShow=this.idForShow;
         musicCard.updateDescription();
         return musicCard;
     }
@@ -207,7 +201,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 //                musicUpgradeBlock = numsInfo.commonUpgBlock;
 //                musicUpgradeMagic = numsInfo.commonUpgMagic;
 
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).DESCRIPTION;
                 break;
             case UNCOMMON:
                 setDamage(numsInfo.unCommonDamage, numsInfo.unCommonUpgDamage);
@@ -217,7 +211,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 //                musicUpgradeBlock = numsInfo.unCommonUpgBlock;
 //                musicUpgradeMagic = numsInfo.unCommonUpgMagic;
 
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).DESCRIPTION;
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).DESCRIPTION;
                 break;
             case RARE:
                 setDamage(numsInfo.rareDamage, numsInfo.rareUpgDamage);
@@ -227,7 +221,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
 //                musicUpgradeBlock = numsInfo.rareUpgBlock;
 //                musicUpgradeMagic = numsInfo.rareUpgMagic;
 
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(idForShow).EXTENDED_DESCRIPTION[0];
+                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
                 break;
             default:
                 throw new IllegalArgumentException("Invalid rarity: " + musicRarity);

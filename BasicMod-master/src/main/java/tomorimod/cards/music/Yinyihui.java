@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.util.CardStats;
 import tomorimod.util.PlayerUtils;
@@ -54,7 +55,7 @@ public class Yinyihui extends BaseMusicCard {
     public final static int MAGIC_RARE = 0;
     public final static int UPG_MAGIC_RARE = 0;
 
-    private int curBlock=-1;
+    //private int curBlock=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -76,22 +77,29 @@ public class Yinyihui extends BaseMusicCard {
         }
     }
 
-    @Override
-    public void updateDescription(){
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                this.rawDescription=cardStrings.DESCRIPTION;
-                break;
-            case RARE:
-                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
-                break;
-        }
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-        }
+    public void updateDescriptionWithUPG(){
+        getBaseDescription();
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
+    }
+
+    @Override
+    public void applyPowers(){
+        calculateBaseDamage();
+        super.applyPowers();
+        updateDescriptionWithUPG();
+    }
+
+    @Override
+    public void onMoveToDiscard() {
+        getBaseDescription();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        updateDescriptionWithUPG();
     }
 
     public void calculateBaseDamage(){
@@ -100,26 +108,6 @@ public class Yinyihui extends BaseMusicCard {
         }else{
             baseDamage=block;
         }
-    }
-
-    @Override
-    public void update(){
-        super.update();
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            if(curBlock!=AbstractDungeon.player.currentBlock){
-                calculateBaseDamage();
-                applyPowers();
-                updateDescription();
-                curBlock=AbstractDungeon.player.currentBlock;
-            }
-        }
-    }
-
-    @Override
-    public void applyPowers(){
-        calculateBaseDamage();
-        super.applyPowers();
-        updateDescription();
     }
 
     @Override

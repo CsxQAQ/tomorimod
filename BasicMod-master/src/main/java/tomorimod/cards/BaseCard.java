@@ -439,10 +439,6 @@ public abstract class BaseCard extends CustomCard {
             ((BaseCard) card).baseRetain = this.baseRetain;
             ((BaseCard) card).upgRetain = this.upgRetain;
 
-            //气坏了，不复制是否消耗
-//            ((BaseCard) card).exhaust = this.exhaust;
-//            ((BaseCard) card).selfRetain = this.selfRetain;
-
             for (Map.Entry<String, LocalVarInfo> varEntry : cardVariables.entrySet()) {
                 LocalVarInfo target = ((BaseCard) card).getCustomVar(varEntry.getKey()),
                         current = varEntry.getValue();
@@ -476,17 +472,17 @@ public abstract class BaseCard extends CustomCard {
         {
             this.upgradeName();
 
-            if (this.upgradesDescription)
-            {
-                if (cardStrings.UPGRADE_DESCRIPTION == null)
-                {
-                    TomoriMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
-                }
-                else
-                {
-                    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-                }
-            }
+//            if (this.upgradesDescription)
+//            {
+//                if (cardStrings.UPGRADE_DESCRIPTION == null)
+//                {
+//                    TomoriMod.logger.error("Card " + cardID + " upgrades description and has null upgrade description.");
+//                }
+//                else
+//                {
+//                    this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+//                }
+//            }
 
             if (upgradeCost)
             {

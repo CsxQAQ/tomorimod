@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.monsters.taki.TakiPressurePatch;
 import tomorimod.tags.CustomTags;
 
@@ -17,14 +18,15 @@ public class MakeStatEquivalentCopyPatch {
         @SpirePrefixPatch
         public static SpireReturn<AbstractCard> prefix(AbstractCard __instance){
             AbstractCard card = __instance.makeCopy();
-
-            for(int i = 0; i < __instance.timesUpgraded; ++i) {
-                card.upgrade();
+            if(!(card instanceof BaseMusicCard)){
+                for(int i = 0; i < __instance.timesUpgraded; ++i) {
+                    card.upgrade();
+                }
+                card.name = __instance.name;
+                card.upgraded = __instance.upgraded;
             }
 
-            card.name = __instance.name;
             card.target = __instance.target;
-            card.upgraded = __instance.upgraded;
             card.timesUpgraded = __instance.timesUpgraded;
             card.baseDamage = __instance.baseDamage;
             card.baseBlock = __instance.baseBlock;

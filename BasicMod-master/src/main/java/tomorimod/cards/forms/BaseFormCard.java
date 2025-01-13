@@ -56,8 +56,10 @@ public abstract class BaseFormCard extends BaseCard {
     @Override
     public void update(){
         super.update();
-        if(AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
-            purgeOnUse=true;
+        if(AbstractDungeon.player!=null){
+            if(AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
+                purgeOnUse=true;
+            }
         }
     }
 
