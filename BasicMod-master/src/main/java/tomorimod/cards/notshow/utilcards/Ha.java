@@ -11,8 +11,8 @@ import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class HaTaki extends BaseCard implements SpecialCard {
-    public static final String ID = makeID(HaTaki.class.getSimpleName());
+public class Ha extends BaseCard implements SpecialCard {
+    public static final String ID = makeID(Ha.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.ATTACK,
@@ -24,7 +24,7 @@ public class HaTaki extends BaseCard implements SpecialCard {
     public static final int DAMAGE = 6;
     public static final int UPG_DAMAGE = 3;
 
-    public HaTaki() {
+    public Ha() {
         super(ID, info);
         setDamage(DAMAGE,UPG_DAMAGE);
     }
@@ -36,7 +36,7 @@ public class HaTaki extends BaseCard implements SpecialCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new HaTaki();
+        return new Ha();
     }
 
 }

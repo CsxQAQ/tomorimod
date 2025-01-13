@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.cardactions.SaiyakuAction;
-import tomorimod.cards.notshow.utilcards.HaAnon;
-import tomorimod.cards.notshow.utilcards.HaTaki;
+import tomorimod.cards.notshow.utilcards.Ha;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
 import java.util.ArrayList;
+
+import static tomorimod.TomoriMod.imagePath;
 
 public class Saiyaku extends BaseMonmentCard {
 
@@ -23,28 +24,32 @@ public class Saiyaku extends BaseMonmentCard {
             1
     );
 
+    public static final int MAGIC=10;
+    public static final int UPG_MAGIC=10;
+
+    public static final int INCREASE=3;
+
     public Saiyaku() {
         super(ID, info);
         this.exhaust=true;
-        this.cardsToPreview=new HaTaki();
+        this.cardsToPreview=new Ha();
+        setCustomVar("M2",INCREASE);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
 
         ArrayList<AbstractCard> haGroups=new ArrayList<>();
-        for(int i=0;i<10;i++){
-            if (i % 2 == 0) {
-                haGroups.add(new HaTaki());
-            } else {
-                haGroups.add(new HaAnon());
+        for(int i=0;i<magicNumber;i++){
+            Ha ha=new Ha();
+            if (i % 2 == 1) {
+                ha.loadCardImage(imagePath("cards/attack/HaAnon.png"));
             }
+            haGroups.add(ha);
         }
 
-        for(int i=0;i<10;i++){
-            if(upgraded){
-                haGroups.get(i).upgrade();
-            }
+        for(int i=0;i<magicNumber;i++){
             addToBot(new SaiyakuAction(haGroups,i));
         }
         super.use(p,m);
@@ -55,24 +60,4 @@ public class Saiyaku extends BaseMonmentCard {
         return new Saiyaku();
     }
 
-    public void updateDescription(){
-        if(upgraded){
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-        }else{
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-        }
-        initializeDescription();
-    }
-
-
-    @Override
-    public void upgrade(){
-        if(!upgraded){
-            this.upgradeName();
-            HaTaki upgradedHaTaki = new HaTaki();
-            upgradedHaTaki.upgrade();
-            this.updateDescription();
-            this.cardsToPreview = upgradedHaTaki;
-        }
-    }
 }
