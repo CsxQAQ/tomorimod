@@ -51,65 +51,56 @@ public class Miluri extends BaseMusicCard {
     public final static int UPG_MAGIC_RARE = 0;
 
     public final static int REPEAT_TIME_COMMON=1;
-    public final static int REPEAT_TIME_RARE=2;
+    public final static int REPEAT_TIME_RARE=3;
 
+    public int repeatTime=REPEAT_TIME_COMMON;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         int shineAmount= PlayerUtils.getPowerNum(makeID ("ShinePower"));
 
-        if(this.musicRarity.equals(MusicRarity.RARE)){
-            for (int i = 0; i < shineAmount*REPEAT_TIME_RARE + 1; i++) {
-                AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
+        for (int i = 0; i < shineAmount*repeatTime + 1; i++) {
+            AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
 
-                if (target != null) {
-                    addToBot(new DamageAction(target, new MusicDamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                }
-            }
-        }else{
-            for (int i = 0; i < shineAmount*REPEAT_TIME_COMMON + 1; i++) {
-                AbstractMonster target = AbstractDungeon.getMonsters().getRandomMonster(null, true, AbstractDungeon.cardRandomRng);
-
-                if (target != null) {
-                    addToBot(new DamageAction(target, new MusicDamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-                }
+            if (target != null) {
+                addToBot(new DamageAction(target, new MusicDamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }
         }
     }
 
-    @Override
-    public void updateDescription(){
 
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                setCustomVar("RT",REPEAT_TIME_COMMON);
-                this.rawDescription=cardStrings.DESCRIPTION;
-                if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-                    setCustomVar("SN",PlayerUtils.getPowerNum(makeID("ShinePower"))*REPEAT_TIME_COMMON+1);
-                    this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-                }
-                break;
-            case RARE:
-                setCustomVar("RT",REPEAT_TIME_RARE);
-                this.rawDescription=cardStrings.DESCRIPTION;
-                //this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
-                if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-                    setCustomVar("SN",PlayerUtils.getPowerNum(makeID("ShinePower"))*REPEAT_TIME_RARE+1);
-                    this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-                }
-                break;
+    @Override
+    public Miluri makeStatEquivalentCopy(){
+        BaseMusicCard card= super.makeStatEquivalentCopy();
+        Miluri miluri=(Miluri) card;
+        if(musicRarity.equals(MusicRarity.RARE)){
+            miluri.repeatTime=REPEAT_TIME_RARE;
+        }else{
+            miluri.repeatTime=REPEAT_TIME_COMMON;
         }
+        miluri.getBaseDescription();
+        miluri.initializeDescription();
+        return miluri;
+    }
+
+    public void updateDescriptionWithUPG(){
+        getBaseDescription();
+        setCustomVar("SN",PlayerUtils.getPowerNum(makeID("ShinePower"))*repeatTime+1);
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 
     @Override
     public void applyPowers(){
         super.applyPowers();
-        updateDescription();
+        updateDescriptionWithUPG();
     }
 
+    @Override
+    public void onMoveToDiscard() {
+        getBaseDescription();
+        initializeDescription();
+    }
 
     @Override
     public AbstractCard makeCopy() {

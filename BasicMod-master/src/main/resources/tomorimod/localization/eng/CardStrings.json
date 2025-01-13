@@ -337,9 +337,9 @@
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
-    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。",
+    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果1次。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果 !${modID}:RT! 次。"
+      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果3次。"
     ],
     "UPGRADE_DESCRIPTION": " NL （攻击 !${modID}:SN! 次）"
   },
