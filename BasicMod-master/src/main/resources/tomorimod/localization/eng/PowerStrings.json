@@ -116,7 +116,8 @@
   "${modID}:SmallMonmentPower": {
     "NAME": "一辈子",
     "DESCRIPTIONS": [
-      " #y永久形态 。 具有 #y瞬间 的卡牌使用后不会将牌组中对应的卡牌移除。"
+      " #y永久形态 。每回合一次，具有 #y瞬间 的卡牌使用后不会将牌组中对应的卡牌移除。",
+      "（ #y已生效 ）"
     ]
   },
   "${modID}:ConveyFeelingPower": {

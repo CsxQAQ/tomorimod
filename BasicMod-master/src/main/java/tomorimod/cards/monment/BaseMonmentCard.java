@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import tomorimod.cards.BaseCard;
+import tomorimod.powers.custompowers.SmallMonmentPower;
 import tomorimod.util.CardStats;
 import tomorimod.vfx.ExhaustMasterDeckEffect;
 import tomorimod.vfx.MonmentEffect;
@@ -22,6 +24,15 @@ public abstract class BaseMonmentCard extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(!p.hasPower(makeID("SmallMonmentPower"))){
             removeFromMasterDeck(this);
+        }else{
+            AbstractPower power=p.getPower(makeID("SmallMonmentPower"));
+            if(power instanceof SmallMonmentPower){
+                if(!((SmallMonmentPower) power).isEffected){
+                    ((SmallMonmentPower) power).applyEffect();
+                }else{
+                    removeFromMasterDeck(this);
+                }
+            }
         }
     }
 

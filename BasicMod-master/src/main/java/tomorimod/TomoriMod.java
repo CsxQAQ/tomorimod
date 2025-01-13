@@ -60,14 +60,11 @@ import java.util.*;
 
 //TODO 平衡性调整
 //TODO 第二层干脆不要了，直接到第三层
-//TODO 一辈子干脆不要了，要想什么时候交瞬间牌
+//TODO 一辈子改成每场战斗一次
 
 //TODO 删除形态机制
 //TODO 解决已经获得过的永久形态牌又出现的问题
 //TODO 开局给收集，话筒效果改为获得2个配方
-//TODO 用这个判断是否在战斗中，音乐牌等全部重写AbstractDungeon.getCurrRoom() != null&& AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT
-//注意update中出现AbstractDuogeon.getcurrentroom要判断为空
-//TODO 解决音乐牌复制升级问题
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
