@@ -18,7 +18,7 @@ public class AnonLittlePractisePower extends BasePower {
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        return damage+1;
+        return damage+amount;
     }
 
 

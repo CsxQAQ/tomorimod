@@ -232,7 +232,10 @@
 
   "${modID}:MemoryInCrychic": {
     "NAME": "Crychic的回忆",
-    "DESCRIPTION": "随机将一张具有 tomorimod:瞬间 的卡牌置入手牌。 消耗 。"
+    "DESCRIPTION": "随机将一张具有 tomorimod:瞬间 的卡牌置入手牌。 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "随机将一张具有 tomorimod:瞬间 且升级后的卡牌置入手牌。 消耗 。"
+    ]
   },
   "${modID}:SmoothCombo": {
     "NAME": "触发连招",
