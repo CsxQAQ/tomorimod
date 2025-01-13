@@ -46,6 +46,7 @@ import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
 import tomorimod.relics.NotebookRelic;
+import tomorimod.relics.VocalMicrophoneRelic;
 import tomorimod.util.MonsterUtils;
 import tomorimod.vfx.IntangibleEffect;
 import tomorimod.vfx.StarDustEffect;
@@ -245,8 +246,6 @@ public class Tomori extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(MusicComposition.ID);
-        retVal.add(MascotForm.ID);
-        retVal.add(SingerForm.ID);
         return retVal;
     }
 
@@ -254,7 +253,7 @@ public class Tomori extends CustomPlayer {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
         //IDs of starting relics. You can have multiple, but one is recommended.
-        retVal.add(MicrophoneRelic.ID);
+        retVal.add(VocalMicrophoneRelic.ID);
         retVal.add(NotebookRelic.ID);
         UnlockTracker.markRelicAsSeen(MicrophoneRelic.ID);
 

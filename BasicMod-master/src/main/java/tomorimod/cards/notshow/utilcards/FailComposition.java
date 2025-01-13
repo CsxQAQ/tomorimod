@@ -1,10 +1,15 @@
 
 package tomorimod.cards.notshow.utilcards;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
+import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import tomorimod.actions.PoofAction;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.notshow.SpecialCard;
@@ -29,8 +34,22 @@ public class FailComposition extends BaseCard implements WithoutMaterial, Specia
     public FailComposition() {
         super(ID, info);
         purgeOnUse=true;
+        //isEthereal=true;
         setMagic(MAGIC,UPG_MAGIC);
+        //updateDescription();
     }
+
+//    @Override
+//    public void updateDescription(){
+//        if(AbstractDungeon.player!=null){
+//            if(AbstractDungeon.player.hasRelic(makeID("VocalMicrophoneRelic"))){
+//                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+//            }else{
+//                this.rawDescription=cardStrings.DESCRIPTION;
+//            }
+//        }
+//        initializeDescription();
+//    }
 
     @Override
     public boolean canUpgrade(){
@@ -42,33 +61,22 @@ public class FailComposition extends BaseCard implements WithoutMaterial, Specia
 
     }
 
-//    @Override
-//    public void triggerOnEndOfTurnForPlayingCard() {
-//        addToBot(new AbstractGameAction() {
-//            @Override
-//            public void update() {
-//                if (AbstractDungeon.player.hand.contains(FailComposition.this)) {
-//                    AbstractDungeon.player.hand.removeCard(FailComposition.this);
-//                }
-//                if (AbstractDungeon.player.limbo.contains(FailComposition.this)) {
-//                    AbstractDungeon.player.limbo.removeCard(FailComposition.this);
-//                }
-//
-//                AbstractDungeon.effectList.add(new ExhaustCardEffect(FailComposition.this));
-//
-//                isDone = true;
-//            }
-//        });
-//    }
+    @Override
+    public boolean canUse(AbstractPlayer p,AbstractMonster m){
+        return super.canUse(p,m)&&p.hasRelic(makeID("VocalMicrophoneRelic"));
+    }
 
-//    @Override
-//    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-//        return false;
-//    }
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard() {
+        addToBot(new PoofAction(this));
+    }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new HealAction(p,p,magicNumber));
+        if(p.hasRelic(makeID("VocalMicrophoneRelic"))){
+            p.getRelic(makeID("VocalMicrophoneRelic")).flash();
+        }
     }
 
     @Override

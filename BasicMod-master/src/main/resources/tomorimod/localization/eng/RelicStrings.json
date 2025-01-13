@@ -8,11 +8,21 @@
   },
   "${modID}:NotebookRelic": {
     "NAME": "笔记本",
-    "FLAVOR": "I followed a tutorial!",
+    "FLAVOR": "高松灯的笔记本。",
     "DESCRIPTIONS": [
       "右键查看乐曲创作记录，再次右键屏幕任意位置关闭。"
     ]
   },
+  "${modID}:VocalMicrophoneRelic": {
+    "NAME": "话筒",
+    "FLAVOR": "主唱的话筒。",
+    "DESCRIPTIONS": [
+      " #y失败的创作 可以被打出，打出时恢复5点生命值。"
+    ]
+  },
+
+
+
   "${modID}:MicrophoneRelic": {
     "NAME": "话筒",
     "FLAVOR": "I followed a tutorial!",
