@@ -18,7 +18,7 @@ public class NotebookRelic extends BaseRelic {
     private static final LandingSound SOUND = LandingSound.CLINK; //The sound played when the relic is clicked.
 
 
-    private boolean isOpened=false;
+    public static boolean isOpened=false;
 
     public NotebookRelic() {
         super(ID, NAME, Tomori.Meta.CARD_COLOR, RARITY, SOUND);
@@ -33,10 +33,6 @@ public class NotebookRelic extends BaseRelic {
     public void update() {
         super.update();
 
-        if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
-            isOpened=false;
-        }
-
         if (this.hb.hovered) {
             if (InputHelper.justClickedRight) {
 
@@ -47,11 +43,15 @@ public class NotebookRelic extends BaseRelic {
                             isOpened = true;
                         }
                     } else {
-                        closeCustomScreen();
+                        //closeCustomScreen();
                         isOpened = false;
                     }
                 }
             }
+        }
+
+        if(AbstractDungeon.CurrentScreen.NONE==AbstractDungeon.screen){
+            isOpened=false;
         }
     }
 

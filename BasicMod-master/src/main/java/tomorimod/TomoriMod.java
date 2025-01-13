@@ -93,8 +93,8 @@ public class TomoriMod implements
     }
 
     public static void receiveEvent() {
-        BaseMod.addEvent(new AddEventParams.Builder(SystemEvent.ID, SystemEvent.class)
-                .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(SystemEvent.ID, SystemEvent.class)
+//                .dungeonID(Exordium.ID).playerClass(Tomori.Meta.TOMORI).create());
         BaseMod.addEvent(new AddEventParams.Builder(EndingEvent.ID, EndingEvent.class)
                 .dungeonID(TheEnding.ID).playerClass(Tomori.Meta.TOMORI).create());
 

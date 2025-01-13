@@ -14,8 +14,10 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import tomorimod.cards.music.BaseMusicCard;
 import tomorimod.cards.notshow.utilcards.FailComposition;
+import tomorimod.relics.NotebookRelic;
 import tomorimod.savedata.customdata.CraftingRecipes;
 import tomorimod.savedata.customdata.HistoryCraftRecords;
 import tomorimod.util.CustomUtils;
@@ -56,22 +58,12 @@ public class NotebookScreen extends CustomScreen
         }
     }
 
-//    private static final Texture TextureYellowCommon = new Texture(imagePath("materials/notebook/yellow_common.png"));
-//    private static final Texture TextureGreenCommon = new Texture(imagePath("materials/notebook/green_common.png"));
-//    private static final Texture TextureRedCommon = new Texture(imagePath("materials/notebook/red_common.png"));
-//    private static final Texture TextureYellowUncommon = new Texture(imagePath("materials/notebook/yellow_uncommon.png"));
-//    private static final Texture TextureGreenUncommon = new Texture(imagePath("materials/notebook/green_uncommon.png"));
-//    private static final Texture TextureRedUncommon = new Texture(imagePath("materials/notebook/red_uncommon.png"));
-//    private static final Texture TextureYellowRare = new Texture(imagePath("materials/notebook/yellow_rare.png"));
-//    private static final Texture TextureGreenRare = new Texture(imagePath("materials/notebook/green_rare.png"));
-//    private static final Texture TextureRedRare = new Texture(imagePath("materials/notebook/red_rare.png"));
-//    private static final Texture TextureAquariumPassUncommon = new Texture(imagePath("materials/notebook/aquariumpass_uncommon.png"));
-//    private static final Texture TextureAquariumPassRare = new Texture(imagePath("materials/notebook/aquariumpass_rare.png"));
-
     public AbstractCard hoveredCard;
     public static Map<CacheKey, AbstractCard> cardCache = new HashMap<>();
     public AbstractCard clickStartedCard;
     public static ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
+
+    //private AbstractRelic relic;
 
     private Texture getMaterialTexture(CraftingRecipes.Material material, int level) {
         Map<Integer, Texture> levelMap = TEXTURE_MAP.get(material);
@@ -80,49 +72,6 @@ public class NotebookScreen extends CustomScreen
         }
         return null;
     }
-
-//    public Texture getMaterialTexture(CraftingRecipes.Material material,int level){
-//
-//        switch (material) {
-//            case YELLOW:
-//                if (level == 1) {
-//                    return TextureYellowCommon;
-//                } else if (level == 2) {
-//                    return TextureYellowUncommon;
-//                } else if (level == 3) {
-//                    return TextureYellowRare;
-//                }
-//                break;
-//
-//            case GREEN:
-//                if (level == 1) {
-//                    return TextureGreenCommon;
-//                } else if (level == 2) {
-//                    return TextureGreenUncommon;
-//                } else if (level == 3) {
-//                    return TextureGreenRare;
-//                }
-//                break;
-//
-//            case RED:
-//                if (level == 1) {
-//                    return TextureRedCommon;
-//                } else if (level == 2) {
-//                    return TextureRedUncommon;
-//                } else if (level == 3) {
-//                    return TextureRedRare;
-//                }
-//                break;
-//            case AQUARIUMPASS:
-//                if (level == 2) {
-//                    return TextureAquariumPassUncommon;
-//                } else if (level == 3) {
-//                    return TextureAquariumPassRare;
-//                }
-//                break;
-//        }
-//        return null;
-//    }
 
     public NotebookScreen() {
 
@@ -181,13 +130,22 @@ public class NotebookScreen extends CustomScreen
 
     @Override
     public void update() {
-
+        if (InputHelper.justClickedRight) {
+            AbstractDungeon.closeCurrentScreen();
+            AbstractRelic relic=AbstractDungeon.player.getRelic(makeID("NotebookRelic"));
+            if(relic!=null){
+                if(!relic.hb.hovered){
+                    NotebookRelic.isOpened=false;
+                }
+            }
+        }
         // 检查鼠标左键是否点击
         if (InputHelper.justClickedLeft) {
             float mouseX = InputHelper.mX; // 鼠标X坐标
             float mouseY = InputHelper.mY; // 鼠标Y坐标
             handleButtonClick(mouseX, mouseY); // 调用你的按钮点击逻辑
         }
+
         updateCard();
         updateInputLogic();
 
@@ -284,10 +242,6 @@ public class NotebookScreen extends CustomScreen
         }
     }
 
-    /**
-     * 抽取公共的“渲染材料”逻辑
-     * @return 渲染完三张材料后最新的 X 坐标
-     */
     private float renderMaterials(SpriteBatch sb, CraftingRecipes.Recipe record, float startX, float startY) {
         float currentX = startX;
         for (int i = 0; i < 3; i++) {
@@ -307,9 +261,6 @@ public class NotebookScreen extends CustomScreen
         return currentX;
     }
 
-    /**
-     * 抽取公共的“从缓存或卡组中获取卡牌”的逻辑
-     */
     private AbstractCard getOrCreateCard(int recordIndex, String cardID) {
         // 先从缓存拿
         CacheKey cacheKey = new CacheKey(recordIndex, cardID);

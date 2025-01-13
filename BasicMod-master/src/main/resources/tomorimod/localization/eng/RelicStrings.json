@@ -10,7 +10,7 @@
     "NAME": "笔记本",
     "FLAVOR": "I followed a tutorial!",
     "DESCRIPTIONS": [
-      "右键查看乐曲创作记录。"
+      "右键查看乐曲创作记录，再次右键屏幕任意位置关闭。"
     ]
   },
   "${modID}:MicrophoneRelic": {
