@@ -1,15 +1,11 @@
 
 package tomorimod.cards.notshow.utilcards;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import tomorimod.actions.PoofAction;
+import tomorimod.actions.PoofInHandAction;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.notshow.SpecialCard;
@@ -68,7 +64,7 @@ public class FailComposition extends BaseCard implements WithoutMaterial, Specia
 
     @Override
     public void triggerOnEndOfTurnForPlayingCard() {
-        addToBot(new PoofAction(this));
+        addToBot(new PoofInHandAction(this));
     }
 
     @Override

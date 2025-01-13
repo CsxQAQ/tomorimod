@@ -1,17 +1,14 @@
 package tomorimod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import tomorimod.cards.notshow.utilcards.FailComposition;
-import tomorimod.powers.GravityPower;
 
-public class PoofAction extends AbstractGameAction {
+public class PoofInHandAction extends AbstractGameAction {
 
     private AbstractCard card;
-    public PoofAction(AbstractCard card) {
+    public PoofInHandAction(AbstractCard card) {
         this.card=card;
     }
 

@@ -61,11 +61,9 @@ import java.util.*;
 //TODO 平衡性调整
 //TODO 第二层干脆不要了，直接到第三层
 
-//TODO 删除形态机制
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
-//TODO 开局给小小的瞬间，话筒效果改为失败的创作打出回5血
+//TODO 考虑开局带什么牌
 //TODO 素世那个改叫姿态，永久形态
-//TODO 2个配方自带
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,
