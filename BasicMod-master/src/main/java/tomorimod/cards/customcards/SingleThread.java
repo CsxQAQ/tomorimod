@@ -44,7 +44,7 @@ public class SingleThread extends BaseCard {
 
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
-        return !p.hasPower("Buffer");
+        return super.canUse(p,m)&&!p.hasPower("Buffer");
     }
 
     public void updateDescription() {

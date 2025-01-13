@@ -59,6 +59,8 @@ import java.util.*;
 
 
 //TODO 平衡性调整
+//TODO 第二层干脆不要了，直接到第三层
+//TODO 一辈子干脆不要了，要想什么时候交瞬间牌
 
 @SpireInitializer
 public class TomoriMod implements

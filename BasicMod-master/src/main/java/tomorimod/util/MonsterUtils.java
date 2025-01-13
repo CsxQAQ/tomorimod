@@ -9,6 +9,16 @@ import java.util.ArrayList;
 
 public class MonsterUtils {
 
+    public static AbstractPower getPower(String monsterId, String powerId){
+        AbstractMonster monster=getMonster(monsterId);
+        if(monster!=null){
+            if(monster.hasPower(powerId)){
+                return monster.getPower(powerId);
+            }
+        }
+        return null;
+    }
+
     public static AbstractMonster getMonster(String monsterId){
         for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
             if(monster.id.equals(monsterId)){

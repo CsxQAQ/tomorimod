@@ -477,34 +477,16 @@ public class Tomori extends CustomPlayer {
 
             this.currentHealth -= damageAmount;
 
-            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(monster instanceof SakiShadowMonster){
-                    for(AbstractPower power:monster.powers){
-                        if(power instanceof SakiShadowRightPower){
-                            ((SakiShadowRightPower)power).decreaseMaxHealth();
-                            break;
-                        }
-                    }
+            ///////
+
+            if(AbstractDungeon.getCurrRoom()!=null){
+                AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
+                if(power!=null&&power instanceof SakiShadowRightPower){
+                    ((SakiShadowRightPower) power).afterDamage();
                 }
             }
 
-            if(maxHealth<=0){
-                if(hasPower(makeID("StarDustPower"))||hasPower(makeID("ImmunityPower"))){
-                    maxHealth=1;
-                    currentHealth=0;
-                }else{
-                    this.isDead = true;
-                    AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
-                    this.currentHealth = 0;
-                    if (this.currentBlock > 0) {
-                        this.loseBlock();
-                        AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
-                    }
-                }
-
-            }
-
-            this.currentHealth=Math.min(this.currentHealth,this.maxHealth);
+            ///////
 
             if (damageAmount > 0 && (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
                 if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
@@ -606,6 +588,24 @@ public class Tomori extends CustomPlayer {
             AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
         }
     }
+
+//    else if(hasPower(makeID("StarDustPower"))){
+//        getPower(makeID("StarDustPower")).flash();
+//        AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
+//        //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
+//
+//        // 2. 触发加血
+//        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
+//        //currentHealth=1;
+//        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this,this,makeID("StarDustPower")));
+//        AbstractDungeon.actionManager.addToBottom
+//                (new ApplyPowerAction(this,this,new ImmunityPower(this,2),2));
+//        return;
+//    }else if(hasPower(makeID("ImmunityPower"))){
+//        getPower(makeID("ImmunityPower")).flash();
+//        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
+//        return;
+//    }
 
     @Override
     public void applyEndOfTurnTriggers() {

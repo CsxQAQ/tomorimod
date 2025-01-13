@@ -12,6 +12,7 @@ import tomorimod.cards.monment.BaseMonmentCard;
 import tomorimod.powers.forms.*;
 import tomorimod.savedata.customdata.FormsSaveData;
 import tomorimod.util.CardStats;
+import tomorimod.util.PlayerUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,12 +41,7 @@ public abstract class BaseFormCard extends BaseCard {
         }else{
             FormsSaveData.getInstance().getForms().add(new FormInfo(formName,magicNumber));
             if(!curForm.equals(formName)&&AbstractDungeon.player.hasPower(makeID("DarkTomoriPower"))){
-                for(AbstractPower power:p.powers){
-                    if(power instanceof DarkTomoriPower){
-                        ((DarkTomoriPower)power).applyEffectPower();
-                        break;
-                    }
-                }
+                PlayerUtils.getFormPower(makeID("DarkTomoriPower")).applyEffectPower();
             }
             BaseMonmentCard.removeFromMasterDeck(this);
         }
@@ -55,6 +51,14 @@ public abstract class BaseFormCard extends BaseCard {
                     powerMap.get(new FormInfo(formName, magicNumber)).apply(p), magicNumber));
         }
         addToBot(new FormPowerChangeBlueAction(formName));
+    }
+
+    @Override
+    public void update(){
+        super.update();
+        if(AbstractDungeon.player.hasRelic(makeID("SystemRelic"))){
+            purgeOnUse=true;
+        }
     }
 
     public static void clear(){
