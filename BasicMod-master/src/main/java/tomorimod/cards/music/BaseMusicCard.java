@@ -128,19 +128,17 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             if(this.musicRarity==MusicRarity.DEFAULT){
                 if(getMusicRarityByCost(musicCard.cardID)!=null){
                     musicCard.musicRarity=getMusicRarityByCost(musicCard.cardID);
+                    musicCard.dataInfoInitialize();
+                    for(int i = 0; i < this.timesUpgraded; ++i) {
+                        musicCard.upgrade();
+                    }
                 }
             }else{
                 musicCard.musicRarity=this.musicRarity;
             }
         }
-        musicCard.dataInfoInitialize();
-        //musicCard.upgraded=false;
-        for(int i = 0; i < this.timesUpgraded; ++i) {
-            musicCard.upgrade();
-        }
 
         musicCard.setDisplayRarity(rarity);
-        //musicCard.idForShow=this.idForShow;
         musicCard.updateDescription();
         return musicCard;
     }
@@ -164,7 +162,6 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 //upgraded=true;
             }
         }
-
         updateDescription();
     }
 
@@ -197,36 +194,21 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
                 setDamage(numsInfo.commonDamage, numsInfo.commonUpgDamage);
                 setBlock(numsInfo.commonBlock, numsInfo.commonUpgBlock);
                 setMagic(numsInfo.commonMagic, numsInfo.commonUpgMagic);
-//                musicUpgradeDamage = numsInfo.commonUpgDamage;
-//                musicUpgradeBlock = numsInfo.commonUpgBlock;
-//                musicUpgradeMagic = numsInfo.commonUpgMagic;
-
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).DESCRIPTION;
                 break;
             case UNCOMMON:
                 setDamage(numsInfo.unCommonDamage, numsInfo.unCommonUpgDamage);
                 setBlock(numsInfo.unCommonBlock, numsInfo.unCommonUpgBlock);
                 setMagic(numsInfo.unCommonMagic, numsInfo.unCommonUpgMagic);
-//                musicUpgradeDamage = numsInfo.unCommonUpgDamage;
-//                musicUpgradeBlock = numsInfo.unCommonUpgBlock;
-//                musicUpgradeMagic = numsInfo.unCommonUpgMagic;
-
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).DESCRIPTION;
                 break;
             case RARE:
                 setDamage(numsInfo.rareDamage, numsInfo.rareUpgDamage);
                 setBlock(numsInfo.rareBlock, numsInfo.rareUpgBlock);
                 setMagic(numsInfo.rareMagic, numsInfo.rareUpgMagic);
-//                musicUpgradeDamage = numsInfo.rareUpgDamage;
-//                musicUpgradeBlock = numsInfo.rareUpgBlock;
-//                musicUpgradeMagic = numsInfo.rareUpgMagic;
-
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(cardID).EXTENDED_DESCRIPTION[0];
                 break;
             default:
                 throw new IllegalArgumentException("Invalid rarity: " + musicRarity);
         }
-        initializeDescription();
+        updateDescription();
     }
 
     @Override

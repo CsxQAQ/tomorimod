@@ -59,30 +59,28 @@ public class Shichaoban extends BaseMusicCard {
         }else{
             baseDamage=baseDamage+magicNumber;
         }
-        updateDescription();
+        updateDescriptionWithUPG();
+    }
+
+    public void updateDescriptionWithUPG(){
+        getBaseDescription();
+        setCustomVar("BD",baseDamage);
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     @Override
-    public void updateDescription(){
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+    public void applyPowers(){
+        super.applyPowers();
+        updateDescriptionWithUPG();
+    }
 
-                break;
-            case RARE:
-                this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-
-                break;
-        }
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            setCustomVar("BD", baseDamage);
-            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-        }
-
+    @Override
+    public void onMoveToDiscard() {
+        getBaseDescription();
         initializeDescription();
     }
+
 
     @Override
     public AbstractCard makeCopy() {
