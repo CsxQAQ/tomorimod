@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import tomorimod.util.MonsterUtils;
@@ -27,7 +28,7 @@ public class SakiShadowRightPatch {
                 locator = Locator.class
         )
         public static void insert(AbstractPlayer __instance){
-            if(AbstractDungeon.getCurrRoom()!=null){
+            if(AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
                 AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
                 if(power!=null&&power instanceof SakiShadowRightPower){
                     ((SakiShadowRightPower) power).afterDamage();

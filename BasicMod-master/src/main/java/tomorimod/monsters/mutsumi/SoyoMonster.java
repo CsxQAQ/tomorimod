@@ -13,8 +13,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.BloodShotEffect;
+import tomorimod.powers.custompowers.StrengthTomoriPower;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -51,7 +53,7 @@ public class SoyoMonster extends SpecialMonster {
     public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 1;
     public static final int DAMAGETIME_3 = 15;
-    public static final int MULTIBLOCK=10;
+    public static final int STRENGTH=3;
     public static final int INCREASE_HEALTH=40;
 
     public static final int HP_MIN_WEAK = 200;
@@ -64,13 +66,13 @@ public class SoyoMonster extends SpecialMonster {
     public static final int DAMAGETIME_1_WEAK = 5;
     public static final int DAMAGETIME_2_WEAK = 1;
     public static final int DAMAGETIME_3_WEAK = 15;
-    public static final int MULTIBLOCK_WEAK=10;
+    public static final int STRENGTH_WEAK=3;
     public static final int INCREASE_HEALTH_WEAK=40;
 
     private int hpMinVal, hpMaxVal;
     private int damageVal0, damageVal1, damageVal2, damageVal3;
     private int damageTimeVal0, damageTimeVal1, damageTimeVal2, damageTimeVal3;
-    private int multiBlockVal,increaseHealthVal;
+    private int strengthVal,increaseHealthVal;
 
     public SoyoMonster(float x, float y) {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
@@ -86,7 +88,7 @@ public class SoyoMonster extends SpecialMonster {
             damageTimeVal1 = DAMAGETIME_1;
             damageTimeVal2 = DAMAGETIME_2;
             damageTimeVal3 = DAMAGETIME_3;
-            multiBlockVal=MULTIBLOCK;
+            strengthVal=STRENGTH;
             increaseHealthVal=INCREASE_HEALTH;
         } else {
             hpMinVal = HP_MIN_WEAK;
@@ -99,7 +101,7 @@ public class SoyoMonster extends SpecialMonster {
             damageTimeVal1 = DAMAGETIME_1_WEAK;
             damageTimeVal2 = DAMAGETIME_2_WEAK;
             damageTimeVal3 = DAMAGETIME_3_WEAK;
-            multiBlockVal=MULTIBLOCK_WEAK;
+            strengthVal=STRENGTH_WEAK;
             increaseHealthVal=INCREASE_HEALTH_WEAK;
         }
 
@@ -137,8 +139,8 @@ public class SoyoMonster extends SpecialMonster {
                 soyoAttack(0, damageTimeVal0);
                 break;
             case 1:
-                addToBot(new ApplyPowerAction(AbstractDungeon.player, this,
-                        new PlatedArmorPower(AbstractDungeon.player, multiBlockVal), multiBlockVal));
+                addToBot(new ApplyPowerAction(this, this,
+                        new StrengthPower(this, strengthVal), strengthVal));
                 break;
             case 2:
                 soyoAttack(1, damageTimeVal1);

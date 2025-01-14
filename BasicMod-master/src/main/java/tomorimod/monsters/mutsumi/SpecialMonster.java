@@ -36,9 +36,9 @@ public abstract class SpecialMonster extends BaseMonster {
 
         int tmp;
         if(isMultiTarget||isTomori){
-            tmp=calculateDamageMulti(dmg);
+            tmp=calculateDamageMulti(dmg); //指伤害不考虑不目标
         }else{
-            tmp=calculateDamageSingle(dmg,this.target);
+            tmp=calculateDamageSingle(dmg,this.target); //伤害考虑目标
         }
         setPrivateField(this, "intentDmg", tmp);
     }
