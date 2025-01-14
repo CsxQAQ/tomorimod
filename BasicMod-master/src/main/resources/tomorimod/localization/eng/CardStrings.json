@@ -110,7 +110,7 @@
     "DESCRIPTION": "以随机的顺序使用所有具有 tomorimod:形态 的牌。 消耗 。"
   },
   "${modID}:Protect": {
-    "NAME": "守护",
+    "NAME": "卫兵",
     "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !M! 点 格挡 。"
   },
   "${modID}:PoemInsteadOfSong": {
@@ -128,7 +128,7 @@
   },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
-    "DESCRIPTION": " tomorimod:永久形态 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
+    "DESCRIPTION": " tomorimod:永久能力 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
@@ -136,11 +136,11 @@
   },
   "${modID}:WeAreMygo": {
     "NAME": "迷途之子",
-    "DESCRIPTION": " tomorimod:永久形态 ：每场战斗一次，使用具有 tomorimod:瞬间 的卡牌时，获得5点最大生命上限。"
+    "DESCRIPTION": " tomorimod:永久能力 ：每场战斗一次，使用具有 tomorimod:瞬间 的卡牌时，获得5点最大生命上限。"
   },
   "${modID}:ShineWithMe": {
     "NAME": "光芒与我同行",
-    "DESCRIPTION": " tomorimod:永久形态 ：战斗开始时，本局游戏中每创作1种 tomorimod:音乐 牌，获得1层 tomorimod:闪耀 。"
+    "DESCRIPTION": " tomorimod:永久能力 ：战斗开始时，本局游戏中每创作1种 tomorimod:音乐 牌，获得1层 tomorimod:闪耀 。"
   },
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
@@ -290,7 +290,7 @@
     "NAME": "电波",
     "DESCRIPTION": "从牌组中选择一张卡牌，将其复制置入手牌。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "从牌组中选择一张卡牌，将其复制置入手牌。"
+      " 固有 。从牌组中选择一张卡牌，将其复制置入手牌。 消耗 。"
     ]
   },
   "${modID}:ShortTermGoal": {
@@ -465,12 +465,12 @@
     "NAME": "小小的瞬间",
     "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的 tomorimod:音乐 牌，则变化为 *一辈子 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:永久形态 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+      " tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
     ]
   },
   "${modID}:WholeLife": {
     "NAME": "一辈子",
-    "DESCRIPTION": " tomorimod:永久形态 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+    "DESCRIPTION": " tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
   },
 
 

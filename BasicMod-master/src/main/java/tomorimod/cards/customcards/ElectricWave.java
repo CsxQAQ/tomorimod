@@ -43,7 +43,7 @@ public class ElectricWave extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            exhaust=false;
+            isInnate=true;
             this.updateDescription();
         }
     }

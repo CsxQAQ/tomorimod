@@ -557,6 +557,9 @@ public class Tomori extends CustomPlayer {
                             getRelic("Lizard Tail").onTrigger();
                             return;
                         }
+
+                        ////////
+
                     } else if(hasPower(makeID("StarDustPower"))){
                         getPower(makeID("StarDustPower")).flash();
                         AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
@@ -574,6 +577,8 @@ public class Tomori extends CustomPlayer {
                         AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
                         return;
                     }
+
+                    /////////
 
                 }
                 this.isDead = true;
