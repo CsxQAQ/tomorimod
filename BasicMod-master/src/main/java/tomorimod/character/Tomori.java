@@ -41,6 +41,9 @@ import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
 import tomorimod.cards.notshow.forms.MascotForm;
 import tomorimod.cards.notshow.forms.SingerForm;
+import tomorimod.monsters.mutsumi.MutsumiMonster;
+import tomorimod.monsters.mutsumi.MutsumiRealDamagePatch;
+import tomorimod.monsters.mutsumi.SoyoMonster;
 import tomorimod.monsters.sakishadow.SakiShadowRightPower;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
@@ -393,10 +396,14 @@ public class Tomori extends CustomPlayer {
         }
 
         if (damageAmount > 1 && hasPower("IntangiblePlayer")) {
-            damageAmount = 1;
+            if(!MutsumiRealDamagePatch.isMutsumi()){
+                damageAmount = 1;
+            }
         }
 
-        damageAmount = decrementBlock(info, damageAmount);
+        if(!MutsumiRealDamagePatch.isMutsumi()){
+            damageAmount = decrementBlock(info, damageAmount);
+        }
 
         if (info.owner == this) {
             for (AbstractRelic r : this.relics) {
@@ -614,5 +621,14 @@ public class Tomori extends CustomPlayer {
                 ((UikaMonster)monster).uikaWarningUi.setFrozen();
             }
         }
+        if(MonsterUtils.getMonster(makeID("MutsumiMonster"))!=null){
+            AbstractMonster monster=MonsterUtils.getMonster(makeID("MutsumiMonster"));
+            if(monster instanceof MutsumiMonster){
+                ((MutsumiMonster)monster).mutsumiWarningUi.setFrozen();
+                ((MutsumiMonster)monster).soyoWarningUi.setFrozen();
+            }
+        }
+
+
     }
 }

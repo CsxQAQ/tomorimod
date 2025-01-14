@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import tomorimod.actions.PlayBGMAction;
+import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.cards.uikacard.UikaCard;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
@@ -60,8 +61,8 @@ public class MutsumiMonster extends SpecialMonster {
 
     private int point=0;
 
-    private MutsumiWarningUi mutsumiWarningUi;
-    private SoyoWarningUi soyoWarningUi;
+    public MutsumiWarningUi mutsumiWarningUi;
+    public SoyoWarningUi soyoWarningUi;
 
 
     public static final int HP_MIN       = 6000;
@@ -78,8 +79,8 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int STRENGTHNUM=2;
     public static final int POWERNUM=2;
 
-    public static final int HP_MIN_WEAK       = 1000;
-    public static final int HP_MAX_WEAK       = 1000;
+    public static final int HP_MIN_WEAK       = 1500;
+    public static final int HP_MAX_WEAK       = 1500;
     public static final int DAMAGE_0_WEAK     = 20;
     public static final int DAMAGE_1_WEAK     = 12;
     public static final int DAMAGE_2_WEAK     = 15;
@@ -145,9 +146,9 @@ public class MutsumiMonster extends SpecialMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
 
-        this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MusicDamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MusicDamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MusicDamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
         this.target=soyoMonster;
 
 
@@ -171,6 +172,9 @@ public class MutsumiMonster extends SpecialMonster {
 
         addToBot(new ApplyPowerAction(this,this,new MutsumiOneHeartTwoHurtPower(this,soyoMonster)));
         addToBot(new ApplyPowerAction(this,this,new MutsumiGiveCucumberPower(this,cucumberVal),cucumberVal));
+        if(isTomori){
+            addToBot(new ApplyPowerAction(this,this,new MutsumiRealDamagePower(this)));
+        }
         addToBot(new ApplyPowerAction(AbstractDungeon.player,this,new BehindAttackPower(AbstractDungeon.player)));
         AbstractDungeon.player.drawY=DRAW_Y*Settings.scale;
 
@@ -199,15 +203,21 @@ public class MutsumiMonster extends SpecialMonster {
 //                        this.damage.get(2), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
 //                break;
             case 5:
-                mutsumiWarningUi.setFrozen();
-                soyoWarningUi.setFrozen();
+                //mutsumiWarningUi.setFrozen();
+                //soyoWarningUi.setFrozen();
                 for (int i = 0; i < 3; i++) {
                     addToBot(new VFXAction(this, new ShockWaveEffect(
                             this.hb.cX, this.hb.cY, Settings.BLUE_TEXT_COLOR, ShockWaveEffect.ShockWaveType.CHAOTIC), 0.75F));
 
                     addToBot(new MonsterDamageAllAction(this,this.damage.get(2),AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                    isMultiTarget=false;
                 }
+                addToBot(new AbstractGameAction() {
+                    @Override
+                    public void update() {
+                        isMultiTarget=false;
+                        isDone=true;
+                    }
+                });
                 break;
             case 99:
                 break;
@@ -221,9 +231,9 @@ public class MutsumiMonster extends SpecialMonster {
                 addToBot(new DamageAction(target,
                         this.damage.get(index), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             }else{
-                DamageInfo newInfo=new DamageInfo(this,this.damage.get(index).base);
+                MutsumiDamageInfo newInfo=new MutsumiDamageInfo(this,this.damage.get(index).base);
                 newInfo.applyPowers(this,soyoMonster);
-                addToBot(new DamageAction(target,new DamageInfo(this,newInfo.output)));
+                addToBot(new DamageAction(target,new MutsumiDamageInfo(this,newInfo.output)));
             }
         }
     }
@@ -304,17 +314,31 @@ public class MutsumiMonster extends SpecialMonster {
     public void render(SpriteBatch sb) {
         super.render(sb);
 
-        if(isMultiTarget||mutsumiWarningUi.damageFrozen){
+        //if(isMultiTarget||mutsumiWarningUi.damageFrozen){
+        if(isMultiTarget){
             mutsumiWarningUi.render(sb);
             if(!soyoMonster.isDeadOrEscaped()){
                 soyoWarningUi.render(sb);
             }
+        }else{
+            if(target==AbstractDungeon.player&&isAttack()){
+                mutsumiWarningUi.render(sb);
+            }else if(target==soyoMonster&&isAttack()){
+                if(!soyoMonster.isDeadOrEscaped()){
+                    soyoWarningUi.render(sb);
+                }
+            }
         }
-
-
     }
 
 
+    public boolean isAttack(){
+        if(intent.equals(Intent.ATTACK)||intent.equals(Intent.ATTACK_BUFF)
+                ||intent.equals(Intent.ATTACK_DEFEND)||intent.equals(Intent.ATTACK_DEBUFF)){
+            return true;
+        }
+        return false;
+    }
 
 
 

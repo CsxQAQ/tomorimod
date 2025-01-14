@@ -63,7 +63,8 @@ import java.util.*;
 
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
 //TODO 考虑开局带什么牌
-//TODO 素世那个改叫姿态，永久形态
+//TODO 永久形态改名永久能力
+//TODO 睦的伤害无视护甲和无实体
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

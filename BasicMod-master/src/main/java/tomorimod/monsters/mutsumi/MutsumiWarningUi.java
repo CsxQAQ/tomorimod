@@ -21,8 +21,11 @@ public class MutsumiWarningUi extends WarningUi {
 
     @Override
     public void setDamageForShow(){
-        damageForShow=monster.calculateDamageSingle(getPublicField(monster, "intentBaseDmg", Integer.class),AbstractDungeon.player);
-        damageNum=getPublicField(monster, "intentMultiAmt", Integer.class);
+        if(!damageFrozen){
+            damageForShow=monster.calculateDamageSingle(getPublicField(monster, "intentBaseDmg", Integer.class),AbstractDungeon.player);
+            damageNum=getPublicField(monster, "intentMultiAmt", Integer.class);
+            damageNum=(damageNum==-1?1:damageNum);
+        }
     }
 
     @Override

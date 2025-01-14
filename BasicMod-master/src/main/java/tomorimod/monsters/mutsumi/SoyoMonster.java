@@ -110,10 +110,10 @@ public class SoyoMonster extends SpecialMonster {
         this.drawX = DRAW_X * Settings.scale;
         this.drawY = DRAW_Y * Settings.scale;
 
-        this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new DamageInfo(this, damageVal3, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal3, DamageInfo.DamageType.NORMAL));
     }
 
     @Override
@@ -171,9 +171,9 @@ public class SoyoMonster extends SpecialMonster {
             if (target == AbstractDungeon.player) {
                 addToBot(new DamageAction(target, this.damage.get(index), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             } else {
-                DamageInfo newInfo = new DamageInfo(this, this.damage.get(index).base);
+                MutsumiDamageInfo newInfo = new MutsumiDamageInfo(this, this.damage.get(index).base);
                 newInfo.applyPowers(this, mutsumiMonster);
-                addToBot(new DamageAction(target, new DamageInfo(this, newInfo.output)));
+                addToBot(new DamageAction(target, new MutsumiDamageInfo(this, newInfo.output)));
             }
         }
     }
@@ -183,9 +183,9 @@ public class SoyoMonster extends SpecialMonster {
             if (target == AbstractDungeon.player) {
                 addToBot(new DamageAction(target, this.damage.get(index), effect));
             } else {
-                DamageInfo newInfo = new DamageInfo(this, this.damage.get(index).base);
+                MutsumiDamageInfo newInfo = new MutsumiDamageInfo(this, this.damage.get(index).base);
                 newInfo.applyPowers(this, mutsumiMonster);
-                addToBot(new DamageAction(target, new DamageInfo(this, newInfo.output)));
+                addToBot(new DamageAction(target, new MutsumiDamageInfo(this, newInfo.output)));
             }
         }
     }

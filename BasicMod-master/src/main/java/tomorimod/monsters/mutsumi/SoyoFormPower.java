@@ -47,14 +47,14 @@ public class SoyoFormPower extends BasePower {
         if(this.color!=null){
             switch (this.color){
                 case RED:
-                    description=" #y形态 。受到的伤害提高 #b" +RED_NUM*4+ " %，攻击造成的伤害提高 #b" +RED_NUM*(amount+4)+" %。";
+                    description=" #y姿态 。受到的伤害提高 #b" +RED_NUM*4+ " %，攻击造成的伤害提高 #b" +RED_NUM*(amount+4)+" %。";
                     break;
                 case GREEN:
-                    description=" #y形态 。受到的伤害减少 #b" +GREEN_NUM*(4+amount)+ " %。";
+                    description=" #y姿态 。受到的伤害减少 #b" +GREEN_NUM*(4+amount)+ " %。";
                     break;
                 default:
                 case YELLOW:
-                    description=" #y形态 。回合结束时，获得 #b"+YELLOW_NUM*(4+amount)+" 点 #y力量 。";
+                    description=" #y姿态 。回合结束时，获得 #b"+YELLOW_NUM*(4+amount)+" 点 #y力量 。";
                     break;
             }
         }

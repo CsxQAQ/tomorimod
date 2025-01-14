@@ -65,9 +65,9 @@ public class MonsterDamageAllAction extends AbstractGameAction {
 
                 if(source instanceof SpecialMonster){
                     //info.applyPowers(source,target);
-                    DamageInfo newInfo=new DamageInfo(target,info.base);
+                    DamageInfo newInfo=new MutsumiDamageInfo(target,info.base);
                     newInfo.applyPowers(source,target);
-                    target.damage(new DamageInfo(source,newInfo.output,damageType));
+                    target.damage(new MutsumiDamageInfo(source,newInfo.output,damageType));
                     //target.damage(new DamageInfo(source,info.base,damageType));
                 }
 

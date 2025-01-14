@@ -14,10 +14,13 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
+import com.sun.crypto.provider.HmacMD5KeyGenerator;
 import tomorimod.monsters.BaseMonster;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;
+
+import static tomorimod.TomoriMod.makeID;
 
 public abstract class SpecialMonster extends BaseMonster {
 
@@ -32,10 +35,10 @@ public abstract class SpecialMonster extends BaseMonster {
     public void calculateDamage(int dmg) {
 
         int tmp;
-        if(!isMultiTarget){
-            tmp=calculateDamageSingle(dmg,this.target);
-        }else{
+        if(isMultiTarget||isTomori){
             tmp=calculateDamageMulti(dmg);
+        }else{
+            tmp=calculateDamageSingle(dmg,this.target);
         }
         setPrivateField(this, "intentDmg", tmp);
     }
@@ -66,8 +69,20 @@ public abstract class SpecialMonster extends BaseMonster {
             p = (AbstractPower)var6.next();
         }
 
-        for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
-            p = (AbstractPower)var6.next();
+        if(target==AbstractDungeon.player){
+            tmp = AbstractDungeon.player.stance.atDamageReceive(tmp, DamageInfo.DamageType.NORMAL);
+        }
+
+//        for(var6 = target.powers.iterator(); var6.hasNext(); tmp = p.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL)) {
+//
+//            p = (AbstractPower)var6.next();
+//        }
+        for (AbstractPower power : target.powers) {
+            if(hasPower(makeID("MutsumiRealDamagePower"))&&power.ID.equals("IntangiblePlayer")){
+                continue;
+            }else{
+                tmp = power.atDamageFinalReceive(tmp, DamageInfo.DamageType.NORMAL);
+            }
         }
 
         dmg = MathUtils.floor(tmp);
