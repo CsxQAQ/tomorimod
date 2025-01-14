@@ -44,6 +44,7 @@ import tomorimod.cards.notshow.forms.SingerForm;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.mutsumi.MutsumiRealDamagePatch;
 import tomorimod.monsters.mutsumi.SoyoMonster;
+import tomorimod.monsters.sakishadow.SakiShadowRightPatch;
 import tomorimod.monsters.sakishadow.SakiShadowRightPower;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
@@ -482,16 +483,7 @@ public class Tomori extends CustomPlayer {
 
             this.currentHealth -= damageAmount;
 
-            ///////
 
-            if(AbstractDungeon.getCurrRoom()!=null){
-                AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
-                if(power!=null&&power instanceof SakiShadowRightPower){
-                    ((SakiShadowRightPower) power).afterDamage();
-                }
-            }
-
-            ///////
 
             if (damageAmount > 0 && (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
                 if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
@@ -597,6 +589,12 @@ public class Tomori extends CustomPlayer {
         } else {
             AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
         }
+
+        ///////
+
+        SakiShadowRightPatch.applyAfterDamage();
+
+        ///////
     }
 
 //    else if(hasPower(makeID("StarDustPower"))){

@@ -6,7 +6,11 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.sun.crypto.provider.HmacMD5KeyGenerator;
 import tomorimod.cards.notshow.sakishadow.WelcomeToAveMujica;
+import tomorimod.util.MonsterUtils;
+
+import static tomorimod.TomoriMod.makeID;
 
 public class WelcomeToAveMujicaPatch {
 
@@ -17,10 +21,10 @@ public class WelcomeToAveMujicaPatch {
     public static class AbstractPlayerPreBattlePrepPatch{
         @SpirePostfixPatch
         public static void postfix(AbstractPlayer __instance){
-            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(monster instanceof SakiShadowMonster){
-                    __instance.drawPile.clear();
-                }
+            if(MonsterUtils.getMonster(makeID("SakiShadowMonster"))!=null){
+                __instance.drawPile.clear();
+                AbstractDungeon.actionManager.addToBottom(
+                        new MakeTempCardInHandAction(new WelcomeToAveMujica()));
             }
         }
     }
@@ -32,10 +36,8 @@ public class WelcomeToAveMujicaPatch {
     public static class ApplyPreCombatLogicPatch{
         @SpirePrefixPatch
         public static SpireReturn prefix(AbstractPlayer __instance){
-            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(monster instanceof SakiShadowMonster){
-                    return SpireReturn.Return();
-                }
+            if(MonsterUtils.getMonster(makeID("SakiShadowMonster"))!=null){
+                return SpireReturn.Return();
             }
             return SpireReturn.Continue();
         }
@@ -48,10 +50,8 @@ public class WelcomeToAveMujicaPatch {
     public static class ApplyStartOfCombatLogic{
         @SpirePrefixPatch
         public static SpireReturn prefix(AbstractPlayer __instance){
-            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(monster instanceof SakiShadowMonster){
-                    return SpireReturn.Return();
-                }
+            if(MonsterUtils.getMonster(makeID("SakiShadowMonster"))!=null){
+                return SpireReturn.Return();
             }
             return SpireReturn.Continue();
         }
@@ -64,10 +64,8 @@ public class WelcomeToAveMujicaPatch {
     public static class ApplyStartOfCombatPreDrawLogic{
         @SpirePrefixPatch
         public static SpireReturn prefix(AbstractPlayer __instance){
-            for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(monster instanceof SakiShadowMonster){
-                    return SpireReturn.Return();
-                }
+            if(MonsterUtils.getMonster(makeID("SakiShadowMonster"))!=null){
+                return SpireReturn.Return();
             }
             return SpireReturn.Continue();
         }

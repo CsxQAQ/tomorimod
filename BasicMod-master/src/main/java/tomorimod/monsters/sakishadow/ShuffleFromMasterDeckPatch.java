@@ -99,7 +99,7 @@ public class ShuffleFromMasterDeckPatch{
             for (AbstractCard c : cardsToMove) {
                 // 一般不要直接操纵 masterDeck 的原卡，需要复制
                 // 如果只是演示，也可 c.makeCopy() 或 c.makeStatEquivalentCopy()
-                AbstractCard copyCard = c.makeStatEquivalentCopy();
+                AbstractCard copyCard = c.makeSameInstanceOf();
 
                 copyCard.untip();
                 copyCard.unhover();
