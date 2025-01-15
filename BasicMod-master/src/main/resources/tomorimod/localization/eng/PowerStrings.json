@@ -42,7 +42,7 @@
     ]
   },
   "${modID}:GravityDomainPower": {
-    "NAME": "领域展开",
+    "NAME": "重力领域",
     "DESCRIPTIONS": [
       "回合结束时，获得 #b"
     ]
@@ -303,7 +303,7 @@
     ]
   },
   "${modID}:UikaMaskPower": {
-    "NAME": "假面",
+    "NAME": "人气偶像",
     "DESCRIPTIONS":[
       "每回合最多受到 #b",
       " 点伤害。一回合内受到 #b",

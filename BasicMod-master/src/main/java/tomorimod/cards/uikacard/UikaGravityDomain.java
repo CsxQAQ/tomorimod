@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.customcards.GravityDomain;
 import tomorimod.cards.notshow.forms.GravityDomainForm;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
+import tomorimod.powers.custompowers.GravityDomainPower;
 import tomorimod.powers.forms.GravityDomainFormPower;
 import tomorimod.util.CardStats;
 
@@ -45,7 +47,7 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new GravityDomainFormPower(uikaMonster, GravityDomainForm.MAGIC), GravityDomainForm.MAGIC));
+                new GravityDomainPower(uikaMonster, GravityDomain.MAGIC), GravityDomain.MAGIC));
         super.uikaUse(uikaMonster);
     }
 }

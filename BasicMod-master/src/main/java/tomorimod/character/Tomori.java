@@ -396,15 +396,23 @@ public class Tomori extends CustomPlayer {
             damageAmount = 0;
         }
 
+        /////
+
         if (damageAmount > 1 && hasPower("IntangiblePlayer")) {
             if(!MutsumiRealDamagePatch.isMutsumi()){
                 damageAmount = 1;
             }
         }
 
+        /////
+
+        /////
+
         if(!MutsumiRealDamagePatch.isMutsumi()){
             damageAmount = decrementBlock(info, damageAmount);
         }
+
+        //////
 
         if (info.owner == this) {
             for (AbstractRelic r : this.relics) {

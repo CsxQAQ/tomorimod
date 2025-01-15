@@ -103,7 +103,7 @@ public class MutsumiRealDamagePatch {
 //        }
 //    }
     public static boolean isMutsumi(){
-        if(AbstractDungeon.currMapNode!=null&&AbstractDungeon.getCurrRoom()!=null){
+        if(AbstractDungeon.getCurrRoom().phase== AbstractRoom.RoomPhase.COMBAT){
             if(MonsterUtils.getPower(makeID("MutsumiMonster"),makeID("MutsumiRealDamagePower"))!=null){
                 return true;
             }

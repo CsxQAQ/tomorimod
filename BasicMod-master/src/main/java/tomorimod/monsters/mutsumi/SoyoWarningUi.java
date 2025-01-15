@@ -99,7 +99,7 @@ public class SoyoWarningUi extends WarningUi {
                     InputHelper.mX + 50.0F * Settings.scale,  // Tip往右下方一点
                     InputHelper.mY - 50.0F * Settings.scale,
                     "预警",
-                    "敌人将使用群体攻击对 #y长崎素世 造成 #b" + damageForShow+ " 点伤害 #b"+damageNum+" 次。"
+                    "敌人将对 #y长崎素世 造成 #b" + damageForShow+ " 点伤害 #b"+damageNum+" 次。"
             );
         }
     }

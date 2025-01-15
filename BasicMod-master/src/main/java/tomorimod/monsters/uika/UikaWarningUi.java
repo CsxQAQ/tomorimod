@@ -60,7 +60,7 @@ public class UikaWarningUi extends WarningUi {
         }
         int gravityAmount= MonsterUtils.getPowerNum(monster, makeID("GravityPower"));
         int divergeWorldAmount=MonsterUtils.getPowerNum(monster, makeID("divergeWorldPower"));
-        int shineAmount=MonsterUtils.getPowerNum(monster, makeID("shineAmount"));
+        int shineAmount=MonsterUtils.getPowerNum(monster, makeID("ShinePower"));
 
         if(uikaMonster.cardForShow1!=null){
             if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaMygoTogether"))){
@@ -81,18 +81,19 @@ public class UikaWarningUi extends WarningUi {
                 int tmp=gravityAmount;
                 gravityAmount=shineAmount;
                 shineAmount=tmp;
-            }else if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaStrike"))){
+            }else if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaStrike"))||uikaMonster.cardForShow1.cardID.equals(makeID("UikaTwoMoon"))){
                 damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
+                if(AbstractDungeon.player.hasPower("IntangiblePlayer")){
+                    damageNum+=divergeWorldAmount;
+                    gravityDamageNum+=divergeWorldAmount;
+                }else{
+                    damageNum+=divergeWorldAmount*gravityAmount;
+                    gravityDamageNum+=divergeWorldAmount*gravityAmount;
+                }
             }else if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaLastOne"))){
                 shineAmount+= UikaLastOne.MAGIC;
             }else if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
                 shineAmount+=uikaMonster.getDebuffNum();
-            }else if(uikaMonster.cardForShow1.cardID.equals(makeID("UikaTwoMoon"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
             }
         }
 
@@ -115,23 +116,29 @@ public class UikaWarningUi extends WarningUi {
                 int tmp=gravityAmount;
                 gravityAmount=shineAmount;
                 shineAmount=tmp;
-            }else if(uikaMonster.cardForShow2.cardID.equals(makeID("UikaStrike"))){
+            }else if(uikaMonster.cardForShow2.cardID.equals(makeID("UikaStrike"))||uikaMonster.cardForShow2.cardID.equals(makeID("UikaTwoMoon"))){
                 damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
+                if(AbstractDungeon.player.hasPower("IntangiblePlayer")){
+                    damageNum+=divergeWorldAmount;
+                    gravityDamageNum+=divergeWorldAmount;
+                }else{
+                    damageNum+=divergeWorldAmount*gravityAmount;
+                    gravityDamageNum+=divergeWorldAmount*gravityAmount;
+                }
             }else if(uikaMonster.cardForShow2.cardID.equals(makeID("UikaLastOne"))){
                 shineAmount+=UikaLastOne.MAGIC;
             }else if(uikaMonster.cardForShow2.cardID.equals(makeID("UikaPoemInsteadOfSong"))){
                 shineAmount+=uikaMonster.getDebuffNum();
-            }else if(uikaMonster.cardForShow2.cardID.equals(makeID("UikaTwoMoon"))){
-                damageNum+=monsterDamage;
-                damageNum+=divergeWorldAmount*gravityAmount;
-                gravityDamageNum+=divergeWorldAmount*gravityAmount;
             }
         }
 
-        damageNum+=gravityAmount;
-        gravityDamageNum+=gravityAmount;
+        if(AbstractDungeon.player.hasPower("IntangiblePlayer")){
+            damageNum+=1;
+            gravityDamageNum+=1;
+        }else{
+            damageNum+=gravityAmount;
+            gravityDamageNum+=gravityAmount;
+        }
 
         return new ArrayList<>(Arrays.asList(damageNum,gravityDamageNum));
     }
