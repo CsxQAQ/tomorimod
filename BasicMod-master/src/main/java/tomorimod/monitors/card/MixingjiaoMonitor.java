@@ -35,14 +35,6 @@ public class MixingjiaoMonitor extends BaseMonitor implements OnCardUseSubscribe
                 }
             }
 
-            for (AbstractCard card : AbstractDungeon.player.hand.group) {
-                if (s.equals(card.cardID)&&card instanceof Mixingjiao) {
-                    Mixingjiao mixingjiao=(Mixingjiao)card;
-                    AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(mixingjiao, true,
-                            0, true, true));
-                }
-            }
-
         }
     }
 

@@ -369,9 +369,9 @@
   },
   "${modID}:Mixingjiao": {
     "NAME": "迷星叫",
-    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。当你使用一张非同名音乐牌时，自动从手牌、抽牌堆或弃牌堆中使用此牌。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。当你使用一张非同名音乐牌时，自动从抽牌堆或弃牌堆中使用此牌。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害，不在手牌中使用时造成3倍伤害。当你使用一张非同名音乐牌时，自动使用此牌。"
+      " tomorimod:音乐 。造成 !D! 点伤害，不在手牌中使用时造成3倍伤害。当你使用一张非同名 tomorimod:音乐 牌时，自动从抽牌堆或弃牌堆中使用此牌。"
     ]
   },
   "${modID}:Qianzaibiaoming": {
