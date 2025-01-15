@@ -16,6 +16,7 @@ public class RetainEnergyPower extends BasePower {
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
+    private int energyNum;
 
     public RetainEnergyPower(AbstractCreature owner) {
         super(POWER_ID, TYPE, TURN_BASED, owner,0);
@@ -25,13 +26,13 @@ public class RetainEnergyPower extends BasePower {
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
             flash();
-            amount2= EnergyPanel.totalCount;
+            energyNum= EnergyPanel.totalCount;
         }
     }
 
     @Override
     public void atStartOfTurnPostDraw() {
-        addToBot(new GainEnergyAction(this.amount2));
+        addToBot(new GainEnergyAction(energyNum));
         addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, makeID("RetainEnergyPower")));
     }
 }

@@ -79,14 +79,26 @@ public class Motivate extends BaseCard {
 
     @Override
     public void triggerOnGlowCheck() {
-        if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty() &&
-                AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(AbstractDungeon.actionManager.cardsPlayedThisCombat
-                        .get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1))
-                 == AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this)) {
+        if (glowCheck()) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         } else {
-            this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+            super.triggerOnGlowCheck();
+            //this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         }
+    }
+
+    private boolean glowCheck(){
+        if(AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty()){
+            return false;
+        }
+        if(AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(AbstractDungeon.actionManager.cardsPlayedThisCombat
+                .get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1))
+                == AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this)||
+        AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(AbstractDungeon.actionManager.cardsPlayedThisCombat
+                .get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1))== CraftingRecipes.Material.AQUARIUMPASS){
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -46,7 +46,7 @@ public class SmallMonment extends BaseCard implements PermanentFrom {
         if(isNameChanged){
             glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         }else{
-            glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+            super.triggerOnGlowCheck();
         }
     }
 

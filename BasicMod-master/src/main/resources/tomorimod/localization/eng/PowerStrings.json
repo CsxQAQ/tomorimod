@@ -287,7 +287,7 @@
   "${modID}:SakiShadowImmunityPower": {
     "NAME": "幻影",
     "DESCRIPTIONS":[
-      "只受到来自 #y音乐 牌的伤害。受到致命伤害时复活一次，并造成大量伤害。"
+      "只受到来自 #y音乐 牌的伤害。"
     ]
   },
   "${modID}:SakiShadowWorldViewPower": {

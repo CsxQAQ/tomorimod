@@ -69,7 +69,7 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int HP_MAX       = 3000;
     public static final int DAMAGE_0     = 20;
     public static final int DAMAGE_1     = 12;
-    public static final int DAMAGE_2     = 15;
+    public static final int DAMAGE_2     = 5;
     public static final int DAMAGETIME_0 = 1;
     public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 3;
@@ -83,7 +83,7 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int HP_MAX_WEAK       = 1500;
     public static final int DAMAGE_0_WEAK     = 20;
     public static final int DAMAGE_1_WEAK     = 12;
-    public static final int DAMAGE_2_WEAK     = 15;
+    public static final int DAMAGE_2_WEAK     = 10;
     public static final int DAMAGETIME_0_WEAK = 1;
     public static final int DAMAGETIME_1_WEAK = 5;
     public static final int DAMAGETIME_2_WEAK = 3;
