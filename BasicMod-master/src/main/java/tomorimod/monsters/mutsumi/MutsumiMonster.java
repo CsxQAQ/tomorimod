@@ -65,15 +65,15 @@ public class MutsumiMonster extends SpecialMonster {
     public SoyoWarningUi soyoWarningUi;
 
 
-    public static final int HP_MIN       = 6000;
-    public static final int HP_MAX       = 6000;
+    public static final int HP_MIN       = 3000;
+    public static final int HP_MAX       = 3000;
     public static final int DAMAGE_0     = 20;
     public static final int DAMAGE_1     = 12;
     public static final int DAMAGE_2     = 15;
     public static final int DAMAGETIME_0 = 1;
     public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 3;
-    public static final int CUCUMBER=20;
+    public static final int CUCUMBER=10;
     public static final int CUCUMBER_UPG=3;
     public static final int HEALNUM=50;
     public static final int STRENGTHNUM=2;
