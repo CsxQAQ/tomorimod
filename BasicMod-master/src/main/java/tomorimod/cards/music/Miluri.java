@@ -50,8 +50,8 @@ public class Miluri extends BaseMusicCard {
     public final static int MAGIC_RARE = 0;
     public final static int UPG_MAGIC_RARE = 0;
 
-    public final static int REPEAT_TIME_COMMON=1;
-    public final static int REPEAT_TIME_RARE=3;
+    public final static int REPEAT_TIME_COMMON=2;
+    public final static int REPEAT_TIME_RARE=5;
 
     public int repeatTime=REPEAT_TIME_COMMON;
 
