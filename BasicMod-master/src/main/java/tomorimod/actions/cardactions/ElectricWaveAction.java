@@ -12,14 +12,14 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.permanentforms.PermanentFrom;
 
-public class SoulViewAction
+public class ElectricWaveAction
         extends AbstractGameAction {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("SkillFromDeckToHandAction");
     public static final String[] TEXT = uiStrings.TEXT;
 
     private AbstractPlayer p;
 
-    public SoulViewAction(int amount) {
+    public ElectricWaveAction(int amount) {
         this.p = AbstractDungeon.player;
         setValues((AbstractCreature)this.p, (AbstractCreature)AbstractDungeon.player, amount);
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
@@ -40,7 +40,7 @@ public class SoulViewAction
                 this.isDone = true; return;
             }
             if (tmp.size() == 1) {
-                AbstractCard card = tmp.getTopCard().makeStatEquivalentCopy();
+                AbstractCard card = tmp.getTopCard().makeSameInstanceOf();
 
                 if (this.p.hand.size() == 10) {
                     this.p.masterDeck.moveToDiscardPile(card);
@@ -72,7 +72,7 @@ public class SoulViewAction
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
             for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
-                AbstractCard c=card.makeStatEquivalentCopy();
+                AbstractCard c=card.makeSameInstanceOf();
                 c.unhover();
 
                 if (this.p.hand.size() == 10) {
