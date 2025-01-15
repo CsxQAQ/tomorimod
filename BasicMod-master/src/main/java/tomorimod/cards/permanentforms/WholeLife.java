@@ -101,7 +101,6 @@ public class WholeLife extends BaseCard implements PermanentFrom {
         if (!upgraded) {
             upgradeName();
             upgradeBaseCost(0);
-            //cardsToPreview.upgrade();
         }
     }
 
