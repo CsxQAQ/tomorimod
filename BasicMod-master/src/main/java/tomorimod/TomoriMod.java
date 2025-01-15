@@ -59,11 +59,14 @@ import java.util.*;
 
 
 //TODO 平衡性调整
-//TODO 第二层干脆不要了，直接到第三层
 
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
+
 //TODO 考虑开局带什么牌
-//TODO 素世+攻不加甲
+//TODO 一辈子等牌额外描述按官方写法
+//TODO 影色舞重做
+//TODO 轮符雨bug
+//TODO 最后5张卡牌
 
 @SpireInitializer
 public class TomoriMod implements
