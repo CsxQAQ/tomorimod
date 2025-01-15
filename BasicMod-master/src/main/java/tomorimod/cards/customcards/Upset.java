@@ -23,8 +23,8 @@ public class Upset extends BaseCard {
     public final int BLOCK=6;
     public final int UPG_BLOCK=3;
 
-    public final int MAGIC=2;
-    public final int UPG_MAGIC=1;
+    public final int MAGIC=3;
+    public final int UPG_MAGIC=2;
 
     public Upset() {
         super(ID, info);

@@ -5,14 +5,14 @@ import tomorimod.powers.BasePower;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class SmallMonmentPower extends BasePower {
-    public static final String POWER_ID = makeID(SmallMonmentPower.class.getSimpleName());
+public class WholeLifePower extends BasePower {
+    public static final String POWER_ID = makeID(WholeLifePower.class.getSimpleName());
     private static final PowerType TYPE = PowerType.BUFF;
     private static final boolean TURN_BASED = false;
 
     public boolean isEffected=false;
 
-    public SmallMonmentPower(AbstractCreature owner) {
+    public WholeLifePower(AbstractCreature owner) {
         super(POWER_ID, TYPE, TURN_BASED, owner, 0);
         updateDescription();
     }

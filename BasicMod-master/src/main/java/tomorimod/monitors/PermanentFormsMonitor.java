@@ -9,7 +9,7 @@ import tomorimod.actions.ApplyShineAction;
 import tomorimod.powers.custompowers.ShineWithMePower;
 import tomorimod.powers.custompowers.WeAreMygoPower;
 import tomorimod.powers.custompowers.StarDustPower;
-import tomorimod.powers.custompowers.SmallMonmentPower;
+import tomorimod.powers.custompowers.WholeLifePower;
 import tomorimod.savedata.customdata.PermanentFormsSaveData;
 import tomorimod.savedata.customdata.SaveMusicDiscoverd;
 
@@ -23,8 +23,8 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
         AbstractPlayer p=AbstractDungeon.player;
         for(String permantForms: PermanentFormsSaveData.getInstance().permanentForms){
             switch (permantForms){
-                case "SmallMonment":
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new SmallMonmentPower(p)));
+                case "WholeLife":
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WholeLifePower(p)));
                     break;
                 case "StarDust":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new StarDustPower(p)));

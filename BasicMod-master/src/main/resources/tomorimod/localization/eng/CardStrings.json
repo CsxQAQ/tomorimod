@@ -96,7 +96,7 @@
   },
   "${modID}:Recycle": {
     "NAME": "回收",
-    "DESCRIPTION": "使用后移除。将消耗牌堆中所有卡牌的复制加入抽牌堆，然后将它们从消耗牌堆中移除。（ 状态牌 和 诅咒 牌除外）。"
+    "DESCRIPTION": "使用后移除。将消耗牌堆中所有卡牌的复制加入抽牌堆，然后将它们移除。（ 状态牌 和 诅咒 牌除外）。"
   },
   "${modID}:YourTenDraws": {
     "NAME": "十连",
@@ -461,16 +461,9 @@
     "DESCRIPTION": " 不能被打出 。回合结束时移除。"
   },
 
-  "${modID}:SmallMonment": {
-    "NAME": "小小的瞬间",
-    "DESCRIPTION": "如果本局游戏中已经创作出至少 !M! 种不同的 tomorimod:音乐 牌，则变化为 *一辈子 。",
-    "EXTENDED_DESCRIPTION": [
-      " tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
-    ]
-  },
   "${modID}:WholeLife": {
     "NAME": "一辈子",
-    "DESCRIPTION": " tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+    "DESCRIPTION": "如果本局游戏中创作出至少 !M! 种不同的 tomorimod:音乐 牌， tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
   },
 
 

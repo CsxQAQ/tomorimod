@@ -113,7 +113,7 @@
       "回合开始时，升级所有卡牌。 #y音乐 牌可以无限升级。"
     ]
   },
-  "${modID}:SmallMonmentPower": {
+  "${modID}:WholeLifePower": {
     "NAME": "一辈子",
     "DESCRIPTIONS": [
       " #y永久形态 。每场战斗一次，具有 #y瞬间 的卡牌使用后不会将牌组中对应的卡牌移除。",
