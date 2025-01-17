@@ -111,7 +111,8 @@
   },
   "${modID}:Protect": {
     "NAME": "卫兵",
-    "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !M! 点 格挡 。"
+    "DESCRIPTION": "你的牌组中每有一张卡牌，获得 !M! 点 格挡 。",
+    "UPGRADE_DESCRIPTION": " NL （获得 !B! 点 格挡 ）"
   },
   "${modID}:PoemInsteadOfSong": {
     "NAME": "以诗代歌",

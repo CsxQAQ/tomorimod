@@ -66,7 +66,6 @@ import java.util.*;
 //TODO 一辈子等牌额外描述按官方写法
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
-//TODO 高松灯easymode，替换 instanceOfTomori
 //TODO 所有的描述像暗黑高松灯一样写
 
 

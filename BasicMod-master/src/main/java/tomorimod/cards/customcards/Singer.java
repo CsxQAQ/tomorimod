@@ -16,7 +16,7 @@ public class Singer extends BaseCard {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.BASIC,
+            CardRarity.COMMON,
             CardTarget.SELF,
             1
     );

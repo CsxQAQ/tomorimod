@@ -20,34 +20,44 @@ public class Protect extends BaseCard {
             1
     );
 
-    public final int BLOCK=1;
-    public final int UPG_BLOCK=1;
+    //public final int BLOCK=1;
+    //public final int UPG_BLOCK=1;
 
     public final int MAGIC=1;
     public final int UPG_MAGIC=1;
 
     public Protect() {
         super(ID, info);
-        setBlock(BLOCK,UPG_BLOCK);
         setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-
+        //applyPowers();
         addToBot(new GainBlockAction(p,block));
     }
 
+    public void updateDescriptionWithUPG(){
+        this.rawDescription=cardStrings.DESCRIPTION;
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+
     @Override
-    public void update(){
-        super.update();
-        if(AbstractDungeon.player!=null){
-            if(!upgraded){
-                baseBlock= AbstractDungeon.player.masterDeck.size()*BLOCK;
-            }else{
-                baseBlock= AbstractDungeon.player.masterDeck.size()*(BLOCK+UPG_BLOCK);
-            }
-        }
+    public void applyPowers(){
+        calculateBaseBlock();
+        super.applyPowers();
+        updateDescriptionWithUPG();
+    }
+
+    @Override
+    public void onMoveToDiscard() {
+        this.rawDescription=cardStrings.DESCRIPTION;
+        initializeDescription();
+    }
+
+    public void calculateBaseBlock(){
+        baseBlock= AbstractDungeon.player.masterDeck.size()*magicNumber;
     }
 
     @Override
