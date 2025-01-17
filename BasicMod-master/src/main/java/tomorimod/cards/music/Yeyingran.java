@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
@@ -38,22 +39,22 @@ public class Yeyingran extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 0;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 8;
-    public final static int UPG_MAGIC_COMMON = 4;
+    public final static int MAGIC_COMMON = 6;
+    public final static int UPG_MAGIC_COMMON = 3;
 
     public final static int DAMAGE_UNCOMMON = 0;
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 12;
-    public final static int UPG_MAGIC_UNCOMMON = 5;
+    public final static int MAGIC_UNCOMMON = 9;
+    public final static int UPG_MAGIC_UNCOMMON = 4;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 12;
-    public final static int UPG_MAGIC_RARE = 5;
+    public final static int MAGIC_RARE = 9;
+    public final static int UPG_MAGIC_RARE = 4;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -64,23 +65,37 @@ public class Yeyingran extends BaseMusicCard {
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    int negativeEffectsCount = MonsterUtils.getDebuffNum(m);
-                    addToTop(new MusicLoseHPAction(m,p,negativeEffectsCount));
+                    calculateBaseDamage(m);
+                    calculateCardDamage(m);
+                    addToTop(new DamageAction(m, new MusicDamageInfo(p, damage, Yeyingran.this.damageTypeForTurn),
+                            AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                     isDone=true;
                 }
             });
+
+
         }else{
             addToBot(new ApplyPowerAction(m, p, new VulnerablePower(m, magicNumber, false), magicNumber));
             addToBot(new AbstractGameAction() {
                 @Override
                 public void update() {
-                    int vulnerableCount = MonsterUtils.getPowerNum(m, "Vulnerable");
-                    addToTop(new MusicLoseHPAction(m,p,vulnerableCount));
+                    calculateBaseDamage(m);
+                    calculateCardDamage(m);
+                    addToTop(new DamageAction(m, new MusicDamageInfo(p, damage, Yeyingran.this.damageTypeForTurn),
+                            AbstractGameAction.AttackEffect.SLASH_VERTICAL));
                     isDone=true;
                 }
             });
         }
+    }
 
+    public void calculateBaseDamage(AbstractMonster m){
+        if(musicRarity.equals(MusicRarity.RARE)){
+            baseDamage= MonsterUtils.getDebuffNum(m);
+        }else{
+
+            baseDamage=MonsterUtils.getPowerNum(m, "Vulnerable");
+        }
     }
 
     @Override

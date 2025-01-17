@@ -343,9 +343,9 @@
   },
   "${modID}:Yeyingran": {
     "NAME": "夜隠染",
-    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，然后使目标失去等同于 易伤 层数的生命值。",
+    "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，然后对目标造成等同于 易伤 层数的伤害。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，然后使目标失去等同于负面效果层数之和的生命值。"
+      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，然后对目标造成等同于负面效果层数之和的伤害。"
     ]
   },
   "${modID}:Lunfuyu": {

@@ -69,7 +69,7 @@ import java.util.*;
 //TODO 最后5张卡牌
 //TODO 高松灯easymode，替换 instanceOfTomori
 //TODO 春日影生命流失，直接decrease health
-//TODO 暗黑形高松灯，获得手牌中素材颜色层数的仪式
+//TODO 所有的描述像暗黑高松灯一样写
 
 
 @SpireInitializer
