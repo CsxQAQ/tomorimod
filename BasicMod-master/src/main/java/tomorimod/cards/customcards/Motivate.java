@@ -28,7 +28,7 @@ public class Motivate extends BaseCard {
             1
     );
 
-    public static final int DAMAGE=7;
+    public static final int DAMAGE=9;
     public static final int UPG_DAMAGE=4;
 
 

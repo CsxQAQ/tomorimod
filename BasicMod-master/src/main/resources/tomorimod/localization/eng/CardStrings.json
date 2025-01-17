@@ -61,7 +61,7 @@
     "NAME": "从没觉得开心过",
     "DESCRIPTION": "给予所有敌人 !M! 层 易伤 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "给予所有敌人 !M! 层 易伤 和 脆弱 。 tomorimod:瞬间 ， 消耗 。"
+      "给予所有敌人 !M! 层 易伤 和 虚弱 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:Pressure": {
@@ -345,7 +345,7 @@
     "NAME": "夜隠染",
     "DESCRIPTION": " tomorimod:音乐 。对目标施加 !M! 层 易伤 ，然后对目标造成等同于 易伤 层数的伤害。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 脆弱 ，然后对目标造成等同于负面效果层数之和的伤害。"
+      " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 虚弱 ，然后对目标造成等同于负面效果层数之和的伤害。"
     ]
   },
   "${modID}:Lunfuyu": {
@@ -410,9 +410,9 @@
   },
   "${modID}:Yingsewu": {
     "NAME": "影色舞",
-    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。触发你当前形态的效果。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 无实体 。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害。触发你当前形态的效果3次。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 无实体 。"
     ]
   },
   "${modID}:Yinyihui": {
@@ -454,9 +454,9 @@
   },
   "${modID}:Chunriying": {
     "NAME": "春日影",
-    "DESCRIPTION": " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。",
+    "DESCRIPTION": " tomorimod:音乐 。恢复 !M! 点生命值。对所有敌人造成 !D! 点伤害。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对所有敌人造成 !D! 点伤害。恢复 !M! 点生命值。"
+      " tomorimod:音乐 。恢复 !M! 点生命值。对所有敌人造成 !D! 点伤害。"
     ]
   },
 

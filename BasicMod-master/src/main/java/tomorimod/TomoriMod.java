@@ -68,7 +68,6 @@ import java.util.*;
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
 //TODO 高松灯easymode，替换 instanceOfTomori
-//TODO 春日影生命流失，直接decrease health
 //TODO 所有的描述像暗黑高松灯一样写
 
 

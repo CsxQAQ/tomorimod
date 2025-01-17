@@ -120,6 +120,10 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
         return musicCard;
     }
 
+    public void triggerAfterCopy(){
+
+    }
+
     @Override
     public void upgrade() {
         if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomoriApotheosisPower"))) {
@@ -185,6 +189,7 @@ public abstract class BaseMusicCard extends BaseCard implements WithoutMaterial 
             default:
                 throw new IllegalArgumentException("Invalid rarity: " + musicRarity);
         }
+        triggerAfterCopy();
         updateDescription();
     }
 

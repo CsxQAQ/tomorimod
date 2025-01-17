@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
+import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
@@ -132,7 +133,7 @@ public class RanaMonster extends BaseMonster {
         this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL)); // index 1
 
         // 这里是进场就加无敌(999)与 RanaFreeCatPower 的逻辑，可以保留
-        addToBot(new ApplyPowerAction(this, this, new IntangiblePlayerPower(this, 999), 999));
+        addToBot(new ApplyPowerAction(this, this, new IntangiblePower(this, 999), 999));
         addToBot(new ApplyPowerAction(this, this, new RanaFreeCatPower(this)));
     }
 

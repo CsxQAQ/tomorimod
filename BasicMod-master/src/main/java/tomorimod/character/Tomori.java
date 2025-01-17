@@ -62,26 +62,26 @@ import static tomorimod.TomoriMod.*;
 
 public class Tomori extends CustomPlayer {
 
-    private IntangibleEffect intangibleEffect;
+    //private IntangibleEffect intangibleEffect;
 
-    @Override
-    public void update() {
-        super.update();
-        if(hasPower("IntangiblePlayer")){
-            intangibleEffect.update();
-        }else{
-            tint.changeColor(Color.WHITE.cpy());
-        }
-    }
+//    @Override
+//    public void update() {
+//        super.update();
+//        if(hasPower("IntangiblePlayer")){
+//            intangibleEffect.update();
+//        }else{
+//            tint.changeColor(Color.WHITE.cpy());
+//        }
+//    }
 
-    @Override
-    public void render(SpriteBatch sb) {
-        if(hasPower("IntangiblePlayer")) {
-            intangibleEffect.render(sb);
-        }else{
-            super.render(sb);
-        }
-    }
+//    @Override
+//    public void render(SpriteBatch sb) {
+//        if(hasPower("IntangiblePlayer")) {
+//            intangibleEffect.render(sb);
+//        }else{
+//            super.render(sb);
+//        }
+//    }
 
     //Stats
     public static final int ENERGY_PER_TURN = 3;
@@ -233,7 +233,7 @@ public class Tomori extends CustomPlayer {
         dialogX = (drawX + 0.0F * Settings.scale);
         dialogY = (drawY + 220.0F * Settings.scale);
 
-        intangibleEffect=new IntangibleEffect(this);
+        //intangibleEffect=new IntangibleEffect(this);
     }
 
     @Override
