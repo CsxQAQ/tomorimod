@@ -18,12 +18,14 @@ public class ElectricWaveAction
     public static final String[] TEXT = uiStrings.TEXT;
 
     private AbstractPlayer p;
+    private boolean isUpgraded;
 
-    public ElectricWaveAction(int amount) {
+    public ElectricWaveAction(int amount,boolean isUpgraded) {
         this.p = AbstractDungeon.player;
-        setValues((AbstractCreature)this.p, (AbstractCreature)AbstractDungeon.player, amount);
+        setValues(this.p, AbstractDungeon.player, amount);
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_MED;
+        this.isUpgraded=isUpgraded;
     }
 
 
@@ -41,6 +43,9 @@ public class ElectricWaveAction
             }
             if (tmp.size() == 1) {
                 AbstractCard card = tmp.getTopCard().makeSameInstanceOf();
+                if(isUpgraded){
+                    card.setCostForTurn(0);
+                }
 
                 if (this.p.hand.size() == 10) {
                     this.p.masterDeck.moveToDiscardPile(card);
@@ -54,6 +59,7 @@ public class ElectricWaveAction
                     card.targetDrawScale = 0.75F;
                     card.current_x = CardGroup.DRAW_PILE_X;
                     card.current_y = CardGroup.DRAW_PILE_Y;
+
                     //this.p.drawPile.removeCard(card);
                     AbstractDungeon.player.hand.addToTop(card);
                     AbstractDungeon.player.hand.refreshHandLayout();
@@ -73,6 +79,9 @@ public class ElectricWaveAction
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
             for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
                 AbstractCard c=card.makeSameInstanceOf();
+                if(isUpgraded){
+                    c.setCostForTurn(0);
+                }
                 c.unhover();
 
                 if (this.p.hand.size() == 10) {

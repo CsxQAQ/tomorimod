@@ -67,6 +67,12 @@ import java.util.*;
 //TODO 影色舞重做
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
+//TODO 高松灯easymode，替换 instanceOfTomori
+//TODO soyo没死就逃跑
+//TODO 春日影生命流失，直接decrease health
+//TODO 用util生成music ArrayList
+//TODO 暗黑形高松灯，获得手牌中素材颜色层数的仪式
+
 
 @SpireInitializer
 public class TomoriMod implements

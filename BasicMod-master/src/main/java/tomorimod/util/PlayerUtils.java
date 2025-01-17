@@ -27,4 +27,8 @@ public class PlayerUtils {
         return null;
     }
 
+//    public static boolean hardMode(){
+//
+//    }
+
 }

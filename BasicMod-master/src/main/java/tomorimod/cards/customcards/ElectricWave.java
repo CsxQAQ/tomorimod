@@ -26,9 +26,10 @@ public class ElectricWave extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ElectricWaveAction(1));
+        addToBot(new ElectricWaveAction(1,upgraded));
     }
 
+    @Override
     public void updateDescription() {
 
         if(upgraded){
@@ -43,8 +44,7 @@ public class ElectricWave extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            isInnate=true;
-            this.updateDescription();
+            updateDescription();
         }
     }
 

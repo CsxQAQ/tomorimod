@@ -258,7 +258,7 @@
     ]
   },
   "${modID}:MutsumiRealDamagePower": {
-    "NAME": "语言的艺术",
+    "NAME": "不可能长久",
     "DESCRIPTIONS":[
       "攻击无视 #y格挡 和 #y无实体 。"
     ]
