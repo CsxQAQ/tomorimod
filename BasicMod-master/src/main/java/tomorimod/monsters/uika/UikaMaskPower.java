@@ -47,6 +47,8 @@ public class UikaMaskPower extends BasePower {
         if(BaseMonster.checkHardMode()){
             amount=maskVal+ PlayerUtils.getPowerNum(makeID("ShinePower"))+
                     PlayerUtils.getPowerNum(makeID("GravityPower"));
+        }else{
+            amount=maskVal;
         }
         isEffected=false;
         updateDescription();
