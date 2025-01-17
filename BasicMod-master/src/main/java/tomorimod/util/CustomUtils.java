@@ -15,6 +15,10 @@ import java.util.HashMap;
 
 public class CustomUtils {
 
+    public static HashMap<String, BaseCard> modCardGroup = new HashMap<>();
+    public static HashMap<String, BaseFormCard> formCardGroup = new HashMap<>();
+    public static HashMap<String, BaseMusicCard> musicCardGroup = new HashMap<>();
+    public static HashMap<String, BaseMonmentCard> monmentCardGroup = new HashMap<>();
 
     public static void addTags(BaseCard aCard, AbstractCard.CardTags tag){
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group) {
@@ -39,10 +43,7 @@ public class CustomUtils {
         initializeMonmentCards();
     }
 
-    public static HashMap<String, BaseCard> modCardGroup = new HashMap<>();
-    public static HashMap<String, BaseFormCard> formCardGroup = new HashMap<>();
-    public static HashMap<String, BaseMusicCard> musicCardGroup = new HashMap<>();
-    public static HashMap<String, BaseMonmentCard> monmentCardGroup = new HashMap<>();
+
 
     /**
      * 初始化所有卡牌

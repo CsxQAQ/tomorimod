@@ -10,6 +10,7 @@ import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
 import tomorimod.savedata.Clearable;
 import tomorimod.savedata.SaveDataInstanceFactory;
+import tomorimod.util.CustomUtils;
 
 import java.util.*;
 
@@ -75,13 +76,22 @@ public class CraftingRecipes implements Clearable {
     private ArrayList<Material> materials=new ArrayList<>(
             Arrays.asList(Material.RED,Material.GREEN,Material.YELLOW));
 
-    private List<String> songNames = Arrays.asList(
-            "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
-            "Yinyihui", "Miluri", "Wulushi", "Bitianbanzou",
-            "Yinakong", "Mingwusheng", "Qianzaibiaoming",
-            "Yeyingran","Ruichengshan","Huifutu"
+//    private List<String> songNames = Arrays.asList(
+//            "Shichaoban", "Mixingjiao", "Lunfuyu", "Yingsewu",
+//            "Yinyihui", "Miluri", "Wulushi", "Bitianbanzou",
+//            "Yinakong", "Mingwusheng", "Qianzaibiaoming",
+//            "Yeyingran","Ruichengshan","Huifutu"
+//
+//    );
 
-    );
+    private List<String> songNames=new ArrayList<>();
+
+    public void initializeSongNames(){
+        for(BaseMusicCard card:CustomUtils.musicCardGroup.values()){
+            songNames.add(CustomUtils.idToName(card.cardID));
+        }
+        songNames.remove("Chunriying");
+    }
 
     public static final int COMMONCOST_MIN=3;
     public static final int COMMONCOST_MAX=3;
@@ -199,6 +209,7 @@ public class CraftingRecipes implements Clearable {
 
     public void generate(){
         if(AbstractDungeon.player instanceof Tomori || TomoriConfig.config.getBool("onlyModBoss-enabled")){
+            initializeSongNames();
             initializeMusicsCostHashMap();
             initializeCardsMaterials();
             initializeRecipeArrayList();
