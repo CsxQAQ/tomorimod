@@ -205,7 +205,7 @@ public class SoyoMonster extends SpecialMonster {
                 if (tmp == 0) {
                     setMove((byte) 0, Intent.ATTACK, this.damage.get(0).base, damageTimeVal0, false);
                 } else {
-                    setMove((byte) 1, Intent.DEFEND);
+                    setMove((byte) 1, Intent.BUFF);
                 }
                 point += 2;
                 break;

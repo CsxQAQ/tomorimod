@@ -66,7 +66,6 @@ import java.util.*;
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
 
-//TODO 小睦全部改成只计算自己伤害，warningui上写上
 
 
 @SpireInitializer

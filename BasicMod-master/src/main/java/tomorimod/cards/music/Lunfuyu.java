@@ -55,9 +55,6 @@ public class Lunfuyu extends BaseMusicCard {
     public final static int MAGIC_RARE = 9;
     public final static int UPG_MAGIC_RARE = 4;
 
-    //private int curHpIncreaseNum=-1;
-    private int curHpChangeNum=-1;
-    private int curHpChangeWholeBattleNum=-1;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -66,51 +63,37 @@ public class Lunfuyu extends BaseMusicCard {
                 AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
-    @Override
-    public void updateDescription(){
-
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                this.rawDescription=cardStrings.DESCRIPTION;
-                break;
-            case RARE:
-                this.rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
-                break;
-        }
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
-        }
+    public void updateDescriptionWithUPG(){
+        getBaseDescription();
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 
-    public void calculateBaseDamage(){
-        switch (musicRarity) {
-            case COMMON:
-            case DEFAULT:
-            case UNCOMMON:
-                baseDamage=LunfuyuMonitor.hpChangeNum*magicNumber;
-                break;
-            case RARE:
-                baseDamage=LunfuyuMonitor.hpChangeNumWholeBattle*magicNumber;
-                break;
-        }
+    @Override
+    public void applyPowers(){
+        calculateBaseDamage();
+        super.applyPowers();
+        updateDescriptionWithUPG();
     }
 
     @Override
-    public void update(){
-        super.update();
-//        if(AbstractDungeon.getCurrRoom() != null
-//                && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
-//            if(curHpChangeNum!=LunfuyuMonitor.hpChangeNum||curHpChangeWholeBattleNum!=LunfuyuMonitor.hpChangeNumWholeBattle){
-//                calculateBaseDamage();
-//                applyPowers();
-//                updateDescription();
-//                curHpChangeNum=LunfuyuMonitor.hpChangeNum; //避免频繁applyPower
-//                curHpChangeWholeBattleNum=LunfuyuMonitor.hpChangeNumWholeBattle;
-//            }
-//        }
+    public void onMoveToDiscard() {
+        getBaseDescription();
+        initializeDescription();
+    }
+
+    @Override
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        updateDescriptionWithUPG();
+    }
+
+    public void calculateBaseDamage(){
+        if(musicRarity.equals(MusicRarity.RARE)){
+            baseDamage= magicNumber*LunfuyuMonitor.hpChangeNumWholeBattle;
+        }else{
+            baseDamage=magicNumber*LunfuyuMonitor.hpChangeNum;
+        }
     }
 
     @Override
