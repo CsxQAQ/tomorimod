@@ -26,8 +26,8 @@ public class LightAndShadow extends BaseCard {
 
     public static int curAttribute=0;
 
-    public static final int MAGIC=3;
-    public static final int UPG_MAGIC=2;
+    public static final int MAGIC=5;
+    public static final int UPG_MAGIC=3;
 
 
     public LightAndShadow() {

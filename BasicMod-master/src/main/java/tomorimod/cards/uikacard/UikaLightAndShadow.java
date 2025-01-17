@@ -12,6 +12,7 @@ import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
+import tomorimod.util.MonsterUtils;
 
 public class UikaLightAndShadow extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaLightAndShadow.class.getSimpleName());
@@ -23,15 +24,10 @@ public class UikaLightAndShadow extends UikaCard implements WithoutMaterial {
             1
     );
 
-    public static int curAttribute=0;
-
-    public int MAGIC=3;
-    public int UPG_MAGIC=2;
-
 
     public UikaLightAndShadow() {
         super(ID, info);
-        setMagic(MAGIC,UPG_MAGIC);
+        setMagic(LightAndShadow.MAGIC,LightAndShadow.UPG_MAGIC);
     }
 
     @Override
@@ -49,14 +45,14 @@ public class UikaLightAndShadow extends UikaCard implements WithoutMaterial {
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                int gravityNum=uikaMonster.hasPower(makeID("GravityPower"))?uikaMonster.getPower(makeID("GravityPower")).amount:0;
-                int shineNum=uikaMonster.hasPower(makeID("ShinePower"))?uikaMonster.getPower(makeID("ShinePower")).amount:0;
+                int gravityNum= MonsterUtils.getPowerNum(uikaMonster,makeID("GravityPower"));
+                int shineNum= MonsterUtils.getPowerNum(uikaMonster,makeID("ShinePower"));
                 if(gravityNum>=shineNum){
                     addToTop(new ApplyPowerAction(uikaMonster,uikaMonster,
-                            new GravityPower(uikaMonster, LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+                            new GravityPower(uikaMonster, magicNumber),magicNumber));
                 }else{
                     addToTop(new ApplyPowerAction(uikaMonster,
-                            uikaMonster,new ShinePower(uikaMonster,LightAndShadow.MAGIC),LightAndShadow.MAGIC));
+                            uikaMonster,new ShinePower(uikaMonster,magicNumber),magicNumber));
                 }
                 isDone=true;
             }
