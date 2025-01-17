@@ -16,7 +16,7 @@ public class DivergeWorld extends BaseCard {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
     public static final int MAGIC=1;
@@ -41,7 +41,7 @@ public class DivergeWorld extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(1);
+            upgradeBaseCost(0);
         }
     }
 }

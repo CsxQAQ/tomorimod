@@ -34,15 +34,20 @@ public class MemoryInCrychic extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<BaseMonmentCard> tmp=new ArrayList<>(CustomUtils.monmentCardGroup.values());
         BaseMonmentCard card = tmp.get(cardRandomRng.random(tmp.size() - 1));
-        if(upgraded){
-            card.upgrade();
-        }
         addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
     }
 
     @Override
     public AbstractCard makeCopy() {
         return new MemoryInCrychic();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(2);
+        }
     }
 
 }

@@ -4,68 +4,64 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import tomorimod.cards.customcards.SmoothCombo;
+import tomorimod.patches.AbstractCardSetMaterialPatch;
+import tomorimod.savedata.customdata.CraftingRecipes;
+
+import java.util.Iterator;
 
 import static tomorimod.TomoriMod.makeID;
 
 public class SmoothComboAction extends AbstractGameAction {
-    private AbstractCard.CardType cardType;
-    public SmoothComboAction(AbstractCard.CardType cardType) {
-        this.cardType=cardType;
+    private AbstractCard card;
+    public SmoothComboAction(AbstractCard card) {
+        this.card=card;
     }
 
-    private boolean isContinue=true;
 
     @Override
     public void update() {
-        // 检查抽牌堆是否为空
-        if (AbstractDungeon.player.drawPile.isEmpty()) {
-            isDone = true; // 动作完成
-            return;
-        }
+        CraftingRecipes.Material currentMaterial = AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(this.card);
+        Iterator<AbstractCard> iterator = AbstractDungeon.player.drawPile.group.iterator();
 
-        if(!isContinue){
-            isDone=true;
-            return;
-        }
+        while (iterator.hasNext()) {
+            AbstractCard card = iterator.next();
+            if (AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(currentMaterial) ||
+                    AbstractCardSetMaterialPatch.AbstractCardFieldPatch.material.get(card).equals(CraftingRecipes.Material.AQUARIUMPASS)) {
 
-        // 从抽牌堆顶取一张牌
-        AbstractCard topCard = AbstractDungeon.player.drawPile.getTopCard();
-        System.out.println("抽牌堆顶的卡牌: " + topCard.cardID);
+                // 使用迭代器的 remove 方法移除当前元素
+                iterator.remove();
+                (AbstractDungeon.getCurrRoom()).souls.remove(card);
 
-        // 如果类型不同，或者抽牌堆为空，停止
-        //if (topCard.type != SmoothCombo.recordedType) {
-        if(topCard.type!=cardType){
-            isContinue=false;
-        }
+                // 将卡牌从手牌移到游戏中的其他区域，设置相关参数
+                AbstractDungeon.player.limbo.group.add(card);
+                card.current_y = -200.0F * Settings.scale;
+                card.target_x = Settings.WIDTH / 2.0F + 200.0F * Settings.xScale;
+                card.target_y = Settings.HEIGHT / 2.0F;
+                card.targetAngle = 0.0F;
+                card.lighten(false);
+                card.drawScale = 0.12F;
+                card.targetDrawScale = 0.75F;
 
-
-
-        if(isContinue){
-            addToBot(new AbstractGameAction() {
-                @Override
-                public void update() {
-                    addToBot(new PlayTopCardAction(
-                            (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
-                            false
-                    ));
-                    addToBot(new SmoothComboAction(cardType));
-                    isDone = true; // 标记当前动作完成
+                card.applyPowers();
+                addToTop(new NewQueueCardAction(card, true,false, true));
+                addToTop(new UnlimboAction(card));
+                if (!Settings.FAST_MODE) {
+                    addToTop(new WaitAction(Settings.ACTION_DUR_MED));
+                } else {
+                    addToTop(new WaitAction(Settings.ACTION_DUR_FASTER));
                 }
-            });
-        }else{
-            addToBot(new PlayTopCardAction(
-                    (AbstractDungeon.getCurrRoom()).monsters.getRandomMonster( null,true,AbstractDungeon.cardRandomRng),
-                    false
-            ));
+            }
         }
-
         isDone = true;
     }
 }

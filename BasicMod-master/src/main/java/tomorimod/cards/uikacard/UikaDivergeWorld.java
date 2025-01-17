@@ -18,7 +18,7 @@ public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
             CardType.POWER,
             CardRarity.RARE,
             CardTarget.SELF,
-            2
+            1
     );
 
     public UikaDivergeWorld() {

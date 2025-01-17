@@ -63,6 +63,9 @@ import java.util.*;
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
 //TODO 最后5张卡牌
 
+//TODO 大少女chooseOne看看能不能取消
+//TODO 连招bug
+//TODO 素世伤害bug
 
 
 @SpireInitializer
