@@ -1,6 +1,7 @@
 package tomorimod.monsters.mutsumi;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -125,6 +126,11 @@ public class SoyoMonster extends SpecialMonster {
                 }
             }
         }
+    }
+
+    @SpireOverride
+    public void calculateDamage(int dmg) {
+        setPrivateField(this, "intentDmg", calculateDamageSingle(dmg,this.target));
     }
 
     @Override
