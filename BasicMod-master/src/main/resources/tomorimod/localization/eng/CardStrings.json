@@ -256,7 +256,7 @@
   },
   "${modID}:SmoothCombo": {
     "NAME": "触发连招",
-    "DESCRIPTION": "依次打出抽牌堆中所有 tomorimod:素材 颜色与该牌相同的卡牌。"
+    "DESCRIPTION": "打出抽牌堆中所有 tomorimod:素材 颜色与该牌相同的卡牌。"
   },
 
   "${modID}:Revolution": {
@@ -286,7 +286,7 @@
     "DESCRIPTION": " tomorimod:闪耀 造成的溢出治疗量转化为等量的临时最大生命值。"
   },
   "${modID}:SingerTooEffort": {
-    "NAME": "主唱太拼命了",
+    "NAME": "拼命的主唱",
     "DESCRIPTION": "失去5点生命值。抽 !M! 张牌，获得 !M! 点 [E] 。"
   },
   "${modID}:ElectricWave": {

@@ -1,4 +1,4 @@
-package tomorimod.cards.customcards;
+package tomorimod.cards.basic;
 
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,13 +15,13 @@ public class Upset extends BaseCard {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.COMMON,
+            CardRarity.BASIC,
             CardTarget.SELF,
             1
     );
 
-    public final int BLOCK=6;
-    public final int UPG_BLOCK=3;
+    public final int BLOCK=7;
+    public final int UPG_BLOCK=4;
 
     public final int MAGIC=3;
     public final int UPG_MAGIC=2;

@@ -38,6 +38,7 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorimod.cards.basic.Defend;
 import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
+import tomorimod.cards.basic.Upset;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowRightPatch;
 import tomorimod.monsters.uika.UikaMonster;
@@ -54,27 +55,6 @@ import java.util.Iterator;
 import static tomorimod.TomoriMod.*;
 
 public class Tomori extends CustomPlayer {
-
-    //private IntangibleEffect intangibleEffect;
-
-//    @Override
-//    public void update() {
-//        super.update();
-//        if(hasPower("IntangiblePlayer")){
-//            intangibleEffect.update();
-//        }else{
-//            tint.changeColor(Color.WHITE.cpy());
-//        }
-//    }
-
-//    @Override
-//    public void render(SpriteBatch sb) {
-//        if(hasPower("IntangiblePlayer")) {
-//            intangibleEffect.render(sb);
-//        }else{
-//            super.render(sb);
-//        }
-//    }
 
     //Stats
     public static final int ENERGY_PER_TURN = 3;
@@ -243,6 +223,7 @@ public class Tomori extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(MusicComposition.ID);
+        retVal.add(Upset.ID);
         return retVal;
     }
 
