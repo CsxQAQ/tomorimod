@@ -166,7 +166,7 @@ public class SakiShadowMonster extends BaseMonster {
         AbstractGameEffect effect = new ChangeSceneEffect(ImageMaster.loadImage(imagePath("monsters/scenes/SakiShadow_bg.png")));
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
-        if (AbstractDungeon.player instanceof Tomori) {
+        if (isHardMode) {
             addToBot(new ApplyPowerAction(this, this, new SakiShadowImmunityPower(this)));
         }
         addToBot(new ApplyPowerAction(this, this, new SakiShadowWorldViewPower(this)));

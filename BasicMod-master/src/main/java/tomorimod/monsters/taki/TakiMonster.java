@@ -149,8 +149,7 @@ public class TakiMonster extends BaseMonster {
         if(isHardMode){
             addToBot(new ApplyPowerAction(this, this, new TakiPressurePower(this)));
         }
-        // 如果要给自己上个 Debuff 或别的 Power，也可在此添加
-        // addToBot(new ApplyPowerAction(this, this, new TakiPressurePower(this)));
+
     }
 
     @Override

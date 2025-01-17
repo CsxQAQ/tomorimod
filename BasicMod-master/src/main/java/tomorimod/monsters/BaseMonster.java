@@ -30,7 +30,7 @@ public abstract class BaseMonster extends CustomMonster {
         }
     }
 
-    public boolean checkHardMode(){
+    public static boolean checkHardMode(){
         if(AbstractDungeon.player instanceof Tomori&&!TomoriConfig.config.getBool("easyMode-enabled")){
             return true;
         }

@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import tomorimod.cards.customcards.ConveyFeeling;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.BaseMonster;
 import tomorimod.powers.BasePower;
 import tomorimod.util.PlayerUtils;
 
@@ -32,7 +33,7 @@ public class UikaMaskPower extends BasePower {
 
     public UikaMaskPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-        if(AbstractDungeon.player!=null&&AbstractDungeon.player instanceof Tomori){
+        if(BaseMonster.checkHardMode()){
             maskVal=UikaMonster.MASK_NUM;
         }else{
             maskVal=UikaMonster.MASK_NUM_WEAK;
@@ -43,9 +44,10 @@ public class UikaMaskPower extends BasePower {
 
     @Override
     public void atStartOfTurn() {
-
-        amount=maskVal+ PlayerUtils.getPowerNum(makeID("ShinePower"))+
-                PlayerUtils.getPowerNum(makeID("GravityPower"));
+        if(BaseMonster.checkHardMode()){
+            amount=maskVal+ PlayerUtils.getPowerNum(makeID("ShinePower"))+
+                    PlayerUtils.getPowerNum(makeID("GravityPower"));
+        }
         isEffected=false;
         updateDescription();
     }
@@ -53,7 +55,7 @@ public class UikaMaskPower extends BasePower {
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+DESCRIPTIONS[1]+amount+DESCRIPTIONS[2];
-        if(AbstractDungeon.player!=null&&AbstractDungeon.player instanceof Tomori){
+        if(BaseMonster.checkHardMode()){
             description+=DESCRIPTIONS[3];
         }
     }

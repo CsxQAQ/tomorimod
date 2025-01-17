@@ -11,6 +11,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.cards.notshow.SpecialCard;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.BaseMonster;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.util.CardStats;
 
@@ -33,7 +34,7 @@ public class Cucumber extends BaseCard implements SpecialCard, WithoutMaterial {
         super(ID, info);
 
         if(AbstractDungeon.player!=null){
-            if(AbstractDungeon.player instanceof Tomori){
+            if(BaseMonster.checkHardMode()){
                 healVal=MutsumiMonster.HEALNUM;
                 strengthVal=MutsumiMonster.STRENGTHNUM;
             }else{
