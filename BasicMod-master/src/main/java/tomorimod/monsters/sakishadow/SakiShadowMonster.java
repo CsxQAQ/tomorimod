@@ -198,7 +198,8 @@ public class SakiShadowMonster extends BaseMonster {
     public void takeTurn() {
         if (isFirstTurn) {
             addToTop(new PlayBGMAction(MusicPatch.MusicHelper.KILLKISS, this));
-            addToBot(new DamageAction(soyoMonster, this.damage.get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            addToBot(new DamageAction(soyoMonster, new DamageInfo(
+                    this,damageVal0, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             AbstractDungeon.effectList.add(new DynamicBackgroundTestEffect(0.1f));
             this.drawX = DRAW_X * Settings.scale;
             this.drawY = DRAW_Y * Settings.scale;
