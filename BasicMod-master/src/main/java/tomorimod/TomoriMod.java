@@ -69,7 +69,6 @@ import java.util.*;
 //TODO 所有的描述像暗黑高松灯一样写
 
 //TODO 改回原来的一辈子
-//TODO 微小的星屑改成消耗3点，描述
 //TODO 小睦全部改成只计算自己伤害，warningui上写上
 
 
