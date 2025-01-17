@@ -130,7 +130,7 @@
   },
   "${modID}:StarDust": {
     "NAME": "微小的星屑",
-    "DESCRIPTION": " tomorimod:永久能力 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星盾 。"
+    "DESCRIPTION": " tomorimod:永久能力 ：受到致命伤害时失去此能力并免疫死亡，然后获得 tomorimod:星屑 。"
   },
   "${modID}:Tomotomo": {
     "NAME": "偷摸偷摸",
