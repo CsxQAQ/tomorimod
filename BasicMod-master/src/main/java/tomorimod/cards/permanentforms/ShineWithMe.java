@@ -31,8 +31,6 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
         tags.add(CardTags.HEALING);
     }
 
-    public int musicDiscovered=-1;
-
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p, new ShineWithMePower(p)));
@@ -41,23 +39,25 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
     }
 
 
-    @Override
-    public void updateDescription(){
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            rawDescription= CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+
-                    "（当前数量："+ SaveMusicDiscoverd.getInstance().musicDiscoveredNum+"）";
-        }
+    public void updateDescriptionWithUPG(){
+        rawDescription=cardStrings.DESCRIPTION;
+        setCustomVar("MN",SaveMusicDiscoverd.getInstance().musicDiscoveredNum);
+        rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
         initializeDescription();
     }
 
     @Override
-    public void update(){
-        super.update();
-        if(musicDiscovered!=SaveMusicDiscoverd.getInstance().musicDiscoveredNum){
-            musicDiscovered=SaveMusicDiscoverd.getInstance().musicDiscoveredNum;
-            updateDescription();
-        }
+    public void applyPowers(){
+        super.applyPowers();
+        updateDescriptionWithUPG();
     }
+
+    @Override
+    public void onMoveToDiscard() {
+        rawDescription=cardStrings.DESCRIPTION;
+        initializeDescription();
+    }
+
 
     @Override
     public AbstractCard makeCopy(){

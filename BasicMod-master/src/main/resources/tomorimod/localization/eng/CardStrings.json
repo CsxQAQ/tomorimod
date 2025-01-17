@@ -140,10 +140,7 @@
     "NAME": "迷途之子",
     "DESCRIPTION": " tomorimod:永久能力 ：每场战斗一次，使用具有 tomorimod:瞬间 的卡牌时，获得5点最大生命上限。"
   },
-  "${modID}:ShineWithMe": {
-    "NAME": "光芒与我同行",
-    "DESCRIPTION": " tomorimod:永久能力 ：战斗开始时，本局游戏中每创作1种 tomorimod:音乐 牌，获得1层 tomorimod:闪耀 。"
-  },
+
   "${modID}:GravitySurge": {
     "NAME": "重力喷涌",
     "DESCRIPTION": "获得 !M! 层 tomorimod:重力 。抽等同于 tomorimod:重力 数量的卡牌。"
@@ -475,10 +472,14 @@
     ],
     "UPGRADE_DESCRIPTION":" NL （已创作数量： !${modID}:MN! ）"
   },
-
   "${modID}:WholeLife": {
     "NAME": "一辈子",
     "DESCRIPTION": "tomorimod:永久能力 ：每场战斗一次，具有 tomorimod:瞬间 的卡牌使用后不会从牌组中移除。"
+  },
+  "${modID}:ShineWithMe": {
+    "NAME": "光芒与我同行",
+    "DESCRIPTION": " tomorimod:永久能力 ：战斗开始时，本局游戏中每创作1种 tomorimod:音乐 牌，获得1层 tomorimod:闪耀 。",
+    "UPGRADE_DESCRIPTION":" NL （已创作数量： !${modID}:MN! ）"
   },
 
 

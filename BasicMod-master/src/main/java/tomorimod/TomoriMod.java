@@ -68,7 +68,6 @@ import java.util.*;
 //TODO 最后5张卡牌
 //TODO 所有的描述像暗黑高松灯一样写
 
-//TODO 改回原来的一辈子
 //TODO 小睦全部改成只计算自己伤害，warningui上写上
 
 
