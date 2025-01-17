@@ -11,6 +11,7 @@ import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
+import tomorimod.util.MonsterUtils;
 
 public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
 
@@ -23,12 +24,10 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
             1
     );
 
-    public final int MAGIC=1;
-    public final int UPG_MAGIC=1;
     public UikaNeedAnon() {
         super(ID, info);
         exhaust=true;
-        setMagic(MAGIC,UPG_MAGIC);
+        setMagic(NeedAnon.MAGIC,NeedAnon.UPG_MAGIC);
     }
 
     @Override
@@ -49,10 +48,10 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                int gravityNum=uikaMonster.hasPower(makeID("GravityPower"))?uikaMonster.getPower(makeID("GravityPower")).amount:0;
+                int gravityNum= MonsterUtils.getPowerNum(uikaMonster,makeID("GravityPower"));
                 if(gravityNum!=0){
                     addToTop(new ApplyPowerAction(uikaMonster,uikaMonster,new GravityPower
-                            (uikaMonster,gravityNum* NeedAnon.MAGIC),gravityNum*NeedAnon.MAGIC));
+                            (uikaMonster,gravityNum* magicNumber),gravityNum*magicNumber));
                 }
                 isDone=true;
             }

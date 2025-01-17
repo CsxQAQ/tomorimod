@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.customcards.DivergeWorld;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.custompowers.DivergeWorldPower;
@@ -22,6 +23,7 @@ public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
 
     public UikaDivergeWorld() {
         super(ID, info);
+        setMagic(DivergeWorld.MAGIC,DivergeWorld.UPG_MAGIC);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new DivergeWorldPower(uikaMonster,1),1));
+                new DivergeWorldPower(uikaMonster,magicNumber),magicNumber));
         super.uikaUse(uikaMonster);
     }
 }

@@ -19,13 +19,17 @@ public class DivergeWorld extends BaseCard {
             2
     );
 
+    public static final int MAGIC=1;
+    public static final int UPG_MAGIC=0;
+
     public DivergeWorld() {
         super(ID, info);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p,1),1));
+        addToBot(new ApplyPowerAction(p,p,new DivergeWorldPower(p,magicNumber),magicNumber));
     }
 
     @Override

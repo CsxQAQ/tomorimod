@@ -20,6 +20,7 @@ import tomorimod.actions.PlayBGMAction;
 import tomorimod.cards.uikacard.*;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.patches.MusicPatch;
+import tomorimod.util.MonsterUtils;
 import tomorimod.vfx.ChangeSceneEffect;
 
 import java.util.ArrayList;
@@ -212,7 +213,7 @@ public class UikaMonster extends BaseMonster {
                 cardForShow2 = new UikaTwoPeopleOneBody();
                 break;
             case 2:
-                int shineAmount=UikaMonster.this.hasPower(makeID("ShinePower"))?UikaMonster.this.getPower(makeID("ShinePower")).amount:0;
+                int shineAmount= MonsterUtils.getPowerNum(this,makeID("ShinePower"));
 
                 setMove((byte) 22, Intent.ATTACK_DEFEND,
                         shineAmount*UikaTwoMoon.MAGIC, 1, false);
@@ -220,11 +221,15 @@ public class UikaMonster extends BaseMonster {
                 cardForShow2 = new UikaLightAndShadow();
                 isTwoMoon=true;
 
+
                 break;
             case 3:
                 setMove((byte) 23, Intent.BUFF);
                 cardForShow1 =new UikaDoughnut();
-                cardForShow2 =new UikaDefend();
+                cardForShow2 = new UikaDefend() {{
+                    upgrade();
+                    //initializeDescription();
+                }};
                 break;
         }
         turnNum++;

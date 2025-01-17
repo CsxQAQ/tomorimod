@@ -540,7 +540,7 @@
   },
   "${modID}:UikaTwoPeopleOneBody": {
     "NAME": "二人一体",
-    "DESCRIPTION": "获得等同于 tomorimod:闪耀 层数3倍的 格挡 。"
+    "DESCRIPTION": "获得等同于 tomorimod:闪耀 层数 !M! 倍的 格挡 。"
   },
   "${modID}:UikaMygoTogether": {
     "NAME": "一起迷失",
@@ -550,7 +550,7 @@
     "NAME": "需要爱音",
     "DESCRIPTION": "使 tomorimod:重力 层数翻倍。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "使 tomorimod:重力 层数变为3倍。 消耗 。"
+      "使 tomorimod:重力 层数变为 !M! 倍。 消耗 。"
     ]
   },
   "${modID}:UikaStrike": {
@@ -563,7 +563,7 @@
   },
   "${modID}:UikaDefend": {
     "NAME": "防御",
-    "DESCRIPTION": "获得5点 格挡 。"
+    "DESCRIPTION": "获得 !M! 点 格挡 。"
   },
   "${modID}:UikaPoemInsteadOfSong": {
     "NAME": "以诗代歌",

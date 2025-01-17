@@ -24,12 +24,9 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
             2
     );
 
-    public final static int MAGIC = 3;
-    public final static int UPG_MAGIC = 0;
-
     public UikaGravityDomain() {
         super(ID, info);
-        setMagic(MAGIC,UPG_MAGIC);
+        setMagic(GravityDomain.MAGIC,GravityDomain.UPG_MAGIC);
     }
 
 
@@ -47,7 +44,7 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new GravityDomainPower(uikaMonster, GravityDomain.MAGIC), GravityDomain.MAGIC));
+                new GravityDomainPower(uikaMonster, magicNumber), magicNumber));
         super.uikaUse(uikaMonster);
     }
 }

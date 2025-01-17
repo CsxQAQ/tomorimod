@@ -25,12 +25,9 @@ public class UikaMygoTogether extends UikaCard implements WithoutMaterial {
     );
 
 
-    public final static int MAGIC=1;
-    public final static int UPG_MAGIC=1;
-
     public UikaMygoTogether() {
         super(ID, info);
-        this.setMagic(MAGIC,UPG_MAGIC);
+        setMagic(MygoTogether.MAGIC,MygoTogether.UPG_MAGIC);
     }
 
     @Override
@@ -46,9 +43,9 @@ public class UikaMygoTogether extends UikaCard implements WithoutMaterial {
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,new MygoTogetherPower(uikaMonster)));
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new GravityPower(uikaMonster, MygoTogether.MAGIC),MygoTogether.MAGIC));
+                new GravityPower(uikaMonster, magicNumber),magicNumber));
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new ShinePower(uikaMonster,MygoTogether.MAGIC),MygoTogether.MAGIC));
+                new ShinePower(uikaMonster,magicNumber),magicNumber));
         super.uikaUse(uikaMonster);
     }
 }

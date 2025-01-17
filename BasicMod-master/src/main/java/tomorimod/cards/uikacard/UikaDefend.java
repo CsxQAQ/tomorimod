@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.basic.Defend;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.util.CardStats;
@@ -23,19 +24,14 @@ public class UikaDefend extends UikaCard implements WithoutMaterial {
     );
 
 
-    public final static int MAGIC=5;
-    public final static int UPG_MAGIC=3;
-
     public UikaDefend() {
         super(ID, info);
-        this.setMagic(MAGIC,UPG_MAGIC);
-//        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
-//                imagePath("character/specialcardback/uika_attack_p.png"));
+        setMagic(Defend.BLOCK,Defend.UPG_BLOCK);
     }
 
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
-        addToBot(new GainBlockAction(uikaMonster,5));
+        addToBot(new GainBlockAction(uikaMonster,magicNumber));
         super.uikaUse(uikaMonster);
     }
 

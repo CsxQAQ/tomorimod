@@ -22,7 +22,7 @@ public class GravityDomain extends BaseCard {
     );
 
     public final static int MAGIC = 3;
-    public final static int UPG_MAGIC = 0;
+    public final static int UPG_MAGIC = 2;
 
     public GravityDomain() {
         super(ID, info);
@@ -37,14 +37,4 @@ public class GravityDomain extends BaseCard {
     public AbstractCard makeCopy() {
         return new GravityDomain();
     }
-
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
-    }
-
-
 }

@@ -29,9 +29,7 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
 
     public UikaLiveForever() {
         super(ID, info);
-        this.setMagic(MAGIC,UPG_MAGIC);
-//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-//                imagePath("character/specialcardback/uika_skill_p.png"));
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
@@ -47,7 +45,7 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new GravityPower(uikaMonster,UikaLiveForever.MAGIC),UikaLiveForever.MAGIC));
+                new GravityPower(uikaMonster,magicNumber),magicNumber));
         super.uikaUse(uikaMonster);
     }
 }

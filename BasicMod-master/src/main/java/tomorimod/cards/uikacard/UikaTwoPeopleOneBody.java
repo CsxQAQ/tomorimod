@@ -9,6 +9,7 @@ import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.util.CardStats;
+import tomorimod.util.MonsterUtils;
 
 public class UikaTwoPeopleOneBody extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaTwoPeopleOneBody.class.getSimpleName());
@@ -25,8 +26,7 @@ public class UikaTwoPeopleOneBody extends UikaCard implements WithoutMaterial {
 
     public UikaTwoPeopleOneBody() {
         super(ID, info);
-//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-//                imagePath("character/specialcardback/uika_skill_p.png"));
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
@@ -43,8 +43,8 @@ public class UikaTwoPeopleOneBody extends UikaCard implements WithoutMaterial {
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
-                int shineAmount=uikaMonster.hasPower(makeID("ShinePower"))?uikaMonster.getPower(makeID("ShinePower")).amount:0;
-                addToTop(new GainBlockAction(uikaMonster,shineAmount* UikaTwoPeopleOneBody.MAGIC));
+                int shineAmount= MonsterUtils.getPowerNum(uikaMonster,makeID("ShinePower"));
+                addToTop(new GainBlockAction(uikaMonster,shineAmount* magicNumber));
                 isDone=true;
             }
         });

@@ -30,8 +30,6 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         exhaust=true;
-//        setBackgroundTexture(imagePath("character/specialcardback/uika_skill.png"),
-//                imagePath("character/specialcardback/uika_skill_p.png"));
     }
 
     @Override
@@ -46,7 +44,7 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
-                new ShinePower(uikaMonster,UikaLastOne.MAGIC),UikaLastOne.MAGIC));
+                new ShinePower(uikaMonster,magicNumber),magicNumber));
         super.uikaUse(uikaMonster);
     }
 }

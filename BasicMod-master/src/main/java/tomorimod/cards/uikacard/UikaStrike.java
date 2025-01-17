@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.WithoutMaterial;
+import tomorimod.cards.basic.Strike;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.util.CardStats;
@@ -24,17 +25,9 @@ public class UikaStrike extends UikaCard implements WithoutMaterial {
             1
     );
 
-
-    public final static int MAGIC=6;
-    public final static int UPG_MAGIC=3;
-
     public UikaStrike() {
         super(ID, info);
-        this.setMagic(MAGIC,UPG_MAGIC);
-//        setBackgroundTexture(imagePath("character/specialcardback/uika_attack.png"),
-//                imagePath("character/specialcardback/uika_attack_p.png"));
-//        setPortraitTextures(imagePath("cards/uika/"+this.getClass().getSimpleName()+".png"),
-//                imagePath("cards/uika/"+this.getClass().getSimpleName()+"_p.png"));
+        this.setMagic(Strike.DAMAGE,Strike.UPG_DAMAGE);
     }
 
     @Override
