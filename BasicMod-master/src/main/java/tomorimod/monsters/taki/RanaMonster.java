@@ -2,8 +2,6 @@ package tomorimod.monsters.taki;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -12,17 +10,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.patches.MusicPatch;
-import tomorimod.vfx.ChangeSceneEffect;
 
 import static com.badlogic.gdx.Gdx.graphics;
 import static tomorimod.TomoriMod.imagePath;
@@ -96,7 +89,7 @@ public class RanaMonster extends BaseMonster {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
         // 根据 isTomori 判断赋值原版还是弱化版
-        if (isTomori) {
+        if (isHardMode) {
             this.hpMinVal = HP_MIN;
             this.hpMaxVal = HP_MAX;
             this.damageVal0 = DAMAGE_0;

@@ -64,7 +64,6 @@ import java.util.*;
 
 //TODO 考虑开局带什么牌
 //TODO 一辈子等牌额外描述按官方写法
-//TODO 影色舞重做
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
 //TODO 高松灯easymode，替换 instanceOfTomori

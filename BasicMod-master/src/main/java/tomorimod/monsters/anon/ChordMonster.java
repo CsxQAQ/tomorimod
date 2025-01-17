@@ -1,10 +1,6 @@
 package tomorimod.monsters.anon;
 
-import basemod.abstracts.CustomMonster;
-import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,10 +8,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.RitualPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import sun.security.mscapi.PRNG;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.util.MonsterUtils;
 
@@ -74,7 +66,7 @@ public class ChordMonster extends BaseMonster {
         this.dialogX = this.hb_x + -50.0F * Settings.scale;
         this.dialogY = this.hb_y + 50.0F * Settings.scale;
 
-        if (isTomori) {
+        if (isHardMode) {
             this.hpMinVal = HP_MIN;
             this.hpMaxVal = HP_MAX;
             this.hpIncreaseVal = HP_INCREASE;

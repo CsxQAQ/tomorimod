@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
-import com.sun.crypto.provider.HmacMD5KeyGenerator;
 import tomorimod.monsters.BaseMonster;
 
 import java.lang.reflect.Field;
@@ -35,7 +34,7 @@ public abstract class SpecialMonster extends BaseMonster {
     public void calculateDamage(int dmg) {
 
         int tmp;
-        if(isMultiTarget||isTomori){
+        if(isMultiTarget|| isHardMode){
             tmp=calculateDamageMulti(dmg); //指伤害不考虑不目标
         }else{
             tmp=calculateDamageSingle(dmg,this.target); //伤害考虑目标

@@ -15,18 +15,26 @@ import com.megacrit.cardcrawl.vfx.combat.DeckPoofEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorimod.character.Tomori;
+import tomorimod.configs.TomoriConfig;
 
 import java.util.Iterator;
 
 public abstract class BaseMonster extends CustomMonster {
 
-    public boolean isTomori=false;
+    public boolean isHardMode;
 
     public BaseMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
         if(AbstractDungeon.player!=null){
-            isTomori=(AbstractDungeon.player instanceof Tomori);
+            isHardMode =checkHardMode();
         }
+    }
+
+    public boolean checkHardMode(){
+        if(AbstractDungeon.player instanceof Tomori&&!TomoriConfig.config.getBool("easyMode-enabled")){
+            return true;
+        }
+        return false;
     }
 
     public abstract void takeTurn();

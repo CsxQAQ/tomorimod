@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.anon.*;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
 
@@ -98,7 +97,7 @@ public class AnonMonster extends BaseMonster {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
         // 1. 根据 isTomori 来初始化数值
-        if (isTomori) {
+        if (isHardMode) {
             this.hpMinVal = HP_MIN;
             this.hpMaxVal = HP_MAX;
 

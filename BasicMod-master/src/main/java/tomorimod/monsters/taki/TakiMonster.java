@@ -2,23 +2,19 @@ package tomorimod.monsters.taki;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.taki.RanaMonster;
 import tomorimod.patches.MusicPatch;
 import tomorimod.util.MonsterUtils;
 import tomorimod.vfx.ChangeSceneEffect;
@@ -96,7 +92,7 @@ public class TakiMonster extends BaseMonster {
         super(NAME, ID, HP_MAX, HB_X, HB_Y, HB_W, HB_H, imgPath, x, y);
 
         // 根据 isTomori 来决定用原版常量，还是弱化版常量
-        if (isTomori) {
+        if (isHardMode) {
             this.hpMinVal = HP_MIN;
             this.hpMaxVal = HP_MAX;
 
@@ -150,7 +146,7 @@ public class TakiMonster extends BaseMonster {
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        if(isTomori){
+        if(isHardMode){
             addToBot(new ApplyPowerAction(this, this, new TakiPressurePower(this)));
         }
         // 如果要给自己上个 Debuff 或别的 Power，也可在此添加
