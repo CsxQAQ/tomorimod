@@ -30,17 +30,17 @@ public abstract class SpecialMonster extends BaseMonster {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
     }
 
-    @SpireOverride
-    public void calculateDamage(int dmg) {
-
-        int tmp;
-        if(isMultiTarget|| isHardMode){
-            tmp=calculateDamageMulti(dmg); //指伤害不考虑不目标
-        }else{
-            tmp=calculateDamageSingle(dmg,this.target); //伤害考虑目标
-        }
-        setPrivateField(this, "intentDmg", tmp);
-    }
+//    @SpireOverride
+//    public void calculateDamage(int dmg) {
+//
+//        int tmp;
+//        if(isMultiTarget|| isHardMode){
+//            tmp=calculateDamageMulti(dmg); //指伤害不考虑不目标
+//        }else{
+//            tmp=calculateDamageSingle(dmg,this.target); //伤害考虑目标
+//        }
+//        setPrivateField(this, "intentDmg", tmp);
+//    }
 
     public int calculateDamageSingle(int dmg,AbstractCreature target){
         //AbstractCreature target;

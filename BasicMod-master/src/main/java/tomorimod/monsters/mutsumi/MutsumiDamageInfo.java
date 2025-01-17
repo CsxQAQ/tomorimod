@@ -86,7 +86,7 @@ public class MutsumiDamageInfo extends DamageInfo {
 
                 /////
 
-                if(MutsumiRealDamagePatch.isMutsumi()&&p.ID.equals("IntangiblePlayer")){
+                if(MutsumiMonster.isMutsumi()&&p.ID.equals("IntangiblePlayer")){
                     tmp=tmp;
                 }else{
                     tmp = p.atDamageFinalReceive(tmp, this.type);

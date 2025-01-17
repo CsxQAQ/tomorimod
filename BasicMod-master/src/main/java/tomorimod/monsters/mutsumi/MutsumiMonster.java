@@ -2,6 +2,7 @@ package tomorimod.monsters.mutsumi;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -13,11 +14,13 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.patches.MusicPatch;
+import tomorimod.util.MonsterUtils;
 import tomorimod.vfx.ChangeSceneEffect;
 
 import static tomorimod.TomoriMod.imagePath;
@@ -131,9 +134,9 @@ public class MutsumiMonster extends SpecialMonster {
         this.drawY=DRAW_Y*Settings.scale;
 
 
-        this.damage.add(new MusicDamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new MusicDamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
-        this.damage.add(new MusicDamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL));
+        this.damage.add(new MutsumiDamageInfo(this, damageVal2, DamageInfo.DamageType.NORMAL));
         this.target=soyoMonster;
 
 
@@ -221,6 +224,11 @@ public class MutsumiMonster extends SpecialMonster {
                 addToBot(new DamageAction(target,new MutsumiDamageInfo(this,newInfo.output)));
             }
         }
+    }
+
+    @SpireOverride
+    public void calculateDamage(int dmg) {
+        setPrivateField(this, "intentDmg", calculateDamageMulti(dmg));
     }
 
     @Override
@@ -316,7 +324,6 @@ public class MutsumiMonster extends SpecialMonster {
         }
     }
 
-
     public boolean isAttack(){
         if(intent.equals(Intent.ATTACK)||intent.equals(Intent.ATTACK_BUFF)
                 ||intent.equals(Intent.ATTACK_DEFEND)||intent.equals(Intent.ATTACK_DEBUFF)){
@@ -324,9 +331,6 @@ public class MutsumiMonster extends SpecialMonster {
         }
         return false;
     }
-
-
-
 
     @Override
     public void die() {
@@ -340,7 +344,15 @@ public class MutsumiMonster extends SpecialMonster {
             CardCrawlGame.screenShake.rumble(4.0F);
             onBossVictoryLogic();
         }
+    }
 
+    public static boolean isMutsumi(){
+        if(AbstractDungeon.getCurrRoom().phase== AbstractRoom.RoomPhase.COMBAT){
+            if(MonsterUtils.getPower(makeID("MutsumiMonster"),makeID("MutsumiRealDamagePower"))!=null){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

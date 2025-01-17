@@ -6,7 +6,6 @@ import basemod.abstracts.CustomPlayer;
 import basemod.animations.AbstractAnimation;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -39,20 +38,14 @@ import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorimod.cards.basic.Defend;
 import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
-import tomorimod.cards.notshow.forms.MascotForm;
-import tomorimod.cards.notshow.forms.SingerForm;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
-import tomorimod.monsters.mutsumi.MutsumiRealDamagePatch;
-import tomorimod.monsters.mutsumi.SoyoMonster;
 import tomorimod.monsters.sakishadow.SakiShadowRightPatch;
-import tomorimod.monsters.sakishadow.SakiShadowRightPower;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
 import tomorimod.relics.MicrophoneRelic;
 import tomorimod.relics.NotebookRelic;
 import tomorimod.relics.VocalMicrophoneRelic;
 import tomorimod.util.MonsterUtils;
-import tomorimod.vfx.IntangibleEffect;
 import tomorimod.vfx.StarDustEffect;
 
 import java.util.ArrayList;
@@ -399,7 +392,7 @@ public class Tomori extends CustomPlayer {
         /////
 
         if (damageAmount > 1 && hasPower("IntangiblePlayer")) {
-            if(!MutsumiRealDamagePatch.isMutsumi()){
+            if(!MutsumiMonster.isMutsumi()){
                 damageAmount = 1;
             }
         }
@@ -408,7 +401,7 @@ public class Tomori extends CustomPlayer {
 
         /////
 
-        if(!MutsumiRealDamagePatch.isMutsumi()){
+        if(!MutsumiMonster.isMutsumi()){
             damageAmount = decrementBlock(info, damageAmount);
         }
 

@@ -9,17 +9,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import tomorimod.cards.notshow.mutsumi.Cucumber;
+import tomorimod.util.MonsterUtils;
 
 import java.util.ArrayList;
 
 import static tomorimod.TomoriMod.makeID;
 
-public class MutsumiPatch {
+public class MutsumiGiveCucumberPatch {
     @SpirePatch(
             clz = EmptyDeckShuffleAction.class,
             method = "update"
     )
-    public static class MutsumiGiveCucumberPatch {
+    public static class GiveCucumberPatch {
         @SpireInsertPatch(
                 locator = Locator.class
         )
@@ -27,7 +28,7 @@ public class MutsumiPatch {
             for(AbstractMonster monster: AbstractDungeon.getCurrRoom().monsters.monsters){
                 if(!monster.isDeadOrEscaped()&&monster.hasPower(makeID("MutsumiGiveCucumberPower"))){
                     int num=AbstractDungeon.player.drawPile.group.size();
-                    if(num<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount){
+                    if(num<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount+getDrawCardActionCount()){
                         for(int i=0;i<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount-num+getDrawCardActionCount();i++){
                             AbstractDungeon.actionManager.addToBottom(new QuickMakeTempCardInDrawPileAction
                                     (new Cucumber(), 1, true, true));
