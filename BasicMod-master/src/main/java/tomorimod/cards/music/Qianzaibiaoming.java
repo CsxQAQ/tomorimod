@@ -40,21 +40,21 @@ public class Qianzaibiaoming extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 0;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 5;
+    public final static int MAGIC_COMMON = 4;
     public final static int UPG_MAGIC_COMMON = 3;
 
     public final static int DAMAGE_UNCOMMON = 0;
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 8;
+    public final static int MAGIC_UNCOMMON = 7;
     public final static int UPG_MAGIC_UNCOMMON = 4;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 8;
+    public final static int MAGIC_RARE = 7;
     public final static int UPG_MAGIC_RARE = 4;
 
     @Override
@@ -65,7 +65,7 @@ public class Qianzaibiaoming extends BaseMusicCard {
                     this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }else{
             calculateCardDamage(m);
-            addToBot(new DamageAction(m, new DamageInfo(p, damage, this.damageType),
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageType),
                     AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
     }

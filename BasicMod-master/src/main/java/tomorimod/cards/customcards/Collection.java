@@ -61,13 +61,12 @@ public class Collection extends BaseCard implements WithoutMaterial {
         cardGroup.add(new Yellow());
         cardGroup.add(new Red());
 
-        if (this.upgraded){
+        if (upgraded){
             for (AbstractCard card : cardGroup){
                 card.upgrade();
             }
         }
         for (AbstractCard card : cardGroup){
-            card.upgrade();
             card.exhaust=true;
         }
         addToBot(new ChooseOneAction(cardGroup));
