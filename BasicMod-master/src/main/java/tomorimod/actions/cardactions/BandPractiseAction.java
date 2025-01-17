@@ -48,16 +48,7 @@ public class BandPractiseAction extends AbstractGameAction {
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-                //addToTop(new MakeTempCardInHandAction(c.makeStatEquivalentCopy()));
                 BaseMusicCard card= (BaseMusicCard) c.makeStatEquivalentCopy();
-//                if(upgraded){
-//                    if(card.musicRarity.equals(BaseMusicCard.MusicRarity.COMMON)){
-//                        card.musicRarity= BaseMusicCard.MusicRarity.UNCOMMON;
-//                    }else{
-//                        card.musicRarity= BaseMusicCard.MusicRarity.RARE;
-//                    }
-//                }
-//                card.setDisplayRarity(card.rarity);
                 addToTop(new MakeTempCardInHandAction(card));
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
@@ -66,53 +57,7 @@ public class BandPractiseAction extends AbstractGameAction {
             c.isGlowing=true;
         }
         tickDuration();
-//        if (!hasOpenedSelectScreen) {
-//            AbstractPlayer p=AbstractDungeon.player;
-//            for(AbstractCard c:p.hand.group){
-//                if(!(c instanceof BaseMusicCard)){
-//                    cannotDuplicate.add(c);
-//                }
-//            }
-//
-//            if(cannotDuplicate.size()==p.hand.group.size()){
-//                isDone=true;
-//                return;
-//            }
-//
-//            p.hand.group.removeAll(this.cannotDuplicate);
-//
-//            AbstractDungeon.handCardSelectScreen.open("复制一张音乐牌",1,false,false,false,false);
-//            hasOpenedSelectScreen = true;
-//            return;
-//        }
-//
-//        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved){
-//            for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-//                addToTop(new MakeTempCardInHandAction(c.makeStatEquivalentCopy()));
-//                BaseMusicCard card= (BaseMusicCard) c.makeStatEquivalentCopy();
-//                if(upgraded){
-//                    if(card.musicRarity.equals(BaseMusicCard.MusicRarity.COMMON)){
-//                        card.musicRarity= BaseMusicCard.MusicRarity.UNCOMMON;
-//                    }else{
-//                        card.musicRarity= BaseMusicCard.MusicRarity.RARE;
-//                    }
-//                }
-//                card.setDisplayRarity(card.rarity);
-//                addToTop(new MakeTempCardInHandAction(card.makeStatEquivalentCopy()));
-//            }
-//
-//            returnCards();
-//
-//            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
-//            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
-//            this.isDone = true;
-//        }
+
     }
 
-//    private void returnCards() {
-//        for (AbstractCard c : this.cannotDuplicate) {
-//            AbstractDungeon.player.hand.addToTop(c);
-//        }
-//        AbstractDungeon.player.hand.refreshHandLayout();
-//    }
 }

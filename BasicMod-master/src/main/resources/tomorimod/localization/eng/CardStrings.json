@@ -183,7 +183,11 @@
     "DESCRIPTION": " tomorimod:形态 ：每当有卡牌被 消耗 时，获得 !M! 层 力量 。"
   },
 
-
+  "${modID}:DarkTomori": {
+    "NAME": "暗黑型高松灯",
+    "DESCRIPTION": "手牌中每有一种颜色的 tomorimod:素材 ，获得 !M! 层 仪式 。 消耗 。",
+    "UPGRADE_DESCRIPTION": " NL （获得 !${modID}:M2! 层 仪式 ）"
+  },
   "${modID}:AstronomyMinister": {
     "NAME": "天文部长",
     "DESCRIPTION": "回合开始时， 预见 !M! 。"

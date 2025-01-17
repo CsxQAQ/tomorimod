@@ -49,7 +49,6 @@ public class FailAndRestartAction
             c.selfRetain=true;
             c.isGlowing=true;
         }
-
         tickDuration();
     }
 }
