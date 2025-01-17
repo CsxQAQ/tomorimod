@@ -26,18 +26,20 @@ public class StarDust extends BaseCard implements PermanentFrom{
     );
 
 
-    public final int MAGIC=1;
-    public final int UPG_MAGIC=1;
+    public static final int MAGIC=1;
+    public static final int UPG_MAGIC=1;
+    public static final int SHINE_NUM=3;
 
     public StarDust() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
         tags.add(CardTags.HEALING);
+        setCustomVar("SN",SHINE_NUM);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ApplyPowerAction(p,p,new StarDustPower(p),0));
+        addToBot(new ApplyPowerAction(p,p,new StarDustPower(p)));
         BaseMonmentCard.removeFromMasterDeck(this);
         PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
     }

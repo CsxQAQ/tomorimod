@@ -135,7 +135,7 @@
   "${modID}:ImmunityPower": {
     "NAME": "星盾",
     "DESCRIPTIONS": [
-      "生命值和最大生命值不会低于 #b1 点。回合结束时消耗 #b5 点 #y闪耀 ，若 #y闪耀 不足 #b5 点则失去此效果。"
+      "生命值不会低于 #b1 点。回合结束时消耗 #b3 点 #y闪耀 ，若 #y闪耀 不足 #b3 点则失去此效果。"
     ]
   },
   "${modID}:StarDustPower": {

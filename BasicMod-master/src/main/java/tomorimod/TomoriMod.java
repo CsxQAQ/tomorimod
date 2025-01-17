@@ -63,10 +63,14 @@ import java.util.*;
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
 
 //TODO 考虑开局带什么牌
-//TODO 一辈子等牌额外描述按官方写法
+//TODO 一辈子/光芒与我同学按官方写法
 //TODO 轮符雨bug
 //TODO 最后5张卡牌
 //TODO 所有的描述像暗黑高松灯一样写
+
+//TODO 改回原来的一辈子
+//TODO 微小的星屑改成消耗3点，描述
+//TODO 小睦全部改成只计算自己伤害，warningui上写上
 
 
 @SpireInitializer
