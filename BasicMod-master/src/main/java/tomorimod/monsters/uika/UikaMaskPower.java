@@ -59,6 +59,8 @@ public class UikaMaskPower extends BasePower {
         description=DESCRIPTIONS[0]+amount+DESCRIPTIONS[1]+amount+DESCRIPTIONS[2];
         if(BaseMonster.checkHardMode()){
             description+=DESCRIPTIONS[3];
+        }else{
+            description+=DESCRIPTIONS[4];
         }
     }
 
