@@ -37,12 +37,22 @@ public class Motivate extends BaseCard {
         setDamage(DAMAGE,UPG_DAMAGE);
     }
 
+    public void updateDescriptionWithUPG(){
+        this.rawDescription=cardStrings.DESCRIPTION;
+        setCustomVar("AN",calculateAttackNum());
+        this.rawDescription+=cardStrings.UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+
     @Override
-    public void updateDescription(){
-        if(CardCrawlGame.mode!= CardCrawlGame.GameMode.CHAR_SELECT){
-            rawDescription= CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION+
-                    "（额外攻击："+ calculateAttackNum()+"）";
-        }
+    public void applyPowers(){
+        super.applyPowers();
+        updateDescriptionWithUPG();
+    }
+
+    @Override
+    public void onMoveToDiscard() {
+        this.rawDescription=cardStrings.DESCRIPTION;
         initializeDescription();
     }
 
@@ -69,12 +79,6 @@ public class Motivate extends BaseCard {
             addToBot(new DamageAction(m, new DamageInfo(p, this.damage, DamageInfo.DamageType.NORMAL),
                     AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         }
-    }
-
-    @Override
-    public void update(){
-        super.update();
-        updateDescription();
     }
 
     @Override

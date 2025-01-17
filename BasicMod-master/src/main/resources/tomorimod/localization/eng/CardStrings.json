@@ -55,7 +55,8 @@
   },
   "${modID}:Motivate": {
     "NAME": "激励",
-    "DESCRIPTION": "造成 !D! 点伤害。每连续打出一张 tomorimod:素材 颜色与该卡牌相同卡牌，额外攻击一次。"
+    "DESCRIPTION": "造成 !D! 点伤害。每连续打出一张 tomorimod:素材 颜色与该卡牌相同卡牌，额外攻击一次。",
+    "UPGRADE_DESCRIPTION": " NL （额外攻击 !${modID}:AN! 次）"
   },
   "${modID}:NeverHappy": {
     "NAME": "从没觉得开心过",
