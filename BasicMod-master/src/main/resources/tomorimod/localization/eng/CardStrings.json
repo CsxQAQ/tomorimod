@@ -153,6 +153,10 @@
     "NAME": "最后的温柔",
     "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互换。"
   },
+  "${modID}:Pant": {
+    "NAME": "企鹅",
+    "DESCRIPTION": "每当失去生命值时，恢复 !M! 点 生命值。"
+  },
   "${modID}:AstronomyMinisterForm": {
     "NAME": "天文部长",
     "DESCRIPTION": " tomorimod:形态 ：回合开始时， 预见 !M! 。"

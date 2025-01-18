@@ -56,7 +56,7 @@
   "${modID}:PantPower": {
     "NAME": "企鹅",
     "DESCRIPTIONS": [
-      "每当失去生命值时，获得 #b"
+      "每当失去生命值时，恢复 #b"
     ]
   },
   "${modID}:SingerPower": {
