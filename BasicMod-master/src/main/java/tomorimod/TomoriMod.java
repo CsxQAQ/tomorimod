@@ -64,9 +64,7 @@ import java.util.*;
 //TODO 最后5张卡牌
 
 //TODO 大少女chooseOne看看能不能取消
-//TODO 连招bug
-//TODO 素世伤害bug
-
+//TODO 睦的能力图，卡牌图
 
 @SpireInitializer
 public class TomoriMod implements

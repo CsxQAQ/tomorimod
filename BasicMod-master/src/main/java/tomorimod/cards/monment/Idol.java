@@ -7,8 +7,8 @@ import tomorimod.actions.ApplyShineAction;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
 
-public class GreatFace extends BaseMonmentCard {
-    public static final String ID = makeID(GreatFace.class.getSimpleName());
+public class Idol extends BaseMonmentCard {
+    public static final String ID = makeID(Idol.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
@@ -17,7 +17,7 @@ public class GreatFace extends BaseMonmentCard {
             1
     );
 
-    public GreatFace() {
+    public Idol() {
         super(ID, info);
         this.exhaust=true;
         setMagic(MAGIC,UPG_MAGIC);
@@ -36,7 +36,7 @@ public class GreatFace extends BaseMonmentCard {
 
     @Override
     public AbstractCard makeCopy() {
-        return new GreatFace();
+        return new Idol();
     }
 
 

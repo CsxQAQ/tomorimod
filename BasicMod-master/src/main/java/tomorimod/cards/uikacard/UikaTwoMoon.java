@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorimod.actions.cardactions.ReversalAction;
+import tomorimod.actions.cardactions.LastGentalAction;
 import tomorimod.cards.WithoutMaterial;
 import tomorimod.character.Tomori;
 import tomorimod.monsters.uika.UikaMonster;
@@ -42,7 +42,7 @@ public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ReversalAction(p));
+        addToBot(new LastGentalAction(p));
     }
 
     @Override

@@ -76,8 +76,8 @@
     "NAME": "圣爱音的行动力",
     "DESCRIPTION": "获得 !M! 点 [E] ，抽牌直到手牌上限。 tomorimod:瞬间 ， 消耗 。"
   },
-  "${modID}:GreatFace": {
-    "NAME": "伟大的一张脸",
+  "${modID}:Idol": {
+    "NAME": "当红偶像",
     "DESCRIPTION": "获得 !M! 层 tomorimod:闪耀 。 tomorimod:瞬间 ， 消耗 。"
   },
   "${modID}:FateCommunity": {
