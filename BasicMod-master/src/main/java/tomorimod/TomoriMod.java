@@ -65,10 +65,8 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
 
 //TODO 平衡性调整
 
-//TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
 //TODO 最后2张卡牌
 
-//TODO 大少女chooseOne看看能不能取消 看尼利宝典代码
 //TODO 回收看看能不能makesameinstance看深呼吸
 
 
