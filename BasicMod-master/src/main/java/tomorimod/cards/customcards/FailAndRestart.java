@@ -13,13 +13,14 @@ public class FailAndRestart extends BaseCard {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.SKILL,
-            CardRarity.RARE,
+            CardRarity.UNCOMMON,
             CardTarget.SELF,
             1
     );
 
     public FailAndRestart() {
         super(ID, info);
+        exhaust=true;
     }
 
     @Override

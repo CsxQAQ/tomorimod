@@ -335,7 +335,7 @@
   },
   "${modID}:FailAndRestart": {
     "NAME": "失败也要重新开始",
-    "DESCRIPTION": "选择X张手牌 消耗 ， 使剩余的手牌获得 保留 。"
+    "DESCRIPTION": "选择X张手牌 消耗 ， 使剩余的手牌获得 保留 。 消耗 。"
   },
   "${modID}:Compete": {
     "NAME": "对邦",
