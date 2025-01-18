@@ -18,11 +18,11 @@ public class GravityDomain extends BaseCard {
             CardType.POWER,
             CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public final static int MAGIC = 3;
-    public final static int UPG_MAGIC = 2;
+    public final static int UPG_MAGIC = 0;
 
     public GravityDomain() {
         super(ID, info);
@@ -36,5 +36,13 @@ public class GravityDomain extends BaseCard {
     @Override
     public AbstractCard makeCopy() {
         return new GravityDomain();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
     }
 }

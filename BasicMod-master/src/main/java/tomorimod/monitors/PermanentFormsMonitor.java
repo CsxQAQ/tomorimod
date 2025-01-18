@@ -23,7 +23,7 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
         AbstractPlayer p=AbstractDungeon.player;
         for(String permantForms: PermanentFormsSaveData.getInstance().permanentForms){
             switch (permantForms){
-                case "WholeLife":
+                case "SmallMonment":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WholeLifePower(p)));
                     break;
                 case "StarDust":

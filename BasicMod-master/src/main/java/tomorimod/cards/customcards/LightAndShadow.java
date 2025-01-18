@@ -13,6 +13,7 @@ import tomorimod.character.Tomori;
 import tomorimod.powers.GravityPower;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
+import tomorimod.util.PlayerUtils;
 
 public class LightAndShadow extends BaseCard {
     public static final String ID = makeID(LightAndShadow.class.getSimpleName());
@@ -47,22 +48,15 @@ public class LightAndShadow extends BaseCard {
     @Override
     public void applyPowers() {
         super.applyPowers();
-        AbstractPower shine = AbstractDungeon.player.getPower(ShinePower.POWER_ID);
-        AbstractPower gravity = AbstractDungeon.player.getPower(GravityPower.POWER_ID);
 
-        int shineAmount = (shine != null) ? shine.amount : 0;
-        int gravityAmount = (gravity != null) ? gravity.amount : 0;
+        int shineAmount = PlayerUtils.getPowerNum(makeID("ShinePower"));
+        int gravityAmount = PlayerUtils.getPowerNum(makeID("GravityPower"));
 
-        if(curAttribute==0){
-            if(shineAmount>gravityAmount){
-                curAttribute=1;
-            }
+        if(gravityAmount>=shineAmount){
+            curAttribute=0;
         }else{
-            if(gravityAmount>shineAmount){
-                curAttribute=0;
-            }
+            curAttribute=1;
         }
-
         this.updateDescription();
     }
 

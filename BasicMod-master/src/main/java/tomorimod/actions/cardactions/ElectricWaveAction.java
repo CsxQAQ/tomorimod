@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import tomorimod.cards.basic.MusicComposition;
+import tomorimod.cards.customcards.ElectricWave;
 import tomorimod.cards.permanentforms.PermanentFrom;
 
 public class ElectricWaveAction
@@ -33,7 +34,7 @@ public class ElectricWaveAction
         if (this.duration == Settings.ACTION_DUR_MED) {
             CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             for (AbstractCard c : this.p.masterDeck.group) {
-                if(!(c instanceof MusicComposition)&&!(c instanceof PermanentFrom)){
+                if(!(c instanceof MusicComposition)&&!(c instanceof PermanentFrom)&&!(c instanceof ElectricWave)){
                     tmp.addToRandomSpot(c);
                 }
             }

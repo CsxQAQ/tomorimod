@@ -24,22 +24,27 @@ public class MusicReward extends CustomReward {
 
     @Override
     public boolean claimReward() {
-        AbstractCard card = CardLibrary.getCard(cardId).makeCopy();
-        //下面的过程不涉及makeStatEquivalentCopy，不涉及new，有点反直觉
-        if (card != null) {
-            if(card instanceof BaseMusicCard){
-                BaseMusicCard baseMusicCard=(BaseMusicCard)card;
-                BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(baseMusicCard.cardID);
-                if(musicRarity!=null){
-                    baseMusicCard.setMusicRarity(musicRarity);
-                    //baseMusicCard.setBanner();
-                    //baseMusicCard.setDisplayRarity(baseMusicCard.rarity);
-
-                    AbstractDungeon.cardRewardScreen.open(new ArrayList<>(Collections.singletonList(baseMusicCard)), this, "选择一张卡牌");
-                    AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
-                }
-            }
-        }
+        AbstractCard card=CardLibrary.getCard(cardId).makeStatEquivalentCopy();
+        AbstractDungeon.cardRewardScreen.open(new ArrayList<>(Collections.singletonList(card)), this, "选择一张卡牌");
+        AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
         return false;
+
+//        AbstractCard card = CardLibrary.getCard(cardId).makeCopy();
+//        //下面的过程不涉及makeStatEquivalentCopy，不涉及new，有点反直觉
+//        if (card != null) {
+//            if(card instanceof BaseMusicCard){
+//                BaseMusicCard baseMusicCard=(BaseMusicCard)card;
+//                BaseMusicCard.MusicRarity musicRarity= BaseMusicCard.getMusicRarityByCost(baseMusicCard.cardID);
+//                if(musicRarity!=null){
+//                    baseMusicCard.setMusicRarity(musicRarity);
+//                    //baseMusicCard.setBanner();
+//                    //baseMusicCard.setDisplayRarity(baseMusicCard.rarity);
+//
+//                    AbstractDungeon.cardRewardScreen.open(new ArrayList<>(Collections.singletonList(baseMusicCard)), this, "选择一张卡牌");
+//                    AbstractDungeon.previousScreen = AbstractDungeon.CurrentScreen.COMBAT_REWARD;
+//                }
+//            }
+//        }
+//        return false;
     }
 }
