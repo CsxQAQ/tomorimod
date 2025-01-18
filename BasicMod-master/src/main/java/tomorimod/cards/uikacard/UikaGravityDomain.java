@@ -18,7 +18,7 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
     public static final String ID = makeID(UikaGravityDomain.class.getSimpleName());
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
-            CardType.SKILL,
+            CardType.POWER,
             CardRarity.COMMON,
             CardTarget.SELF,
             2
