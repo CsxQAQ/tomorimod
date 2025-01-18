@@ -19,11 +19,11 @@ public class MakeStatEquivalentCopyPatch {
         public static SpireReturn<AbstractCard> prefix(AbstractCard __instance){
             AbstractCard card = __instance.makeCopy();
             //if(!(card instanceof BaseMusicCard)){
-                for(int i = 0; i < __instance.timesUpgraded; ++i) {
-                    card.upgrade();
-                }
-                card.name = __instance.name;
-                card.upgraded = __instance.upgraded;
+            for(int i = 0; i < __instance.timesUpgraded; ++i) {
+                card.upgrade();
+            }
+            card.name = __instance.name;
+            card.upgraded = __instance.upgraded;
             //}
 
             card.target = __instance.target;
@@ -44,6 +44,8 @@ public class MakeStatEquivalentCopyPatch {
             card.freeToPlayOnce = __instance.freeToPlayOnce;
 
 
+            ////
+
             card.exhaust=__instance.exhaust;
             card.isInnate=__instance.isInnate;
             TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.set(card,
@@ -52,6 +54,8 @@ public class MakeStatEquivalentCopyPatch {
             if(__instance.tags.contains(CustomTags.SHORTTERMGOAL)){
                 card.tags.add(CustomTags.SHORTTERMGOAL);
             }
+
+            ////
 
             return SpireReturn.Return(card);
         }

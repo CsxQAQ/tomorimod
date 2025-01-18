@@ -351,21 +351,20 @@
       " tomorimod:音乐 。对目标施加 !M! 层 易伤 和 虚弱 ，然后对目标造成等同于负面效果层数之和的伤害。"
     ]
   },
-  "${modID}:Lunfuyu": {
-    "NAME": "輪符雨",
+  "${modID}:Miluri": {
+    "NAME": "迷路日",
     "DESCRIPTION": " tomorimod:音乐 。本回合你每有一点变化，对所有敌人造成 !M! 点伤害。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。本场战斗你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。"
     ],
     "UPGRADE_DESCRIPTION": " NL （造成 !D! 点伤害）"
   },
-  "${modID}:Miluri": {
-    "NAME": "迷路日",
-    "DESCRIPTION": " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效果2次。",
+  "${modID}:Lunfuyu": {
+    "NAME": "輪符雨",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。使用后本场战斗伤害永久提升 !M! 点。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。对随机一个敌人造成 !D! 点伤害，每有一层 tomorimod:闪耀 再重复此效5次。"
-    ],
-    "UPGRADE_DESCRIPTION": " NL （攻击 !${modID}:SN! 次）"
+      " tomorimod:音乐 。造成 !D! 点伤害X次。使用后本场战斗伤害永久提升 !M! 点。"
+    ]
   },
   "${modID}:Mingwusheng": {
     "NAME": "名無声",

@@ -33,10 +33,10 @@ public class Death extends BaseCard implements SpecialCard, WithoutMaterial, Sak
 
     }
 
-    @Override
-    public boolean canUse(AbstractPlayer p,AbstractMonster m){
-        return false;
-    }
+//    @Override
+//    public boolean canUse(AbstractPlayer p,AbstractMonster m){
+//        return false;
+//    }
 
     @Override
     public void triggerOnEndOfPlayerTurn() {

@@ -25,10 +25,10 @@ public class Fear extends BaseCard implements SpecialCard, WithoutMaterial, Saki
 
     }
 
-    @Override
-    public boolean canUse(AbstractPlayer p,AbstractMonster m){
-        return false;
-    }
+//    @Override
+//    public boolean canUse(AbstractPlayer p,AbstractMonster m){
+//        return false;
+//    }
 
 
 

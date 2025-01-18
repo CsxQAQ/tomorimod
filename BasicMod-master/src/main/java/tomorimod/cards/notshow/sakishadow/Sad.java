@@ -32,10 +32,10 @@ public class Sad extends BaseCard implements SpecialCard, WithoutMaterial, SakiS
 
 
 
-    @Override
-    public boolean canUse(AbstractPlayer p,AbstractMonster m){
-        return false;
-    }
+//    @Override
+//    public boolean canUse(AbstractPlayer p,AbstractMonster m){
+//        return false;
+//    }
 
 
     @Override

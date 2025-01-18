@@ -64,8 +64,9 @@ import java.util.*;
 //TODO 最后5张卡牌
 
 //TODO 大少女chooseOne看看能不能取消
-//TODO 睦的能力图，卡牌图
-
+//TODO 睦的能力图
+//TODO 企鹅power图
+//TODO 卡牌图
 @SpireInitializer
 public class TomoriMod implements
         AddAudioSubscriber,

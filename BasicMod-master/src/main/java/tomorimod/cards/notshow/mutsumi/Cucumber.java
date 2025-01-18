@@ -61,7 +61,6 @@ public class Cucumber extends BaseCard implements SpecialCard, WithoutMaterial {
 
     }
 
-
     @Override
     public boolean canUse(AbstractPlayer p,AbstractMonster m){
         return false;
