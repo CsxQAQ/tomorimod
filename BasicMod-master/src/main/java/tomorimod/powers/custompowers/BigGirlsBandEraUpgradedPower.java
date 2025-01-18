@@ -2,6 +2,7 @@ package tomorimod.powers.custompowers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import tomorimod.actions.cardactions.BigGirlsBandEraAction;
+import tomorimod.actions.cardactions.NewBigGirlsBandEraAction;
 import tomorimod.powers.BasePower;
 
 import static tomorimod.TomoriMod.makeID;
@@ -15,7 +16,6 @@ public class BigGirlsBandEraUpgradedPower extends BasePower {
     //private int amount;
     public BigGirlsBandEraUpgradedPower(AbstractCreature owner,int amount) {
         super(POWER_ID, TYPE, TURN_BASED, owner, amount);
-       // this.amount=amount;
     }
 
 
@@ -23,7 +23,8 @@ public class BigGirlsBandEraUpgradedPower extends BasePower {
     public void atStartOfTurn() {
         flash();
         for(int i=0;i<amount;i++){
-            addToBot(new BigGirlsBandEraAction(true));
+            addToBot(new NewBigGirlsBandEraAction(true));
+            //addToBot(new BigGirlsBandEraAction(true));
         }
     }
 }

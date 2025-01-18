@@ -7,6 +7,9 @@ import basemod.eventUtil.AddEventParams;
 import basemod.interfaces.*;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
+import com.megacrit.cardcrawl.relics.ChemicalX;
+import com.megacrit.cardcrawl.relics.DeadBranch;
+import com.megacrit.cardcrawl.relics.Toolbox;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.clapper.util.classutil.ClassFilter;
@@ -57,16 +60,17 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
+
 
 //TODO 平衡性调整
 
 //TODO 解决已经获得过的永久形态牌又出现的问题，看星盘，盒子代码
-//TODO 最后5张卡牌
+//TODO 最后2张卡牌
 
-//TODO 大少女chooseOne看看能不能取消
-//TODO 睦的能力图
-//TODO 企鹅power图
-//TODO 卡牌图
+//TODO 大少女chooseOne看看能不能取消 看尼利宝典代码
+//TODO 回收看看能不能makesameinstance看深呼吸
+
 
 
 @SpireInitializer
@@ -398,6 +402,8 @@ public class TomoriMod implements
                 })
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
+
+        BaseMod.removeCard("Magnetism",COLORLESS);
     }
 
     @Override
@@ -416,7 +422,9 @@ public class TomoriMod implements
                         UnlockTracker.markRelicAsSeen(relic.relicId);
                 });
 
-        //BaseMod.removeRelic();
+        BaseMod.removeRelic(new ChemicalX());
+        BaseMod.removeRelic(new Toolbox());
+        BaseMod.removeRelic(new DeadBranch());
     }
 
     @Override
