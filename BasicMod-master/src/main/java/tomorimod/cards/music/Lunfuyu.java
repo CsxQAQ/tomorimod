@@ -27,6 +27,7 @@ public class Lunfuyu extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
+        exhaust=true;
     }
 
     public final static int DAMAGE_COMMON = 0;
@@ -81,7 +82,7 @@ public class Lunfuyu extends BaseMusicCard {
 
         Lunfuyu lunfuyu=(Lunfuyu)card;
         if(this.musicRarity==MusicRarity.DEFAULT){
-            initializeMisc();
+            lunfuyu.initializeMisc();
         }else{
             lunfuyu.misc=this.misc;
             lunfuyu.miscUpgrade=this.miscUpgrade;
@@ -100,12 +101,23 @@ public class Lunfuyu extends BaseMusicCard {
 
     @Override
     public void upgrade(){
-        super.upgrade();
         if(AbstractDungeon.player!=null&&AbstractDungeon.player.hasPower(makeID("TomoriApotheosisPower"))) {
-            upgradeMisc();
+            this.upgradeDamage(damageUpgrade);
+            this.upgradeBlock(blockUpgrade);
+            this.upgradeMagicNumber(magicUpgrade);
+            this.upgradeMisc();
+            ++this.timesUpgraded;
+            this.upgraded = true;
+            this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+            this.initializeTitle();
         }else{
             if (!this.upgraded) {
-                upgradeMisc();
+                this.upgradeDamage(damageUpgrade);
+                this.upgradeBlock(blockUpgrade);
+                this.upgradeMagicNumber(magicUpgrade);
+                this.upgradeMisc();
+                upgradeName();
+                //upgraded=true;
             }
         }
         baseDamage=misc;

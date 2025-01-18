@@ -361,9 +361,9 @@
   },
   "${modID}:Lunfuyu": {
     "NAME": "輪符雨",
-    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。使用后本场战斗伤害永久提升 !M! 点。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。使用后本场战斗伤害永久提升 !M! 点。 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害X次。使用后本场战斗伤害永久提升 !M! 点。"
+      " tomorimod:音乐 。造成 !D! 点伤害X次。使用后本场战斗伤害永久提升 !M! 点。 消耗 。"
     ]
   },
   "${modID}:Mingwusheng": {

@@ -41,21 +41,21 @@ public class Qianzaibiaoming extends BaseMusicCard {
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
     public final static int MAGIC_COMMON = 4;
-    public final static int UPG_MAGIC_COMMON = 3;
+    public final static int UPG_MAGIC_COMMON = 2;
 
     public final static int DAMAGE_UNCOMMON = 0;
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 7;
-    public final static int UPG_MAGIC_UNCOMMON = 4;
+    public final static int MAGIC_UNCOMMON = 6;
+    public final static int UPG_MAGIC_UNCOMMON = 3;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 7;
-    public final static int UPG_MAGIC_RARE = 4;
+    public final static int MAGIC_RARE = 6;
+    public final static int UPG_MAGIC_RARE = 3;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
