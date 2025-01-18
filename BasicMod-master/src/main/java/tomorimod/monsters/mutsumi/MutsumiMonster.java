@@ -57,7 +57,7 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int HP_MAX       = 3000;
     public static final int DAMAGE_0     = 20;
     public static final int DAMAGE_1     = 12;
-    public static final int DAMAGE_2     = 5;
+    public static final int DAMAGE_2     = 10;
     public static final int DAMAGETIME_0 = 1;
     public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 3;

@@ -2,11 +2,13 @@
   "${modID}:Tomori": {
     "NAMES": [
       "Tomori",
-      "tomori"
+      "tomori",
+      "Tomori"
     ],
     "TEXT": [
       "石头，西瓜虫，创可贴。",
-      "终点"
+      "终点",
+      ""
     ]
   }
 }

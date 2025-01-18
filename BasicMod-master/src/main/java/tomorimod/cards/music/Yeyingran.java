@@ -23,7 +23,7 @@ public class Yeyingran extends BaseMusicCard {
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,
-            0
+            1
     );
 
     public Yeyingran() {
