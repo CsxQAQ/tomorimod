@@ -147,7 +147,7 @@
   },
   "${modID}:ShineHugMe": {
     "NAME": "光芒拥我入怀",
-    "DESCRIPTION": "每有1点 tomorimod:闪耀 ，获得1点 [E] 。"
+    "DESCRIPTION": "每有一点 tomorimod:闪耀 ，获得一点 [E] 。"
   },
   "${modID}:LastGentle": {
     "NAME": "最后的温柔",
@@ -156,6 +156,10 @@
   "${modID}:Pant": {
     "NAME": "企鹅",
     "DESCRIPTION": "每当失去生命值时，恢复 !M! 点 生命值。"
+  },
+  "${modID}:Mascot": {
+    "NAME": "吉祥物",
+    "DESCRIPTION": "回合开始时，如果拥有 tomorimod:重力 ，抽 !M! 张牌。如果拥有 tomorimod:闪耀 ，获得 !M! 点 [E] 。"
   },
   "${modID}:AstronomyMinisterForm": {
     "NAME": "天文部长",

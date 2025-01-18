@@ -50,7 +50,8 @@
   "${modID}:MascotPower": {
     "NAME": "吉祥物",
     "DESCRIPTIONS": [
-      "下个回合开始时，获得 #b"
+      "回合开始时，如果拥有 #y闪耀 ，获得 #b",
+      "如果拥有 #y重力 ，抽 #b"
     ]
   },
   "${modID}:PantPower": {
