@@ -32,6 +32,16 @@ public abstract class BasePower extends AbstractPower {
         this.description = DESCRIPTIONS[0];
     }
 
+    public void lessThan999(){
+        if (this.amount >= 999) {
+            this.amount = 999;
+        }
+
+        if (this.amount <= -999) {
+            this.amount = -999;
+        }
+    }
+
     public BasePower(String id, PowerType powerType, boolean isTurnBased, AbstractCreature owner, int amount) {
         this(id, powerType, isTurnBased, owner, null, amount);
     }
@@ -89,9 +99,26 @@ public abstract class BasePower extends AbstractPower {
 //                region48 = new TextureAtlas.AtlasRegion(normalTexture, 0, 0, normalTexture.getWidth(), normalTexture.getHeight());
 //            }
         }
+        if (this.amount >= 999) {
+            this.amount = 999;
+        }
 
+        if (this.amount <= -999) {
+            this.amount = -999;
+        }
         if (initDescription)
             this.updateDescription();
+    }
+
+    @Override
+    public void stackPower(int stackAmount) {
+        this.fontScale = 8.0f;
+        this.amount += stackAmount;
+        if (this.amount > 999) {
+            this.amount = 999;
+        } else if (this.amount < -999) {
+            this.amount = -999;
+        }
     }
 
     public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
