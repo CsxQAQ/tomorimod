@@ -6,11 +6,13 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CtBehavior;
 import tomorimod.character.Tomori;
 import tomorimod.configs.TomoriConfig;
+import tomorimod.util.PlayerUtils;
 
 import java.util.*;
 
@@ -33,7 +35,7 @@ public class BossGeneratePatch {
     public static class removeOtherBoss {
         @SpirePostfixPatch
         public static void postfix() {
-            if (AbstractDungeon.player instanceof Tomori||TomoriConfig.config.getBool("onlyModBoss-enabled")) {
+            if (PlayerUtils.isTomori()) {
                 List<String> customBosses = BossGeneratePatch.getBossKeys(AbstractDungeon.id);
                 if (customBosses != null && !customBosses.isEmpty()) {
                     if(!AbstractDungeon.id.equals("TheBeyond")){
@@ -41,26 +43,38 @@ public class BossGeneratePatch {
                             AbstractDungeon.bossList.add(0,boss);
                         }
                     }else{ //boss数剩余2才会触发双boss
-                        AbstractDungeon.bossList.remove(0);
-                        AbstractDungeon.bossList.remove(0);
+                        while(AbstractDungeon.bossList.size()>1){
+                            AbstractDungeon.bossList.remove(0);
+                        }
                         Collections.shuffle(customBosses, new Random(AbstractDungeon.monsterRng.randomLong()));
                         for(String boss:customBosses){
                             AbstractDungeon.bossList.add(0,boss);
                         }
                     }
-
-
+                }
+            }else{
+                switch (AbstractDungeon.id){
+                    case "Exordium":
+                        AbstractDungeon.bossList=new ArrayList<>(exordiumBossList);
+                        break;
+                    case "TheCity":
+                        AbstractDungeon.bossList=new ArrayList<>(theCityBossList);
+                        break;
+                    case "TheBeyond":
+                        AbstractDungeon.bossList=new ArrayList<>(theBeyondBossList);
+                        break;
+                    case "TheEnding":
+                        AbstractDungeon.bossList=new ArrayList<>(theEndingBossList);
+                        break;
                 }
             }
         }
+
+        private static ArrayList<String> exordiumBossList=new ArrayList<>(Arrays.asList("Slime Boss","The Guardian","Hexaghost"));
+        private static ArrayList<String> theCityBossList=new ArrayList<>(Arrays.asList("Automaton","Champ","Collector"));
+        private static ArrayList<String> theBeyondBossList=new ArrayList<>(Arrays.asList("Donu and Deca","Awakened One","Timer Eater"));
+        private static ArrayList<String> theEndingBossList=new ArrayList<>(Arrays.asList("The Heart","The Heart","The Heart"));
     }
 
-//    @SpirePatch(clz= MonsterRoomBoss.class,method = "onPlayerEntry")
-//    public static class fixBugPatch{
-//        @SpirePostfixPatch
-//        public static void postfix(MonsterRoomBoss __instance){
-//            AbstractDungeon.bossList.add(CardCrawlGame.dungeon.getBoss().monsters.get(0).id);
-//        }
-//    }
 
 }

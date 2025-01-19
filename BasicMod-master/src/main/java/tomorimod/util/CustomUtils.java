@@ -43,8 +43,6 @@ public class CustomUtils {
         initializeMonmentCards();
     }
 
-
-
     /**
      * 初始化所有卡牌
      */

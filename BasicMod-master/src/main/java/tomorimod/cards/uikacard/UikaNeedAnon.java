@@ -35,8 +35,6 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
 
     }
 
-
-
     @Override
     public AbstractCard makeCopy() {
         return new UikaNeedAnon();

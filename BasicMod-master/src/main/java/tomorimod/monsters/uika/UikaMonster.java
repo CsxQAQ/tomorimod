@@ -79,7 +79,7 @@ public class UikaMonster extends BaseMonster {
     // 怪物血量
     public static final int HP_MIN = 300;
     public static final int HP_MAX = 300;
-    public static final int MASK_NUM = 10;
+    public static final int MASK_NUM = 30;
 
     public static final int HP_MIN_WEAK = 300;
     public static final int HP_MAX_WEAK = 300;

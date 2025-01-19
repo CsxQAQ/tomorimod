@@ -3,12 +3,18 @@ package tomorimod.util;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import tomorimod.character.Tomori;
+import tomorimod.configs.TomoriConfig;
 import tomorimod.powers.forms.BaseFormPower;
 import tomorimod.powers.forms.FormEffect;
 
 import static tomorimod.TomoriMod.makeID;
 
 public class PlayerUtils {
+
+    public static boolean isTomori(){
+        return AbstractDungeon.player instanceof Tomori || TomoriConfig.config.getBool("onlyModBoss-enabled");
+    }
 
     public static int getPowerNum(String powerId){
         if(AbstractDungeon.player.hasPower(powerId)){

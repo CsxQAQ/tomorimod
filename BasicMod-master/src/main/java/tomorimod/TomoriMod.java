@@ -212,7 +212,6 @@ public class TomoriMod implements
         .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + AnonMonster.class
         .getSimpleName() + "_map.png");
 
-
         BaseMod.addMonster(TakiMonster.ID, () -> new TakiMonster(0.0F, 0.0F));
         BossGeneratePatch.addBoss("TheCity", TakiMonster.ID, imagePath("monsters/mapicons/") + TakiMonster.class
                 .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + TakiMonster.class

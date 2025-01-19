@@ -45,11 +45,13 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
             CraftingRecipes.getInstance().generate();
             allocateCardMaterial();
 
+            if(!CraftingRecipes.getInstance().recipeArrayList.isEmpty()){
+                HistoryCraftRecords.getInstance().historyCraftRecords.add(
+                        CraftingRecipes.getInstance().recipeArrayList.get(CraftingRecipes.getInstance().recipeArrayList.size()-1));
+                HistoryCraftRecords.getInstance().historyCraftRecords.add(
+                        CraftingRecipes.getInstance().recipeArrayList.get(CraftingRecipes.getInstance().recipeArrayList.size()-2));
+            }
             //测试，笔记本自带两条记录
-            HistoryCraftRecords.getInstance().historyCraftRecords.add(
-                    CraftingRecipes.getInstance().recipeArrayList.get(CraftingRecipes.getInstance().recipeArrayList.size()-1));
-            HistoryCraftRecords.getInstance().historyCraftRecords.add(
-                    CraftingRecipes.getInstance().recipeArrayList.get(CraftingRecipes.getInstance().recipeArrayList.size()-2));
 
             AbstractDungeon.shopRelicPool.remove("PrismaticShard");
         }

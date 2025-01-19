@@ -11,6 +11,7 @@ import tomorimod.configs.TomoriConfig;
 import tomorimod.savedata.Clearable;
 import tomorimod.savedata.SaveDataInstanceFactory;
 import tomorimod.util.CustomUtils;
+import tomorimod.util.PlayerUtils;
 
 import java.util.*;
 
@@ -207,7 +208,7 @@ public class CraftingRecipes implements Clearable {
     }
 
     public void generate(){
-        if(AbstractDungeon.player instanceof Tomori || TomoriConfig.config.getBool("onlyModBoss-enabled")){
+        if(PlayerUtils.isTomori()){
             initializeSongNames();
             initializeMusicsCostHashMap();
             initializeCardsMaterials();
