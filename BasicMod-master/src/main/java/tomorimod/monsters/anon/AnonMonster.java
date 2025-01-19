@@ -48,10 +48,10 @@ public class AnonMonster extends BaseMonster {
     public static final float DRAW_X=1400.0F;
     public static final float DRAW_Y=450.0F;
 
-    public static final int HP_MIN       = 330;
-    public static final int HP_MAX       = 330;
-    public static final int DAMAGE_0     = 6;
-    public static final int DAMAGE_1     = 12;
+    public static final int HP_MIN       = 360;
+    public static final int HP_MAX       = 360;
+    public static final int DAMAGE_0     = 10;
+    public static final int DAMAGE_1     = 20;
     public static final int DAMAGE_2     = 16;
     public static final int DAMAGE_3     = 15;
     public static final int DAMAGE_4     = 18;

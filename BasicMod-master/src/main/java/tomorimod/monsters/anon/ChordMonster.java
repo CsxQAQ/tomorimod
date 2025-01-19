@@ -43,7 +43,7 @@ public class ChordMonster extends BaseMonster {
     // 怪物血量
     public static final int HP_MIN = 5;
     public static final int HP_MAX = 5;
-    public static final int HP_INCREASE = 5;
+    public static final int HP_INCREASE = 10;
     public static final int DAMAGE_0 = 3;
     public static final int DAMAGE_1 = 6;
 

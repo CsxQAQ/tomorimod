@@ -29,6 +29,12 @@ import static tomorimod.TomoriMod.makeID;
 
 public class NotebookScreen extends CustomScreen
 {
+    // --------------------------------------------------------------------------------
+    // 一些要点说明：
+    // 1. 这里统一用 Settings.scale 来给素材贴图做等比缩放，避免 xScale != yScale 的时候图像被拉伸。
+    // 2. 布局位置方面，则可根据需要乘 xScale 或 yScale，或者直接用 Settings.scale，核心是别让素材宽高被拆开来用。
+    // 3. 如果想在非常宽屏或非常高屏幕上保持更好的布局，可以考虑先计算贴图原始宽高，然后按比例决定 Notebook 大小。
+    // --------------------------------------------------------------------------------
 
     private static final Map<CraftingRecipes.Material, Map<Integer, Texture>> TEXTURE_MAP = new HashMap<>();
 
@@ -45,6 +51,7 @@ public class NotebookScreen extends CustomScreen
                     levelToPath.put(3, "materials/notebook/" + material.name().toLowerCase() + "_rare.png");
                     break;
                 case AQUARIUMPASS:
+                    // 只有2和3档
                     levelToPath.put(2, "materials/notebook/" + material.name().toLowerCase() + "_uncommon.png");
                     levelToPath.put(3, "materials/notebook/" + material.name().toLowerCase() + "_rare.png");
                     break;
@@ -63,8 +70,6 @@ public class NotebookScreen extends CustomScreen
     public AbstractCard clickStartedCard;
     public static ArrayList<AbstractCard> currentPageCards = new ArrayList<>();
 
-    //private AbstractRelic relic;
-
     private Texture getMaterialTexture(CraftingRecipes.Material material, int level) {
         Map<Integer, Texture> levelMap = TEXTURE_MAP.get(material);
         if (levelMap != null) {
@@ -74,14 +79,12 @@ public class NotebookScreen extends CustomScreen
     }
 
     public NotebookScreen() {
-
     }
 
     public static void clearNotebookScreenCache(){
         cardCache.clear();
         currentPageCards.clear();
     }
-
 
     public static class Enum
     {
@@ -95,12 +98,11 @@ public class NotebookScreen extends CustomScreen
         return Enum.NOTEBOOK_SCREEN;
     }
 
-
     private void open(String foo, AbstractCard bar)
     {
         historyRecords = HistoryCraftRecords.getInstance().historyCraftRecords;
 
-        currentPage=-1;
+        currentPage = -1;
 
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE)
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
@@ -111,7 +113,6 @@ public class NotebookScreen extends CustomScreen
     @Override
     public void reopen()
     {
-
         AbstractDungeon.screen = curScreen();
         AbstractDungeon.isScreenUp = true;
     }
@@ -132,10 +133,10 @@ public class NotebookScreen extends CustomScreen
     public void update() {
         if (InputHelper.justClickedRight) {
             AbstractDungeon.closeCurrentScreen();
-            AbstractRelic relic=AbstractDungeon.player.getRelic(makeID("NotebookRelic"));
-            if(relic!=null){
+            AbstractRelic relic = AbstractDungeon.player.getRelic(makeID("NotebookRelic"));
+            if (relic != null){
                 if(!relic.hb.hovered){
-                    NotebookRelic.isOpened=false;
+                    NotebookRelic.isOpened = false;
                 }
             }
         }
@@ -148,17 +149,11 @@ public class NotebookScreen extends CustomScreen
 
         updateCard();
         updateInputLogic();
-
-        //updateCards();
-
-//        if (InputHelper.justClickedLeft) {
-//            AbstractDungeon.closeCurrentScreen();
-//        }
     }
 
     private void updateCard(){
         this.hoveredCard = null;
-        for(AbstractCard card:currentPageCards){
+        for(AbstractCard card : currentPageCards){
             card.update();
             card.updateHoverLogic();
             if (card.hb.hovered) {
@@ -167,20 +162,20 @@ public class NotebookScreen extends CustomScreen
         }
     }
 
-
     public void updateInputLogic(){
-
         if (this.hoveredCard != null) {
             CardCrawlGame.cursor.changeType(GameCursor.CursorType.INSPECT);
             if (InputHelper.justClickedLeft) {
                 this.clickStartedCard = this.hoveredCard;
             }
 
-            if (InputHelper.justReleasedClickLeft && this.clickStartedCard != null && this.hoveredCard != null || this.hoveredCard != null && CInputActionSet.select.isJustPressed()) {
+            boolean mouseReleased = InputHelper.justReleasedClickLeft && this.clickStartedCard != null && this.hoveredCard != null;
+            boolean controllerPressed = (this.hoveredCard != null && CInputActionSet.select.isJustPressed());
+
+            if (mouseReleased || controllerPressed) {
                 if (Settings.isControllerMode) {
                     this.clickStartedCard = this.hoveredCard;
                 }
-
                 InputHelper.justReleasedClickLeft = false;
                 CardCrawlGame.cardPopup.open(this.clickStartedCard);
                 this.clickStartedCard = null;
@@ -189,22 +184,108 @@ public class NotebookScreen extends CustomScreen
             this.clickStartedCard = null;
         }
     }
-    
 
-    // 屏幕信息
-    private static final float SCREEN_WIDTH = Settings.WIDTH;
-    private static final float SCREEN_HEIGHT = Settings.HEIGHT;
-    private static final float SCALE = Settings.scale;
+    // --------------------------------------------------------------------------------
+    // 统一用 Settings.scale 来等比缩放素材，避免 xScale != yScale 造成拉伸。
+    // --------------------------------------------------------------------------------
+    private static final float S = Settings.scale;
 
-    // 可调节的布局参数
-    private static final float X_OFFSET = 495.0f * SCALE; // 第一张材料图片在屏幕左上角的X偏移
-    private static final float Y_OFFSET = SCREEN_HEIGHT - 265.0f * SCALE; // 第一张材料图片在屏幕左上角的Y偏移
-    private static final float X_INTERVAL = 310.0f * SCALE; // 材料图片之间的X间隔
-    private static final float Y_INTERVAL = 180.0f * SCALE; // 每行记录之间的Y间隔
+    // 这些参数用于控制每行记录里的三张材料的摆放和间距
+    private static final float X_OFFSET = 225.0f;    // 不再乘 xScale，后面渲染时乘一次 S 就够
+    private static final float Y_OFFSET = 265.0f;    // 同上
+    private static final float X_INTERVAL = 362.0f;
+    private static final float Y_INTERVAL = 190.0f;
 
-    // 材料图片和卡牌的渲染大小
-    private static final float MATERIAL_WIDTH = 200.0f * SCALE;
-    private static final float MATERIAL_HEIGHT = 200.0f * SCALE;
+    // 材料图片：用 200 * S，保证是方形，不随屏幕宽高比变形
+    private static final float MATERIAL_SIZE = 200.0f * S;
+
+    // 每页最多显示 2 条记录
+    private final int recordsPerPage = 2;
+    public static int currentPage = -1;
+
+    // Notebook 本身贴图如果要保持不变形，也应该自己计算宽高
+    // 这里示例：假设原图大约是 1600x900 (宽/高=16:9)，
+    // 你可以根据自己 notebook.png 的实际分辨率来改 BASE_WIDTH / BASE_HEIGHT。
+    private static final float NOTEBOOK_BASE_WIDTH  = 1600.0f;
+    private static final float NOTEBOOK_BASE_HEIGHT = 900.0f;
+
+    // 将 Notebook 尺寸缩放到差不多 80% 屏幕宽度的大小
+    private static final float NOTEBOOK_TARGET_WIDTH  = Settings.WIDTH * 0.8f;
+    private static final float NOTEBOOK_SCALE        = NOTEBOOK_TARGET_WIDTH / NOTEBOOK_BASE_WIDTH;
+    // 最终贴图宽高
+    private static final float NOTEBOOK_WIDTH  = NOTEBOOK_BASE_WIDTH  * NOTEBOOK_SCALE;
+    private static final float NOTEBOOK_HEIGHT = NOTEBOOK_BASE_HEIGHT * NOTEBOOK_SCALE;
+    // Notebook 居中坐标
+    private static final float NOTEBOOK_X = (Settings.WIDTH  - NOTEBOOK_WIDTH) / 2f;
+    private static final float NOTEBOOK_Y = (Settings.HEIGHT - NOTEBOOK_HEIGHT) / 2f;
+
+    // 按钮贴图仍然用统一的 S 来缩放，不会被拉伸
+    private static final float BUTTON_WIDTH_BASE  = 400.0f;
+    private static final float BUTTON_HEIGHT_BASE = 200.0f;
+    private static final float BUTTON_WIDTH       = BUTTON_WIDTH_BASE  * S;
+    private static final float BUTTON_HEIGHT      = BUTTON_HEIGHT_BASE * S;
+
+    // 按钮的位置可根据自己需要排
+    // 这里示例：在屏幕底端，左右各摆一个
+    private static final float BUTTON_Y       = 100.0f * S;
+    private static final float BUTTON_LEFT_X  = (Settings.WIDTH * 0.4f) - BUTTON_WIDTH;
+    private static final float BUTTON_RIGHT_X = (Settings.WIDTH * 0.6f);
+
+    // “Page x/y” 的文字偏移
+    private static final float BUTTON_FONT_OFFSET = 60.0f * S;
+
+    // 左右按钮贴图
+    private Texture leftButtonTexture  = new Texture(imagePath("leftButton.png"));
+    private Texture rightButtonTexture = new Texture(imagePath("rightButton.png"));
+
+    private Texture notebookImage = new Texture(imagePath("materials/notebook.png"));
+    private Texture[] displayedImages = new Texture[3];
+    private ArrayList<CraftingRecipes.Recipe> historyRecords;
+
+    @Override
+    public void render(SpriteBatch sb) {
+        // 半透明背景
+        sb.setColor(new Color(0f, 0f, 0f, 0.8f));
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
+        sb.setColor(Color.WHITE.cpy());
+
+        // 绘制 Notebook 背景（保证不拉伸：宽高比由你在 NOTEBOOK_BASE_* 里决定）
+        sb.draw(notebookImage,
+                NOTEBOOK_X,
+                NOTEBOOK_Y,
+                NOTEBOOK_WIDTH,
+                NOTEBOOK_HEIGHT);
+
+        // 如果没有历史记录就不画
+        if (HistoryCraftRecords.getInstance().historyCraftRecords.isEmpty()) {
+            return;
+        }
+
+        int totalPages = calculateTotalPages(historyRecords.size(), recordsPerPage);
+        if (currentPage == -1) {
+            currentPage = totalPages - 1;
+        }
+        int[] pageIndices = getPageIndices(currentPage, recordsPerPage, historyRecords.size());
+        int startIndex = pageIndices[0];
+        int endIndex = pageIndices[1];
+
+        // 绘制本页内容
+        renderPageContent(sb, historyRecords, startIndex, endIndex);
+
+        // 绘制翻页按钮和页码
+        renderPageButtons(sb, totalPages);
+    }
+
+    // 计算总页数
+    private int calculateTotalPages(int totalRecords, int recordsPerPage) {
+        return (int) Math.ceil((double) totalRecords / recordsPerPage);
+    }
+
+    private int[] getPageIndices(int currentPage, int recordsPerPage, int totalRecords) {
+        int startIndex = currentPage * recordsPerPage;
+        int endIndex = Math.min(startIndex + recordsPerPage, totalRecords);
+        return new int[]{startIndex, endIndex};
+    }
 
     public void renderPageContent(SpriteBatch sb,
                                   ArrayList<CraftingRecipes.Recipe> historyRecords,
@@ -216,24 +297,27 @@ public class NotebookScreen extends CustomScreen
             // 获取当前记录
             CraftingRecipes.Recipe record = historyRecords.get(recordIndex);
 
-            // 计算当前行的 X/Y 坐标
-            float currentY = Y_OFFSET - (recordIndex - startIndex) * (MATERIAL_HEIGHT + Y_INTERVAL);
-            float currentX = X_OFFSET;
+            // 计算当前“行”在屏幕上的 y 坐标
+            // 这里示例：以 Notebook 顶部为基准往下排
+            // 你也可以改成相对于 NOTEBOOK_Y + NOTEBOOK_HEIGHT 来排
+            float currentY = (Settings.HEIGHT - NOTEBOOK_Y - 190f * S) - (recordIndex - startIndex) * (MATERIAL_SIZE + Y_INTERVAL * S);
+
+            // 初始 x 坐标
+            float currentX = NOTEBOOK_X + X_OFFSET * S;
 
             // 渲染三张材料图片
             currentX = renderMaterials(sb, record, currentX, currentY);
 
             // 第四项是卡牌 ID
             String cardID = record.music;
-
             // 从缓存或卡组中获取（或创建）卡牌
             AbstractCard card = getOrCreateCard(recordIndex, cardID);
             if (card != null) {
-                // 设置卡牌的坐标（render 需要用到）
+                // 设置卡牌的坐标（render需要用到）
                 card.current_x = currentX;
-                card.target_x = currentX;
+                card.target_x  = currentX;
                 card.current_y = currentY;
-                card.target_y = currentY;
+                card.target_y  = currentY;
                 // 绘制卡牌
                 card.render(sb);
 
@@ -242,21 +326,23 @@ public class NotebookScreen extends CustomScreen
         }
     }
 
-    private float renderMaterials(SpriteBatch sb, CraftingRecipes.Recipe record, float startX, float startY) {
+    private float renderMaterials(SpriteBatch sb, CraftingRecipes.Recipe record, float startX, float centerY) {
         float currentX = startX;
         for (int i = 0; i < 3; i++) {
-            // record.get(i) 是材料名，取到对应 Texture
+            // 取到对应材质
             if (displayedImages[i] == null || !displayedImages[i].getTextureData().isPrepared()) {
-                displayedImages[i] = getMaterialTexture(record.needs.get(i),record.levels.get(i));
+                displayedImages[i] = getMaterialTexture(record.needs.get(i), record.levels.get(i));
             }
-            // 绘制材料图片
-            sb.draw(displayedImages[i],
-                    currentX - MATERIAL_WIDTH / 2f,
-                    startY - MATERIAL_HEIGHT / 2f,
-                    MATERIAL_WIDTH,
-                    MATERIAL_HEIGHT);
-            // X 坐标右移
-            currentX += X_INTERVAL;
+            // 绘制材料图片 (使用 MATERIAL_SIZE x MATERIAL_SIZE => 不会拉伸)
+            sb.draw(
+                    displayedImages[i],
+                    currentX - MATERIAL_SIZE / 2f,
+                    centerY - MATERIAL_SIZE / 2f,
+                    MATERIAL_SIZE,
+                    MATERIAL_SIZE
+            );
+            // X 坐标右移一段距离
+            currentX += (X_INTERVAL * S);
         }
         return currentX;
     }
@@ -271,13 +357,10 @@ public class NotebookScreen extends CustomScreen
 
         // 缓存没有，就去对应卡组里找
         if ("fail".equals(cardID)) {
-            // “失败”卡牌来自 CustomUtils.modCardGroup
             card = new FailComposition();
-                    //findAndCopyCard(cardID, CustomUtils.modCardGroup);
         } else {
             // 否则来自 CustomUtils.musicCardGroup
             card = CustomUtils.musicCardGroup.get(makeID(cardID)).makeStatEquivalentCopy();
-                    //findAndCopyCard(cardID, CustomUtils.musicCardGroup);
             // 如果是 BaseMusicCard，还需设置特殊属性
             if (card instanceof BaseMusicCard) {
                 BaseMusicCard musicCard = (BaseMusicCard) card;
@@ -285,108 +368,18 @@ public class NotebookScreen extends CustomScreen
             }
         }
 
-        // 若成功拿到，放入缓存并添加到 cardsAdded
+        // 若成功拿到，放入缓存
         if (card != null) {
             cardCache.put(cacheKey, card);
-            //cardsAdded.add(card);
         }
         return card;
     }
 
-    private Texture[] displayedImages = new Texture[3];
-    private Texture notebookImage=new Texture(imagePath("materials/notebook.png"));
-
-    private ArrayList<CraftingRecipes.Recipe> historyRecords;
-
-    private final int recordsPerPage=2;
-    public static int currentPage=-1;
-
-    private Texture leftButtonTexture=new Texture(imagePath("leftButton.png"));
-    private Texture rightButtonTexture=new Texture(imagePath("rightButton.png"));
-
-    // Constants for notebook position and size
-    private static final float NOTEBOOK_X = 300.0f*Settings.scale;
-    private static final float NOTEBOOK_Y = 300.0f*Settings.scale;
-    private static final float NOTEBOOK_WIDTH = Settings.WIDTH-600.0f*Settings.scale;
-    private static final float NOTEBOOK_HEIGHT = Settings.HEIGHT-400.0f*Settings.scale;
-
-    @Override
-    public void render(SpriteBatch sb) {
-        sb.setColor(new Color(0f, 0f, 0f, 0.8f)); // alpha=0.5f
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0, 0, Settings.WIDTH, Settings.HEIGHT);
-        sb.setColor(Color.WHITE.cpy());
-
-        sb.draw(notebookImage,
-                NOTEBOOK_X ,
-                NOTEBOOK_Y ,
-                NOTEBOOK_WIDTH ,
-                NOTEBOOK_HEIGHT );
-
-        if (HistoryCraftRecords.getInstance().historyCraftRecords.isEmpty()) return;
-
-        int totalPages = calculateTotalPages(historyRecords.size(), recordsPerPage);
-
-        if (currentPage == -1) {
-            currentPage = totalPages - 1;
-        }
-
-        int[] pageIndices = getPageIndices(currentPage, recordsPerPage, historyRecords.size());
-        int startIndex = pageIndices[0];
-        int endIndex = pageIndices[1];
-
-        renderPageContent(sb, historyRecords, startIndex, endIndex);
-
-        renderPageButtons(sb, totalPages);
-    }
-
-
-    private int calculateTotalPages(int totalRecords, int recordsPerPage) {
-        return (int) Math.ceil((double) totalRecords / recordsPerPage);
-    }
-
-    private int[] getPageIndices(int currentPage, int recordsPerPage, int totalRecords) {
-        int startIndex = currentPage * recordsPerPage;
-        int endIndex = Math.min(startIndex + recordsPerPage, totalRecords);
-        return new int[]{startIndex, endIndex};
-    }
-
-
-
-
-    // 提取参数为静态常量
-    private static final float BUTTON_WIDTH_BASE = 400.0f;      // 按钮基础宽度
-    private static final float BUTTON_HEIGHT_BASE = 200.0f;     // 按钮基础高度
-    private static final float BUTTON_X_LEFT_BASE = 200.0f;     // 左按钮的X基准
-    private static final float BUTTON_X_RIGHT_BASE = 1330.0f;    // 右按钮的X基准
-    private static final float BUTTON_Y_BASE = 200.0f;          // 按钮的Y基准
-    private static final float BUTTON_FONT_OFFSET_BASE = -150.0f; // 按钮上方字体的偏移基准
-
     private void renderPageButtons(SpriteBatch sb, int totalPages) {
-        // 先将基准值乘以缩放系数，得到最终像素尺寸
-        float buttonWidth  = BUTTON_WIDTH_BASE  * Settings.scale;
-        float buttonHeight = BUTTON_HEIGHT_BASE * Settings.scale;
-        float leftButtonX  = BUTTON_X_LEFT_BASE * Settings.scale;
-        float rightButtonX = BUTTON_X_RIGHT_BASE * Settings.scale;
-        float buttonY      = BUTTON_Y_BASE      * Settings.scale;
-        float fontOffset   = BUTTON_FONT_OFFSET_BASE * Settings.scale;
-
-        // 绘制左按钮
-        sb.draw(
-                leftButtonTexture,
-                leftButtonX,
-                buttonY,
-                buttonWidth,
-                buttonHeight
-        );
-
-        // 绘制右按钮
-        sb.draw(
-                rightButtonTexture,
-                rightButtonX,
-                buttonY,
-                buttonWidth,
-                buttonHeight
-        );
+        // 画左按钮
+        sb.draw(leftButtonTexture, BUTTON_LEFT_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
+        // 画右按钮
+        sb.draw(rightButtonTexture, BUTTON_RIGHT_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT);
 
         // 绘制页码
         FontHelper.renderFontCentered(
@@ -394,39 +387,29 @@ public class NotebookScreen extends CustomScreen
                 FontHelper.buttonLabelFont,
                 "Page " + (currentPage + 1) + "/" + totalPages,
                 Settings.WIDTH / 2.0f,
-                buttonY + buttonHeight + fontOffset,
+                BUTTON_Y + BUTTON_HEIGHT + BUTTON_FONT_OFFSET,
                 Color.WHITE
         );
     }
 
     public void handleButtonClick(float mouseX, float mouseY) {
-        float buttonWidth  = BUTTON_WIDTH_BASE  * Settings.scale;
-        float buttonHeight = BUTTON_HEIGHT_BASE * Settings.scale;
-        float leftButtonX  = BUTTON_X_LEFT_BASE * Settings.scale;
-        float rightButtonX = BUTTON_X_RIGHT_BASE * Settings.scale;
-        float buttonY      = BUTTON_Y_BASE      * Settings.scale;
-
         // 检测左按钮点击
-        if (mouseX >= leftButtonX && mouseX <= leftButtonX + buttonWidth &&
-                mouseY >= buttonY    && mouseY <= buttonY + buttonHeight) {
+        if (mouseX >= BUTTON_LEFT_X && mouseX <= BUTTON_LEFT_X + BUTTON_WIDTH &&
+                mouseY >= BUTTON_Y      && mouseY <= BUTTON_Y      + BUTTON_HEIGHT) {
             currentPage = Math.max(currentPage - 1, 0);
         }
         // 检测右按钮点击
-        else if (mouseX >= rightButtonX && mouseX <= rightButtonX + buttonWidth &&
-                mouseY >= buttonY      && mouseY <= buttonY + buttonHeight) {
+        else if (mouseX >= BUTTON_RIGHT_X && mouseX <= BUTTON_RIGHT_X + BUTTON_WIDTH &&
+                mouseY >= BUTTON_Y       && mouseY <= BUTTON_Y       + BUTTON_HEIGHT) {
             int totalRecords = HistoryCraftRecords.getInstance().historyCraftRecords.size();
             int maxPage = calculateTotalPages(totalRecords, recordsPerPage) - 1;
             currentPage = Math.min(currentPage + 1, maxPage);
         }
     }
-
-
-
-
-
 }
 
-class CacheKey{
+// 用于缓存卡牌
+class CacheKey {
     public int position;
     public String cardID;
 
