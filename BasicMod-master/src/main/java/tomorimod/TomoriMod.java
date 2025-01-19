@@ -65,9 +65,7 @@ import java.util.*;
 import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
 
 
-//TODO 平衡性调整
 //TODO 最后2张卡牌
-//TODO 电波回调
 //TODO 获得伤害量的重力
 
 @SpireInitializer

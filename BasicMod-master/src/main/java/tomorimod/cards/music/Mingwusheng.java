@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.actions.ApplyGravityAction;
+import tomorimod.actions.cardactions.MingwushengAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
 import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
@@ -29,7 +30,6 @@ public class Mingwusheng extends BaseMusicCard {
                 BLOCK_COMMON, UPG_BLOCK_COMMON, BLOCK_UNCOMMON, UPG_BLOCK_UNCOMMON, BLOCK_RARE, UPG_BLOCK_RARE,
                 MAGIC_COMMON, UPG_MAGIC_COMMON, MAGIC_UNCOMMON, UPG_MAGIC_UNCOMMON, MAGIC_RARE, UPG_MAGIC_RARE
         ));
-        setCustomVar("EN",ENERGY_RARE);
     }
 
 
@@ -54,15 +54,15 @@ public class Mingwusheng extends BaseMusicCard {
     public final static int MAGIC_RARE = 6;
     public final static int UPG_MAGIC_RARE = 3;
 
-    public final static int ENERGY_RARE=2;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(this.musicRarity.equals(MusicRarity.RARE)){
-            addToBot(new GainEnergyAction(ENERGY_RARE));
+        if(musicRarity.equals(MusicRarity.RARE)){
+            addToBot(new MingwushengAction(damage,p,m,this.damageTypeForTurn));
+        }else{
+            addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
+            addToBot(new ApplyGravityAction(magicNumber));
         }
-        addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        addToBot(new ApplyGravityAction(magicNumber));
     }
 
     @Override
