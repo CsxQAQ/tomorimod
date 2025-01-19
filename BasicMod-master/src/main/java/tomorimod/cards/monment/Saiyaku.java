@@ -27,7 +27,7 @@ public class Saiyaku extends BaseMonmentCard {
     public static final int MAGIC=10;
     public static final int UPG_MAGIC=10;
 
-    public static final int INCREASE=3;
+    public static final int INCREASE=2;
 
     public Saiyaku() {
         super(ID, info);

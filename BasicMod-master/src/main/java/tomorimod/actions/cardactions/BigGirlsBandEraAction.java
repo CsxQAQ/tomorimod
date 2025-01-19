@@ -11,6 +11,7 @@ import tomorimod.util.CustomUtils;
 
 import java.util.ArrayList;
 
+@Deprecated
 public class BigGirlsBandEraAction extends AbstractGameAction {
 
     private boolean isUpgraded;

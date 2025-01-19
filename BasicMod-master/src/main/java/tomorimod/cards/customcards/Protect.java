@@ -17,11 +17,9 @@ public class Protect extends BaseCard {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
-    //public final int BLOCK=1;
-    //public final int UPG_BLOCK=1;
 
     public final int MAGIC=1;
     public final int UPG_MAGIC=1;

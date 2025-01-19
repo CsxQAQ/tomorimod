@@ -21,8 +21,8 @@ public class Upset extends BaseCard implements SpecialCard {
             1
     );
 
-    public final int BLOCK=7;
-    public final int UPG_BLOCK=4;
+    public final int BLOCK=6;
+    public final int UPG_BLOCK=3;
 
     public final int MAGIC=3;
     public final int UPG_MAGIC=2;

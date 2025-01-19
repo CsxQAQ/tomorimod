@@ -18,7 +18,7 @@ public class Pant extends BaseCard {
             CardType.POWER,
             CardRarity.COMMON,
             CardTarget.SELF,
-            1
+            0
     );
 
     public final static int MAGIC = 2;

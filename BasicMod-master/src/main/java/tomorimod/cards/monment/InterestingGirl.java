@@ -32,7 +32,7 @@ public class InterestingGirl extends BaseMonmentCard {
         if(!upgraded){
             addToBot(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, energyNum), energyNum));
         }else{
-            addToBot(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, 2*energyNum), 2*energyNum));
+            addToBot(new ApplyPowerAction(p, p, new IntangiblePlayerPower(p, energyNum+1), energyNum+1));
         }
         p.energy.use(energyNum);
         super.use(p,m);

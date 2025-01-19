@@ -20,7 +20,7 @@ public class Compete extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.ENEMY,
-            0
+            1
     );
 
     public final int MAGIC=2;
@@ -33,13 +33,7 @@ public class Compete extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-//        for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
-//            if(monster.hasPower(makeID("CompetePowerMonster"))){
-//                addToBot(new RemoveSpecificPowerAction(monster,p,makeID("CompetePowerMonster")));
-//            }
-//        }
-        //addToBot(new RemoveSpecificPowerAction(p,p,makeID("CompetePower")));
-        //addToBot(new ApplyPowerAction(p,p,new CompetePower(p,magicNumber),magicNumber));
+
         addToBot(new ApplyPowerAction(m,p,new CompeteMonsterPower(m,magicNumber),magicNumber));
     }
 

@@ -21,8 +21,8 @@ public class Ha extends BaseCard implements SpecialCard {
             0
     );
 
-    public static final int DAMAGE = 6;
-    public static final int UPG_DAMAGE = 3;
+    public static final int DAMAGE = 3;
+    public static final int UPG_DAMAGE = 2;
 
     public Ha() {
         super(ID, info);

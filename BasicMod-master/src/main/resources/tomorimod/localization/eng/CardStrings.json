@@ -32,7 +32,7 @@
     "NAME": "有趣的女人",
     "DESCRIPTION": "获得X层 无实体 。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
-      "获得两倍X层 无实体 。 tomorimod:瞬间 ， 消耗 。"
+      "获得X+1层 无实体 。 tomorimod:瞬间 ， 消耗 。"
     ]
   },
   "${modID}:FallingOnFlatGround": {
@@ -97,7 +97,7 @@
   },
   "${modID}:Recycle": {
     "NAME": "回收",
-    "DESCRIPTION": "使用后移除。将消耗牌堆中所有卡牌的复制加入抽牌堆，然后将它们移除。（ 状态牌 和 诅咒 牌除外）。"
+    "DESCRIPTION": "使用后移除。将你的消耗牌堆洗牌后放入你的抽牌堆。（ 状态牌 和 诅咒 牌除外）。"
   },
   "${modID}:YourTenDraws": {
     "NAME": "十连",
@@ -248,7 +248,7 @@
   },
   "${modID}:BandPractise": {
     "NAME": "乐队练习",
-    "DESCRIPTION": "选择手牌中的一张 tomorimod:音乐 牌，将 !M! 张该牌的复制置入手牌。"
+    "DESCRIPTION": "选择手牌中的一张 tomorimod:音乐 牌，将 !M! 张该牌的复制置入手牌，并使其耗能本回合变为0。"
   },
   "${modID}:Upset": {
     "NAME": "失落",
@@ -431,9 +431,9 @@
   },
   "${modID}:Bitianbanzou": {
     "NAME": "碧天伴走",
-    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。",
+    "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 活力 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 点 活力 。 活力 效果改为在使用攻击牌后减少1层。"
+      " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 活力 。 活力 效果改为在使用攻击牌后减少1层。"
     ]
   },
   "${modID}:Ruichengshan": {
