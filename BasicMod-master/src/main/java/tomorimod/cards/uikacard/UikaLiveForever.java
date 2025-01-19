@@ -25,7 +25,7 @@ public class UikaLiveForever extends UikaCard implements WithoutMaterial {
 
 
     public final static int MAGIC=5;
-    public final static int UPG_MAGIC=0;
+    public final static int UPG_MAGIC=3;
 
     public UikaLiveForever() {
         super(ID, info);

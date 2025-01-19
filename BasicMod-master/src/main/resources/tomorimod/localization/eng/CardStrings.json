@@ -530,9 +530,11 @@
   },
   "${modID}:UikaDoughnut": {
     "NAME": "甜甜圈",
-    "DESCRIPTION": "恢复最大生命值一半的生命值。 消耗 ， tomorimod:瞬间 。"
+    "DESCRIPTION": "恢复最大生命值一半的生命值。 消耗 ， tomorimod:瞬间 。",
+    "EXTENDED_DESCRIPTION": [
+      "恢复所有的生命值。 消耗 ， tomorimod:瞬间 。"
+    ]
   },
-
   "${modID}:UikaLastGentle": {
     "NAME": "最后的温柔",
     "DESCRIPTION": "将 tomorimod:重力 和 tomorimod:闪耀 层数互换。"

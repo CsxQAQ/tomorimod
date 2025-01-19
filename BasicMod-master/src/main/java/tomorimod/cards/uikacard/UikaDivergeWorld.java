@@ -41,4 +41,12 @@ public class UikaDivergeWorld extends UikaCard implements WithoutMaterial {
                 new DivergeWorldPower(uikaMonster,magicNumber),magicNumber));
         super.uikaUse(uikaMonster);
     }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
+    }
 }

@@ -32,13 +32,35 @@ public class UikaDoughnut extends UikaCard implements WithoutMaterial {
     }
 
     @Override
-    public AbstractCard makeCopy() { //Optional
+    public AbstractCard makeCopy() {
         return new UikaDoughnut();
     }
 
     @Override
     public void uikaUse(UikaMonster uikaMonster) {
-        addToBot(new HealAction(uikaMonster,uikaMonster,uikaMonster.maxHealth/2));
+        if(!upgraded){
+            addToBot(new HealAction(uikaMonster,uikaMonster,uikaMonster.maxHealth/2));
+        }else{
+            addToBot(new HealAction(uikaMonster,uikaMonster,uikaMonster.maxHealth));
+        }
         super.uikaUse(uikaMonster);
+    }
+
+    @Override
+    public void updateDescription(){
+        if(!upgraded){
+            rawDescription=cardStrings.DESCRIPTION;
+        }else{
+            rawDescription=cardStrings.EXTENDED_DESCRIPTION[0];
+        }
+        initializeDescription();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            updateDescription();
+        }
     }
 }

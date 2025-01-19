@@ -45,7 +45,12 @@ public class UikaConveyFeeling extends UikaCard implements WithoutMaterial {
         return new UikaConveyFeeling();
     }
 
-
-
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
+    }
 
 }

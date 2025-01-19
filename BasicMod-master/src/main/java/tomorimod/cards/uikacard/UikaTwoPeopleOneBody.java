@@ -22,7 +22,7 @@ public class UikaTwoPeopleOneBody extends UikaCard implements WithoutMaterial {
     );
 
     public static final int MAGIC=3;
-    public static final int UPG_MAGIC=0;
+    public static final int UPG_MAGIC=1;
 
     public UikaTwoPeopleOneBody() {
         super(ID, info);

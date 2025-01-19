@@ -46,4 +46,12 @@ public class UikaLastGentle extends UikaCard implements WithoutMaterial {
         });
         super.uikaUse(uikaMonster);
     }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
+    }
 }

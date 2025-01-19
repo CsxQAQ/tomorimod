@@ -23,7 +23,7 @@ public class UikaLastOne extends UikaCard implements WithoutMaterial {
     );
 
     public static final int MAGIC=20;
-    public static final int UPG_MAGIC=0;
+    public static final int UPG_MAGIC=10;
 
 
     public UikaLastOne() {

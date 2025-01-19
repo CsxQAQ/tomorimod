@@ -30,7 +30,7 @@ public class UikaTwoMoon extends UikaCard implements WithoutMaterial {
     );
 
     public final static int MAGIC=2;
-    public final static int UPG_MAGIC=0;
+    public final static int UPG_MAGIC=1;
 
 
     public UikaTwoMoon() {

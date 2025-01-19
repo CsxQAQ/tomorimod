@@ -21,7 +21,7 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
             CardType.POWER,
             CardRarity.COMMON,
             CardTarget.SELF,
-            2
+            1
     );
 
     public UikaGravityDomain() {
@@ -46,5 +46,13 @@ public class UikaGravityDomain extends UikaCard implements WithoutMaterial {
         addToBot(new ApplyPowerAction(uikaMonster,uikaMonster,
                 new GravityDomainPower(uikaMonster, magicNumber), magicNumber));
         super.uikaUse(uikaMonster);
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(0);
+        }
     }
 }

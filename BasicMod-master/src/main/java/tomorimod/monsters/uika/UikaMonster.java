@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
+import tomorimod.cards.basic.Strike;
 import tomorimod.cards.uikacard.*;
 import tomorimod.monsters.BaseMonster;
 import tomorimod.patches.MusicPatch;
@@ -149,7 +150,9 @@ public class UikaMonster extends BaseMonster {
                 cardForShow2=new UikaConveyFeeling();
             }else{
                 setMove((byte) 0, Intent.ATTACK_BUFF,
-                        this.damage.get(0).base, 1, false);
+                        Strike.DAMAGE, 1, false);
+//                setMove((byte) 0, Intent.ATTACK_BUFF,
+//                        this.damage.get(0).base, 1, false);
                 cardForShow1 = new UikaMygoTogether();
                 cardForShow2=new UikaStrike();
             }
@@ -165,18 +168,19 @@ public class UikaMonster extends BaseMonster {
             setMove((byte) 50, Intent.BUFF);
             cardForShow1 = new UikaLightAndShadow();
             cardForShow2 = new UikaLastGentle();
-            // 注意：这里原代码是 UikaLastGentle() 还是 UikaLastGendle()？
             isGravityMode = !isGravityMode;
             turnNum = 1;
         } else {
-            // 普通情况下，根据 isGravityMode 切换
             if (isGravityMode) {
                 gravityUika();
             } else {
                 shineUika();
             }
         }
-        // 最后记得刷新卡片绘制
+        if(isHardMode){
+            cardForShow1.upgrade();
+            cardForShow2.upgrade();
+        }
         showCardsDraw();
     }
 
@@ -191,6 +195,13 @@ public class UikaMonster extends BaseMonster {
                     isDomainExpansionUsed=true;
                 }else{
                     cardForShow1 = new UikaStrike();
+                    if(isHardMode){
+                        setMove((byte) 11, Intent.ATTACK_BUFF,
+                                Strike.DAMAGE+Strike.UPG_DAMAGE, 1, false);
+                    }else{
+                        setMove((byte) 11, Intent.ATTACK_BUFF,
+                                Strike.DAMAGE, 1, false);
+                    }
                     cardForShow2 = new UikaLiveForever();
                 }
 
@@ -203,10 +214,18 @@ public class UikaMonster extends BaseMonster {
 
                 break;
             case 3:
-                setMove((byte) 13, Intent.ATTACK_BUFF,
-                        this.damage.get(0).base, 1, false);
+//                setMove((byte) 13, Intent.ATTACK_BUFF,
+//                        this.damage.get(0).base, 1, false);
+                if(isHardMode){
+                    setMove((byte) 13, Intent.ATTACK_BUFF,
+                            Strike.DAMAGE+Strike.UPG_DAMAGE, 1, false);
+                }else{
+                    setMove((byte) 13, Intent.ATTACK_BUFF,
+                            Strike.DAMAGE, 1, false);
+                }
                 cardForShow1 =new UikaDivergeWorld();
                 cardForShow2 =new UikaStrike();
+
                 break;
         }
         turnNum++;
@@ -223,8 +242,14 @@ public class UikaMonster extends BaseMonster {
             case 2:
                 int shineAmount= MonsterUtils.getPowerNum(this,makeID("ShinePower"));
 
-                setMove((byte) 22, Intent.ATTACK_DEFEND,
-                        shineAmount*UikaTwoMoon.MAGIC, 1, false);
+                if(isHardMode){
+                    setMove((byte) 22, Intent.ATTACK_DEFEND,
+                            shineAmount*(UikaTwoMoon.MAGIC+UikaTwoMoon.UPG_MAGIC), 1, false);
+                }else{
+                    setMove((byte) 22, Intent.ATTACK_DEFEND,
+                            shineAmount*UikaTwoMoon.MAGIC, 1, false);
+                }
+
                 cardForShow1 = new UikaTwoMoon();
                 cardForShow2 = new UikaLightAndShadow();
                 isTwoMoon=true;
@@ -234,10 +259,7 @@ public class UikaMonster extends BaseMonster {
             case 3:
                 setMove((byte) 23, Intent.BUFF);
                 cardForShow1 =new UikaDoughnut();
-                cardForShow2 = new UikaDefend() {{
-                    upgrade();
-                    //initializeDescription();
-                }};
+                cardForShow2 = new UikaDefend();
                 break;
         }
         turnNum++;
