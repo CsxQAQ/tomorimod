@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.DeadBranch;
+import com.megacrit.cardcrawl.relics.HornCleat;
 import com.megacrit.cardcrawl.relics.Toolbox;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -33,6 +34,7 @@ import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.monsters.DamageNumFrozeMonitor;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.patches.BossGeneratePatch;
+import tomorimod.potions.BasePotion;
 import tomorimod.powers.*;
 import tomorimod.relics.BaseRelic;
 import tomorimod.rewards.*;
@@ -66,10 +68,6 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
 //TODO 平衡性调整
 
 //TODO 最后2张卡牌
-
-//TODO 回收看看能不能makesameinstance看深呼吸
-
-
 
 @SpireInitializer
 public class TomoriMod implements
@@ -164,6 +162,7 @@ public class TomoriMod implements
         receiveReward();
         receiveScreen();
         receiveEvent();
+        //receivePotion();
 
         receiveMonstor();
 
@@ -186,6 +185,24 @@ public class TomoriMod implements
         DynamicBackgroundEffect.preloadImages();
         DynamicBackgroundTestEffect.preloadImages();
         //DynamicBackgroundContinueEffect.initializeTexture();
+
+        BaseMod.removeRelic(new ChemicalX());
+        BaseMod.removeRelic(new Toolbox());
+        BaseMod.removeRelic(new DeadBranch());
+        BaseMod.removeRelic(new HornCleat());
+
+    }
+
+    public void receivePotion() {
+        new AutoAdd(modID) //Loads files from this mod
+                .packageFilter(BasePotion.class) //In the same package as this class
+                .any(BasePotion.class, (info, potion) -> { //Run this code for any classes that extend this class
+                    //These three null parameters are colors.
+                    //If they're not null, they'll overwrite whatever color is set in the potions themselves.
+                    //This is an old feature added before having potions determine their own color was possible.
+                    BaseMod.addPotion(potion.getClass(), null, null, null, potion.ID, potion.playerClass);
+                    //playerClass will make a potion character-specific. By default, it's null and will do nothing.
+                });
 
     }
 
@@ -420,9 +437,7 @@ public class TomoriMod implements
                         UnlockTracker.markRelicAsSeen(relic.relicId);
                 });
 
-        BaseMod.removeRelic(new ChemicalX());
-        BaseMod.removeRelic(new Toolbox());
-        BaseMod.removeRelic(new DeadBranch());
+
     }
 
     @Override

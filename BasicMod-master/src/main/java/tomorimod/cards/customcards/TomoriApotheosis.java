@@ -42,7 +42,7 @@ public class TomoriApotheosis extends BaseCard {
         if (!upgraded) {
             upgradeName();
             updateDescription();
-            this.selfRetain=true;
+            isInnate=true;
         }
     }
 
