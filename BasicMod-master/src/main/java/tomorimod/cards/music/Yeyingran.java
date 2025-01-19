@@ -39,21 +39,21 @@ public class Yeyingran extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 0;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 6;
+    public final static int MAGIC_COMMON = 5;
     public final static int UPG_MAGIC_COMMON = 3;
 
     public final static int DAMAGE_UNCOMMON = 0;
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 9;
+    public final static int MAGIC_UNCOMMON = 8;
     public final static int UPG_MAGIC_UNCOMMON = 4;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 9;
+    public final static int MAGIC_RARE = 8;
     public final static int UPG_MAGIC_RARE = 4;
 
     @Override

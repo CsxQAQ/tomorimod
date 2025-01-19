@@ -26,26 +26,24 @@ public class ElectricWave extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new ElectricWaveAction(1));
+        addToBot(new ElectricWaveAction(1,upgraded));
     }
 
-//    @Override
-//    public void updateDescription() {
-//
-//        if(upgraded){
-//            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-//        }else{
-//            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-//        }
-//        initializeDescription();
-//    }
+    @Override
+    public void updateDescription() {
+        if(upgraded){
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+        }else{
+            this.rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+        }
+        initializeDescription();
+    }
 
     @Override
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
-            //updateDescription();
+            updateDescription();
         }
     }
 

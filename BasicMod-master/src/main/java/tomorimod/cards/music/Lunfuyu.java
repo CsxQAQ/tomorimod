@@ -51,10 +51,10 @@ public class Lunfuyu extends BaseMusicCard {
     public final static int MAGIC_RARE = 5;
     public final static int UPG_MAGIC_RARE = 0;
 
-    public final static int MISC_COMMOM=5;
+    public final static int MISC_COMMOM=6;
     public final static int UPG_MISC_COMMOM=3;
 
-    public final static int MISC_UNCOMMOM=8;
+    public final static int MISC_UNCOMMOM=9;
     public final static int UPG_MISC_UNCOMMOM=4;
 
     //public int miscUpgrade;

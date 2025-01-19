@@ -296,7 +296,10 @@
   },
   "${modID}:ElectricWave": {
     "NAME": "电波",
-    "DESCRIPTION": "从牌组中选择一张卡牌，将其复制置入手牌。 消耗 。"
+    "DESCRIPTION": "从牌组中选择一张卡牌，将其复制置入手牌。 消耗 。",
+    "EXTENDED_DESCRIPTION": [
+      "从牌组中选择一张卡牌，将其复制置入手牌，并使其耗能在本回合变为0。 消耗 。"
+    ]
   },
   "${modID}:ShortTermGoal": {
     "NAME": "短期目标",
