@@ -186,10 +186,7 @@ public class TomoriMod implements
         DynamicBackgroundTestEffect.preloadImages();
         //DynamicBackgroundContinueEffect.initializeTexture();
 
-        BaseMod.removeRelic(new ChemicalX());
-        BaseMod.removeRelic(new Toolbox());
-        BaseMod.removeRelic(new DeadBranch());
-        BaseMod.removeRelic(new HornCleat());
+
 
     }
 
@@ -417,7 +414,6 @@ public class TomoriMod implements
                 .setDefaultSeen(true) //And marks them as seen in the compendium
                 .cards(); //Adds the cards
 
-        BaseMod.removeCard("Magnetism",COLORLESS);
     }
 
     @Override

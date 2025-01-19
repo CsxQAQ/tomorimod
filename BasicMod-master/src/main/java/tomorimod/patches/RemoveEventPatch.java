@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheBeyond;
 import com.megacrit.cardcrawl.dungeons.TheCity;
+import tomorimod.util.PlayerUtils;
 
 
 public class RemoveEventPatch {
@@ -16,7 +17,9 @@ public class RemoveEventPatch {
     public static class RemoveAbstractDungeonEvent{
         @SpirePostfixPatch
         public static void postfix(AbstractDungeon __instance) {
-            AbstractDungeon.specialOneTimeEventList.remove("N'loth"); //避免吃了我的遗物
+            if (PlayerUtils.isTomori()){
+                AbstractDungeon.specialOneTimeEventList.remove("N'loth"); //避免吃了我的遗物
+            }
         }
     }
 
@@ -27,7 +30,9 @@ public class RemoveEventPatch {
     public static class RemoveTheCityEvent{
         @SpirePostfixPatch
         public static void postfix(TheCity __instance) {
-            AbstractDungeon.eventList.remove("Drug Dealer");
+            if(PlayerUtils.isTomori()){
+                AbstractDungeon.eventList.remove("Drug Dealer");
+            }
         }
     }
 
@@ -38,7 +43,9 @@ public class RemoveEventPatch {
     public static class RemoveMatchAndKeepExordiumEvent{
         @SpirePostfixPatch
         public static void postfix(Exordium __instance) {
-            AbstractDungeon.shrineList.remove("Match and Keep!");
+            if(PlayerUtils.isTomori()){
+                AbstractDungeon.shrineList.remove("Match and Keep!");
+            }
         }
     }
 
@@ -49,7 +56,9 @@ public class RemoveEventPatch {
     public static class RemoveMatchAndKeepTheCityEvent{
         @SpirePostfixPatch
         public static void postfix(TheCity __instance) {
-            AbstractDungeon.shrineList.remove("Match and Keep!");
+            if(PlayerUtils.isTomori()){
+                AbstractDungeon.shrineList.remove("Match and Keep!");
+            }
         }
     }
 
@@ -60,7 +69,9 @@ public class RemoveEventPatch {
     public static class RemoveMatchAndKeepTheBeyondEvent{
         @SpirePostfixPatch
         public static void postfix(TheBeyond __instance) {
-            AbstractDungeon.shrineList.remove("Match and Keep!");
+            if(PlayerUtils.isTomori()){
+                AbstractDungeon.shrineList.remove("Match and Keep!");
+            }
         }
     }
 
