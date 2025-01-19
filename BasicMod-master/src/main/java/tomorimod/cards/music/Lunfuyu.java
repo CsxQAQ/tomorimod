@@ -57,7 +57,7 @@ public class Lunfuyu extends BaseMusicCard {
     public final static int MISC_UNCOMMOM=8;
     public final static int UPG_MISC_UNCOMMOM=4;
 
-    public int miscUpgrade;
+    //public int miscUpgrade;
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -82,10 +82,9 @@ public class Lunfuyu extends BaseMusicCard {
 
         Lunfuyu lunfuyu=(Lunfuyu)card;
         if(this.musicRarity==MusicRarity.DEFAULT){
-            lunfuyu.initializeMisc();
+            lunfuyu.misc=getMiscByRarity();
         }else{
             lunfuyu.misc=this.misc;
-            lunfuyu.miscUpgrade=this.miscUpgrade;
         }
         lunfuyu.baseDamage=misc;
         if(lunfuyu.musicRarity.equals(MusicRarity.RARE)){
@@ -127,28 +126,57 @@ public class Lunfuyu extends BaseMusicCard {
     @Override
     public void dataInfoInitialize(){
         super.dataInfoInitialize();
-        initializeMisc();
         baseDamage=misc;
         updateDescription();
     }
 
-    public void initializeMisc(){
+//    public void initializeMisc(){
+//        switch (musicRarity){
+//            case COMMON:
+//            case DEFAULT:
+//                misc=MISC_COMMOM;
+//                miscUpgrade=UPG_MISC_COMMOM;
+//                break;
+//            case UNCOMMON:
+//            case RARE:
+//                misc=MISC_UNCOMMOM;
+//                miscUpgrade=UPG_MISC_UNCOMMOM;
+//                break;
+//        }
+//    }
+
+    public int getMiscByRarity(){
+        int tmp=0;
         switch (musicRarity){
             case COMMON:
             case DEFAULT:
-                misc=MISC_COMMOM;
-                miscUpgrade=UPG_MISC_COMMOM;
+                tmp=MISC_COMMOM;
                 break;
             case UNCOMMON:
             case RARE:
-                misc=MISC_UNCOMMOM;
-                miscUpgrade=UPG_MISC_UNCOMMOM;
+                tmp=MISC_UNCOMMOM;
                 break;
         }
+        return tmp;
+    }
+
+    public int getMiscUpgradeByRarity(){
+        int tmp=0;
+        switch (musicRarity){
+            case COMMON:
+            case DEFAULT:
+                tmp=UPG_MISC_COMMOM;
+                break;
+            case UNCOMMON:
+            case RARE:
+                tmp=UPG_MISC_UNCOMMOM;
+                break;
+        }
+        return tmp;
     }
 
     public void upgradeMisc(){
-        misc+=miscUpgrade;
+        misc+=getMiscUpgradeByRarity();
     }
 
 }
