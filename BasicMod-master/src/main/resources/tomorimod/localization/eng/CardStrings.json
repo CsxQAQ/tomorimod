@@ -351,7 +351,7 @@
   },
   "${modID}:Miluri": {
     "NAME": "迷路日",
-    "DESCRIPTION": " tomorimod:音乐 。本回合你每有一点变化，对所有敌人造成 !M! 点伤害。",
+    "DESCRIPTION": " tomorimod:音乐 。本场战斗你每有恢复一点生命值，对所有敌人造成 !M! 点伤害。",
     "EXTENDED_DESCRIPTION": [
       " tomorimod:音乐 。本场战斗你的生命值每有一点变化，对所有敌人造成 !M! 点伤害。"
     ],

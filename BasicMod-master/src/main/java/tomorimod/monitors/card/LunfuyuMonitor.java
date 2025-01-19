@@ -11,6 +11,7 @@ public class LunfuyuMonitor extends BaseMonitor implements OnPlayerTurnStartSubs
 
     public static int curHp=0;
     public static int hpIncreaseNum=0;
+    public static int hpIncreaseWholeBattle=0;
     public static int hpChangeNum=0;
     public static int hpChangeNumWholeBattle=0;
 
@@ -41,6 +42,7 @@ public class LunfuyuMonitor extends BaseMonitor implements OnPlayerTurnStartSubs
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom) {
         curHp=AbstractDungeon.player.currentHealth;
+        hpIncreaseWholeBattle=0;
         hpChangeNumWholeBattle=0;
         hpIncreaseNum=0;
         hpChangeNum=0;

@@ -87,7 +87,7 @@ public class Miluri extends BaseMusicCard {
         if(musicRarity.equals(MusicRarity.RARE)){
             baseDamage= magicNumber*LunfuyuMonitor.hpChangeNumWholeBattle;
         }else{
-            baseDamage=magicNumber*LunfuyuMonitor.hpChangeNum;
+            baseDamage=magicNumber*LunfuyuMonitor.hpIncreaseWholeBattle;
         }
     }
 
