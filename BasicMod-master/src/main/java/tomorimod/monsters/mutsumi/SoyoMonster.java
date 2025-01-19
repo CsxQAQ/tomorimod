@@ -203,8 +203,13 @@ public class SoyoMonster extends SpecialMonster {
 
     @Override
     protected void getMove(int num) {
-        int rand = AbstractDungeon.miscRng.random(point);
-        if (rand > 3) rand = 3;
+        int rand;
+        if(point>=5){
+            rand=3;
+        }else{
+            rand = AbstractDungeon.miscRng.random(point);
+            if (rand > 3) rand = 3;
+        }
         int tmp = AbstractDungeon.miscRng.random(1);
         switch (rand) {
             case 0:
