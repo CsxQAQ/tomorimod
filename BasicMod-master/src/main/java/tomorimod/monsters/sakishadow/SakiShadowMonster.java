@@ -389,16 +389,22 @@ public class SakiShadowMonster extends BaseMonster {
             addToTop(new ClearCardQueueAction());
             for (Iterator<AbstractPower> s = this.powers.iterator(); s.hasNext(); ) {
                 AbstractPower p = s.next();
-                if (p.type == AbstractPower.PowerType.DEBUFF
-                        || p.ID.equals("Curiosity")
-                        || p.ID.equals("Unawakened")
-                        || p.ID.equals("Shackled")) {
+                if (p.type == AbstractPower.PowerType.DEBUFF) {
                     s.remove();
                 }
             }
-            setMove((byte) 50, Intent.ATTACK_BUFF, this.damage.get(2).base, damageTimeVal2, false);
-            createIntent();
             applyPowers();
+            addToBot(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    setMove((byte) 50, Intent.ATTACK_BUFF, SakiShadowMonster.this.damage.get(2).base, damageTimeVal2, false);
+                    createIntent();
+                    applyPowers();
+                    isDone=true;
+                }
+            });
+
+
         }
     }
 

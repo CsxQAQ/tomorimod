@@ -66,8 +66,8 @@ import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
 
 
 //TODO 平衡性调整
-
 //TODO 最后2张卡牌
+//TODO 电波回调
 
 @SpireInitializer
 public class TomoriMod implements
