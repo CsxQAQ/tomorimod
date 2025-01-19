@@ -21,12 +21,11 @@ public class ElectricWaveAction
     private AbstractPlayer p;
     private boolean isUpgraded;
 
-    public ElectricWaveAction(int amount,boolean isUpgraded) {
+    public ElectricWaveAction(int amount) {
         this.p = AbstractDungeon.player;
         setValues(this.p, AbstractDungeon.player, amount);
         this.actionType = AbstractGameAction.ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_MED;
-        this.isUpgraded=isUpgraded;
     }
 
 
@@ -44,9 +43,9 @@ public class ElectricWaveAction
             }
             if (tmp.size() == 1) {
                 AbstractCard card = tmp.getTopCard().makeSameInstanceOf();
-                if(isUpgraded){
-                    card.setCostForTurn(0);
-                }
+//                if(isUpgraded){
+//                    card.setCostForTurn(0);
+//                }
 
                 if (this.p.hand.size() == 10) {
                     this.p.masterDeck.moveToDiscardPile(card);

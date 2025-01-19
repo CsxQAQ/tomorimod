@@ -31,7 +31,7 @@ public class WhyPerformChunriying extends BaseMonmentCard {
         this.exhaust=true;
     }
 
-    public static final int MAGIC = 2;
+    public static final int MAGIC = 1;
     public static final int UPG_MAGIC = 1;
 
 //    public static final ArrayList<String> imagePaths = new ArrayList<>();

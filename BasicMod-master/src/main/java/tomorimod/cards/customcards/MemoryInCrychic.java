@@ -22,7 +22,7 @@ public class MemoryInCrychic extends BaseCard {
             CardType.SKILL,
             CardRarity.RARE,
             CardTarget.SELF,
-            3
+            4
     );
 
     public MemoryInCrychic() {
@@ -46,7 +46,7 @@ public class MemoryInCrychic extends BaseCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeBaseCost(2);
+            upgradeBaseCost(3);
         }
     }
 

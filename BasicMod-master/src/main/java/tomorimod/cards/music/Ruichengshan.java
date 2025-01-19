@@ -31,21 +31,21 @@ public class Ruichengshan extends BaseMusicCard {
     }
 
 
-    public final static int DAMAGE_COMMON = 15;
+    public final static int DAMAGE_COMMON = 12;
     public final static int UPG_DAMAGE_COMMON = 5;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
     public final static int MAGIC_COMMON = 0;
     public final static int UPG_MAGIC_COMMON = 0;
 
-    public final static int DAMAGE_UNCOMMON = 20;
+    public final static int DAMAGE_UNCOMMON = 17;
     public final static int UPG_DAMAGE_UNCOMMON = 7;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
     public final static int MAGIC_UNCOMMON = 0;
     public final static int UPG_MAGIC_UNCOMMON = 0;
 
-    public final static int DAMAGE_RARE = 20;
+    public final static int DAMAGE_RARE = 17;
     public final static int UPG_DAMAGE_RARE = 7;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;

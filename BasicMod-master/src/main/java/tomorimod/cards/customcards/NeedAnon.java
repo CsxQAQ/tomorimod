@@ -20,11 +20,11 @@ public class NeedAnon extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
     public static final int MAGIC=1;
-    public static final int UPG_MAGIC=1;
+    public static final int UPG_MAGIC=0;
     public NeedAnon() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
@@ -40,19 +40,27 @@ public class NeedAnon extends BaseCard {
         }
     }
 
-    public void updateDescription(){
-        if(upgraded){
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-        }else{
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-        }
-        initializeDescription();
-    }
+//    public void updateDescription(){
+//        if(upgraded){
+//            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+//        }else{
+//            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+//        }
+//        initializeDescription();
+//    }
 
 
     @Override
     public AbstractCard makeCopy() {
         return new NeedAnon();
+    }
+
+    @Override
+    public void upgrade() {
+        if (!upgraded) {
+            upgradeName();
+            upgradeBaseCost(1);
+        }
     }
 
 

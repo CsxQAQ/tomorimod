@@ -20,7 +20,7 @@ public class Yingsewu extends BaseMusicCard {
             CardType.ATTACK,
             CardRarity.SPECIAL,
             CardTarget.ENEMY,
-            0
+            1
     );
 
     public Yingsewu() {
