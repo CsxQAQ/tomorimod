@@ -78,7 +78,7 @@ public class UikaMonster extends BaseMonster {
     // 怪物血量
     public static final int HP_MIN = 300;
     public static final int HP_MAX = 300;
-    public static final int MASK_NUM = 30;
+    public static final int MASK_NUM = 10;
 
     public static final int HP_MIN_WEAK = 300;
     public static final int HP_MAX_WEAK = 300;
@@ -141,11 +141,19 @@ public class UikaMonster extends BaseMonster {
     @Override
     protected void getMove(int num) {
         if (turnNum == 0) {
-            setMove((byte) 0, Intent.ATTACK_BUFF,
-                    this.damage.get(0).base, 1, false);
-            // 先创建卡
-            cardForShow1 = new UikaMygoTogether();
-            cardForShow2 = new UikaStrike();
+
+
+            if(isHardMode){
+                setMove((byte) 0, Intent.BUFF);
+                cardForShow1 = new UikaMygoTogether();
+                cardForShow2=new UikaConveyFeeling();
+            }else{
+                setMove((byte) 0, Intent.ATTACK_BUFF,
+                        this.damage.get(0).base, 1, false);
+                cardForShow1 = new UikaMygoTogether();
+                cardForShow2=new UikaStrike();
+            }
+
             int rand = AbstractDungeon.miscRng.random(1);
             isGravityMode = (rand == 0);
             turnNum++;

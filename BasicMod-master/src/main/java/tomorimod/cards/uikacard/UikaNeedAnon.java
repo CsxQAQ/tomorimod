@@ -21,7 +21,7 @@ public class UikaNeedAnon extends UikaCard implements WithoutMaterial {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.SELF,
-            1
+            2
     );
 
     public UikaNeedAnon() {
