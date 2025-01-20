@@ -50,7 +50,7 @@
     ]
   },
   "${modID}:WhyPerformChunriying": {
-    "NAME": "",
+    "NAME": "为什么要演奏春日影",
     "DESCRIPTION": "眩晕所有敌人 !M! 回合。 tomorimod:瞬间 ， 消耗 。"
   },
   "${modID}:Motivate": {
@@ -183,7 +183,7 @@
   },
   "${modID}:SingerForm": {
     "NAME": "主唱",
-    "DESCRIPTION": " tomorimod:形态 ：使用音乐牌时，抽 !M! 张牌。"
+    "DESCRIPTION": " tomorimod:形态 ：使用 tomorimod:音乐 牌时，抽 !M! 张牌。"
   },
   "${modID}:StrengthTomoriForm": {
     "NAME": "力量型高松灯",
@@ -205,7 +205,7 @@
   },
   "${modID}:Singer": {
     "NAME": "主唱",
-    "DESCRIPTION": "使用音乐牌时，抽 !M! 张牌。"
+    "DESCRIPTION": "使用 tomorimod:音乐 牌时，抽 !M! 张牌。"
   },
   "${modID}:StrengthTomori": {
     "NAME": "力量型高松灯",

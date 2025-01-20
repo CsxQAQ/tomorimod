@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 import tomorimod.cards.music.BaseMusicCard;
+import tomorimod.cards.music.Lunfuyu;
 import tomorimod.patches.AbstractCardSetMaterialPatch;
 import tomorimod.savedata.SaveDataInstanceFactory;
 import tomorimod.savedata.customdata.*;
@@ -22,9 +23,6 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
     public void allocateCardMaterial(){
         if(AbstractDungeon.player!=null){
             for(AbstractCard card:AbstractDungeon.player.masterDeck.group){
-//                if(card instanceof BaseCard){
-//                    ((BaseCard)card).initializeMaterialIcon();
-//                }
                 AbstractCardSetMaterialPatch.initializeMaterialIcon(card);
             }
         }
@@ -36,8 +34,15 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
             for(AbstractCard card:AbstractDungeon.player.masterDeck.group){
                 if(card instanceof BaseMusicCard){
                     ((BaseMusicCard)card).setMusicRarity(BaseMusicCard.getMusicRarityByCost(card.cardID));
-                    //((BaseMusicCard)card).setBanner();
-                    //((BaseMusicCard)card).setDisplayRarity(card.rarity);
+                    if(card.upgraded){
+                        if(!(card instanceof Lunfuyu)){
+                            if (card.name.endsWith("+")) {
+                                card.name = card.name.substring(0, card.name.length() - 1);
+                            }
+                            card.upgraded=false;
+                            card.upgrade();
+                        }
+                    }
                 }
             }
         }

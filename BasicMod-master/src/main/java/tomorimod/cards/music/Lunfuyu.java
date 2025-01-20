@@ -61,6 +61,7 @@ public class Lunfuyu extends BaseMusicCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new LunfuyuAction(this,magicNumber));
         if(musicRarity.equals(MusicRarity.RARE)){
             int energyNum=this.energyOnUse;
             for(int i=0;i<energyNum;i++){
@@ -68,11 +69,9 @@ public class Lunfuyu extends BaseMusicCard {
                         AbstractGameAction.AttackEffect.SLASH_VERTICAL));
             }
             p.energy.use(energyNum);
-            addToBot(new LunfuyuAction(this,magicNumber));
         }else {
             addToBot(new DamageAction(m, new MusicDamageInfo(p, damage, damageTypeForTurn),
                     AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-            addToBot(new LunfuyuAction(this, magicNumber));
         }
     }
 
