@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import javassist.CannotCompileException;
@@ -27,11 +28,20 @@ public class MutsumiGiveCucumberPatch {
         public static void insert(){
             for(AbstractMonster monster: AbstractDungeon.getCurrRoom().monsters.monsters){
                 if(!monster.isDeadOrEscaped()&&monster.hasPower(makeID("MutsumiGiveCucumberPower"))){
-                    int num=AbstractDungeon.player.drawPile.group.size();
-                    if(num<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount+getDrawCardActionCount()){
-                        for(int i=0;i<monster.getPower(makeID("MutsumiGiveCucumberPower")).amount-num+getDrawCardActionCount();i++){
-                            AbstractDungeon.actionManager.addToBottom(new QuickMakeTempCardInDrawPileAction
-                                    (new Cucumber(), 1, true, true));
+                    int canDraw = Settings.MAX_HAND_SIZE - AbstractDungeon.player.hand.size();
+                    if (canDraw < 0) {
+                        canDraw = 0;
+                    }
+                    int actualDraw = Math.min(getDrawCardActionCount(), canDraw);
+
+                    int num = AbstractDungeon.player.drawPile.size();
+                    int need = monster.getPower(makeID("MutsumiGiveCucumberPower")).amount + actualDraw - num;
+
+                    if (need > 0) {
+                        for (int i = 0; i < need; i++) {
+                            AbstractDungeon.actionManager.addToTop(new QuickMakeTempCardInDrawPileAction(
+                                    new Cucumber(), 1, true, true
+                            ));
                         }
                     }
                 }

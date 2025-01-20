@@ -261,7 +261,7 @@
   "${modID}:MutsumiGiveCucumberPower": {
     "NAME": "给你小黄瓜",
     "DESCRIPTIONS":[
-      "当你洗牌时，如果你的抽牌堆卡牌数量不足 #b"
+      "当你洗牌并抽牌后，如果你的抽牌堆卡牌数量不足 #b"
     ]
   },
   "${modID}:MutsumiRealDamagePower": {

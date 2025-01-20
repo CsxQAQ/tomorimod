@@ -49,7 +49,7 @@ public class MonsterDamageAllAction extends AbstractGameAction {
         if (this.isDone) {
             ArrayList<AbstractCreature> targets=new ArrayList<>(Arrays.asList(AbstractDungeon.player));
             for(AbstractMonster monster:AbstractDungeon.getCurrRoom().monsters.monsters){
-                if(!monster.equals(source)){
+                if(!monster.equals(source)&&!monster.isDeadOrEscaped()){
                     targets.add(monster);
                 }
             }
