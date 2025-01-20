@@ -22,7 +22,7 @@ public class ShineWithMe extends BaseCard implements PermanentFrom {
     public static final CardStats info = new CardStats(
             Tomori.Meta.CARD_COLOR,
             CardType.POWER,
-            CardRarity.RARE,
+            CardRarity.UNCOMMON,
             CardTarget.SELF,
             1
     );
