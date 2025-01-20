@@ -268,8 +268,8 @@
   },
 
   "${modID}:Revolution": {
-    "NAME": "泪滴与变革",
-    "DESCRIPTION": "使用后从牌组中移除。本场战斗结束时，重置所有卡牌携带的 tomorimod:素材 。"
+    "NAME": "变革",
+    "DESCRIPTION": "将 tomorimod:重力 转换为等量的 力量 。 消耗 。"
   },
   "${modID}:WhiteMoonlight": {
     "NAME": "白月光",
@@ -313,6 +313,7 @@
     "NAME": "哈",
     "DESCRIPTION": "造成 !D! 点伤害。"
   },
+
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
     "DESCRIPTION": "使用后回到手牌。抽一张牌。",
@@ -371,7 +372,7 @@
     "NAME": "名無声",
     "DESCRIPTION": " tomorimod:音乐 。造成 !D! 点伤害。获得 !M! 层 tomorimod:重力 。",
     "EXTENDED_DESCRIPTION": [
-      " tomorimod:音乐 。造成 !D! 点伤害，获得等同于未被格挡伤害数值的 tomorimod:重力 。"
+      " tomorimod:音乐 。造成 !D! 点伤害，获得等同于未被 格挡 伤害层数的 tomorimod:重力 。"
     ]
   },
   "${modID}:Mixingjiao": {

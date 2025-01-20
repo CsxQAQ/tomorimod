@@ -51,8 +51,8 @@ public class Mingwusheng extends BaseMusicCard {
     public final static int UPG_DAMAGE_RARE = 3;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 6;
-    public final static int UPG_MAGIC_RARE = 3;
+    public final static int MAGIC_RARE = 0;
+    public final static int UPG_MAGIC_RARE = 0;
 
 
     @Override

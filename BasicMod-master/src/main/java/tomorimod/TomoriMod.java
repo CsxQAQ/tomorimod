@@ -62,11 +62,7 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static com.megacrit.cardcrawl.cards.AbstractCard.CardColor.COLORLESS;
-
-
 //TODO 最后2张卡牌
-//TODO 获得伤害量的重力
 
 @SpireInitializer
 public class TomoriMod implements
