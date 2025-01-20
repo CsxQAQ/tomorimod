@@ -97,7 +97,7 @@
   },
   "${modID}:Recycle": {
     "NAME": "回收",
-    "DESCRIPTION": "使用后移除。将你的消耗牌堆洗牌后放入你的抽牌堆。（ 状态牌 和 诅咒 牌除外）。"
+    "DESCRIPTION": "使用后移除。将你的消耗牌堆洗牌后放入你的抽牌堆。（ 状态牌 和 诅咒 牌除外）"
   },
   "${modID}:YourTenDraws": {
     "NAME": "十连",
@@ -313,7 +313,10 @@
     "NAME": "哈",
     "DESCRIPTION": "造成 !D! 点伤害。"
   },
-
+  "${modID}:CommonAndNature": {
+    "NAME": "普通和理所当然",
+    "DESCRIPTION": "稀有度为普通的 tomorimod:音乐 牌造成 !M! 倍伤害。"
+  },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
     "DESCRIPTION": "使用后回到手牌。抽一张牌。",

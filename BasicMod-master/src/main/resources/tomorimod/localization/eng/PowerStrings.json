@@ -114,6 +114,12 @@
       "回合开始时，升级所有卡牌。 #y音乐 牌可以无限升级。"
     ]
   },
+  "${modID}:CommonAndNaturePower": {
+    "NAME": "普通和理所当然",
+    "DESCRIPTIONS": [
+      "稀有度为普通的 #y音乐 牌造成 #b3 倍伤害。"
+    ]
+  },
   "${modID}:WholeLifePower": {
     "NAME": "一辈子",
     "DESCRIPTIONS": [
