@@ -29,16 +29,18 @@ public class SakiShadowRightPatch {
     public static class DamagePatch{
         @SpirePostfixPatch
         public static void postfix(AbstractPlayer __instance,DamageInfo damageInfo){
-            applyAfterDamage();
+            applyAfterDamage(damageInfo);
         }
 
     }
 
-    public static void applyAfterDamage(){
+    public static void applyAfterDamage(DamageInfo damageInfo){
         if(AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
-            AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
-            if(power instanceof SakiShadowRightPower){
-                ((SakiShadowRightPower) power).afterDamage();
+            if(damageInfo.owner instanceof SakiShadowMonster){
+                AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
+                if(power instanceof SakiShadowRightPower){
+                    ((SakiShadowRightPower) power).afterDamage();
+                }
             }
         }
     }

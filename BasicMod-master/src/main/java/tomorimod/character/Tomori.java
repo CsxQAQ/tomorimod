@@ -574,7 +574,7 @@ public class Tomori extends CustomPlayer {
 
         ///////
 
-        SakiShadowRightPatch.applyAfterDamage();
+        SakiShadowRightPatch.applyAfterDamage(info);
 
         ///////
     }

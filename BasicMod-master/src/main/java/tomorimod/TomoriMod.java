@@ -62,7 +62,10 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 最后2张卡牌
+//TODO 平地摔升级改成两张
+//TODO 普通和理所当然改成永久能力
+
+//TODO 黑祥子bug，伤害来源不来自黑祥子也会扣生命上限
 
 @SpireInitializer
 public class TomoriMod implements
