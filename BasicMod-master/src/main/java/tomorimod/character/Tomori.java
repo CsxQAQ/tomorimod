@@ -40,6 +40,7 @@ import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
 import tomorimod.cards.basic.Upset;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
+import tomorimod.monsters.saki.SakiDamageInfo;
 import tomorimod.monsters.sakishadow.SakiShadowRightPatch;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
@@ -358,244 +359,230 @@ public class Tomori extends CustomPlayer {
 
     @Override
     public void damage(DamageInfo info) {
-        //可以在这里判断伤害来源，让白祥的攻击免疫护甲和无实体
-        int damageAmount = info.output;
-        boolean hadBlock = true;
+//        if(info instanceof SakiDamageInfo){
+//            SakiHealthLosePatch.applyTrueDamageTomori(this,info);
+//        }else
+//        {
+            //可以在这里判断伤害来源，让白祥的攻击免疫护甲和无实体
+            int damageAmount = info.output;
+            boolean hadBlock = true;
 
-        if (this.currentBlock == 0) {
-            hadBlock = false;
-        }
-
-        if (damageAmount < 0) {
-            damageAmount = 0;
-        }
-
-        /////
-
-        if (damageAmount > 1 && hasPower("IntangiblePlayer")) {
-            if(!MutsumiMonster.isMutsumi()){
-                damageAmount = 1;
+            if (this.currentBlock == 0) {
+                hadBlock = false;
             }
-        }
 
-        /////
+            if (damageAmount < 0) {
+                damageAmount = 0;
+            }
 
-        /////
+            /////
 
-        if(!MutsumiMonster.isMutsumi()){
-            damageAmount = decrementBlock(info, damageAmount);
-        }
+            if (damageAmount > 1 && hasPower("IntangiblePlayer")) {
+                if (!MutsumiMonster.isMutsumi()) {
+                    damageAmount = 1;
+                }
+            }
 
-        //////
+            /////
 
-        if (info.owner == this) {
+            /////
+
+            if (!MutsumiMonster.isMutsumi()) {
+                damageAmount = decrementBlock(info, damageAmount);
+            }
+
+            //////
+
+            if (info.owner == this) {
+                for (AbstractRelic r : this.relics) {
+                    damageAmount = r.onAttackToChangeDamage(info, damageAmount);
+                }
+            }
+            if (info.owner != null) {
+                for (AbstractPower p : info.owner.powers) {
+                    damageAmount = p.onAttackToChangeDamage(info, damageAmount);
+                }
+            }
             for (AbstractRelic r : this.relics) {
-                damageAmount = r.onAttackToChangeDamage(info, damageAmount);
-            }
-        }
-        if (info.owner != null) {
-            for (AbstractPower p : info.owner.powers) {
-                damageAmount = p.onAttackToChangeDamage(info, damageAmount);
-            }
-        }
-        for (AbstractRelic r : this.relics) {
-            damageAmount = r.onAttackedToChangeDamage(info, damageAmount);
-        }
-        for (AbstractPower p : this.powers) {
-            damageAmount = p.onAttackedToChangeDamage(info, damageAmount);
-        }
-
-        if (info.owner == this) {
-            for (AbstractRelic r : this.relics) {
-                r.onAttack(info, damageAmount, this);
-            }
-        }
-
-        if (info.owner != null) {
-            for (AbstractPower p : info.owner.powers) {
-                p.onAttack(info, damageAmount, this);
+                damageAmount = r.onAttackedToChangeDamage(info, damageAmount);
             }
             for (AbstractPower p : this.powers) {
-                damageAmount = p.onAttacked(info, damageAmount);
-            }
-            for (AbstractRelic r : this.relics) {
-                damageAmount = r.onAttacked(info, damageAmount);
-            }
-        }
-
-        for (AbstractRelic r : this.relics) {
-            damageAmount = r.onLoseHpLast(damageAmount);
-        }
-
-        this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
-
-        if (damageAmount > 0) {
-            for (AbstractPower p : this.powers) {
-                damageAmount = p.onLoseHp(damageAmount);
+                damageAmount = p.onAttackedToChangeDamage(info, damageAmount);
             }
 
-            for (AbstractRelic r : this.relics) {
-                r.onLoseHp(damageAmount);
-            }
-
-            for (AbstractPower p : this.powers) {
-                p.wasHPLost(info, damageAmount);
-            }
-
-            for (AbstractRelic r : this.relics) {
-                r.wasHPLost(damageAmount);
+            if (info.owner == this) {
+                for (AbstractRelic r : this.relics) {
+                    r.onAttack(info, damageAmount, this);
+                }
             }
 
             if (info.owner != null) {
                 for (AbstractPower p : info.owner.powers) {
-                    p.onInflictDamage(info, damageAmount, this);
+                    p.onAttack(info, damageAmount, this);
                 }
-            }
-
-            if (info.owner != this) {
-                useStaggerAnimation();
-            }
-
-            if (info.type == DamageInfo.DamageType.HP_LOSS) {
-                GameActionManager.hpLossThisCombat += damageAmount;
-            }
-
-            GameActionManager.damageReceivedThisTurn += damageAmount;
-            GameActionManager.damageReceivedThisCombat += damageAmount;
-
-            this.currentHealth -= damageAmount;
-
-
-
-            if (damageAmount > 0 && (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
-                if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-                    Iterator var1 = this.hand.group.iterator();
-
-                    AbstractCard c;
-                    while(var1.hasNext()) {
-                        c = (AbstractCard)var1.next();
-                        c.tookDamage();
-                    }
-
-                    var1 = this.discardPile.group.iterator();
-
-                    while(var1.hasNext()) {
-                        c = (AbstractCard)var1.next();
-                        c.tookDamage();
-                    }
-
-                    var1 = this.drawPile.group.iterator();
-
-                    while(var1.hasNext()) {
-                        c = (AbstractCard)var1.next();
-                        c.tookDamage();
-                    }
+                for (AbstractPower p : this.powers) {
+                    damageAmount = p.onAttacked(info, damageAmount);
                 }
-                this.damagedThisCombat++;
-            }
-
-            AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, damageAmount));
-
-            if (this.currentHealth < 0) {
-                this.currentHealth = 0;
-            } else if (this.currentHealth < this.maxHealth / 4) {
-                AbstractDungeon.topLevelEffects.add(new BorderFlashEffect(new Color(1.0F, 0.1F, 0.05F, 0.0F)));
-            }
-
-            healthBarUpdatedEvent();
-
-            if (this.currentHealth <= this.maxHealth / 2.0F && !this.isBloodied) {
-                this.isBloodied = true;
                 for (AbstractRelic r : this.relics) {
-                    if (r != null) {
-                        r.onBloodied();
-                    }
+                    damageAmount = r.onAttacked(info, damageAmount);
                 }
             }
 
-            if (this.currentHealth < 1) {
-                if (!hasRelic("Mark of the Bloom")) {
-                    if (hasPotion("FairyPotion")) {
-                        for (AbstractPotion p : this.potions) {
-                            if (p.ID.equals("FairyPotion")) {
-                                p.flash();
+            for (AbstractRelic r : this.relics) {
+                damageAmount = r.onLoseHpLast(damageAmount);
+            }
+
+            this.lastDamageTaken = Math.min(damageAmount, this.currentHealth);
+
+            if (damageAmount > 0) {
+                for (AbstractPower p : this.powers) {
+                    damageAmount = p.onLoseHp(damageAmount);
+                }
+
+                for (AbstractRelic r : this.relics) {
+                    r.onLoseHp(damageAmount);
+                }
+
+                for (AbstractPower p : this.powers) {
+                    p.wasHPLost(info, damageAmount);
+                }
+
+                for (AbstractRelic r : this.relics) {
+                    r.wasHPLost(damageAmount);
+                }
+
+                if (info.owner != null) {
+                    for (AbstractPower p : info.owner.powers) {
+                        p.onInflictDamage(info, damageAmount, this);
+                    }
+                }
+
+                if (info.owner != this) {
+                    useStaggerAnimation();
+                }
+
+                if (info.type == DamageInfo.DamageType.HP_LOSS) {
+                    GameActionManager.hpLossThisCombat += damageAmount;
+                }
+
+                GameActionManager.damageReceivedThisTurn += damageAmount;
+                GameActionManager.damageReceivedThisCombat += damageAmount;
+
+                this.currentHealth -= damageAmount;
+
+
+                if (damageAmount > 0 && (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+                    if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                        Iterator var1 = this.hand.group.iterator();
+
+                        AbstractCard c;
+                        while (var1.hasNext()) {
+                            c = (AbstractCard) var1.next();
+                            c.tookDamage();
+                        }
+
+                        var1 = this.discardPile.group.iterator();
+
+                        while (var1.hasNext()) {
+                            c = (AbstractCard) var1.next();
+                            c.tookDamage();
+                        }
+
+                        var1 = this.drawPile.group.iterator();
+
+                        while (var1.hasNext()) {
+                            c = (AbstractCard) var1.next();
+                            c.tookDamage();
+                        }
+                    }
+                    this.damagedThisCombat++;
+                }
+
+                AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, damageAmount));
+
+                if (this.currentHealth < 0) {
+                    this.currentHealth = 0;
+                } else if (this.currentHealth < this.maxHealth / 4) {
+                    AbstractDungeon.topLevelEffects.add(new BorderFlashEffect(new Color(1.0F, 0.1F, 0.05F, 0.0F)));
+                }
+
+                healthBarUpdatedEvent();
+
+                if (this.currentHealth <= this.maxHealth / 2.0F && !this.isBloodied) {
+                    this.isBloodied = true;
+                    for (AbstractRelic r : this.relics) {
+                        if (r != null) {
+                            r.onBloodied();
+                        }
+                    }
+                }
+
+                if (this.currentHealth < 1) {
+                    if (!hasRelic("Mark of the Bloom")) {
+                        if (hasPotion("FairyPotion")) {
+                            for (AbstractPotion p : this.potions) {
+                                if (p.ID.equals("FairyPotion")) {
+                                    p.flash();
+                                    this.currentHealth = 0;
+                                    p.use(this);
+                                    AbstractDungeon.topPanel.destroyPotion(p.slot);
+                                    return;
+                                }
+                            }
+                        } else if (hasRelic("Lizard Tail")) {
+                            if (((LizardTail) getRelic("Lizard Tail")).counter == -1) {
                                 this.currentHealth = 0;
-                                p.use(this);
-                                AbstractDungeon.topPanel.destroyPotion(p.slot);
+                                getRelic("Lizard Tail").onTrigger();
                                 return;
                             }
-                        }
-                    } else if (hasRelic("Lizard Tail")) {
-                        if (((LizardTail) getRelic("Lizard Tail")).counter == -1) {
-                            this.currentHealth = 0;
-                            getRelic("Lizard Tail").onTrigger();
+
+                            ////////
+
+                        } else if (hasPower(makeID("StarDustPower"))) {
+                            getPower(makeID("StarDustPower")).flash();
+                            AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
+                            //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
+
+                            // 2. 触发加血
+                            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
+                            //currentHealth=1;
+                            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, makeID("StarDustPower")));
+                            AbstractDungeon.actionManager.addToBottom
+                                    (new ApplyPowerAction(this, this, new ImmunityPower(this, 2), 2));
+                            return;
+                        } else if (hasPower(makeID("ImmunityPower"))) {
+                            getPower(makeID("ImmunityPower")).flash();
+                            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
                             return;
                         }
 
-                        ////////
+                        /////////
 
-                    } else if(hasPower(makeID("StarDustPower"))){
-                        getPower(makeID("StarDustPower")).flash();
-                        AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
-                        //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
-
-                        // 2. 触发加血
-                        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
-                        //currentHealth=1;
-                        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this,this,makeID("StarDustPower")));
-                        AbstractDungeon.actionManager.addToBottom
-                                (new ApplyPowerAction(this,this,new ImmunityPower(this,2),2));
-                        return;
-                    }else if(hasPower(makeID("ImmunityPower"))){
-                        getPower(makeID("ImmunityPower")).flash();
-                        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
-                        return;
                     }
-
-                    /////////
-
+                    this.isDead = true;
+                    AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
+                    this.currentHealth = 0;
+                    if (this.currentBlock > 0) {
+                        loseBlock();
+                        AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
+                    }
                 }
-                this.isDead = true;
-                AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
-                this.currentHealth = 0;
-                if (this.currentBlock > 0) {
-                    loseBlock();
-                    AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
-                }
+            } else if (this.currentBlock > 0) {
+                AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, uiStrings.TEXT[0]));
+            } else if (hadBlock) {
+                AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, uiStrings.TEXT[0]));
+                AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
+            } else {
+                AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
             }
-        } else if (this.currentBlock > 0) {
-            AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, uiStrings.TEXT[0]));
-        } else if (hadBlock) {
-            AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, uiStrings.TEXT[0]));
-            AbstractDungeon.effectList.add(new HbBlockBrokenEffect(this.hb.cX - this.hb.width / 2.0F + BLOCK_ICON_X, this.hb.cY - this.hb.height / 2.0F + BLOCK_ICON_Y));
-        } else {
-            AbstractDungeon.effectList.add(new StrikeEffect(this, this.hb.cX, this.hb.cY, 0));
-        }
 
-        ///////
+            ///////
 
-        SakiShadowRightPatch.applyAfterDamage(info);
+            SakiShadowRightPatch.applyAfterDamage(info);
 
-        ///////
+            ///////
+
     }
-
-//    else if(hasPower(makeID("StarDustPower"))){
-//        getPower(makeID("StarDustPower")).flash();
-//        AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
-//        //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
-//
-//        // 2. 触发加血
-//        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
-//        //currentHealth=1;
-//        AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this,this,makeID("StarDustPower")));
-//        AbstractDungeon.actionManager.addToBottom
-//                (new ApplyPowerAction(this,this,new ImmunityPower(this,2),2));
-//        return;
-//    }else if(hasPower(makeID("ImmunityPower"))){
-//        getPower(makeID("ImmunityPower")).flash();
-//        AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
-//        return;
-//    }
 
     @Override
     public void applyEndOfTurnTriggers() {
