@@ -98,5 +98,15 @@
     "DIALOG": [
       ""
     ]
+  },
+  "${modID}:SakiMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "丰川祥子",
+    "DIALOG": [
+      ""
+    ]
   }
 }

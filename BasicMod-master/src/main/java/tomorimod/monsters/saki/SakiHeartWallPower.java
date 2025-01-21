@@ -27,12 +27,12 @@ public class SakiHeartWallPower extends BasePower {
 
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if (damageAmount > this.amount) {
+            addToBot(new DamageAction(AbstractDungeon.player,new SakiDamageInfo(this.owner,damageAmount-this.amount),
+                    AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             damageAmount = this.amount;
         }
         this.amount -= damageAmount;
         if (this.amount < 0) {
-            addToBot(new DamageAction(AbstractDungeon.player,new SakiDamageInfo(this.owner,Math.abs(this.amount)),
-                    AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
             this.amount = 0;
         }
         return damageAmount;

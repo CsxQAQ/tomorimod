@@ -22,6 +22,7 @@ import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
+import tomorimod.monsters.saki.SakiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
 import tomorimod.monsters.taki.TakiPressureMonitor;
@@ -56,7 +57,7 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 轮符雨bug
+//TODO 轮符雨 迷路日建议删了bug
 //TODO 白祥子
 //TODO 卡牌渲染不出来bug又出现了
 
@@ -215,8 +216,13 @@ public class TomoriMod implements
                 .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + UikaMonster.class
                 .getSimpleName() + "_map.png");
 
-        BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheEnding", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//        BaseMod.addMonster(SakiShadowMonster.ID, () -> new SakiShadowMonster(0.0F, 0.0F));
+//        BossGeneratePatch.addBoss("TheEnding", SakiShadowMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//                .getSimpleName() + "_map.png");
+
+        BaseMod.addMonster(SakiMonster.ID, () -> new SakiMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("TheEnding", SakiMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
                 .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
                 .getSimpleName() + "_map.png");
     }

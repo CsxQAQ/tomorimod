@@ -32,14 +32,12 @@ public class SakiWishYouHappyPower extends BasePower {
                 AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
     }
 
-    @Override
-    public void atEndOfTurn(boolean isPlayer) {
-        if(isPlayer){
-            for(int i=0;i< EnergyPanel.totalCount;i++){
-                addToBot(new DamageAction(AbstractDungeon.player,new SakiDamageInfo(this.owner,this.amount),
-                        AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-            }
+    public void atEndOfPlayerTurn() {
+        for(int i=0;i< EnergyPanel.totalCount;i++){
+            addToBot(new DamageAction(AbstractDungeon.player,new SakiDamageInfo(this.owner,this.amount),
+                    AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         }
+
     }
 
     @Override

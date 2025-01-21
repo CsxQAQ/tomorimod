@@ -41,6 +41,8 @@ import tomorimod.cards.basic.Strike;
 import tomorimod.cards.basic.Upset;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.saki.SakiDamageInfo;
+import tomorimod.monsters.saki.SakiHealthLosePatch;
+import tomorimod.monsters.saki.SakiWishYouHappyPower;
 import tomorimod.monsters.sakishadow.SakiShadowRightPatch;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.powers.ImmunityPower;
@@ -359,10 +361,9 @@ public class Tomori extends CustomPlayer {
 
     @Override
     public void damage(DamageInfo info) {
-//        if(info instanceof SakiDamageInfo){
-//            SakiHealthLosePatch.applyTrueDamageTomori(this,info);
-//        }else
-//        {
+        if(info instanceof SakiDamageInfo){
+            SakiHealthLosePatch.applyTrueDamageTomori(this,info);
+        }else {
             //可以在这里判断伤害来源，让白祥的攻击免疫护甲和无实体
             int damageAmount = info.output;
             boolean hadBlock = true;
@@ -572,7 +573,7 @@ public class Tomori extends CustomPlayer {
             SakiShadowRightPatch.applyAfterDamage(info);
 
             ///////
-
+        }
     }
 
     public void doStarDustPowerLogic(){
@@ -609,6 +610,15 @@ public class Tomori extends CustomPlayer {
             }
         }
 
+        if(MonsterUtils.getMonster(makeID("SakiMonster"))!=null){
+            AbstractMonster monster=MonsterUtils.getMonster(makeID("SakiMonster"));
+            if(monster.hasPower(makeID("SakiWishYouHappyPower"))){
+                AbstractPower p=monster.getPower(makeID("SakiWishYouHappyPower"));
+                if(p instanceof SakiWishYouHappyPower){
+                    ((SakiWishYouHappyPower) p).atEndOfPlayerTurn();
+                }
+            }
+        }
 
     }
 }
