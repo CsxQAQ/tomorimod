@@ -22,6 +22,7 @@ public class CardsRemovedFromPoolSaveData implements Clearable {
         return instance;
     }
 
+    @Override
     public void clear(){
         cardsRemoved.clear();
     }

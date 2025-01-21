@@ -26,6 +26,7 @@ public class HistoryCraftRecords implements Clearable {
         return instance;
     }
 
+    @Override
     public void clear(){
         historyCraftRecords.clear();
     }

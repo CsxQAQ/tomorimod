@@ -56,9 +56,9 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 删除轮符雨
+//TODO 轮符雨bug
 //TODO 白祥子
-
+//TODO 卡牌渲染不出来bug又出现了
 
 @SpireInitializer
 public class TomoriMod implements

@@ -20,7 +20,6 @@ import static tomorimod.TomoriMod.makeID;
 public class CraftingRecipes implements Clearable {
 
     public HashMap<String, Integer> musicsCostHashMap =new HashMap<>();
-    //public HashMap<String,String> cardMaterialHashMap=new HashMap<>();
     public Map<String, Material> cardMaterialHashMap = new HashMap<>();
     public ArrayList<Recipe> recipeArrayList =new ArrayList<>();
     public static class Recipe {
@@ -201,6 +200,7 @@ public class CraftingRecipes implements Clearable {
         SaveDataInstanceFactory.registerInstance(this);
     }
 
+    @Override
     public void clear(){
         cardMaterialHashMap.clear();
         recipeArrayList.clear();

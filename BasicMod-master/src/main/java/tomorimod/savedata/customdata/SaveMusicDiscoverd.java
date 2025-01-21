@@ -41,6 +41,7 @@ public class SaveMusicDiscoverd implements Clearable {
         return instance;
     }
 
+    @Override
     public void clear(){
         musicDiscovered.clear();
         musicDiscoveredNum=0;
