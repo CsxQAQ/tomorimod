@@ -37,7 +37,7 @@
   },
   "${modID}:FallingOnFlatGround": {
     "NAME": "平地摔",
-    "DESCRIPTION": "选择一张手牌，将其从手牌和牌组中移除。 tomorimod:瞬间 ， 消耗 。",
+    "DESCRIPTION": "选择 !M! 张手牌，将其从手牌和牌组中移除。 tomorimod:瞬间 ， 消耗 。",
     "EXTENDED_DESCRIPTION": [
       "选择一张手牌，将其打出后从手牌和牌组中移除。 tomorimod:瞬间 ， 消耗 。"
     ]

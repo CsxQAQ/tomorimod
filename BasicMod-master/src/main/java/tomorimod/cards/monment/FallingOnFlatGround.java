@@ -19,33 +19,39 @@ public class FallingOnFlatGround extends BaseMonmentCard {
             1
     );
 
+    public static final int MAGIC = 1;
+    public static final int UPG_MAGIC = 1;
+
     public FallingOnFlatGround() {
         super(ID, info);
         this.exhaust=true;
+        setMagic(MAGIC, UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new FallingOnFlatGroundAction(upgraded));
+        for(int i = 0; i < magicNumber; i++) {
+            addToBot(new FallingOnFlatGroundAction(upgraded));
+        }
         super.use(p,m);
     }
 
-    public void updateDescription(){
-        if(upgraded){
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
-        }else{
-            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
-        }
-        initializeDescription();
-    }
+//    public void updateDescription(){
+//        if(upgraded){
+//            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).EXTENDED_DESCRIPTION[0];
+//        }else{
+//            rawDescription = CardCrawlGame.languagePack.getCardStrings(ID).DESCRIPTION;
+//        }
+//        initializeDescription();
+//    }
 
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            updateDescription();
-        }
-    }
+//    @Override
+//    public void upgrade() {
+//        if (!upgraded) {
+//            upgradeName();
+//            updateDescription();
+//        }
+//    }
 
     @Override
     public AbstractCard makeCopy() {

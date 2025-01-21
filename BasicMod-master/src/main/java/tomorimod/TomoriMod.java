@@ -64,8 +64,7 @@ import java.util.*;
 
 //TODO 平地摔升级改成两张
 //TODO 普通和理所当然改成永久能力
-
-//TODO 黑祥子bug，伤害来源不来自黑祥子也会扣生命上限
+//TODO 删除迷路日
 
 @SpireInitializer
 public class TomoriMod implements

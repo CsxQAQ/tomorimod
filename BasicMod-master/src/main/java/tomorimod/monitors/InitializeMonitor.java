@@ -63,11 +63,10 @@ public class InitializeMonitor extends BaseMonitor implements PostDungeonInitial
                         CraftingRecipes.getInstance().recipeArrayList.get(CraftingRecipes.getInstance().recipeArrayList.size()-2));
             }
             //测试，笔记本自带两条记录
-            if (PlayerUtils.isTomori()){
-                removeRelic();
-                removeCard();
-            }
-
+        }
+        if (PlayerUtils.isTomori()){
+            removeRelic();
+            removeCard();
         }
     }
 

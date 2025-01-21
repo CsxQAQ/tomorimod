@@ -39,18 +39,18 @@ public class FallingOnFlatGroundAction extends AbstractGameAction {
                 return;
             }
             AbstractDungeon.gridSelectScreen.open(tmp, 1, false, "选择1张手牌");
+//            if(!isUpgraded) {
+//                AbstractDungeon.gridSelectScreen.open(tmp, 1, false, "选择1张手牌");
+//            }else{
+//                AbstractDungeon.gridSelectScreen.open(tmp, 2, true, "选择2张手牌");
+//            }
             tickDuration();
             return;
         }
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0) {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-                if(isUpgraded){
-                    c.exhaust=true;
-                    addToTop(new NewQueueCardAction(c, true,true,true));
-                }else{
-                    p.hand.moveToExhaustPile(c);
-                }
+                p.hand.moveToExhaustPile(c);
                 BaseMonmentCard.removeFromMasterDeck(c);
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
