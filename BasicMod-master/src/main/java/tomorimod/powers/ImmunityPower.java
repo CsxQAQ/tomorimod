@@ -30,7 +30,7 @@ public class ImmunityPower extends BasePower {
         } else if(this.amount==1) {
             if(!AbstractDungeon.player.hasPower(makeID("ShinePower"))){
                 addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ImmunityPower"), 1));
-            }else if(AbstractDungeon.player.getPower(makeID("ShinePower")).amount<5){
+            }else if(AbstractDungeon.player.getPower(makeID("ShinePower")).amount<StarDust.SHINE_NUM){
                 addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ImmunityPower"), 1));
             }else{
                 addToBot(new ReducePowerAction(this.owner, this.owner, makeID("ShinePower"), StarDust.SHINE_NUM));

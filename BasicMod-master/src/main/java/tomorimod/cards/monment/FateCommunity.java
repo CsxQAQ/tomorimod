@@ -84,6 +84,7 @@ public class FateCommunity extends BaseMonmentCard {
                 isDone = true;
             }
         });
+        super.use(p, m);
     }
 
     @Override

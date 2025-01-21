@@ -46,69 +46,6 @@ public class SakiShadowRightPatch {
     }
 
 
-//    @SpirePatch(
-//            clz= AbstractPlayer.class,
-//            method="damage",
-//            paramtypez = {
-//                    DamageInfo.class
-//            }
-//    )
-//    public static class DamagePatch{
-//        @SpireInsertPatch(
-//                locator = Locator.class
-//        )
-//        public static void insert(AbstractPlayer __instance,DamageInfo damageInfo){
-//            if(AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
-//                AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
-//                if(power instanceof SakiShadowRightPower){
-//                    ((SakiShadowRightPower) power).afterDamage();
-//                }
-//            }
-//        }
-//
-//
-//        private static class Locator extends SpireInsertLocator {
-//            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-//                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "currentHealth");
-//                int[] lines = LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-//                return new int[]{lines[1]+1};
-//            }
-//        }
-//    }
-//
-//    @SpirePatch(
-//            clz= AbstractPlayer.class,
-//            method="damage",
-//            paramtypez = {
-//                    DamageInfo.class
-//            }
-//    )
-//    public static class DamagePatch2{
-//        @SpireInsertPatch(
-//                locator = Locator.class,
-//                localvars={"damageAmount"}
-//
-//        )
-//        public static void insert(AbstractPlayer __instance,DamageInfo damageInfo, @ByRef int damageAmount[]){
-//            if(AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT){
-//                AbstractPower power= MonsterUtils.getPower(makeID("SakiShadowMonster"),makeID("SakiShadowRightPower"));
-//                if(power!=null&&power.amount>0){
-//                    damageAmount[0]=Math.max(power.amount,damageAmount[0]);
-//                }
-//            }
-//        }
-//
-//
-//        private static class Locator extends SpireInsertLocator {
-//            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-//                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractPlayer.class, "lastDamageTaken");
-//                int[] lines = LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-//                return new int[]{lines[0]};
-//            }
-//        }
-//    }
-
-
 
 }
 

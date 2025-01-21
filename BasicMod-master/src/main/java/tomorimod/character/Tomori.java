@@ -539,20 +539,11 @@ public class Tomori extends CustomPlayer {
                             ////////
 
                         } else if (hasPower(makeID("StarDustPower"))) {
-                            getPower(makeID("StarDustPower")).flash();
-                            AbstractDungeon.actionManager.addToBottom(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
-                            //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
+                            doStarDustPowerLogic();
 
-                            // 2. 触发加血
-                            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
-                            //currentHealth=1;
-                            AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this, this, makeID("StarDustPower")));
-                            AbstractDungeon.actionManager.addToBottom
-                                    (new ApplyPowerAction(this, this, new ImmunityPower(this, 2), 2));
                             return;
                         } else if (hasPower(makeID("ImmunityPower"))) {
-                            getPower(makeID("ImmunityPower")).flash();
-                            AbstractDungeon.actionManager.addToBottom(new HealAction(this, this, 1));
+                            doImmunityPowerLogic();
                             return;
                         }
 
@@ -582,6 +573,23 @@ public class Tomori extends CustomPlayer {
 
             ///////
 
+    }
+
+    public void doStarDustPowerLogic(){
+        getPower(makeID("StarDustPower")).flash();
+        //AbstractDungeon.effectsQueue.add(new StarDustEffect(this.hb.cX, this.hb.cY));
+
+        // 2. 触发加血
+        AbstractDungeon.actionManager.addToTop
+                (new ApplyPowerAction(this, this, new ImmunityPower(this, 2), 2));
+        AbstractDungeon.actionManager.addToTop(new RemoveSpecificPowerAction(this, this, makeID("StarDustPower")));
+        AbstractDungeon.actionManager.addToTop(new HealAction(this, this, 1));
+        AbstractDungeon.actionManager.addToTop(new VFXAction(new StarDustEffect(this.hb.cX, this.hb.cY), 1.0F));
+    }
+
+    public void doImmunityPowerLogic(){
+        getPower(makeID("ImmunityPower")).flash();
+        AbstractDungeon.actionManager.addToTop(new HealAction(this, this, 1));
     }
 
     @Override

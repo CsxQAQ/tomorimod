@@ -9,6 +9,7 @@ import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
 import tomorimod.powers.ShinePower;
 import tomorimod.util.CardStats;
+import tomorimod.util.PlayerUtils;
 
 public class ShineHugMe extends BaseCard {
     public static final String ID = makeID(ShineHugMe.class.getSimpleName());
@@ -17,21 +18,21 @@ public class ShineHugMe extends BaseCard {
             CardType.SKILL,
             CardRarity.COMMON,
             CardTarget.SELF,
-            1
+            0
     );
+
+    public static final int MAGIC=1;
+    public static final int UPG_MAGIC=1;
 
     public ShineHugMe() {
         super(ID, info);
+        setMagic(MAGIC,UPG_MAGIC);
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractPower shine = p.getPower(ShinePower.POWER_ID);
-        if (shine != null) {
-            for (int i = 0; i < shine.amount; i++) {
-                addToBot(new GainEnergyAction(1));
-            }
-        }
+        addToBot(new GainEnergyAction(magicNumber*
+                PlayerUtils.getPowerNum( makeID("ShinePower"))));
     }
 
     @Override
