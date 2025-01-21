@@ -62,7 +62,6 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 平地摔升级改成两张
 //TODO 普通和理所当然改成永久能力
 //TODO 删除迷路日
 

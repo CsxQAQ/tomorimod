@@ -1,18 +1,19 @@
-package tomorimod.cards.customcards;
+package tomorimod.cards.permanentforms;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
+import tomorimod.cards.monment.BaseMonmentCard;
 import tomorimod.character.Tomori;
-import tomorimod.powers.custompowers.BigGirlsBandEraPower;
-import tomorimod.powers.custompowers.BigGirlsBandEraUpgradedPower;
 import tomorimod.powers.custompowers.CommonAndNaturePower;
+import tomorimod.savedata.customdata.PermanentFormsSaveData;
 import tomorimod.util.CardStats;
 
-public class CommonAndNature extends BaseCard {
+import static tomorimod.util.CustomUtils.idToName;
+
+public class CommonAndNature extends BaseCard implements PermanentFrom{
 
     public static final String ID = makeID(CommonAndNature.class.getSimpleName());
     public static final CardStats info = new CardStats(
@@ -34,6 +35,8 @@ public class CommonAndNature extends BaseCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new ApplyPowerAction(p,p,new CommonAndNaturePower(p)));
+        PermanentFormsSaveData.getInstance().addPermanentForms(idToName(ID));
+        BaseMonmentCard.removeFromMasterDeck(this);
     }
 
     @Override

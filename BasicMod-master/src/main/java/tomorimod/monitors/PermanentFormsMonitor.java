@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.actions.ApplyShineAction;
-import tomorimod.powers.custompowers.ShineWithMePower;
-import tomorimod.powers.custompowers.WeAreMygoPower;
-import tomorimod.powers.custompowers.StarDustPower;
-import tomorimod.powers.custompowers.WholeLifePower;
+import tomorimod.powers.custompowers.*;
 import tomorimod.savedata.customdata.PermanentFormsSaveData;
 import tomorimod.savedata.customdata.SaveMusicDiscoverd;
 
@@ -23,6 +20,9 @@ public class PermanentFormsMonitor extends BaseMonitor implements OnStartBattleS
         AbstractPlayer p=AbstractDungeon.player;
         for(String permantForms: PermanentFormsSaveData.getInstance().permanentForms){
             switch (permantForms){
+                case "CommonAndNature":
+                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new CommonAndNaturePower(p)));
+                    break;
                 case "SmallMonment":
                     AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p,p,new WholeLifePower(p)));
                     break;
