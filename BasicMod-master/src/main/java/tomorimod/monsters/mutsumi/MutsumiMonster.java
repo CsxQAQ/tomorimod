@@ -61,7 +61,7 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int DAMAGETIME_0 = 1;
     public static final int DAMAGETIME_1 = 5;
     public static final int DAMAGETIME_2 = 3;
-    public static final int CUCUMBER=10;
+    public static final int CUCUMBER=7;
     public static final int CUCUMBER_UPG=3;
     public static final int HEALNUM=50;
     public static final int STRENGTHNUM=2;
@@ -75,7 +75,7 @@ public class MutsumiMonster extends SpecialMonster {
     public static final int DAMAGETIME_0_WEAK = 1;
     public static final int DAMAGETIME_1_WEAK = 5;
     public static final int DAMAGETIME_2_WEAK = 3;
-    public static final int CUCUMBER_WEAK=5;
+    public static final int CUCUMBER_WEAK=3;
     public static final int CUCUMBER_UPG_WEAK=3;
     public static final int HEALNUM_WEAK=50;
     public static final int STRENGTHNUM_WEAK=2;
