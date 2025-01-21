@@ -56,7 +56,7 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 删除迷路日
+//TODO 删除轮符雨
 //TODO 白祥子
 
 

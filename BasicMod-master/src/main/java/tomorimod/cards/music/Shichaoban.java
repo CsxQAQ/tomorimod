@@ -30,21 +30,21 @@ public class Shichaoban extends BaseMusicCard {
     }
 
 
-    public final static int DAMAGE_COMMON = 7;
+    public final static int DAMAGE_COMMON = 10;
     public final static int UPG_DAMAGE_COMMON = 4;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 7;
+    public final static int MAGIC_COMMON = 10;
     public final static int UPG_MAGIC_COMMON = 4;
 
-    public final static int DAMAGE_UNCOMMON = 10;
+    public final static int DAMAGE_UNCOMMON = 15;
     public final static int UPG_DAMAGE_UNCOMMON = 5;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 10;
+    public final static int MAGIC_UNCOMMON = 15;
     public final static int UPG_MAGIC_UNCOMMON = 5;
 
-    public final static int DAMAGE_RARE = 10;
+    public final static int DAMAGE_RARE = 15;
     public final static int UPG_DAMAGE_RARE = 5;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;

@@ -146,9 +146,9 @@ public class TakiMonster extends BaseMonster {
         AbstractDungeon.effectList.add(effect);
         AbstractDungeon.scene.fadeOutAmbiance();
 
-        if(isHardMode){
-            addToBot(new ApplyPowerAction(this, this, new TakiPressurePower(this)));
-        }
+//        if(isHardMode){
+//            addToBot(new ApplyPowerAction(this, this, new TakiPressurePower(this)));
+//        }
 
     }
 
