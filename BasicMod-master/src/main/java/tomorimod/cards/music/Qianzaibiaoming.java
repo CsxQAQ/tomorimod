@@ -5,16 +5,10 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import tomorimod.cards.BaseCard;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
 import tomorimod.cards.music.utils.MusicDamageInfo;
-import tomorimod.monitors.card.LunfuyuMonitor;
-import tomorimod.powers.GravityPower;
 import tomorimod.util.CardStats;
 import tomorimod.util.PlayerUtils;
 

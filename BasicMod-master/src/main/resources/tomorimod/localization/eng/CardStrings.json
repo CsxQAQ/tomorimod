@@ -220,7 +220,7 @@
   },
   "${modID}:GravityCapture": {
     "NAME": "重力捕获",
-    "DESCRIPTION": "消灭生命值低于 tomorimod:重力 层数 !M! 倍的敌人。"
+    "DESCRIPTION": "消灭一名生命值低于 tomorimod:重力 层数 !M! 倍的敌人。"
   },
   "${modID}:Yellow": {
     "NAME": "漂亮的石头",

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.music.utils.MusicDamageAllEnemiesAction;
-import tomorimod.monitors.card.LunfuyuMonitor;
+import tomorimod.monitors.card.MiluriMonitor;
 import tomorimod.util.CardStats;
 
 public class Miluri extends BaseMusicCard {
@@ -33,22 +33,22 @@ public class Miluri extends BaseMusicCard {
     public final static int UPG_DAMAGE_COMMON = 0;
     public final static int BLOCK_COMMON = 0;
     public final static int UPG_BLOCK_COMMON = 0;
-    public final static int MAGIC_COMMON = 6;
-    public final static int UPG_MAGIC_COMMON = 3;
+    public final static int MAGIC_COMMON = 3;
+    public final static int UPG_MAGIC_COMMON = 1;
 
     public final static int DAMAGE_UNCOMMON = 0;
     public final static int UPG_DAMAGE_UNCOMMON = 0;
     public final static int BLOCK_UNCOMMON = 0;
     public final static int UPG_BLOCK_UNCOMMON = 0;
-    public final static int MAGIC_UNCOMMON = 9;
-    public final static int UPG_MAGIC_UNCOMMON = 4;
+    public final static int MAGIC_UNCOMMON = 4;
+    public final static int UPG_MAGIC_UNCOMMON = 2;
 
     public final static int DAMAGE_RARE = 0;
     public final static int UPG_DAMAGE_RARE = 0;
     public final static int BLOCK_RARE = 0;
     public final static int UPG_BLOCK_RARE = 0;
-    public final static int MAGIC_RARE = 9;
-    public final static int UPG_MAGIC_RARE = 4;
+    public final static int MAGIC_RARE = 4;
+    public final static int UPG_MAGIC_RARE = 2;
 
 
     @Override
@@ -85,9 +85,9 @@ public class Miluri extends BaseMusicCard {
 
     public void calculateBaseDamage(){
         if(musicRarity.equals(MusicRarity.RARE)){
-            baseDamage= magicNumber*LunfuyuMonitor.hpChangeNumWholeBattle;
+            baseDamage= magicNumber* MiluriMonitor.hpChangeNumWholeBattle;
         }else{
-            baseDamage=magicNumber*LunfuyuMonitor.hpIncreaseWholeBattle;
+            baseDamage=magicNumber* MiluriMonitor.hpIncreaseWholeBattle;
         }
     }
 

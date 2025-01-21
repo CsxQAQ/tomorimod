@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import tomorimod.monitors.BaseMonitor;
 
-public class LunfuyuMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, PostUpdateSubscriber, OnStartBattleSubscriber {
+public class MiluriMonitor extends BaseMonitor implements OnPlayerTurnStartSubscriber, PostUpdateSubscriber, OnStartBattleSubscriber {
 
     public static int curHp=0;
     public static int hpIncreaseNum=0;
@@ -33,6 +33,7 @@ public class LunfuyuMonitor extends BaseMonitor implements OnPlayerTurnStartSubs
 
                 if (delta > 0) {
                     hpIncreaseNum += delta;
+                    hpIncreaseWholeBattle+=delta;
                 }
                 curHp = newHp;
             }

@@ -5,12 +5,7 @@ import basemod.BaseMod;
 import basemod.devcommands.ConsoleCommand;
 import basemod.eventUtil.AddEventParams;
 import basemod.interfaces.*;
-import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.dungeons.TheEnding;
-import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.relics.DeadBranch;
-import com.megacrit.cardcrawl.relics.HornCleat;
-import com.megacrit.cardcrawl.relics.Toolbox;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.clapper.util.classutil.ClassFilter;
@@ -23,7 +18,6 @@ import tomorimod.configs.UnlockedAscension;
 import tomorimod.consoles.IncreaseRarityCommon;
 import tomorimod.consoles.ShowRecipesCommon;
 import tomorimod.events.EndingEvent;
-import tomorimod.events.SystemEvent;
 import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
@@ -62,8 +56,9 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 普通和理所当然改成永久能力
 //TODO 删除迷路日
+//TODO 白祥子
+
 
 @SpireInitializer
 public class TomoriMod implements
@@ -86,7 +81,7 @@ public class TomoriMod implements
         BaseMod.subscribe(new InitializeMonitor());
         BaseMod.subscribe(new MusicalCompositionMonitor());
         BaseMod.subscribe(new ConveyFeelingMonitor());
-        BaseMod.subscribe(new LunfuyuMonitor());
+        BaseMod.subscribe(new MiluriMonitor());
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
         BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
