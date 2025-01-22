@@ -16,11 +16,13 @@ import java.util.ArrayList;
 public class BandPractiseAction extends AbstractGameAction {
 
     private AbstractPlayer p;
+    private int numCards;
 
-    public BandPractiseAction() {
+    public BandPractiseAction(int numCards) {
         this.p = AbstractDungeon.player;
         this.actionType = ActionType.CARD_MANIPULATION;
         this.duration = Settings.ACTION_DUR_MED;
+        this.numCards = numCards;
     }
 
     public void update() {
@@ -46,7 +48,9 @@ public class BandPractiseAction extends AbstractGameAction {
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
                 BaseMusicCard card= (BaseMusicCard) c.makeStatEquivalentCopy();
                 card.setCostForTurn(0);
-                addToTop(new MakeTempCardInHandAction(card));
+                for(int i=0;i<numCards;i++){
+                    addToTop(new MakeTempCardInHandAction(card));
+                }
             }
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }

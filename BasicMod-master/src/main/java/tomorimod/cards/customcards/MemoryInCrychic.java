@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import tomorimod.cards.BaseCard;
 import tomorimod.cards.monment.BaseMonmentCard;
+import tomorimod.cards.monment.FallingOnFlatGround;
 import tomorimod.cards.monment.Tomotomo;
 import tomorimod.character.Tomori;
 import tomorimod.util.CardStats;
@@ -36,6 +37,7 @@ public class MemoryInCrychic extends BaseCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<BaseMonmentCard> tmp=new ArrayList<>(CustomUtils.monmentCardGroup.values());
         tmp.removeIf(card -> card instanceof Tomotomo);
+        tmp.removeIf(card -> card instanceof FallingOnFlatGround);
         BaseMonmentCard card = tmp.get(cardRandomRng.random(tmp.size() - 1));
         addToBot(new MakeTempCardInHandAction(card.makeStatEquivalentCopy(), true));
     }

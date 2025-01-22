@@ -31,9 +31,7 @@ public class BandPractise extends BaseCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        for(int i=0;i<magicNumber;i++){
-            addToBot(new BandPractiseAction());
-        }
+        addToBot(new BandPractiseAction(magicNumber));
     }
 
     @Override
