@@ -22,6 +22,7 @@ import tomorimod.monitors.*;
 import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
+import tomorimod.monsters.mutsumioperator.MutsumiOperatorMonster;
 import tomorimod.monsters.saki.SakiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
@@ -221,8 +222,13 @@ public class TomoriMod implements
 //                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
 //                .getSimpleName() + "_map.png");
 
-        BaseMod.addMonster(SakiMonster.ID, () -> new SakiMonster(0.0F, 0.0F));
-        BossGeneratePatch.addBoss("TheEnding", SakiMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//        BaseMod.addMonster(SakiMonster.ID, () -> new SakiMonster(0.0F, 0.0F));
+//        BossGeneratePatch.addBoss("TheEnding", SakiMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//                .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
+//                .getSimpleName() + "_map.png");
+
+        BaseMod.addMonster(MutsumiOperatorMonster.ID, () -> new MutsumiOperatorMonster(0.0F, 0.0F));
+        BossGeneratePatch.addBoss("TheEnding", MutsumiOperatorMonster.ID, imagePath("monsters/mapicons/") + SakiShadowMonster.class
                 .getSimpleName() + "_map.png", imagePath("monsters/mapicons/") + SakiShadowMonster.class
                 .getSimpleName() + "_map.png");
     }

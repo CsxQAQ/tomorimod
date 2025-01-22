@@ -334,6 +334,21 @@
       " 点生命流失。你的回合结束时每剩余一点能量，受到 #b",
       " 点生命流失。"
     ]
+  },
+  "${modID}:CantBeAttackedPower": {
+    "NAME": "操作员",
+    "DESCRIPTIONS":[
+      "无法被攻击"
+    ]
+  },
+  "${modID}:SakiMachineDistancePower": {
+    "NAME": "距离",
+    "DESCRIPTIONS":[
+      "根据与你的距离调整造成和受到的伤害。 NL 当前距离 #b",
+      " 。造成和受到的伤害减少 #b",
+      " %。 NL 与你的距离为 #b0 时，会有不好的事情发生......"
+
+    ]
   }
 
 }

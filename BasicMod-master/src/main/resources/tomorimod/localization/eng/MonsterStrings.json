@@ -108,5 +108,25 @@
     "DIALOG": [
       ""
     ]
+  },
+  "${modID}:MutsumiOperatorMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "操作员",
+    "DIALOG": [
+      ""
+    ]
+  },
+  "${modID}:SakiMachineMonster": {
+    "MOVES": [
+      "",
+      ""
+    ],
+    "NAME": "机械祥",
+    "DIALOG": [
+      ""
+    ]
   }
 }
