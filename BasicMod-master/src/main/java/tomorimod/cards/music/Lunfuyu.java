@@ -125,7 +125,7 @@ public class Lunfuyu extends BaseMusicCard {
     @Override
     public void dataInfoInitialize(){
         super.dataInfoInitialize();
-        misc=getMiscByRarity();
+        misc=misc==0?getMiscByRarity():misc;
         baseDamage=misc;
         updateDescription();
     }

@@ -20,7 +20,7 @@ public class Compete extends BaseCard {
             CardType.SKILL,
             CardRarity.UNCOMMON,
             CardTarget.ENEMY,
-            1
+            0
     );
 
     public final int MAGIC=2;
@@ -47,7 +47,7 @@ public class Compete extends BaseCard {
         if(!upgraded){
             upgradeName();
             updateDescription();
-            isInnate=true;
+            selfRetain=true;
         }
     }
 

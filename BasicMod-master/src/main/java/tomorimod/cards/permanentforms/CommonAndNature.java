@@ -30,6 +30,7 @@ public class CommonAndNature extends BaseCard implements PermanentFrom{
     public CommonAndNature() {
         super(ID, info);
         setMagic(MAGIC,UPG_MAGIC);
+        tags.add(CardTags.HEALING);
     }
 
     @Override

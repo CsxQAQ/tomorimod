@@ -57,9 +57,9 @@ import tomorimod.vfx.DynamicBackgroundTestEffect;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-//TODO 轮符雨 迷路日建议删了bug
 //TODO 白祥子
 //TODO 卡牌渲染不出来bug又出现了
+//TODO 考虑怎么解决relic重复出现的问题 英雄宝典event
 
 @SpireInitializer
 public class TomoriMod implements
