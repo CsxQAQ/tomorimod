@@ -1,9 +1,11 @@
 package tomorimod.relics;
 
 import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import tomorimod.cards.notshow.utilcards.MusicComposition;
 import tomorimod.character.Tomori;
 import tomorimod.screens.NotebookScreen;
 import tomorimod.actions.TomoriTutorialAction;
@@ -27,7 +29,15 @@ public class NotebookRelic extends BaseRelic {
     @Override
     public void atBattleStart(){
         addToBot(new TomoriTutorialAction());
+
     }
+
+    @Override
+    public void atPreBattle() {
+        addToBot(new MakeTempCardInHandAction(new MusicComposition()));
+        flash();
+    }
+
 
     @Override
     public void update() {

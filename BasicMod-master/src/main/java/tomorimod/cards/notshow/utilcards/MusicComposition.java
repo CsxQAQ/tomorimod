@@ -1,4 +1,4 @@
-package tomorimod.cards.basic;
+package tomorimod.cards.notshow.utilcards;
 
 import basemod.helpers.ScreenPostProcessorManager;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -26,7 +26,7 @@ public class MusicComposition extends BaseCard implements WithoutMaterial, Speci
     public MusicComposition() {
         super(ID, info);
         selfRetain=true;
-        isInnate=true;
+        //isInnate=true;
         purgeOnUse=true;
     }
     //可以不要，直接判断power

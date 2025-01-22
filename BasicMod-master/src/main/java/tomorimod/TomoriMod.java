@@ -60,6 +60,7 @@ import java.util.*;
 //TODO 卡牌渲染不出来bug又出现了
 //TODO 看看删除的遗物、事件、卡牌还会不会出现
 //TODO 吸血鬼事件
+//TODO 作词不再固有，而是回合开始时加入手牌
 
 
 @SpireInitializer

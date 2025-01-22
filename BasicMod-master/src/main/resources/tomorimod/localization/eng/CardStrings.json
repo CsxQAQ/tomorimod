@@ -19,7 +19,7 @@
   },
   "${modID}:MusicComposition": {
     "NAME": "作词",
-    "DESCRIPTION": "固有 ， 保留 ， tomorimod:使用后移除 。开始 tomorimod:音乐创作 。"
+    "DESCRIPTION": " 保留 ， tomorimod:使用后移除 。开始 tomorimod:音乐创作 。"
   },
   "${modID}:BlacklistYou": {
     "NAME": "我要拉黑你",

@@ -36,7 +36,6 @@ import com.megacrit.cardcrawl.vfx.combat.BlockedWordEffect;
 import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
 import com.megacrit.cardcrawl.vfx.combat.StrikeEffect;
 import tomorimod.cards.basic.Defend;
-import tomorimod.cards.basic.MusicComposition;
 import tomorimod.cards.basic.Strike;
 import tomorimod.cards.basic.Upset;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
@@ -225,7 +224,7 @@ public class Tomori extends CustomPlayer {
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
-        retVal.add(MusicComposition.ID);
+        //retVal.add(MusicComposition.ID);
         retVal.add(Upset.ID);
         return retVal;
     }
