@@ -27,7 +27,6 @@ public class SingerPower extends BasePower {
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+" 张牌。";
-        super.updateDescription();
     }
 
     @Override

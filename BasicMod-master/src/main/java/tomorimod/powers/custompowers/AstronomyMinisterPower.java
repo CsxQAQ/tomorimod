@@ -21,7 +21,6 @@ public class AstronomyMinisterPower extends BasePower {
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+" 。";
-        super.updateDescription();
     }
 
     @Override

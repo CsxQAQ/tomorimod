@@ -25,7 +25,6 @@ public class StrengthTomoriPower extends BasePower {
     @Override
     public void updateDescription(){
         description=DESCRIPTIONS[0]+amount+ " 层 #y力量 。";
-        super.updateDescription();
     }
 
     @Override
