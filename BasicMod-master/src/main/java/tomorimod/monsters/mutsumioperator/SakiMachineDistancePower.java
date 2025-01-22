@@ -29,16 +29,18 @@ public class SakiMachineDistancePower extends BasePower {
         return damage;
     }
 
+
     @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType damageType) {
+    public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
         if(owner instanceof SakiMachineMonster){
             int distance= ((SakiMachineMonster) owner).distance;
             if(distance>0){
-                return damage/distance;
+                return damageAmount/distance;
             }
         }
-        return damage;
+        return damageAmount;
     }
+
 
     @Override
     public void updateDescription() {

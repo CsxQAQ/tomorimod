@@ -1,6 +1,5 @@
 package tomorimod.monsters.mutsumioperator;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
@@ -14,12 +13,11 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.saki.SakiHeartWallPower;
-import tomorimod.monsters.saki.SakiWishYouHappyPower;
-import tomorimod.monsters.sakishadow.SakiShadowMonster;
-import tomorimod.monsters.taki.RanaMonster;
 import tomorimod.patches.MusicPatch;
 import tomorimod.vfx.ChangeSceneEffect;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -32,16 +30,16 @@ public class MutsumiOperatorMonster extends BaseMonster {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    public static final int HP_MIN         = 200;
-    public static final int HP_MAX         = 200;
+    public static final int HP_MIN         = 1;
+    public static final int HP_MAX         = 1;
     public static final int DAMAGE_0       = 8;
     public static final int DAMAGE_1       = 12;
     public static final int DAMAGETIME_0   = 2;
     public static final int DAMAGETIME_1   = 3;
 
 
-    public static final int HP_MIN_WEAK         = 200;
-    public static final int HP_MAX_WEAK         = 200;
+    public static final int HP_MIN_WEAK         = 1;
+    public static final int HP_MAX_WEAK         = 1;
     public static final int DAMAGE_0_WEAK       = 8;
     public static final int DAMAGE_1_WEAK       = 12;
     public static final int DAMAGETIME_0_WEAK   = 2;
@@ -63,14 +61,15 @@ public class MutsumiOperatorMonster extends BaseMonster {
     private static final float HB_H = 240.0F;
 
     // 绘制坐标
-    public static final float DRAW_X = 1400.0F;
+    public static final float DRAW_X = 1500.0F;
     public static final float DRAW_Y = 600.0F;
 
     // 贴图
     private static final String imgPath = imagePath("monsters/" + MutsumiOperatorMonster.class.getSimpleName() + ".png");
 
-    public static final float STANDARDDISTANCE=250.0F;
-    private SakiMachineMonster sakiMachineMonster1;
+    public static final float STANDARDDISTANCE=200.0F;
+    public List<SakiMachineMonster> sakiMachineMonsterList=new ArrayList<>();
+    //private SakiMachineMonster sakiMachineMonster1;
     private boolean isFirstTurn;
 
     public MutsumiOperatorMonster(float x, float y) {
@@ -109,6 +108,10 @@ public class MutsumiOperatorMonster extends BaseMonster {
         this.damage.add(new DamageInfo(this, damageVal0, DamageInfo.DamageType.NORMAL)); // index 0
         this.damage.add(new DamageInfo(this, damageVal1, DamageInfo.DamageType.NORMAL)); // index 1
 
+        for(int i=0;i<4;i++){
+            sakiMachineMonsterList.add(new SakiMachineMonster(0f,0f));
+        }
+
         isFirstTurn = true;
     }
 
@@ -124,7 +127,6 @@ public class MutsumiOperatorMonster extends BaseMonster {
         AbstractDungeon.player.drawX=this.drawX-5*STANDARDDISTANCE*Settings.scale;
         AbstractDungeon.player.drawY = this.drawY;
 
-        sakiMachineMonster1 = new SakiMachineMonster(0f, 0f);
         addToBot(new ApplyPowerAction(this,this,new CantBeAttackedPower(this)));
 
     }
@@ -141,36 +143,66 @@ public class MutsumiOperatorMonster extends BaseMonster {
                 break;
 
             case 50:
-                addToBot(new AbstractGameAction() {
-                    @Override
-                    public void update() {
-                        sakiMachineMonster1.move(1.0f);
-                        isDone=true;
+                if(!sakiMachineMonsterList.get(0).isDeadOrEscaped()){
+                    addToBot(new AbstractGameAction() {
+                        @Override
+                        public void update() {
+                            sakiMachineMonsterList.get(0).move(1.0f);
+                            isDone=true;
+                        }
+                    });
+                }
+                break;
+            case 51:
+                for(SakiMachineMonster sakiMachineMonster : sakiMachineMonsterList){
+                    if(!sakiMachineMonster.isDeadOrEscaped()){
+                        addToBot(new AbstractGameAction() {
+                            @Override
+                            public void update() {
+                                sakiMachineMonster.move(1.0f);
+                                isDone=true;
+                            }
+                        });
                     }
-                });
+                }
                 break;
+
             case 99:
-                sakiMachineMonster1.drawX=this.drawX-STANDARDDISTANCE*Settings.scale;
-                sakiMachineMonster1.drawY=this.drawY;
-                sakiMachineMonster1.targetDrawX=sakiMachineMonster1.drawX;
-                sakiMachineMonster1.distance=4;
-                addToBot(new SpawnMonsterAction(sakiMachineMonster1, false));
-                addToBot(new ApplyPowerAction(sakiMachineMonster1,this,new SakiMachineDistancePower(sakiMachineMonster1)));
+                spawnSaki(0,-STANDARDDISTANCE*Settings.scale,0,4);
                 break;
+
+            case 100:
+                spawnSaki(1,-STANDARDDISTANCE*Settings.scale,0,4);
+                spawnSaki(2,0,-STANDARDDISTANCE*Settings.scale,6);
+                spawnSaki(3,0,STANDARDDISTANCE*Settings.scale,6);
+                break;
+
 
         }
         // 回合结束后，准备下一次动作
         AbstractDungeon.actionManager.addToBottom(new RollMoveAction(this));
     }
 
+    public void spawnSaki(int index,float xOffset,float yOffset,int distance){
+        SakiMachineMonster sakiMachineMonster = sakiMachineMonsterList.get(index);
+        sakiMachineMonster.drawX=this.drawX+xOffset;
+        sakiMachineMonster.drawY=this.drawY+yOffset;
+        sakiMachineMonster.targetDrawX=sakiMachineMonster.drawX;
+        sakiMachineMonster.targetDrawY=sakiMachineMonster.drawY;
+        sakiMachineMonster.distance=distance;
+        addToBot(new SpawnMonsterAction(sakiMachineMonster,false));
+        addToBot(new ApplyPowerAction(sakiMachineMonster,this,new SakiMachineDistancePower(sakiMachineMonster)));
+    }
+
+
     @Override
     protected void getMove(int num) {
         int rand = AbstractDungeon.miscRng.random(0, 1);
         if(isFirstTurn){
-            setMove((byte)99,Intent.UNKNOWN);
+            setMove((byte)100,Intent.UNKNOWN);
             isFirstTurn = false;
         }else{
-            setMove((byte)50,Intent.BUFF);
+            setMove((byte)51,Intent.BUFF);
 //            if (rand == 0) {
 //                setMove((byte) 0, Intent.ATTACK,
 //                        this.damage.get(0).base, damageTimeVal0, true);

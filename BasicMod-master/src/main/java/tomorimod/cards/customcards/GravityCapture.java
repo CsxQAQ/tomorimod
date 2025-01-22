@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import tomorimod.cards.BaseCard;
 import tomorimod.character.Tomori;
+import tomorimod.monsters.mutsumioperator.MutsumiOperatorMonster;
 import tomorimod.util.CardStats;
 
 public class GravityCapture extends BaseCard {
@@ -37,12 +38,16 @@ public class GravityCapture extends BaseCard {
             @Override
             public void update() {
                 if(p.hasPower(makeID("GravityPower"))){
-                    if(m.currentHealth<p.getPower(makeID("GravityPower")).amount*magicNumber){
-                        addToTop(new InstantKillAction(m));
-                        addToTop(new VFXAction(new WeightyImpactEffect(m.hb.cX, m.hb.cY, Color.GOLD.cpy())));
-                    }
-                    else {
-                        addToTop(new TextAboveCreatureAction(m, "你的重力还不够！"));
+                    if(m instanceof MutsumiOperatorMonster){
+                        addToTop(new TextAboveCreatureAction(m, "无效的目标"));
+                    }else{
+                        if(m.currentHealth<p.getPower(makeID("GravityPower")).amount*magicNumber){
+                            addToTop(new InstantKillAction(m));
+                            addToTop(new VFXAction(new WeightyImpactEffect(m.hb.cX, m.hb.cY, Color.GOLD.cpy())));
+                        }
+                        else {
+                            addToTop(new TextAboveCreatureAction(m, "重力还不够"));
+                        }
                     }
                 }
                 isDone=true;

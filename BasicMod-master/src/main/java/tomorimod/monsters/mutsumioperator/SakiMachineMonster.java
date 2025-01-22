@@ -1,25 +1,14 @@
 package tomorimod.monsters.mutsumioperator;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.screens.DeathScreen;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.HbBlockBrokenEffect;
-import tomorimod.actions.PlayBGMAction;
 import tomorimod.monsters.BaseMonster;
-import tomorimod.monsters.saki.SakiHeartWallPower;
-import tomorimod.monsters.saki.SakiWishYouHappyPower;
-import tomorimod.patches.MusicPatch;
-import tomorimod.util.MonsterUtils;
-import tomorimod.vfx.ChangeSceneEffect;
 
 import static tomorimod.TomoriMod.imagePath;
 import static tomorimod.TomoriMod.makeID;
@@ -70,6 +59,8 @@ public class SakiMachineMonster extends BaseMonster {
     private static final String imgPath = imagePath("monsters/" + SakiMachineMonster.class.getSimpleName() + ".png");
 
     public float targetDrawX;  // 目标的绘制X位置
+    public float targetDrawY;
+
     public float moveSpeed;    // 每秒移动的像素数
     public boolean isMoving;   // 是否正在移动
     public float duration;
@@ -120,34 +111,74 @@ public class SakiMachineMonster extends BaseMonster {
 
     }
 
+    public void move(float duration){
+        if(distance > 1){
+            moveLeft(duration);
+        } else if(distance == 1){
+            // 根据与玩家的垂直距离决定上下移动
+            if(AbstractDungeon.player.drawY - this.drawY > MutsumiOperatorMonster.STANDARDDISTANCE/2) {
+                moveUp(duration);
+            } else if(this.drawY - AbstractDungeon.player.drawY > MutsumiOperatorMonster.STANDARDDISTANCE/2) {
+                moveDown(duration);
+            } else {
+                moveLeft(duration);
+            }
+        }
+    }
 
-    public void move(float duration) {
-        // 设定目标
-        this.targetDrawX = this.targetDrawX-MutsumiOperatorMonster.STANDARDDISTANCE*Settings.scale;
-        // 计算出每秒应该移动多少像素
-        // 注意：如果当前drawX大于目标，moveSpeed为负
-        this.duration=duration;
+    public void moveLeft(float duration) {
+        // 设定目标X坐标，向左移动
+        this.targetDrawX = this.targetDrawX - MutsumiOperatorMonster.STANDARDDISTANCE * Settings.scale;
+        // 同时保持Y坐标不变
+        // 初始化duration, 更新distance等操作
+        this.duration = duration;
+        distance--;
+        this.isMoving = true;
+    }
+
+    public void moveDown(float duration) {
+        // 设定目标Y坐标，向上移动
+        this.targetDrawY = this.targetDrawY - MutsumiOperatorMonster.STANDARDDISTANCE * Settings.scale;
+        // 同时保持X坐标不变
+        this.duration = duration;
+        distance--;
+        this.isMoving = true;
+    }
+
+    public void moveUp(float duration) {
+        // 设定目标Y坐标，向下移动（注意：这里与moveUp不同，增加Y坐标）
+        this.targetDrawY = this.targetDrawY + MutsumiOperatorMonster.STANDARDDISTANCE * Settings.scale;
+        this.duration = duration;
         distance--;
         this.isMoving = true;
     }
 
     @Override
     public void update() {
-        // 调用父类更新（如果有）
+        // 调用父类的更新方法
         super.update();
 
-        // 如果正在移动，则在 update 中按照deltaTime平滑更新drawX
         if (isMoving) {
-            this.moveSpeed = (this.targetDrawX - this.drawX) / duration;
-            // 按照每秒移动的量更新，deltaTime由Settings提供（或从Gdx.graphics获取）
-            float delta=Gdx.graphics.getDeltaTime();
-            duration-= delta;
-            this.drawX += moveSpeed * delta;
+            // 获取delta时间
+            float delta = Gdx.graphics.getDeltaTime();
+            // 为防止duration变为负值
+            duration = Math.max(duration - delta, 0);
 
-            if(duration<=0){
-                isMoving=false;
+            // 分别计算X和Y方向的速度
+            float speedX = (this.targetDrawX - this.drawX) / (duration > 0 ? duration : delta);
+            float speedY = (this.targetDrawY - this.drawY) / (duration > 0 ? duration : delta);
+
+            // 根据delta更新位置
+            this.drawX += speedX * delta;
+            this.drawY += speedY * delta;
+
+            // 当duration耗尽时，认为到达目标位置
+            if(duration <= 0){
+                isMoving = false;
+                // 更新描述（例如Power的描述）
                 getPower(makeID("SakiMachineDistancePower")).updateDescription();
-                if(distance<=0){
+                if(distance <= 0){
+                    // 当达到最低移动距离后，设置死亡逻辑
                     AbstractDungeon.player.isDead = true;
                     AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
                     AbstractDungeon.player.currentHealth = 0;
