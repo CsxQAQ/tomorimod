@@ -58,7 +58,9 @@ import java.util.*;
 
 //TODO 白祥子
 //TODO 卡牌渲染不出来bug又出现了
-//TODO 考虑怎么解决relic重复出现的问题 英雄宝典event
+//TODO 看看删除的遗物、事件、卡牌还会不会出现
+//TODO 吸血鬼事件
+
 
 @SpireInitializer
 public class TomoriMod implements
