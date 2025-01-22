@@ -20,13 +20,13 @@
   "${modID}:WeAreMygoPower": {
     "NAME": "迷途之子",
     "DESCRIPTIONS": [
-      " #y永久形态 。使用 #y瞬间 牌时，获得 #b5 点最大生命上限。"
+      " #y永久能力 。使用 #y瞬间 牌时，获得 #b5 点最大生命上限。"
     ]
   },
   "${modID}:ShineWithMePower": {
     "NAME": "光芒与我同行",
     "DESCRIPTIONS": [
-      " #y永久形态 。战斗开始时，本局游戏中每创作一种 #y音乐 牌，获得 #b1 层 #y闪耀 。"
+      " #y永久能力 。战斗开始时，本局游戏中每创作一种 #y音乐 牌，获得 #b1 层 #y闪耀 。"
     ]
   },
   "${modID}:AstronomyMinisterPower": {
@@ -117,13 +117,13 @@
   "${modID}:CommonAndNaturePower": {
     "NAME": "普通和理所当然",
     "DESCRIPTIONS": [
-      "稀有度为普通的 #y音乐 牌造成 #b3 倍伤害。"
+      " #y永久能力 。稀有度为普通的 #y音乐 牌造成 #b3 倍伤害。"
     ]
   },
   "${modID}:WholeLifePower": {
     "NAME": "一辈子",
     "DESCRIPTIONS": [
-      " #y永久形态 。每场战斗一次，具有 #y瞬间 的卡牌使用后不会将牌组中对应的卡牌移除。",
+      " #y永久能力 。每场战斗一次，具有 #y瞬间 的卡牌使用后不会将牌组中对应的卡牌移除。",
       "（ #y已生效 ）"
     ]
   },
@@ -142,13 +142,13 @@
   "${modID}:ImmunityPower": {
     "NAME": "星屑",
     "DESCRIPTIONS": [
-      "生命值不会低于 #b1 点。回合结束时消耗 #b3 点 #y闪耀 ，若 #y闪耀 不足 #b3 点则失去此效果。"
+      "生命值不会低于 #b1 点。将要失去时消耗 #b3 点 #y闪耀 来延续此效果。"
     ]
   },
   "${modID}:StarDustPower": {
     "NAME": "微小的星屑",
     "DESCRIPTIONS": [
-      " #y永久形态 。受到致命伤害失去该能力，同时获得 #y星盾 。"
+      " #y永久能力 。受到致命伤害失去该能力，同时获得 #y星屑 。"
     ]
   },
   "${modID}:DivergeWorldPower": {

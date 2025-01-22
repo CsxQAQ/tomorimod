@@ -315,7 +315,7 @@
   },
   "${modID}:CommonAndNature": {
     "NAME": "普通和理所当然",
-    "DESCRIPTION": "稀有度为普通的 tomorimod:音乐 牌造成 !M! 倍伤害。"
+    "DESCRIPTION": " tomorimod:永久能力 ：稀有度为普通的 tomorimod:音乐 牌造成 !M! 倍伤害。"
   },
   "${modID}:EquelExchange": {
     "NAME": "等价交换",
