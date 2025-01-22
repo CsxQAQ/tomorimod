@@ -1,4 +1,4 @@
-package tomorimod.monsters.taki;
+package tomorimod.monsters.mutsumioperator;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class TakiPressurePatch {
+public class LockPatch {
     @SpirePatch(
             clz= AbstractCard.class,
             method=SpirePatch.CLASS
     )
     public static class AbstractPressureFieidPatch {
-        public static SpireField<Boolean> isTakiLocked = new SpireField<>(() -> false);
+        public static SpireField<Boolean> isLocked = new SpireField<>(() -> false);
     }
 
     @SpirePatch(
@@ -24,7 +24,7 @@ public class TakiPressurePatch {
     public static class AbstractCardCanUsePatch{
         @SpirePrefixPatch
         public static SpireReturn<Boolean> prefix(AbstractCard __instance,AbstractPlayer p, AbstractMonster m){
-            if(AbstractPressureFieidPatch.isTakiLocked.get(__instance)){
+            if(AbstractPressureFieidPatch.isLocked.get(__instance)){
                 return SpireReturn.Return(false);
             }
             return SpireReturn.Continue();

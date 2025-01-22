@@ -4,8 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import tomorimod.cards.music.BaseMusicCard;
-import tomorimod.monsters.taki.TakiPressurePatch;
+import tomorimod.monsters.mutsumioperator.LockPatch;
 import tomorimod.tags.CustomTags;
 
 public class MakeStatEquivalentCopyPatch {
@@ -48,8 +47,8 @@ public class MakeStatEquivalentCopyPatch {
 
             card.exhaust=__instance.exhaust;
             card.isInnate=__instance.isInnate;
-            TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.set(card,
-                    TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(__instance));
+            LockPatch.AbstractPressureFieidPatch.isLocked.set(card,
+                    LockPatch.AbstractPressureFieidPatch.isLocked.get(__instance));
 
             if(__instance.tags.contains(CustomTags.SHORTTERMGOAL)){
                 card.tags.add(CustomTags.SHORTTERMGOAL);

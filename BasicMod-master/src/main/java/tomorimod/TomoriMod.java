@@ -23,10 +23,8 @@ import tomorimod.monitors.card.*;
 import tomorimod.monsters.anon.AnonMonster;
 import tomorimod.monsters.mutsumi.MutsumiMonster;
 import tomorimod.monsters.mutsumioperator.MutsumiOperatorMonster;
-import tomorimod.monsters.saki.SakiMonster;
 import tomorimod.monsters.sakishadow.SakiShadowMonster;
 import tomorimod.monsters.taki.TakiMonster;
-import tomorimod.monsters.taki.TakiPressureMonitor;
 import tomorimod.monsters.DamageNumFrozeMonitor;
 import tomorimod.monsters.uika.UikaMonster;
 import tomorimod.patches.BossGeneratePatch;
@@ -87,7 +85,7 @@ public class TomoriMod implements
         BaseMod.subscribe(new MixingjiaoMonitor());
         BaseMod.subscribe(new PermanentFormsMonitor());
         BaseMod.subscribe(new RemoveCardsFromPoolMonitor());
-        BaseMod.subscribe(new TakiPressureMonitor());
+        //xxxxxxxxxxxxxxBaseMod.subscribe(new TakiPressureMonitor());
         BaseMod.subscribe(new DamageNumFrozeMonitor());
         BaseMod.subscribe(new ShortTermGoalMonitor());
     }

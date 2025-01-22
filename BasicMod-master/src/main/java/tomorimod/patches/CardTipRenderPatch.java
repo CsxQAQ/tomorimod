@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import tomorimod.monsters.taki.TakiPressurePatch;
+import tomorimod.monsters.mutsumioperator.LockPatch;
 import tomorimod.tags.CustomTags;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class CardTipRenderPatch {
             if(___card.selfRetain==true&&!keywords.contains("保留")){
                 keywords.add("保留");
             }
-            if(TakiPressurePatch.AbstractPressureFieidPatch.isTakiLocked.get(___card)&&!keywords.contains(makeID("压力"))){
+            if(LockPatch.AbstractPressureFieidPatch.isLocked.get(___card)&&!keywords.contains(makeID("压力"))){
                 keywords.add(makeID("压力"));
             }
 
